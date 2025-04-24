@@ -1,2 +1,10 @@
+# Dependências
+node_modules/
 .env
-node_modules
+
+# Output de build
+dist/
+build/
+
+# Configs do VS Code
+.vscode/
