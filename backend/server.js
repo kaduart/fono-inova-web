@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import adminRoutes from './routes/admin.js';
 import appointmentRoutes from './routes/appointment.js';
 import doctorRoutes from './routes/doctor.js';
+import evolutionRoutes from './routes/evolution.js';
 import loginRoutes from './routes/login.js';
 import patientRoutes from './routes/patient.js';
 import signupRoutes from './routes/signup.js';
@@ -42,7 +43,8 @@ app.use('/api/login', loginRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/doctor', doctorRoutes);
 app.use('/api/patients', patientRoutes);
-app.use('/api/appointments', appointmentRoutes);
+app.use('/api/appointment', appointmentRoutes);
+app.use('/api/evolutions', evolutionRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

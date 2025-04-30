@@ -1,8 +1,10 @@
-import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, UserCircle, Users } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, LineChart, UserCircle, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
+import PatientEvolution from './PatientEvolution';
+import axios from 'axios';
 
 const Button = ({ children, variant = 'primary', className = '', ...props }) => (
   <button
@@ -85,6 +87,8 @@ export default function PatientDashboard() {
   const [careTeam, setCareTeam] = useState([]);
   const [prescriptions, setPrescriptions] = useState([]);
   const [completedAppointments, setCompletedAppointments] = useState([]);
+  const [evolutions, setEvolutions] = useState([]);
+
   const navigate = useNavigate();
 
   const fetchPatientProfile = async () => {
@@ -251,6 +255,23 @@ export default function PatientDashboard() {
       console.error('Error fetching prescriptions:', error);
     }
   };
+
+  useEffect(() => {
+    if (activeTab === 'Evolution' && patientInfo?._id) {
+      const fetchEvolutions = async () => {
+        try {
+          const response = await axios.get(`/api/evolutions/patient/${patientInfo._id}`);
+          setEvolutions(response.data);
+        } catch (error) {
+          console.error('Erro ao carregar evoluções:', error);
+          toast.error('Erro ao carregar dados de evolução');
+        }
+      };
+
+      fetchEvolutions();
+    }
+  }, [activeTab, patientInfo]);
+
 
   useEffect(() => {
     fetchPatientProfile();
@@ -489,6 +510,17 @@ export default function PatientDashboard() {
     );
   };
 
+  const renderEvolution = () => {
+    if (!patientInfo) return null;
+
+    return (
+      <PatientEvolution
+        patientId={patientInfo._id}
+        patientName={patientInfo.fullName}
+      />
+    );
+  };
+
   const renderAppointmentBooking = () => {
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -615,6 +647,16 @@ export default function PatientDashboard() {
               Appointment Booking
             </Button>
           </li>
+          <li>
+            <Button
+              variant={activeTab === 'Evolution' ? "outline" : "ghost"}
+              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Evolution' ? 'bg-white text-blue-600' : 'text-white'}`}
+              onClick={() => setActiveTab('Evolution')}
+            >
+              <LineChart className="w-4 h-4 mr-2" />
+              Evolução
+            </Button>
+          </li>
         </ul>
       </nav>
       <main className="container mx-auto px-4 py-8">
@@ -622,6 +664,7 @@ export default function PatientDashboard() {
         {activeTab === 'Dashboard' && renderDashboard()}
         {activeTab === 'Profile' && renderProfile()}
         {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
+        {activeTab === 'Evolution' && renderEvolution()}
       </main>
     </div>
   );

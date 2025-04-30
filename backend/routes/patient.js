@@ -1,31 +1,9 @@
 // routes/patient.js
 import express from 'express';
-import jwt from 'jsonwebtoken';
+import { auth } from '../middleware/auth.js';
 import Patient from '../models/Patient.js';
 
 const router = express.Router();
-
-const auth = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-
-  if (!authHeader) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  const token = authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).json({ error: 'Token format invalid' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secreta');
-    req.user = decoded; // por ex: { id, email, role }
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: 'Invalid token' });
-  }
-};
 
 router.post('/add', auth, async (req, res) => {
   console.log('HEADERS RECEBIDOS:', req.headers);
@@ -116,6 +94,8 @@ router.put('/:id', auth, async (req, res) => {
 
 // List all patients
 router.get('/', auth, async (req, res) => {
+  console.log('tokennn', auth)
+
   try {
     const patients = await Patient.find().sort({ createdAt: -1 });
     res.json(patients);

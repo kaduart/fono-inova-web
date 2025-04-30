@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import jwt from 'jsonwebtoken';
 
+import { auth } from '../middleware/auth.js';
 import Admin from '../models/Admin.js';
 import Appointment from '../models/Appointment.js';
 import Doctor from '../models/Doctor.js';
@@ -9,22 +9,6 @@ import User from '../models/User.js';
 dotenv.config();
 
 const router = express.Router();
-
-const auth = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', '');
-
-  if (!token) {
-    return res.status(401).send({ error: 'No token provided' });
-  }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-    res.status(401).send({ error: 'Invalid token' });
-  }
-};
 
 router.post('/add-doctor', auth, async (req, res) => {
   if (req.user.role !== 'admin') {

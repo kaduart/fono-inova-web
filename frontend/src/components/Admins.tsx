@@ -1,11 +1,11 @@
-import { Activity, Calendar, ChevronDown, Clock, Eye, EyeOff, FileText, Home, Hospital, Pencil, Plus, ShieldCheck, Stethoscope, Trash2, UserCircle, UserPlus, Users } from 'lucide-react';
+import { Activity, Calendar, ChevronDown, Clock, Eye, EyeOff, FileText, Home, Hospital, ShieldCheck, Stethoscope, UserCircle, UserPlus, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import Modal from 'react-modal';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import PatientForm from '../shared/components/PatientForm';
+import EnhancedCalendar from './EnhancedCalendar';
 import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
@@ -172,7 +172,7 @@ export default function AdminDashboard() {
     profissional: '',
     data: '',
     hora: '',
-    tipoSessao: '',
+    sessionType: '',
     status: '',
     motivo: ''
   });
@@ -183,22 +183,31 @@ export default function AdminDashboard() {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
-    fetch('http://localhost:5000/api/patients', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('Pacientes recebidos:', data);
-        setPatients(data);
-      })
-      .catch((err) => console.error('Erro ao buscar pacientes:', err));
-  }, []);
+  /*  useEffect(() => {
+     const token = localStorage.getItem('token');
+     if (!token) return;
+ 
+     const fetchPatients = async () => {
+       try {
+         const response = await fetch(`${BASE_URL}/patients`, {
+           headers: {
+             'Authorization': `Bearer ${token}`,
+           },
+         });
+ 
+         const data = await response.json();
+         if (Array.isArray(data)) {
+           setPatients(data);
+         } else {
+           console.error('Resposta inesperada da API:', data);
+         }
+       } catch (error) {
+         console.error('Erro ao buscar pacientes:', error);
+       }
+     };
+ 
+     fetchPatients();
+   }, []); */
 
   const fetchDoctors = async () => {
     try {
@@ -229,7 +238,7 @@ export default function AdminDashboard() {
       profissional: agendamento.profissional,
       data: agendamento.dataHora.split(" ")[0],
       hora: agendamento.dataHora.split(" ")[1],
-      tipoSessao: agendamento.tipoSessao,
+      sessionType: agendamento.sessionType,
       status: agendamento.status,
       motivo: agendamento.anotacoes,
     });
@@ -255,7 +264,7 @@ export default function AdminDashboard() {
       const atualizado = {
         profissional: agendamentoTemp.profissional,
         dataHora: `${agendamentoTemp.data} ${agendamentoTemp.hora}`,
-        tipoSessao: agendamentoTemp.tipoSessao,
+        sessionType: agendamentoTemp.sessionType,
         status: agendamentoTemp.status,
         anotacoes: agendamentoTemp.motivo,
       };
@@ -272,48 +281,48 @@ export default function AdminDashboard() {
         profissional: '',
         data: '',
         hora: '',
-        tipoSessao: '',
+        sessionType: '',
         status: 'agendado',
         motivo: '',
       });
     }
   };
 
-  const handleSelectPatient = async (e) => {
-    const selected = patients.find((p) => p._id === e.target.value);
-    setSelectedPatient(selected);
+  /*   const handleSelectPatient = async (e) => {
+      const selected = patients.find((p) => p._id === e.target.value);
+      setSelectedPatient(selected);
+  
+      setValue('patientId', selected?._id); // Seta no form
+      setValue('dateOfBirth', selected?.dateOfBirth?.split('T')[0]);
+  
+      if (selected?._id) {
+        await fetchAppointments(selected._id); // Busca agendamentos do paciente
+      }
+    }; */
 
-    setValue('patientId', selected?._id); // Seta no form
-    setValue('dateOfBirth', selected?.dateOfBirth?.split('T')[0]);
-
-    if (selected?._id) {
-      await fetchAppointments(selected._id); // Busca agendamentos do paciente
-    }
-  };
-
-  const handleInputAgendamento = (e) => {
+  /* const handleInputAgendamento = (e) => {
     const { name, value } = e.target;
     setAgendamentoTemp(prev => ({ ...prev, [name]: value }));
   };
+ */
+  /*   const handleSelectDoctor = (event) => {
+      setAgendamentoTemp((prev) => ({
+        ...prev,
+        profissional: event.target.value,  // Aqui você vai atualizar o estado com o ID do profissional
+      }));
+    }; */
 
-  const handleSelectDoctor = (event) => {
-    setAgendamentoTemp((prev) => ({
-      ...prev,
-      profissional: event.target.value,  // Aqui você vai atualizar o estado com o ID do profissional
-    }));
-  };
-
-  const adicionarAgendamento = (formData) => {
+  /* const adicionarAgendamento = (formData) => {
     const novoAgendamento = {
       profissional: formData.profissional,
       dataHora: `${formData.data} ${formData.hora}`,
-      tipoSessao: formData.tipoSessao,
+      sessionType: formData.sessionType,
       status: formData.status,
       reason: formData.motivo,
     };
 
     setAgendamentosTemp(prev => [...prev, novoAgendamento]);
-  };
+  }; */
 
 
   const navigate = useNavigate();
@@ -326,7 +335,6 @@ export default function AdminDashboard() {
     fetchDoctors();
     fetchPatientOverview();
     fetchCompletedAppointments();
-    fetchUpcomingAppointments();
   }, []);
 
   const fetchAdminProfile = async () => {
@@ -491,36 +499,6 @@ export default function AdminDashboard() {
     }
   };
 
-  const fetchUpcomingAppointments = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
-
-      const response = await fetch(BASE_URL + '/appointments/upcoming', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-
-        // Sort appointments by date and time (soonest first)
-        const sortedUpcoming = data.sort((a, b) =>
-          new Date(a.date + ' ' + a.time) - new Date(b.date + ' ' + b.time)
-        );
-
-        setUpcomingAppointments(sortedUpcoming); // Make sure you have this state defined
-      } else {
-        console.error('Failed to fetch upcoming appointments');
-      }
-    } catch (error) {
-      console.error('Error fetching upcoming appointments:', error);
-    }
-  };
 
   const fetchAppointments = async (patientId) => {
     try {
@@ -686,7 +664,7 @@ export default function AdminDashboard() {
               <ul className="space-y-2">
                 {upcomingAppointments.slice(0, 3)?.map((appointment, index) => (
                   <li key={appointment._id || index} className="flex items-center space-x-2">
-                    <Calendar className="h-4 w-4 text-blue-600" />
+                    <EnhancedCalendar className="h-4 w-4 text-blue-600" />
                     <span>
                       <strong>
                         {appointment.doctorId?.fullName}
@@ -938,6 +916,13 @@ export default function AdminDashboard() {
     );
   };
 
+
+  const renderCalendarGeneral = () => {
+    return (
+      <EnhancedCalendar />
+    );
+  };
+
   const renderAddAdmin = () => {
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -1048,7 +1033,7 @@ export default function AdminDashboard() {
     );
   };
 
-  const renderAppointments = () => {
+  /* const renderAppointments = () => {
     console.log('DOCTORS LIST:', doctors);
 
     const onSubmitAppointment = async (formData) => {
@@ -1066,9 +1051,10 @@ export default function AdminDashboard() {
       const payload = {
         patientId: formData.patientId,
         doctorId: formData.profissional,
-        date: formData.data,        // pega o campo "data"
-        time: formData.hora,        // pega o campo "hora"
-        reason: formData.motivo,    // pega o campo "motivo"
+        date: formData.data,
+        time: formData.hora,
+        reason: formData.motivo,
+        sessionType: formData.sessionType,
         status: formData.status,
       };
       console.log('Payload enviado:', payload);
@@ -1137,7 +1123,7 @@ export default function AdminDashboard() {
                     onChange={handleSelectPatient}
                   >
                     <option value="">Selecione</option>
-                    {patients.map((patient) => (
+                    {Array.isArray(patients) && patients.map((patient) => (
                       <option key={patient._id} value={patient._id}>
                         {patient.fullName}
                       </option>
@@ -1193,7 +1179,7 @@ export default function AdminDashboard() {
                             <tr key={index} className="border-b hover:bg-gray-50 text-sm">
                               <td className="p-3">{ag.profissional}</td>
                               <td className="p-3">{ag.dataHora}</td>
-                              <td className="p-3">{ag.tipoSessao}</td>
+                              <td className="p-3">{ag.sessionType}</td>
                               <td className="p-3">{ag.status}</td>
                               <td className="p-3">{ag.anotacoes || '—'}</td>
                               <td className="p-3 text-center flex justify-center gap-3">
@@ -1256,10 +1242,10 @@ export default function AdminDashboard() {
                             {new Date(appointment.date).toLocaleDateString()} - {appointment.time}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            {appointment.patientId?.name || 'N/A'}
+                            {appointment.patientId?.fullName || 'N/A'}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            {appointment.doctorId?.name || 'N/A'}
+                            {appointment.doctorId?.fullName || 'N/A'}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             {appointment.type}
@@ -1315,7 +1301,7 @@ export default function AdminDashboard() {
 
             <Input type="date" {...register('data', { required: true })} />
             <Input type="time" {...register('hora', { required: true })} />
-            <Select {...register('tipoSessao', { required: true })}>
+            <Select {...register('sessionType', { required: true })}>
               <option value="">Tipo de Sessão</option>
               <option value="fonoaudiologia">Fonoaudiologia</option>
               <option value="psicologia">Psicologia</option>
@@ -1359,7 +1345,7 @@ export default function AdminDashboard() {
             </Select>
             <Input type="date" name="data" value={agendamentoTemp.data} onChange={handleInputAgendamento} />
             <Input type="time" name="hora" value={agendamentoTemp.hora} onChange={handleInputAgendamento} />
-            <Select name="tipoSessao" value={agendamentoTemp.tipoSessao} onChange={handleInputAgendamento}>
+            <Select name="sessionType" value={agendamentoTemp.sessionType} onChange={handleInputAgendamento}>
               <option value="">Tipo de Sessão</option>
               <option value="fonoaudiologia">Fonoaudiologia</option>
               <option value="psicologia">Psicologia</option>
@@ -1388,7 +1374,7 @@ export default function AdminDashboard() {
         </Modal>
       </Card>
     );
-  };
+  }; */
 
   return (
     <div className="min-h-screen bg-blue-600">
@@ -1443,12 +1429,12 @@ export default function AdminDashboard() {
           </li>
           <li>
             <Button
-              variant={activeTab === 'Appointments' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Appointments' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Appointments')}
+              variant={activeTab === 'Calendário' ? "outline" : "ghost"}
+              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Calendário' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
+              onClick={() => setActiveTab('Calendário')}
             >
               <Calendar className="w-4 h-4 mr-2" />
-              Agendamentos
+              Calendário
             </Button>
           </li>
           <li>
@@ -1469,8 +1455,8 @@ export default function AdminDashboard() {
         {activeTab === 'Profile' && renderProfile()}
         {activeTab === 'Add Profissional' && renderAddDoctor()}
         {activeTab === 'Add Paciente' && renderAddPatient()}
+        {activeTab === 'Calendário' && renderCalendarGeneral()}
         {activeTab === 'Add Admin' && renderAddAdmin()}
-        {activeTab === 'Appointments' && renderAppointments()}
       </main>
     </div>
   );

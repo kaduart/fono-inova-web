@@ -5,6 +5,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import './App.css';
 import Admin from './components/Admins';
 import AppointmentCalendar from './components/AppointmentCalendar';
+import AppointmentScheduler from './components/AppointmentScheduler';
 import Doctor from './components/Doctors';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -26,6 +27,7 @@ const App: React.FC = () => {
           <Route path="/calendar" element={<AppointmentCalendar />} />
           <Route path="/patient" element={<Patient />} />
           <Route path="/patients/:id" element={<PatientDetails />} />
+          <Route path="/appointment" element={<AppointmentScheduler />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster position="top-center" />
