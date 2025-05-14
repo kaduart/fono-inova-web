@@ -1,4 +1,5 @@
-import { Activity, Calendar, ChevronDown, Clock, Eye, EyeOff, FileText, Home, Hospital, ShieldCheck, Stethoscope, UserCircle, UserPlus, Users } from 'lucide-react';
+
+import { Activity, ChevronDown, Clock, Eye, EyeOff, FileText, Hospital, Stethoscope, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -6,12 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import PatientForm from '../shared/components/PatientForm';
 import EnhancedCalendar from './EnhancedCalendar';
+import { PaymentPage } from './financial/PaymentPage';
+import { LeadsTable } from './mkt/LeadsTable';
 import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
 import { Select } from './ui/Select';
+
 
 const defaultAppointmentData = {
   patientId: '',
@@ -23,7 +27,8 @@ const defaultAppointmentData = {
   status: 'agendado'
 };
 
-interface PatientData {
+export interface PatientData {
+  _id?: string;
   fullName: string;
   dateOfBirth: string;
   gender: string;
@@ -182,32 +187,91 @@ export default function AdminDashboard() {
 
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [openMenu, setOpenMenu] = useState('');
 
-  /*  useEffect(() => {
-     const token = localStorage.getItem('token');
-     if (!token) return;
- 
-     const fetchPatients = async () => {
-       try {
-         const response = await fetch(`${BASE_URL}/patients`, {
-           headers: {
-             'Authorization': `Bearer ${token}`,
-           },
-         });
- 
-         const data = await response.json();
-         if (Array.isArray(data)) {
-           setPatients(data);
-         } else {
-           console.error('Resposta inesperada da API:', data);
-         }
-       } catch (error) {
-         console.error('Erro ao buscar pacientes:', error);
-       }
-     };
- 
-     fetchPatients();
-   }, []); */
+  const toggleMenu = (menuName: string) => {
+    setOpenMenu(openMenu === menuName ? '' : menuName);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const fetchPatients = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/patients`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          // Para cada paciente, busca o resumo de consultas
+          const enrichedPatients = await Promise.all(
+            data.map(async (patient) => {
+              try {
+                const summaryRes = await fetch(`${BASE_URL}/patients/${patient._id}/appointments-summary`, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`,
+                  },
+                });
+
+                const summary = await summaryRes.json();
+                return {
+                  ...patient,
+                  lastAppointment: summary.lastAppointment || null,
+                  nextAppointment: summary.nextAppointment || null,
+                };
+              } catch (err) {
+                console.error(`Erro ao buscar resumo para o paciente ${patient._id}`, err);
+                return {
+                  ...patient,
+                  lastAppointment: null,
+                  nextAppointment: null,
+                };
+              }
+            })
+          );
+
+          setPatients(enrichedPatients);
+          console.log('Pacientes com resumo de consultas:', enrichedPatients);
+        } else {
+          console.error('Resposta inesperada da API:', data);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar pacientes:', error);
+      }
+    };
+
+    fetchPatients();
+  }, []);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    const fetchPatients = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/patients`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setPatients(data);
+          console.log('Resposta da API PATIENT:', data);
+        } else {
+          console.error('Resposta inesperada da API:', data);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar pacientes:', error);
+      }
+    };
+
+    fetchPatients();
+  }, []);
 
   const fetchDoctors = async () => {
     try {
@@ -400,10 +464,10 @@ export default function AdminDashboard() {
         const data = await response.json();
         setTotalDoctors(data.totalDoctors);
       } else {
-        console.error('Failed to fetch total doctors');
+        console.error('Falha ao buscar profissionais totais');
       }
     } catch (error) {
-      console.error('Error fetching total doctors:', error);
+      console.error('Erro ao buscar o total de profissionais:', error);
     }
   };
 
@@ -525,45 +589,45 @@ export default function AdminDashboard() {
     return (
       <>
 
-        <PatientTable></PatientTable>
+        <PatientTable patients={patients}></PatientTable>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
             <CardHeader icon={Stethoscope}>
-              <CardTitle className="text-sm font-medium">Total Doctors</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Profissionais</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalDoctors}</div>
-              <p className="text-xs text-gray-500">Active medical staff</p>
+              <p className="text-xs text-gray-500">Equipe médica ativa</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader icon={Users}>
-              <CardTitle className="text-sm font-medium">Total Patients</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Pacientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalPatients}</div>
-              <p className="text-xs text-gray-500">Currently admitted</p>
+              <p className="text-xs text-gray-500">Atualmente admitido</p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader icon={Activity}>
-              <CardTitle className="text-sm font-medium">Hospital Occupancy</CardTitle>
+              <CardTitle className="text-sm font-medium">Ocupação Hospitalar</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{occupancyRate}%</div>
-              <p className="text-xs text-gray-500">Bed occupancy rate</p>
+              <p className="text-xs text-gray-500">Taxa de ocupação de salas</p>
             </CardContent>
           </Card>
         </div>
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardHeader icon={Stethoscope}>
-              <CardTitle className="text-sm font-medium">Doctor Overview</CardTitle>
+              <CardTitle className="text-sm font-medium">Visão geral do médico</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{doctorOverview.length}</div>
-              <p className="text-xs text-gray-500">Total doctors on staff</p>
+              <p className="text-xs text-gray-500">Total de médicos na equipe</p>
             </CardContent>
             <CardFooter className="p-2">
               <Button
@@ -571,7 +635,7 @@ export default function AdminDashboard() {
                 className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
                 onClick={() => setShowDoctors(!showDoctors)}
               >
-                {showDoctors ? "Hide" : "View All"} Doctors
+                {showDoctors ? "Esconder" : "Ver Todos"} Profissionais
                 <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showDoctors ? "rotate-180" : ""}`} />
               </Button>
             </CardFooter>
@@ -583,7 +647,7 @@ export default function AdminDashboard() {
                       <p className="text-sm font-medium">{doctor.name}</p>
                       <p className="text-xs text-gray-500">{doctor.specialty}</p>
                     </div>
-                    <p className="text-sm">{doctor.patients} patients</p>
+                    <p className="text-sm">{doctor.patients} pacientes</p>
                   </div>
                 ))}
               </div>
@@ -591,11 +655,11 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader icon={Users}>
-              <CardTitle className="text-sm font-medium">Patient Overview</CardTitle>
+              <CardTitle className="text-sm font-medium">Visão geral de pacientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{patientOverview.length}</div>
-              <p className="text-xs text-gray-500">Total admitted patients</p>
+              <p className="text-xs text-gray-500">Total de pacientes</p>
             </CardContent>
             <CardFooter className="p-2">
               <Button
@@ -603,7 +667,7 @@ export default function AdminDashboard() {
                 className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
                 onClick={() => setShowPatients(!showPatients)}
               >
-                {showPatients ? "Hide" : "View All"} Patients
+                {showPatients ? "Esconder" : "Ver Todos"} Pacientes
                 <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showPatients ? "rotate-180" : ""}`} />
               </Button>
             </CardFooter>
@@ -611,9 +675,9 @@ export default function AdminDashboard() {
               <div className="px-4 pb-4">
                 {patientOverview?.map((patient, index) => (
                   <div key={index} className="py-2 border-t">
-                    <p className="text-sm font-medium">{patient.name}</p>
+                    <p className="text-sm font-medium">{patient.fullName}</p>
                     <p className="text-xs text-gray-500">
-                      Total Appointments: {patient.appointments}
+                      Total Compromissos: {patient.appointments}
                     </p>
                   </div>
                 ))}
@@ -624,7 +688,7 @@ export default function AdminDashboard() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Recent Activity</CardTitle>
+              <CardTitle>Atividade recente</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
@@ -649,7 +713,7 @@ export default function AdminDashboard() {
                   <>
                     <li className="flex items-center space-x-2">
                       <FileText className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-400">No records found.</span>
+                      <span className="text-gray-400">Nenhum registro encontrado.</span>
                     </li>
                   </>
                 )}
@@ -658,7 +722,7 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Upcoming Schedule</CardTitle>
+              <CardTitle>Próxima programação</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2">
@@ -683,7 +747,7 @@ export default function AdminDashboard() {
                   <>
                     <li className="flex items-center space-x-2">
                       <Clock className="h-4 w-4 text-gray-400" />
-                      <span className="text-gray-400">No upcoming schedule.</span>
+                      <span className="text-gray-400">Sem programação futura.</span>
                     </li>
                   </>
                 )}
@@ -697,7 +761,7 @@ export default function AdminDashboard() {
 
   const renderProfile = () => {
     if (!adminInfo) {
-      return <div>Loading perfil...</div>;
+      return <div>Carregando perfil...</div>;
     }
 
     const handleInputChange = (e) => {
@@ -923,6 +987,21 @@ export default function AdminDashboard() {
     );
   };
 
+
+  const renderLeads = () => (
+    <div className="mt-4">
+      <h2 className="text-xl font-bold mb-4">Leads e Marketing</h2>
+      <LeadsTable />
+    </div>
+  );
+
+  const renderFinanceiro = () => (
+    <div className="mt-4">
+      <h2 className="text-xl font-bold mb-4">Controle Financeiro</h2>
+      <PaymentPage />
+    </div>
+  );
+
   const renderAddAdmin = () => {
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -1033,431 +1112,114 @@ export default function AdminDashboard() {
     );
   };
 
-  /* const renderAppointments = () => {
-    console.log('DOCTORS LIST:', doctors);
-
-    const onSubmitAppointment = async (formData) => {
-      console.log('formData:', formData);
-      if (!formData.profissional || formData.profissional.trim() === "") {
-        toast.error("Selecione um profissional.");
-        return;
-      }
-
-      const token = localStorage.getItem('token');
-      const url = isEditingAppointment
-        ? `${BASE_URL}/appointments/${appointmentData._id}`
-        : `${BASE_URL}/appointments`;
-
-      const payload = {
-        patientId: formData.patientId,
-        doctorId: formData.profissional,
-        date: formData.data,
-        time: formData.hora,
-        reason: formData.motivo,
-        sessionType: formData.sessionType,
-        status: formData.status,
-      };
-      console.log('Payload enviado:', payload);
-
-      try {
-        const response = await fetch(url, {
-          method: isEditingAppointment ? 'PUT' : 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
-        });
-
-        if (response.ok) {
-          toast.success('Agendamento salvo com sucesso!');
-          fetchAppointments();
-          setAgendamentoTemp({});
-        } else {
-          const errorData = await response.json();
-          toast.error(errorData.error || 'Erro ao salvar agendamento');
-        }
-      } catch (error) {
-        console.error(error);
-        toast.error('Erro ao salvar agendamento');
-      }
-    };
-
-
-    const handleDeleteAppointment = async (id) => {
-      if (window.confirm('Tem certeza que deseja excluir este agendamento?')) {
-        try {
-          const token = localStorage.getItem('token');
-          const response = await fetch(`${BASE_URL}/appointments/${id}`, {
-            method: 'DELETE',
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-
-          if (response.ok) {
-            toast.success('Agendamento excluído com sucesso!');
-            fetchAppointments();
-          }
-        } catch (error) {
-          toast.error('Erro ao excluir agendamento');
-        }
-      }
-    };
-
-    return (
-      <Card className="w-full max-w-4xl mx-auto">
-        <CardHeader>
-          <CardTitle>Gestão de Agendamentos</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmitAppointment)} className="space-y-4">
-            <fieldset className="border p-4 rounded-md">
-              <legend className="px-2 font-medium text-gray-700">Dados Pessoais</legend>
-              <div className="grid grid-cols-12 gap-4">
-                <div className='col-span-12 md:col-span-6'>
-                  <label className="block mb-1">Selecione o paciente</label>
-                  <select
-                    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
-                    {...register('patientId')}
-                    onChange={handleSelectPatient}
-                  >
-                    <option value="">Selecione</option>
-                    {Array.isArray(patients) && patients.map((patient) => (
-                      <option key={patient._id} value={patient._id}>
-                        {patient.fullName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="col-span-12 md:col-span-3">
-                  <label className="block mb-1">Data de nascimento</label>
-                  <Input
-                    type="date"
-                    {...register('dateOfBirth')}
-                    value={selectedPatient?.dateOfBirth ? selectedPatient.dateOfBirth.split('T')[0] : ''}
-                    readOnly
-                  />
-                </div>
-                <div className="col-span-12 md:col-span-3">
-                  <label className="block mb-1">Contato</label>
-                  <Input
-                    type="text"
-                    {...register('phone')}
-                    value={selectedPatient?.phone || ''}
-                    readOnly
-                  />
-                </div>
-              </div>
-            </fieldset>
-
-            {selectedPatient && (
-              <fieldset className="border p-4 rounded-md">
-                <legend className="px-2 font-medium text-gray-700">Agendamento(s) Previsionado(s)</legend>
-                <div className="flex justify-end mt-4 mb-2">
-                  <Button type="button" onClick={() => setModalAberto(true)} variant="outline" size="icon">
-                    <Plus className="w-4 h-4" />
-                  </Button>
-                </div>
-
-                {agendamentosTemp.length > 0 ? (
-                  <div className="mt-6">
-                    <div className="overflow-x-auto rounded-lg shadow-md">
-                      <table className="min-w-full table-auto border-collapse bg-white">
-                        <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-700">
-                          <tr>
-                            <th className="p-3">Profissional</th>
-                            <th className="p-3">Data/Hora</th>
-                            <th className="p-3">Tipo</th>
-                            <th className="p-3">Status</th>
-                            <th className="p-3">Anotações</th>
-                            <th className="p-3 text-center">Ações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {agendamentosTemp.map((ag, index) => (
-                            <tr key={index} className="border-b hover:bg-gray-50 text-sm">
-                              <td className="p-3">{ag.profissional}</td>
-                              <td className="p-3">{ag.dataHora}</td>
-                              <td className="p-3">{ag.sessionType}</td>
-                              <td className="p-3">{ag.status}</td>
-                              <td className="p-3">{ag.anotacoes || '—'}</td>
-                              <td className="p-3 text-center flex justify-center gap-3">
-                                <button
-                                  onClick={() => editarAgendamento(index)}
-                                  className="text-blue-600 hover:text-blue-800"
-                                  title="Editar"
-                                >
-                                  <Pencil size={18} />
-                                </button>
-                                <button
-                                  onClick={() => removerAgendamento(index)}
-                                  className="text-red-600 hover:text-red-800"
-                                  title="Excluir"
-                                >
-                                  <Trash2 size={18} />
-                                </button>
-                              </td>
-
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-500 mt-4">Nenhum agendamento adicionado.</p>
-                )}
-
-                <br />
-                <br />
-                <Button type="submit">
-                  {isEditingAppointment ? 'Atualizar' : 'Confirmar agendamentos'}
-                </Button>
-              </fieldset>
-            )}
-          </form>
-          <br />
-          {selectedPatient && (
-            <fieldset className="border p-4 rounded-md">
-              <legend className="px-2 font-medium text-gray-700">Agendamento(s) Confirmados(s)</legend>
-              <div className="mt-1">
-
-                <div className="overflow-x-auto">
-                  <table className="min-w-full divide-y divide-gray-200">
-                    <thead>
-                      <tr>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Data/Hora</th>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Paciente</th>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Profissional</th>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Tipo</th>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                      {appointments?.map(appointment => (
-                        <tr key={appointment._id}>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {new Date(appointment.date).toLocaleDateString()} - {appointment.time}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {appointment.patientId?.fullName || 'N/A'}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {appointment.doctorId?.fullName || 'N/A'}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            {appointment.type}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${appointment.status === 'agendado' ? 'bg-blue-100 text-blue-800' :
-                              appointment.status === 'concluído' ? 'bg-green-100 text-green-800' :
-                                'bg-red-100 text-red-800'
-                              }`}>
-                              {appointment.status}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <button
-                              onClick={() => editarAgendamento(index)}
-                              className="text-blue-600 hover:text-blue-800"
-                              title="Editar"
-                            >
-                              <Pencil size={18} />
-                            </button>
-                            <button
-                              onClick={() => confirmarRemocaoAgendamento(index)}
-                              className="text-red-600 hover:text-red-800"
-                              title="Excluir"
-                            >
-                              <Trash2 size={18} />
-                            </button>
-
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </fieldset>
-          )}
-        </CardContent>
-        <Modal isOpen={modalAberto} onRequestClose={() => setModalAberto(false)} className="p-6 bg-white rounded-md max-w-md mx-auto mt-20 shadow-lg">
-          <h3 className="text-xl font-semibold mb-4">Novo Agendamento</h3>
-          <div className="space-y-3">
-            <Select
-              {...register('profissional', { required: true })}
-              onChange={(e) => setValue('profissional', e.target.value)}  // Atualiza o valor via react-hook-form
-            >
-              <option value="">Selecione o profissional</option>
-              {doctors.map((doctor) => (
-                <option key={doctor._id} value={doctor._id}>
-                  {doctor.fullName} - {doctor.specialty}
-                </option>
-              ))}
-            </Select>
-
-            <Input type="date" {...register('data', { required: true })} />
-            <Input type="time" {...register('hora', { required: true })} />
-            <Select {...register('sessionType', { required: true })}>
-              <option value="">Tipo de Sessão</option>
-              <option value="fonoaudiologia">Fonoaudiologia</option>
-              <option value="psicologia">Psicologia</option>
-              <option value="terapia_ocupacional">Terapia Ocupacional</option>
-              <option value="fisioterapia">Fisioterapia</option>
-            </Select>
-            <Select  {...register('status', { required: true })}>
-              <option value="agendado">Agendado</option>
-              <option value="concluído">Concluído</option>
-              <option value="cancelado">Cancelado</option>
-            </Select>
-            <textarea placeholder="Motivo/Anotações" {...register('motivo')} className="w-full p-2 border rounded" rows={3} />
-          </div>
-          <div className="mt-4 flex justify-end gap-2">
-            <Button variant="outline" onClick={() => setModalAberto(false)}>Cancelar</Button>
-            <Button
-              onClick={handleSubmit((data) => {
-                adicionarAgendamento(data);
-                //reset({ paciente: watch('paciente'), });
-                setModalAberto(false);
-              })}
-            >
-              Salvar
-            </Button>
-
-          </div>
-        </Modal>
-        <Modal isOpen={modalEditarAberto} onRequestClose={() => setModalEditarAberto(false)} className="p-6 bg-white rounded-md max-w-md mx-auto mt-20 shadow-lg">
-          <h3 className="text-xl font-semibold mb-4">Editar Agendamento</h3>
-          <div className="space-y-3">
-            <Select
-              {...register('profissional', { required: true })}
-              onChange={(e) => setValue('profissional', e.target.value)}  // Atualiza o valor via react-hook-form
-            >
-              <option value="">Selecione o profissional</option>
-              {doctors.map((doctor) => (
-                <option key={doctor._id} value={doctor._id}>
-                  {doctor.fullName} - {doctor.specialty}
-                </option>
-              ))}
-            </Select>
-            <Input type="date" name="data" value={agendamentoTemp.data} onChange={handleInputAgendamento} />
-            <Input type="time" name="hora" value={agendamentoTemp.hora} onChange={handleInputAgendamento} />
-            <Select name="sessionType" value={agendamentoTemp.sessionType} onChange={handleInputAgendamento}>
-              <option value="">Tipo de Sessão</option>
-              <option value="fonoaudiologia">Fonoaudiologia</option>
-              <option value="psicologia">Psicologia</option>
-              <option value="terapia_ocupacional">Terapia Ocupacional</option>
-              <option value="fisioterapia">Fisioterapia</option>
-            </Select>
-            <Select name="status" value={agendamentoTemp.status} onChange={handleInputAgendamento}>
-              <option value="agendado">Agendado</option>
-              <option value="concluído">Concluído</option>
-              <option value="cancelado">Cancelado</option>
-            </Select>
-            <textarea name="motivo" placeholder="Motivo/Anotações" value={agendamentoTemp.motivo} onChange={handleInputAgendamento} className="w-full p-2 border rounded" rows={3} />
-          </div>
-          <div className="mt-4 flex justify-end gap-2">
-            <Button variant="outline" onClick={() => setModalEditarAberto(false)}>Cancelar</Button>
-            <Button onClick={salvarEdicaoAgendamento}>Salvar</Button>
-          </div>
-        </Modal>
-        <Modal isOpen={modalExcluirAberto} onRequestClose={() => setModalExcluirAberto(false)} className="p-6 bg-white rounded-md max-w-sm mx-auto mt-20 shadow-lg text-center">
-          <h3 className="text-lg font-semibold mb-4">Confirmar exclusão</h3>
-          <p className="text-sm text-gray-600">Deseja realmente excluir este agendamento?</p>
-          <div className="mt-6 flex justify-center gap-4">
-            <Button variant="outline" onClick={() => setModalExcluirAberto(false)}>Cancelar</Button>
-            <Button className="bg-red-600 hover:bg-red-700" onClick={removerAgendamento}>Excluir</Button>
-          </div>
-        </Modal>
-      </Card>
-    );
-  }; */
-
   return (
-    <div className="min-h-screen bg-blue-600">
-      <header className="bg-white p-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Hospital className="h-6 w-6 text-blue-600" />
-          <span className="font-bold text-xl">Clínica Fono Inova</span>
+    <div className="min-h-screen bg-blue-600 text-white">
+
+      {/* Header com branding + sair */}
+      <header className="bg-white text-blue-700 px-6 py-4 shadow flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-100 p-2 rounded-full">
+            <Hospital className="h-6 w-6 text-blue-600" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-extrabold leading-tight tracking-tight">
+              Clínica Fono <span className="text-blue-500">Inova</span>
+            </h1>
+            <p className="text-xs text-gray-500 -mt-1">Cuidando com inovação e carinho</p>
+          </div>
         </div>
-        <Button variant="outline" onClick={() => navigate('/')}>Sair</Button>
+
+        <button
+          onClick={() => navigate('/')}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+        >
+          Sair
+        </button>
       </header>
-      <nav className="bg-blue-700 text-white p-4">
-        <ul className="flex space-x-4 justify-center">
-          <li>
-            <Button
-              variant={activeTab === 'Dashboard' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Dashboard' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Dashboard')}
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Dashboard
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Profile' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Profile' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Profile')}
-            >
-              <UserCircle className="w-4 h-4 mr-2" />
-              Perfil
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Add Profissional' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Add Profissional' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Add Profissional')}
-            >
-              <UserPlus className="w-4 h-4 mr-2" />
-              Add Profissional
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Add Paciente' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Add Paciente' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Add Paciente')}
-            >
-              <UserPlus className="w-4 h-4 mr-2" />
-              Add Paciente
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Calendário' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Calendário' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Calendário')}
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              Calendário
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Add Admin' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Add Admin' ? 'bg-white text-blue-600' : 'text-blue-300'}`}
-              onClick={() => setActiveTab('Add Admin')}
-            >
-              <ShieldCheck className="w-4 h-4 mr-2" />
-              Add Admin
-            </Button>
-          </li>
-        </ul>
+
+      {/* Menu de navegação */}
+      <nav className="bg-blue-700 px-6 py-3 shadow flex justify-between items-center relative">
+        <div className="flex gap-6 items-center relative">
+
+          <button onClick={() => setActiveTab('Dashboard')} className="hover:bg-white/20 px-3 py-2 rounded">
+            🏠 Dashboard
+          </button>
+
+          {/* Menus agrupados */}
+          {[
+            {
+              label: '👤 Gestão',
+              id: 'gestao',
+              items: [
+                { label: 'Profissionais', tab: 'Add Profissional' },
+                { label: 'Pacientes', tab: 'Add Paciente' },
+                { label: 'Admins', tab: 'Add Admin' },
+              ],
+            },
+            {
+              label: '📅 Agenda',
+              id: 'agenda',
+              items: [{ label: 'Calendário', tab: 'Calendário' }],
+            },
+            {
+              label: '💵 Financeiro',
+              id: 'financeiro',
+              items: [{ label: 'Pagamentos', tab: 'Financeiro' }],
+            },
+            {
+              label: '📈 Marketing',
+              id: 'marketing',
+              items: [{ label: 'Leads', tab: 'Leads' }],
+            },
+          ].map((menu) => (
+            <div key={menu.id} className="relative">
+              <button
+                onClick={() => toggleMenu(menu.id)}
+                className="hover:bg-white/20 px-3 py-2 rounded"
+              >
+                {menu.label}
+              </button>
+              {openMenu === menu.id && (
+                <div className="absolute top-full mt-2 bg-white text-black shadow rounded w-48 z-10">
+                  {menu.items.map((item) => (
+                    <button
+                      key={item.tab}
+                      onClick={() => {
+                        setActiveTab(item.tab);
+                        setOpenMenu('');
+                      }}
+                      className="block w-full px-4 py-2 hover:bg-gray-100 text-left"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={() => setActiveTab('Profile')}
+          className="hover:bg-white/20 px-3 py-2 rounded"
+        >
+          ⚙️ Perfil
+        </button>
       </nav>
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-white mb-8">Bem vindo(a), {adminInfo ? `${adminInfo.fullName}` : 'Admin'}</h1>
+
+      {/* Conteúdo */}
+      <main className="px-6 py-8">
+        <h1 className="text-4xl font-bold mb-6">Bem vindo(a), {adminInfo?.fullName || 'Admin'}</h1>
         {activeTab === 'Dashboard' && renderDashboard()}
         {activeTab === 'Profile' && renderProfile()}
         {activeTab === 'Add Profissional' && renderAddDoctor()}
         {activeTab === 'Add Paciente' && renderAddPatient()}
         {activeTab === 'Calendário' && renderCalendarGeneral()}
+        {activeTab === 'Financeiro' && renderFinanceiro()}
+        {activeTab === 'Leads' && renderLeads()}
         {activeTab === 'Add Admin' && renderAddAdmin()}
       </main>
     </div>
+
   );
 }

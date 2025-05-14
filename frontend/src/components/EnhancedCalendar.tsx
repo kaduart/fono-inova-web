@@ -25,6 +25,8 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
+import { patientService } from '../services/patientService';
+import { professionalService } from '../services/professionalService';
 import ScheduleModal from './ScheduleModal';
 import AppointmentDetailModal from './appointmentDetailModal';
 
@@ -85,60 +87,70 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
     const navigate = useNavigate();
 
+    /*  useEffect(() => {
+         const token = localStorage.getItem('token');
+         if (!token) return;
+ 
+         const fetchPatients = async () => {
+             try {
+                 const response = await fetch(`${BASE_URL}/patients`, {
+                     headers: {
+                         'Authorization': `Bearer ${token}`,
+                     },
+                 });
+ 
+                 const data = await response.json();
+                 if (Array.isArray(data)) {
+                     setPatients(data);
+                 } else {
+                     console.error('Resposta inesperada da API:', data);
+                 }
+             } catch (error) {
+                 console.error('Erro ao buscar pacientes:', error);
+             }
+         };
+ 
+         fetchPatients();
+         // fetchAppointment();
+     }, []); */
+
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) return;
-
-        const fetchPatients = async () => {
-            try {
-                const response = await fetch(`${BASE_URL}/patients`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                    },
-                });
-
-                const data = await response.json();
-                if (Array.isArray(data)) {
-                    setPatients(data);
-                } else {
-                    console.error('Resposta inesperada da API:', data);
-                }
-            } catch (error) {
-                console.error('Erro ao buscar pacientes:', error);
-            }
-        };
-
-        fetchPatients();
-        // fetchAppointment();
+        patientService
+            .fetchAll()
+            .then(setPatients)
+            .catch(err => console.error('Erro pacientes:', err));
+        professionalService
+            .fetchAll()
+            .then(setDoctors)
+            .catch(err => console.error('Erro médicos:', err));
     }, []);
-
-    useEffect(() => {
-        const fetchDoctors = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    navigate('/login');
-                    return;
-                }
-                const response = await fetch(`${BASE_URL}/doctor/all`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
+    /* 
+        useEffect(() => {
+            const fetchDoctors = async () => {
+                try {
+                    const token = localStorage.getItem('token');
+                    if (!token) {
+                        navigate('/login');
+                        return;
                     }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setDoctors(data);
-                } else {
-                    console.error('Failed to fetch doctors');
+                    const response = await fetch(`${BASE_URL}/doctor/all`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        setDoctors(data);
+                    } else {
+                        console.error('Failed to fetch doctors');
+                    }
+                } catch (error) {
+                    console.error('Error fetching doctors:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching doctors:', error);
-            }
-        };
-
-        fetchDoctors();
-        fetchDoctors();
-    }, []);
+            };
+    
+            fetchDoctors();
+        }, []); */
 
     useEffect(() => {
         if (!appointments || !Array.isArray(appointments)) return;
@@ -286,7 +298,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             status: event.extendedProps?.status || "Status não informado",
             start,
         });
-        setIsModalOpen(true);
+        setIsAppointmentDetailModalOpen(true);
     };
 
     const handleSubmit = async (appointment: Appointment): Promise<void> => {
@@ -517,7 +529,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
             <AppointmentDetailModal
                 isOpen={isAppointmentDetailModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={() => setIsAppointmentDetailModalOpen(false)}
                 event={selectedEvent}
             />
 

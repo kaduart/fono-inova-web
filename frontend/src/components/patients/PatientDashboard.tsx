@@ -1,81 +1,32 @@
+import axios from 'axios';
 import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, LineChart, UserCircle, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
-import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../constants/constants';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { BASE_URL } from '../../constants/constants';
+import { IDoctors } from '../../utils/types';
+import AppointmentHistoryModal from '../AppointmentHistoryModal';
+import StatusBadge from '../StatusBadge';
+import { Button } from '../ui/Button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
+import Input from '../ui/Input';
+import { Label } from '../ui/Label';
+import { Select } from '../ui/Select';
 import PatientEvolution from './PatientEvolution';
-import axios from 'axios';
-
-const Button = ({ children, variant = 'primary', className = '', ...props }) => (
-  <button
-    className={`inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${variant === 'primary'
-      ? 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
-      : variant === 'outline'
-        ? 'text-blue-600 border-blue-600 hover:bg-blue-50 focus:ring-blue-500'
-        : 'text-blue-600 border-blue-600 hover:bg-blue-50 focus:ring-blue-500'
-      } ${className}`}
-    {...props}
-  >
-    {children}
-  </button>
-);
+import { PatientMiniCalendar } from './PatientMiniCalendar';
+import TherapyPackagesSummary from './TherapyPackagesSummary';
 
 
-const Card = ({ children, className = '' }) => (
-  <div className={`bg-white rounded-lg shadow-md ${className}`}>
-    {children}
-  </div>
-);
-
-const CardHeader = ({ children, icon: Icon }) => (
-  <div className="px-4 py-5 border-b border-gray-200 sm:px-6 flex items-center justify-between">
-    {children}
-    {Icon && <Icon className="h-5 w-5 text-blue-600 ml-2" />}
-  </div>
-);
-
-const CardTitle = ({ children }) => (
-  <h3 className="text-lg leading-6 font-medium text-gray-900">{children}</h3>
-);
-
-const CardContent = ({ children }) => (
-  <div className="px-4 py-5 sm:p-6">{children}</div>
-);
-
-const CardFooter = ({ children }) => (
-  <div className="px-4 py-4 sm:px-6">{children}</div>
-);
-
-const Input = ({ ...props }) => (
-  <input
-    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
-    {...props}
-  />
-);
-
-const Label = ({ children, htmlFor }) => (
-  <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
-    {children}
-  </label>
-);
-
-const Select = ({ children, ...props }) => (
-  <select
-    className="mt-1 block w-full pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-    {...props}
-  >
-    {children}
-  </select>
-);
 
 export default function PatientDashboard() {
+  const { id: patientId } = useParams();
   const [showAppointments, setShowAppointments] = useState(false);
   const [showPrescriptions, setShowPrescriptions] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [isEditing, setIsEditing] = useState(false);
   const [patientInfo, setPatientInfo] = useState(null);
   const [editedInfo, setEditedInfo] = useState(null);
-  const [doctors, setDoctors] = useState([]);
+  const [doctors, setDoctors] = useState<IDoctors[]>([]);
   const [appointmentData, setAppointmentData] = useState({
     doctorId: '',
     date: '',
@@ -88,6 +39,9 @@ export default function PatientDashboard() {
   const [prescriptions, setPrescriptions] = useState([]);
   const [completedAppointments, setCompletedAppointments] = useState([]);
   const [evolutions, setEvolutions] = useState([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [allAppointments, setAllAppointments] = useState([]);
+
 
   const navigate = useNavigate();
 
@@ -98,20 +52,22 @@ export default function PatientDashboard() {
         navigate('/login');
         return;
       }
-      const response = await fetch(BASE_URL + '/patient/profile', {
+
+      const response = await fetch(`${BASE_URL}/patients/${patientId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
       if (response.ok) {
         const data = await response.json();
+        console.log('dados do paciente', data);
         setPatientInfo(data);
         setEditedInfo(data);
       } else {
-        console.error('Failed to fetch patient profile');
+        console.error('Falhou ao busca os dados do paciente');
       }
     } catch (error) {
-      console.error('Error fetching patient profile:', error);
+      console.error('Erro ao busca os dados do paciente:', error);
     }
   };
 
@@ -129,6 +85,7 @@ export default function PatientDashboard() {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log('Lista doctors', data);
         setDoctors(data);
       } else {
         console.error('Failed to fetch doctors');
@@ -137,6 +94,13 @@ export default function PatientDashboard() {
       console.error('Error fetching doctors:', error);
     }
   };
+
+  const today = new Date().toISOString().split('T')[0]; // formato 'YYYY-MM-DD'
+
+  const todaysAppointments = appointments.filter((appt) => {
+    const apptDate = new Date(appt.date).toISOString().split('T')[0];
+    return apptDate === today;
+  });
 
   const fetchAvailableSlots = async (doctorId, date) => {
     if (!doctorId || !date) return;
@@ -161,29 +125,25 @@ export default function PatientDashboard() {
   const fetchAppointments = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
-      const response = await fetch(BASE_URL + '/patient/appointments', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+      const response = await fetch(`${BASE_URL}/appointments/patient/${patientId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched appointments:', data); // Add this line for debugging
         setAppointments(data);
-      } else {
-        console.error('Failed to fetch appointments');
       }
     } catch (error) {
-      console.error('Error fetching appointments:', error);
+      console.error('Erro ao buscar agendamentos:', error);
     }
   };
 
+
+  const handleOpenHistory = () => {
+    setShowHistory(true);
+  };
+
   const fetchCompletedAppointments = async () => {
-    try {
+    /* try {
       const token = localStorage.getItem('token');
       if (!token) {
         navigate('/login');
@@ -205,12 +165,12 @@ export default function PatientDashboard() {
       }
     } catch (error) {
       console.error('Error fetching completed/cancelled appointments:', error);
-    }
+    } */
   };
 
 
   const fetchCareTeam = async () => {
-    try {
+    /* try {
       const token = localStorage.getItem('token');
       if (!token) {
         navigate('/login');
@@ -229,11 +189,11 @@ export default function PatientDashboard() {
       }
     } catch (error) {
       console.error('Error fetching care team:', error);
-    }
+    } */
   };
 
   const fetchPrescriptions = async () => {
-    try {
+    /* try {
       const token = localStorage.getItem('token');
       if (!token) {
         navigate('/login');
@@ -253,7 +213,7 @@ export default function PatientDashboard() {
       }
     } catch (error) {
       console.error('Error fetching prescriptions:', error);
-    }
+    } */
   };
 
   useEffect(() => {
@@ -285,41 +245,51 @@ export default function PatientDashboard() {
   const renderDashboard = () => (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
         <Card>
           <CardHeader icon={Calendar}>
-            <CardTitle className="text-sm font-medium">Today's Appointments</CardTitle>
+            <CardTitle className="text-sm font-medium">Agendamentos para hoje</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
-              {appointments.length}
+              {todaysAppointments.length}
             </div>
-            {appointments.length > 0 ? (
+            {todaysAppointments.length > 0 ? (
               <p className="text-xs text-gray-500">
-                Next: Dr. {appointments[0].doctorId?.fullName} at {appointments[0].time}
+                Próxima: Dr. {appointments[0].doctorId?.fullName} às {appointments[0].time}
               </p>
             ) : (
               <p className="text-xs text-gray-500">
-                No appointments today
+                Sem agendamentos para hoje
               </p>
             )}
           </CardContent>
-          <CardFooter className="p-2">
+          <CardFooter className="p-2 flex justify-between items-center">
             <Button
               variant="ghost"
-              className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
               onClick={() => setShowAppointments(!showAppointments)}
             >
-              {showAppointments ? "Hide" : "View"} Today's Appointments
+              {showAppointments ? "Esconder" : "Ver"} Agendamentos para hoje
               <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showAppointments ? "rotate-180" : ""}`} />
             </Button>
+            <Button
+              variant="ghost"
+              className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
+              onClick={handleOpenHistory}
+            >
+              Ver histórico completo
+            </Button>
           </CardFooter>
+
           {showAppointments && (
             <div className="px-4 pb-4">
               {appointments.length > 0 ? (
-                appointments.map((appointment, index) => (
+                todaysAppointments.map((appointment, index) => (
                   <div key={index} className="flex justify-between items-center py-2 border-t">
                     <div>
                       <p className="text-sm font-medium">
+                        <StatusBadge status={appointment.status} />
                         Dr. {appointment.doctorId?.fullName}
                       </p>
                       <p className="text-xs text-gray-500">
@@ -331,19 +301,21 @@ export default function PatientDashboard() {
                 ))
               ) : (
                 <p className="text-sm text-gray-500 text-center py-4">
-                  No appointments scheduled for today
+                  Não tem agendamentos para hoje
                 </p>
               )}
             </div>
           )}
         </Card>
+        <PatientMiniCalendar appointments={appointments} />
+
         <Card>
           <CardHeader icon={FileText}>
-            <CardTitle className="text-sm font-medium">Prescriptions</CardTitle>
+            <CardTitle className="text-sm font-medium">Prescrições</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{prescriptions.length}</div>
-            <p className="text-xs text-gray-500">Active prescriptions</p>
+            <p className="text-xs text-gray-500">Prescrições Ativa</p>
           </CardContent>
           <CardFooter className="p-2">
             <Button
@@ -351,7 +323,7 @@ export default function PatientDashboard() {
               className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
               onClick={() => setShowPrescriptions(!showPrescriptions)}
             >
-              {showPrescriptions ? "Hide" : "View All"} Prescriptions
+              {showPrescriptions ? "Hide" : "Ver Todas"} Prescrições
               <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showPrescriptions ? "rotate-180" : ""}`} />
             </Button>
           </CardFooter>
@@ -364,7 +336,7 @@ export default function PatientDashboard() {
                     {prescription.dosage} - {prescription.frequency} - {" (Till - "}{new Date(prescription.tilldate).toLocaleDateString()}{") "}
                   </p>
                   <p className="text-xs text-gray-500">
-                    Prescribed by: Dr. {prescription.doctorId?.fullName}
+                    Prescrito por: Dr. {prescription.doctorId?.fullName}
                   </p>
                 </div>
               ))}
@@ -375,7 +347,7 @@ export default function PatientDashboard() {
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle>Atividades Recentes</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -387,7 +359,7 @@ export default function PatientDashboard() {
                     <strong>
                       {appointment.doctorId?.fullName}
                     </strong>{" "}
-                    on {new Date(appointment.date).toLocaleDateString()} at {appointment.time}
+                    na {new Date(appointment.date).toLocaleDateString()} às {appointment.time}
                   </span>
                 </li>
               ))}
@@ -397,7 +369,7 @@ export default function PatientDashboard() {
                 <>
                   <li className="flex items-center space-x-2">
                     <FileText className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-400">No records found.</span>
+                    <span className="text-gray-400">Nenhum registro encontrado.</span>
                   </li>
                 </>
               )}
@@ -406,7 +378,7 @@ export default function PatientDashboard() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Your Care Team</CardTitle>
+            <CardTitle>Equipe de cuidado</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
@@ -420,95 +392,15 @@ export default function PatientDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      <AppointmentHistoryModal
+        open={showHistory}
+        onClose={() => setShowHistory(false)}
+        appointments={appointments}
+      />
     </>
   );
 
-  const renderProfile = () => {
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setEditedInfo(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSave = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await fetch(BASE_URL + '/patient/profile', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(editedInfo)
-        });
-        if (response.ok) {
-          const updatedProfile = await response.json();
-          setPatientInfo(updatedProfile);
-          setIsEditing(false);
-          return toast.success("Profile updated successfully.");
-        } else {
-          const errorData = await response.json();
-          return toast.error(`Failed to update patient profile.`);
-        }
-      } catch (error) {
-        return toast.error('Error updating patient profile. Please try again.');
-      }
-    };
-
-    return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle>Profile</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Nome Completo</Label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  value={isEditing ? editedInfo.fullName : patientInfo?.fullName}
-                  onChange={handleInputChange}
-                  readOnly={!isEditing}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Last Name</Label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  value={isEditing ? editedInfo.fullName : patientInfo?.fullName}
-                  onChange={handleInputChange}
-                  readOnly={!isEditing}
-                />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={isEditing ? editedInfo.email : patientInfo?.email}
-                onChange={handleInputChange}
-                readOnly={!isEditing}
-              />
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter>
-          {isEditing ? (
-            <>
-              <Button onClick={handleSave} className="mr-2">Save</Button>
-              <Button onClick={() => setIsEditing(false)} variant="outline">Cancel</Button>
-            </>
-          ) : (
-            <Button onClick={() => setIsEditing(true)} className="ml-auto">Edit Profile</Button>
-          )}
-        </CardFooter>
-      </Card>
-    );
-  };
 
   const renderEvolution = () => {
     if (!patientInfo) return null;
@@ -518,6 +410,14 @@ export default function PatientDashboard() {
         patientId={patientInfo._id}
         patientName={patientInfo.fullName}
       />
+    );
+  };
+
+  const renderManagePackages = () => {
+    if (!patientInfo) return null;
+
+    return (
+      <TherapyPackagesSummary patient={patientInfo} doctors={doctors} />
     );
   };
 
@@ -566,14 +466,14 @@ export default function PatientDashboard() {
     return (
       <Card className="w-full max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle>Book an Appointment</CardTitle>
+          <CardTitle>Marque uma consulta</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="doctorId">Select Doctor</Label>
+              <Label htmlFor="doctorId">Selecione o profissional</Label>
               <Select id="doctorId" name="doctorId" value={appointmentData.doctorId} onChange={handleInputChange}>
-                <option value="">Choose a doctor</option>
+                <option value="">Escolha o profissional</option>
                 {doctors.map((doctor) => (
                   <option key={doctor._id} value={doctor._id}>
                     Dr. {doctor.fullName} - {doctor.specialty}
@@ -582,23 +482,23 @@ export default function PatientDashboard() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="date">Appointment Date</Label>
+              <Label htmlFor="date">Data da consulta</Label>
               <Input id="date" name="date" type="date" value={appointmentData.date} onChange={handleInputChange} />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="time">Preferred Time</Label>
+              <Label htmlFor="time">Hora pretendida</Label>
               <Select id="time" name="time" value={appointmentData.time} onChange={handleInputChange} disabled={availableSlots.length === 0}>
-                <option value="">Choose a time slot</option>
+                <option value="">Escolha um horário</option>
                 {availableSlots.map((slot) => (
                   <option key={slot} value={slot}>{slot}</option>
                 ))}
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="reason">Reason for Visit</Label>
+              <Label htmlFor="reason">Razão da visita</Label>
               <Input id="reason" name="reason" value={appointmentData.reason} onChange={handleInputChange} placeholder="Brief description of your concern" />
             </div>
-            <Button type="submit" className="ml-auto">Book Appointment</Button>
+            <Button type="submit" className="ml-auto">Marcar consulta</Button>
           </form>
         </CardContent>
       </Card>
@@ -607,10 +507,12 @@ export default function PatientDashboard() {
 
   return (
     <div className="min-h-screen bg-blue-600">
-      <header className="bg-white p-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Hospital className="h-6 w-6 text-blue-600" />
-          <span className="font-bold text-xl">Fono-Inova</span>
+      <header className="flex items-center justify-between px-6 py-4 bg-white">
+        <div className="flex items-center gap-2">
+          <Hospital className="w-8 h-8 text-blue-600" />
+          <Link to="/admin">
+            <span className="text-xl font-bold">Fono-Inova</span>
+          </Link>
         </div>
         <Button variant="outline" onClick={() => navigate('/')}>Sair</Button>
       </header>
@@ -633,7 +535,7 @@ export default function PatientDashboard() {
               onClick={() => setActiveTab('Profile')}
             >
               <UserCircle className="w-4 h-4 mr-2" />
-              Profile
+              Perfil
             </Button>
           </li>
           <li>
@@ -644,8 +546,19 @@ export default function PatientDashboard() {
 
             >
               <CalendarIcon className="w-4 h-4 mr-2" />
-              Appointment Booking
+              Agendamento de consultas
             </Button>
+          </li>
+          <li>
+
+            <Button
+              variant={activeTab === 'Management Packages' ? "outline" : "ghost"}
+              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Management Packages' ? 'bg-white text-blue-600' : 'text-white'}`}
+              onClick={() => setActiveTab('Management Packages')}
+            >
+              Gerenciar Pacotes de Terapia
+            </Button>
+
           </li>
           <li>
             <Button
@@ -660,10 +573,10 @@ export default function PatientDashboard() {
         </ul>
       </nav>
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-white mb-8">Welcome, {patientInfo?.fullName}</h1>
+        <h1 className="text-4xl font-bold text-white mb-8">Bem vindo(a), {patientInfo?.fullName}</h1>
         {activeTab === 'Dashboard' && renderDashboard()}
-        {activeTab === 'Profile' && renderProfile()}
         {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
+        {activeTab === 'Management Packages' && renderManagePackages()}
         {activeTab === 'Evolution' && renderEvolution()}
       </main>
     </div>

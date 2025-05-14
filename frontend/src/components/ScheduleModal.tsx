@@ -121,7 +121,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
                         <legend className="px-2 font-medium text-gray-700">Dados Pessoais</legend>
 
                         <div className="grid grid-cols-12 gap-4">
-                            <SelectField
+                            <SelectField class="text-gray-900"
                                 label="Selecione o paciente:"
                                 name="patientId"
                                 value={formState.patientId}
@@ -139,6 +139,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
                         <div className="grid grid-cols-12 gap-4">
                             <InputField
+                                className="text-gray-900"
                                 label="Data:"
                                 name="date"
                                 value={formState.date}

@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 
 import { auth } from '../middleware/auth.js';
+import validateId from '../middleware/validateId.js';
 import Appointment from '../models/Appointment.js';
 import Doctor from '../models/Doctor.js';
 import Prescription from '../models/Prescription.js';
@@ -49,7 +50,6 @@ router.put('/profile', auth, async (req, res) => {
 router.get('/all', async (req, res) => {
   try {
     const doctors = await Doctor.find().select('fullName specialty');
-    console.log('Updating doctor profilesssssssss:', doctors);
 
     res.json(doctors);
   } catch (error) {
@@ -133,9 +133,6 @@ router.post('/prescribe-medication', auth, async (req, res) => {
     const { patientId, medication, dosage, frequency, tilldate } = req.body;
     const doctorId = req.user.id; // Assuming the doctor is making the request
 
-    console.log('Request body:', req.body);
-    console.log('Doctor ID:', doctorId);
-
     const prescription = new Prescription({
       patientId,
       doctorId,
@@ -167,7 +164,7 @@ router.get('/prescriptions', auth, async (req, res) => {
 });
 
 // Update a prescription
-router.put('/prescriptions/:id', auth, async (req, res) => {
+router.put('/prescriptions/:id', validateId, auth, async (req, res) => {
   try {
     const { medication, dosage, frequency, tilldate } = req.body;
     const prescription = await Prescription.findOneAndUpdate(
@@ -186,7 +183,7 @@ router.put('/prescriptions/:id', auth, async (req, res) => {
 });
 
 // Delete a prescription
-router.delete('/prescriptions/:id', auth, async (req, res) => {
+router.delete('/prescriptions/:id', validateId, auth, async (req, res) => {
   try {
     const prescription = await Prescription.findOneAndDelete({ _id: req.params.id, doctorId: req.user.id });
     if (!prescription) {

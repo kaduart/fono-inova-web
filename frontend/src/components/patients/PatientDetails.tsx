@@ -7,6 +7,7 @@ import { BASE_URL } from '../../constants/constants';
 interface PatientData {
     fullName: string;
     dateOfBirth: string;
+    appointments: string[];
     // … demais campos que você precisa
 }
 
@@ -16,6 +17,7 @@ const PatientDetails: React.FC = () => {
         fullName: '',
         dateOfBirth: '',
     });
+    const [appointments, setAppointments] = useState<any[]>([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -36,6 +38,22 @@ const PatientDetails: React.FC = () => {
                     dateOfBirth: data.dateOfBirth.slice(0, 10), // formata YYYY-MM-DD
                     // copie também os outros campos que quiser exibir
                 });
+
+                if (data.appointments && data.appointments.length > 0) {
+                    Promise.all(
+                        data.appointments.map((id: string) =>
+                            fetch(`${BASE_URL}/appointments/${id}`, {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                                },
+                            }).then((res) => res.json())
+                        )
+                    )
+                        .then(setAppointments)
+                        .catch((err) => console.error('Erro ao buscar agendamentos', err));
+                }
+
             })
             .catch((err) => {
                 console.error(err);
@@ -70,10 +88,28 @@ const PatientDetails: React.FC = () => {
                     disabled
                 />
             </div>
+            <div className="col-span-2 mt-6">
+                <h2 className="text-xl font-semibold mb-2">Agendamentos</h2>
+                {appointments.length > 0 ? (
+                    <ul className="space-y-2">
+                        {appointments.map((appt, idx) => (
+                            <li key={idx} className="border p-3 rounded shadow-sm">
+                                <p><strong>Data:</strong> {new Date(appt.date).toLocaleString()}</p>
+                                <p><strong>Tipo:</strong> {appt.type}</p>
+                                <p><strong>Status:</strong> {appt.status}</p>
+                                <p><strong>Observações:</strong> {appt.notes || '—'}</p>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>Nenhum agendamento encontrado.</p>
+                )}
+            </div>
 
-            {/* …renderize aqui todos os outros campos que quiser exibir */}
         </div>
+
     );
+
 };
 
 export default PatientDetails;

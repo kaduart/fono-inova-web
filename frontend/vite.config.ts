@@ -4,6 +4,13 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    include: [
+      'react-router-dom',
+      'react',
+      'react-dom'
+    ]
+  },
   server: {
     port: 3000,
     watch: {
@@ -15,5 +22,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src')  // Garantir que o alias "@" aponta para a pasta src
     }
-  }
+  },
 });

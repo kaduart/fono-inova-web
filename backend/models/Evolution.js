@@ -19,6 +19,13 @@ const evolutionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Appointment'
     },
+    plan: {
+        type: String,
+        default: ""
+    },
+    pdfUrl: {
+        type: String
+    },
     evaluationTypes: [{
         type: String,
         enum: ['language', 'motor', 'cognitive', 'behavior', 'social'],

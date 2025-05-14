@@ -1,12 +1,16 @@
 import express from 'express';
-import { auth } from '../middleware/auth.js';
+import { auth, authorize } from '../middleware/auth.js';
+import validateId from '../middleware/validateId.js';
 import Evolution from '../models/Evolution.js';
 import Metric from '../models/Metric.js';
+import { generatePdfFromEvolution } from '../services/generatePDF.js';
+import SaveEvolutionHistory from '../services/historyService.js';
 
 const router = express.Router();
+router.use(auth);
 
 // Obter todas as métricas disponíveis
-router.get('/metrics', auth, async (req, res) => {
+router.get('/metrics', async (req, res) => {
     try {
         const metrics = await Metric.find();
         res.json(metrics);
@@ -16,7 +20,7 @@ router.get('/metrics', auth, async (req, res) => {
 });
 
 // Criar nova evolução
-router.post('/', auth, async (req, res) => {
+router.post('/', authorize(['admin', 'professional']), async (req, res) => {
     try {
         const evolution = new Evolution(req.body);
         await evolution.save();
@@ -27,7 +31,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Obter evoluções de um paciente
-router.get('/patient/:patientId', auth, async (req, res) => {
+router.get('/patient/:patientId', async (req, res) => {
     try {
         const evolutions = await Evolution.find({ patientId: req.params.patientId })
             .sort({ date: 1 })
@@ -40,7 +44,7 @@ router.get('/patient/:patientId', auth, async (req, res) => {
 });
 
 // Obter uma evolução específica
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', validateId, auth, async (req, res) => {
     try {
         const evolution = await Evolution.findById(req.params.id)
             .populate('patientId', 'fullName')
@@ -56,27 +60,8 @@ router.get('/:id', auth, async (req, res) => {
     }
 });
 
-// Atualizar evolução
-router.put('/:id', auth, async (req, res) => {
-    try {
-        const evolution = await Evolution.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        );
-
-        if (!evolution) {
-            return res.status(404).json({ error: 'Evolução não encontrada' });
-        }
-
-        res.json(evolution);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
-
 // Excluir evolução
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', validateId, auth, async (req, res) => {
     try {
         const evolution = await Evolution.findByIdAndDelete(req.params.id);
 
@@ -89,5 +74,78 @@ router.delete('/:id', auth, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+
+router.get('/:id/pdf', validateId, auth, async (req, res) => {
+    try {
+        const evolution = await Evolution.findById(req.params.id)
+            .populate('patientId', 'fullName dateOfBirth')
+            .populate('doctorId', 'fullName specialty');
+
+        if (!evolution) return res.status(404).json({ error: 'Evolução não encontrada' });
+
+        // Lógica de geração do PDF (usando html-pdf ou puppeteer)
+        // Aqui apenas uma simulação:
+        const pdfBuffer = await generatePdfFromEvolution(evolution); // implementar isso
+
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Disposition': `attachment; filename="evolucao-${evolution._id}.pdf"`
+        });
+        res.send(pdfBuffer);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+const checkEditPermission = (userId, evolution) => {
+    if (evolution.createdBy.toString() === userId.toString()) return true;
+    return userId.role === 'admin';
+};
+
+
+router.put('/:id', validateId, auth, async (req, res) => {
+    const { id } = req.params;
+    const updatedData = req.body;
+    const userId = req.user.id;  // ID do profissional logado
+
+    const evolution = await Evolution.findById(id);
+    if (!evolution) return res.status(404).json({ error: 'Evolução não encontrada' });
+
+    if (!checkEditPermission(userId, evolution)) {
+        return res.status(403).json({ error: 'Você não tem permissão para editar esta evolução' });
+    }
+    // Salvar dados anteriores para histórico
+    const previousData = evolution;
+
+    // Atualizar evolução com novos dados
+    Object.assign(evolution, updatedData);
+    await evolution.save();
+
+    // Registrar no histórico
+    await SaveEvolutionHistory(id, userId, 'UPDATE', previousData);
+
+    res.status(200).json({ message: 'Evolução atualizada' });
+});
+
+
+router.get('/evolutions/search', async (req, res) => {
+    const { startDate, endDate, type, professional } = req.query;
+
+    let filter = {};
+    if (startDate) filter.createdAt = { $gte: new Date(startDate) };
+    if (endDate) filter.createdAt = { ...filter.createdAt, $lte: new Date(endDate) };
+    if (type) filter.type = type;
+    if (professional) filter.professional = professional;
+
+    const evolutions = await Evolution.find(filter).populate('professional');
+    res.json(evolutions);
+});
+
+
+const handleSearch = async () => {
+    const response = await axios.get('/evolutions/search', { params: filters });
+    setEvolutions(response.data);
+};
+
 
 export default router;

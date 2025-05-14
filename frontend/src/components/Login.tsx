@@ -6,7 +6,7 @@ import { BASE_URL } from '../constants/constants';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [selectedRole, setSelectedRole] = useState('patient');
+  const [selectedRole, setSelectedRole] = useState('admin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -14,8 +14,8 @@ const Login = () => {
 
   const roles = [
     { id: 'admin', label: 'Admin', icon: Shield },
-    { id: 'patient', label: 'Patient', icon: User },
-    { id: 'doctor', label: 'Doctor', icon: Stethoscope },
+    { id: 'paciente', label: 'Paciente', icon: User },
+    { id: 'profissional', label: 'Profissional', icon: Stethoscope },
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -60,11 +60,12 @@ const Login = () => {
       } else {
         const errorData = await response.json();
         setError(errorData.error);
-        return toast.error("An error occurred. Please try again.");
+        return toast.error("Ocorreu um erro. Tente novamente.");
       }
     } catch (error) {
-      setError('An error occurred. Please try again.');
-      return toast.error("An error occurred. Please try again.");
+      setError('Ocorreu um erro. Tente novamente.');
+      localStorage.removeItem('authToken');
+      return toast.error("Ocorreu um erro. Tente novamente.");
     }
   };
 
@@ -88,7 +89,7 @@ const Login = () => {
           </div>
 
           {/* Tagline */}
-          <h1 className="text-blue-600 text-3xl font-semibold text-center">Smart Access to Healthcare</h1>
+          <h1 className="text-blue-600 text-3xl font-semibold text-center">Acesso inteligente aos cuidados de saúde</h1>
         </div>
       </div>
 
@@ -98,8 +99,8 @@ const Login = () => {
       <div className="w-1/2 bg-blue-600 flex items-center justify-center p-4">
         <div className="w-full max-w-md overflow-hidden">
           <div className="bg-blue-600 p-6 text-white">
-            <h2 className="text-2xl font-bold text-center">Login to HealthCare Portal</h2>
-            <p className="text-center text-blue-100 mt-1">Access your account</p>
+            <h2 className="text-2xl font-bold text-center">Faça login no Portal de Saúde</h2>
+            <p className="text-center text-blue-100 mt-1">Acesse sua conta</p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-md bg-white">
             <div className="p-6">
@@ -165,13 +166,13 @@ const Login = () => {
                   type="submit"
                   className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors"
                 >
-                  Login as {roles.find((r) => r.id === selectedRole)?.label}
+                  Login como {roles.find((r) => r.id === selectedRole)?.label}
                 </button>
               </form>
             </div>
             <div className="bg-gray-50 px-6 py-4 text-center">
               <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
+                Não tem conta?{' '}
                 <button onClick={() => navigate('/signup')} className="text-blue-600 font-semibold hover:underline">
                   Sair
                 </button>

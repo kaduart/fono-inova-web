@@ -56,15 +56,14 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
             <div>
               <h1 className="text-5xl font-bold text-white mb-6 text-left">
-                Streamline Your Hospital Management
+                Simplifique a gestão do sua clínica
               </h1>
               <p className="text-xl text-white mb-10 text-left">
-                Our comprehensive hospital management system helps you optimize patient care, streamline operations,
-                and improve overall efficiency.
+                Nosso sistema abrangente de gestão clínica ajuda você a otimizar o atendimento ao paciente, agilizar as operações e melhorar a eficiência geral.
               </p>
               <div className="flex gap-4 justify-left">
-                <Button primary onClick={() => handleButtonClick('/login')}>Explore Features</Button>
-                <Button onClick={() => handleButtonClick('/login')}>Appointments</Button>
+                <Button primary onClick={() => handleButtonClick('/login')}>Explorar recursos</Button>
+                <Button onClick={() => handleButtonClick('/login')}>Compromissos</Button>
               </div>
             </div>
             <div className="bg-gray-200 w-full h-full min-h-[20rem] rounded-lg overflow-hidden">
@@ -76,9 +75,9 @@ const Home = () => {
         <Section>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: User, title: "Patient Management", description: "Efficiently manage patient records, appointments, and medical history." },
-              { icon: Hospital, title: "Doctor Management", description: "Manage doctor profiles, schedules, and patient assignments." },
-              { icon: Calendar, title: "Appointment Scheduling", description: "Streamline appointment booking and management for patients and doctors." }
+              { icon: User, title: "Gestão de Pacientes", description: "Gerencie com eficiência registros de pacientes, consultas e histórico médico." },
+              { icon: Hospital, title: "Gestão de Profissionais", description: "Gerencie perfis de profissionais, agendas e atribuições de pacientes." },
+              { icon: Calendar, title: "Agendamento de consultas", description: "Simplifique o agendamento e o gerenciamento de consultas para pacientes e profissionais." }
             ].map((card, index) => (
               <Card key={index} {...card} primary />
             ))}
@@ -91,14 +90,14 @@ const Home = () => {
               <img src="home-2.jpeg" alt="" className='w-full' />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-4 text-left">Modernize Your Hospital Operations</h2>
+              <h2 className="text-3xl font-bold mb-4 text-left">Modernize as operações do sua clínica</h2>
               <p className="text-xl text-gray-600 mb-8 text-left">
-                Our hospital management system provides cutting-edge features to streamline your workflows, improve
-                patient satisfaction, and drive better outcomes.
+                Nosso sistema de gestão clínica oferece recursos de ponta para otimizar seus fluxos de trabalho, melhorar
+                a satisfação do paciente e gerar melhores resultados.
               </p>
               <div className="flex gap-4 justify-left">
-                <Button primary onClick={() => handleButtonClick('/login')}>Explore Features</Button>
-                <Button onClick={() => handleButtonClick('/login')}>Appointments</Button>
+                <Button primary onClick={() => handleButtonClick('/login')}>Explorar Recursos</Button>
+                <Button onClick={() => handleButtonClick('/login')}>Compromissos</Button>
               </div>
             </div>
           </div>
@@ -106,31 +105,45 @@ const Home = () => {
 
         <Section>
           <h2 className="text-3xl font-bold mb-12 text-center">
-            Why Choose Our Hospital Management System?
+            Por que escolher nosso sistema de gestão clínica?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: Clipboard, title: "Improved Efficiency", description: "Our system streamlines administrative tasks, reducing paperwork and improving overall hospital efficiency." },
-              { icon: Users, title: "Enhanced Patient Care", description: "With comprehensive patient records and intelligent scheduling, our system helps you provide better care to your patients." },
-              { icon: DollarSign, title: "Cost Savings", description: "Our hospital management system helps you optimize operations and reduce overhead costs, leading to significant cost savings." },
-              { icon: HeartPulse, title: "Improved Patient Outcomes", description: "By streamlining processes and enhancing patient care, our system helps you improve overall patient outcomes and satisfaction." },
-              { icon: Shield, title: "Secure Data Management", description: "Our system ensures the security and confidentiality of all patient data, with robust encryption and access controls." },
-              { icon: Cog, title: "Customizable Solutions", description: "Our system is highly configurable, allowing you to tailor it to your specific hospital's needs and workflows." },
-              { icon: Clock, title: "Time-Saving Features", description: "Automate routine tasks and streamline workflows to save valuable time for healthcare professionals." },
-              { icon: ChartBar, title: "Advanced Analytics", description: "Gain insights into hospital operations with powerful reporting and analytics tools." },
-              { icon: Globe, title: "Scalable Infrastructure", description: "Our system grows with your organization, supporting multiple locations and expanding user bases." }
-            ].map((card, index) => (
-              <Card key={index} {...card} />
-            ))}
+              { icon: Clipboard, title: "Eficiência Aprimorada", description: "Nosso sistema agiliza tarefas administrativas, reduz a papelada e melhora a eficiência geral do hospital." },
+              { icon: Users, title: "Atendimento ao Paciente Aprimorado", description: "Com registros abrangentes dos pacientes e agendamento inteligente, nosso sistema ajuda você a oferecer um melhor atendimento." },
+              { icon: DollarSign, title: "Redução de Custos", description: "Nosso sistema de gestão hospitalar otimiza operações e reduz os custos operacionais, gerando economia significativa." },
+              { icon: HeartPulse, title: "Melhores Resultados para os Pacientes", description: "Ao agilizar processos e melhorar o atendimento, nosso sistema contribui para melhores resultados e maior satisfação dos pacientes." },
+              { icon: Shield, title: "Gestão Segura de Dados", description: "Nosso sistema garante a segurança e confidencialidade de todos os dados dos pacientes, com criptografia robusta e controles de acesso." },
+              { icon: Cog, title: "Soluções Personalizáveis", description: "Nosso sistema é altamente configurável, permitindo adaptá-lo às necessidades e fluxos de trabalho específicos do seu hospital." },
+              { icon: Clock, title: "Recursos que Economizam Tempo", description: "Automatize tarefas rotineiras e otimize fluxos de trabalho para economizar tempo valioso dos profissionais de saúde." },
+              { icon: ChartBar, title: "Análises Avançadas", description: "Obtenha insights sobre as operações hospitalares com ferramentas poderosas de relatórios e análises." },
+              { icon: Globe, title: "Infraestrutura Escalável", description: "Nosso sistema cresce com sua organização, suportando múltiplas unidades e expansão da base de usuários." }
+            ]
+              .map((card, index) => (
+                <Card key={index} {...card} />
+              ))}
           </div>
         </Section>
       </main>
 
-      <footer className="bg-black py-6 border-t">
-        <div className="container mx-auto px-4 flex items-center justify-between">
-          <p className="text-gray-100">&copy; 2025 Fono-Inova. All rights reserved.</p>
+      <footer className="bg-blue-900 py-6 border-t border-blue-700">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-100 text-sm">&copy; 2025 Clínica Fono Inova. Todos os direitos reservados.</p>
+
+          <div className="flex space-x-4">
+            <a href="#" className="text-blue-300 hover:text-white transition-colors duration-200">
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" className="text-blue-300 hover:text-white transition-colors duration-200">
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a href="#" className="text-blue-300 hover:text-white transition-colors duration-200">
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+          </div>
         </div>
       </footer>
+
     </div>
   );
 }

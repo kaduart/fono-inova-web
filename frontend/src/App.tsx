@@ -3,17 +3,42 @@ import { Toaster } from 'react-hot-toast';
 import Modal from 'react-modal';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import Admin from './components/Admins';
+import AdminDashboard from './components/AdminDashboard';
 import AppointmentCalendar from './components/AppointmentCalendar';
 import AppointmentScheduler from './components/AppointmentScheduler';
 import Doctor from './components/Doctors';
+import { PaymentPage } from './components/financial/PaymentPage';
 import Home from './components/Home';
 import Login from './components/Login';
-import Patient from './components/Patient';
+import { default as Patient, default as PatientDashboard } from './components/patients/PatientDashboard';
+import PatientEvolution from './components/patients/PatientEvolution';
+import PatientSelection from './components/patients/PatientSelection';
 import SignUp from './components/SignUp';
-import PatientDetails from './components/patients/PatientDetails';
+import { PrivateRoute } from './utils/PrivateRoute';
+
+interface AppointmentHistoryModalProps {
+  open: boolean;
+  onClose: () => void;
+  appointments: Array<{
+    _id: string;
+    date: string;
+    time: string;
+    doctorId: { fullName: string };
+    reason: string;
+    status: string;
+  }>;
+}
 
 const App: React.FC = () => {
+
+  /*
+  interceptor de 401
+  const navigate = useNavigate();
+  
+    useEffect(() => {
+      setupInterceptor(navigate);
+    }, [navigate]);
+   */
   Modal.setAppElement('#root');
   return (
     <Router>
@@ -23,11 +48,27 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/doctor" element={<Doctor />} />
-          <Route path="/admin" element={<Admin />} />
+
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute allowedRoles={['admin']}>
+                <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/admin" element={<AdminDashboard />} />
+          {/*  <Route path="/admin/doctors" element={<DoctorManagement />} />
+          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/schedule" element={<ScheduleManager />} /> */}
+
+          <Route path="/evolutions/:id" element={<PatientEvolution />} />
           <Route path="/calendar" element={<AppointmentCalendar />} />
           <Route path="/patient" element={<Patient />} />
-          <Route path="/patients/:id" element={<PatientDetails />} />
+          <Route path="/patient-dashboard/:id" element={<PatientDashboard />} />
           <Route path="/appointment" element={<AppointmentScheduler />} />
+          <Route path="/select-patient" element={<PatientSelection />} />
+          <Route path="/financeiro" element={<PaymentPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster position="top-center" />

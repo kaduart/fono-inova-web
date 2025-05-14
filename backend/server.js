@@ -5,12 +5,20 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import './models/Patient.js'; // Importe antes das rotas
+import './models/Doctor.js'; // Crie este modelo se necessário
+import './models/Session.js';
+import './models/Payment.js';
+import './models/Package.js';
 import adminRoutes from './routes/admin.js';
 import appointmentRoutes from './routes/appointment.js';
 import doctorRoutes from './routes/doctor.js';
 import evolutionRoutes from './routes/evolution.js';
+import leadsRouter from './routes/Leads.js';
 import loginRoutes from './routes/login.js';
+import PackageRoutes from './routes/Package.js';
 import patientRoutes from './routes/patient.js';
+import PaymentRoutes from './routes/Payment.js';
 import signupRoutes from './routes/signup.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,7 +32,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: process.env.FRONTEND_URL || "http://localhost:3000",
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
@@ -43,8 +51,11 @@ app.use('/api/login', loginRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/doctor', doctorRoutes);
 app.use('/api/patients', patientRoutes);
-app.use('/api/appointment', appointmentRoutes);
+app.use('/api/appointments', appointmentRoutes);
 app.use('/api/evolutions', evolutionRoutes);
+app.use('/api/leads', leadsRouter);
+app.use('/api/packages', PackageRoutes);
+app.use('/api/payments', PaymentRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

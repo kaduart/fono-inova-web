@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { BASE_URL } from '../services/api';
+import { BASE_URL } from '../../../backend/services/api';
 
 const AddPatient = () => {
     const [patientData, setPatientData] = useState({

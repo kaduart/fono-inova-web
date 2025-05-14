@@ -1,5 +1,5 @@
 import { Calendar, CheckCircle, ChevronDown, Clock, FileText, Home, Hospital, UserCircle, Users, XCircle } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
@@ -303,7 +303,7 @@ export default function DoctorDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader icon={Calendar}>
-            <CardTitle className="text-sm font-medium">Today's Appointments</CardTitle>
+            <CardTitle className="text-sm font-medium">Agendamentos de Hoje</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
@@ -311,11 +311,11 @@ export default function DoctorDashboard() {
             </div>
             {appointments.length > 0 ? (
               <p className="text-xs text-gray-500">
-                Next: {appointments[0].patientId.fullName} at {appointments[0].time}
+                Próximo: {appointments[0].patientId.fullName} às {appointments[0].time}
               </p>
             ) : (
               <p className="text-xs text-gray-500">
-                No appointments today
+                Sem agendamentos hoje
               </p>
             )}
           </CardContent>
@@ -325,7 +325,7 @@ export default function DoctorDashboard() {
               className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
               onClick={() => setShowAppointments(!showAppointments)}
             >
-              {showAppointments ? "Hide" : "View"} Today's Appointments
+              {showAppointments ? "Hide" : "View"} Agendamentos de Hoje
               <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showAppointments ? "rotate-180" : ""}`} />
             </Button>
           </CardFooter>
@@ -368,7 +368,7 @@ export default function DoctorDashboard() {
                 ))
               ) : (
                 <p className="text-sm text-gray-500 text-center py-4">
-                  No appointments scheduled for today
+                  Sem agendamentos para hoje
                 </p>
               )}
             </div>
@@ -771,7 +771,7 @@ export default function DoctorDashboard() {
             <div className="space-y-2">
               <Label htmlFor="patient">Select Patient</Label>
               <Select id="patient" name="patientId" value={appointmentData.patientId} onChange={handleInputChange}>
-                <option value="">Choose a patient</option>
+                <option value="">Escolha um paciente</option>
                 {patients.map((patient) => (
                   <option key={patient._id} value={patient._id}>
                     {patient.fullName}
@@ -782,7 +782,7 @@ export default function DoctorDashboard() {
             <div className="space-y-2">
               <Label htmlFor="action">Action</Label>
               <Select id="action" name="action" value={selectedAction} onChange={handleInputChange}>
-                <option value="">Choose an action</option>
+                <option value="">Escolha uma ação</option>
                 <option value="schedule-appointment">Schedule Appointment</option>
                 <option value="prescribe-medication">Prescribe Medication</option>
               </Select>
