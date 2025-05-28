@@ -5,11 +5,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import './models/Patient.js'; // Importe antes das rotas
 import './models/Doctor.js'; // Crie este modelo se necessário
-import './models/Session.js';
-import './models/Payment.js';
 import './models/Package.js';
+import './models/Patient.js'; // Importe antes das rotas
+import './models/Payment.js';
+import './models/Session.js';
 import adminRoutes from './routes/admin.js';
 import appointmentRoutes from './routes/appointment.js';
 import doctorRoutes from './routes/doctor.js';

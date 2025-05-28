@@ -3,7 +3,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 const AppointmentCalendar = () => {
@@ -16,7 +16,7 @@ const AppointmentCalendar = () => {
     }, []);
 
     const handleDateSelect = async (selectInfo) => {
-        const title = prompt('Título do agendamento:');
+        const title = prompt('Título do agendamento:') || 'Consulta';
         const calendarApi = selectInfo.view.calendar;
         calendarApi.unselect();
 
@@ -57,7 +57,10 @@ const AppointmentCalendar = () => {
                 initialView="dayGridMonth"
                 editable={true}
                 selectable={true}
-                events={events}
+                events={events.map(event => ({
+                    ...event,
+                    title: event.title?.split(' - ')[0] || 'Sem motivo' // ← Split seguro
+                }))}
                 select={handleDateSelect}
                 eventClick={handleEventClick}
                 height="auto"

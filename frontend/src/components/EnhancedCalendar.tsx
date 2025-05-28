@@ -171,7 +171,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     const fetchAppointment = useCallback(async () => {
         setLoading(true);
         try {
-            let url = '/appointment';
+            let url = '/appointments';
             const params = new URLSearchParams();
 
             if (selectedDoctor !== 'all') {
@@ -202,11 +202,16 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 const startDate = new Date(appointment.start);
                 const endDate = new Date(appointment.end);
 
+                const formattedEnd = endDate.toLocaleString('pt-BR', {
+                    timeZone: 'America/Sao_Paulo',
+                    hour12: false
+                });
+
                 return {
                     id: appointment.id || appointment._id,
-                    title: `${appointment.description || 'Consulta'} - Dr. ${appointment.doctor.name || 'Desconhecido'}`,
+                    title: `${appointment.patient.name || 'Consulta'} - Dr. ${appointment.doctor.name || 'Desconhecido'}`,
                     start: startDate,
-                    end: endDate,
+                    end: formattedEnd,
                     extendedProps: {
                         patientId: appointment.patient.id,
                         doctorId: appointment.doctor.id,
@@ -237,7 +242,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         const fetchAvailableSlots = async () => {
             if (formData.doctorId && formData.date) {
                 try {
-                    const response = await axios.get('/api/appointment/available-slots', {
+                    const response = await axios.get('/api/appointments/available-slots', {
                         params: {
                             doctorId: formData.doctorId,
                             date: formData.date
@@ -319,11 +324,11 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
             let response;
             if (modalMode === 'edit' && selectedEvent?._id) {
-                response = await axios.put(`${BASE_URL}/appointment/${selectedEvent._id}`, appointment, config);
+                response = await axios.put(`${BASE_URL}/appointments/${selectedEvent._id}`, appointment, config);
             } else {
-                response = await axios.post(`${BASE_URL}/appointment/`, appointment, config);
+                response = await axios.post(`${BASE_URL}/appointments/`, appointment, config);
             }
-            console.log('rotaa', `${BASE_URL}/appointment/`)
+            console.log('rotaa', `${BASE_URL}/appointments/`)
             // Verifique a resposta e feche o modal se a operação for bem-sucedida
             if (response.status === 200 || response.status === 201) {
                 setIsModalOpen(false);  // Fechar o modal apenas em sucesso

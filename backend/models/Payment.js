@@ -1,6 +1,14 @@
 import mongoose from 'mongoose';
 
 const paymentSchema = new mongoose.Schema({
+    patient: {
+        type: String,
+        required: true,
+    },
+    professional: {
+        type: String,
+        required: true,
+    },
     amount: {
         type: Number,
         required: true,
@@ -21,6 +29,9 @@ const paymentSchema = new mongoose.Schema({
         enum: ['dinheiro', 'pix', 'cartão'],
         required: true
     },
+    notes: {
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now,
@@ -32,39 +43,100 @@ const paymentSchema = new mongoose.Schema({
     toJSON: { virtuals: true }
 });
 
-// Middleware de pré-validação
-paymentSchema.pre('validate', function (next) {
-    console.log(`Validando pagamento para pacote ${this.package}`);
-    next();
-});
+paymentSchema.post('save', async function (doc) {
+    const session = this.$session && this.$session();
 
-// Middleware de pós-salvamento FORTALECIDO
-/* paymentSchema.post('save', async function (doc) {
-    try {
-        console.log(`Iniciando hook pós-salvamento para pagamento ${doc._id}`);
+    const withRetry = async (operation, maxRetries = 3, delayMs = 100) => {
+        let retries = 0;
+        while (retries < maxRetries) {
+            try {
+                return await operation();
+            } catch (err) {
+                if (err.message.includes('Write conflict')) {
+                    retries++;
+                    await new Promise(r => setTimeout(r, delayMs));
+                } else {
+                    throw err;
+                }
+            }
+        }
+        throw new Error(`Falha após ${maxRetries} tentativas`);
+    };
 
-        const result = await mongoose.model('Package').updateOne(
+    await withRetry(async () => {
+        const Package = mongoose.model('Package');
+        const Session = mongoose.model('Session');
+
+        // 1. Atualização Atômica do Pacote
+        const pkg = await Package.findOneAndUpdate(
             { _id: doc.package },
             {
-                $inc: {
-                    totalPaid: doc.amount,
-                    balance: -doc.amount
-                },
+                $inc: { totalPaid: doc.amount },
                 $push: { payments: doc._id }
-            }
+            },
+            { new: true, session }
         );
 
-        console.log(`Pagamento ${doc._id} vinculado ao pacote ${doc.package}`, {
-            matched: result.matchedCount,
-            modified: result.modifiedCount
-        });
-    } catch (err) {
-        console.error(`FALHA no hook de pagamento ${doc._id}:`, {
-            message: err.message,
-            stack: err.stack
-        });
-    }
-}); */
+        if (!pkg || pkg.sessionValue <= 0) {
+            throw new Error("Pacote ou valor da sessão inválido");
+        }
+
+        // 2. Cálculo de Sessões Pagas e Crédito
+        const totalValue = pkg.sessionValue * pkg.totalSessions;
+        const sessionsPaidCount = Math.floor(pkg.totalPaid / pkg.sessionValue);
+
+        // 3. Busca e Atualização de Sessões
+        const sessionsToAutoPay = await Session.find({
+            package: pkg._id,
+            isPaid: false
+        })
+            .sort({ createdAt: 1 })
+            .limit(sessionsPaidCount)
+            .select('_id');
+
+        if (sessionsToAutoPay.length > 0) {
+            await Session.updateMany(
+                { _id: { $in: sessionsToAutoPay.map(s => s._id) } },
+                {
+                    isPaid: true,
+                    paymentMethod: doc.paymentMethod,
+                    status: 'paid'
+                },
+                { session }
+            );
+            console.log(`✅ ${sessionsPaidCount} sessões marcadas como pagas.`);
+        }
+        console.log(`Pagamento ${doc._id}: ${sessionsPaidCount} sessões marcadas como pagas.`);
+        console.log(`DOCC ${doc}`);
+
+
+        if (sessionsToAutoPay.length > 0) {
+            await Session.updateMany(
+                { _id: { $in: sessionsToAutoPay.map(s => s._id) } },
+                {
+                    isPaid: true,
+                    paymentMethod: doc.paymentMethod,
+                    status: 'paid'
+                },
+                { session }
+            );
+            console.log(`✅ ${sessionsPaidCount} sessões marcadas como pagas.`);
+
+        }
+
+        // 5. Atualizar Saldo e Crédito
+        await Package.findOneAndUpdate(
+            { _id: doc.package },
+            {
+                $set: {
+                    balance: Math.max(totalValue - pkg.totalPaid, 0)
+                }
+            },
+            { session }
+        );
+    });
+});
+
 
 const Payment = mongoose.model('Payment', paymentSchema);
 export default Payment;

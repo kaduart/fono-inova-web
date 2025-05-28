@@ -18,6 +18,29 @@ export const PAYMENT_TYPES = [
     { value: 'partial', label: 'Pagamento parcial' },
 ];
 
+export const statusConfig = {
+    active: {
+        color: 'bg-green-100 text-green-800',
+        text: 'Ativo',
+        tagColor: 'green',
+    },
+    pending: {
+        color: 'bg-yellow-100 text-yellow-800',
+        text: 'Pendente',
+        tagColor: 'gold',
+    },
+    completed: {
+        color: 'bg-blue-100 text-blue-800',
+        text: 'Completo',
+        tagColor: 'blue',
+    },
+    default: {
+        color: 'bg-gray-100 text-gray-800',
+        text: 'Indefinido',
+        tagColor: 'gray',
+    },
+};
+
 export interface PaginatedResponse<T> {
     data: T[];
     total: number;
@@ -26,56 +49,49 @@ export interface PaginatedResponse<T> {
     limit: number;
 }
 
-export interface ISession {
-    _id: string;
-    date: string;
-    professional: string;
-    sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
-    notes: string;
-    value?: number; // Opcional baseado no JSON
-    isPaid: boolean;
-    paymentMethod: 'dinheiro' | 'pix' | 'cartão' | null;
-}
-
 export interface IPayment {
     _id: string;
     amount: number;
-    date: string;
-    coveredSessions: (string | null)[];
     paymentMethod: 'dinheiro' | 'pix' | 'cartão';
-    notes: string;
+    date?: string; // Adicionar se existir nos dados reais
+    notes?: string;
 }
 
-// export Interface principal do Pacote
-// interfaces/Package.ts
+export interface ISession {
+    _id?: string;
+    date: string;
+    professional: string;
+    package: string;
+    sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
+    status: 'pending' | 'completed' | 'canceled';
+    paymentAmount?: number;
+    paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
+    notes?: string;
+    isPaid?: boolean;
+}
+
+export const DURATION_OPTIONS = Array.from({ length: 12 }, (_, i) => i + 1);
+export const FREQUENCY_OPTIONS = Array.from({ length: 5 }, (_, i) => i + 1);
+
 export interface ITherapyPackage {
     _id: string;
     patient: string;
-    sessionType: string;
-    professionalId: string;
+    professional: string;
+    sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
     totalSessions: number;
+    sessions: ISession[];
     sessionsDone: number;
     sessionValue: number;
+    payments: IPayment[];
+    status: 'active' | 'completed' | 'pending';
     totalPaid: number;
     balance: number;
-    amountPaid: number;
-    paymentType?: string;
-    remaining?: number; // Virtual
-    totalValue?: number; // Virtual
-    sessions: Array<{
-        _id: string;
-        date: Date;
-        status: 'pending' | 'used';
-        professional: string;
-    }>;
-    payments: Array<{
-        _id: string;
-        amount: number;
-        date: Date;
-        paymentMethod: 'dinheiro' | 'pix' | 'cartão';
-    }>;
-    createdAt: Date;
-    updatedAt: Date;
+    remaining: number;
+    totalValue: number;
+    credit: number;
+    __v?: number;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 // export Interface da resposta paginada

@@ -32,15 +32,28 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({ isOpen,
                 </div>
 
                 <div className="space-y-4">
-                                        <div>
-                        <label className="block text-sm font-medium text-gray-700">Paciente</label>
-                        <input
-                            type="text"
-                            disabled
-                            value={event.patient}
-                            className="w-full bg-gray-100 text-gray-800 p-2 rounded-md border border-gray-300 cursor-not-allowed"
-                        />
-                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Paciente</label>
+                            <input
+                                type="text"
+                                disabled
+                                value={event.patient}
+                                className="w-full bg-gray-100 text-gray-800 p-2 rounded-md border border-gray-300 cursor-not-allowed"
+                            />
+
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Doutor</label>
+                            <input
+                                type="text"
+                                disabled
+                                value={event.doctor}
+                                className="w-full bg-gray-100 text-gray-800 p-2 rounded-md border border-gray-300 cursor-not-allowed"
+                            />
+
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -2,67 +2,71 @@ import Appointment from '../models/Appointment.js';
 
 export const checkAppointmentConflicts = async (req, res, next) => {
     try {
-        const { doctorId, date, time, appointmentId } = req.body;
+        const { doctorId, patientId, date, time } = req.body;
+        const appointmentId = req.body.metadata?.appointmentId || null;
 
-        // Converter string de tempo para objetos Date para comparação precisa
+        console.log('Verificando conflitos para:', { doctorId, patientId, date, time });
+
+        if (!date || !doctorId || !patientId || !time) {
+            return res.status(400).json({ error: "Campos obrigatórios faltando" });
+        }
+
+        if (!/^\d{2}:\d{2}$/.test(time)) {
+            return res.status(400).json({ error: "Formato de hora inválido (esperado HH:mm)" });
+        }
+
         const appointmentDate = new Date(date);
-        const [hours, minutes] = time.split(':').map(Number);
+        if (isNaN(appointmentDate.getTime())) {
+            return res.status(400).json({ error: "Data inválida" });
+        }
 
-        // Definir horário de início
+        // Construir startTime com data + hora
+        const [hours, minutes] = time.split(':').map(Number);
         const startTime = new Date(appointmentDate);
         startTime.setHours(hours, minutes, 0, 0);
 
-        // Definir horário de término (assumindo consultas de 1 hora)
         const endTime = new Date(startTime);
         endTime.setHours(endTime.getHours() + 1);
 
-        // Buscar agendamentos existentes para o mesmo médico na mesma data
-        const existingAppointments = await Appointment.find({
+        const startOfDay = new Date(appointmentDate);
+        startOfDay.setHours(0, 0, 0, 0);
+
+        const endOfDay = new Date(appointmentDate);
+        endOfDay.setHours(23, 59, 59, 999);
+
+        const query = {
             doctorId,
-            date: {
-                $gte: new Date(appointmentDate.setHours(0, 0, 0, 0)),
-                $lt: new Date(appointmentDate.setHours(23, 59, 59, 999))
-            },
-            _id: { $ne: appointmentId } // Excluir o próprio agendamento em caso de edição
+            date: { $gte: startOfDay, $lt: endOfDay },
+            ...(appointmentId && { _id: { $ne: appointmentId } })
+        };
+
+        const existingAppointments = await Appointment.find(query);
+
+        const hasConflict = existingAppointments.some(app => {
+            const appStart = new Date(app.date);
+            const appEnd = new Date(appStart);
+            appEnd.setHours(appEnd.getHours() + 1);
+
+            return startTime < appEnd && endTime > appStart;
         });
 
-        // Verificar conflitos de horário
-        const conflictingAppointment = existingAppointments.find(appointment => {
-            const appointmentTime = appointment.time;
-            const [appHours, appMinutes] = appointmentTime.split(':').map(Number);
-
-            const appStartTime = new Date(appointmentDate);
-            appStartTime.setHours(appHours, appMinutes, 0, 0);
-
-            const appEndTime = new Date(appStartTime);
-            appEndTime.setHours(appEndTime.getHours() + 1);
-
-            // Verificar sobreposição de horários
-            return (startTime < appEndTime && endTime > appStartTime);
-        });
-
-        if (conflictingAppointment) {
+        console.log('Conflitos encontrados:', hasConflict);
+        if (hasConflict) {
             return res.status(409).json({
-                error: 'Conflito de horário detectado',
-                message: 'O profissional já possui outro agendamento neste horário',
-                conflictingAppointment
+                error: 'Conflito de horário',
+                message: 'Médico já possui agendamento neste horário'
             });
         }
 
-        // Verificar também se o paciente já tem agendamento no mesmo horário
-        const patientId = req.body.patientId;
-        const patientAppointments = await Appointment.find({
+        const patientQuery = {
             patientId,
-            date: {
-                $gte: new Date(appointmentDate.setHours(0, 0, 0, 0)),
-                $lt: new Date(appointmentDate.setHours(23, 59, 59, 999))
-            },
-            _id: { $ne: appointmentId }
-        });
+            date: { $gte: startOfDay, $lt: endOfDay },
+            ...(appointmentId && { _id: { $ne: appointmentId } })
+        };
 
+        const patientAppointments = await Appointment.find(patientQuery);
         const patientConflict = patientAppointments.find(appointment => {
-            const appointmentTime = appointment.time;
-            const [appHours, appMinutes] = appointmentTime.split(':').map(Number);
+            const [appHours, appMinutes] = appointment.time.split(':').map(Number);
 
             const appStartTime = new Date(appointmentDate);
             appStartTime.setHours(appHours, appMinutes, 0, 0);
@@ -75,18 +79,19 @@ export const checkAppointmentConflicts = async (req, res, next) => {
 
         if (patientConflict) {
             return res.status(409).json({
-                error: 'Conflito de horário detectado',
-                message: 'O paciente já possui outro agendamento neste horário',
-                conflictingAppointment: patientConflict
+                error: 'Conflito de horário',
+                message: 'Paciente já possui agendamento neste horário'
             });
         }
 
-        // Se não houver conflitos, continuar
         next();
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Erro em checkAppointmentConflicts:', error);
+        res.status(500).json({ error: 'Erro interno ao verificar conflitos' });
     }
 };
+
+
 
 // Função para buscar horários disponíveis
 export const getAvailableTimeSlots = async (req, res) => {

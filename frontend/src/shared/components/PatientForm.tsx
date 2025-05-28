@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
+import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/TextArea';
 
 const BR_STATES = [
@@ -208,15 +209,15 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                                     <div>
                                         {renderField(
                                             'Gênero',
-                                            <select
+                                            <Select
                                                 {...register('gender')}
-                                                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
+
                                             >
                                                 <option value="">Selecione</option>
                                                 <option value="masculino">Masculino</option>
                                                 <option value="feminino">Feminino</option>
                                                 <option value="outro">Outro</option>
-                                            </select>,
+                                            </Select>,
                                             errors.gender?.message
                                         )}
                                     </div>
@@ -224,16 +225,16 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                                     <div>
                                         {renderField(
                                             'Estado civil',
-                                            <select
+                                            <Select
                                                 {...register('maritalStatus')}
-                                                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
+
                                             >
                                                 {maritalStatusOptions.map(opt => (
                                                     <option key={opt.value} value={opt.value}>
                                                         {opt.label}
                                                     </option>
                                                 ))}
-                                            </select>,
+                                            </Select>,
                                             errors.maritalStatus?.message
                                         )}
                                     </div>
@@ -241,16 +242,16 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                                     <div>
                                         {renderField(
                                             'Profissão',
-                                            <select
+                                            <Select
                                                 {...register('profession')}
-                                                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
+
                                             >
                                                 {professions.map((opt) => (
                                                     <option key={opt.value} value={opt.value}>
                                                         {opt.label}
                                                     </option>
                                                 ))}
-                                            </select>,
+                                            </Select>,
                                             errors.profession?.message
                                         )}
                                     </div>

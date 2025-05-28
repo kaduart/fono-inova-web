@@ -1,6 +1,19 @@
 import mongoose from 'mongoose';
-
+//delete mongoose.connection.models['Package'];
 const packageSchema = new mongoose.Schema({
+    version: { type: Number, default: 0 },
+    durationMonths: { // Novo campo (1-12)
+        type: Number,
+        required: true,
+        min: 1,
+        max: 12
+    },
+    sessionsPerWeek: { // Novo campo (1-5)
+        type: Number,
+        required: true,
+        min: 1,
+        max: 5
+    },
     patient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient',
@@ -9,7 +22,7 @@ const packageSchema = new mongoose.Schema({
     professional: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor',
-        required: [true, 'Profissional é obrigatório'], // Mensagem clara
+        required: [true, 'Profissional é obrigatório'],
         validate: {
             validator: async (value) => {
                 const doctor = await mongoose.model('Doctor').findById(value);
@@ -31,9 +44,16 @@ const packageSchema = new mongoose.Schema({
         enum: ['fonoaudiologia', 'terapeuta ocupacional', 'psicologia', 'fisioterapia'],
         required: true
     },
+    sessionValue: {
+        type: Number,
+        required: false,
+        default: 200,
+        min: [0.01, 'O valor deve ser maior que zero']
+    },
     totalSessions: {
         type: Number,
-        required: true,
+        required: false,
+        default: 1,
         min: [1, 'Deve ter pelo menos 1 sessão']
     },
     sessions: [{
@@ -43,11 +63,6 @@ const packageSchema = new mongoose.Schema({
     sessionsDone: {
         type: Number,
         default: 0
-    },
-    sessionValue: {
-        type: Number,
-        required: true,
-        min: [0.01, 'O valor deve ser maior que zero']
     },
     payments: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -60,80 +75,36 @@ const packageSchema = new mongoose.Schema({
     },
     totalPaid: { type: Number, default: 0 },
     balance: { type: Number, default: 0 },
+    credit: {
+        type: Number,
+        default: 0
+    },
 });
 
-// Atualização automática do status
-// models/Package.js
-packageSchema.pre('save', async function (next) {
-    // 1. Atualização do status
-    if (this.isModified('sessionsDone') || this.isModified('totalPaid')) {
-        let newStatus = 'active';
-
-        if (this.sessionsDone >= this.totalSessions) {
-            newStatus = 'completed';
-        } else if (this.sessionsDone > 0) {
-            newStatus = 'in-progress';
-        }
-
-        if (this.status !== newStatus) {
-            this.status = newStatus;
-        }
+packageSchema.pre('findOneAndUpdate', function (next) {
+    const update = this.getUpdate();
+    if (update.$inc) {
+        update.$inc.version = 1; // Incrementa a versão em todas as atualizações
     }
+    next();
+});
 
-    // 2. Cálculo do balance (redundante, mas seguro)
-    if (this.isModified('totalPaid')) {
-        this.balance = Math.max(
-            (this.sessionValue * this.totalSessions) - this.totalPaid,
-            0
-        );
-    }
+packageSchema.pre('save', function (next) {
+
+    console.log('DURATIUON ', this.durationMonths);
+    console.log('SESSION WEEK', this.sessionsPerWeek);
+    // Calcular total de sessões (4 semanas ≈ 1 mês)
+    this.totalSessions = this.durationMonths * 4 * this.sessionsPerWeek;
+
+    // Definir valor por sessão
+    this.sessionValue = this.durationMonths > 2 ? 180 : 200;
+
+    // Calcular valor total do pacote
+    this.balance = (this.totalSessions * this.sessionValue) - this.totalPaid;
 
     next();
 });
-/* packageSchema.pre('save', async function (next) {
-    if (this.isNew) { // Executa apenas na criação do pacote
-        const Session = mongoose.model('Session');
-        const sessions = [];
 
-        // Criar sessões automaticamente
-        for (let i = 0; i < this.totalSessions; i++) {
-            const session = new Session({
-                date: new Date(), // Data inicial (ajustável posteriormente)
-                sessionType: this.sessionType,
-                value: this.sessionValue,
-                package: this._id, // Associa ao ID do pacote
-                status: 'pending',
-                isPaid: false,
-                paymentMethod: null
-            });
-            await session.save();
-            sessions.push(session._id);
-        }
-
-        this.sessions = sessions; // Atribui as sessões ao pacote
-        this.status = 'active'; // Status inicial padrão
-    }
-
-    // Atualização do status baseada em sessões pagas (após criação)
-    const paidSessions = await Session.countDocuments({
-        package: this._id,
-        isPaid: true
-    });
-
-    if (this.isModified('totalPaid')) {
-        const totalValue = this.totalSessions * this.sessionValue;
-        this.balance = totalValue - this.totalPaid;
-        if (paidSessions >= this.totalSessions) {
-            this.status = 'completed';
-        } else if (paidSessions > 0) {
-            this.status = 'in-progress';
-        } else {
-            this.status = 'active';
-        }
-    }
-
-    next();
-}); */
 packageSchema.set('strict', 'throw');
 const Package = mongoose.model('Package', packageSchema);
 export default Package;

@@ -16,6 +16,8 @@ router.get('/available-slots', auth, getAvailableTimeSlots);
 
 // Cria um novo agendamento
 router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
+    console.log('Dados recebidos appointement:', req.body);
+
     try {
         const appointment = new Appointment(req.body);
         await appointment.save();
@@ -29,12 +31,16 @@ router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
 
         res.status(201).json(appointment);
     } catch (error) {
-        res.status(400).json({ error: error.message, stack: error.stack });
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ error: error.message });
+        }
+        res.status(500).json({ error: 'Erro interno' });
     }
 });
 
 // Atualiza um agendamento com verificação de conflitos
-router.put('/:id',validateId, auth, checkAppointmentConflicts, async (req, res) => {
+router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
+    console.log('Dados recebidos para atualização:', req.body);
     try {
         const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(updated);
@@ -53,26 +59,45 @@ router.get('/', auth, async (req, res) => {
         if (doctorId && doctorId !== 'all') filter.doctorId = new mongoose.Types.ObjectId(doctorId);
         if (status && status !== 'all') filter.status = status;
 
-        const appointments = await Appointment.find(filter)
-            .populate('doctorId')
-            .populate('patientId');
 
-        const calendarEvents = appointments.map(appointment => ({
-            id: appointment._id,
-            title: `${appointment.reason} - Dr. ${appointment.doctorId?.fullName || 'N/A'}`,
-            start: new Date(appointment.date).toISOString(),
-            end: new Date(new Date(appointment.date).setHours(new Date(appointment.date).getHours() + 1)).toISOString(),
-            status: appointment.status,
-            description: appointment.reason,
-            patient: appointment.patientId ? {
-                id: appointment.patientId._id,
-                name: appointment.patientId.fullName || 'N/A',
-            } : { id: null, name: 'N/A' },
-            doctor: appointment.doctorId ? {
-                id: appointment.doctorId._id,
-                name: appointment.doctorId.fullName || 'N/A',
-            } : { id: null, name: 'N/A' },
-        }));
+        const appointments = await Appointment.find(filter)
+            .populate('doctorId', 'fullName')
+            .populate('patientId', 'fullName');
+
+        console.log('Dados populados========:', JSON.stringify(appointments[0]?.doctorId, null, 2));
+        if (!appointments || !Array.isArray(appointments)) {
+            return res.status(500).json({ error: 'Formato inválido de agendamentos' });
+        }
+
+        const calendarEvents = appointments.map(appointment => {
+            if (!appointment.date || !appointment.doctorId || !appointment.patientId) {
+                console.error('Dados incompletos no agendamento:', appointment._id);
+                return null;
+            }
+
+            const startDate = new Date(appointment.date);
+            if (isNaN(startDate.getTime())) {
+                console.error('Data inválida:', appointment.date);
+                return null;
+            }
+
+            return {
+                id: appointment._id,
+                title: `${appointment.reason} - Dr. ${appointment.doctorId?.fullName || 'N/A'}`,
+                start: startDate.toISOString(),
+                end: new Date(startDate.setHours(startDate.getHours() + 1)).toISOString(),
+                status: appointment.status,
+                description: appointment.reason,
+                patient: appointment.patientId ? {
+                    id: appointment.patientId._id,
+                    name: appointment.patientId.fullName || 'N/A',
+                } : { id: null, name: 'N/A' },
+                doctor: appointment.doctorId ? {
+                    id: appointment.doctorId._id,
+                    name: appointment.doctorId.fullName || 'N/A',
+                } : { id: null, name: 'N/A' },
+            }
+        }).filter(event => event !== null);
 
         console.log('Calendar Events:', calendarEvents); // Log para depuração
         res.json(calendarEvents);
@@ -82,7 +107,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Deleta um agendamento
-router.delete('/:id',validateId, auth, async (req, res) => {
+router.delete('/:id', validateId, auth, async (req, res) => {
     try {
         await Appointment.findByIdAndDelete(req.params.id);
         res.json({ message: 'Agendamento deletado com sucesso' });
@@ -103,10 +128,12 @@ router.get('/history/:patientId', async (req, res) => {
 });
 
 // Busca todos os agendamentos de um paciente
-router.get('/patient/:id',validateId, auth, async (req, res) => {
+router.get('/patient/:id', validateId, auth, async (req, res) => {
     const patientId = req.params.id;
     try {
-        const appointments = await Appointment.find({ patientId }).populate('doctorId');
+        const appointments = await Appointment.find({ patientId })
+            .populate('doctorId')
+            .populate('patientId');
         res.json(appointments);
     } catch (err) {
         res.status(500).json({ message: 'Erro ao buscar agendamentos' });

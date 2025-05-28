@@ -1,47 +1,48 @@
-import React, { useState } from 'react';
+// InputCurrency.tsx
+import React from 'react';
 
-const formatCurrency = (value: string): string => {
-    const numericValue = value.replace(/\D/g, '');
-    const formattedValue = (Number(numericValue) / 100).toLocaleString('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    });
-    return formattedValue;
+type InputCurrencyProps = {
+    name: string;
+    value: number;
+    onChange: (e: { target: { name: string; value: number; type: string } }) => void;
+    disabled?: boolean;
+    className?: string;
 };
 
-const InputCurrency = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-    ({ className, onChange, value, ...props }, ref) => {
-        const [displayValue, setDisplayValue] = useState<string>(formatCurrency(value?.toString() || ''));
+export const InputCurrency = ({ name, value, onChange, disabled, className }: InputCurrencyProps) => {
+    const formattedValue = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(value);
 
-        const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            const formattedValue = formatCurrency(e.target.value);
-            setDisplayValue(formattedValue);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // Remove todos os caracteres não numéricos
+        const rawValue = e.target.value.replace(/\D/g, '');
 
-            // Remove os caracteres não numéricos e converte para número decimal
-            const rawValue = formattedValue.replace(/[^\d]/g, '');
-            const numericValue = Number(rawValue) / 100;
+        // Converte para número dividindo por 100 para considerar centavos
+        const numericValue = parseFloat(rawValue) / 100;
 
-            if (onChange) {
-                onChange({
-                    ...e,
-                    target: { ...e.target, name: props.name || '', value: numericValue.toString() },
-                } as React.ChangeEvent<HTMLInputElement>);
+        // Simula o evento esperado pelo handleChange
+        onChange({
+            target: {
+                name: name,
+                value: numericValue,
+                type: "number" // Força o tipo para number
             }
-        };
+        });
+    };
 
+    return (
+        <input
+            type="text"
+            name={name}
+            value={formattedValue}
+            onChange={handleChange}
+            disabled={disabled}
+            className={`mt-1 block w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out ${className}`}
 
-        return (
-            <input
-                ref={ref}
-                value={displayValue}
-                onChange={handleCurrencyChange}
-                className={`mt-1 block w-full px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ease-in-out ${className}`}
-                {...props}
-            />
-        );
-    }
-);
-
-InputCurrency.displayName = 'InputCurrency';
+        />
+    );
+};
 
 export default InputCurrency;

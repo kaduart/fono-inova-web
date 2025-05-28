@@ -13,12 +13,14 @@ import API from './api';
 export type CreatePackageParams = {
   patientId: string;
   sessionType: TherapyType;
-  totalSessions: number;
-  sessionValue: number;
+  /* totalSessions: number;
+  sessionValue: number; */
   professional: string;
   paymentType: string;
   amountPaid: number;
   paymentMethod: string;
+  durationMonths: number;
+  sessionsPerWeek: number;
 };
 
 export type UpdatePackageParams = Partial<{
@@ -52,20 +54,23 @@ export type CreatePaymentParams = {
 };
 
 export type UseSessionParams = {
-  sessionId?: string;
+  _id?: string;
   date: string;
+  package: string;
   professional: string;
-  sessionType: TherapyType;
+  sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
+  paymentAmount?: number;
+  paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
   notes?: string;
-  payment?: {
-    amount: number;
-    method: 'dinheiro' | 'pix' | 'cartão';
-  };
+  durationMonths?: number;
+  sessionsPerWeek?: number;
+  status?: 'pending' | 'completed' | 'active';
 };
 
 export const packageService = {
   // Operações com Pacotes
   createPackage: async (data: CreatePackageParams) => {
+    console.log('createPackage:', data);
     return API.post<ITherapyPackage>('/packages', data);
   },
 
@@ -99,8 +104,9 @@ export const packageService = {
     return API.post<ISession>(`/packages/${packageId}/sessions`, data);
   },
 
-  updateSession: async (sessionId: string, data: Partial<ISession>) => {
-    return API.patch<ISession>(`/sessions/${sessionId}`, data);
+  updateSession: async (packageId: string, data: Partial<any>) => {
+    console.log('updateSession:', data);
+    return API.put<ISession>(`/packages/${packageId}/sessions/${data.sessionId}`, data);
   },
 
   // Operações com Pagamentos
@@ -138,5 +144,17 @@ export const packageService = {
     return API.patch<ISession>(`/packages/${packageId}/use-session`, data);
   },
 }
+
+export const validatePayment = (amount: number, balance: number) => {
+  if (amount <= 0) throw new Error("Valor deve ser maior que zero");
+  if (amount > balance) {
+    throw new Error(
+      `Valor excede saldo devedor. Saldo atual: ${balance.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      })}`
+    );
+  }
+};
 
 export default packageService;

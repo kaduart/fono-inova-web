@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import packagesService from '../../services/packageService';
-import { IDoctors, ISession, ITherapyPackage, PatientData } from '../../utils/types';
+import packagesService, { packageService, UseSessionParams, validatePayment } from '../../services/packageService';
+import { IDoctors, ITherapyPackage, PatientData } from '../../utils/types';
 import TherapyPackageCard from './TherapyPackageCard';
 import TherapyPackageDetails from './TherapyPackageDetails';
 import TherapyPackageDetailsModal from './TherapyPackageDetailsModal';
@@ -63,78 +63,76 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                 message: error.response?.data?.message || 'Erro desconhecido'
             });
 
-            toast.error(error.response?.data?.message || 'Falha na conexão');
             setPackages([]); // Estado claro em caso de falha
         }
     };
 
-    // Atualiza o pacote com a nova sessão
-    const updatePackageSession = (id: string, session: ISession) => {
-        setPackages(prevPackages =>
-            prevPackages.map(pkg =>
-                pkg._id === id
-                    ? {
-                        ...pkg,
-                        sessions: [...pkg.sessions, session],
-                        sessionsDone: pkg.sessions.length + 1,
-                    }
-                    : pkg
-            )
-        );
+    /* const handleUpdateSession = async (packageId: string, sessionData: UseSessionParams) => {
+        try {
+            const updatedPackage = await packageService.updateSession(
+                packageId, 
+                sessionData._id, 
+                sessionData
+            );
+            setPackages(prev => prev.map(p => 
+                p._id === packageId ? updatedPackage : p
+            ));
+            toast.success("Sessão atualizada com sucesso!");
+        } catch (err) {
+            console.error('Erro ao atualizar sessão:', err);
+            toast.error("Erro ao atualizar sessão");
+        }
+    };
+     */
+    const handleAddPackage = () => {
+        fetchBasicPackages();
+        setShowManager(false);
     };
 
-    // Função para adicionar uma nova sessão ao pacote
-    /*   const handleAddSession = async (id: string, session: ISession) => {
-          try {
-              await packagesService.createSession(id, session);
-              updatePackageSession(id, session);
-              toast.success('Sessão adicionada com sucessooo!');
-          } catch (err) {
-              console.error('Erro ao adicionar sessão:', err);
-              toast.error('Erro ao adicionar sessão.');
-          }
-      }; */
-
-    // Função para registrar o uso de uma sessão
-    const handleUseSession = async (id: string, sessionData: ISession) => {
+    const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
         try {
-            // Extrair campos específicos do sessionData
-            const { _id, paymentAmount, paymentMethod, ...sessionParams } = sessionData;
+            validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
+            console.log('updateSession:', sessionData);
 
-            // Construir payload correto
             const payload = {
-                sessionId: _id, // Envia _id como sessionId quando for atualização
-                paymentAmount: Number(paymentAmount) || 0,
-                paymentMethod: paymentMethod || null,
-                ...sessionParams
+                sessionId: sessionData._id,
+                date: sessionData.date,
+                package: sessionData.package,
+                professional: sessionData.professional,
+                sessionType: sessionData.sessionType,
+                payment: {
+                    amount: Number(sessionData.paymentAmount) || 0,
+                    method: sessionData.paymentMethod || 'dinheiro'
+                },
+                notes: sessionData.notes,
+                status: sessionData.status,
             };
 
-            // Chamada ao serviço
-            const updatedSession = await packagesService.useSession(id, payload);
+            let updatedPackage;
+            if (modalAction === 'edit') {
+                updatedPackage = await packageService.updateSession(packId, payload);
+            } else {
+                updatedPackage = await packageService.useSession(packId, payload);
+            }
 
-            // Atualização otimizada do estado
-            setPackages(prev => prev.map(pkg => {
-                if (pkg._id !== id) return pkg;
+            /* // Atualização otimizada do estado
+            setPackages(prev => prev.map(pkg =>
+                pkg?._id === id ? {
+                    ...updatedPackage,
+                    sessions: updatedPackage.sessions,
+                    sessionsDone: updatedPackage.sessionsDone,
+                    balance: updatedPackage.balance
+                } : pkg
+            )); */
 
-                return {
-                    ...pkg,
-                    sessions: _id
-                        ? pkg.sessions.map(s => s._id === _id ? updatedSession : s) // Atualiza
-                        : [...pkg.sessions, updatedSession], // Adiciona nova
-                    sessionsDone: updatedSession.isPaid
-                        ? pkg.sessionsDone + 1
-                        : pkg.sessionsDone
-                };
-            }));
-
-            toast.success(_id ? "Sessão atualizada!" : "Sessão criada!");
+            toast.success(modalAction === 'edit' ? "Sessão atualizada!" : "Sessão registrada!");
             fetchBasicPackages();
 
         } catch (err) {
             console.error('Erro:', err);
-            toast.error(`Falha ao ${sessionData._id ? 'atualizar' : 'criar'} sessão`);
+            toast.error(`Falha ao ${modalAction === 'edit' ? 'atualizar' : 'registrar uso'} sessão`);
         }
-    };
+    }
 
     // Função para registrar pagamento de pacote
     const handleRegisterPayment = (id: string) => {
@@ -158,12 +156,6 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
         );
     };
 
-    // Função para adicionar um novo pacote
-    const handleAddPackage = () => {
-        fetchBasicPackages();
-        setShowManager(false);
-    };
-
     // Função para atualizar um pacote após edição
     const handleUpdatePackage = (updated: ITherapyPackage) => {
         setSelectedPackage(updated);
@@ -180,7 +172,6 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                         patient={patient}
                         doctors={doctors}
                         onUseSession={handleUseSession}
-                        // onAddSession={handleAddSession}
                         onRegisterPayment={handleRegisterPayment}
                         onCardClick={() => setSelectedPackage(pkg)}
                     />

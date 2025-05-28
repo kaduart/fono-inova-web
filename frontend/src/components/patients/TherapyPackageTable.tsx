@@ -28,7 +28,7 @@ export default function TherapyPackageTable({ packages, currentPage, totalPages,
                                 </tr>
                             </thead>
                             <tbody className="text-gray-700">
-                                {packages.map((pkg) => {
+                                {packages && packages.map((pkg) => {
                                     const lastSession = pkg.sessions.length ? pkg.sessions[pkg.sessions.length - 1] : null;
 
                                     return (
