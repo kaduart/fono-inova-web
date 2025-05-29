@@ -1,6 +1,5 @@
 # Dependências
 node_modules/
-.env
 
 # Output de build
 dist/

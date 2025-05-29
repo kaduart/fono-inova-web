@@ -21,12 +21,13 @@ import patientRoutes from './routes/patient.js';
 import PaymentRoutes from './routes/Payment.js';
 import signupRoutes from './routes/signup.js';
 
+dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-dotenv.config();
 console.log('MONGO_URI:', process.env.MONGO_URI);
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
