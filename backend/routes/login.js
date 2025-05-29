@@ -11,9 +11,10 @@ dotenv.config();
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const { email, password, role } = req.body;
 
   console.log('Received data:', req.body);
+  const { email, password, role } = req.body;
+
 
   try {
     let user;
@@ -39,7 +40,8 @@ router.post('/', async (req, res) => {
     res.send({ token, role: user.role });
 
   } catch (error) {
-    res.status(500).send({ error: 'Server error' });
+    console.error('Erro ao fazer login:', error); // <-- Adiciona este log
+    res.status(500).send({ error: 'Server error', message: error.message });
   }
 });
 
