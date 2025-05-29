@@ -4,7 +4,7 @@ import { getAuthToken } from './authService';
 // usa o BASE_URL do .env
 export const BASE_URL =
     process.env.NODE_ENV === 'development'
-        ? 'http://localhost:5000/api'
+        ? 'http://167.234.249.6:5000'
         : '/api';
 
 const API = axios.create({
@@ -15,9 +15,9 @@ const API = axios.create({
 // interceptor de request — adiciona token automaticamente
 API.interceptors.request.use(
     config => {
-        const token = getAuthToken();                                  
+        const token = getAuthToken();
         if (token && config.headers) {
-            config.headers['Authorization'] = `Bearer ${token}`;          
+            config.headers['Authorization'] = `Bearer ${token}`;
         }
         return config;
     },
