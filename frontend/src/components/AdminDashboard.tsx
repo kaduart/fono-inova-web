@@ -184,6 +184,12 @@ export default function AdminDashboard() {
 
   const [agendamentosTemp, setAgendamentosTemp] = useState([]);
   const [doctors, setDoctors] = useState([]);
+  const [adminData, setAdminData] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
