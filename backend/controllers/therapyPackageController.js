@@ -4,7 +4,7 @@ import Package from '../models/Package.js';
 import Payment from '../models/Payment.js';
 import Session from '../models/Session.js';
 
-const APPOINTMENTS_API_BASE_URL = 'http://localhost:5000/api';
+const APPOINTMENTS_API_BASE_URL = 'http://167.234.249.6:5000/api';
 const validateInputs = {
     sessionType: (type) => ['fonoaudiologia', 'terapeuta ocupacional', 'psicologia', 'fisioterapia'].includes(type),
     paymentMethod: (method) => ['dinheiro', 'pix', 'cartão'].includes(method),
