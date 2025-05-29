@@ -44,7 +44,7 @@ export const deletePayment = (id: string) =>
 export const markAsPaid = (id: string) =>
     API.patch<FinancialRecord>(`/payments/${id}/status`);
 
-export const getReport = (params) => API.get('/payments/report', { params });
+export const getReport = (params: any) => API.get('/payments/report', { params });
 
 // Resumo
 export const getPaymentSummary = () =>

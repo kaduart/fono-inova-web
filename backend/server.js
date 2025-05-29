@@ -26,6 +26,7 @@ const __dirname = path.dirname(__filename);
 
 
 dotenv.config();
+console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const app = express();
 const PORT = process.env.PORT || 5000;

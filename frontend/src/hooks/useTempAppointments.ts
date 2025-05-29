@@ -1,12 +1,19 @@
 import { useState } from "react";
 
 export type Appointment = {
+    id: string;
     patientId: string;
     doctorId: string;
     date: string;
     time: string;
     reason: string;
     status: string;
+    profissional?: string; // Optional, used for display purposes
+    tipoSessao?: string; // Optional, used for display purposes
+    dataHora: string; // Optional, used for display purposes
+    createdAt?: string; // Optional, used for tracking creation time
+    updatedAt?: string; // Optional, used for tracking last update time
+    
 };
 
 export const DEFAULT_APPOINTMENT = {

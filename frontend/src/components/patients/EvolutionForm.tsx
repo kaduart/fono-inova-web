@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-interface EvolutionFormData {
+export interface EvolutionFormData {
     date: string;
     doctorId: string;
     appointmentId?: string;

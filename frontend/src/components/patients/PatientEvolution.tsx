@@ -3,15 +3,15 @@ import {
     Button,
     CircularProgress,
     FormControl,
-    Grid,
     InputLabel,
     MenuItem,
     Paper,
-    Select,
     Tab,
     Tabs,
     Typography
 } from '@mui/material';
+import Grid from '@mui/material/Grid';
+
 import axios from 'axios';
 import { FileText } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -31,20 +31,35 @@ import {
     XAxis,
     YAxis
 } from 'recharts';
-import EvolutionForm from './EvolutionForm';
+import { Select } from '../ui/Select';
+import EvolutionForm, { EvolutionFormData } from './EvolutionForm';
 
-const PatientEvolution = ({ patientId, patientName }) => {
-    const [evolutions, setEvolutions] = useState([]);
-    const [metrics, setMetrics] = useState([]);
+interface Metric {
+    _id: string;
+    name: string;
+    type: string;
+}
+interface ChartDataItem {
+    date: string;
+    [key: string]: number | string;
+}
+interface PatientEvolutionProps {
+    patientId: string;
+    patientName: string;
+}
+
+const PatientEvolution: React.FC<PatientEvolutionProps> = ({ patientId, patientName }) => {
+    const [evolutions, setEvolutions] = useState<EvolutionFormData[]>([]);
+    const [metrics, setMetrics] = useState<Metric[]>([]);
     const [selectedType, setSelectedType] = useState('all');
     const [selectedMetric, setSelectedMetric] = useState('all');
-    const [chartData, setChartData] = useState([]);
+    const [chartData, setChartData] = useState<ChartDataItem[]>([]);
     const [tabValue, setTabValue] = useState(0);
     const [showForm, setShowForm] = useState(false);
     const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f50', '#8dd1e1', '#a4de6c', '#d0ed57'];
 
-    const getLineColor = (index) => colors[index % colors.length];
-    const getBarColor = (index) => colors[index % colors.length];
+    const getLineColor = (index: any) => colors[index % colors.length];
+    const getBarColor = (index: any) => colors[index % colors.length];
     const navigate = useNavigate();
     const userRole = localStorage.getItem('userRole');
 
@@ -82,7 +97,7 @@ const PatientEvolution = ({ patientId, patientName }) => {
         let filteredEvolutions = evolutions;
         if (selectedType !== 'all') {
             filteredEvolutions = evolutions.filter(evolution =>
-                evolution.evaluationTypes.includes(selectedType)
+                (evolution?.evaluationTypes ?? []).includes(selectedType)
             );
         }
 
@@ -92,7 +107,7 @@ const PatientEvolution = ({ patientId, patientName }) => {
 
             // Se uma métrica específica for selecionada
             if (selectedMetric !== 'all') {
-                const metricValue = evolution.metrics[selectedMetric] || 0;
+                const metricValue = evolution.metrics?.[selectedMetric] || 0;
                 const metricName = metrics.find(m => m._id === selectedMetric)?.name || selectedMetric;
 
                 return {
@@ -102,10 +117,11 @@ const PatientEvolution = ({ patientId, patientName }) => {
             }
 
             // Se todas as métricas forem selecionadas
-            const metricValues = {};
-            metrics.forEach(metric => {
+            const metricValues: { [key: string]: number } = {};
+
+            metrics.forEach((metric: Metric) => {
                 if (selectedType === 'all' || metric.type === selectedType) {
-                    metricValues[metric.name] = evolution.metrics[metric._id] || 0;
+                    metricValues[metric.name] = evolution.metrics?.[metric._id] || 0;
                 }
             });
 
@@ -117,14 +133,23 @@ const PatientEvolution = ({ patientId, patientName }) => {
         });
 
         // Ordenar por data
-        data.sort((a, b) => new Date(a.date) - new Date(b.date));
+        data.sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+            return dateA - dateB;
+        });
 
-        setChartData(data);
+        const normalizedData = data.map(item => ({
+            ...item,
+            status: item.status ?? "unknown", // substitui undefined por 'unknown' (ou outro valor padrão)
+        }));
+
+        setChartData(normalizedData);
     }, [evolutions, metrics, selectedType, selectedMetric]);
 
 
 
-    const handleSaveEvolution = (data) => {
+    const handleSaveEvolution = (data: any) => {
         axios.post('/api/evolutions', data)
             .then(() => {
                 axios.get(`/api/evolutions/${patientId}`)
@@ -133,20 +158,20 @@ const PatientEvolution = ({ patientId, patientName }) => {
             })
             .catch(error => console.error('Error saving evolution:', error));
     };
-    const handleTypeChange = (event) => {
-        setSelectedType(event.target.value);
+    const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setSelectedType(event.target.value as string);
         setSelectedMetric('all');
     };
 
-    const handleMetricChange = (event) => {
-        setSelectedMetric(event.target.value);
+    const handleMetricChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setSelectedMetric(event.target.value as string);
     };
 
-    const handleTabChange = (event, newValue) => {
+    const handleTabChange = (event: any, newValue: any) => {
         setTabValue(newValue);
     };
 
-    const handleFormSubmit = async (formData) => {
+    const handleFormSubmit = async (formData: any) => {
         try {
             await axios.post('/api/evolutions', {
                 ...formData,
@@ -232,7 +257,6 @@ const PatientEvolution = ({ patientId, patientName }) => {
                                             <Select
                                                 value={selectedType}
                                                 onChange={handleTypeChange}
-                                                label="Tipo de Avaliação"
                                             >
                                                 <MenuItem value="all">Todos os Tipos</MenuItem>
                                                 <MenuItem value="language">Linguagem</MenuItem>
@@ -378,26 +402,8 @@ const PatientEvolution = ({ patientId, patientName }) => {
     );
 };
 
-// Funções auxiliares
-const getLineColor = (index) => {
-    const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088fe', '#00C49F'];
-    return colors[index % colors.length];
-};
 
-const getBarColor = (status) => {
-    switch (status) {
-        case 'in_progress':
-            return '#ffad33';
-        case 'stable':
-            return '#4caf50';
-        case 'regressing':
-            return '#f44336';
-        default:
-            return '#607d8b';
-    }
-};
-
-const getStatusLabel = (status) => {
+const getStatusLabel = (status: string) => {
     switch (status) {
         case 'initial_evaluation': return 'Avaliação Inicial';
         case 'in_progress': return 'Em Andamento';

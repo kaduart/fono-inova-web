@@ -105,7 +105,6 @@ interface PatientFormProps {
 }
 
 const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
-    const navigate = useNavigate();
 
     const {
         register,

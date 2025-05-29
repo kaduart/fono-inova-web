@@ -14,7 +14,7 @@ export const useSession = (packageId: string) => {
             // Cria a sessão e vincula ao pacote
             const newSession = await packageService.createSession(packageId, {
                 ...sessionData,
-                date: sessionData.date.toISOString()
+                date: sessionData.date.toString()
             });
 
             return newSession.data;
