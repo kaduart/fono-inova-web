@@ -30,6 +30,12 @@ router.post('/', async (req, res) => {
       return res.status(400).send({ error: 'Invalid email or role' });
     }
 
+    if (!user.password) {
+      return res.status(400).send({ error: 'Usuário não possui senha registrada' });
+    }
+    console.log('Senha fornecida:', password);
+    console.log('Senha no banco:', user.password);
+    console.log('Usuário encontrado:', user);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).send({ error: 'Invalid password' });
