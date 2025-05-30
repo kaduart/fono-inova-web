@@ -28,7 +28,7 @@ export default defineConfig({
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
-      '@': path.resolve(__dirname, 'src')  // Garantir que o alias "@" aponta para a pasta src
+      '@': path.resolve(__dirname, 'src')  
     }
   },
 });
