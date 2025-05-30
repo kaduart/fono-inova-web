@@ -9,7 +9,7 @@ import PatientForm from '../shared/components/PatientForm';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentPage } from './financial/PaymentPage';
 import { LeadsTable } from './mkt/LeadsTable';
-import PatientTable from './patients/PatientTable';
+import PatientTable from './patients/PatientDetails';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';

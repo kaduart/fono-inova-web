@@ -16,29 +16,9 @@ import PatientSelection from './components/patients/PatientSelection';
 import SignUp from './components/SignUp';
 import { PrivateRoute } from './utils/PrivateRoute';
 
-interface AppointmentHistoryModalProps {
-  open: boolean;
-  onClose: () => void;
-  appointments: Array<{
-    _id: string;
-    date: string;
-    time: string;
-    doctorId: { fullName: string };
-    reason: string;
-    status: string;
-  }>;
-}
 
 const App: React.FC = () => {
 
-  /*
-  interceptor de 401
-  const navigate = useNavigate();
-  
-    useEffect(() => {
-      setupInterceptor(navigate);
-    }, [navigate]);
-   */
   Modal.setAppElement('#root');
   return (
     <Router>
