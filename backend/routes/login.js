@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     } else {
       user = await User.findOne({ email, role });
     }
-
+    console.log('Usuário encontrado:', user);
     if (!user) {
       return res.status(400).send({ error: 'Invalid email or role' });
     }
