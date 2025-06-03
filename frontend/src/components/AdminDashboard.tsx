@@ -285,7 +285,7 @@ export default function AdminDashboard() {
         navigate('/login');
         return;
       }
-      const response = await fetch(BASE_URL + '/doctor/all', {
+      const response = await fetch(BASE_URL + '/doctor', {
         headers: {
           'Authorization': `Bearer ${token}`
         }

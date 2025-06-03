@@ -8,10 +8,11 @@ import Patient from '../models/Patient.js';
 
 const router = express.Router();
 
-router.post('/add', auth, async (req, res) => 
+router.post('/add', auth, async (req, res) => {
+  console.log('HEADERS RECEBIDOS:', req.headers);
   if (req.user.role !== 'admin') {
-  return res.status(403).json({ error: 'Not authorized to add patients' });
-}
+    return res.status(403).json({ error: 'Not authorized to add patients' });
+  }
 
   const {
     fullName,
@@ -95,14 +96,15 @@ router.put('/:id', validateId, auth, async (req, res) => {
 });
 
 // List all patients
-router.get('/', auth, async (req, res) => 
+router.get('/', auth, async (req, res) => {
+  console.log('tokennn', auth)
 
   try {
-  const patients = await Patient.find().sort({ createdAt: -1 });
-  res.json(patients);
-} catch (err) {
-  res.status(500).json({ error: 'Server error' });
-}
+    const patients = await Patient.find().sort({ createdAt: -1 });
+    res.json(patients);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 // Delete a patient
@@ -120,9 +122,11 @@ router.delete('/:id', validateId, auth, async (req, res) => {
 router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
   try {
     const { id } = req.params;
+    console.log('[DEBUG] Iniciando rota de resumo - ID:', id);
 
     // Buscar o paciente e verificar se existe
     const patient = await Patient.findById(id);
+    console.log('[DEBUG] Paciente encontrado:', patient);
 
     if (!patient) {
       return res.status(404).json({ message: 'Paciente não encontrado' });
@@ -134,6 +138,7 @@ router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
       .populate('doctorId')   // Popula os dados do médico (se necessário)
       .sort({ date: 1 });
 
+    console.log('[DEBUG] Consultas encontradas:', appointments.length);
 
     const now = new Date();
 
