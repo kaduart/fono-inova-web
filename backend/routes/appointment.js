@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/available-slots', auth, getAvailableTimeSlots);
 
 // Cria um novo agendamento
-router.post('/', auth, checkAppointmentConflicts, async (req, res) => 
+router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
 
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -41,13 +41,13 @@ router.post('/', auth, checkAppointmentConflicts, async (req, res) =>
 });
 
 // Atualiza um agendamento com verificação de conflitos
-router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => 
+router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
     try {
-    const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.json(updated);
-} catch (error) {
-    res.status(400).json({ error: error.message });
-}
+        const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updated);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 });
 
 // Busca agendamentos com filtros
@@ -64,6 +64,7 @@ router.get('/', auth, async (req, res) => {
         const appointments = await Appointment.find(filter)
             .populate('doctorId', 'fullName')
             .populate('patientId', 'fullName');
+
 
         if (!appointments || !Array.isArray(appointments)) {
             return res.status(500).json({ error: 'Formato inválido de agendamentos' });
@@ -98,6 +99,7 @@ router.get('/', auth, async (req, res) => {
                 } : { id: null, name: 'N/A' },
             }
         }).filter(event => event !== null);
+
 
         res.json(calendarEvents);
     } catch (error) {
