@@ -1,8 +1,12 @@
 // Crie um novo componente SessionModal.tsx
+import { Button, Select } from '@mui/material';
 import { PlusCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { IDoctor, ISession, THERAPY_TYPES, TherapyType } from '../../utils/types';
+import Input from '../ui/Input';
 import InputCurrency from '../ui/InputCurrency';
+import { Label } from '../ui/Label';
+import { Textarea } from '../ui/TextArea';
 
 
 interface SessionModalProps {
@@ -26,7 +30,6 @@ export const SessionModal = ({
 }: SessionModalProps) => {
     const title = action === 'edit' ? 'Editar Sessão' : 'Registrar Uso';
     const submitText = action === 'edit' ? 'Salvar Alterações' : 'Registrar Uso';
-    console.log('sessionData:', sessionData);
 
     const validateForm = () => {
         if (!sessionData.date) {
@@ -54,35 +57,41 @@ export const SessionModal = ({
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ">
             <div className="bg-white p-6 rounded-xl w-full max-w-sm shadow-lg">
-                <h4 className="text-2xl font-semibold text-gray-800 mb-4">
+                <h4 className="font-semibold text-gray-800 mb-4">
                     {title}
                 </h4>
-               
+
                 <div className="space-y-4">
+                    {/* DATA */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Data</label>
-                        <input
+                        <Label >Data</Label>
+                        <Input
                             type="datetime-local"
                             value={sessionData.date ? toLocalDateTimeString(sessionData.date) : ''}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                date: new Date(e.target.value).toISOString() // Salva em UTC
-                            })}
-                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    date: new Date(e.target.value).toISOString(),
+                                })
+                            }
+                            className="w-full  h-11"
                         />
                     </div>
 
+                    {/* PROFISSIONAL */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Profissional</label>
-                        <select
-                            value={sessionData.professional}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                professional: e.target.value
-                            })}
-                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                        <Label >Profissional</Label>
+                        <Select
+                            value={sessionData.professional || ''}
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    professional: e.target.value,
+                                })
+                            }
+                            className="w-full h-11"
                         >
                             <option value="">Selecione um profissional</option>
                             {doctors.map((doctor) => (
@@ -90,88 +99,96 @@ export const SessionModal = ({
                                     {doctor.fullName}
                                 </option>
                             ))}
-                        </select>
+                        </Select>
                     </div>
 
+                    {/* TIPO DE SESSÃO */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Tipo de Sessão</label>
-                        <select
-                            value={sessionData.sessionType}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                sessionType: e.target.value as TherapyType
-                            })}
-                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                        <Label >Tipo de Sessão</Label>
+                        <Select
+                            value={sessionData.sessionType || ''}
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    sessionType: e.target.value as TherapyType,
+                                })
+                            }
+                            className="w-full  h-11"
                         >
+                            <option value="">Selecione</option>
                             {THERAPY_TYPES.map((type) => (
                                 <option key={type.value} value={type.value}>
                                     {type.label}
                                 </option>
                             ))}
-                        </select>
+                        </Select>
                     </div>
 
+                    {/* VALOR PAGO */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Valor Pago (R$)
-                        </label>
-
+                        <Label >Valor Pago (R$)</Label>
                         <InputCurrency
                             value={sessionData.paymentAmount || 0}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                paymentAmount: Number(e.target.value)
-                            })}
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    paymentAmount: Number(e.target.value),
+                                })
+                            }
                             min="0"
                             step="0.01"
                         />
                     </div>
 
+                    {/* MÉTODO DE PAGAMENTO */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Método de Pagamento
-                            <span className="text-gray-500 ml-1">(opcional)</span>
-                        </label>
-                        <select
+                        <Label>
+                            Método de Pagamento <span className="text-gray-500">(opcional)</span>
+                        </Label>
+                        <Select
                             value={sessionData.paymentMethod || ''}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                paymentMethod: e.target.value as typeof sessionData.paymentMethod
-                            })}
-                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    paymentMethod: e.target.value as typeof sessionData.paymentMethod,
+                                })
+                            }
+                            className="w-full  h-11"
                         >
                             <option value="">Não registrado</option>
                             <option value="dinheiro">Dinheiro</option>
                             <option value="pix">PIX</option>
                             <option value="cartão">Cartão</option>
-                        </select>
+                        </Select>
                     </div>
 
+                    {/* OBSERVAÇÕES */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Observações
-                            <span className="text-gray-500 ml-1">(opcional)</span>
-                        </label>
-                        <textarea
+                        <Label>
+                            Observações <span className="text-gray-500">(opcional)</span>
+                        </Label>
+                        <Textarea
                             value={sessionData.notes || ''}
-                            onChange={(e) => onSessionDataChange({
-                                ...sessionData,
-                                notes: e.target.value
-                            })}
-                            className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            onChange={(e) =>
+                                onSessionDataChange({
+                                    ...sessionData,
+                                    notes: e.target.value,
+                                })
+                            }
+                            className="w-full"
                             rows={3}
                         />
                     </div>
                 </div>
 
                 <div className="mt-6 flex justify-end gap-3">
-                    <button
+                    <Button
                         onClick={onClose}
                         className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                     >
                         Cancelar
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={handleSubmit}
                         disabled={loading}
                         className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
@@ -182,7 +199,7 @@ export const SessionModal = ({
                             <PlusCircle className="w-5 h-5" />
                         )}
                         {submitText}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

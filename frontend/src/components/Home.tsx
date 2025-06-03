@@ -40,16 +40,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="flex items-center justify-between px-6 py-4 bg-white">
-        <div className="flex items-center gap-2">
-          <Hospital className="w-8 h-8 text-blue-600" />
-          <span className="text-xl font-bold">Fono-Inova</span>
-        </div>
-        <nav className="flex items-center gap-4">
-          <Button primary onClick={() => handleButtonClick('/login')}>Login</Button>
-          <Button onClick={() => handleButtonClick('/signup')}>Sair</Button>
-        </nav>
-      </header>
 
       <main className="flex-1">
         <Section bg="bg-blue-600" height="min-h-[30rem]">

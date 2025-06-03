@@ -1,3 +1,4 @@
+import { TextField } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
 
@@ -163,7 +164,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
                             options={statusOptions}
                         />
 
-                        <InputField
+                        <TextField
                             label="Motivo:"
                             name="reason"
                             value={formState.reason}

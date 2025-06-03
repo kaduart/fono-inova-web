@@ -61,6 +61,7 @@ export interface ISession {
     _id?: string;
     date: string;
     professional: string;
+    patient: string;
     package: string;
     sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
     status: 'pending' | 'completed' | 'canceled';
@@ -115,14 +116,76 @@ export const defaultAppointmentData = {
 export interface IDoctors {
     fullName: '',
     specialty: '',
-    _id: ''
+    active: '',
+    _id: '',
+    email: '',
+    phoneNumber: '',
+    licenseNumber: '',
+    password: '',
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface IDoctor {
     _id: string;
     fullName: string;
     specialty: string;
+    email: string;
+    phoneNumber: string;
+    licenseNumber: string;
+    password: string;
+    active: boolean;
 }
+
+export const PatientInitialValues = {
+    fullName: '',
+    dateOfBirth: '',
+    gender: '',
+    maritalStatus: '',
+    profession: '',
+    placeOfBirth: '',
+    address: {
+        street: '',
+        number: '',
+        district: '',
+        city: '',
+        state: '',
+        zipCode: ''
+    },
+    phone: '',
+    email: '',
+    cpf: '',
+    rg: '',
+    mainComplaint: '',
+    clinicalHistory: '',
+    medications: '',
+    allergies: '',
+    familyHistory: '',
+    healthPlan: {
+        name: '',
+        policyNumber: ''
+    },
+    legalGuardian: '',
+    emergencyContact: {
+        name: '',
+        phone: '',
+        relationship: ''
+    },
+    imageAuthorization: false
+}
+
+export interface ScheduleAppointment {
+    patientId: string;
+    doctorId: string;
+    date: string;
+    time: string;
+    sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
+    notes?: string;
+    paymentAmount?: number;
+    paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
+    status: 'agendado' | 'concluído' | 'cancelado';
+}
+
 
 export interface PatientData {
     _id?: string;

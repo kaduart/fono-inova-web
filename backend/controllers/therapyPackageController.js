@@ -27,7 +27,6 @@ export const packageOperations = {
             durationMonths,
             sessionsPerWeek
         } = req.body;
-        console.log("Pacote: ", req.body);
 
         // Validações adicionais
         if (!durationMonths || !sessionsPerWeek) {
@@ -113,7 +112,6 @@ export const packageOperations = {
 
                 // Calcular quantas sessões podem ser pagas com o valor inicial
                 const sessionsPaidCount = Math.floor(paymentAmount / newPackage.sessionValue);
-                console.log(`Marcando ${sessionsPaidCount} sessões como pagas`);
 
                 if (sessionsPaidCount > 0) {
                     // Buscar as primeiras sessões do pacote (ordenadas por data de criação)
@@ -139,7 +137,6 @@ export const packageOperations = {
                         );
                     }
 
-                    console.log(`${sessionsToUpdate.length} sessões marcadas como pagas`);
                 }
 
                 await newPackage.save({ session: mongoSession });
@@ -164,19 +161,23 @@ export const packageOperations = {
             if (mongoSession.inTransaction()) {
                 await mongoSession.abortTransaction();
             }
-            console.error("Erro ao criar pacote:", error);
             res.status(400).json({ error: "Erro ao criar pacote", details: error.message });
         } finally {
             await mongoSession.endSession();
         }
     },
 
-
     // Ler
     get: {
         all: async (req, res) => {
             try {
-                const packages = await Package.find()
+                const { patientId } = req.query; // ou req.params ou req.user, dependendo da lógica
+
+                if (!patientId) {
+                    return res.status(400).json({ message: 'ID do paciente é obrigatório.' });
+                }
+
+                const packages = await Package.find({ patient: patientId })
                     .populate({
                         path: 'sessions',
                     })
@@ -277,11 +278,6 @@ export const packageOperations = {
                 if (!session) throw new Error("Sessão não encontrada.");
                 const patientId = session.package.patient;
 
-                console.log("Sessão atualizada:-----------", session);
-                console.log("reqqqqqqqqqqqqqqqqq----------------------->:", req.body);
-
-                console.log("Sessão atualizada:-----------", date);
-
                 const sessionDate = new Date(date);
                 const formattedDateBR = sessionDate.toISOString().split('T')[0]; // "2025-05-28"
 
@@ -290,9 +286,6 @@ export const packageOperations = {
                     minute: '2-digit',
                     hour12: false
                 });
-                console.log("formattedDateBR:-----------", formattedDateBR);
-                console.log("formattedTime:-----------", formattedTime);
-
                 // Sincronizar com API de agendamentos
                 const appointmentData = {
                     doctorId: session.package.professional,
@@ -307,7 +300,6 @@ export const packageOperations = {
                         packageId: session.package._id
                     }
                 };
-                console.log("appointmentData:-----------", appointmentData);
                 const authHeader = req.headers.authorization;
                 const headers = {
                     Authorization: authHeader,
@@ -324,16 +316,13 @@ export const packageOperations = {
                         session.patient = patientId;
                         await session.save({ session: mongoSession });
                     } else {
-                        console.log("baetuu no endopoit");
                         const response = await axios.post(`${APPOINTMENTS_API_BASE_URL}/appointments`, appointmentData, { headers });
-                        console.log("response.data:----------- responseee", response.data);
                         session.date = sessionDate;
                         session.status = 'schedule';
                         session.sessionType = session.package.sessionType;
                         session.professional = session.package.professional;
                         session.patient = patientId;
                         const savedSession = await session.save({ session: mongoSession });
-                        console.log('Sessão salva:', savedSession);
                     }
 
                     await Package.findByIdAndUpdate(session.package._id, {
@@ -436,7 +425,6 @@ export const packageOperations = {
                 { session: mongoSession }
             );
 
-            console.log("Pacote atualizado:", updatedPackage);
             // 4. Marcar agendamento como concluído (Apenas Aqui!)
             if (sessionDoc.appointmentId) {
                 await axios.patch(
@@ -448,15 +436,12 @@ export const packageOperations = {
                     }
                 );
             }
-            console.log("Agendamento atualizado para concluído:", sessionDoc.appointmentId);
             // 5. Processar pagamento (se existir)
             if (payment?.amount > 0) {
-                console.log("Processando pagamento:0", payment);
                 if (!payment.method || !validateInputs.paymentMethod(payment.method)) {
                     throw new Error("Método de pagamento inválido.");
                 }
 
-                console.log("Processando pagamento: 1", payment);
                 const newPayment = new Payment({
                     amount: payment.amount,
                     paymentMethod: payment.method,
@@ -465,10 +450,8 @@ export const packageOperations = {
                     patient: updatedPackage.patient,
                     professional: updatedPackage.professional
                 });
-                console.log("Processando pagamento: 2", payment);
 
                 await newPayment.save({ session: mongoSession });
-                console.log("Processando pagamento: 3", payment);
 
                 // Atualizar isPaid na sessão
                 await Session.findByIdAndUpdate(
@@ -477,13 +460,11 @@ export const packageOperations = {
                     { session: mongoSession }
                 );
 
-                console.log("Processando pagamento: 4", payment);
                 updatedPackage.totalPaid += payment.amount;
                 updatedPackage.balance = Math.max(
                     (updatedPackage.sessionValue * updatedPackage.totalSessions) - updatedPackage.totalPaid,
                     0
                 );
-                console.log("Processando pagamento: 5", payment);
 
                 await updatedPackage.save({ session: mongoSession });
             }
@@ -567,7 +548,6 @@ export const packageOperations = {
             if (mongoSession.inTransaction()) {
                 await mongoSession.abortTransaction();
             }
-            console.error("Erro ao registrar pagamento avulso:", error);
             res.status(400).json({ error: "Erro ao registrar pagamento", details: error.message });
         } finally {
             await mongoSession.endSession();

@@ -15,38 +15,39 @@ const router = express.Router();
 router.get('/available-slots', auth, getAvailableTimeSlots);
 
 // Cria um novo agendamento
-router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
-    console.log('Dados recebidos appointement:', req.body);
+router.post('/', auth, checkAppointmentConflicts, async (req, res) => 
 
+    const session = await mongoose.startSession();
+    session.startTransaction();
     try {
         const appointment = new Appointment(req.body);
         await appointment.save();
 
-        const patient = await Patient.findById(req.body.patientId);
+        const patient = await Patient.findById(req.body.patientId).session(session);
         if (!patient) return res.status(404).json({ error: 'Paciente não encontrado' });
 
         patient.appointments = patient.appointments || [];
         patient.appointments.push(appointment._id);
         await patient.save();
 
+        await session.commitTransaction();
+        session.endSession();
         res.status(201).json(appointment);
     } catch (error) {
-        if (error.name === 'ValidationError') {
-            return res.status(400).json({ error: error.message });
-        }
-        res.status(500).json({ error: 'Erro interno' });
+        await session.abortTransaction();
+        session.endSession();
+        res.status(500).json({ error: err.message });
     }
 });
 
 // Atualiza um agendamento com verificação de conflitos
-router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
-    console.log('Dados recebidos para atualização:', req.body);
+router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => 
     try {
-        const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updated);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
+    const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(updated);
+} catch (error) {
+    res.status(400).json({ error: error.message });
+}
 });
 
 // Busca agendamentos com filtros
@@ -64,7 +65,6 @@ router.get('/', auth, async (req, res) => {
             .populate('doctorId', 'fullName')
             .populate('patientId', 'fullName');
 
-        console.log('Dados populados========:', JSON.stringify(appointments[0]?.doctorId, null, 2));
         if (!appointments || !Array.isArray(appointments)) {
             return res.status(500).json({ error: 'Formato inválido de agendamentos' });
         }
@@ -99,7 +99,6 @@ router.get('/', auth, async (req, res) => {
             }
         }).filter(event => event !== null);
 
-        console.log('Calendar Events:', calendarEvents); // Log para depuração
         res.json(calendarEvents);
     } catch (error) {
         res.status(500).json({ error: error.message });

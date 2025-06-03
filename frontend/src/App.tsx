@@ -6,8 +6,9 @@ import './App.css';
 import AdminDashboard from './components/AdminDashboard';
 import AppointmentCalendar from './components/AppointmentCalendar';
 import AppointmentScheduler from './components/AppointmentScheduler';
-import Doctor from './components/Doctors';
+import { default as Doctor, default as DoctorDashboard } from './components/Doctors';
 import { PaymentPage } from './components/financial/PaymentPage';
+import { Header } from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
 import { default as Patient, default as PatientDashboard } from './components/patients/PatientDashboard';
@@ -22,6 +23,9 @@ const App: React.FC = () => {
   Modal.setAppElement('#root');
   return (
     <Router>
+
+      <Header />
+
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -38,7 +42,8 @@ const App: React.FC = () => {
             }
           />
           <Route path="/admin" element={<AdminDashboard />} />
-          {/*  <Route path="/admin/doctors" element={<DoctorManagement />} />
+          <Route path="/admin/doctors" element={<DoctorDashboard />} />
+          {/*  
           <Route path="/admin/users" element={<UserManagement />} />
           <Route path="/admin/schedule" element={<ScheduleManager />} /> */}
 

@@ -32,6 +32,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
     onClose,
     appointments
 }) => {
+
     return (
         <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
             <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -63,7 +64,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                                 <TableRow key={appt._id}>
                                     <TableCell>{new Date(appt.date).toLocaleDateString()}</TableCell>
                                     <TableCell>{appt.time}</TableCell>
-                                    <TableCell>{`Dr. ${appt.doctorId.fullName}`}</TableCell>
+                                    <TableCell>{`Dr. ${appt?.doctorId?.fullName} | '-'`}</TableCell>
                                     <TableCell>{appt.reason}</TableCell>
                                     <TableCell>
                                         <Typography

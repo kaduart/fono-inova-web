@@ -3,20 +3,53 @@ import { useParams } from 'react-router-dom'; // ou outra lib de roteamento
 import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { BASE_URL } from '../../constants/constants';
+import { PatientData } from '../../utils/types';
+const initialPatientState: PatientData = {
+    fullName: '',
+    dateOfBirth: '',
+    gender: '',
+    maritalStatus: '',
+    profession: '',
+    placeOfBirth: '',
+    address: {
+        street: '',
+        number: '',
+        district: '',
+        city: '',
+        state: '',
+        zipCode: ''
+    },
+    phone: '',
+    email: '',
+    cpf: '',
+    rg: '',
+    specialties: [],
+    mainComplaint: '',
+    clinicalHistory: '',
+    medications: '',
+    allergies: '',
+    familyHistory: '',
+    healthPlan: {
+        name: '',
+        policyNumber: ''
+    },
+    legalGuardian: '',
+    emergencyContact: {
+        name: '',
+        phone: '',
+        relationship: ''
+    },
+    appointments: [],
+    imageAuthorization: false
+};
 
-interface PatientData {
-    fullName: string;
-    dateOfBirth: string;
-    appointments: string[];
-    // … demais campos que você precisa
+interface PatientDetailsProps {
+    patients: PatientData[];
 }
 
-const PatientDetails: React.FC = () => {
-    const { id } = useParams<{ id: string }>();    // pega /patients/:id
-    const [patientData, setPatientData] = useState<PatientData>({
-        fullName: '',
-        dateOfBirth: '',
-    });
+const PatientDetails = ({ patients }: PatientDetailsProps) => {
+    const { id } = useParams<{ id: string }>();
+    const [patientData, setPatientData] = useState<PatientData>(initialPatientState);
     const [appointments, setAppointments] = useState<any[]>([]);
 
     const [loading, setLoading] = useState(true);
@@ -33,11 +66,7 @@ const PatientDetails: React.FC = () => {
                 return res.json();
             })
             .then((data: PatientData) => {
-                setPatientData({
-                    fullName: data.fullName,
-                    dateOfBirth: data.dateOfBirth.slice(0, 10), // formata YYYY-MM-DD
-                    // copie também os outros campos que quiser exibir
-                });
+                setPatientData(data);
 
                 if (data.appointments && data.appointments.length > 0) {
                     Promise.all(
