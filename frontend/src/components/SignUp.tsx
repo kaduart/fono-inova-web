@@ -67,7 +67,6 @@ const SignUp = () => {
           navigate('/login');
         } else {
           const errorData: SignUpResponse = await response.json();
-          console.log('Error data:', errorData); // Add this line to log the error data
           setErrors({ ...errors, submit: errorData.error });
           return toast.error("An error occurred. Please try again.");
         }

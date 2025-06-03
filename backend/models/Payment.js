@@ -104,11 +104,7 @@ paymentSchema.post('save', async function (doc) {
                 },
                 { session }
             );
-            console.log(`✅ ${sessionsPaidCount} sessões marcadas como pagas.`);
         }
-        console.log(`Pagamento ${doc._id}: ${sessionsPaidCount} sessões marcadas como pagas.`);
-        console.log(`DOCC ${doc}`);
-
 
         if (sessionsToAutoPay.length > 0) {
             await Session.updateMany(
@@ -120,8 +116,6 @@ paymentSchema.post('save', async function (doc) {
                 },
                 { session }
             );
-            console.log(`✅ ${sessionsPaidCount} sessões marcadas como pagas.`);
-
         }
 
         // 5. Atualizar Saldo e Crédito

@@ -40,15 +40,12 @@ export default function TherapyPackageCard({
   const [loading, setLoading] = useState(false);
 
   const openModalWithAction = (action: 'edit' | 'use', session?: ISession) => {
-    console.log('openModalWithAction:', action);
     setModalAction(action);
     setSelectedSession(session || null);
     setIsModalOpen(true);
   };
 
   const handleSessionSubmit = async () => {
-    console.log('onUseSession:', onUseSession)
-    console.log("selectedSession:", selectedSession);
     const payload = {
       ...selectedSession,
       package: pack._id, // Garante envio do packageId

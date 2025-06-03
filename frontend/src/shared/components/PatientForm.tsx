@@ -48,6 +48,7 @@ const BR_STATES = [
 
 const professions = [
     { value: "", label: "Selecione" },
+    { value: "outros", label: "Outros" },
     { value: "medico", label: "Médico" },
     { value: "enfermeiro", label: "Enfermeiro" },
     { value: "fisioterapeuta", label: "Fisioterapeuta" },
@@ -105,6 +106,7 @@ interface PatientFormProps {
 }
 
 const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
+    const navigate = useNavigate();
 
     const {
         register,
@@ -168,7 +170,8 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                 onSuccess?.();
                 toast.success('Paciente adicionado com sucesso!');
                 const responseData = await response.json();
-                console.log('RESPONSE PATIEIT', responseData);
+                navigate('/');
+
             } else {
                 toast.error('Erro ao tentar adicionar um paciente!');
             }
@@ -320,19 +323,18 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                                 <div className="col-span-12 md:col-span-3">
                                     {renderField('Cidade', <Input {...register('address.city')} />, errors.address?.city?.message)}
                                 </div>
-                                <div className='col-span-6 md:col-span-4'>
+                                <div className='mt-1 col-span-6 md:col-span-4'>
                                     {renderField(
                                         'Estado',
-                                        <select
+                                        <Select
                                             {...register('address.state')}
-                                            className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
                                         >
                                             {BR_STATES.map((st) => (
                                                 <option key={st.value} value={st.value}>
                                                     {st.label}
                                                 </option>
                                             ))}
-                                        </select>,
+                                        </Select>,
                                         errors.address?.state?.message
                                     )}
                                 </div>

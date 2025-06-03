@@ -60,7 +60,6 @@ export default function PatientDashboard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('dados do paciente', data);
         setPatientInfo(data);
         setEditedInfo(data);
       } else {
@@ -85,7 +84,6 @@ export default function PatientDashboard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('Lista doctors', data);
         setDoctors(data);
       } else {
         console.error('Failed to fetch doctors');
@@ -158,7 +156,6 @@ export default function PatientDashboard() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched completed/cancelled appointments:', data); // For debugging
         setCompletedAppointments(data);
       } else {
         console.error('Failed to fetch completed/cancelled appointments');
@@ -206,7 +203,6 @@ export default function PatientDashboard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("data : ", data);
         setPrescriptions(data);
       } else {
         console.error('Failed to fetch prescriptions');
@@ -507,15 +503,6 @@ export default function PatientDashboard() {
 
   return (
     <div className="min-h-screen bg-blue-600">
-      <header className="flex items-center justify-between px-6 py-4 bg-white">
-        <div className="flex items-center gap-2">
-          <Hospital className="w-8 h-8 text-blue-600" />
-          <Link to="/admin">
-            <span className="text-xl font-bold">Fono-Inova</span>
-          </Link>
-        </div>
-        <Button variant="outline" onClick={() => navigate('/')}>Sair</Button>
-      </header>
       <nav className="bg-blue-700 text-white p-4">
         <ul className="flex space-x-4 justify-center">
           <li>

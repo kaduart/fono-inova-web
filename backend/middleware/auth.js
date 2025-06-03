@@ -8,7 +8,6 @@ export const auth = (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
-    console.log('tokennn', token)
 
     if (!token) {
         return res.status(401).json({ error: 'Token format invalid' });
@@ -34,7 +33,6 @@ export const authorize = (roles = []) => {
 
 
 export const adminOrSecretary = (req, res, next) => {
-    console.log('requisicao lsitar packages', req)
 
     if (!req.user || !req.user.role) {
         return res.status(401).json({ message: 'Usuário não autenticado ou role não definida' });

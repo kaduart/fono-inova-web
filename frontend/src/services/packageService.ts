@@ -70,7 +70,6 @@ export type UseSessionParams = {
 export const packageService = {
   // Operações com Pacotes
   createPackage: async (data: CreatePackageParams) => {
-    console.log('createPackage:', data);
     return API.post<ITherapyPackage>('/packages', data);
   },
 
@@ -86,7 +85,7 @@ export const packageService = {
     return API.delete<{ message: string }>(`/packages/${id}`);
   },
 
-  listPackages: async (params: PaginationParams) => {
+  listPackages: async (params: PaginationParams & { patientId: string }) => {
     return API.get<IPaginatedPackageResponse>('/packages', {
       params: {
         page: params.page || 1,
@@ -94,7 +93,8 @@ export const packageService = {
         status: params.status,
         type: params.type,
         startDate: params.startDate?.toISOString(),
-        endDate: params.endDate?.toISOString()
+        endDate: params.endDate?.toISOString(),
+        patientId: params.patientId
       }
     });
   },
@@ -105,7 +105,6 @@ export const packageService = {
   },
 
   updateSession: async (packageId: string, data: Partial<any>) => {
-    console.log('updateSession:', data);
     return API.put<ISession>(`/packages/${packageId}/sessions/${data.sessionId}`, data);
   },
 

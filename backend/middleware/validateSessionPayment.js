@@ -3,9 +3,7 @@ import Session from '../models/Session.js';
 export const validateSessionPayment = async (req, res, next) => {
     try {
         const sessionId = req.params.id;
-        console.log("REQ da sessão:", req.params);
-        console.log("ID da sessão:", sessionId);
-        console.log("Tipo do ID da sessão:", typeof sessionId);
+
         if (!sessionId || !mongoose.Types.ObjectId.isValid(sessionId)) {
             return res.status(400).json({
                 error: "ID de sessão inválido",

@@ -42,7 +42,6 @@ export function AddSessionForm({ onSubmit, onClose, patient, doctors }: AddSessi
 
 
     const handleSubmit = () => {
-        console.log('session enviada', session)
         // Validação dos campos obrigatórios
         if (!session.date || !session.professional || !session.sessionType || !session.value || !session.paymentMethod) {
             alert('Por favor, preencha todos os campos obrigatórios.');

@@ -1,69 +1,14 @@
-import { Calendar, CheckCircle, ChevronDown, Clock, FileText, Home, Hospital, UserCircle, Users, XCircle } from 'lucide-react';
+import { Calendar, CheckCircle, ChevronDown, Clock, FileText, Home, UserCircle, Users, XCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
+import { Button } from './ui/Button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
+import Input from './ui/Input';
+import { Label } from './ui/Label';
+import { Select } from './ui/Select';
 
-const Button = ({ children, variant = 'primary', className = '', ...props }) => (
-  <button
-    className={`inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${variant === 'primary'
-      ? 'text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500'
-      : variant === 'outline'
-        ? 'text-blue-600 border-blue-600 hover:bg-blue-50 focus:ring-blue-500'
-        : 'text-blue-600 border-blue-600 hover:bg-blue-50 focus:ring-blue-500'
-      } ${className}`}
-    {...props}
-  >
-    {children}
-  </button>
-);
-
-const Card = ({ children, className = '' }) => (
-  <div className={`bg-white rounded-lg shadow-md ${className}`}>
-    {children}
-  </div>
-);
-
-const CardHeader = ({ children, icon: Icon }) => (
-  <div className="px-4 py-5 border-b border-gray-200 sm:px-6 flex items-center justify-between">
-    {children}
-    {Icon && <Icon className="h-5 w-5 text-blue-600 ml-2" />}
-  </div>
-);
-
-const CardTitle = ({ children }) => (
-  <h3 className="text-lg leading-6 font-medium text-gray-900">{children}</h3>
-);
-
-const CardContent = ({ children }) => (
-  <div className="px-4 py-5 sm:p-6">{children}</div>
-);
-
-const CardFooter = ({ children }) => (
-  <div className="px-4 py-4 sm:px-6">{children}</div>
-);
-
-const Input = ({ ...props }) => (
-  <input
-    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md px-1 h-6"
-    {...props}
-  />
-);
-
-const Label = ({ children, htmlFor }) => (
-  <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
-    {children}
-  </label>
-);
-
-const Select = ({ children, ...props }) => (
-  <select
-    className="mt-1 block w-full pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-    {...props}
-  >
-    {children}
-  </select>
-);
 
 export default function DoctorDashboard() {
   const [showAppointments, setShowAppointments] = useState(false);
@@ -172,7 +117,6 @@ export default function DoctorDashboard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log('Patients with appointments:', data); // Add this line for debugging
         setPatients(data);
       } else {
         console.error('Failed to fetch patients with appointments');
@@ -853,13 +797,7 @@ export default function DoctorDashboard() {
 
   return (
     <div className="min-h-screen bg-blue-600">
-      <header className="bg-white p-4 flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <Hospital className="h-6 w-6 text-blue-600" />
-          <span className="font-bold text-xl">Fono-Inova</span>
-        </div>
-        <Button variant="outline" onClick={() => navigate('/')}>Sair</Button>
-      </header>
+
       <nav className="bg-blue-700 text-white p-4">
         <ul className="flex space-x-4 justify-center">
           <li>

@@ -1,21 +1,20 @@
 
-import { Activity, ChevronDown, Clock, Eye, EyeOff, FileText, Hospital, Stethoscope, Users } from 'lucide-react';
+import { Activity, ChevronDown, Clock, Eye, EyeOff, FileText, Stethoscope, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
+import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import PatientForm from '../shared/components/PatientForm';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentPage } from './financial/PaymentPage';
+import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
-import PatientTable from './patients/PatientDetails';
+import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
-import { Select } from './ui/Select';
-
 
 const defaultAppointmentData = {
   patientId: '',
@@ -83,7 +82,6 @@ const especialidadesDisponiveis = [
 ];
 
 export default function AdminDashboard() {
-  const { register, setValue, handleSubmit, reset, watch } = useForm();
 
   const initialPatientState: PatientData = {
     fullName: '',
@@ -156,6 +154,8 @@ export default function AdminDashboard() {
   const [upcomingAppointments, setUpcomingAppointments] = useState([]);
   const [hospitalCapacity] = useState(150);
   const [appointments, setAppointments] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+
   /*
    const [showAppointments, setShowAppointments] = useState(false);
    const [showPassword, setShowPassword] = useState(false); 
@@ -170,9 +170,7 @@ export default function AdminDashboard() {
     reason: '',
     status: ''
   });
-  const [isEditingAppointment, setIsEditingAppointment] = useState(false);
 
-  const [modalAberto, setModalAberto] = useState(false);
   const [agendamentoTemp, setAgendamentoTemp] = useState({
     profissional: '',
     data: '',
@@ -241,7 +239,7 @@ export default function AdminDashboard() {
           );
 
           setPatients(enrichedPatients);
-          console.log('Pacientes com resumo de consultas:', enrichedPatients);
+
         } else {
           console.error('Resposta inesperada da API:', data);
         }
@@ -252,6 +250,7 @@ export default function AdminDashboard() {
 
     fetchPatients();
   }, []);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -267,7 +266,7 @@ export default function AdminDashboard() {
         const data = await response.json();
         if (Array.isArray(data)) {
           setPatients(data);
-          console.log('Resposta da API PATIENT:', data);
+
         } else {
           console.error('Resposta inesperada da API:', data);
         }
@@ -302,7 +301,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const editarAgendamento = (index: number) => {
+  /*const editarAgendamento = (index: number) => {
     const agendamento = agendamentosTemp[index];
     setAgendamentoTemp({
       profissional: agendamento.profissional,
@@ -358,7 +357,7 @@ export default function AdminDashboard() {
     }
   };
 
-  /*   const handleSelectPatient = async (e) => {
+     const handleSelectPatient = async (e) => {
       const selected = patients.find((p) => p._id === e.target.value);
       setSelectedPatient(selected);
   
@@ -432,19 +431,10 @@ export default function AdminDashboard() {
     }
   };
 
-  /*   const handleSpecialtiesChange = (event) => {
-      const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
-      setPatientData(prevData => ({
-        ...prevData,
-        especialidades: selectedOptions,
-      }));
-    }; */
-
   const handleEspecialidadeToggle = (id) => {
-    console.log('Toggling especialidade:', id);
     setPatientData((prev) => {
 
-      console.log('Toggling PREV:', prev);
+
       const hasSelected = prev.specialties.includes(id);
       return {
         ...prev,
@@ -500,6 +490,7 @@ export default function AdminDashboard() {
   };
 
   const fetchDoctorOverview = async () => {
+
     try {
       const token = localStorage.getItem('token');
       if (!token) {
@@ -510,8 +501,10 @@ export default function AdminDashboard() {
           'Authorization': `Bearer ${token}`
         }
       });
+
       if (response.ok) {
         const data = await response.json();
+
         setDoctorOverview(data);
       } else {
         console.error('Failed to fetch doctor overview');
@@ -559,7 +552,7 @@ export default function AdminDashboard() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Fetched completed/cancelled appointments:', data); // For debugging
+
         setCompletedAppointments(data);
       } else {
         console.error('Failed to fetch completed/cancelled appointments');
@@ -569,6 +562,29 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleSaveDoctor = async (doctor: CreateDoctorParams) => {
+    try {
+      if (doctor._id) {
+        await doctorService.updateDoctor(doctor._id, doctor);
+        toast.success("Profissional atualizado com sucesso!");
+        setOpenModal(false);
+      } else {
+        await doctorService.createDoctor(doctor);
+        toast.success("Profissional cadastrado com sucesso!");
+        setOpenModal(false);
+      }
+
+      await fetchDoctors(); // Atualiza a lista
+      await fetchTotalDoctors(); // Atualiza total
+    } catch (error: any) {
+      if (error.message?.includes("expirado")) {
+        toast.error("Sessão expirada. Faça login novamente.");
+        navigate("/login");
+      } else {
+        toast.error(error.message || "Erro ao salvar profissional.");
+      }
+    }
+  };
 
   const fetchAppointments = async (patientId) => {
     try {
@@ -589,7 +605,6 @@ export default function AdminDashboard() {
       console.error('Erro ao buscar agendamentos:', error);
     }
   };
-
   const renderDashboard = () => {
     const occupancyRate = ((totalPatients / hospitalCapacity) * 100).toFixed(2);
     return (
@@ -600,7 +615,7 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Card>
             <CardHeader icon={Stethoscope}>
-              <CardTitle className="text-sm font-medium">Total Profissionais</CardTitle>
+              <CardTitle>Total Profissionais</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalDoctors}</div>
@@ -609,7 +624,7 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader icon={Users}>
-              <CardTitle className="text-sm font-medium">Total Pacientes</CardTitle>
+              <CardTitle >Total Pacientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{totalPatients}</div>
@@ -618,7 +633,7 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader icon={Activity}>
-              <CardTitle className="text-sm font-medium">Ocupação Hospitalar</CardTitle>
+              <CardTitle >Ocupação Hospitalar</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{occupancyRate}%</div>
@@ -629,7 +644,7 @@ export default function AdminDashboard() {
         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardHeader icon={Stethoscope}>
-              <CardTitle className="text-sm font-medium">Visão geral do médico</CardTitle>
+              <CardTitle >Visão geral do médico</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{doctorOverview.length}</div>
@@ -661,7 +676,7 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader icon={Users}>
-              <CardTitle className="text-sm font-medium">Visão geral de pacientes</CardTitle>
+              <CardTitle >Visão geral de pacientes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{patientOverview.length}</div>
@@ -853,12 +868,165 @@ export default function AdminDashboard() {
     );
   };
 
+  // Função para abrir o modal em modo edição ou criação
+
+
+
   const renderAddDoctor = () => {
+    return (
+      <ManageDoctors
+        onSubmitDoctor={handleSaveDoctor}
+        doctors={doctors}
+        patients={patients}
+        openModal={openModal}
+      />
+    );
+  }
+  /*const renderAddDoctor = () => {
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setDoctorData(prev => ({ ...prev, [name]: value }));
     };
-
+  
+    const renderAddDoctor = () => {
+      const [formLoading, setFormLoading] = useState(false);
+      const [showDoctorPassword, setShowDoctorPassword] = useState(false);
+  
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setDoctorData((prev) => ({ ...prev, [name]: value }));
+      };
+  
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+  
+        // Validação simples
+        if (!doctorData.fullName.trim()) return toast.error('Nome é obrigatório');
+        if (!doctorData.email.trim()) return toast.error('Email é obrigatório');
+        if (!doctorData.password.trim() && !isEditing) return toast.error('Senha é obrigatória para novo cadastro');
+  
+        setFormLoading(true);
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            toast.error('Sessão expirada, faça login novamente.');
+            navigate('/login');
+            return;
+          }
+  
+          let url = BASE_URL + '/admin/add-doctor';
+          let method = 'POST';
+  
+          if (isEditing) {
+            url = BASE_URL + `/admin/update-doctor/${doctorData.id}`; // ajuste conforme sua API
+            method = 'PUT';
+          }
+  
+          const response = await fetch(url, {
+            method,
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(doctorData),
+          });
+  
+          if (response.ok) {
+            toast.success(isEditing ? 'Profissional atualizado com sucesso!' : 'Profissional adicionado com sucesso!');
+            setShowAddDoctorModal(false);
+            fetchDoctorOverview();
+            fetchTotalDoctors();
+          } else if (response.status === 401) {
+            navigate('/login');
+            toast.error('Sua sessão expirou. Por favor, faça login novamente.');
+          } else {
+            const errorData = await response.json();
+            toast.error(errorData.message || 'Erro ao salvar profissional.');
+          }
+        } catch (error) {
+          toast.error('Erro ao salvar profissional. Tente novamente.');
+        } finally {
+          setFormLoading(false);
+        }
+      };
+  
+      return (
+        <Modal open={showAddDoctorModal} onClose={() => setShowAddDoctorModal(false)}>
+          <Card className="w-full max-w-2xl mx-auto">
+            <CardHeader>
+              <CardTitle>{isEditing ? 'Editar Profissional' : 'Cadastrar Profissional'}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName">Nome Completo</Label>
+                    <Input id="fullName" name="fullName" value={doctorData.fullName} onChange={handleInputChange} required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" value={doctorData.email} onChange={handleInputChange} required />
+                  </div>
+                </div>
+  
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="specialty">Especialidade</Label>
+                    <Select id="specialty" name="specialty" value={doctorData.specialty} onChange={handleInputChange} required>
+                      <option value="">Escolha a especialidade</option>
+                      <option value="fonoaudiologo">Fonoaudiólogo</option>
+                      <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
+                      <option value="psicologo">Psicólogo</option>
+                      <option value="fisioterapeuta">Fisioterapeuta</option>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="licenseNumber">Número Registro</Label>
+                    <Input id="licenseNumber" name="licenseNumber" value={doctorData.licenseNumber} onChange={handleInputChange} required />
+                  </div>
+                </div>
+  
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="phoneNumber">Telefone</Label>
+                    <Input id="phoneNumber" name="phoneNumber" type="tel" value={doctorData.phoneNumber} onChange={handleInputChange} required />
+                  </div>
+                  <div className="space-y-2 relative">
+                    <Label htmlFor="password">Senha {isEditing ? '(deixe em branco para manter)' : ''}</Label>
+                    <div className="relative">
+                      <Input
+                        id="password"
+                        name="password"
+                        type={showDoctorPassword ? 'text' : 'password'}
+                        value={doctorData.password}
+                        onChange={handleInputChange}
+                        required={!isEditing} // obrigatório só para novo cadastro
+                      />
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                        onClick={() => setShowDoctorPassword(!showDoctorPassword)}
+                      >
+                        {showDoctorPassword ? <EyeOff className="h-4 w-4 text-gray-500" /> : <Eye className="h-4 w-4 text-gray-500" />}
+                        <span className="sr-only">{showDoctorPassword ? 'Ocultar senha' : 'Mostrar senha'}</span>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+  
+                <div className="flex justify-end">
+                  <Button type="submit" disabled={formLoading}>
+                    {formLoading ? (isEditing ? 'Salvando...' : 'Adicionando...') : (isEditing ? 'Salvar Alterações' : 'Adicionar Profissional')}
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+        </Modal>
+      );
+    };
+  
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
@@ -898,82 +1066,99 @@ export default function AdminDashboard() {
         return toast.error('Ocorreu um erro. Por favor logue novamente.');
       }
     };
-
+  
     return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle>Cadastrar Profissional</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Nome Completo</Label>
-                <Input id="fullName" name="fullName" value={doctorData.fullName} onChange={handleInputChange} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" value={doctorData.email} onChange={handleInputChange} required />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="specialty">Especialidade</Label>
-                <Select id="specialty" name="specialty" value={doctorData.specialty} onChange={handleInputChange} required>
-                  <option value="">Escolha a especialidade</option>
-                  <option value="fonoaudiologo">Fonoaudiólogo</option>
-                  <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
-                  <option value="psicologo">Psicólogo</option>
-                  <option value="fisioterapeuta">Fisioterapeuta</option>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="licenseNumber">Número Registro</Label>
-                <Input id="licenseNumber" name="licenseNumber" value={doctorData.licenseNumber} onChange={handleInputChange} required />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-
-              <div className="space-y-2">
-                <Label htmlFor="phoneNumber">Telefone</Label>
-                <Input id="phoneNumber" name="phoneNumber" type="tel" value={doctorData.phoneNumber} onChange={handleInputChange} required />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Senha</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    name="password"
-                    type={showDoctorPassword ? "text" : "password"}
-                    value={doctorData.password}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                    onClick={() => setShowDoctorPassword(!showDoctorPassword)}
-                  >
-                    {showDoctorPassword ? (
-                      <EyeOff className="h-4 w-4 text-gray-500" />
-                    ) : (
-                      <Eye className="h-4 w-4 text-gray-500" />
-                    )}
-                    <span className="sr-only">
-                      {showDoctorPassword ? "Hide password" : "Show password"}
-                    </span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <br /><br />
-            <Button type="submit" className="ml-auto">Add Profissional</Button>
-          </form>
-        </CardContent>
-      </Card>
+      <div className="flex items-center space-x-2">
+        <Button onClick={() => openAddDoctorModal()} className="ml-auto">Adicionar Profissional</Button>
+      </div>
     );
-  };
+   
+  
+  return (
+    <>
+    <div className="flex items-center space-x-2">
+      <Link to={`/patient-dashboard/`} title="Ver Detalhes">
+          <Eye className="text-blue-600 hover:text-blue-800 cursor-pointer text-xl mx-2" />
+      </Link>
+      <Link to={`/evolutions/`} title="Ver Evoluções">
+          <FileHeart className="text-green-600 hover:text-green-800 cursor-pointer text-xl mx-2" />
+      </Link>
+    </div>
+    <Card className="w-full max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle>Cadastrar Profissional</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="fullName">Nome Completo</Label>
+              <Input id="fullName" name="fullName" value={doctorData.fullName} onChange={handleInputChange} required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="email" type="email" value={doctorData.email} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="specialty">Especialidade</Label>
+              <Select id="specialty" name="specialty" value={doctorData.specialty} onChange={handleInputChange} required>
+                <option value="">Escolha a especialidade</option>
+                <option value="fonoaudiologo">Fonoaudiólogo</option>
+                <option value="terapeuta-ocupacional">Terapeuta Ocupacional</option>
+                <option value="psicologo">Psicólogo</option>
+                <option value="fisioterapeuta">Fisioterapeuta</option>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="licenseNumber">Número Registro</Label>
+              <Input id="licenseNumber" name="licenseNumber" value={doctorData.licenseNumber} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+  
+            <div className="space-y-2">
+              <Label htmlFor="phoneNumber">Telefone</Label>
+              <Input id="phoneNumber" name="phoneNumber" type="tel" value={doctorData.phoneNumber} onChange={handleInputChange} required />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Senha</Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  name="password"
+                  type={showDoctorPassword ? "text" : "password"}
+                  value={doctorData.password}
+                  onChange={handleInputChange}
+                  required
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowDoctorPassword(!showDoctorPassword)}
+                >
+                  {showDoctorPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                  <span className="sr-only">
+                    {showDoctorPassword ? "Hide password" : "Show password"}
+                  </span>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <br /><br />
+          <Button type="submit" className="ml-auto">Add Profissional</Button>
+        </form>
+      </CardContent>
+    </Card>
+    </>
+  ); 
+  };*/
 
   const renderAddPatient = () => {
     return (
@@ -1120,28 +1305,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-blue-600 text-white">
-
-      {/* Header com branding + sair */}
-      <header className="bg-white text-blue-700 px-6 py-4 shadow flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="bg-blue-100 p-2 rounded-full">
-            <Hospital className="h-6 w-6 text-blue-600" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-extrabold leading-tight tracking-tight">
-              Clínica Fono <span className="text-blue-500">Inova</span>
-            </h1>
-            <p className="text-xs text-gray-500 -mt-1">Cuidando com inovação e carinho</p>
-          </div>
-        </div>
-
-        <button
-          onClick={() => navigate('/')}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        >
-          Sair
-        </button>
-      </header>
 
       {/* Menu de navegação */}
       <nav className="bg-blue-700 px-6 py-3 shadow flex justify-between items-center relative">

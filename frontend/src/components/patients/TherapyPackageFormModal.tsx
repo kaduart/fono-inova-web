@@ -47,14 +47,12 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
             (formData.sessionValue * formData.totalSessions) - formData.totalPaid
         );
         setRemainingBalance(newBalance)
-        console.log('remainingBalance', remainingBalance)
     }, [formData.sessionValue, formData.totalPaid, formData.totalSessions]);
 
     const handleSave = async (e) => {
         e.preventDefault();
         if (!validate()) return;
 
-        console.log('Formulário de dados para salvar:', formData);
         if (!formData.sessionType || !formData.paymentType || !formData.professionalId) { // Adicionado professionalId
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
             return;
@@ -95,8 +93,6 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
     };
 
     useEffect(() => {
-        console.log('formData.durationMonths:', formData.durationMonths);
-        console.log('formData.sessionsPerWeek:', formData.sessionsPerWeek);
         const sessionValue = formData.durationMonths > 3 ? 180 : 200;
         let totalSessions = 0;
 
@@ -147,7 +143,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 name="durationMonths"
                                 value={formData.durationMonths}
                                 onChange={(e) => setFormData({ ...formData, durationMonths: Number(e.target.value) })}
-                                className="w-full"
+
                             >
                                 <option value="">Escolha duração do pacote</option>
 
@@ -165,7 +161,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 name="sessionsPerWeek"
                                 value={+formData.sessionsPerWeek}
                                 onChange={handleChange}
-                                className="w-full"
+
                             >
                                 <option value="">Escolha quantidade de vez na semana</option>
 
@@ -183,7 +179,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 name="professionalId"
                                 value={formData.professionalId}
                                 onChange={handleChange}
-                                className="w-full"
+
                             >
                                 <option value="">Escolha um profissional</option>
                                 {doctors.map((doc) => (
@@ -200,7 +196,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 name="sessionType"
                                 value={formData.sessionType}
                                 onChange={handleChange}
-                                className="w-full"
+
                             >
                                 <option value="">Escolha um tipo de terapia</option>
                                 {THERAPY_TYPES.map((option) => (
@@ -222,7 +218,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                     value={formData.totalSessions}
                                     onChange={handleChange}
                                     min="1"
-                                    className="w-full"
+        
                                 />
                             </div> */}
 
@@ -232,7 +228,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                     name="paymentType"
                                     value={formData.paymentType}
                                     onChange={handleChange}
-                                    className="w-full"
+
                                 >
                                     {PAYMENT_TYPES.map((option) => (
                                         <option key={option.value} value={option.value}>
@@ -249,7 +245,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                     onChange={handleChange}
                                     min="0"
                                     step="0.01"
-                                    className="w-full"
+
                                 />
                             </div>
 
@@ -262,7 +258,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                     onChange={handleChange}
                                     min="0"
                                     step="0.01"
-                                    className="w-full"
+
                                 />
                             </div>
 
@@ -273,7 +269,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                         name="paymentMethod"
                                         value={formData.paymentMethod}
                                         onChange={handleChange}
-                                        className="w-full"
+
                                     >
                                         <option value="">Escolha um método</option>
                                         <option value="dinheiro">Dinheiro</option>

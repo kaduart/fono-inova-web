@@ -11,8 +11,6 @@ dotenv.config();
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-
-  console.log('Received data:', req.body);
   const { email, password, role } = req.body;
 
 
@@ -25,7 +23,6 @@ router.post('/', async (req, res) => {
     } else {
       user = await User.findOne({ email, role });
     }
-    console.log('Usuário encontrado:', user);
     if (!user) {
       return res.status(400).send({ error: 'Invalid email or role' });
     }
@@ -33,9 +30,6 @@ router.post('/', async (req, res) => {
     if (!user.password) {
       return res.status(400).send({ error: 'Usuário não possui senha registrada' });
     }
-    console.log('Senha fornecida:', password);
-    console.log('Senha no banco:', user.password);
-    console.log('Usuário encontrado:', user);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).send({ error: 'Invalid password' });

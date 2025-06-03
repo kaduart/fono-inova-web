@@ -1,3 +1,4 @@
+import { Info } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packagesService, { packageService, UseSessionParams, validatePayment } from '../../services/packageService';
@@ -30,15 +31,13 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
             const params = {
                 page: 1,
                 limit: 10,
-                status: "active" // Exemplo: filtro padrão
+                status: "active",
+                patientId: patient._id,
             };
 
             // 2. Chamada à API com tratamento de erro implícito
             const res = await packagesService.listPackages(params);
 
-            // 3. Debug detalhado para inspecionar a resposta
-            console.log('Resposta completa da API:', res);
-            console.log('Dados brutos da resposta:', res?.data);
 
             // 4. Extração de dados com destructuring e fallback
             const responseData = res?.data || {};
@@ -54,7 +53,9 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
             // 6. Feedback condicional baseado nos dados
             packageData.length
                 ? toast.success(`${packageData.length} pacotes carregados.`)
-                : toast.warning('Nenhum pacote encontrado com esses filtros.');
+                : toast('Nenhum pacote contratado.', {
+                    icon: <Info className="text-blue-500" />,
+                });
 
         } catch (error) {
             // 7. Tratamento de erro detalhado
@@ -92,7 +93,6 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
     const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
         try {
             validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
-            console.log('updateSession:', sessionData);
 
             const payload = {
                 sessionId: sessionData._id,

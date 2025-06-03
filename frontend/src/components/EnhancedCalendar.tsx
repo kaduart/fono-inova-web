@@ -224,7 +224,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                     borderColor: getStatusColor(appointment.status),
                 };
             });
-            console.log('formattedEvents', formattedEvents)
             setEvents(formattedEvents);
         } catch (error) {
             console.error('Erro ao carregar agendamentos:', error);
@@ -328,7 +327,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             } else {
                 response = await axios.post(`${BASE_URL}/appointments/`, appointment, config);
             }
-            console.log('rotaa', `${BASE_URL}/appointments/`)
             // Verifique a resposta e feche o modal se a operação for bem-sucedida
             if (response.status === 200 || response.status === 201) {
                 setIsModalOpen(false);  // Fechar o modal apenas em sucesso
@@ -520,8 +518,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 open={openSchedule}
                 onClose={() => setOpenSchedule(false)}
                 onSave={async (data) => {
-                    console.log('cccccccc', data);
-
                     await handleSubmit(data); // Atualiza a lista
                 }}
                 patients={patients}

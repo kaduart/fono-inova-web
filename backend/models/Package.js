@@ -91,8 +91,6 @@ packageSchema.pre('findOneAndUpdate', function (next) {
 
 packageSchema.pre('save', function (next) {
 
-    console.log('DURATIUON ', this.durationMonths);
-    console.log('SESSION WEEK', this.sessionsPerWeek);
     // Calcular total de sessões (4 semanas ≈ 1 mês)
     this.totalSessions = this.durationMonths * 4 * this.sessionsPerWeek;
 
