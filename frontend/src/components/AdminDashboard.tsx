@@ -3,7 +3,6 @@ import { Activity, ChevronDown, Clock, Eye, EyeOff, FileText, Stethoscope, Users
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../constants/constants';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import PatientForm from '../shared/components/PatientForm';
 import EnhancedCalendar from './EnhancedCalendar';
@@ -15,6 +14,7 @@ import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
+import { BASE_URL } from '../constants/constants';
 
 const defaultAppointmentData = {
   patientId: '',
