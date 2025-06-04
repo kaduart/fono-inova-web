@@ -4,7 +4,7 @@ import { CardHeader } from '@mui/material';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { BASE_URL } from '../../services/api';
+import { BASE_URL } from '../../constants/constants';
 import { IDoctor, PatientData, ScheduleAppointment } from '../../utils/types';
 import { Card, CardContent, CardTitle } from '../ui/Card';
 import { Label } from '../ui/Label';
