@@ -1,9 +1,11 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import { IDoctor } from "../../utils/types";
+import { IDoctor, THERAPY_TYPES, TherapyType } from "../../utils/types";
 import { Button } from "../ui/Button";
 import Input from "../ui/Input";
+import { Label } from "../ui/Label";
+import { Select } from "../ui/Select";
 
 interface DoctorFormProps {
     selectedDoctor: IDoctor | null;
@@ -45,11 +47,26 @@ const DoctorForm = ({ selectedDoctor, onSubmitDoctor, onCancel }: DoctorFormProp
                     value={form.fullName}
                     onChange={e => setForm({ ...form, fullName: e.target.value })}
                 />
-                <Input
-                    label="Especialidade"
-                    value={form.specialty}
-                    onChange={e => setForm({ ...form, specialty: e.target.value })}
-                />
+
+                <div className="space-y-2">
+                    <Label htmlFor="specialty">Especialidade</Label>
+                    <Select
+                        value={form.specialty}
+                        onChange={(e) =>
+                            setForm({
+                                ...form,
+                                specialty: e.target.value as TherapyType,
+                            })
+                        }
+                    >
+                        <option value="">Selecione</option>
+                        {THERAPY_TYPES.map((type) => (
+                            <option key={type.value} value={type.value}>
+                                {type.label}
+                            </option>
+                        ))}
+                    </Select>
+                </div>
                 <Input
                     label="Email"
                     type="email"
@@ -57,11 +74,13 @@ const DoctorForm = ({ selectedDoctor, onSubmitDoctor, onCancel }: DoctorFormProp
                     onChange={e => setForm({ ...form, email: e.target.value })}
                 />
                 <Input
+                    mask="(99) 99999-9999"
                     label="Telefone"
                     type="tel"
                     value={form.phoneNumber}
                     onChange={e => setForm({ ...form, phoneNumber: e.target.value })}
                 />
+
                 <Input
                     label="Número de Registro"
                     value={form.licenseNumber}
@@ -90,7 +109,7 @@ const DoctorForm = ({ selectedDoctor, onSubmitDoctor, onCancel }: DoctorFormProp
             <FormControlLabel
                 control={
                     <Checkbox
-                        checked={form.active}
+                        checked={form.active === true}
                         onChange={e => setForm({ ...form, active: e.target.checked })}
                     />
                 }

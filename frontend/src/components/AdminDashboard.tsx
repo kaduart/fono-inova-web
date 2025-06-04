@@ -192,6 +192,7 @@ export default function AdminDashboard() {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [openMenu, setOpenMenu] = useState('');
+  const [modalShouldClose, setModalShouldClose] = useState(false);
 
   const toggleMenu = (menuName: string) => {
     setOpenMenu(openMenu === menuName ? '' : menuName);
@@ -567,12 +568,12 @@ export default function AdminDashboard() {
       if (doctor._id) {
         await doctorService.updateDoctor(doctor._id, doctor);
         toast.success("Profissional atualizado com sucesso!");
-        setOpenModal(false);
       } else {
         await doctorService.createDoctor(doctor);
         toast.success("Profissional cadastrado com sucesso!");
-        setOpenModal(false);
       }
+
+      setModalShouldClose(true);
 
       await fetchDoctors(); // Atualiza a lista
       await fetchTotalDoctors(); // Atualiza total
@@ -873,12 +874,15 @@ export default function AdminDashboard() {
 
 
   const renderAddDoctor = () => {
+    console.log('open modal', openModal)
     return (
       <ManageDoctors
         onSubmitDoctor={handleSaveDoctor}
         doctors={doctors}
         patients={patients}
         openModal={openModal}
+        setOpenModal={setOpenModal}
+        modalShouldClose={modalShouldClose}
       />
     );
   }

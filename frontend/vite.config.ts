@@ -4,31 +4,24 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    include: [
-      'react-router-dom',
-      'react',
-      'react-dom'
-    ]
-  },
   server: {
     host: '0.0.0.0',
     port: 3000,
     watch: {
       usePolling: true,
+      interval: 100  // opcional: ajusta o intervalo para checagem
     },
     proxy: {
       '/api': {
-        target: 'http://167.234.249.6:5000',
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       }
     }
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
-      '@': path.resolve(__dirname, 'src')  
+      '@': path.resolve(__dirname, 'src')
     }
-  },
+  }
 });

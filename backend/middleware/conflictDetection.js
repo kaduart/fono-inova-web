@@ -1,78 +1,68 @@
 import Appointment from '../models/Appointment.js';
 
 export const checkAppointmentConflicts = async (req, res, next) => {
+    console.log('INICIOU -> requisicao ->', req);
     try {
-        const { doctorId, patientId, date, time } = req.body;
+        const { doctorId, patientId, date } = req.body;
         const appointmentId = req.body.metadata?.appointmentId || null;
 
-
-        if (!date || !doctorId || !patientId || !time) {
+        if (!doctorId || !patientId || !date) {
             return res.status(400).json({ error: "Campos obrigatórios faltando" });
         }
 
-        if (!/^\d{2}:\d{2}$/.test(time)) {
-            return res.status(400).json({ error: "Formato de hora inválido (esperado HH:mm)" });
+        const startTime = new Date(date); // já vem ISO
+        console.log('00', startTime);
+        if (isNaN(startTime.getTime())) {
+            return res.status(400).json({ error: "Data inválida" });
         }
 
-        const [year, month, day] = date.split(' ')[0].split('-').map(Number);
-        const [hours, minutes] = time.split(':').map(Number);
-        const startTime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
+        const SESSION_DURATION = 60 * 60 * 1000; // 1h (ajuste se for 40 min)
 
-        const endTime = new Date(startTime);
-        endTime.setHours(endTime.getHours() + 1);
+        const endTime = new Date(startTime.getTime() + SESSION_DURATION);
+        console.log('01', endTime);
 
-        const startOfDay = new Date(appointmentDate);
+        const startOfDay = new Date(startTime);
         startOfDay.setHours(0, 0, 0, 0);
-
-        const endOfDay = new Date(appointmentDate);
+        const endOfDay = new Date(startTime);
         endOfDay.setHours(23, 59, 59, 999);
+        console.log('02', startOfDay);
 
-        const query = {
+        const existingAppointments = await Appointment.find({
             doctorId,
             date: { $gte: startOfDay, $lt: endOfDay },
             ...(appointmentId && { _id: { $ne: appointmentId } })
-        };
+        });
+        console.log('03', existingAppointments);
 
-        const existingAppointments = await Appointment.find(query);
-
-        const hasConflict = existingAppointments.some(app => {
-            const [appHours, appMinutes] = app.time.split(':').map(Number);
+        const hasDoctorConflict = existingAppointments.some(app => {
             const appStart = new Date(app.date);
-            appStart.setHours(appHours, appMinutes, 0, 0);
-
-            const appEnd = new Date(appStart);
-            appEnd.setMinutes(appEnd.getMinutes() + SESSION_DURATION_MINUTES);
-
+            const appEnd = new Date(appStart.getTime() + SESSION_DURATION);
             return startTime < appEnd && endTime > appStart;
         });
+        console.log('04', hasDoctorConflict);
 
-        if (hasConflict) {
+        if (hasDoctorConflict) {
             return res.status(409).json({
                 error: 'Conflito de horário',
                 message: 'Médico já possui agendamento neste horário'
             });
         }
 
-        const patientQuery = {
+        const patientAppointments = await Appointment.find({
             patientId,
             date: { $gte: startOfDay, $lt: endOfDay },
             ...(appointmentId && { _id: { $ne: appointmentId } })
-        };
-
-        const patientAppointments = await Appointment.find(patientQuery);
-        const patientConflict = patientAppointments.find(appointment => {
-            const [appHours, appMinutes] = appointment.time.split(':').map(Number);
-
-            const appStartTime = new Date(appointmentDate);
-            appStartTime.setHours(appHours, appMinutes, 0, 0);
-
-            const appEndTime = new Date(appStartTime);
-            appEndTime.setHours(appEndTime.getHours() + 1);
-
-            return (startTime < appEndTime && endTime > appStartTime);
         });
+        console.log('05', patientAppointments);
 
-        if (patientConflict) {
+        const hasPatientConflict = patientAppointments.some(app => {
+            const appStart = new Date(app.date);
+            const appEnd = new Date(appStart.getTime() + SESSION_DURATION);
+            return startTime < appEnd && endTime > appStart;
+        });
+        console.log('06', hasPatientConflict);
+
+        if (hasPatientConflict) {
             return res.status(409).json({
                 error: 'Conflito de horário',
                 message: 'Paciente já possui agendamento neste horário'
@@ -86,6 +76,7 @@ export const checkAppointmentConflicts = async (req, res, next) => {
     }
 };
 
+
 export const getAvailableTimeSlots = async (req, res) => {
     try {
         const { doctorId, date } = req.query;
@@ -96,57 +87,60 @@ export const getAvailableTimeSlots = async (req, res) => {
 
         const SESSION_DURATION_MINUTES = 40;
 
-        // 1. Definir intervalo da data em horário de Brasília (UTC-3)
-        const localDate = new Date(`${date}T00:00:00-03:00`);
-        const startOfDayUTC = new Date(localDate.toISOString());
-        const endOfDayUTC = new Date(new Date(localDate).setHours(23, 59, 59, 999));
+        // Timezone fixo UTC-3
+        const toUtcDate = (timeStr) => {
+            return new Date(`${date}T${timeStr}:00-03:00`);
+        };
 
-        // 2. Buscar agendamentos existentes no MongoDB dentro do intervalo
+        const startOfDay = toUtcDate('00:00');
+        const endOfDay = toUtcDate('23:59');
+
         const existingAppointments = await Appointment.find({
             doctorId,
-            date: {
-                $gte: startOfDayUTC,
-                $lt: new Date(endOfDayUTC.toISOString()),
-            }
+            date: { $gte: startOfDay, $lte: endOfDay }
         });
-        // 3. Gerar todos os slots do dia (8h às 18h, duração 40 minutos)
-        const slots = [];
-        const slotStart = new Date(`${date}T08:00:00-03:00`);
-        const lastPossibleStart = new Date(`${date}T17:20:00-03:00`);
 
-        let current = new Date(slotStart);
-        while (current <= lastPossibleStart) {
+        // Gera os slots entre 08:00 e 17:20 (último início possível)
+        const slots = [];
+        let current = toUtcDate('08:00');
+        const end = toUtcDate('17:20');
+
+        while (current <= end) {
             slots.push(new Date(current));
-            current = new Date(current.getTime() + SESSION_DURATION_MINUTES * 60000);
+            current = new Date(current.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
         }
 
-        // 4. Filtrar slots disponíveis (sem sobreposição com agendamentos)
+        // Remove os que colidem com agendamentos
         const availableSlots = slots.filter(slot => {
-            const slotStart = slot;
-            const slotEnd = new Date(slotStart.getTime() + SESSION_DURATION_MINUTES * 60000);
-
+            const slotEnd = new Date(slot.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
             return !existingAppointments.some(app => {
-                const [hours, minutes] = app.time.split(':').map(Number);
                 const appStart = new Date(app.date);
-                appStart.setHours(hours, minutes, 0, 0)
-                const appEnd = new Date(appStart.getTime() + SESSION_DURATION_MINUTES * 60000);
-
-                return slotStart < appEnd && slotEnd > appStart;
+                const appEnd = new Date(appStart.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
+                return slot < appEnd && slotEnd > appStart;
             });
         });
-        // 5. Formatar slots para HH:mm
-        const formattedSlots = availableSlots.map(slot => {
-            const h = slot.getHours().toString().padStart(2, '0');
-            const m = slot.getMinutes().toString().padStart(2, '0');
+
+        // Formata para HH:mm em UTC-3
+        const formatted = availableSlots.map(slot => {
+            const local = new Date(slot);
+            const h = String(local.getHours()).padStart(2, '0');
+            const m = String(local.getMinutes()).padStart(2, '0');
             return `${h}:${m}`;
         });
 
-        return res.json(formattedSlots);
+        return res.json(formatted);
     } catch (error) {
         console.error('Erro ao obter horários disponíveis:', error);
         return res.status(500).json({ error: error.message });
     }
 };
+
+
+
+
+
+
+
 
 
 

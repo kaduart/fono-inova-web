@@ -139,7 +139,6 @@ const DoctorAgendaCalendar = ({
               }))
             }
             onSubmit={(data) => {
-              // Apenas repassa pro pai
               if (onSubmitSlotBooking) {
                 onSubmitSlotBooking(data);
               }

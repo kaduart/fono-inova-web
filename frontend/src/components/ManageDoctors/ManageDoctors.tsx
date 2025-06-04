@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
 import { IDoctor, PatientData, ScheduleAppointment } from "../../utils/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { Button } from "../ui/Button";
-import DoctorAgenda from "./DoctorAgenda"; // importar o novo componente
+import DoctorAgenda from "./DoctorAgenda";
 import DoctorFormModal from "./DoctorFormModal";
 import DoctorList from "./DoctorList";
 import { DoctorSlotBookingModal } from './DoctorSlotBookingModal';
@@ -43,11 +43,12 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isBookingModalOpen, setBookingModalOpen] = useState(false);
     const [showScheduleModal, setShowScheduleModal] = useState(false);
-    const [allDaySlots, setAllDaySlots] = useState<(any)[]>([]); // Ajuste o tipo conforme necessário
+    const [allDaySlots, setAllDaySlots] = useState<(any)[]>([]);
     const [selectedBookingData, setSelectedBookingData] = useState<{
         time: string,
         isBookingModalOpen: boolean
     } | null>(null);
+
     const [scheduleAppointmentData, setScheduleAppointmentData] = useState<ScheduleAppointment>({
         doctorId: '',
         patientId: '',
@@ -59,7 +60,11 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         paymentMethod: 'dinheiro',
         status: 'agendado',
     });
+
+ 
     const handleViewAgenda = (doctor: IDoctor) => {
+        console.log('doutor selecionado', doctor)
+
         setSelectedDoctor(doctor);
         setshowAgendaModal(true);  // ou outro controle para abrir modal/agendamento
     };
@@ -74,6 +79,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const handleAddOrEditDoctor = (doctor: IDoctor | null) => {
+        console.log('doutor selecionado', doctor)
         setSelectedDoctor(doctor);
         setShowModal(true);
     };
@@ -86,7 +92,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const onOpenCloseModals = async (data: any) => {
-
+        console.log('chamou no pai raiz o abir modal', data)
         setScheduleAppointmentData({
             date: scheduleAppointmentData.date,
             time: data.time,
@@ -106,7 +112,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     const handleBookingSubmit = async (data: any) => {
         setScheduleAppointmentData({
             ...scheduleAppointmentData,
-            date: data.date, // Certifique-se de que a data esteja no formato correto
+            date: data.date,
             doctorId: data.professional,
             patientId: data.patient,
         });
@@ -115,8 +121,14 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const handleBooking = async (payload: ScheduleAppointment) => {
-        const dateInBrasilia = new Date(`${payload.date}T${payload.time}:00-03:00`);
-        payload.date = dayjs(dateInBrasilia).format('YYYY-MM-DD HH:mm:ss'); // Formata a data para o padrão esperado
+        const [hours, minutes] = payload.time.split(':').map(Number);
+        const datetime = new Date(scheduleAppointmentData.date);
+        datetime.setHours(hours, minutes, 0, 0);
+        payload.date = datetime.toISOString();
+        console.log('datetime-->>', datetime)
+        console.log('PAYYYload-->>', payload)
+
+
         const token = localStorage.getItem('token');
         if (!token) {
             toast.error('Usuário não autenticado. Por favor, faça login novamente.');
@@ -136,6 +148,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
             if (!response.ok) throw new Error('Erro ao agendar sessão');
 
             toast.success('Sessão agendada com sucesso!');
+
             setdataUpdateSlots(payload);
             setIsModalOpen(false);
 

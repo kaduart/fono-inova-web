@@ -1,4 +1,4 @@
-import { Modal } from "@mui/material";
+import { Box, Modal } from "@mui/material";
 import { IDoctor } from "../../utils/types";
 import DoctorForm from "./DoctorForm";
 
@@ -7,12 +7,16 @@ interface DoctorFormModalProps {
     onClose: () => void;
     onSubmitDoctor: (data: IDoctor) => void;
     selectedDoctor: IDoctor | null
+    openCloseModalResponse: boolean
 };
-
-const DoctorFormModal = ({ open, onClose, onSubmitDoctor, selectedDoctor }: DoctorFormModalProps) => {
+const DoctorFormModal = ({ open, openCloseModalResponse, onClose, onSubmitDoctor, selectedDoctor }: DoctorFormModalProps) => {
+    
+    console.log('fechar modalsssssssssssssss', open)
     return (
         <Modal open={open} onClose={onClose}>
-            <DoctorForm selectedDoctor={selectedDoctor} onCancel={onClose} onSubmitDoctor={onSubmitDoctor} />
+            <Box>
+                <DoctorForm selectedDoctor={selectedDoctor} onCancel={onClose} onSubmitDoctor={onSubmitDoctor} />
+            </Box>
         </Modal>
     );
 };

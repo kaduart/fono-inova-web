@@ -39,12 +39,26 @@ const DoctorAgenda = ({ doctors = [], updateSlots, patients, onDaySlotsChange, s
     const [showPackageFlow, setShowPackageFlow] = useState(false);
 
     useEffect(() => {
+        if (!updateSlots) return;
+
+        const dataSendToSlots = new Date(updateSlots.date).toISOString().split('T')[0];;
+
         if (updateSlots && updateSlots.doctorId) {
             setSelectedDoctorId(updateSlots.doctorId);
-            fetchSlotsForDate(updateSlots.date.split(' ')[0]);
+            fetchSlotsForDate(dataSendToSlots);
         }
-    }
-        , [updateSlots]);
+    }, [updateSlots]);
+
+    useEffect(() => {
+        console.log('doutor selecionado efeeect', selectedDoctor)
+        if (selectedDoctor && selectedDoctor._id) {
+            setSelectedDoctorId(selectedDoctor._id);
+            // Opcional: já busca os horários ao trocar o doutor
+            const today = dayjs().format('YYYY-MM-DD');
+            fetchSlotsForDate(today);
+        }
+    }, [selectedDoctor]);
+
 
     const handleSlotClick = (date: string, time: string) => {
         setSelectedTime(time);

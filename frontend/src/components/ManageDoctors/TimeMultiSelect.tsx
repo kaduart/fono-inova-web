@@ -31,13 +31,14 @@ export function TimeMultiSelect({
 
   const handleSelectAvailableTime = (time: string) => {
     if (!selectedDate) return;
+
     setIsModalOpen(true);
-    // setSelectedTime(time);
 
     const data = {
       time: time,
-      isBookingModalOpen: isModalOpen
+      isBookingModalOpen: true
     }
+
     onSubmit(data);
   };
 
