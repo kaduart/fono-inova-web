@@ -143,6 +143,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(payload),
+                
             });
 
             if (!response.ok) throw new Error('Erro ao agendar sessão');

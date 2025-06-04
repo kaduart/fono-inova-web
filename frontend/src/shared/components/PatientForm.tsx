@@ -154,6 +154,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
     });
 
     const onSubmit = async (data: PatientFormData) => {
+        
         try {
             const token = localStorage.getItem('token');
             const response = await fetch(BASE_URL + '/patients/add', {
@@ -170,7 +171,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                 onSuccess?.();
                 toast.success('Paciente adicionado com sucesso!');
                 const responseData = await response.json();
-                navigate('/');
+                navigate('/admin');
 
             } else {
                 toast.error('Erro ao tentar adicionar um paciente!');
