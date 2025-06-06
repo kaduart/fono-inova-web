@@ -240,7 +240,7 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
                   type="date"
                   id="date"
                   name="date"
-                  value={evaluationData.date}
+                  value={evaluationData.date?.slice(0, 10)}
                   onChange={handleChange}
                 />
               </div>
