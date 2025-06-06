@@ -112,7 +112,10 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
                       <td className="px-4 py-3 capitalize">{evalItem.doctorId.specialty}</td>
                       <td className="px-4 py-3">{new Date(evalItem.date).toLocaleDateString("pt-BR")}</td>
                       <td className="px-4 py-3">{evalItem.time}</td>
-                      <td className="px-4 py-3 capitalize">{evalItem.valuePaid | currency:''}</td>
+                      <td className="px-4 py-3 capitalize">  {new Intl.NumberFormat('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL'
+                      }).format(evalItem.valuePaid ?? 0)}</td>
                       <td className="px-4 py-3 capitalize">{evalItem.paymentType}</td>
                       <td className="text-right">
                         <div className="flex justify-end gap-2">
