@@ -1,4 +1,5 @@
 import express from 'express';
+import { createEvaluation, getEvaluationsByPatient } from '../controllers/evaluationController.js';
 import { auth, authorize } from '../middleware/auth.js';
 import validateId from '../middleware/validateId.js';
 import Evolution from '../models/Evolution.js';
@@ -29,6 +30,29 @@ router.post('/', authorize(['admin', 'professional']), async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+// routes/evolutions.js
+router.put('/:id', authorize(['admin', 'secretary']), async (req, res) => {
+    try {
+        const { id } = req.params;
+        const update = req.body;
+
+        const evolution = await Evolution.findById(id);
+        if (!evolution) return res.status(404).json({ error: 'Avaliação não encontrada' });
+
+        /* if (evolution.type !== 'avaliação') {
+          return res.status(403).json({ error: 'Apenas avaliações podem ser editadas nesta rota.' });
+        } */
+
+        Object.assign(evolution, update);
+        await evolution.save();
+
+        res.status(200).json({ message: 'Avaliação atualizada com sucesso', evolution });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 
 // Obter evoluções de um paciente
 router.get('/patient/:patientId', async (req, res) => {
@@ -146,6 +170,13 @@ const handleSearch = async () => {
     const response = await axios.get('/evolutions/search', { params: filters });
     setEvolutions(response.data);
 };
+
+// POST /api/evaluations
+router.post("/availables", authorize(["admin", "professional"]), createEvaluation);
+
+// GET /api/evaluations/:patientId
+router.get("/patient/:patientId", authorize(["admin", "professional"]), getEvaluationsByPatient);
+
 
 
 export default router;

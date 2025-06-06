@@ -66,9 +66,20 @@ export const doctorOperations = {
         }
       });
     } catch (error) {
-      await mongoSession.abortTransaction();
-      console.error('Erro ao criar médico:', error.message);
-      res.status(400).json({ error: error.message });
+      if (error.name === 'ValidationError') {
+        // 💡 Extrai erros campo a campo
+        const errors = Object.keys(error.errors).reduce((acc, key) => {
+          acc[key] = error.errors[key].message;
+          return acc;
+        }, {});
+
+        return res.status(400).json({
+          message: 'Falha na validação dos dados',
+          errors
+        });
+      }
+
+      return res.status(500).json({ error: 'Erro interno' });
     } finally {
       mongoSession.endSession();
     }
@@ -91,7 +102,20 @@ export const doctorOperations = {
       if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
       res.json(doctor);
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      if (error.name === 'ValidationError') {
+        // 💡 Extrai erros campo a campo
+        const errors = Object.keys(error.errors).reduce((acc, key) => {
+          acc[key] = error.errors[key].message;
+          return acc;
+        }, {});
+
+        return res.status(400).json({
+          message: 'Falha na validação dos dados',
+          errors
+        });
+      }
+
+      return res.status(500).json({ error: 'Erro interno' });
     }
   },
 
@@ -101,7 +125,20 @@ export const doctorOperations = {
       if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
       res.json({ message: 'Doctor deleted successfully' });
     } catch (error) {
-      res.status(500).json({ error: error.message });
+      if (error.name === 'ValidationError') {
+        // 💡 Extrai erros campo a campo
+        const errors = Object.keys(error.errors).reduce((acc, key) => {
+          acc[key] = error.errors[key].message;
+          return acc;
+        }, {});
+
+        return res.status(400).json({
+          message: 'Falha na validação dos dados',
+          errors
+        });
+      }
+
+      return res.status(500).json({ error: 'Erro interno' });
     }
   }
 };
@@ -112,6 +149,19 @@ export const getDoctorById = async (req, res) => {
     if (!doctor) return res.status(404).json({ message: 'Doctor not found' });
     res.json(doctor);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    if (error.name === 'ValidationError') {
+      // 💡 Extrai erros campo a campo
+      const errors = Object.keys(error.errors).reduce((acc, key) => {
+        acc[key] = error.errors[key].message;
+        return acc;
+      }, {});
+
+      return res.status(400).json({
+        message: 'Falha na validação dos dados',
+        errors
+      });
+    }
+
+    return res.status(500).json({ error: 'Erro interno' });
   }
 };

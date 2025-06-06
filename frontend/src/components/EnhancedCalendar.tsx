@@ -26,7 +26,7 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
 import { patientService } from '../services/patientService';
-import { professionalService } from '../services/professionalService';
+import { IDoctor } from '../utils/types';
 import ScheduleModal from './ScheduleModal';
 import AppointmentDetailModal from './appointmentDetailModal';
 
@@ -34,6 +34,7 @@ import AppointmentDetailModal from './appointmentDetailModal';
 interface EnhancedCalendarProps {
     onDateClick: (arg: DateClickArg) => void;
     appointments: Appointment[];
+    doctors: IDoctor[],
 }
 
 interface Appointment {
@@ -45,13 +46,13 @@ interface Appointment {
 }
 
 const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
+    doctors,
     onDateClick,
     appointments,
 }) => {
     const calendarRef = useRef<FullCalendar | null>(null);
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [doctors, setDoctors] = useState([]);
     const [patients, setPatients] = useState([]);
     const [selectedDoctor, setSelectedDoctor] = useState('all');
     const [selectedPatient, setSelectedPatient] = useState('all');
@@ -86,71 +87,15 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     };
 
     const navigate = useNavigate();
-
-    /*  useEffect(() => {
-         const token = localStorage.getItem('token');
-         if (!token) return;
- 
-         const fetchPatients = async () => {
-             try {
-                 const response = await fetch(`${BASE_URL}/patients`, {
-                     headers: {
-                         'Authorization': `Bearer ${token}`,
-                     },
-                 });
- 
-                 const data = await response.json();
-                 if (Array.isArray(data)) {
-                     setPatients(data);
-                 } else {
-                     console.error('Resposta inesperada da API:', data);
-                 }
-             } catch (error) {
-                 console.error('Erro ao buscar pacientes:', error);
-             }
-         };
- 
-         fetchPatients();
-         // fetchAppointment();
-     }, []); */
+    console.log(doctors, 'doctrrrr')
 
     useEffect(() => {
         patientService
             .fetchAll()
             .then(setPatients)
             .catch(err => console.error('Erro pacientes:', err));
-        professionalService
-            .fetchAll()
-            .then(setDoctors)
-            .catch(err => console.error('Erro médicos:', err));
     }, []);
-    /* 
-        useEffect(() => {
-            const fetchDoctors = async () => {
-                try {
-                    const token = localStorage.getItem('token');
-                    if (!token) {
-                        navigate('/login');
-                        return;
-                    }
-                    const response = await fetch(`${BASE_URL}/doctor/all`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    if (response.ok) {
-                        const data = await response.json();
-                        setDoctors(data);
-                    } else {
-                        console.error('Failed to fetch doctors');
-                    }
-                } catch (error) {
-                    console.error('Error fetching doctors:', error);
-                }
-            };
-    
-            fetchDoctors();
-        }, []); */
+
 
     useEffect(() => {
         if (!appointments || !Array.isArray(appointments)) return;
@@ -269,18 +214,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         }
     };
 
-    /*     // Manipuladores de eventos
-        const handleDateSelect = (selectInfo) => {
-            const selectedDate = selectInfo.startStr.split('T')[0];
-            setSelectedDate(selectedDate);
-            setFormData({
-                ...formData,
-                date: selectedDate,
-                time: ''
-            });
-            setModalMode('create');
-            setIsModalOpen(true);
-        }; */
 
     const handleEventClick = (info: any) => {
         const { event } = info;
@@ -391,7 +324,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                             handleOpenSchedule()
                         }}
                     >
-                        Novo Agendamento
+                        Agendamento
                     </Button>
                 </Box>
 

@@ -161,7 +161,20 @@ export const packageOperations = {
             if (mongoSession.inTransaction()) {
                 await mongoSession.abortTransaction();
             }
-            res.status(400).json({ error: "Erro ao criar pacote", details: error.message });
+            if (error.name === 'ValidationError') {
+                // 💡 Extrai erros campo a campo
+                const errors = Object.keys(error.errors).reduce((acc, key) => {
+                    acc[key] = error.errors[key].message;
+                    return acc;
+                }, {});
+
+                return res.status(400).json({
+                    message: 'Falha na validação dos dados',
+                    errors
+                });
+            }
+
+            return res.status(500).json({ error: 'Erro interno' });
         } finally {
             await mongoSession.endSession();
         }
@@ -200,10 +213,20 @@ export const packageOperations = {
 
                 res.status(200).json(enhancedPackages);
             } catch (error) {
-                res.status(500).json({
-                    message: 'Erro ao listar pacotes',
-                    error: error.message
-                });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         },
         byId: async (req, res) => {
@@ -213,7 +236,20 @@ export const packageOperations = {
                 if (!pkg) return res.status(404).json({ error: 'Pacote não encontrado' });
                 res.json(pkg);
             } catch (error) {
-                res.status(500).json({ error: error.message });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         },
         search: async (req, res) => {
@@ -236,10 +272,20 @@ export const packageOperations = {
 
                 res.status(200).json(packages);
             } catch (error) {
-                res.status(500).json({
-                    message: 'Erro ao buscar pacotes',
-                    error: error.message
-                });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         },
     },
@@ -257,7 +303,20 @@ export const packageOperations = {
                 if (!updated) return res.status(404).json({ error: 'Pacote não encontrado' });
                 res.json(updated);
             } catch (error) {
-                res.status(400).json({ error: error.message });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         },
         session: async (req, res) => {
@@ -358,7 +417,20 @@ export const packageOperations = {
                 await Package.findByIdAndDelete(req.params.id);
                 res.status(204).send();
             } catch (error) {
-                res.status(500).json({ error: error.message });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         },
         session: async (req, res) => {
@@ -370,7 +442,20 @@ export const packageOperations = {
                 );
                 res.json(pkg);
             } catch (error) {
-                res.status(400).json({ error: error.message });
+                if (error.name === 'ValidationError') {
+                    // 💡 Extrai erros campo a campo
+                    const errors = Object.keys(error.errors).reduce((acc, key) => {
+                        acc[key] = error.errors[key].message;
+                        return acc;
+                    }, {});
+
+                    return res.status(400).json({
+                        message: 'Falha na validação dos dados',
+                        errors
+                    });
+                }
+
+                return res.status(500).json({ error: 'Erro interno' });
             }
         }
     },
@@ -385,7 +470,20 @@ export const packageOperations = {
             );
             res.json(pkg);
         } catch (error) {
-            res.status(400).json({ error: error.message });
+            if (error.name === 'ValidationError') {
+                // 💡 Extrai erros campo a campo
+                const errors = Object.keys(error.errors).reduce((acc, key) => {
+                    acc[key] = error.errors[key].message;
+                    return acc;
+                }, {});
+
+                return res.status(400).json({
+                    message: 'Falha na validação dos dados',
+                    errors
+                });
+            }
+
+            return res.status(500).json({ error: 'Erro interno' });
         }
     },
 
@@ -482,10 +580,20 @@ export const packageOperations = {
 
         } catch (error) {
             await mongoSession.abortTransaction();
-            res.status(400).json({
-                error: error.message,
-                details: process.env.NODE_ENV === 'development' ? error.stack : null
-            });
+            if (error.name === 'ValidationError') {
+                // 💡 Extrai erros campo a campo
+                const errors = Object.keys(error.errors).reduce((acc, key) => {
+                    acc[key] = error.errors[key].message;
+                    return acc;
+                }, {});
+
+                return res.status(400).json({
+                    message: 'Falha na validação dos dados',
+                    errors
+                });
+            }
+
+            return res.status(500).json({ error: 'Erro interno' });
         } finally {
             await mongoSession.endSession();
         }
@@ -548,7 +656,20 @@ export const packageOperations = {
             if (mongoSession.inTransaction()) {
                 await mongoSession.abortTransaction();
             }
-            res.status(400).json({ error: "Erro ao registrar pagamento", details: error.message });
+            if (error.name === 'ValidationError') {
+                // 💡 Extrai erros campo a campo
+                const errors = Object.keys(error.errors).reduce((acc, key) => {
+                    acc[key] = error.errors[key].message;
+                    return acc;
+                }, {});
+
+                return res.status(400).json({
+                    message: 'Falha na validação dos dados',
+                    errors
+                });
+            }
+
+            return res.status(500).json({ error: 'Erro interno' });
         } finally {
             await mongoSession.endSession();
         }
@@ -577,7 +698,20 @@ export const updateStatus = async (req, res) => {
             updatedAt: updated.updatedAt
         });
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 };
 
@@ -598,7 +732,20 @@ export const generateReport = async (req, res) => {
 
         res.json(reportData);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 };
 
@@ -610,6 +757,19 @@ export const getPackageById = async (req, res) => {
         if (!packages) return res.status(404).json({ error: 'Pacote não encontrado' });
         res.json(packages);
     } catch (error) {
-        res.status(500).json({ error: 'Erro no servidor' });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 }

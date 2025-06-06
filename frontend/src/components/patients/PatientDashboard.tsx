@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, LineChart, UserCircle, Users } from 'lucide-react';
+import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, LineChart, UserCircle, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
-import { IDoctors } from '../../utils/types';
+import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
+import { IDoctors, PatientData, ScheduleAppointment } from '../../utils/types';
 import AppointmentHistoryModal from '../AppointmentHistoryModal';
 import StatusBadge from '../StatusBadge';
 import { Button } from '../ui/Button';
@@ -12,11 +13,49 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card
 import Input from '../ui/Input';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
+import { PatientAvailablesCard } from './PatientAvailablesCard';
 import PatientEvolution from './PatientEvolution';
 import { PatientMiniCalendar } from './PatientMiniCalendar';
 import TherapyPackagesSummary from './TherapyPackagesSummary';
 
-
+const initialPatientState: PatientData = {
+  fullName: '',
+  dateOfBirth: '',
+  gender: '',
+  maritalStatus: '',
+  profession: '',
+  placeOfBirth: '',
+  address: {
+    street: '',
+    number: '',
+    district: '',
+    city: '',
+    state: '',
+    zipCode: ''
+  },
+  phone: '',
+  email: '',
+  cpf: '',
+  rg: '',
+  specialties: [],
+  mainComplaint: '',
+  clinicalHistory: '',
+  medications: '',
+  allergies: '',
+  familyHistory: '',
+  healthPlan: {
+    name: '',
+    policyNumber: ''
+  },
+  legalGuardian: '',
+  emergencyContact: {
+    name: '',
+    phone: '',
+    relationship: ''
+  },
+  appointments: [],
+  imageAuthorization: false
+};
 
 export default function PatientDashboard() {
   const { id: patientId } = useParams();
@@ -24,7 +63,7 @@ export default function PatientDashboard() {
   const [showPrescriptions, setShowPrescriptions] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [isEditing, setIsEditing] = useState(false);
-  const [patientInfo, setPatientInfo] = useState(null);
+  const [patientInfo, setPatientInfo] = useState<PatientData>(initialPatientState);
   const [editedInfo, setEditedInfo] = useState(null);
   const [doctors, setDoctors] = useState<IDoctors[]>([]);
   const [appointmentData, setAppointmentData] = useState({
@@ -34,14 +73,14 @@ export default function PatientDashboard() {
     reason: ''
   });
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [appointments, setAppointments] = useState([]);
+  const [appointments, setAppointments] = useState<ScheduleAppointment[]>([]);
   const [careTeam, setCareTeam] = useState([]);
   const [prescriptions, setPrescriptions] = useState([]);
   const [completedAppointments, setCompletedAppointments] = useState([]);
   const [evolutions, setEvolutions] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
   const [allAppointments, setAllAppointments] = useState([]);
-
+  const [evaluationToEdit, setEvaluationToEdit] = useState(null);
 
   const navigate = useNavigate();
 
@@ -77,7 +116,7 @@ export default function PatientDashboard() {
         navigate('/login');
         return;
       }
-      const response = await fetch(BASE_URL + '/doctor/all', {
+      const response = await fetch(BASE_URL + '/doctor', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -228,6 +267,54 @@ export default function PatientDashboard() {
     }
   }, [activeTab, patientInfo]);
 
+  const [evaluations, setEvaluations] = useState([]);
+
+  useEffect(() => {
+
+    fetchEvaluations();
+  }, [patientInfo]);
+
+  const handleEvaluationSubmit = async (data: any, id?: string) => {
+    try {
+      if (id) {
+        await updateEvaluation(id, data);
+        toast.success("Avaliação atualizada com sucesso!");
+      } else {
+        await createEvaluation({ ...data, patientId: patientInfo._id });
+        toast.success("Avaliação criada com sucesso!");
+      }
+
+      const updated = await getEvaluationsByPatient(patientInfo._id);
+      setEvaluations(updated);
+    } catch (error) {
+      toast.error("Erro ao salvar avaliação.");
+      console.error("Erro:", error);
+    }
+  };
+
+
+  const handleDelete = async (id: string) => {
+    if (confirm("Tem certeza que deseja excluir esta avaliação?")) {
+      try {
+        await deleteEvaluation(`${id}`);
+        toast.success("Avaliação excluída com sucesso!");
+        fetchEvaluations();
+      } catch (err) {
+        toast.error("Erro ao excluir avaliação.");
+      }
+    }
+  };
+
+  const fetchEvaluations = async () => {
+    try {
+      if (patientInfo?._id) {
+        const data = await getEvaluationsByPatient(patientInfo._id);
+        setEvaluations(data);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar avaliações:", error);
+    }
+  };
 
   useEffect(() => {
     fetchPatientProfile();
@@ -238,10 +325,52 @@ export default function PatientDashboard() {
     fetchCompletedAppointments();
   }, []);
 
+  /* const submitEvaluation = async (data: EvaluationData, id?: string) => {
+    try {
+      if (id) {
+        await axios.put(`/api/evolutions/${id}`, data);
+        toast.success('Avaliação atualizada!');
+      } else {
+        await axios.post('/api/evaluations/availables', {
+          ...data,
+          patientId,
+          type: 'avaliação',
+        });
+        toast.success('Avaliação criada!');
+      }
+      fetchEvaluations();
+    } catch (err) {
+      toast.error('Erro ao salvar avaliação.');
+    }
+  }; */
+
+
+  /* const handleEvaluationSubmit = async (formData: any) => {
+    const token = localStorage.getItem("token");
+
+    if (!patientInfo?._id || !token) {
+      toast.error("Paciente ou token não encontrado.");
+      return;
+    }
+
+    const result = await createEvaluation(
+      {
+        patientId: patientInfo._id,
+        doctorId: formData.doctorId,
+        sessionType: formData.sessionType,
+        paymentType: formData.paymentType,
+        date: formData.date,
+        time: formData.time,
+      },
+    );
+
+    if (result.success) {
+      toast.success("Avaliação criada com sucesso!");
+    }
+  }; */
   const renderDashboard = () => (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-
+      <div className="grid grid-cols-1 md:grid-cols-2 mb-5 gap-6">
         <Card>
           <CardHeader icon={Calendar}>
             <CardTitle className="text-sm font-medium">Agendamentos para hoje</CardTitle>
@@ -303,44 +432,7 @@ export default function PatientDashboard() {
             </div>
           )}
         </Card>
-        <PatientMiniCalendar appointments={appointments} />
 
-        <Card>
-          <CardHeader icon={FileText}>
-            <CardTitle className="text-sm font-medium">Prescrições</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{prescriptions.length}</div>
-            <p className="text-xs text-gray-500">Prescrições Ativa</p>
-          </CardContent>
-          <CardFooter className="p-2">
-            <Button
-              variant="ghost"
-              className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
-              onClick={() => setShowPrescriptions(!showPrescriptions)}
-            >
-              {showPrescriptions ? "Hide" : "Ver Todas"} Prescrições
-              <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showPrescriptions ? "rotate-180" : ""}`} />
-            </Button>
-          </CardFooter>
-          {showPrescriptions && (
-            <div className="px-4 pb-4">
-              {prescriptions.map((prescription, index) => (
-                <div key={index} className="py-2 border-t">
-                  <p className="text-sm font-medium">{prescription.medication}</p>
-                  <p className="text-xs text-gray-500">
-                    {prescription.dosage} - {prescription.frequency} - {" (Till - "}{new Date(prescription.tilldate).toLocaleDateString()}{") "}
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    Prescrito por: Dr. {prescription.doctorId?.fullName}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-        </Card>
-      </div>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Atividades Recentes</CardTitle>
@@ -372,6 +464,57 @@ export default function PatientDashboard() {
             </ul>
           </CardContent>
         </Card>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-1 mb-5 gap-6">
+        <PatientAvailablesCard
+          doctors={doctors}
+          evaluations={evaluations}
+          patientInfo={patientInfo}
+          evaluationToEdit={evaluationToEdit}
+          setEvaluationToEdit={setEvaluationToEdit}
+          onSubmit={handleEvaluationSubmit}
+          onDelete={handleDelete}
+
+        />
+      </div>
+      <PatientMiniCalendar appointments={appointments} />
+
+      <Card>
+        <CardHeader icon={FileText}>
+          <CardTitle className="text-sm font-medium">Prescrições</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold">{prescriptions.length}</div>
+          <p className="text-xs text-gray-500">Prescrições Ativa</p>
+        </CardContent>
+        <CardFooter className="p-2">
+          <Button
+            variant="ghost"
+            className="w-full text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            onClick={() => setShowPrescriptions(!showPrescriptions)}
+          >
+            {showPrescriptions ? "Hide" : "Ver Todas"} Prescrições
+            <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showPrescriptions ? "rotate-180" : ""}`} />
+          </Button>
+        </CardFooter>
+        {showPrescriptions && (
+          <div className="px-4 pb-4">
+            {prescriptions.map((prescription, index) => (
+              <div key={index} className="py-2 border-t">
+                <p className="text-sm font-medium">{prescription.medication}</p>
+                <p className="text-xs text-gray-500">
+                  {prescription.dosage} - {prescription.frequency} - {" (Till - "}{new Date(prescription.tilldate).toLocaleDateString()}{") "}
+                </p>
+                <p className="text-xs text-gray-500">
+                  Prescrito por: Dr. {prescription.doctorId?.fullName}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </Card>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle>Equipe de cuidado</CardTitle>
@@ -560,7 +703,7 @@ export default function PatientDashboard() {
         </ul>
       </nav>
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-white mb-8">Bem vindo(a), {patientInfo?.fullName}</h1>
+        <h1 className="text-4xl font-bold text-white mb-8">Paciente: {patientInfo?.fullName}</h1>
         {activeTab === 'Dashboard' && renderDashboard()}
         {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
         {activeTab === 'Management Packages' && renderManagePackages()}

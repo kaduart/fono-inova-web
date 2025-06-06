@@ -3,18 +3,20 @@ import { Activity, ChevronDown, Clock, Eye, EyeOff, FileText, Stethoscope, Users
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../constants/constants';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import PatientForm from '../shared/components/PatientForm';
+import { IDoctor, PatientData } from '../utils/types';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentPage } from './financial/PaymentPage';
 import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
+import { PatientAvailablesCard } from './patients/PatientAvailablesCard';
 import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
-import { BASE_URL } from '../constants/constants';
 
 const defaultAppointmentData = {
   patientId: '',
@@ -26,53 +28,6 @@ const defaultAppointmentData = {
   status: 'agendado'
 };
 
-export interface PatientData {
-  _id?: string;
-  fullName: string;
-  dateOfBirth: string;
-  gender: string;
-  maritalStatus: string;
-  profession: string;
-  placeOfBirth: string;
-  address: {
-    street: string;
-    number: string;
-    district: string;
-    city: string;
-    state: string;
-    zipCode: string;
-  };
-  phone: string;
-  email: string;
-  cpf: string;
-  rg: string;
-  specialties: string[];
-  mainComplaint: string;
-  clinicalHistory: string;
-  medications: string;
-  allergies: string;
-  familyHistory: string;
-  healthPlan: {
-    name: string;
-    policyNumber: string;
-  };
-  legalGuardian: string;
-  emergencyContact: {
-    name: string;
-    phone: string;
-    relationship: string;
-  };
-  appointments: {
-    professional: string;
-    date: string;
-    time: string;
-    sessionType: string;
-    status: string;
-    reason: string;
-  }[];
-  imageAuthorization: boolean;
-}
-
 
 const especialidadesDisponiveis = [
   { id: 'fonoaudiologia', label: 'Fonoaudiologia' },
@@ -81,46 +36,46 @@ const especialidadesDisponiveis = [
   { id: 'fisioterapia', label: 'Fisioterapia' },
 ];
 
+const initialPatientState: PatientData = {
+  fullName: '',
+  dateOfBirth: '',
+  gender: '',
+  maritalStatus: '',
+  profession: '',
+  placeOfBirth: '',
+  address: {
+    street: '',
+    number: '',
+    district: '',
+    city: '',
+    state: '',
+    zipCode: ''
+  },
+  phone: '',
+  email: '',
+  cpf: '',
+  rg: '',
+  specialties: [],
+  mainComplaint: '',
+  clinicalHistory: '',
+  medications: '',
+  allergies: '',
+  familyHistory: '',
+  healthPlan: {
+    name: '',
+    policyNumber: ''
+  },
+  legalGuardian: '',
+  emergencyContact: {
+    name: '',
+    phone: '',
+    relationship: ''
+  },
+  appointments: [],
+  imageAuthorization: false
+};
 export default function AdminDashboard() {
 
-  const initialPatientState: PatientData = {
-    fullName: '',
-    dateOfBirth: '',
-    gender: '',
-    maritalStatus: '',
-    profession: '',
-    placeOfBirth: '',
-    address: {
-      street: '',
-      number: '',
-      district: '',
-      city: '',
-      state: '',
-      zipCode: ''
-    },
-    phone: '',
-    email: '',
-    cpf: '',
-    rg: '',
-    specialties: [],
-    mainComplaint: '',
-    clinicalHistory: '',
-    medications: '',
-    allergies: '',
-    familyHistory: '',
-    healthPlan: {
-      name: '',
-      policyNumber: ''
-    },
-    legalGuardian: '',
-    emergencyContact: {
-      name: '',
-      phone: '',
-      relationship: ''
-    },
-    appointments: [],
-    imageAuthorization: false
-  };
 
   const [showDoctors, setShowDoctors] = useState(false);
   const [showPatients, setShowPatients] = useState(false);
@@ -156,11 +111,6 @@ export default function AdminDashboard() {
   const [appointments, setAppointments] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
-  /*
-   const [showAppointments, setShowAppointments] = useState(false);
-   const [showPassword, setShowPassword] = useState(false); 
-   const [selectedSpecialties, setSelectedSpecialties] = useState([]);
-  */
   const [appointmentData, setAppointmentData] = useState({
     patientId: '',
     doctorId: '',
@@ -181,7 +131,7 @@ export default function AdminDashboard() {
   });
 
   const [agendamentosTemp, setAgendamentosTemp] = useState([]);
-  const [doctors, setDoctors] = useState([]);
+  const [doctors, setDoctors] = useState<IDoctor[]>([]);
   const [adminData, setAdminData] = useState({
     fullName: '',
     email: '',
@@ -301,98 +251,6 @@ export default function AdminDashboard() {
       console.error('Error fetching doctors:', error);
     }
   };
-
-  /*const editarAgendamento = (index: number) => {
-    const agendamento = agendamentosTemp[index];
-    setAgendamentoTemp({
-      profissional: agendamento.profissional,
-      data: agendamento.dataHora.split(" ")[0],
-      hora: agendamento.dataHora.split(" ")[1],
-      sessionType: agendamento.sessionType,
-      status: agendamento.status,
-      motivo: agendamento.anotacoes,
-    });
-    setIndexSelecionado(index);
-    setModalEditarAberto(true);
-  };
-
-  const confirmarRemocaoAgendamento = (index: number) => {
-    setIndexSelecionado(index);
-    setModalExcluirAberto(true);
-  };
-
-  const removerAgendamento = () => {
-    if (indexSelecionado !== null) {
-      setAgendamentosTemp(prev => prev.filter((_, idx) => idx !== indexSelecionado));
-      setIndexSelecionado(null);
-      setModalExcluirAberto(false);
-    }
-  };
-
-  const salvarEdicaoAgendamento = () => {
-    if (indexSelecionado !== null) {
-      const atualizado = {
-        profissional: agendamentoTemp.profissional,
-        dataHora: `${agendamentoTemp.data} ${agendamentoTemp.hora}`,
-        sessionType: agendamentoTemp.sessionType,
-        status: agendamentoTemp.status,
-        anotacoes: agendamentoTemp.motivo,
-      };
-
-      setAgendamentosTemp(prev => {
-        const copia = [...prev];
-        copia[indexSelecionado] = atualizado;
-        return copia;
-      });
-
-      setModalEditarAberto(false);
-      setIndexSelecionado(null);
-      setAgendamentoTemp({
-        profissional: '',
-        data: '',
-        hora: '',
-        sessionType: '',
-        status: 'agendado',
-        motivo: '',
-      });
-    }
-  };
-
-     const handleSelectPatient = async (e) => {
-      const selected = patients.find((p) => p._id === e.target.value);
-      setSelectedPatient(selected);
-  
-      setValue('patientId', selected?._id); // Seta no form
-      setValue('dateOfBirth', selected?.dateOfBirth?.split('T')[0]);
-  
-      if (selected?._id) {
-        await fetchAppointments(selected._id); // Busca agendamentos do paciente
-      }
-    }; */
-
-  /* const handleInputAgendamento = (e) => {
-    const { name, value } = e.target;
-    setAgendamentoTemp(prev => ({ ...prev, [name]: value }));
-  };
- */
-  /*   const handleSelectDoctor = (event) => {
-      setAgendamentoTemp((prev) => ({
-        ...prev,
-        profissional: event.target.value,  // Aqui você vai atualizar o estado com o ID do profissional
-      }));
-    }; */
-
-  /* const adicionarAgendamento = (formData) => {
-    const novoAgendamento = {
-      profissional: formData.profissional,
-      dataHora: `${formData.data} ${formData.hora}`,
-      sessionType: formData.sessionType,
-      status: formData.status,
-      reason: formData.motivo,
-    };
-
-    setAgendamentosTemp(prev => [...prev, novoAgendamento]);
-  }; */
 
 
   const navigate = useNavigate();
@@ -610,7 +468,6 @@ export default function AdminDashboard() {
     const occupancyRate = ((totalPatients / hospitalCapacity) * 100).toFixed(2);
     return (
       <>
-
         <PatientTable patients={patients}></PatientTable>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -750,7 +607,7 @@ export default function AdminDashboard() {
               <ul className="space-y-2">
                 {upcomingAppointments.slice(0, 3)?.map((appointment, index) => (
                   <li key={appointment._id || index} className="flex items-center space-x-2">
-                    <EnhancedCalendar className="h-4 w-4 text-blue-600" />
+                    <EnhancedCalendar doctors={doctors} className="h-4 w-4 text-blue-600" />
                     <span>
                       <strong>
                         {appointment.doctorId?.fullName}
@@ -1178,7 +1035,7 @@ export default function AdminDashboard() {
 
   const renderCalendarGeneral = () => {
     return (
-      <EnhancedCalendar />
+      <EnhancedCalendar doctors={doctors} />
     );
   };
 
@@ -1196,6 +1053,24 @@ export default function AdminDashboard() {
       <PaymentPage />
     </div>
   );
+
+  const handleAvailableSubmit = async (data: AvailableData) => {
+    try {
+      const response = await fetch("/api/evaluations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) throw new Error("Erro ao salvar avaliação");
+  
+      // Opcional: feedback, recarregar dados, etc
+      toast.success("Avaliação salva com sucesso!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao salvar avaliação.");
+    }
+  };
 
   const renderAddAdmin = () => {
     const handleInputChange = (e) => {
@@ -1382,7 +1257,10 @@ export default function AdminDashboard() {
 
       {/* Conteúdo */}
       <main className="px-6 py-8">
-        <h1 className="text-4xl font-bold mb-6">Bem vindo(a), {adminInfo?.fullName || 'Admin'}</h1>
+        <h1 className="text-4xl font-bold mb-6">
+          {/*  <UserPen /> */}
+          {adminInfo?.fullName || 'Admin'}
+        </h1>
         {activeTab === 'Dashboard' && renderDashboard()}
         {activeTab === 'Profile' && renderProfile()}
         {activeTab === 'Add Profissional' && renderAddDoctor()}
