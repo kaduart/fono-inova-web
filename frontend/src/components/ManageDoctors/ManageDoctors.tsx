@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from 'react-hot-toast';
 import { IDoctor, PatientData, ScheduleAppointment } from "../../utils/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
@@ -61,7 +61,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         status: 'agendado',
     });
 
- 
+
     const handleViewAgenda = (doctor: IDoctor) => {
         console.log('doutor selecionado', doctor)
 
@@ -143,10 +143,21 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(payload),
-                
+
             });
 
-            if (!response.ok) throw new Error('Erro ao agendar sessão');
+            const result = await response.json();
+
+            if (!response.ok) {
+                if (result?.errors?.date) {
+                    toast.error(`Erro: ${result.errors.date}`);
+                } else if (result?.message) {
+                    toast.error(result.message);
+                } else {
+                    toast.error('Erro ao agendar.');
+                }
+                return;
+            }
 
             toast.success('Sessão agendada com sucesso!');
 
@@ -154,8 +165,8 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
             setIsModalOpen(false);
 
         } catch (err: any) {
-            console.error(err);
-            toast.error(err.message || 'Erro inesperado ao agendar.');
+            console.log(err);
+            toast.error('Erro inesperado ao agendar.');
         }
     };
 

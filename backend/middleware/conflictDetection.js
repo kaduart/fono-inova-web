@@ -1,3 +1,4 @@
+import { SESSION_DURATION_MS } from '../config/constants.js';
 import Appointment from '../models/Appointment.js';
 
 export const checkAppointmentConflicts = async (req, res, next) => {
@@ -16,7 +17,7 @@ export const checkAppointmentConflicts = async (req, res, next) => {
             return res.status(400).json({ error: "Data inválida" });
         }
 
-        const SESSION_DURATION = 60 * 60 * 1000; // 1h (ajuste se for 40 min)
+        const SESSION_DURATION = SESSION_DURATION_MS;
 
         const endTime = new Date(startTime.getTime() + SESSION_DURATION);
         console.log('01', endTime);
@@ -87,45 +88,46 @@ export const getAvailableTimeSlots = async (req, res) => {
 
         const SESSION_DURATION_MINUTES = 40;
 
-        // Timezone fixo UTC-3
-        const toUtcDate = (timeStr) => {
-            return new Date(`${date}T${timeStr}:00-03:00`);
+        // Cria um Date fixo em UTC-3 (sem erro de fuso)
+        const toUtc3 = (h, m) => {
+            const [year, month, day] = date.split('-').map(Number);
+            return new Date(Date.UTC(year, month - 1, day, h + 3, m)); // UTC+3 === UTC-3 local
         };
 
-        const startOfDay = toUtcDate('00:00');
-        const endOfDay = toUtcDate('23:59');
+        const start = toUtc3(8, 0); // 08:00
+        const end = toUtc3(18, 0);  // 18:00 fim do expediente
 
         const existingAppointments = await Appointment.find({
             doctorId,
-            date: { $gte: startOfDay, $lte: endOfDay }
+            date: { $gte: start, $lte: end }
         });
 
-        // Gera os slots entre 08:00 e 17:20 (último início possível)
         const slots = [];
-        let current = toUtcDate('08:00');
-        const end = toUtcDate('17:20');
+        let current = new Date(start);
 
-        while (current <= end) {
+        while ((current.getTime() + SESSION_DURATION_MINUTES * 60000) <= end.getTime()) {
             slots.push(new Date(current));
-            current = new Date(current.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
+            current = new Date(current.getTime() + SESSION_DURATION_MINUTES * 60000);
         }
 
-        // Remove os que colidem com agendamentos
         const availableSlots = slots.filter(slot => {
-            const slotEnd = new Date(slot.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
+            const slotStartTime = slot.getTime();
+            const slotEndTime = slotStartTime + SESSION_DURATION_MINUTES * 60000;
+
             return !existingAppointments.some(app => {
-                const appStart = new Date(app.date);
-                const appEnd = new Date(appStart.getTime() + SESSION_DURATION_MINUTES * 60 * 1000);
-                return slot < appEnd && slotEnd > appStart;
+                const appStartTime = new Date(app.date).getTime();
+                const appEndTime = appStartTime + SESSION_DURATION_MINUTES * 60000;
+
+                return slotStartTime < appEndTime && slotEndTime > appStartTime;
             });
         });
 
-        // Formata para HH:mm em UTC-3
+        // Formata no fuso UTC-3 manualmente
         const formatted = availableSlots.map(slot => {
-            const local = new Date(slot);
-            const h = String(local.getHours()).padStart(2, '0');
-            const m = String(local.getMinutes()).padStart(2, '0');
-            return `${h}:${m}`;
+            const hours = slot.getUTCHours() - 3;
+            const localHours = (hours + 24) % 24;
+            const minutes = slot.getUTCMinutes();
+            return `${String(localHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
         });
 
         return res.json(formatted);
@@ -134,6 +136,7 @@ export const getAvailableTimeSlots = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+
 
 
 

@@ -1,6 +1,9 @@
 import { TextField } from '@mui/material';
 import React, { useCallback, useEffect, useState } from 'react';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
+import Input from './ui/Input';
+import { Label } from './ui/Label';
+import { Select } from './ui/Select';
 
 type ScheduleModalProps = {
     initialData: Appointment | typeof DEFAULT_APPOINTMENT;
@@ -104,7 +107,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     };
 
     if (!open) return null;
-
+    console.log('dddddddd', doctors)
     const patientOptions = patients.map((patient) => ({ value: patient._id, label: patient.fullName }));
     const doctorOptions = doctors.map((doctor) => ({ value: doctor._id, label: doctor.fullName }));
     const statusOptions = [
@@ -116,30 +119,42 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     return (
         <div className="fixed inset-0 bg-black/50 z-[999]">
             <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-lg shadow-xl min-w-[400px] z-[1000]">
-                <h2 className="text-2xl font-bold mb-4">{mode === 'edit' ? 'Editar Agendamento' : 'Novo Agendamento'}</h2>
+                <h2 className="text-2xl text-grey-500 font-bold mb-4">{mode === 'edit' ? 'Editar Agendamento' : 'Novo Agendamento'}</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <fieldset className="border p-4 rounded-md">
                         <legend className="px-2 font-medium text-gray-700">Dados Pessoais</legend>
 
-                        <div className="grid grid-cols-12 gap-4">
-                            <SelectField class="text-gray-900"
-                                label="Selecione o paciente:"
+                        <div className="grid grid-cols-2 gap-4">
+                            <Label>Selecione o paciente</Label>
+                            <Select
                                 name="patientId"
                                 value={formState.patientId}
                                 onChange={handleChange}
-                                options={patientOptions}
-                            />
-                            <SelectField
-                                label="Médico:"
+                            > <option value="">Selecione paciente</option>
+                                {patientOptions?.map(pr => (
+                                    <option key={pr._id} value={pr._id}>
+                                        {pr.fullName}
+                                    </option>
+                                ))}
+                            </Select>
+
+                            <Label>Médico</Label>
+                            <Select
                                 name="doctorId"
                                 value={formState.doctorId}
                                 onChange={handleChange}
-                                options={doctorOptions}
-                            />
+                            >
+                                <option value="">Selecione um doutor</option>
+                                {doctorOptions?.map(pr => (
+                                    <option key={pr._id} value={pr._id}>
+                                        {pr.fullName}
+                                    </option>
+                                ))}
+                            </Select>
                         </div>
 
                         <div className="grid grid-cols-12 gap-4">
-                            <InputField
+                            <Input
                                 className="text-gray-900"
                                 label="Data:"
                                 name="date"
@@ -147,7 +162,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
                                 onChange={handleChange}
                                 type="date"
                             />
-                            <InputField
+                            <Input
                                 label="Hora:"
                                 name="time"
                                 value={formState.time}
@@ -156,13 +171,19 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
                             />
                         </div>
 
-                        <SelectField
-                            label="Status:"
+                        <Label>Status</Label>
+                        <Select
                             name="status"
                             value={formState.status}
                             onChange={handleChange}
-                            options={statusOptions}
-                        />
+                        >
+                            <option value="">Selecione um status</option>
+                            {statusOptions?.map(pr => (
+                                <option key={pr._id} value={pr._id}>
+                                    {pr.fullName}
+                                </option>
+                            ))}
+                        </Select>
 
                         <TextField
                             label="Motivo:"

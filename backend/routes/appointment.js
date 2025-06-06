@@ -31,9 +31,19 @@ router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
         res.status(201).json(appointment);
     } catch (error) {
         if (error.name === 'ValidationError') {
-            return res.status(400).json({ error: error.message });
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
         }
-        res.status(500).json({ error: 'Erro interno' });
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 });
 
@@ -98,7 +108,20 @@ router.get('/', auth, async (req, res) => {
 
         res.json(calendarEvents);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 });
 
@@ -108,7 +131,20 @@ router.delete('/:id', validateId, auth, async (req, res) => {
         await Appointment.findByIdAndDelete(req.params.id);
         res.json({ message: 'Agendamento deletado com sucesso' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 });
 
@@ -119,7 +155,20 @@ router.get('/history/:patientId', async (req, res) => {
         const history = await Appointment.find({ patientId }).sort({ date: -1 });
         res.json(history);
     } catch (err) {
-        res.status(500).json({ message: 'Erro ao buscar histórico' });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 });
 
@@ -132,7 +181,20 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
             .populate('patientId');
         res.json(appointments);
     } catch (err) {
-        res.status(500).json({ message: 'Erro ao buscar agendamentos' });
+        if (error.name === 'ValidationError') {
+            // 💡 Extrai erros campo a campo
+            const errors = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {});
+
+            return res.status(400).json({
+                message: 'Falha na validação dos dados',
+                errors
+            });
+        }
+
+        return res.status(500).json({ error: 'Erro interno' });
     }
 });
 
