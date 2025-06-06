@@ -230,6 +230,7 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
                 <Input
                   id="patientName"
                   name="patientName"
+                  lang="pt-BR"
                   value={patientInfo?.fullName || ''}
                   readOnly
                 />
@@ -240,7 +241,7 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
                   type="date"
                   id="date"
                   name="date"
-                  value={evaluationData.date?.slice(0, 10)}
+                  value={evaluationData.date}
                   onChange={handleChange}
                 />
               </div>
