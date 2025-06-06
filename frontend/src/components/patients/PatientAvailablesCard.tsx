@@ -110,7 +110,7 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
                     <tr key={evalItem._id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-4 py-3">{evalItem.doctorId.fullName}</td>
                       <td className="px-4 py-3 capitalize">{evalItem.doctorId.specialty}</td>
-                      <td className="px-4 py-3">{new Date(evalItem.date).toLocaleDateString("pt-BR")}</td>
+                      <td className="px-4 py-3">{evalItem.date.slice(0, 10).split("-").reverse().join("/")}</td>
                       <td className="px-4 py-3">{evalItem.time}</td>
                       <td className="px-4 py-3 capitalize">  {new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
