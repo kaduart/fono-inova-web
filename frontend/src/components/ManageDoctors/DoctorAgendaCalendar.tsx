@@ -1,6 +1,7 @@
 'use client';
 
-import { addDays, format, startOfWeek } from 'date-fns';
+import { addDays, format, formatISO, startOfWeek } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { PatientData } from '../../utils/types';
@@ -70,6 +71,10 @@ const DoctorAgendaCalendar = ({
   }, [daySlots, selectedDate]);
 
 
+  const now = new Date();
+  now.setHours(12, 0, 0, 0); // corrige problemas de timezone
+  const weekStartOn = startOfWeek(now, { weekStartsOn: 1 });
+
   return (
     <div className="mt-4">
       <div className="flex justify-between items-center mb-2">
@@ -84,22 +89,25 @@ const DoctorAgendaCalendar = ({
         </Button>
       </div>
 
-      <div className="grid grid-cols-5 gap-6 justify-center">
-        {weekdays.slice(0, 5).map((dayLabel, index) => {
-          const date = addDays(weekStart, index);
-          const formattedDate = format(date, 'yyyy-MM-dd');
-          const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];
 
+      <div className="grid grid-cols-5 gap-6 justify-center">
+        {[0, 1, 2, 3, 4].map((index) => {
+          console.log('Agora é:', new Date().toString());
+          const date = addDays(weekStartOn, index);
+          const formattedDate = formatISO(date, { representation: 'date' });
+          const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];
+          const dayLabel = format(date, 'EEE', { locale: ptBR }); // ex: 'Qui'
           return (
             <div key={index} className="flex justify-center">
-              <div key={index} className="col-span-1 flex justify-center">
+              <div className="col-span-1 flex justify-center">
                 <div
                   onClick={() => handleDayClick(date)}
                   className={`rounded-xl p-4 w-28 h-28 flex flex-col items-center justify-center cursor-pointer border shadow-md transition-all duration-200
-      ${isSelected(date) ? 'bg-blue-50 border-blue-600' : 'bg-white hover:bg-gray-50'}`}
+                ${isSelected(date) ? 'bg-blue-50 border-blue-600' : 'bg-white hover:bg-gray-50'}`}
                 >
                   <div className="text-center">
                     <p className="text-sm font-bold text-gray-800">{dayLabel}</p>
+                    <p>skk</p>
                     <p className="text-xs text-gray-500">{format(date, 'dd/MM')}</p>
                   </div>
 
@@ -114,7 +122,6 @@ const DoctorAgendaCalendar = ({
                   </div>
                 </div>
               </div>
-
             </div>
           );
         })}
