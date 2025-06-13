@@ -34,7 +34,7 @@ const DoctorAgendaCalendar = ({
   onDateChange,
   onSubmitSlotBooking,
 }: DoctorAgendaCalendarProps) => {
-  const [weekStart, setWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 0 }));
+  const [weekStart, setWeekStart] = useState(startOfWeek(new Date(), { weekStartsOn: 1 }));
   const [expandedDate, setExpandedDate] = useState<string | null>(null);
   const [selectedTimes, setSelectedTimes] = useState<{ [key: string]: string[] }>({});
 
@@ -93,7 +93,7 @@ const DoctorAgendaCalendar = ({
       <div className="grid grid-cols-5 gap-6 justify-center">
         {[0, 1, 2, 3, 4].map((index) => {
           console.log('Agora é:', new Date().toString());
-          const date = addDays(weekStartOn, index);
+          const date = addDays(weekStart, index);
           const formattedDate = formatISO(date, { representation: 'date' });
           const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];
           const dayLabel = format(date, 'EEE', { locale: ptBR }); // ex: 'Qui'
