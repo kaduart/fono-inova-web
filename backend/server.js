@@ -20,6 +20,7 @@ import PackageRoutes from './routes/Package.js';
 import patientRoutes from './routes/patient.js';
 import PaymentRoutes from './routes/Payment.js';
 import signupRoutes from './routes/signup.js';
+import WppRoutes from './routes/wpp.js';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -54,6 +55,7 @@ app.use('/api/evolutions', evolutionRoutes);
 app.use('/api/leads', leadsRouter);
 app.use('/api/packages', PackageRoutes);
 app.use('/api/payments', PaymentRoutes);
+app.use('/api/wpp', WppRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

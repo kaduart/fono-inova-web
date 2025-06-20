@@ -16,3 +16,10 @@ export const formatValidDate = (date: Date) => ({
     minute: '2-digit'
   })
 });
+
+    // Função para formatar as datas no formato brasileiro (DD/MM/YYYY)
+export const formatDateBrazilian = (date) => {
+  if (!date) return '-';
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return new Date(date).toLocaleDateString('pt-BR', options);
+};

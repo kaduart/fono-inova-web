@@ -1,17 +1,27 @@
-import { Eye, FileHeart } from "lucide-react";
+import { ChevronDown, ChevronUp, Edit, Eye, FileHeart, Phone, X } from "lucide-react";
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { formatDateBrazilian } from "../../utils/dateFormat";
 import { PatientData } from "../../utils/types";
+import { WhatsAppActionButtons } from "../mkt/whatsapp/buttons/WhatsAppActionButtons";
+import { PatientModal } from "./PatientModal";
 
 interface PatientTableProps {
     patients: PatientData[];
+    onPatientUpdated?: () => void;
+    onSuccessAction?: () => void;
+    onSavePatient?: (data: PatientData) => Promise<void>;
+    setPatientToEdit: (patient: PatientData | null) => void;
 }
 
-const PatientTable = ({ patients }: PatientTableProps) => {
+const PatientTable = ({ patients, onSuccessAction, onSavePatient, onPatientUpdated }: PatientTableProps) => {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
-    const navigate = useNavigate();
+    const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [patientToEdit, setPatientToEdit] = useState<PatientData | undefined>(undefined);
 
     const filteredPatients = patients.filter((patient) => {
         const term = searchTerm.toLowerCase();
@@ -40,11 +50,21 @@ const PatientTable = ({ patients }: PatientTableProps) => {
         setCurrentPage(1); // reset to first page
     };
 
-    // Função para formatar as datas no formato brasileiro (DD/MM/YYYY)
-    const formatDateBrazilian = (date) => {
-        if (!date) return '-';
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        return new Date(date).toLocaleDateString('pt-BR', options);
+
+    console.log(`patietsssss `, patients)
+
+    const toggleRow = (patientId: string) => {
+        setExpandedRows(prev => ({
+            ...prev,
+            [patientId]: !prev[patientId]
+        }));
+    };
+
+    const handleSuccess = () => {
+        setIsModalOpen(false);
+        setPatientToEdit(undefined);
+        onPatientUpdated?.();
+        onSuccessAction?.();
     };
 
     return (
@@ -64,45 +84,123 @@ const PatientTable = ({ patients }: PatientTableProps) => {
                             <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Paciente</th>
                             <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Última Consulta</th>
                             <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Próxima Consulta</th>
+                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Pacote</th>
                             <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
+                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase"></th>
                         </tr>
                     </thead>
 
                     <tbody className="bg-white divide-y divide-gray-200">
                         {paginatedPatients.map((patient) => (
-                            <tr key={patient._id}>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500 font-medium">{patient.fullName || '-'}</div>
-                                    <div className="text-sm text-gray-500">{patient.phone || '-'}</div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500 font-medium">
-                                        {formatDateBrazilian(patient.lastAppointment?.date)}
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                        {patient.lastAppointment?.doctorId?.fullName ? patient.lastAppointment.doctorId.fullName : '-'}
-                                    </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500 font-medium">
-                                        {formatDateBrazilian(patient.nextAppointment?.date)}
-                                    </div>
-                                    <div className="text-sm text-gray-500">
-                                        {patient.nextAppointment?.doctorId?.fullName ? patient?.nextAppointment?.doctorId?.fullName : '-'}
-                                    </div>
-                                </td>
+                            <>
+                                <tr
+                                    key={patient._id}
+                                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                                    onClick={() => toggleRow(patient._id)}
+                                >
+                                    {/* Coluna Paciente */}
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="font-semibold text-gray-700 flex items-center gap-2">
+                                            <span className="text-sm">{patient.fullName || '-'}</span>
+                                        </div>
+                                        <div className="text-sm text-gray-500 flex items-center gap-1">
+                                            <Phone className="w-4 h-4 text-gray-400" />
+                                            {patient.phone || '-'}
+                                        </div>
+                                    </td>
 
-                                <td className="px-6 py-4 whitespace-nowrap bg-gray-50 text-left text-xs font-medium text-gray-500">
-                                    <div className="flex items-center space-x-2">
-                                        <Link to={`/patient-dashboard/${patient._id}`} title="Ver Detalhes">
-                                            <Eye className="text-blue-600 hover:text-blue-800 cursor-pointer text-xl mx-2" />
-                                        </Link>
-                                        <Link to={`/evolutions/${patient._id}`} title="Ver Evoluções">
-                                            <FileHeart className="text-green-600 hover:text-green-800 cursor-pointer text-xl mx-2" />
-                                        </Link>
-                                    </div>
-                                </td>
-                            </tr>
+                                    {/* Coluna Última Consulta */}
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        {patient.lastAppointment?.date ? (
+                                            <>
+                                                <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">
+                                                    {formatDateBrazilian(patient.lastAppointment.date)}
+                                                </span>
+                                                <div className="text-xs text-gray-500">
+                                                    {patient.lastAppointment?.doctorId?.fullName || '-'}
+                                                </div>
+                                            </>
+                                        ) : '-'}
+                                    </td>
+
+                                    {/* Coluna Próxima Consulta */}
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        {patient.nextAppointment?.date ? (
+                                            <>
+                                                <span className="inline-block bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs">
+                                                    {formatDateBrazilian(patient.nextAppointment.date)}
+                                                </span>
+                                                <div className="text-xs text-gray-500">
+                                                    {patient.nextAppointment?.doctorId?.fullName || '-'}
+                                                </div>
+                                            </>
+                                        ) : '-'}
+                                    </td>
+
+                                    {/* Coluna Pacote */}
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs">
+                                            {patient.packageInfo ? `${patient.packageInfo.remaining}/${patient.packageInfo.total} sessões` : 'Pacote não informado'}
+                                        </span>
+                                    </td>
+
+                                    {/* Coluna Ações */}
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        <div className="flex gap-3">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setPatientToEdit(patient);
+                                                    setIsModalOpen(true);
+                                                }}
+                                                title="Editar"
+                                                className="text-blue-600 hover:text-blue-800"
+                                            >
+                                                <Edit className="w-5 h-5" />
+                                            </button>
+                                            <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
+                                                <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
+                                            </Link>
+                                            <Link to={`/evolutions/${patient._id}`} title="Ver evoluções">
+                                                <FileHeart className="w-5 h-5 text-green-600 hover:text-green-800" />
+                                            </Link>
+                                        </div>
+                                    </td>
+
+                                    {/* Coluna Expandir */}
+                                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                                        {expandedRows[patient._id] ? (
+                                            <ChevronUp className="w-5 h-5 text-gray-500" />
+                                        ) : (
+                                            <ChevronDown className="w-5 h-5 text-gray-500" />
+                                        )}
+                                    </td>
+                                </tr>
+
+                                {/* Linha expandida com mensagens */}
+                                {expandedRows[patient._id] && (
+                                    <tr className="bg-gray-50">
+                                        <td colSpan={6} className="px-6 py-4">
+                                            <div className="flex flex-col space-y-2">
+                                                <h4 className="text-sm font-medium text-gray-500 mb-2">Enviar mensagem:</h4>
+                                                {patient.phone && (
+                                                    <WhatsAppActionButtons
+                                                        phone={patient.phone.startsWith('+')
+                                                            ? patient.phone.slice(1)
+                                                            : patient.phone}
+                                                        nome={patient.fullName}
+                                                        profissional={patient?.nextAppointment?.doctorId?.fullName}
+                                                        data={new Date(patient.nextAppointment?.date)}
+                                                        hora={new Date(patient.nextAppointment?.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                                                        servico={patient?.lastAppointment?.doctorId?.specialty}
+                                                        restantes="2"
+                                                    />
+                                                )}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )}
+                            </>
                         ))}
 
                         {/* Paginação como linha extra */}
@@ -160,6 +258,41 @@ const PatientTable = ({ patients }: PatientTableProps) => {
                     </tbody>
                 </table>
             </div>
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <div className="flex justify-between items-center border-b p-4">
+                            <h3 className="text-lg font-semibold">
+                                {patientToEdit ? 'Editar Paciente' : 'Adicionar Paciente'}
+                            </h3>
+                            <button
+                                onClick={() => {
+                                    setIsModalOpen(false);
+                                    setPatientToEdit(undefined);
+                                }}
+                                className="text-gray-500 hover:text-gray-700"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        <div className="p-6">
+                            <PatientModal
+                                open={isModalOpen}
+                                patient={patientToEdit}
+                                onSaveSuccess={async (data) => {
+                                    await onSavePatient?.(data);
+                                    handleSuccess(); // já fecha modal + atualiza
+                                }}
+                                onClose={() => {
+                                    setIsModalOpen(false);
+                                    setPatientToEdit(undefined);
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

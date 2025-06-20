@@ -1,5 +1,6 @@
 import { Calendar, ChartBar, Clipboard, Clock, Cog, DollarSign, Globe, HeartPulse, Hospital, Shield, User, Users } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Header } from './Header';
 
 const Button = ({ children, primary, onClick, ...props }) => (
   <button
@@ -40,6 +41,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Header />
 
       <main className="flex-1">
         <Section bg="bg-blue-600" height="min-h-[30rem]">

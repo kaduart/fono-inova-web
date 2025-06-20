@@ -50,10 +50,14 @@ export function TimeMultiSelect({
           return (
             <button
               key={time}
-              className="bg-blue-500 hover:bg-blue-200 rounded px-3 py-2"
+              className="bg-green-500 hover:bg-green-200 rounded text-white px-3 py-2"
               onClick={() => handleSelectAvailableTime(time)}
             >
-              <span>{time}</span>
+              <span>
+                <b>
+                  {time}
+                </b>
+              </span>
               {isSelected && <Check size={16} className="ml-2" />}
             </button>
           );

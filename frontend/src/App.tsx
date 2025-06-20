@@ -8,9 +8,9 @@ import AppointmentCalendar from './components/AppointmentCalendar';
 import AppointmentScheduler from './components/AppointmentScheduler';
 import { default as Doctor, default as DoctorDashboard } from './components/Doctors';
 import { PaymentPage } from './components/financial/PaymentPage';
-import { Header } from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
+import AppChat from './components/mkt/whatsapp/AppChat';
 import { default as Patient, default as PatientDashboard } from './components/patients/PatientDashboard';
 import PatientEvolution from './components/patients/PatientEvolution';
 import PatientSelection from './components/patients/PatientSelection';
@@ -24,7 +24,7 @@ const App: React.FC = () => {
   return (
     <Router>
 
-      <Header />
+      {/*  <Header /> */}
 
       <div className="App">
         <Routes>
@@ -54,6 +54,7 @@ const App: React.FC = () => {
           <Route path="/appointment" element={<AppointmentScheduler />} />
           <Route path="/select-patient" element={<PatientSelection />} />
           <Route path="/financeiro" element={<PaymentPage />} />
+          <Route path="/whatsapp" element={<AppChat />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster position="top-center" />

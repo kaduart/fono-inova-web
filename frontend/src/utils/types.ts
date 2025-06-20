@@ -213,6 +213,8 @@ export interface PatientData {
     medications: string;
     allergies: string;
     familyHistory: string;
+    nextAppointment: string;
+    lastAppointment: string;
     healthPlan: {
         name: string;
         policyNumber: string;

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const patientSchema = new mongoose.Schema({
     fullName: { type: String, required: true, trim: true },
     dateOfBirth: { type: Date, required: true },
-    gender: { type: String, required: true, trim: true },
+    gender: { type: String, trim: true },
     maritalStatus: { type: String, trim: true },
     profession: { type: String, trim: true },
     placeOfBirth: { type: String, trim: true },
@@ -17,8 +17,14 @@ const patientSchema = new mongoose.Schema({
     },
     phone: { type: String, trim: true },
     email: { type: String, trim: true, unique: true, lowercase: true },
-    cpf: { type: String, trim: true, unique: true },
-    rg: { type: String, trim: true, unique: true },
+    cpf: {
+        type: String, trim: true, index: false, // Isso previne a criação automática de índice
+        default: undefined
+    },
+    rg: {
+        type: String, trim: true, index: false, // Isso previne a criação automática de índice
+        default: undefined
+    },
     mainComplaint: { type: String, trim: true },
     clinicalHistory: { type: String, trim: true },
     medications: { type: String, trim: true },

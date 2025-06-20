@@ -96,18 +96,22 @@ const DoctorAgendaCalendar = ({
           const date = addDays(weekStart, index);
           const formattedDate = formatISO(date, { representation: 'date' });
           const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];
-          const dayLabel = format(date, 'EEE', { locale: ptBR }); // ex: 'Qui'
+          const monthName = format(date, 'MMMM', { locale: ptBR });
+
+          const dayLabel = format(date, 'EEE', { locale: ptBR });
           return (
             <div key={index} className="flex justify-center">
-              <div className="col-span-1 flex justify-center">
+              <div className="col-span-1 flex justify-center ">
                 <div
                   onClick={() => handleDayClick(date)}
-                  className={`rounded-xl p-4 w-28 h-28 flex flex-col items-center justify-center cursor-pointer border shadow-md transition-all duration-200
-                ${isSelected(date) ? 'bg-blue-50 border-blue-600' : 'bg-white hover:bg-gray-50'}`}
+                  className={`rounded-xl p-4 w-28 h-28  flex flex-col items-center justify-center cursor-pointer border shadow-md transition-all duration-200
+                ${isSelected(date) ? 'bg-blue-50 border-blue-600' : 'bg-green-100 hover:bg-gray-50'}`}
                 >
                   <div className="text-center">
+                    <h2 className="text-xl font-bold text-gray-800 mb-0 capitalize">
+                      {monthName}
+                    </h2>
                     <p className="text-sm font-bold text-gray-800">{dayLabel}</p>
-                    <p>skk</p>
                     <p className="text-xs text-gray-500">{format(date, 'dd/MM')}</p>
                   </div>
 

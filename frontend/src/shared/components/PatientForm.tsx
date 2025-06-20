@@ -1,19 +1,22 @@
 // PatientForm.tsx (refatorado com validação Zod, estilizado com Card, CardHeader e CardContent)
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import React, { JSX } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { JSX, useState } from 'react';
 import { z } from 'zod';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
-import { BASE_URL } from '../../constants/constants';
 
+import { ptBR } from 'date-fns/locale';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/TextArea';
+import { usePatients } from '../../hooks/usePatients';
+import { PatientData } from '../../utils/types';
 
 const BR_STATES = [
     { value: '', label: 'Selecione' },
@@ -63,6 +66,7 @@ const maritalStatusOptions = [
     { value: 'viuvo', label: 'Viúvo(a)' },
 ];
 const patientSchema = z.object({
+    _id: z.string().optional(),
     fullName: z.string().min(1, 'Full name is required'),
     dateOfBirth: z.string(),
     gender: z.string(),
@@ -102,83 +106,82 @@ const patientSchema = z.object({
 type PatientFormData = z.infer<typeof patientSchema>;
 
 interface PatientFormProps {
-    onSuccess?: () => void;
+    onSuccess?: (data: PatientFormData) => void;
+    patient?: PatientData;
+    patients?: PatientData[];
 }
 
-const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
-    const navigate = useNavigate();
 
+const initialPatientState: PatientData = {
+    _id: '',
+    fullName: '',
+    dateOfBirth: '',
+    gender: '',
+    maritalStatus: '',
+    profession: '',
+    placeOfBirth: '',
+    address: {
+        street: '',
+        number: '',
+        district: '',
+        city: '',
+        state: '',
+        zipCode: ''
+    },
+    phone: '',
+    email: '',
+    cpf: '',
+    rg: '',
+    specialties: [],
+    mainComplaint: '',
+    clinicalHistory: '',
+    medications: '',
+    allergies: '',
+    familyHistory: '',
+    healthPlan: {
+        name: '',
+        policyNumber: ''
+    },
+    legalGuardian: '',
+    emergencyContact: {
+        name: '',
+        phone: '',
+        relationship: ''
+    },
+    appointments: [],
+    imageAuthorization: false
+};
+
+const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
+    const navigate = useNavigate();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const { createPatient } = usePatients();
+    console.log('pppp', patient)
     const {
         register,
         handleSubmit,
         formState: { errors },
         reset,
+        control,
     } = useForm<PatientFormData>({
         resolver: zodResolver(patientSchema),
-        defaultValues: {
-            fullName: '',
-            dateOfBirth: '',
-            gender: '',
-            maritalStatus: '',
-            profession: '',
-            placeOfBirth: '',
-            address: {
-                street: '',
-                number: '',
-                district: '',
-                city: '',
-                state: '',
-                zipCode: ''
-            },
-            phone: '',
-            email: '',
-            cpf: '',
-            rg: '',
-            mainComplaint: '',
-            clinicalHistory: '',
-            medications: '',
-            allergies: '',
-            familyHistory: '',
-            healthPlan: {
-                name: '',
-                policyNumber: ''
-            },
-            legalGuardian: '',
-            emergencyContact: {
-                name: '',
-                phone: '',
-                relationship: ''
-            },
-            imageAuthorization: false
-        }
+        defaultValues: patient || initialPatientState
     });
 
-    const onSubmit = async (data: PatientFormData) => {
-        
-        try {
-            const token = localStorage.getItem('token');
-            const response = await fetch(BASE_URL + '/patients/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(data)
-            });
+    const dateOfBirth = new Date("2023-09-22T00:00:00.000Z");
+    const formattedDate = dateOfBirth.toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    }).replace(/\//g, '-');
 
-            if (response.ok) {
-                reset();
-                onSuccess?.();
-                toast.success('Paciente adicionado com sucesso!');
-                const responseData = await response.json();
-                navigate('/admin');
+    const onSubmit = (data: PatientFormData) => {
+        const fullData = {
+            ...(patient?._id ? { _id: patient._id } : {}),
+            ...data
+        };
 
-            } else {
-                toast.error('Erro ao tentar adicionar um paciente!');
-            }
-        } catch {
-            toast.error('Erro ao tentar adicionar um paciente!');
-        }
+        onSuccess?.(fullData as PatientData); // Delega ao AdminDashboard com _id se tiver
     };
 
     const renderField = (label: string, field: JSX.Element, error?: string) => (
@@ -188,6 +191,7 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
             {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
     );
+
 
     return (
         <Card className="w-full max-w-3xl mx-auto">
@@ -203,10 +207,31 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                             <legend className="px-2 font-medium text-gray-700">Dados Pessoais</legend>
                             <div className="flex flex-wrap gap-4 mt-2">
                                 <div className="w-full md:w-1/2">
-                                    {renderField('Nome completo', <Input {...register('fullName')} />, errors.fullName?.message)}
+                                    {renderField('Nome completo',
+                                        <Input {...register('fullName')} />,
+                                        errors.fullName?.message)}
                                 </div>
                                 <div className="w-full md:w-1/4">
-                                    {renderField('Data de nascimento', <Input type="date" {...register('dateOfBirth')} />, errors.dateOfBirth?.message)}
+                                    {renderField(
+                                        'Data de nascimento',
+                                        <>
+                                            <Controller
+                                                control={control}
+                                                name="dateOfBirth"
+                                                render={({ field }) => (
+                                                    <DatePicker
+                                                        placeholderText="Selecione a data"
+                                                        selected={field.value ? new Date(field.value) : null}
+                                                        onChange={(date) => field.onChange(date)}
+                                                        dateFormat="dd/MM/yyyy"
+                                                        locale={ptBR}
+                                                        className="input-css-aqui"
+                                                    />
+                                                )}
+                                            />
+                                        </>,
+                                        errors.dateOfBirth?.message
+                                    )}
                                 </div>
                                 <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
@@ -441,8 +466,8 @@ const PatientForm: React.FC<PatientFormProps> = ({ onSuccess }) => {
                         </fieldset>
                     </div>
                     <div className="w-full">
-                        <Button type="submit" className="w-full">
-                            Salvar Paciente
+                        <Button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? 'Salvando...' : 'Salvar'}
                         </Button>
                     </div>
                 </form>

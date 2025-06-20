@@ -2,16 +2,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PatientData } from "../../utils/types";
 import { Button } from "../ui/Button";
 
-interface Patient {
-    _id: string;
-    fullName: string;
-    cpf: string;
-}
 
 export default function PatientSelection() {
-    const [patients, setPatients] = useState<Patient[]>([]);
+    const [patients, setPatients] = useState<PatientData[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
