@@ -36,7 +36,7 @@ const DoctorForm = ({ selectedDoctor, onSubmitDoctor, onCancel }: DoctorFormProp
     };
 
     return (
-        <form className="space-y-6 p-6 max-w-xl mx-auto bg-white rounded-lg shadow-md border border-gray-200">
+        <form className="space-y-6 p-6 max-w-xl mx-auto bg-white rounded-lg w-50 shadow-md border border-gray-200">
             <h2 className="text-2xl font-semibold mb-4">
                 {selectedDoctor ? "Editar Profissional" : "Novo Profissional"}
             </h2>

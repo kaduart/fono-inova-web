@@ -63,7 +63,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
 
 
     const handleViewAgenda = (doctor: IDoctor) => {
-        console.log('doutor selecionado', doctor)
 
         setSelectedDoctor(doctor);
         setshowAgendaModal(true);  // ou outro controle para abrir modal/agendamento
@@ -79,7 +78,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const handleAddOrEditDoctor = (doctor: IDoctor | null) => {
-        console.log('doutor selecionado', doctor)
         setSelectedDoctor(doctor);
         setShowModal(true);
     };
@@ -92,7 +90,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const onOpenCloseModals = async (data: any) => {
-        console.log('chamou no pai raiz o abir modal', data)
         setScheduleAppointmentData({
             date: scheduleAppointmentData.date,
             time: data.time,
@@ -125,9 +122,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         const datetime = new Date(scheduleAppointmentData.date);
         datetime.setHours(hours, minutes, 0, 0);
         payload.date = datetime.toISOString();
-        console.log('datetime-->>', datetime)
-        console.log('PAYYYload-->>', payload)
-
 
         const token = localStorage.getItem('token');
         if (!token) {

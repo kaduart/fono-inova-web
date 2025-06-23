@@ -92,7 +92,6 @@ const DoctorAgendaCalendar = ({
 
       <div className="grid grid-cols-5 gap-6 justify-center">
         {[0, 1, 2, 3, 4].map((index) => {
-          console.log('Agora é:', new Date().toString());
           const date = addDays(weekStart, index);
           const formattedDate = formatISO(date, { representation: 'date' });
           const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];

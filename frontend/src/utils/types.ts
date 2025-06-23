@@ -186,6 +186,18 @@ export interface ScheduleAppointment {
     status: 'agendado' | 'concluído' | 'cancelado';
 }
 
+export const ServiceTypes = [
+    { value: 'evaluation', label: 'Avaliação Inicial' },
+    { value: 'session', label: 'Sessão Avulsa' },
+    { value: 'package', label: 'Pacote' },
+    { value: 'other', label: 'Outro Serviço' }
+];
+
+export const PaymentMethods = [
+    { value: 'dinheiro', label: 'Dinheiro' },
+    { value: 'pix', label: 'PIX' },
+    { value: 'cartão', label: 'Cartão' }
+];
 
 export interface PatientData {
     _id?: string;

@@ -87,7 +87,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     };
 
     const navigate = useNavigate();
-    console.log(doctors, 'doctrrrr')
 
     useEffect(() => {
         patientService

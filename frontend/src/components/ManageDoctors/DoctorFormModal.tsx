@@ -11,7 +11,6 @@ interface DoctorFormModalProps {
 };
 const DoctorFormModal = ({ open, openCloseModalResponse, onClose, onSubmitDoctor, selectedDoctor }: DoctorFormModalProps) => {
     
-    console.log('fechar modalsssssssssssssss', open)
     return (
         <Modal open={open} onClose={onClose}>
             <Box>

@@ -50,8 +50,6 @@ export function PatientAvailablesCard({ doctors, evaluations, onDelete, patientI
     setEvaluationData((prev) => ({ ...prev, [name]: value }));
   };
 
-  console.log('evaluationsss', evaluations)
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (evaluationToEdit?._id) {

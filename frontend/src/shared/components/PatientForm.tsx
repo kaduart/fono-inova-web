@@ -1,11 +1,11 @@
 // PatientForm.tsx (refatorado com validação Zod, estilizado com Card, CardHeader e CardContent)
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { JSX, useState } from 'react';
+import { JSX } from 'react';
 import { z } from 'zod';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
+import { Card, CardContent } from '../../components/ui/Card';
 
 import { ptBR } from 'date-fns/locale';
+import { Loader2 } from 'lucide-react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Controller, useForm } from 'react-hook-form';
@@ -15,7 +15,6 @@ import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/TextArea';
-import { usePatients } from '../../hooks/usePatients';
 import { PatientData } from '../../utils/types';
 
 const BR_STATES = [
@@ -65,50 +64,15 @@ const maritalStatusOptions = [
     { value: 'divorciado', label: 'Divorciado(a)' },
     { value: 'viuvo', label: 'Viúvo(a)' },
 ];
-const patientSchema = z.object({
-    _id: z.string().optional(),
-    fullName: z.string().min(1, 'Full name is required'),
-    dateOfBirth: z.string(),
-    gender: z.string(),
-    maritalStatus: z.string(),
-    profession: z.string(),
-    placeOfBirth: z.string(),
-    address: z.object({
-        street: z.string(),
-        number: z.string(),
-        district: z.string(),
-        city: z.string(),
-        state: z.string(),
-        zipCode: z.string(),
-    }),
-    phone: z.string(),
-    email: z.string().email(),
-    cpf: z.string(),
-    rg: z.string(),
-    mainComplaint: z.string(),
-    clinicalHistory: z.string(),
-    medications: z.string(),
-    allergies: z.string(),
-    familyHistory: z.string(),
-    healthPlan: z.object({
-        name: z.string(),
-        policyNumber: z.string()
-    }),
-    legalGuardian: z.string(),
-    emergencyContact: z.object({
-        name: z.string(),
-        phone: z.string(),
-        relationship: z.string()
-    }),
-    imageAuthorization: z.boolean()
-});
 
-type PatientFormData = z.infer<typeof patientSchema>;
+
+type PatientFormData = z.infer<typeof any>;
 
 interface PatientFormProps {
     onSuccess?: (data: PatientFormData) => void;
     patient?: PatientData;
     patients?: PatientData[];
+    isLoading?: boolean;
 }
 
 
@@ -152,11 +116,8 @@ const initialPatientState: PatientData = {
     imageAuthorization: false
 };
 
-const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
+const PatientForm = ({ patient, patients, isLoading, onSuccess }: PatientFormProps) => {
     const navigate = useNavigate();
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const { createPatient } = usePatients();
-    console.log('pppp', patient)
     const {
         register,
         handleSubmit,
@@ -164,8 +125,10 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
         reset,
         control,
     } = useForm<PatientFormData>({
-        resolver: zodResolver(patientSchema),
-        defaultValues: patient || initialPatientState
+        defaultValues: {
+            ...(patient || initialPatientState),
+            dateOfBirth: patient?.dateOfBirth ? new Date(patient.dateOfBirth) : undefined
+        }
     });
 
     const dateOfBirth = new Date("2023-09-22T00:00:00.000Z");
@@ -181,7 +144,7 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
             ...data
         };
 
-        onSuccess?.(fullData as PatientData); // Delega ao AdminDashboard com _id se tiver
+        onSuccess?.(fullData as PatientFormData); // Delega ao AdminDashboard com _id se tiver
     };
 
     const renderField = (label: string, field: JSX.Element, error?: string) => (
@@ -192,12 +155,9 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
         </div>
     );
 
-
     return (
-        <Card className="w-full max-w-3xl mx-auto">
-            <CardHeader>
-                <CardTitle>Adicionar Novo Paciente</CardTitle>
-            </CardHeader>
+        <Card className="">
+
             <CardContent>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-wrap gap-6">
 
@@ -206,15 +166,15 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                         <fieldset className="border p-4 rounded-md">
                             <legend className="px-2 font-medium text-gray-700">Dados Pessoais</legend>
                             <div className="flex flex-wrap gap-4 mt-2">
-                                <div className="w-full md:w-1/2">
-                                    {renderField('Nome completo',
-                                        <Input {...register('fullName')} />,
-                                        errors.fullName?.message)}
-                                </div>
-                                <div className="w-full md:w-1/4">
-                                    {renderField(
-                                        'Data de nascimento',
-                                        <>
+                                <div className="grid grid-cols-12 gap-4">
+                                    <div className="col-span-12 md:col-span-9">
+                                        {renderField('Nome completo',
+                                            <Input {...register('fullName')} />,
+                                            errors.fullName?.message)}
+                                    </div>
+                                    <div className="col-span-12 md:col-span-3 mt-2">
+                                        {renderField(
+                                            'Data de nascimento',
                                             <Controller
                                                 control={control}
                                                 name="dateOfBirth"
@@ -225,14 +185,19 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                                                         onChange={(date) => field.onChange(date)}
                                                         dateFormat="dd/MM/yyyy"
                                                         locale={ptBR}
-                                                        className="input-css-aqui"
+                                                        className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm
+                         focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                                                     />
                                                 )}
-                                            />
-                                        </>,
-                                        errors.dateOfBirth?.message
-                                    )}
+                                            />,
+                                            errors.dateOfBirth?.message
+                                        )}
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div className="flex flex-wrap gap-4 mt-2">
+
                                 <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div>
                                         {renderField(
@@ -284,7 +249,7 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                                         )}
                                     </div>
                                 </div>
-                                <div className="w-full md:w-1/2">
+                                <div className="w-full md:w-1/4">
                                     {renderField('Naturalidade', <Input {...register('placeOfBirth')} />, errors.placeOfBirth?.message)}
                                 </div>
                             </div>
@@ -297,13 +262,40 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                             <legend className="px-2 font-medium text-gray-700">Documentos & Contato</legend>
                             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div >
-                                    {renderField('CPF', <Input {...register('cpf')} className="max-w-xs" />, errors.cpf?.message)}
+                                    {renderField(
+                                        'CPF',
+                                        <Controller
+                                            control={control}
+                                            name="cpf"
+                                            render={({ field }) => (
+                                                <Input
+                                                    mask="999.999.999-99"
+                                                    className="max-w-xs"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />,
+                                        errors.phone?.message
+                                    )}
                                 </div>
                                 <div >
                                     {renderField('RG', <Input {...register('rg')} className="max-w-xs" />, errors.rg?.message)}
                                 </div>
                                 <div>
-                                    {renderField('Telefone', <Input {...register('phone')} />, errors.phone?.message)}
+                                    {renderField('Telefone',
+                                        <Controller
+                                            control={control}
+                                            name="phone"
+                                            render={({ field }) => (
+                                                <Input
+                                                    mask="(99) 99999-9999"
+
+                                                    className="max-w-xs"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />,
+                                        errors.cpf?.message)}
                                 </div>
                             </div>
                             <div className="w-full md:w-1/2 mt-3">
@@ -349,7 +341,7 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                                 <div className="col-span-12 md:col-span-3">
                                     {renderField('Cidade', <Input {...register('address.city')} />, errors.address?.city?.message)}
                                 </div>
-                                <div className='mt-1 col-span-6 md:col-span-4'>
+                                <div className='mt-1 col-span-6 md:col-span-3'>
                                     {renderField(
                                         'Estado',
                                         <Select
@@ -364,8 +356,22 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                                         errors.address?.state?.message
                                     )}
                                 </div>
-                                <div className="col-span-12 md:col-span-2">
-                                    {renderField('CEP', <Input {...register('address.zipCode')} />, errors.address?.zipCode?.message)}
+                                <div className="col-span-12 md:col-span-3">
+                                    {renderField('CEP',
+                                        <Controller
+                                            control={control}
+                                            name="address.zipCode"
+                                            render={({ field }) => (
+                                                <Input
+                                                    mask="99.999-99"
+                                                    className="max-w-xs"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />,
+                                        errors.address?.zipCode?.message
+
+                                    )}
                                 </div>
 
                             </div>
@@ -448,7 +454,7 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                                     {renderField('Nome', <Input {...register('emergencyContact.name')} />, errors.emergencyContact?.name?.message)}
                                 </div>
                                 <div className="w-full md:w-1/4">
-                                    {renderField('Telefone', <Input {...register('emergencyContact.phone')} />, errors.emergencyContact?.phone?.message)}
+                                    {renderField('Contato', <Input {...register('emergencyContact.phone')} />, errors.emergencyContact?.phone?.message)}
                                 </div>
                                 <div className="w-full md:w-1/4">
                                     {renderField('Parentesco', <Input {...register('emergencyContact.relationship')} />, errors.emergencyContact?.relationship?.message)}
@@ -466,8 +472,15 @@ const PatientForm = ({ patient, patients, onSuccess }: PatientFormProps) => {
                         </fieldset>
                     </div>
                     <div className="w-full">
-                        <Button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? 'Salvando...' : 'Salvar'}
+                        <Button type="submit" disabled={isLoading}>
+                            {isLoading ? (
+                                <span className="flex items-center">
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                    Salvando...
+                                </span>
+                            ) : (
+                                'Salvar Paciente'
+                            )}
                         </Button>
                     </div>
                 </form>

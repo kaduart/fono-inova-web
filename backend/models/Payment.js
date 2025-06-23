@@ -2,12 +2,20 @@ import mongoose from 'mongoose';
 
 const paymentSchema = new mongoose.Schema({
     patient: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Patient',
         required: true,
     },
-    professional: {
-        type: String,
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor',
         required: true,
+    },
+    serviceType: {
+        type: String,
+        enum: ['evaluation', 'session', 'package'],
+        required: true,
+        default: 'session'
     },
     amount: {
         type: Number,
@@ -17,17 +25,26 @@ const paymentSchema = new mongoose.Schema({
     package: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Package',
-        required: true,
-        index: true
+        required: function () {
+            return this.serviceType === 'package';
+        }
     },
     session: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Session'
+        ref: 'Session',
+        required: function () {
+            return this.serviceType !== 'evaluation';
+        }
     },
     paymentMethod: {
         type: String,
         enum: ['dinheiro', 'pix', 'cartão'],
         required: true
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'paid', 'canceled'],
+        default: 'pending'
     },
     notes: {
         type: String,
@@ -43,94 +60,99 @@ const paymentSchema = new mongoose.Schema({
     toJSON: { virtuals: true }
 });
 
+// Middleware para pagamentos de pacote
 paymentSchema.post('save', async function (doc) {
+    // Executa apenas para pagamentos de pacote
+    if (doc.serviceType !== 'package' || !doc.package) {
+        return;
+    }
+
     const session = this.$session && this.$session();
+    const Package = mongoose.model('Package');
+    const Session = mongoose.model('Session');
 
     const withRetry = async (operation, maxRetries = 3, delayMs = 100) => {
-        let retries = 0;
-        while (retries < maxRetries) {
+        for (let i = 0; i < maxRetries; i++) {
             try {
                 return await operation();
             } catch (err) {
                 if (err.message.includes('Write conflict')) {
-                    retries++;
-                    await new Promise(r => setTimeout(r, delayMs));
+                    if (i === maxRetries - 1) throw err;
+                    await new Promise(resolve => setTimeout(resolve, delayMs));
                 } else {
                     throw err;
                 }
             }
         }
-        throw new Error(`Falha após ${maxRetries} tentativas`);
     };
 
-    await withRetry(async () => {
-        const Package = mongoose.model('Package');
-        const Session = mongoose.model('Session');
+    try {
+        await withRetry(async () => {
+            // 1. Busca e valida o pacote
+            const pkg = await Package.findById(doc.package).session(session || null);
+            if (!pkg) {
+                console.warn(`Pacote ${doc.package} não encontrado`);
+                return;
+            }
 
-        // 1. Atualização Atômica do Pacote
-        const pkg = await Package.findOneAndUpdate(
-            { _id: doc.package },
-            {
-                $inc: { totalPaid: doc.amount },
-                $push: { payments: doc._id }
-            },
-            { new: true, session }
-        );
-
-        if (!pkg || pkg.sessionValue <= 0) {
-            throw new Error("Pacote ou valor da sessão inválido");
-        }
-
-        // 2. Cálculo de Sessões Pagas e Crédito
-        const totalValue = pkg.sessionValue * pkg.totalSessions;
-        const sessionsPaidCount = Math.floor(pkg.totalPaid / pkg.sessionValue);
-
-        // 3. Busca e Atualização de Sessões
-        const sessionsToAutoPay = await Session.find({
-            package: pkg._id,
-            isPaid: false
-        })
-            .sort({ createdAt: 1 })
-            .limit(sessionsPaidCount)
-            .select('_id');
-
-        if (sessionsToAutoPay.length > 0) {
-            await Session.updateMany(
-                { _id: { $in: sessionsToAutoPay.map(s => s._id) } },
+            // 2. Atualiza o pacote com o valor pago
+            const updatedPkg = await Package.findOneAndUpdate(
+                { _id: doc.package },
                 {
-                    isPaid: true,
-                    paymentMethod: doc.paymentMethod,
-                    status: 'paid'
+                    $inc: { totalPaid: doc.amount },
+                    $push: { payments: doc._id }
+                },
+                { new: true, session }
+            );
+
+            // 3. Cálculo de sessões que podem ser marcadas como pagas
+            const sessionsPaidCount = Math.floor(updatedPkg.totalPaid / updatedPkg.sessionValue);
+            const previouslyPaidCount = updatedPkg.payments.length - 1; // Excluindo o pagamento atual
+
+            const newSessionsToPay = sessionsPaidCount - previouslyPaidCount;
+            if (newSessionsToPay <= 0) {
+                return;
+            }
+
+            // 4. Busca sessões não pagas para atualizar
+            const sessionsToAutoPay = await Session.find({
+                package: pkg._id,
+                status: { $ne: 'paid' }
+            })
+                .sort({ createdAt: 1 })
+                .limit(newSessionsToPay)
+                .select('_id')
+                .session(session || null);
+
+            if (sessionsToAutoPay.length > 0) {
+                await Session.updateMany(
+                    { _id: { $in: sessionsToAutoPay.map(s => s._id) } },
+                    {
+                        isPaid: true,
+                        paymentMethod: doc.paymentMethod,
+                        status: 'paid'
+                    },
+                    { session }
+                );
+            }
+
+            // 5. Atualiza saldo do pacote
+            const totalValue = updatedPkg.sessionValue * updatedPkg.totalSessions;
+            await Package.findOneAndUpdate(
+                { _id: doc.package },
+                {
+                    $set: {
+                        balance: Math.max(totalValue - updatedPkg.totalPaid, 0),
+                        status: sessionsToAutoPay.length === 0 ? 'completed' : 'active'
+                    }
                 },
                 { session }
             );
-        }
-
-        if (sessionsToAutoPay.length > 0) {
-            await Session.updateMany(
-                { _id: { $in: sessionsToAutoPay.map(s => s._id) } },
-                {
-                    isPaid: true,
-                    paymentMethod: doc.paymentMethod,
-                    status: 'paid'
-                },
-                { session }
-            );
-        }
-
-        // 5. Atualizar Saldo e Crédito
-        await Package.findOneAndUpdate(
-            { _id: doc.package },
-            {
-                $set: {
-                    balance: Math.max(totalValue - pkg.totalPaid, 0)
-                }
-            },
-            { session }
-        );
-    });
+        });
+    } catch (error) {
+        console.error('Erro no pós-save do pagamento:', error);
+    }
 });
-
 
 const Payment = mongoose.model('Payment', paymentSchema);
 export default Payment;

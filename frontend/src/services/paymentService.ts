@@ -1,20 +1,18 @@
-import axios from 'axios';
-import { BASE_URL } from '../constants/constants';
+import API from "./api";
 
-const API = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-        // se você armazenar o token no localStorage:
-        Authorization: `Bearer ${localStorage.getItem('token') || ''}`,
-    },
-});
 export interface FinancialRecord {
-    id: string;
+    _id: string;
+    date: string; // data do pagamento
     description: string;
     amount: number;
     paid: boolean;
-    createdAt: string;   // ou Date, conforme seu backend
+    status: string;
+    createdAt: string;
+    patientId: string,
+    doctorId: string;
+    serviceType: string;
+    paymentMethod: string;
+    notes: string;
 }
 
 export interface Summary {
@@ -34,15 +32,36 @@ export const getPayment = (id: string) =>
 export const createPayment = (data: Partial<FinancialRecord>) =>
     API.post<FinancialRecord>('/payments', data);
 
-export const updatePayment = (id: string, data: Partial<FinancialRecord>) =>
-    API.put<FinancialRecord>(`/payments/${id}`, data);
+// paymentService.ts
+export const updatePayment = (
+    id: string,
+    data: {
+        amount?: number;
+        date?: string | Date; // Aceita Date object ou string
+        paymentMethod?: string;
+        serviceType?: string;
+    }
+) => {
+    const processedData = {
+        ...data,
+        date: data.date instanceof Date ? data.date.toISOString() : data.date
+    };
 
+    return API.patch<FinancialRecord>(`/payments/${id}`, processedData);
+};
 export const deletePayment = (id: string) =>
     API.delete<void>(`/payments/${id}`);
 
 // Marca como pago
-export const markAsPaid = (id: string) =>
-    API.patch<FinancialRecord>(`/payments/${id}/status`);
+export const updatePaymentStatus = (
+    id: string,
+    data: {
+        status?: 'pending' | 'paid' | 'canceled';
+        amount?: number;
+    }
+) => {
+    return API.patch(`/payments/${id}/status`, data);
+};
 
 export const getReport = (params: any) => API.get('/payments/report', { params });
 

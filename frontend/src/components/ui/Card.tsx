@@ -11,18 +11,19 @@ export const Card = ({ children, className = '' }: CardProps) => (
 
 interface CardHeaderProps {
     children: React.ReactNode;
+    className?: string;
     icon?: React.ComponentType<{ className?: string }>;
 }
 
-export const CardHeader = ({ children, icon: Icon }: CardHeaderProps) => (
-    <div className="px-4 py-5 border-b border-gray-200 sm:px-6 flex items-center justify-between">
+export const CardHeader = ({ children, icon: Icon, className = '' }: CardHeaderProps) => (
+    <div className={`px-4 py-5 border-b border-gray-200 sm:px-6 flex items-center justify-between ${className}`}>
         {children}
         {Icon && <Icon className="h-5 w-5 text-blue-600 ml-2" />}
     </div>
 );
 
-export const CardTitle = ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-lg leading-6 font-medium text-gray-900">{children}</h3>
+export const CardTitle = ({ children, className = '' }: { children: React.ReactNode, className?: string }) => (
+    <h3 className={`text-lg leading-6 font-medium ${className}`}>{children}</h3>
 );
 
 export const CardContent = ({ children }: { children: React.ReactNode }) => (

@@ -50,7 +50,6 @@ const DoctorAgenda = ({ doctors = [], updateSlots, patients, onDaySlotsChange, s
     }, [updateSlots]);
 
     useEffect(() => {
-        console.log('doutor selecionado efeeect', selectedDoctor)
         if (selectedDoctor && selectedDoctor._id) {
             setSelectedDoctorId(selectedDoctor._id);
             // Opcional: já busca os horários ao trocar o doutor

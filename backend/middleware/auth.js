@@ -33,7 +33,7 @@ export const authorize = (roles = []) => {
 
 
 export const adminOrSecretary = (req, res, next) => {
-
+    console.log('Verificando se o usuário é admin ou secretary', req.user);
     if (!req.user || !req.user.role) {
         return res.status(401).json({ message: 'Usuário não autenticado ou role não definida' });
     }

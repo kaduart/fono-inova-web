@@ -8,16 +8,17 @@ import { usePatients } from '../hooks/usePatients';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import { IDoctor, PatientData } from '../utils/types';
 import EnhancedCalendar from './EnhancedCalendar';
-import { PaymentPage } from './financial/PaymentPage';
+import { PaymentModal } from './financial/PaymentModal';
 import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
 import AppChat from './mkt/whatsapp/AppChat';
+import { PatientModal } from './patients/PatientModal';
 import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
-import PatientForm from '../shared/components/PatientForm';
+import PaymentPage from './financial/PaymentPage';
 
 const NavButton = ({
   children,
@@ -154,7 +155,7 @@ export default function AdminDashboard() {
   const [hospitalCapacity] = useState(150);
   const [appointments, setAppointments] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
     patientId: '',
     doctorId: '',
@@ -185,6 +186,10 @@ export default function AdminDashboard() {
 
   const [openMenu, setOpenMenu] = useState('');
   const [modalShouldClose, setModalShouldClose] = useState(false);
+  const [patientToEdit, setPatientToEdit] = useState<PatientData | undefined>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedPatient, setSelectedPatient] = useState<PatientData | null>(null);
 
   const toggleMenu = (menuName: string) => {
     setOpenMenu(menuName);
@@ -212,11 +217,46 @@ export default function AdminDashboard() {
     return `${day}-${month}-${year}`;
   };
 
-  const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
-    setOpenMenu(''); // Fecha qualquer menu aberto
+  const handleEditPatient = (patient: PatientData) => {
+    setPatientToEdit(patient); // Passa o paciente completo para edição
+    setIsModalOpen(true);
+    setActiveTab('Dashboard');
   };
 
+  useEffect(() => {
+    updatePatients(true);
+    fetchTotalPatients();
+  }, [updatePatients]);
+
+  useEffect(() => {
+  }, [isModalOpen, patientToEdit]);
+
+  const handleAddPatient = () => {
+    setPatientToEdit(undefined);
+    setIsModalOpen(true);
+    setActiveTab('Dashboard'); // Força voltar para dashboard
+
+    // Debug adicional
+    setTimeout(() => {
+
+    }, 0);
+  };
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    setOpenMenu('');
+
+    if (tab === 'Add Paciente') {
+
+      handleAddPatient(); // Usar a função existente que já configura o estado corretamente
+    }
+  };
+
+
+  const handleRegisterPayment = (patient: PatientData) => {
+    setSelectedPatient(patient);
+    setPaymentModalOpen(true);
+  };
 
   const fetchDoctors = async () => {
     try {
@@ -455,25 +495,35 @@ export default function AdminDashboard() {
   };
 
   const handleSavePatient = async (formData: PatientData) => {
+    setIsLoading(true);
     try {
       if (formData._id) {
-        console.log("Atualizando paciente:", formData);
-        await updatePatient(formData._id, formData);
+  
+        await updatePatient(formData._id, {
+          ...formData,
+          dateOfBirth: new Date(formData.dateOfBirth).toISOString()
+        });
         toast.success("Paciente atualizado com sucesso!");
       } else {
-        console.log("Atualizando paciente:", formData);
-        await createPatient(formData);
+        await createPatient({
+          ...formData,
+          dateOfBirth: new Date(formData.dateOfBirth).toISOString()
+        });
         toast.success("Paciente criado com sucesso!");
       }
 
       updatePatients(true);
       fetchPatientOverview();
       fetchTotalPatients();
+      setIsModalOpen(false);
+      setPatientToEdit(undefined);
       setActiveTab('Dashboard');
 
     } catch (error: any) {
+
+
       console.error(error);
-      toast.error(error.message || 'Erro ao salvar paciente.');
+      toast.error(error.response.data.error || 'Erro ao salvar paciente.');
     }
   };
 
@@ -485,34 +535,34 @@ export default function AdminDashboard() {
         {/* Seção de cards de resumo */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="bg-blue-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-blue-500">
+            <CardHeader >
+              <CardTitle className="text-blue-500">
                 Total Profissionais
               </CardTitle>
               <Stethoscope className="h-5 w-5 text-blue-500" />
             </CardHeader>
             <CardContent>
               <div className="text-blue-500 text-3xl font-bold">{totalDoctors}</div>
-              <p className="text-xs text-gray-500 mt-1">Equipe médica ativa</p>
+              <p className="text-xs text-blue-500 mt-1">Equipe médica ativa</p>
             </CardContent>
           </Card>
 
           <Card className="bg-green-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-green-500 text-sm font-medium">
+            <CardHeader >
+              <CardTitle className="text-green-500">
                 Total Pacientes
               </CardTitle>
               <Users className="h-5 w-5 text-green-500" />
             </CardHeader>
             <CardContent>
               <div className="text-green-500 text-3xl font-bold">{totalPatients}</div>
-              <p className="text-xs text-gray-500 mt-1">Atualmente admitidos</p>
+              <p className="text-xs text-green-500 mt-1">Atualmente admitidos</p>
             </CardContent>
           </Card>
 
           <Card className="bg-purple-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-purple-500 text-sm font-medium">
+            <CardHeader >
+              <CardTitle className="text-purple-500">
                 Ocupação
               </CardTitle>
               <Activity className="h-5 w-5 text-purple-500" />
@@ -525,7 +575,7 @@ export default function AdminDashboard() {
                   style={{ width: `${occupancyRate}%` }}
                 ></div>
               </div>
-              <p className="text-xs text-gray-500 mt-1">Taxa de ocupação</p>
+              <p className="text-xs text-purple-500 mt-1">Taxa de ocupação</p>
             </CardContent>
           </Card>
         </div>
@@ -535,12 +585,25 @@ export default function AdminDashboard() {
           <h3 className="text-lg font-semibold mb-4">Últimos Pacientes</h3>
           <PatientTable
             patients={patients}
-            onPatientUpdated={updatePatients}
-            onSuccessAction={() => setActiveTab('Dashboard')}
-            onSavePatient={handleSavePatient}
+            onEditPatient={(patient) => {
+              setPatientToEdit(patient);
+              setIsModalOpen(true);
+            }}
+            onRegisterPayment={handleRegisterPayment}
           />
 
         </div>
+
+        <PaymentModal
+          open={paymentModalOpen}
+          onClose={() => setPaymentModalOpen(false)}
+          patient={selectedPatient}
+          doctors={doctors}
+          onPaymentSuccess={() => {
+            updatePatients(); // Atualiza a lista de pacientes
+            fetchPayments(); // Atualiza a lista de pagamentos
+          }}
+        />
 
         {/* Seção de visões gerais */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -619,6 +682,24 @@ export default function AdminDashboard() {
               )}
             </CardContent>
           </Card>
+        </div>
+
+        <div className="w-1/2 p-4">
+          {isModalOpen && (
+            <PatientModal
+              open={isModalOpen}
+              patient={patientToEdit || initialPatientState}
+              onClose={() => {
+                setIsModalOpen(false);
+                setPatientToEdit(undefined);
+                setActiveTab('Dashboard'); // Volta para a dashboard após fechar
+              }}
+              onSaveSuccess={(patient) => {
+          
+                handleSavePatient(patient);
+              }}
+            />
+          )}
         </div>
       </>
     );
@@ -713,7 +794,6 @@ export default function AdminDashboard() {
   };
 
   const renderAddDoctor = () => {
-    console.log('open modal', openModal)
     return (
       <ManageDoctors
         onSubmitDoctor={handleSaveDoctor}
@@ -725,21 +805,6 @@ export default function AdminDashboard() {
       />
     );
   }
-
-    const renderAddPatient = () => {
-     return (
-       <PatientForm
-         patients={patients}
-         onSuccess={() => {
-           updatePatients(true);
-           fetchPatientOverview();
-           fetchTotalPatients();
-           setActiveTab('Dashboard');
-         }}
-       />
-     );
-   }; 
-
 
   const renderCalendarGeneral = () => {
     return (
@@ -765,7 +830,7 @@ export default function AdminDashboard() {
   const renderFinanceiro = () => (
     <div className="mt-4">
       <h2 className="text-xl font-bold mb-4">Controle Financeiro</h2>
-      <PaymentPage />
+      <PaymentPage patients={patients} doctors={doctors}/>
     </div>
   );
 
@@ -1050,7 +1115,7 @@ export default function AdminDashboard() {
           {activeTab === 'Dashboard' && renderDashboard()}
           {activeTab === 'Profile' && renderProfile()}
           {activeTab === 'Add Profissional' && renderAddDoctor()}
-          {activeTab === 'Add Paciente' && renderAddPatient()}
+          {activeTab === 'Add Paciente'}
           {activeTab === 'Calendário' && renderCalendarGeneral()}
           {activeTab === 'Financeiro' && renderFinanceiro()}
           {activeTab === 'Leads' && renderLeads()}

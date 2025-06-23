@@ -1,27 +1,23 @@
-import { ChevronDown, ChevronUp, Edit, Eye, FileHeart, Phone, X } from "lucide-react";
+import { ChevronDown, ChevronUp, DollarSign, Edit, Eye, FileHeart, Phone } from "lucide-react";
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateBrazilian } from "../../utils/dateFormat";
 import { PatientData } from "../../utils/types";
 import { WhatsAppActionButtons } from "../mkt/whatsapp/buttons/WhatsAppActionButtons";
-import { PatientModal } from "./PatientModal";
 
 interface PatientTableProps {
     patients: PatientData[];
     onPatientUpdated?: () => void;
-    onSuccessAction?: () => void;
-    onSavePatient?: (data: PatientData) => Promise<void>;
-    setPatientToEdit: (patient: PatientData | null) => void;
+    onEditPatient?: (patient: PatientData) => void;
+    onRegisterPayment?: (patient: PatientData) => void;
 }
 
-const PatientTable = ({ patients, onSuccessAction, onSavePatient, onPatientUpdated }: PatientTableProps) => {
+const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTableProps) => {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [patientToEdit, setPatientToEdit] = useState<PatientData | undefined>(undefined);
 
     const filteredPatients = patients.filter((patient) => {
         const term = searchTerm.toLowerCase();
@@ -50,21 +46,11 @@ const PatientTable = ({ patients, onSuccessAction, onSavePatient, onPatientUpdat
         setCurrentPage(1); // reset to first page
     };
 
-
-    console.log(`patietsssss `, patients)
-
     const toggleRow = (patientId: string) => {
         setExpandedRows(prev => ({
             ...prev,
             [patientId]: !prev[patientId]
         }));
-    };
-
-    const handleSuccess = () => {
-        setIsModalOpen(false);
-        setPatientToEdit(undefined);
-        onPatientUpdated?.();
-        onSuccessAction?.();
     };
 
     return (
@@ -147,20 +133,29 @@ const PatientTable = ({ patients, onSuccessAction, onSavePatient, onPatientUpdat
                                     {/* Coluna Ações */}
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         <div className="flex gap-3">
+                                            <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
+                                                <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
+                                            </Link>
                                             <button
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    setPatientToEdit(patient);
-                                                    setIsModalOpen(true);
+                                                    onRegisterPayment?.(patient);
+                                                }}
+                                                title="Registrar Pagamento"
+                                                className="text-yellow-500 hover:text-green-800"
+                                            >
+                                                <DollarSign className="w-5 h-5" />
+                                            </button>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    onEditPatient?.(patient);
                                                 }}
                                                 title="Editar"
                                                 className="text-blue-600 hover:text-blue-800"
                                             >
                                                 <Edit className="w-5 h-5" />
                                             </button>
-                                            <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
-                                                <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
-                                            </Link>
                                             <Link to={`/evolutions/${patient._id}`} title="Ver evoluções">
                                                 <FileHeart className="w-5 h-5 text-green-600 hover:text-green-800" />
                                             </Link>
@@ -258,41 +253,6 @@ const PatientTable = ({ patients, onSuccessAction, onSavePatient, onPatientUpdat
                     </tbody>
                 </table>
             </div>
-            {isModalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-                        <div className="flex justify-between items-center border-b p-4">
-                            <h3 className="text-lg font-semibold">
-                                {patientToEdit ? 'Editar Paciente' : 'Adicionar Paciente'}
-                            </h3>
-                            <button
-                                onClick={() => {
-                                    setIsModalOpen(false);
-                                    setPatientToEdit(undefined);
-                                }}
-                                className="text-gray-500 hover:text-gray-700"
-                            >
-                                <X className="w-6 h-6" />
-                            </button>
-                        </div>
-
-                        <div className="p-6">
-                            <PatientModal
-                                open={isModalOpen}
-                                patient={patientToEdit}
-                                onSaveSuccess={async (data) => {
-                                    await onSavePatient?.(data);
-                                    handleSuccess(); // já fecha modal + atualiza
-                                }}
-                                onClose={() => {
-                                    setIsModalOpen(false);
-                                    setPatientToEdit(undefined);
-                                }}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

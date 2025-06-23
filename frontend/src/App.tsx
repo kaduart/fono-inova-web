@@ -7,7 +7,6 @@ import AdminDashboard from './components/AdminDashboard';
 import AppointmentCalendar from './components/AppointmentCalendar';
 import AppointmentScheduler from './components/AppointmentScheduler';
 import { default as Doctor, default as DoctorDashboard } from './components/Doctors';
-import { PaymentPage } from './components/financial/PaymentPage';
 import Home from './components/Home';
 import Login from './components/Login';
 import AppChat from './components/mkt/whatsapp/AppChat';
@@ -16,6 +15,7 @@ import PatientEvolution from './components/patients/PatientEvolution';
 import PatientSelection from './components/patients/PatientSelection';
 import SignUp from './components/SignUp';
 import { PrivateRoute } from './utils/PrivateRoute';
+import PaymentPage from './components/financial/PaymentPage';
 
 
 const App: React.FC = () => {

@@ -107,7 +107,6 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     };
 
     if (!open) return null;
-    console.log('dddddddd', doctors)
     const patientOptions = patients.map((patient) => ({ value: patient._id, label: patient.fullName }));
     const doctorOptions = doctors.map((doctor) => ({ value: doctor._id, label: doctor.fullName }));
     const statusOptions = [

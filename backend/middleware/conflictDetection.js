@@ -12,7 +12,6 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         }
 
         const startTime = new Date(date); // já vem ISO
-        console.log('00', startTime);
         if (isNaN(startTime.getTime())) {
             return res.status(400).json({ error: "Data inválida" });
         }
@@ -20,13 +19,11 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         const SESSION_DURATION = SESSION_DURATION_MS;
 
         const endTime = new Date(startTime.getTime() + SESSION_DURATION);
-        console.log('01', endTime);
 
         const startOfDay = new Date(startTime);
         startOfDay.setHours(0, 0, 0, 0);
         const endOfDay = new Date(startTime);
         endOfDay.setHours(23, 59, 59, 999);
-        console.log('02', startOfDay);
 
         const existingAppointments = await Appointment.find({
             doctorId,

@@ -1,8 +1,9 @@
-export const dateFormat = (date: Date): string => {
+export const dateFormat = (date: any): string => {
+  date = new Date(date);
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const day = date.getDate().toString().padStart(2, '0');
-  return `${day}-${month}-${year}`;
+  return `${day}/${month}/${year}`;
 };
 
 export const formatValidDate = (date: Date) => ({
