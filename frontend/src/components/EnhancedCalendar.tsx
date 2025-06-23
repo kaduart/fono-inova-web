@@ -355,6 +355,22 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         }
     };
 
+    const handleCompleteAppointment = async (appointmentId: string) => {
+        console.log("Concluir agendamento:", appointmentId);
+        try {
+
+            await appointmentService.complete(appointmentId);
+
+            toast.success("Consulta marcada como concluída!");
+            fetchAppointment(); // Atualiza a lista
+            setIsAppointmentDetailModalOpen(true);
+
+        } catch (error) {
+            console.error("Erro ao concluir agendamento:", error);
+            toast.error(error.response?.data?.message || "Erro ao concluir consulta");
+        }
+    };
+
     const handleOpenSchedule = (data = DEFAULT_APPOINTMENT, modeType = 'create') => {
         setAppointmentData(data);
         setMode(modeType);
@@ -554,6 +570,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 isOpen={isAppointmentDetailModalOpen}
                 onClose={() => setIsAppointmentDetailModalOpen(false)}
                 onCancelAppointment={(id, data) => handleCancelAppointment(id, data)}
+                handleConfirmAppointment={(id) => handleCompleteAppointment(id)}
                 event={selectedEvent}
             />
 

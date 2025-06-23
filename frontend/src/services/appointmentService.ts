@@ -109,12 +109,12 @@ export const appointmentService = {
     },
 
     // Operações de status
-    confirm: async (id: string) => {
-        return API.patch<IAppointmentResponse>(`/appointments/${id}/confirm`);
+    confirm: async (id: string, data?: { notes?: string }) => {
+        return API.patch(`/appointments/${id}/confirm`, data);
     },
 
-    complete: async (id: string, notes?: string) => {
-        return API.patch<IAppointmentResponse>(`/appointments/${id}/complete`, { notes });
+    complete: async (id: string) => {
+        return API.patch<IAppointmentResponse>(`/appointments/${id}/complete`);
     },
 
     cancel: async (id: string, data: CancelParams) => {

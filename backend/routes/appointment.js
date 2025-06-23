@@ -219,6 +219,46 @@ router.patch('/:id/cancel', validateId, auth, async (req, res) => {
     }
 });
 
+// Adicione esta rota junto com as outras rotas de appointments
+router.patch('/:id/complete', auth, async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const appointment = await Appointment.findById(id);
+
+        if (!appointment) {
+            return res.status(404).json({ error: 'Agendamento não encontrado' });
+        }
+
+        // Verifica se já está confirmado
+        if (appointment.status === 'concluído') {
+            return res.status(400).json({ error: 'Este agendamento já está concluído' });
+        }
+
+        // Atualiza o status e registra no histórico
+        const updatedAppointment = await Appointment.findByIdAndUpdate(
+            id,
+            {
+                status: 'concluído',
+                $push: {
+                    history: {
+                        action: 'concluído',
+                        date: new Date(),
+                        by: req.user._id,
+                    }
+                }
+            },
+            { new: true }
+        );
+
+        res.json(updatedAppointment);
+
+    } catch (error) {
+        console.error('Erro ao concluir agendamento:', error);
+        res.status(500).json({ error: 'Erro interno no servidor' });
+    }
+});
+
 // Busca todos os agendamentos de um paciente
 router.get('/patient/:id', validateId, auth, async (req, res) => {
     const patientId = req.params.id;
