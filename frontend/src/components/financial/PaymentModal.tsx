@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { createPayment } from '../../services/paymentService';
 import { IDoctor, PatientData, PaymentMethods, ServiceTypes } from '../../utils/types';
@@ -27,21 +27,36 @@ export const PaymentModal = ({
     doctors,
     onPaymentSuccess
 }: PaymentModalProps) => {
-    const [paymentData, setPaymentData] = useState({
-        serviceType: 'evaluation',
-        patientId: patient?._id,
-        professionalId: doctors.length > 0 ? doctors[0]._id : '',
-        amount: 0,
-        status: 'pending',
-        paymentMethod: 'dinheiro',
-        notes: '',
-        packageId: '',
-        sessionId: ''
-    });
+    console.log('patient:', patient);
+    /*     const initialPaymentData = {
+            serviceType: 'evaluation',
+            professionalId: doctors[0]?._id || '',
+            amount: 0,
+            paymentMethod: 'dinheiro',
+            notes: '',
+            patientId: patient?._id || '',
+        }; */
+
+    // Estado principal com inicialização segura
+    const [paymentData, setPaymentData] = useState(() => ({}));
 
     const [isLoading, setIsLoading] = useState(false);
 
-    console.log('patient:', patient);
+    useEffect(() => {
+        if (open) {
+            setPaymentData(prev => ({
+                ...prev,
+                serviceType: 'evaluation',
+                professionalId: doctors[0]?._id || '',
+                amount: 0,
+                paymentMethod: 'dinheiro',
+                notes: '',
+                patientId: patient?._id || '',
+
+            }));
+        }
+    }, [open, patient]);
+
     console.log('FORM', paymentData);
     const handleSubmit = async () => {
         console.log('Dados do pagamento:', paymentData);

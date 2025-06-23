@@ -596,6 +596,7 @@ export default function AdminDashboard() {
 
         </div>
 
+
         <PaymentModal
           open={paymentModalOpen}
           patient={selectedPatient}
