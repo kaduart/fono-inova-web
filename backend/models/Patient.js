@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const patientSchema = new mongoose.Schema({
     fullName: { type: String, required: true, trim: true },
     dateOfBirth: { type: Date, required: true },
+    birthCertificate: { type: String },
     gender: { type: String, trim: true },
     maritalStatus: { type: String, trim: true },
     profession: { type: String, trim: true },

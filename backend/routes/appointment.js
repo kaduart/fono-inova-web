@@ -172,6 +172,53 @@ router.get('/history/:patientId', async (req, res) => {
     }
 });
 
+
+// Cancela um agendamento
+router.patch('/:id/cancel', validateId, auth, async (req, res) => {
+    try {
+        const { reason } = req.body;
+
+        if (!reason) {
+            return res.status(400).json({ error: 'O motivo do cancelamento é obrigatório' });
+        }
+
+        const appointment = await Appointment.findById(req.params.id);
+
+        if (!appointment) {
+            return res.status(404).json({ error: 'Agendamento não encontrado' });
+        }
+
+        // Verifica se já está cancelado
+        if (appointment.status === 'cancelado') {
+            return res.status(400).json({ error: 'Este agendamento já está cancelado' });
+        }
+
+        // Atualiza o status e registra o motivo
+        const updatedAppointment = await Appointment.findByIdAndUpdate(
+            req.params.id,
+            {
+                status: 'cancelado',
+                canceledReason: reason,
+                $push: {
+                    history: {
+                        action: 'cancelamento',
+                        date: new Date(),
+                        by: req.user._id,
+                        details: { reason }
+                    }
+                }
+            },
+            { new: true }
+        );
+
+        res.json(updatedAppointment);
+
+    } catch (error) {
+        console.error('Erro ao cancelar agendamento:', error);
+        res.status(500).json({ error: 'Erro interno no servidor' });
+    }
+});
+
 // Busca todos os agendamentos de um paciente
 router.get('/patient/:id', validateId, auth, async (req, res) => {
     const patientId = req.params.id;

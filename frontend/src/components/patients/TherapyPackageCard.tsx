@@ -1,13 +1,13 @@
 import { User } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { IDoctors, ISession, ITherapyPackage, PatientData } from '../../utils/types';
+import { IDoctors, ISession, ITherapyPackage } from '../../utils/types';
 import { SessionListItem } from './SessionListItem';
 import { SessionModal } from './SessionModal';
 
 type Props = {
   pack?: ITherapyPackage;
-  patient: PatientData;
+  patient: IPatient;
   doctors: IDoctors[];
   onUseSession: (id: string, session: ISession, modalAction: string) => void;
   onCardClick?: (pack: ITherapyPackage) => void;

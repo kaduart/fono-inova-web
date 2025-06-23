@@ -15,7 +15,7 @@ import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/TextArea';
-import { PatientData } from '../../utils/types';
+import { IPatient } from '../../utils/types';
 
 const BR_STATES = [
     { value: '', label: 'Selecione' },
@@ -70,16 +70,17 @@ type PatientFormData = z.infer<typeof any>;
 
 interface PatientFormProps {
     onSuccess?: (data: PatientFormData) => void;
-    patient?: PatientData;
-    patients?: PatientData[];
+    patient?: IPatient;
+    patients?: IPatient[];
     isLoading?: boolean;
 }
 
 
-const initialPatientState: PatientData = {
+const initialPatientState: IPatient = {
     _id: '',
     fullName: '',
     dateOfBirth: '',
+    birthCertificate: '',
     gender: '',
     maritalStatus: '',
     profession: '',
@@ -279,7 +280,24 @@ const PatientForm = ({ patient, patients, isLoading, onSuccess }: PatientFormPro
                                     )}
                                 </div>
                                 <div >
-                                    {renderField('RG', <Input {...register('rg')} className="max-w-xs" />, errors.rg?.message)}
+                                    {renderField('RG',
+                                        <Input {...register('rg')}
+                                            className="max-w-xs"
+                                        />, errors.rg?.message)}
+                                </div>
+                                <div>
+                                    {renderField('Certidão de Nascimento',
+                                        <Controller
+                                            control={control}
+                                            name="birthCertificate"
+                                            render={({ field }) => (
+                                                <Input
+                                                    className="max-w-xs"
+                                                    {...field}
+                                                />
+                                            )}
+                                        />,
+                                        errors.birthCertificate?.message)}
                                 </div>
                                 <div>
                                     {renderField('Telefone',

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { dateFormat } from '../../utils/dateFormat';
-import { IDoctors, PatientData, THERAPY_TYPES } from '../../utils/types';
+import { IDoctors, IPatient, THERAPY_TYPES } from '../../utils/types';
 import InputCurrency from '../ui/InputCurrency';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
 
 interface AddSessionFormProps {
-    patient: PatientData;
+    patient: IPatient;
     doctors: IDoctors[];
     onSubmit: (session: {
         date: string;

@@ -25,6 +25,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
+import appointmentService, { IAppointment } from '../services/appointmentService';
 import { patientService } from '../services/patientService';
 import { IDoctor } from '../utils/types';
 import ScheduleModal from './ScheduleModal';
@@ -58,6 +59,9 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     const [selectedPatient, setSelectedPatient] = useState('all');
     const [selectedStatus, setSelectedStatus] = useState('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [openSchedule, setOpenSchedule] = useState(false);
+    const [appointmentData, setAppointmentData] = useState(DEFAULT_APPOINTMENT);
+    const [mode, setMode] = useState<'create' | 'edit'>('create');
 
     const [isAppointmentDetailModalOpen, setIsAppointmentDetailModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState('create');
@@ -113,6 +117,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
 
     const fetchAppointment = useCallback(async () => {
+        console.log('Fetching appointments with filters:',)
         setLoading(true);
         try {
             let url = '/appointments';
@@ -150,7 +155,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                     timeZone: 'America/Sao_Paulo',
                     hour12: false
                 });
-
+                console.log('Formatted End:', formattedEnd);
                 return {
                     id: appointment.id || appointment._id,
                     title: `${appointment.patient.name || 'Consulta'} - Dr. ${appointment.doctor.name || 'Desconhecido'}`,
@@ -213,7 +218,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         }
     };
 
-
     const handleEventClick = (info: any) => {
         const { event } = info;
 
@@ -227,77 +231,107 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             }).format(new Date(event.start))
             : "";
 
-        setSelectedEvent({
-            doctor: event.extendedProps?.doctorName || "Profissional não informado",
-            patient: event.extendedProps?.patientName || "Paciente não informado",
-            reason: event.extendedProps?.reason || "Motivo não informado",
-            status: event.extendedProps?.status || "Status não informado",
-            start,
-        });
+        setSelectedEvent(event);
         setIsAppointmentDetailModalOpen(true);
     };
 
-    const handleSubmit = async (appointment: Appointment): Promise<void> => {
-        const { patientId, doctorId, date, time, reason } = appointment;
-
-        if (!patientId || !doctorId || !date || !time || !reason) {
-            toast.error('Todos os campos são obrigatórios');
-            return;
-        }
-
-        const token = localStorage.getItem('token');
+    const handleSubmit = async (appointment: IAppointment | Omit<IAppointment, '_id'>): Promise<void> => {
         try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+            // Validação básica
+            if (!appointment.patient?._id || !appointment.doctor?._id ||
+                !appointment.date || !appointment.startTime || !appointment.reason) {
+                toast.error('Todos os campos obrigatórios devem ser preenchidos');
+                return;
+            }
+
+            // Preparar os dados para o serviço
+            const payload = {
+                patientId: appointment.patient._id,
+                doctorId: appointment.doctor._id,
+                date: new Date(appointment.date),
+                startTime: appointment.startTime,
+                duration: appointment.duration || 60, // default 60 minutos
+                reason: appointment.reason,
+                status: appointment.status || 'agendado',
+                sessionType: appointment.sessionType,
+                paymentMethod: appointment.paymentMethod,
+                notes: appointment.notes
             };
 
-            let response;
-            if (modalMode === 'edit' && selectedEvent?._id) {
-                response = await axios.put(`${BASE_URL}/appointments/${selectedEvent._id}`, appointment, config);
+            if ('_id' in appointment && appointment._id) {
+                // Edição
+                await appointmentService.update(appointment._id, payload);
+                toast.success('Agendamento atualizado com sucesso!');
             } else {
-                response = await axios.post(`${BASE_URL}/appointments/`, appointment, config);
-            }
-            // Verifique a resposta e feche o modal se a operação for bem-sucedida
-            if (response.status === 200 || response.status === 201) {
-                setIsModalOpen(false);  // Fechar o modal apenas em sucesso
-                toast.success('Agendamento salvo com sucesso!');
-                // fetchAppointment();
-            }
-        } catch (error: any) {
-            setIsModalOpen(true);  // Fechar o modal apenas em sucesso
-            // Tratar erro com base no status e exibir mensagem adequada via toast
-            if (error.response) {
-                if (error.response.status === 409) {
-                    toast.error(error.response.data.message); // Conflito
-                } else if (error.response.status === 401) {
-                    toast.error('Você precisa estar autenticado.'); // Não autorizado
-                } else if (error.response.status === 400) {
-                    toast.error('Erro nos dados enviados.'); // Dados malformados
-                } else {
-                    toast.error('Erro ao salvar agendamento.'); // Para outros erros genéricos
-                }
-            } else {
-                // Caso não tenha resposta da API (erro de rede, por exemplo)
-                toast.error('Erro ao conectar com o servidor.');
+                // Criação
+                await appointmentService.create(payload);
+                toast.success('Agendamento criado com sucesso!');
             }
 
-            // Log para depuração
+            // Atualizar lista e fechar modal
+            fetchAppointments();
+            setIsModalOpen(false);
+
+        } catch (error: any) {
             console.error('Erro ao salvar agendamento:', error);
+
+            // Tratamento de erros específico
+            if (error.response) {
+                switch (error.response.status) {
+                    case 409:
+                        toast.error('Conflito de horário: ' + error.response.data.message);
+                        break;
+                    case 400:
+                        toast.error('Dados inválidos: ' + error.response.data.message);
+                        break;
+                    case 401:
+                        toast.error('Autenticação necessária');
+                        navigate('/login');
+                        break;
+                    default:
+                        toast.error('Erro ao salvar agendamento');
+                }
+            } else {
+                toast.error('Erro de conexão com o servidor');
+            }
+
+            // Mantém o modal aberto para correção
+            setIsModalOpen(true);
         }
     };
 
-    const [openSchedule, setOpenSchedule] = useState(false);
-    const [appointmentData, setAppointmentData] = useState(DEFAULT_APPOINTMENT);
-    const [mode, setMode] = useState<'create' | 'edit'>('create');
+    const handleCancelAppointment = async (appointmentId: string, reason: string): Promise<void> => {
+        try {
+            if (!reason) {
+                toast.error('O motivo do cancelamento é obrigatório');
+                return;
+            }
+
+            await appointmentService.cancel(appointmentId, {
+                reason,
+                notifyPatient: true
+            });
+
+            toast.success('Agendamento cancelado com sucesso!');
+            //fetchAppointments();
+            setIsAppointmentDetailModalOpen(false);
+            fetchAppointment();
+        } catch (error: any) {
+            console.error('Erro ao cancelar agendamento:', error);
+
+            if (error.response) {
+                toast.error(error.response.data.message || 'Erro ao cancelar agendamento');
+            } else {
+                toast.error('Erro de conexão ao cancelar agendamento');
+            }
+        }
+    };
 
     const handleOpenSchedule = (data = DEFAULT_APPOINTMENT, modeType = 'create') => {
         setAppointmentData(data);
         setMode(modeType);
         setOpenSchedule(true);
     };
-
 
     return (
         <Box sx={{ p: 3 }}>
@@ -450,7 +484,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 open={openSchedule}
                 onClose={() => setOpenSchedule(false)}
                 onSave={async (data) => {
-                    await handleSubmit(data); // Atualiza a lista
+                    await handleSubmit(data);
                 }}
                 patients={patients}
                 doctors={doctors}
@@ -463,6 +497,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             <AppointmentDetailModal
                 isOpen={isAppointmentDetailModalOpen}
                 onClose={() => setIsAppointmentDetailModalOpen(false)}
+                onCancelAppointment={(id, data) => handleCancelAppointment(id, data)}
                 event={selectedEvent}
             />
 

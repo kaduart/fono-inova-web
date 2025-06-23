@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
 import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
-import { IDoctors, PatientData, ScheduleAppointment } from '../../utils/types';
+import { IDoctors, IPatient, ScheduleAppointment } from '../../utils/types';
 import AppointmentHistoryModal from '../AppointmentHistoryModal';
 import StatusBadge from '../StatusBadge';
 import { Button } from '../ui/Button';
@@ -18,7 +18,7 @@ import PatientEvolution from './PatientEvolution';
 import { PatientMiniCalendar } from './PatientMiniCalendar';
 import TherapyPackagesSummary from './TherapyPackagesSummary';
 
-const initialPatientState: PatientData = {
+const initialPatientState: IPatient = {
   fullName: '',
   dateOfBirth: '',
   gender: '',
@@ -63,7 +63,7 @@ export default function PatientDashboard() {
   const [showPrescriptions, setShowPrescriptions] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard');
   const [isEditing, setIsEditing] = useState(false);
-  const [patientInfo, setPatientInfo] = useState<PatientData>(initialPatientState);
+  const [patientInfo, setPatientInfo] = useState<IPatient>(initialPatientState);
   const [editedInfo, setEditedInfo] = useState(null);
   const [doctors, setDoctors] = useState<IDoctors[]>([]);
   const [appointmentData, setAppointmentData] = useState({

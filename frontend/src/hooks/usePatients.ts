@@ -1,9 +1,8 @@
 import { useCallback, useState } from 'react';
 import { patientService } from '../services/patientService';
-import { PatientData } from '../utils/types';
 
 export const usePatients = () => {
-    const [patients, setPatients] = useState<PatientData[]>([]);
+    const [patients, setPatients] = useState<IPatient[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -47,12 +46,12 @@ export const usePatients = () => {
         }
     }, []);
 
-    const createPatient = async (patientData: PatientData) => {
+    const createPatient = async (IPatient: IPatient) => {
         try {
             setLoading(true);
             setError(null);
 
-            const newPatient = await patientService.create(patientData);
+            const newPatient = await patientService.create(IPatient);
             setPatients(prev => [...prev, newPatient]);
             return newPatient;
         } catch (error) {
@@ -63,10 +62,10 @@ export const usePatients = () => {
         }
     };
 
-    const updatePatient = async (id: string, patientData: Partial<PatientData>) => {
+    const updatePatient = async (id: string, IPatient: Partial<IPatient>) => {
         try {
             setLoading(true);
-            const updatedPatient = await patientService.update(id, patientData);
+            const updatedPatient = await patientService.update(id, IPatient);
             setPatients(prev => prev.map(p =>
                 p._id === id ? { ...p, ...updatedPatient } : p
             ));

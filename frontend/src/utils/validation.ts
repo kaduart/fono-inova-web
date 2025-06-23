@@ -1,7 +1,6 @@
-import { PatientData } from "./types";
 
 // utils/validation.ts
-export const validatePatient = (patient: PatientData, existingPatients: PatientData[]) => {
+export const validatePatient = (patient: IPatient, existingPatients: IPatient[]) => {
     // Verifica CPF
     if (patient.cpf && patient.cpf.trim() !== '') {
         const cpfExists = existingPatients.some(p =>

@@ -2,14 +2,14 @@ import { Info } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packagesService, { packageService, UseSessionParams, validatePayment } from '../../services/packageService';
-import { IDoctors, ITherapyPackage, PatientData } from '../../utils/types';
+import { IDoctors, ITherapyPackage } from '../../utils/types';
 import TherapyPackageCard from './TherapyPackageCard';
 import TherapyPackageDetails from './TherapyPackageDetails';
 import TherapyPackageDetailsModal from './TherapyPackageDetailsModal';
 import TherapyPackageManager from './TherapyPackageManager';
 
 type TherapyPackagesSummaryProps = {
-    patient: PatientData;
+    patient: IPatient;
     doctors: IDoctors[];
 };
 

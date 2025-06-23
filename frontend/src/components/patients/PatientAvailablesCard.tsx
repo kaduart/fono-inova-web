@@ -8,7 +8,7 @@ import {
 } from "@radix-ui/react-tooltip"; // ajuste o caminho conforme sua estrutura
 import { FileText, Pencil, Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
-import { IDoctors, PatientData } from "../../utils/types";
+import { IDoctors } from "../../utils/types";
 import { Button } from "../ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card";
 import Input from "../ui/Input";
@@ -27,7 +27,7 @@ interface EvaluationData {
 interface Props {
   doctors: IDoctors[];
   evaluations: EvaluationData[];
-  patientInfo: PatientData;
+  patientInfo: IPatient;
   evaluationToEdit?: any;
   setEvaluationToEdit: (eval: any) => void;
   onSubmit: (data: EvaluationData, id?: string) => void;

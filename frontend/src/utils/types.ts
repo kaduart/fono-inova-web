@@ -199,10 +199,11 @@ export const PaymentMethods = [
     { value: 'cartão', label: 'Cartão' }
 ];
 
-export interface PatientData {
+export interface IPatient {
     _id?: string;
     fullName: string;
     dateOfBirth: string;
+    birthCertificate: string;
     gender: string;
     maritalStatus: string;
     profession: string;
@@ -255,3 +256,49 @@ const especialidadesDisponiveis = [
     { id: 'terapia_ocupacional', label: 'Terapia Ocupacional' },
     { id: 'fisioterapia', label: 'Fisioterapia' },
 ];
+
+export type AppointmentStatus =
+    | 'scheduled'
+    | 'confirmed'
+    | 'completed'
+    | 'canceled'
+    | 'no_show';
+
+export interface IAppointment {
+    _id: string;
+    patient: IPatient | string;
+    doctor: IDoctor | string;
+    date: Date;
+    startTime: string;
+    endTime: string;
+    reason: string;
+    status: AppointmentStatus;
+    duration: number; // em minutos
+    sessionType?: TherapyType;
+    paymentMethod?: string;
+    notes?: string;
+    createdAt: Date;
+    updatedAt: Date;
+    canceledAt?: Date;
+    canceledReason?: string;
+}
+
+export interface IAppointmentResponse extends Omit<IAppointment, 'patient' | 'doctor'> {
+    patient: IPatient;
+    doctor: IDoctor;
+}
+
+export interface IPaginatedAppointmentResponse {
+    data: IAppointmentResponse[];
+    pagination: {
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    };
+}
+
+export interface IAvailableSlot {
+    time: string;
+    available: boolean;
+}

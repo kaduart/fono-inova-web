@@ -1,6 +1,6 @@
-import { PatientData } from "./types";
+import { IPatient } from "./types";
 
-export const normalizePatientData = (patientData: PatientData): PatientData => {
+export const normalizeIPatient = (IPatient: IPatient): IPatient => {
     const normalizeEmptyStrings = (obj: any): any => {
         if (typeof obj !== 'object' || obj === null) return obj;
 
@@ -25,5 +25,5 @@ export const normalizePatientData = (patientData: PatientData): PatientData => {
         );
     };
 
-    return normalizeEmptyStrings(patientData) as PatientData;
+    return normalizeEmptyStrings(IPatient) as IPatient;
 };

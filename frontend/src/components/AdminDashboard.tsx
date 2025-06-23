@@ -1,15 +1,16 @@
 
-import { Activity, ChevronDown, Clock, Eye, EyeOff, Hospital, Stethoscope, Users } from 'lucide-react';
+import { Activity, ChevronDown, Clock, Eye, EyeOff, Hospital, Stethoscope, UserPlus, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { usePatients } from '../hooks/usePatients';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
-import { IDoctor, PatientData } from '../utils/types';
+import { IDoctor, IPatient } from '../utils/types';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentModal } from './financial/PaymentModal';
 import PaymentPage from './financial/PaymentPage';
+import DoctorFormModal from './ManageDoctors/DoctorFormModal';
 import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
 import AppChat from './mkt/whatsapp/AppChat';
@@ -85,7 +86,7 @@ const especialidadesDisponiveis = [
   { id: 'fisioterapia', label: 'Fisioterapia' },
 ];
 
-const initialPatientState: PatientData = {
+const initialPatientState: IPatient = {
   fullName: '',
   dateOfBirth: '',
   gender: '',
@@ -142,7 +143,7 @@ export default function AdminDashboard() {
   });
 
 
-  const [patientData, setPatientData] = useState<PatientData>(initialPatientState);
+  const [IPatient, setIPatient] = useState<IPatient>(initialPatientState);
 
   const [showDoctorPassword, setShowDoctorPassword] = useState(false);
   const [showAdminPassword, setShowAdminPassword] = useState(false);
@@ -186,10 +187,11 @@ export default function AdminDashboard() {
 
   const [openMenu, setOpenMenu] = useState('');
   const [modalShouldClose, setModalShouldClose] = useState(false);
-  const [patientToEdit, setPatientToEdit] = useState<PatientData | undefined>();
+  const [patientToEdit, setPatientToEdit] = useState<IPatient | undefined>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState<PatientData | null>(null);
+  const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null);
+  const [showModalAddProfessional, setShowModalAddProfessional] = useState(false);
 
   const toggleMenu = (menuName: string) => {
     setOpenMenu(menuName);
@@ -217,7 +219,7 @@ export default function AdminDashboard() {
     return `${day}-${month}-${year}`;
   };
 
-  const handleEditPatient = (patient: PatientData) => {
+  const handleEditPatient = (patient: IPatient) => {
     setPatientToEdit(patient); // Passa o paciente completo para edição
     setIsModalOpen(true);
     setActiveTab('Dashboard');
@@ -252,8 +254,13 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleAddProfessional = () => {
+    setPatientToEdit(undefined);
+    setShowModalAddProfessional(true);
 
-  const handleRegisterPayment = (patient: PatientData) => {
+  };
+
+  const handleRegisterPayment = (patient: IPatient) => {
     console.log('Dados do pagamento:', patient);
 
     setSelectedPatient(patient);
@@ -322,7 +329,7 @@ export default function AdminDashboard() {
   };
 
   const handleEspecialidadeToggle = (id) => {
-    setPatientData((prev) => {
+    setIPatient((prev) => {
 
 
       const hasSelected = prev.specialties.includes(id);
@@ -461,8 +468,9 @@ export default function AdminDashboard() {
         await doctorService.createDoctor(doctor);
         toast.success("Profissional cadastrado com sucesso!");
       }
-
+      
       setModalShouldClose(true);
+      setShowModalAddProfessional(false);
 
       await fetchDoctors(); // Atualiza a lista
       await fetchTotalDoctors(); // Atualiza total
@@ -496,7 +504,8 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleSavePatient = async (formData: PatientData) => {
+  const handleSavePatient = async (formData: IPatient) => {
+    console.log('Dados do paciente=====>>>:', formData);
     setIsLoading(true);
     try {
       if (formData._id) {
@@ -538,23 +547,34 @@ export default function AdminDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="bg-blue-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
             <CardHeader >
-              <CardTitle className="text-blue-500">
-                Total Profissionais
-              </CardTitle>
-              <Stethoscope className="h-5 w-5 text-blue-500" />
+              <div className="flex items-center space-x-2">
+                <Stethoscope className="h-5 w-5 text-blue-500" />
+                <CardTitle className="text-blue-500">
+                  Total Profissionais
+                </CardTitle>
+              </div>
+              <div className='flex justify-end items-center text-blue-700 cursor-pointer hover:text-blue-900' onClick={handleAddProfessional}>
+                <UserPlus />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-blue-500 text-3xl font-bold">{totalDoctors}</div>
               <p className="text-xs text-blue-500 mt-1">Equipe médica ativa</p>
+
             </CardContent>
           </Card>
 
           <Card className="bg-green-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
             <CardHeader >
-              <CardTitle className="text-green-500">
-                Total Pacientes
-              </CardTitle>
-              <Users className="h-5 w-5 text-green-500" />
+              <div className="flex items-center space-x-2">
+                <Users className="h-5 w-5 text-green-500" />
+                <CardTitle className="text-green-500">
+                  Total Pacientes
+                </CardTitle>
+              </div>
+              <div className='flex justify-end items-center text-green-700 cursor-pointer hover:text-blue-900' onClick={handleAddPatient}>
+                <UserPlus />
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-green-500 text-3xl font-bold">{totalPatients}</div>
@@ -704,6 +724,11 @@ export default function AdminDashboard() {
             />
           )}
         </div>
+        <DoctorFormModal
+          open={showModalAddProfessional}
+          onClose={() => setShowModalAddProfessional(false)}
+          onSubmitDoctor={handleSaveDoctor}
+        />
       </>
     );
   };

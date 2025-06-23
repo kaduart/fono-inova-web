@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { IDoctor, ISession, PatientData } from '../../utils/types';
+import { IDoctor, ISession } from '../../utils/types';
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { SessionModal } from '../patients/SessionModal';
 
@@ -8,7 +8,7 @@ interface ScheduleWithPackageFlowProps {
     isOpen: boolean;
     onClose: () => void;
     doctors: IDoctor[];
-    patients: PatientData[];
+    patients: IPatient[];
     defaultDateTime: string; // ISO string do horário clicado
     onComplete: () => void; // callback para recarregar agenda ou outro efeito
 }

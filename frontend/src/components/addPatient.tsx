@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { BASE_URL } from '../../../backend/services/api';
 
 const AddPatient = () => {
-    const [patientData, setPatientData] = useState({
+    const [IPatient, setIPatient] = useState({
         fullName: '',
         email: '',
         phoneNumber: '',
@@ -14,7 +14,7 @@ const AddPatient = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setPatientData(prev => ({ ...prev, [name]: value }));
+        setIPatient(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e) => {
@@ -31,10 +31,10 @@ const AddPatient = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(patientData)
+                body: JSON.stringify(IPatient)
             });
             if (response.ok) {
-                setPatientData({
+                setIPatient({
                     fullName: '',
                     email: '',
                     phoneNumber: '',
@@ -59,7 +59,7 @@ const AddPatient = () => {
                 <input
                     type="text"
                     name="fullName"
-                    value={patientData.fullName}
+                    value={IPatient.fullName}
                     onChange={handleInputChange}
                     placeholder="Nome"
                     required
@@ -67,7 +67,7 @@ const AddPatient = () => {
                 <input
                     type="email"
                     name="email"
-                    value={patientData.email}
+                    value={IPatient.email}
                     onChange={handleInputChange}
                     placeholder="Email"
                     required
@@ -75,7 +75,7 @@ const AddPatient = () => {
                 <input
                     type="tel"
                     name="phoneNumber"
-                    value={patientData.phoneNumber}
+                    value={IPatient.phoneNumber}
                     onChange={handleInputChange}
                     placeholder="Telefone"
                     required
@@ -84,7 +84,7 @@ const AddPatient = () => {
                     <input
                         type={showPassword ? 'text' : 'password'}
                         name="password"
-                        value={patientData.password}
+                        value={IPatient.password}
                         onChange={handleInputChange}
                         placeholder="Senha"
                         required

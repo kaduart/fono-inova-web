@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ISession, PatientData } from "../../utils/types";
+import { ISession } from "../../utils/types";
 import { Button } from "../ui/Button";
 import { Select } from "../ui/Select";
 
@@ -10,7 +10,7 @@ interface DoctorSlotBookingModalProps {
     onSubmit: (data: ISession) => void;
     availableTimes: string[];
     selectedDate: string;
-    patients: PatientData[];
+    patients: IPatient[];
     selectedDoctorId: string;
     selectedBookingData?: {
         time: string;

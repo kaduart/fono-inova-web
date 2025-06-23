@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { IDoctor, PatientData, ScheduleAppointment } from '../../utils/types';
+import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types';
 import { Button } from '../ui/Button';
 import Input from '../ui/Input';
 import { Label } from '../ui/Label';
@@ -24,7 +24,7 @@ type Props = {
     onClose: () => void;
     onSave: (appointment: ScheduleAppointment) => void;
     doctors?: IDoctor[];
-    patients?: PatientData[];
+    patients?: IPatient[];
     initialData?: ScheduleAppointment;
 };
 

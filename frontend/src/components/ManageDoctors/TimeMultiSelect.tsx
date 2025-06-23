@@ -1,12 +1,11 @@
 import { Check } from 'lucide-react';
 import { useState } from 'react';
-import { PatientData } from '../../utils/types';
 
 interface TimeMultiSelectProps {
   selected?: string[];
   availableTimes?: string[];
   selectedDate?: Date | null;
-  patients: PatientData[];
+  patients: IPatient[];
   selectedDoctorId?: string;
   onChange: (selected: string[]) => void;
 

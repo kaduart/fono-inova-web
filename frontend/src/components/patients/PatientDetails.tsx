@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // ou outra lib de roteamento
 import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { BASE_URL } from '../../constants/constants';
-import { PatientData } from '../../utils/types';
-const initialPatientState: PatientData = {
+import { IPatient } from '../../utils/types';
+const initialPatientState: IPatient = {
     fullName: '',
     dateOfBirth: '',
     gender: '',
@@ -44,12 +44,12 @@ const initialPatientState: PatientData = {
 };
 
 interface PatientDetailsProps {
-    patients: PatientData[];
+    patients: IPatient[];
 }
 
 const PatientDetails = ({ patients }: PatientDetailsProps) => {
     const { id } = useParams<{ id: string }>();
-    const [patientData, setPatientData] = useState<PatientData>(initialPatientState);
+    const [IPatient, setIPatient] = useState<IPatient>(initialPatientState);
     const [appointments, setAppointments] = useState<any[]>([]);
 
     const [loading, setLoading] = useState(true);
@@ -65,8 +65,8 @@ const PatientDetails = ({ patients }: PatientDetailsProps) => {
                 if (!res.ok) throw new Error('Falha ao carregar dados');
                 return res.json();
             })
-            .then((data: PatientData) => {
-                setPatientData(data);
+            .then((data: IPatient) => {
+                setIPatient(data);
 
                 if (data.appointments && data.appointments.length > 0) {
                     Promise.all(
@@ -102,7 +102,7 @@ const PatientDetails = ({ patients }: PatientDetailsProps) => {
                 <Input
                     id="nomeCompleto"
                     name="nomeCompleto"
-                    value={patientData.fullName}
+                    value={IPatient.fullName}
                     disabled
                 />
             </div>
@@ -113,7 +113,7 @@ const PatientDetails = ({ patients }: PatientDetailsProps) => {
                     type="date"
                     id="dataNascimento"
                     name="dataNascimento"
-                    value={patientData.dateOfBirth}
+                    value={IPatient.dateOfBirth}
                     disabled
                 />
             </div>

@@ -23,24 +23,32 @@ export function PaymentsFilters({ doctors, payments, onFilter, initialFilters = 
     const filteredPayments = useMemo(() => {
         return payments.filter(payment => {
             // Filtro por profissional
-            if (filters.doctorId && payment.doctor._id !== filters.doctorId) {
+            if (filters.doctorId && payment.doctor?._id !== filters.doctorId) {
                 return false;
             }
 
             // Filtro por paciente (busca por ID ou nome)
             if (filters.patientId &&
-                !payment.patient._id.includes(filters.patientId) &&
-                !payment.patient.fullName.toLowerCase().includes(filters.patientId.toLowerCase())) {
+                !payment.patient?._id.includes(filters.patientId) &&
+                !payment.patient?.fullName.toLowerCase().includes(filters.patientId.toLowerCase())) {
                 return false;
             }
 
             // Filtro por status
-            if (filters.status && payment.status !== filters.status) {
-                return false;
+            if (filters.status) {
+                // Verifica se o pagamento tem a propriedade 'paid' (booleano)
+                if (payment.paid !== undefined) {
+                    if (filters.status === 'paid' && !payment.paid) return false;
+                    if (filters.status === 'pending' && payment.paid) return false;
+                }
+                // Caso tenha a propriedade 'status' (string)
+                else if (payment.status !== filters.status) {
+                    return false;
+                }
             }
 
             // Filtro por data
-            const paymentDate = new Date(payment.createdAt).toISOString().split('T')[0];
+            const paymentDate = new Date(payment.date || payment.createdAt).toISOString().split('T')[0];
             if (filters.from && paymentDate < filters.from) {
                 return false;
             }
@@ -79,7 +87,7 @@ export function PaymentsFilters({ doctors, payments, onFilter, initialFilters = 
                     onChange={(e) => handleFilterChange('doctorId', e.target.value)}
                 >
                     <option value="">Todos Profissionais</option>
-                    {doctors.map(doctor => (
+                    {doctors?.map(doctor => (
                         <option key={doctor._id} value={doctor._id}>
                             {doctor.fullName}
                         </option>

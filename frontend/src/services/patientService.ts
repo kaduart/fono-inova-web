@@ -1,6 +1,6 @@
 // src/services/patientService.ts
-import { normalizePatientData } from "../utils/normalize";
-import { PatientData } from "../utils/types";
+import { normalizeIPatient } from "../utils/normalize";
+import { IPatient } from "../utils/types";
 import API from "./api";
 import { getAuthToken } from "./authService";
 
@@ -30,7 +30,7 @@ export const patientService = {
      * Busca todos os pacientes com opção de incluir resumo de consultas
      */
     fetchAll: async (withAppointments = false): Promise<any[]> => {
-        const patients = await API.get<PatientData[]>('/patients').then(res => res.data);
+        const patients = await API.get<IPatient[]>('/patients').then(res => res.data);
 
         if (!withAppointments) {
             return patients;
@@ -44,12 +44,12 @@ export const patientService = {
         );
     },
 
-    async create(data: PatientData): Promise<PatientData> {
+    async create(data: IPatient): Promise<IPatient> {
         // Normaliza os dados antes de enviar
-        const normalizedData = normalizePatientData(data);
+        const normalizedData = normalizeIPatient(data);
 
         try {
-            const response = await API.post<PatientData>('/patients/add', normalizedData);
+            const response = await API.post<IPatient>('/patients/add', normalizedData);
             return response.data;
         } catch (error) {
             // Tratamento específico para erros de duplicidade
@@ -60,11 +60,11 @@ export const patientService = {
         }
     },
 
-    fetchById: (id: string): Promise<PatientData> =>
-        API.get<PatientData>(`/patients/${id}`).then(res => res.data),
+    fetchById: (id: string): Promise<IPatient> =>
+        API.get<IPatient>(`/patients/${id}`).then(res => res.data),
 
-    update: (id: string, data: Partial<PatientData>): Promise<PatientData> =>
-        API.put<PatientData>(`/patients/${id}`, data).then(res => res.data),
+    update: (id: string, data: Partial<IPatient>): Promise<IPatient> =>
+        API.put<IPatient>(`/patients/${id}`, data).then(res => res.data),
 
     delete: (id: string): Promise<void> =>
         API.delete(`/patients/${id}`),

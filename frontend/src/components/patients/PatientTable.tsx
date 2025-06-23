@@ -2,14 +2,13 @@ import { ChevronDown, ChevronUp, DollarSign, Edit, Eye, FileHeart, Phone } from 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateBrazilian } from "../../utils/dateFormat";
-import { PatientData } from "../../utils/types";
 import { WhatsAppActionButtons } from "../mkt/whatsapp/buttons/WhatsAppActionButtons";
 
 interface PatientTableProps {
-    patients: PatientData[];
+    patients: IPatient[];
     onPatientUpdated?: () => void;
-    onEditPatient?: (patient: PatientData) => void;
-    onRegisterPayment?: (patient: PatientData) => void;
+    onEditPatient?: (patient: IPatient) => void;
+    onRegisterPayment?: (patient: IPatient) => void;
 }
 
 const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTableProps) => {

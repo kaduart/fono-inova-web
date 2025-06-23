@@ -2,13 +2,12 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { X } from 'lucide-react';
 import PatientForm from '../../shared/components/PatientForm';
-import { PatientData } from '../../utils/types';
 
 interface PatientModalProps {
     open: boolean;
     onClose: () => void;
-    patient?: PatientData;
-    onSaveSuccess?: (patient: PatientData) => void;
+    patient?: IPatient;
+    onSaveSuccess?: (patient: IPatient) => void;
     isLoading?: boolean;
 }
 

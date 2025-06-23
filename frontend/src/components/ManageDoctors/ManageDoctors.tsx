@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React, { useState } from "react";
 import toast from 'react-hot-toast';
-import { IDoctor, PatientData, ScheduleAppointment } from "../../utils/types";
+import { IDoctor, IPatient, ScheduleAppointment } from "../../utils/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { Button } from "../ui/Button";
 import DoctorAgenda from "./DoctorAgenda";
@@ -22,7 +22,7 @@ const initialSchedules = {
 
 interface ManageDoctorsProps {
     doctors: IDoctor[],
-    patients: PatientData[], // Defina o tipo correto para pacientes
+    patients: IPatient[], // Defina o tipo correto para pacientes
     onSubmitDoctor: () => Promise<void>;
 
 };

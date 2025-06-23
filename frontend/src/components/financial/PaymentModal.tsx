@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { createPayment } from '../../services/paymentService';
-import { IDoctor, PatientData, PaymentMethods, ServiceTypes } from '../../utils/types';
+import { IDoctor, IPatient, PaymentMethods, ServiceTypes } from '../../utils/types';
 import { Button } from '../ui/Button';
 import Input from '../ui/Input';
 import InputCurrency from '../ui/InputCurrency';
@@ -13,8 +13,8 @@ import { Select } from '../ui/Select';
 interface PaymentModalProps {
     open: boolean;
     onClose: () => void;
-    patient?: PatientData;
-    patients?: PatientData[];
+    patient?: IPatient;
+    patients?: IPatient[];
     doctors: IDoctor[];
     onPaymentSuccess: () => void;
 }

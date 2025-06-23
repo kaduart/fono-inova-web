@@ -5,7 +5,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../constants/constants';
-import { IDoctor, PatientData, ScheduleAppointment } from '../../utils/types';
+import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types';
 import { Card, CardContent, CardTitle } from '../ui/Card';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
@@ -14,7 +14,7 @@ import { ScheduleWithPackageFlow } from './ScheduleWithPackageFlow';
 
 interface IDoctorAgendaProps {
     doctors: IDoctor[];
-    patients: PatientData[];
+    patients: IPatient[];
     selectedDoctor: IDoctor;
     onDaySlotsChange?: (slots: { date: string; slots: string[] }[]) => void;
     updateSlots: ScheduleAppointment;

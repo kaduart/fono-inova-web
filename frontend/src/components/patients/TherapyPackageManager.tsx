@@ -1,13 +1,13 @@
 import { Package as PackageIcon } from 'lucide-react';
 import { useState } from 'react';
 import packagesService from '../../services/packageService';
-import { IDoctor, ITherapyPackage, PatientData } from '../../utils/types';
+import { IDoctor, ITherapyPackage } from '../../utils/types';
 import TherapyPackageFormModal from './TherapyPackageFormModal';
 import TherapyPackageTable from './TherapyPackageTable';
 
 type Props = {
     packages: ITherapyPackage[];
-    patient: PatientData;
+    patient: IPatient;
     doctors: IDoctor;
     totalPages: number;
     onRefresh: () => void;

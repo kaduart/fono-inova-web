@@ -4,7 +4,6 @@ import { addDays, format, formatISO, startOfWeek } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { PatientData } from '../../utils/types';
 import { Button } from '../ui/Button';
 import { TimeMultiSelect } from './TimeMultiSelect';
 
@@ -13,7 +12,7 @@ const weekdays = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 interface DoctorAgendaCalendarProps {
   daySlots?: { date: string; slots: string[] }[];
   selectedDoctorId?: string;
-  patients?: PatientData[];
+  patients?: IPatient[];
   selectedDate?: dayjs.Dayjs | null;
   onDateChange: (date: dayjs.Dayjs) => void;
   onDaySelect: (date: string) => void;

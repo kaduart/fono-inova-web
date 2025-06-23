@@ -6,12 +6,9 @@ import {
     exportPDF,
     FinancialRecord,
     getPayments,
-    getPaymentSummary,
-    Summary,
-    updatePayment,
-    updatePaymentStatus
+    updatePayment
 } from '../../services/paymentService';
-import { IDoctor, PatientData } from '../../utils/types';
+import { IDoctor } from '../../utils/types';
 import { EditPaymentModal } from './EditPaymentModal';
 import { PaymentActionIcons } from './PaymentAction';
 import { PaymentModal } from './PaymentModal';
@@ -19,80 +16,60 @@ import { PaymentsFilters } from './PaymentsFilters';
 import { PaymentsSummary } from './PaymentsSummary';
 
 interface PaymentPageProps {
-    patients?: PatientData[];
+    patients?: IPatient[];
     doctors?: IDoctor[];
 }
 
-interface Filters {
-    doctorId?: string;
-    patientId?: string;
-    status?: string;
-    from?: string;
-    to?: string;
+interface LocalSummary {
+    grandTotal: number;
+    totalReceived: number;
+    totalPending: number;
+    paidCount: number;
+    pendingCount: number;
+    canceledCount: number;
 }
 
 const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
     const [allPayments, setAllPayments] = useState<FinancialRecord[]>([]);
-    const [filters, setFilters] = useState<Filters>({});
-    const [summary, setSummary] = useState<Summary>({ total: 0, paidCount: 0, unpaidCount: 0 });
+    const [filteredPayments, setFilteredPayments] = useState<FinancialRecord[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [showForm, setShowForm] = useState<boolean>(false);
     const userRole = localStorage.getItem('userRole');
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
     const [paymentToEdit, setPaymentToEdit] = useState<FinancialRecord | undefined>(undefined);
 
-    // Filtra os pagamentos localmente
-    const filteredPayments = useMemo(() => {
-        return allPayments.filter(payment => {
-            // Filtro por profissional
-            if (filters.doctorId && payment.doctor?._id !== filters.doctorId) {
-                return false;
-            }
-
-            // Filtro por paciente (busca por ID ou nome)
-            if (filters.patientId &&
-                !payment.patient?._id.includes(filters.patientId) &&
-                !payment.patient?.fullName.toLowerCase().includes(filters.patientId.toLowerCase())) {
-                return false;
-            }
-
-            // Filtro por status (paid/pending)
-            if (filters.status) {
-                if (filters.status === 'paid' && !payment.paid) return false;
-                if (filters.status === 'pending' && payment.paid) return false;
-            }
-
-            // Filtro por data
-            const paymentDate = new Date(payment.date || payment.createdAt).toISOString().split('T')[0];
-            if (filters.from && paymentDate < filters.from) {
-                return false;
-            }
-            if (filters.to && paymentDate > filters.to) {
-                return false;
-            }
-
-            return true;
-        });
-    }, [allPayments, filters]);
+    // Carrega os pagamentos
+    const loadPayments = async () => {
+        setLoading(true);
+        try {
+            const res = await getPayments();
+            setAllPayments(res.data.data);
+            setFilteredPayments(res.data.data); // Inicializa com todos os pagamentos
+        } catch (error) {
+            console.error('Erro ao carregar pagamentos:', error);
+            toast.error('Erro ao carregar pagamentos');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     // Calcula o resumo localmente
-    const localSummary = useMemo(() => {
+    const localSummary = useMemo<LocalSummary>(() => {
         return filteredPayments.reduce((acc, payment) => {
-            // Calcula o total geral (todos os pagamentos)
             acc.grandTotal += payment.amount;
 
-            // Verifica o status real do pagamento
-            if (payment.status === 'paid') {
-                acc.totalReceived += payment.amount;
-                acc.paidCount += 1;
-            }
-            else if (payment.status === 'pending') {
-                acc.totalPending += payment.amount;
-                acc.pendingCount += 1;
-            }
-            else if (payment.status === 'canceled') {
-                acc.canceledCount += 1;
-                // Cancelados não entram no cálculo de totais
+            switch (payment.status) {
+                case 'paid':
+                    acc.totalReceived += payment.amount;
+                    acc.paidCount += 1;
+                    break;
+                case 'pending':
+                    acc.totalPending += payment.amount;
+                    acc.pendingCount += 1;
+                    break;
+                case 'canceled':
+                    acc.canceledCount += 1;
+                    break;
             }
 
             return acc;
@@ -106,52 +83,24 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
         });
     }, [filteredPayments]);
 
-    const loadPayments = async () => {
-        setLoading(true);
-        try {
-            const res = await getPayments(); // Remove os filtros da chamada API
-            setAllPayments(res.data.data);
-        } catch (error) {
-            console.error('Erro ao carregar pagamentos:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const loadSummary = async () => {
-        try {
-            const res = await getPaymentSummary();
-            setSummary(res.data);
-        } catch (error) {
-            console.error('Erro ao carregar resumo:', error);
-        }
-    };
-
     useEffect(() => {
         loadPayments();
-        loadSummary();
     }, []);
-
-    const handleApplyFilters = (newFilters: Filters) => {
-        setFilters(newFilters);
-    };
 
     const handleCreate = async (data: Partial<FinancialRecord>) => {
         try {
             await createPayment(data);
-            await loadPayments(); // Recarrega todos os pagamentos
-            await loadSummary();
+            await loadPayments();
+            toast.success('Pagamento criado com sucesso!');
         } catch (error) {
             console.error('Erro ao criar pagamento:', error);
+            toast.error('Erro ao criar pagamento');
         }
     };
 
     const handleMarkAsPaid = async (paymentId: string) => {
         try {
-            await updatePayment(paymentId, {
-                status: 'paid',
-                amount: allPayments.find(p => p._id === paymentId)?.amount
-            });
+            await updatePayment(paymentId, { status: 'paid' });
             loadPayments();
             toast.success('Pagamento marcado como pago com sucesso!');
         } catch (error) {
@@ -161,9 +110,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
 
     const handleCancelPayment = async (paymentId: string) => {
         try {
-            await updatePayment(paymentId, {
-                status: 'canceled'
-            });
+            await updatePayment(paymentId, { status: 'canceled' });
             loadPayments();
             toast.success('Pagamento cancelado com sucesso!');
         } catch (error) {
@@ -179,8 +126,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
 
     const handleExportCSV = async () => {
         try {
-            // Exporta com os filtros aplicados
-            const res = await exportCSV(filters);
+            const res = await exportCSV();
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement('a');
             link.href = url;
@@ -190,13 +136,13 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
             document.body.removeChild(link);
         } catch (error) {
             console.error('Erro ao exportar CSV:', error);
+            toast.error('Erro ao exportar CSV');
         }
     };
 
     const handleExportPDF = async () => {
         try {
-            // Exporta com os filtros aplicados
-            const res = await exportPDF(filters);
+            const res = await exportPDF();
             const url = window.URL.createObjectURL(new Blob([res.data], { type: 'application/pdf' }));
             const link = document.createElement('a');
             link.href = url;
@@ -206,6 +152,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
             document.body.removeChild(link);
         } catch (error) {
             console.error('Erro ao exportar PDF:', error);
+            toast.error('Erro ao exportar PDF');
         }
     };
 
@@ -224,7 +171,6 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
         date: string;
         paymentMethod: string;
         serviceType: string;
-
     }) => {
         try {
             await updatePayment(data._id, {
@@ -234,7 +180,6 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                 paymentMethod: data.paymentMethod
             });
             await loadPayments();
-            await loadSummary();
             toast.success('Pagamento atualizado com sucesso!');
         } catch (error) {
             toast.error('Erro ao atualizar pagamento');
@@ -247,13 +192,14 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
             <PaymentsFilters
                 doctors={doctors || []}
                 payments={allPayments}
-                onFilter={handleApplyFilters}
+                onFilter={setFilteredPayments}
             />
 
             <PaymentsSummary
                 totalPayments={localSummary.totalReceived}
                 totalPending={localSummary.totalPending}
                 paidCount={localSummary.paidCount}
+                pendingCount={localSummary.pendingCount}
                 canceledCount={localSummary.canceledCount}
             />
 
@@ -302,10 +248,10 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                             {filteredPayments.map(payment => (
                                 <tr key={payment._id}>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
-                                        {payment?.patient?.fullName}
+                                        {payment.patient?.fullName}
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {payment?.doctor?.fullName}
+                                        {payment.doctor?.fullName}
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {new Date(payment.date || payment.createdAt).toLocaleDateString('pt-BR')}
@@ -314,33 +260,25 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                                         {getServiceTypeLabel(payment.serviceType)}
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        R$ {payment.amount.toFixed(2)}
+                                        {payment.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap">
                                         <span className={`px-2 py-1 rounded-full text-xs font-semibold 
-  ${payment.status === 'paid'
-                                                ? 'bg-green-100 text-green-800'
-                                                : payment.status === 'pending'
-                                                    ? 'bg-yellow-100 text-yellow-800'
-                                                    : 'bg-red-100 text-red-800'
-                                            }`}>
-                                            {
-                                                payment.status === 'paid'
-                                                    ? 'PAGO'
-                                                    : payment.status === 'pending'
-                                                        ? 'PENDENTE'
-                                                        : 'CANCELADO'
-                                            }
+                                            ${payment.status === 'paid' ? 'bg-green-100 text-green-800' :
+                                                payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-red-100 text-red-800'}`}>
+                                            {payment.status === 'paid' ? 'PAGO' :
+                                                payment.status === 'pending' ? 'PENDENTE' : 'CANCELADO'}
                                         </span>
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {payment.paymentMethod}
                                     </td>
                                     <td className="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                                        {userRole && ['admin', 'secretary'].includes(userRole) && !payment.paid && (
+                                        {userRole && ['admin', 'secretary'].includes(userRole) && payment.status !== 'canceled' && (
                                             <PaymentActionIcons
                                                 payment={payment}
-                                                onMarkAsPaid={handleMarkAsPaid}
+                                                onMarkAsPaid={payment.status === 'pending' ? handleMarkAsPaid : undefined}
                                                 onCancelPayment={handleCancelPayment}
                                                 onEditAmount={handleEditAmount}
                                             />
@@ -359,22 +297,18 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                     doctors={doctors || []}
                     patients={patients || []}
                     onClose={() => setShowForm(false)}
-                    onPaymentSuccess={() => {
-                        loadPayments();
-                        loadSummary();
-                        setShowForm(false);
-                    }}
+                    onPaymentSuccess={handleCreate}
                 />
             )}
+
             {isEditModalOpen && paymentToEdit && (
                 <EditPaymentModal
-                    payment={paymentToEdit!}
+                    payment={paymentToEdit}
                     isOpen={isEditModalOpen}
                     onClose={() => setIsEditModalOpen(false)}
                     onSave={handleSavePayment}
                 />
-            )
-            }
+            )}
         </div>
     );
 };

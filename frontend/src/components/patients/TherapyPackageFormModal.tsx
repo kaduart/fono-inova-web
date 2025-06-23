@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packageService, { CreatePackageParams } from '../../services/packageService';
-import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, ITherapyPackage, PatientData, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types';
+import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types';
 import InputCurrency from '../ui/InputCurrency';
 import { Select } from '../ui/Select';
 
 type Props = {
     initialData: ITherapyPackage | null;
-    patient: PatientData;
+    patient: IPatient;
     doctors: IDoctor[];
     onClose: () => void;
     onSubmit: () => void;

@@ -1,9 +1,9 @@
-/* import { PatientData } from '../AdminDashboard';
+/* import { IPatient} from '../AdminDashboard';
 import { TherapyPackageData } from './types';
 
 type Props = {
     pkg: TherapyPackageData;
-    patient: PatientData;
+    patient: IPatient;
     onEdit: (pkg: TherapyPackageData) => void;
     onDelete: (id: string) => void;
 };
