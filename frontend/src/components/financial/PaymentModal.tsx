@@ -13,7 +13,7 @@ import { Select } from '../ui/Select';
 interface PaymentModalProps {
     open: boolean;
     onClose: () => void;
-    patient?: PatientData | null;
+    patient?: PatientData;
     patients?: PatientData[];
     doctors: IDoctor[];
     onPaymentSuccess: () => void;
