@@ -29,7 +29,7 @@ export const PaymentModal = ({
 }: PaymentModalProps) => {
     const [paymentData, setPaymentData] = useState({
         serviceType: 'evaluation',
-        patientId: patient?._id || '',
+        patientId: patient?._id,
         professionalId: doctors.length > 0 ? doctors[0]._id : '',
         amount: 0,
         status: 'pending',
@@ -40,10 +40,8 @@ export const PaymentModal = ({
     });
 
     const [isLoading, setIsLoading] = useState(false);
-
-
+            
     const handleSubmit = async () => {
-        // Validação do paciente
         if (!paymentData.patientId) {
             toast.error('Selecione um paciente');
             return;
@@ -237,7 +235,7 @@ export const PaymentModal = ({
                         </Button>
                         <Button
                             onClick={handleSubmit}
-                            disabled={isLoading || !paymentData.amount}
+                            disabled={isLoading}
                         >
                             {isLoading ? 'Registrando...' : 'Confirmar Pagamento'}
                         </Button>

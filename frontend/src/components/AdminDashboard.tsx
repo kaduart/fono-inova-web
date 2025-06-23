@@ -9,6 +9,7 @@ import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import { IDoctor, PatientData } from '../utils/types';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentModal } from './financial/PaymentModal';
+import PaymentPage from './financial/PaymentPage';
 import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
 import AppChat from './mkt/whatsapp/AppChat';
@@ -18,7 +19,6 @@ import { Button } from './ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/Card';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
-import PaymentPage from './financial/PaymentPage';
 
 const NavButton = ({
   children,
@@ -254,6 +254,8 @@ export default function AdminDashboard() {
 
 
   const handleRegisterPayment = (patient: PatientData) => {
+    console.log('Dados do pagamento:', patient);
+
     setSelectedPatient(patient);
     setPaymentModalOpen(true);
   };
@@ -498,7 +500,7 @@ export default function AdminDashboard() {
     setIsLoading(true);
     try {
       if (formData._id) {
-  
+
         await updatePatient(formData._id, {
           ...formData,
           dateOfBirth: new Date(formData.dateOfBirth).toISOString()
@@ -596,12 +598,12 @@ export default function AdminDashboard() {
 
         <PaymentModal
           open={paymentModalOpen}
-          onClose={() => setPaymentModalOpen(false)}
           patient={selectedPatient}
+          onClose={() => setPaymentModalOpen(false)}
           doctors={doctors}
           onPaymentSuccess={() => {
             updatePatients(); // Atualiza a lista de pacientes
-            fetchPayments(); // Atualiza a lista de pagamentos
+            //fetchPayments(); // Atualiza a lista de pagamentos
           }}
         />
 
@@ -695,7 +697,7 @@ export default function AdminDashboard() {
                 setActiveTab('Dashboard'); // Volta para a dashboard após fechar
               }}
               onSaveSuccess={(patient) => {
-          
+
                 handleSavePatient(patient);
               }}
             />
@@ -830,7 +832,7 @@ export default function AdminDashboard() {
   const renderFinanceiro = () => (
     <div className="mt-4">
       <h2 className="text-xl font-bold mb-4">Controle Financeiro</h2>
-      <PaymentPage patients={patients} doctors={doctors}/>
+      <PaymentPage patients={patients} doctors={doctors} />
     </div>
   );
 
