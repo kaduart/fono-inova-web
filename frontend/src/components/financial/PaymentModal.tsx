@@ -40,8 +40,12 @@ export const PaymentModal = ({
     });
 
     const [isLoading, setIsLoading] = useState(false);
-            
+
+    console.log('patient:', patient);
+    console.log('FORM', paymentData);
     const handleSubmit = async () => {
+        console.log('Dados do pagamento:', paymentData);
+        // Validação do paciente
         if (!paymentData.patientId) {
             toast.error('Selecione um paciente');
             return;
