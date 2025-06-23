@@ -27,7 +27,7 @@ import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
 import appointmentService, { IAppointment } from '../services/appointmentService';
 import { patientService } from '../services/patientService';
-import { IDoctor } from '../utils/types';
+import { IDoctor, SelectedEvent } from '../utils/types';
 import ScheduleModal from './ScheduleModal';
 import AppointmentDetailModal from './appointmentDetailModal';
 
@@ -65,7 +65,9 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
     const [isAppointmentDetailModalOpen, setIsAppointmentDetailModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState('create');
-    const [selectedEvent, setSelectedEvent] = useState(null);
+
+
+    const [selectedEvent, setSelectedEvent] = useState<SelectedEvent | null>(null);
     const [selectedDate, setSelectedDate] = useState(null);
     const [availableSlots, setAvailableSlots] = useState([]);
     const [formData, setFormData] = useState({
@@ -218,10 +220,11 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         }
     };
 
-    const handleEventClick = (info: any) => {
+    const handleEventClick = (info: { event: any }) => {
         const { event } = info;
 
-        const start = event.start
+        // Formatação da data/hora
+        const formattedDate = event.start
             ? new Intl.DateTimeFormat("pt-BR", {
                 day: "2-digit",
                 month: "2-digit",
@@ -231,7 +234,32 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             }).format(new Date(event.start))
             : "";
 
-        setSelectedEvent(event);
+        // Extrai os dados básicos que temos
+        const { patientId, doctorId, status, patientName, doctorName } = event.extendedProps;
+
+        setSelectedEvent({
+            id: event.id,
+            patient: {
+                id: patientId,
+                name: patientName || "Paciente não informado"
+            },
+            doctor: {
+                id: doctorId,
+                name: doctorName || "Profissional não informado"
+            },
+            date: event.start ? new Date(event.start) : null,
+            startTime: event.start ? new Date(event.start).toLocaleTimeString('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            }) : "",
+            status: status || "Status não informado",
+            formattedDate,
+            backgroundColor: event.backgroundColor,
+            borderColor: event.borderColor,
+            // Mantém o formato antigo para compatibilidade
+            start: formattedDate,
+        });
+
         setIsAppointmentDetailModalOpen(true);
     };
 
@@ -459,7 +487,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                         <CircularProgress />
                     </Box>
                 ) : (
-                    <div className="p-4 border rounded-lg shadow-md bg-white">
+                    <div className="p-4 border border-gray-200 rounded-lg shadow-sm bg-white">
                         <FullCalendar
                             ref={calendarRef}
                             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -475,6 +503,34 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                             dateClick={onDateClick}
                             eventClick={handleEventClick}
                             height="auto"
+                            eventDisplay="block"
+                            eventTimeFormat={{
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            }}
+                            eventContent={(arg) => (
+                                <div className="flex flex-col p-1">
+                                    <span className="text-xs font-medium text-gray-800">
+                                        {arg.timeText}
+                                    </span>
+                                    <span className="text-sm font-semibold truncate">
+                                        {arg.event.title}
+                                    </span>
+                                </div>
+                            )}
+                            dayHeaderContent={(arg) => (
+                                <span className="text-sm font-medium text-gray-600">
+                                    {arg.text.substring(0, 3)}
+                                </span>
+                            )}
+                            dayCellContent={(arg) => (
+                                <div className="flex justify-end p-1">
+                                    <span className={`text-sm ${arg.isToday ? 'font-bold text-blue-600' : 'text-gray-700'}`}>
+                                        {arg.dayNumberText}
+                                    </span>
+                                </div>
+                            )}
                         />
                     </div>
                 )}

@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { SelectedEvent } from '../utils/types';
 
 interface AppointmentDetailModalProps {
     isOpen: boolean;
     onClose: () => void;
-    event: any;
+    event: SelectedEvent;
     onCancelAppointment?: (id: string, reason: string) => void;
 }
 
@@ -32,7 +33,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
         }
     }
 
-    console.log('Canceling appointment with reason:', isCancelling);
+    console.log('Canceling appointment with reason:', event);
     const handleCancel = async () => {
         if (!cancelReason.trim()) {
             alert('Por favor, informe o motivo do cancelamento');
@@ -86,7 +87,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                     <input
                                         type="text"
                                         disabled
-                                        value={event.patient}
+                                        value={event.patient.name}
                                         className="w-full bg-gray-100 text-gray-800 p-2 rounded-md border border-gray-300 cursor-not-allowed"
                                     />
                                 </div>
@@ -95,7 +96,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                     <input
                                         type="text"
                                         disabled
-                                        value={event.doctor}
+                                        value={event.doctor.name}
                                         className="w-full bg-gray-100 text-gray-800 p-2 rounded-md border border-gray-300 cursor-not-allowed"
                                     />
                                 </div>

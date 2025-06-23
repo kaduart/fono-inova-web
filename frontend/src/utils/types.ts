@@ -199,6 +199,23 @@ export const PaymentMethods = [
     { value: 'cartão', label: 'Cartão' }
 ];
 
+export interface SelectedEvent {
+    patientId: string;
+    patientName: string;
+    doctor: {
+        id: string;
+        name: string;
+    },
+    doctorName: {
+        id: string;
+        name: string;
+    },
+    status: string;
+    start: string;
+    date: Date | null;
+    formattedDate: string;
+}
+
 export interface IPatient {
     _id?: string;
     fullName: string;
