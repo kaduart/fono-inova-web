@@ -33,15 +33,18 @@ export const createPayment = (data: Partial<FinancialRecord>) =>
     API.post<FinancialRecord>('/payments', data);
 
 // paymentService.ts
+// paymentService.ts
 export const updatePayment = (
     id: string,
     data: {
+        status?: 'pending' | 'paid' | 'canceled';
         amount?: number;
-        date?: string | Date; // Aceita Date object ou string
+        date?: string | Date;
         paymentMethod?: string;
         serviceType?: string;
     }
 ) => {
+    // Processa a data se existir
     const processedData = {
         ...data,
         date: data.date instanceof Date ? data.date.toISOString() : data.date
@@ -49,11 +52,12 @@ export const updatePayment = (
 
     return API.patch<FinancialRecord>(`/payments/${id}`, processedData);
 };
+
 export const deletePayment = (id: string) =>
     API.delete<void>(`/payments/${id}`);
 
 // Marca como pago
-export const updatePaymentStatus = (
+/* export const updatePaymentStatus = (
     id: string,
     data: {
         status?: 'pending' | 'paid' | 'canceled';
@@ -61,7 +65,7 @@ export const updatePaymentStatus = (
     }
 ) => {
     return API.patch(`/payments/${id}/status`, data);
-};
+}; */
 
 export const getReport = (params: any) => API.get('/payments/report', { params });
 

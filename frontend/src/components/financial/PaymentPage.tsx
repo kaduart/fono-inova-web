@@ -148,7 +148,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
 
     const handleMarkAsPaid = async (paymentId: string) => {
         try {
-            await updatePaymentStatus(paymentId, {
+            await updatePayment(paymentId, {
                 status: 'paid',
                 amount: allPayments.find(p => p._id === paymentId)?.amount
             });
@@ -161,7 +161,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
 
     const handleCancelPayment = async (paymentId: string) => {
         try {
-            await updatePaymentStatus(paymentId, {
+            await updatePayment(paymentId, {
                 status: 'canceled'
             });
             loadPayments();
