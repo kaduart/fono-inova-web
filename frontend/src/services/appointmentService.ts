@@ -2,7 +2,6 @@
 import {
     AppointmentStatus,
     IAppointmentResponse,
-    IAvailableSlot,
     IPaginatedAppointmentResponse,
     TherapyType
 } from '../utils/types';
@@ -12,12 +11,9 @@ export type CreateAppointmentParams = {
     patientId: string;
     doctorId: string;
     date: Date;
-    startTime: string;
-    duration: number;
+    time: string;
     reason: string;
-    sessionType?: TherapyType;
-    paymentMethod?: string;
-    notes?: string;
+    status?: string;
 };
 
 export type UpdateAppointmentParams = Partial<{
@@ -58,17 +54,14 @@ export type CancelParams = {
 
 export type AvailableSlotsParams = {
     doctorId: string;
-    date: Date;
-    duration?: number;
-    ignoreAppointmentId?: string;
+    date: string;
 };
 
 export const appointmentService = {
     // Operações básicas
     create: async (data: CreateAppointmentParams) => {
         return API.post<IAppointmentResponse>('/appointments', {
-            ...data,
-            endTime: calculateEndTime(data.startTime, data.duration)
+            ...data
         });
     },
 
@@ -83,8 +76,6 @@ export const appointmentService = {
                 endTime: calculateEndTime(data.startTime, data.duration)
             }
             : data;
-
-        console.log('Payload:', payload);
 
         return API.patch<IAppointmentResponse>(`/appointments/${id}`, payload);
     },
@@ -132,15 +123,8 @@ export const appointmentService = {
     },
 
     // Consultas
-    getAvailableSlots: async (params: AvailableSlotsParams) => {
-        return API.get<IAvailableSlot[]>('/appointments/available-slots', {
-            params: {
-                doctorId: params.doctorId,
-                date: params.date.toISOString().split('T')[0],
-                duration: params.duration,
-                ignoreAppointmentId: params.ignoreAppointmentId
-            }
-        });
+    getAvailableSlots: async (payload: AvailableSlotsParams) => {
+        return API.get<any>(`/appointments/available-slots?doctorId=${payload.doctorId}&date=${payload.date}`);
     },
 
     getDoctorSchedule: async (doctorId: string, date: Date) => {
@@ -193,11 +177,11 @@ export const validateAppointment = (appointment: CreateAppointmentParams) => {
     if (!appointment.patientId) throw new Error('Paciente é obrigatório');
     if (!appointment.doctorId) throw new Error('Profissional é obrigatório');
     if (!appointment.date) throw new Error('Data é obrigatória');
-    if (!appointment.startTime) throw new Error('Hora de início é obrigatória');
+    if (!appointment.time) throw new Error('Hora de início é obrigatória');
     if (!appointment.reason) throw new Error('Motivo é obrigatório');
 
     const appointmentDate = new Date(
-        `${appointment.date.toISOString().split('T')[0]}T${appointment.startTime}`
+        `${appointment.date.toISOString().split('T')[0]}T${appointment.time}`
     );
 
     if (appointmentDate < new Date()) {

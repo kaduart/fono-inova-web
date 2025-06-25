@@ -6,8 +6,6 @@ const router = express.Router();
 router.post('/', async (req, res) => {
   const { fullName, email, password, role } = req.body;
 
-  console.log('Received data:', req.body); // Add this line to log the request body
-
   try {
     const user = new User({ fullName, email, password, role });
     await user.save();

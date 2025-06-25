@@ -559,6 +559,7 @@ export default function DoctorDashboard() {
 
     const fetchAvailableSlots = async (patientId, date) => {
       if (!patientId || !date) return;
+
       try {
         const token = localStorage.getItem('token');
         const response = await fetch(BASE_URL + `/doctor/available-slots?patientId=${patientId}&date=${date}`, {

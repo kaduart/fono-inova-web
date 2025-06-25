@@ -186,6 +186,13 @@ export interface ScheduleAppointment {
     status: 'agendado' | 'concluído' | 'cancelado';
 }
 
+export const STATUS_OPTIONS = [
+    { label: 'Agendado', value: 'agendado' },
+    { label: 'Concluído', value: 'concluído' },
+    { label: 'Cancelado', value: 'cancelado' },
+] as const;
+
+
 export const ServiceTypes = [
     { value: 'evaluation', label: 'Avaliação Inicial' },
     { value: 'session', label: 'Sessão Avulsa' },
@@ -316,6 +323,8 @@ export interface IPaginatedAppointmentResponse {
 }
 
 export interface IAvailableSlot {
-    time: string;
-    available: boolean;
+    slots: {
+        date: string;
+        slots: string[]
+    }[]
 }

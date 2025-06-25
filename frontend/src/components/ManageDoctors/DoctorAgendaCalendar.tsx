@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { Button } from '../ui/Button';
 import { TimeMultiSelect } from './TimeMultiSelect';
+import { IPatient } from '../../utils/types';
 
 const weekdays = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 

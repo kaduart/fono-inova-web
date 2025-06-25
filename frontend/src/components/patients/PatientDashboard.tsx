@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, LineChart, UserCircle, Users } from 'lucide-react';
+import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, LineChart, UserCircle, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
-import { useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
 import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
 import { IDoctors, IPatient, ScheduleAppointment } from '../../utils/types';
@@ -645,69 +645,115 @@ export default function PatientDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-blue-600">
-      <nav className="bg-blue-700 text-white p-4">
-        <ul className="flex space-x-4 justify-center">
-          <li>
-            <Button
-              variant={activeTab === 'Dashboard' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Dashboard' ? 'bg-white text-blue-600' : 'text-white'}`}
-              onClick={() => setActiveTab('Dashboard')}
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Dashboard
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Profile' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Profile' ? 'bg-white text-blue-600' : 'text-white'}`}
+    <div className="min-h-screen bg-gray-100 text-gray-800">
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center">
+              <NavLink
+                to="/admin"
+                className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+              >
+                <div className="bg-blue-100/80 p-2.5 rounded-xl shadow-sm">
+                  <Hospital className="h-6 w-6 text-blue-600" />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-800 to-blue-600 bg-clip-text text-transparent hover:from-blue-700 hover:to-blue-500 transition-all duration-300">
+                  Fono<span className="font-extrabold">Inova</span>
+                </span>
+              </NavLink>
+            </div>
+
+            <nav className="hidden md:flex items-center space-x-2">
+              <Button
+                variant={activeTab === 'Dashboard' ? 'secondary' : 'ghost'}
+                onClick={() => setActiveTab('Dashboard')}
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              >
+                <Home className="h-4 w-4 mr-2" />
+                Dashboard
+              </Button>
+
+              <Button
+                variant={activeTab === 'Profile' ? 'secondary' : 'ghost'}
+                onClick={() => setActiveTab('Profile')}
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              >
+                <UserCircle className="h-4 w-4 mr-2" />
+                Perfil
+              </Button>
+
+              <Button
+                variant={activeTab === 'Appointment Booking' ? 'secondary' : 'ghost'}
+                onClick={() => setActiveTab('Appointment Booking')}
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              >
+                <CalendarIcon className="h-4 w-4 mr-2" />
+                Agendamentos
+              </Button>
+
+              <Button
+                variant={activeTab === 'Management Packages' ? 'secondary' : 'ghost'}
+                onClick={() => setActiveTab('Management Packages')}
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Pacotes
+              </Button>
+
+              <Button
+                variant={activeTab === 'Evolution' ? 'secondary' : 'ghost'}
+                onClick={() => setActiveTab('Evolution')}
+                className="px-3 py-2 rounded-md text-sm font-medium"
+              >
+                <LineChart className="h-4 w-4 mr-2" />
+                Evolução
+              </Button>
+            </nav>
+
+            <button
               onClick={() => setActiveTab('Profile')}
+              className="p-1 rounded-full text-gray-600 hover:text-blue-600 focus:outline-none"
             >
-              <UserCircle className="w-4 h-4 mr-2" />
-              Perfil
-            </Button>
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Appointment Booking' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Appointment Booking' ? 'bg-white text-blue-600' : 'text-white'}`}
-              onClick={() => setActiveTab('Appointment Booking')}
+              <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                <span className="text-sm font-medium text-blue-600">
+                  {patientInfo?.fullName?.charAt(0) || 'P'}
+                </span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </header>
 
-            >
-              <CalendarIcon className="w-4 h-4 mr-2" />
-              Agendamento de consultas
-            </Button>
-          </li>
-          <li>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="mb-6 flex items-center gap-3">
+          <UserCircle className="h-8 w-8 text-blue-500" />
+          <h1 className="text-2xl font-semibold text-gray-800">
+            {patientInfo?.fullName || 'Paciente'}
+          </h1>
+        </div>
+        <div className="mb-6 flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-gray-900">
+            {activeTab === 'Dashboard'}
+            {activeTab === 'Profile' && 'Meu Perfil'}
+            {activeTab === 'Appointment Booking' && 'Agendamentos'}
+            {activeTab === 'Management Packages' && 'Pacotes de Terapia'}
+            {activeTab === 'Evolution' && 'Evolução do Tratamento'}
+          </h2>
 
-            <Button
-              variant={activeTab === 'Management Packages' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Management Packages' ? 'bg-white text-blue-600' : 'text-white'}`}
-              onClick={() => setActiveTab('Management Packages')}
-            >
-              Gerenciar Pacotes de Terapia
-            </Button>
+          {activeTab === 'Dashboard' && (
+            <div className="flex items-center space-x-3">
+              <span className="text-sm text-gray-500">
+                Atualizado em {new Date().toLocaleDateString()}
+              </span>
+            </div>
+          )}
+        </div>
 
-          </li>
-          <li>
-            <Button
-              variant={activeTab === 'Evolution' ? "outline" : "ghost"}
-              className={`hover:bg-white hover:text-blue-600 ${activeTab === 'Evolution' ? 'bg-white text-blue-600' : 'text-white'}`}
-              onClick={() => setActiveTab('Evolution')}
-            >
-              <LineChart className="w-4 h-4 mr-2" />
-              Evolução
-            </Button>
-          </li>
-        </ul>
-      </nav>
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-white mb-8">Paciente: {patientInfo?.fullName}</h1>
-        {activeTab === 'Dashboard' && renderDashboard()}
-        {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
-        {activeTab === 'Management Packages' && renderManagePackages()}
-        {activeTab === 'Evolution' && renderEvolution()}
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          {activeTab === 'Dashboard' && renderDashboard()}
+          {activeTab === 'Appointment Booking' && renderAppointmentBooking()}
+          {activeTab === 'Management Packages' && renderManagePackages()}
+          {activeTab === 'Evolution' && renderEvolution()}
+        </div>
       </main>
     </div>
   );

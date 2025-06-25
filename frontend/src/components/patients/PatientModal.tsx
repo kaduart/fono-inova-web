@@ -2,6 +2,7 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { X } from 'lucide-react';
 import PatientForm from '../../shared/components/PatientForm';
+import { IPatient } from '../../utils/types';
 
 interface PatientModalProps {
     open: boolean;
@@ -20,7 +21,6 @@ export const PatientModal = ({
 }: PatientModalProps) => {
 
     if (!open) {
-        console.log('Modal not rendering because open is false');
         return null;
     }
 

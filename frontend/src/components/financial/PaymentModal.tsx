@@ -27,7 +27,6 @@ export const PaymentModal = ({
     doctors,
     onPaymentSuccess
 }: PaymentModalProps) => {
-    console.log('patient:', patient);
     /*     const initialPaymentData = {
             serviceType: 'evaluation',
             professionalId: doctors[0]?._id || '',
@@ -57,9 +56,7 @@ export const PaymentModal = ({
         }
     }, [open, patient]);
 
-    console.log('FORM', paymentData);
     const handleSubmit = async () => {
-        console.log('Dados do pagamento:', paymentData);
         // Validação do paciente
         if (!paymentData.patientId) {
             toast.error('Selecione um paciente');

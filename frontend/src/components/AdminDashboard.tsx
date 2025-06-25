@@ -261,7 +261,6 @@ export default function AdminDashboard() {
   };
 
   const handleRegisterPayment = (patient: IPatient) => {
-    console.log('Dados do pagamento:', patient);
 
     setSelectedPatient(patient);
     setPaymentModalOpen(true);
@@ -468,7 +467,7 @@ export default function AdminDashboard() {
         await doctorService.createDoctor(doctor);
         toast.success("Profissional cadastrado com sucesso!");
       }
-      
+
       setModalShouldClose(true);
       setShowModalAddProfessional(false);
 
@@ -505,7 +504,6 @@ export default function AdminDashboard() {
   };
 
   const handleSavePatient = async (formData: IPatient) => {
-    console.log('Dados do paciente=====>>>:', formData);
     setIsLoading(true);
     try {
       if (formData._id) {
@@ -553,7 +551,10 @@ export default function AdminDashboard() {
                   Total Profissionais
                 </CardTitle>
               </div>
-              <div className='flex justify-end items-center text-blue-700 cursor-pointer hover:text-blue-900' onClick={handleAddProfessional}>
+              <div
+                onClick={handleAddProfessional}
+                className='flex justify-end items-center text-blue-700 cursor-pointer hover:text-blue-900 bg-white p-1 rounded'
+              >
                 <UserPlus />
               </div>
             </CardHeader>
@@ -572,7 +573,9 @@ export default function AdminDashboard() {
                   Total Pacientes
                 </CardTitle>
               </div>
-              <div className='flex justify-end items-center text-green-700 cursor-pointer hover:text-blue-900' onClick={handleAddPatient}>
+              <div onClick={handleAddPatient}
+                className='flex justify-end items-center text-green-700 cursor-pointer hover:text-green-900 bg-white p-1 rounded'
+              >
                 <UserPlus />
               </div>
             </CardHeader>
@@ -584,10 +587,12 @@ export default function AdminDashboard() {
 
           <Card className="bg-purple-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
             <CardHeader >
-              <CardTitle className="text-purple-500">
-                Ocupação
-              </CardTitle>
-              <Activity className="h-5 w-5 text-purple-500" />
+              <div className="flex items-center space-x-2">
+                <Activity className="h-5 w-5 text-purple-500" />
+                <CardTitle className="text-purple-500">
+                  Ocupação
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="text-purple-500 text-3xl font-bold">{occupancyRate}%</div>

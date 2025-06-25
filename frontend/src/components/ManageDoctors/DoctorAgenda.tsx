@@ -5,6 +5,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../constants/constants';
+import appointmentService, { AvailableSlotsParams } from '../../services/appointmentService';
 import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types';
 import { Card, CardContent, CardTitle } from '../ui/Card';
 import { Label } from '../ui/Label';
@@ -70,15 +71,14 @@ const DoctorAgenda = ({ doctors = [], updateSlots, patients, onDaySlotsChange, s
 
     const fetchSlotsForDate = async (date: string) => {
         if (!selectedDoctorId) return;
-        const token = localStorage.getItem('token');
         try {
-            const response = await fetch(
-                `${BASE_URL}/appointments/available-slots?doctorId=${selectedDoctorId}&date=${date}`,
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                }
-            );
-            const slots = await response.json();
+            const payload: AvailableSlotsParams = {
+                doctorId: selectedDoctorId,
+                date: date
+            };
+            const response = await appointmentService.getAvailableSlots(payload)
+
+            const slots = await response.data;
             setDaySlots([{ date, slots }]);
             onDaySlotsChange?.([{ date, slots }]);
 

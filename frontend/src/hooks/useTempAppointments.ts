@@ -22,7 +22,7 @@ export const DEFAULT_APPOINTMENT = {
     date: new Date().toISOString().split('T')[0],
     time: '',
     reason: '',
-    status: 'agendado',
+    status: '',
 };
 
 

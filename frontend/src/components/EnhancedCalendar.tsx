@@ -25,7 +25,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
-import appointmentService, { IAppointment } from '../services/appointmentService';
+import appointmentService, { AvailableSlotsParams, IAppointment } from '../services/appointmentService';
 import { patientService } from '../services/patientService';
 import { IDoctor, SelectedEvent } from '../utils/types';
 import ScheduleModal from './ScheduleModal';
@@ -117,9 +117,17 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         setEvents(calendarEvents);
     }, [appointments]);
 
+    const handlePayloadToSlots = (data: { doctorId: string; date: string }) => {
+        if (data.doctorId && data.date) {
+            setFormData(prev => ({
+                ...prev,
+                doctorId: data.doctorId,
+                date: data.date,
+            }));
+        }
+    };
 
     const fetchAppointment = useCallback(async () => {
-        console.log('Fetching appointments with filters:',)
         setLoading(true);
         try {
             let url = '/appointments';
@@ -157,7 +165,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                     timeZone: 'America/Sao_Paulo',
                     hour12: false
                 });
-                console.log('Formatted End:', formattedEnd);
                 return {
                     id: appointment.id || appointment._id,
                     title: `${appointment.patient.name || 'Consulta'} - Dr. ${appointment.doctor.name || 'Desconhecido'}`,
@@ -189,29 +196,30 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
     // Carregar horários disponíveis quando médico e data são selecionados
     useEffect(() => {
-        const fetchAvailableSlots = async () => {
-            if (formData.doctorId && formData.date) {
-                try {
-                    const response = await axios.get('/api/appointments/available-slots', {
-                        params: {
-                            doctorId: formData.doctorId,
-                            date: formData.date
-                        }
-                    });
-                    setAvailableSlots(response.data);
-                } catch (error) {
-                    console.error('Erro ao carregar horários disponíveis:', error);
-                }
-            } else {
-                setAvailableSlots([]);
-            }
-        };
-
         fetchAvailableSlots();
     }, [formData.doctorId, formData.date]);
 
+    const fetchAvailableSlots = async () => {
+        if (formData.doctorId && formData.date) {
+            try {
+                const payload: AvailableSlotsParams = {
+                    doctorId: formData.doctorId,
+                    date: formData.date
+                };
+
+                const response = await appointmentService.getAvailableSlots(payload)
+                
+               setAvailableSlots(response.data);
+            } catch (error) {
+                console.error('Erro ao carregar horários disponíveis:', error);
+            }
+        } else {
+            setAvailableSlots([]);
+        }
+    };
+
     // Funções auxiliares
-    const getStatusColor = (status) => {
+    const getStatusColor = (status: any) => {
         switch (status) {
             case 'agendado': return '#4CAF50'; // Verde
             case 'concluído': return '#2196F3'; // Azul
@@ -265,25 +273,20 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
     const handleSubmit = async (appointment: IAppointment | Omit<IAppointment, '_id'>): Promise<void> => {
         try {
-            // Validação básica
-            if (!appointment.patient?._id || !appointment.doctor?._id ||
-                !appointment.date || !appointment.startTime || !appointment.reason) {
+            if (!appointment.patientId || !appointment.doctorId ||
+                !appointment.date || !appointment.time || !appointment.status) {
                 toast.error('Todos os campos obrigatórios devem ser preenchidos');
                 return;
             }
 
             // Preparar os dados para o serviço
             const payload = {
-                patientId: appointment.patient._id,
-                doctorId: appointment.doctor._id,
-                date: new Date(appointment.date),
-                startTime: appointment.startTime,
-                duration: appointment.duration || 60, // default 60 minutos
-                reason: appointment.reason,
+                patientId: appointment.patientId,
+                doctorId: appointment.doctorId,
+                date: appointment.date,
+                time: appointment.time,
                 status: appointment.status || 'agendado',
-                sessionType: appointment.sessionType,
-                paymentMethod: appointment.paymentMethod,
-                notes: appointment.notes
+                reason: appointment.reason,
             };
 
             if ('_id' in appointment && appointment._id) {
@@ -291,15 +294,13 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 await appointmentService.update(appointment._id, payload);
                 toast.success('Agendamento atualizado com sucesso!');
             } else {
-                // Criação
                 await appointmentService.create(payload);
                 toast.success('Agendamento criado com sucesso!');
             }
 
             // Atualizar lista e fechar modal
-            fetchAppointments();
-            setIsModalOpen(false);
-
+            fetchAppointment();
+            setOpenSchedule(false)
         } catch (error: any) {
             console.error('Erro ao salvar agendamento:', error);
 
@@ -356,7 +357,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     };
 
     const handleCompleteAppointment = async (appointmentId: string) => {
-        console.log("Concluir agendamento:", appointmentId);
         try {
 
             await appointmentService.complete(appointmentId);
@@ -561,11 +561,11 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 patients={patients}
                 doctors={doctors}
                 initialData={appointmentData}
+                payloadToSlots={handlePayloadToSlots}
                 availableSlots={availableSlots}
                 formError={formError}
                 mode={mode}
             />
-
             <AppointmentDetailModal
                 isOpen={isAppointmentDetailModalOpen}
                 onClose={() => setIsAppointmentDetailModalOpen(false)}

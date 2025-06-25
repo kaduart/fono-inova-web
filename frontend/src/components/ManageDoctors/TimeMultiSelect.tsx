@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react';
 import { useState } from 'react';
+import { IPatient } from '../../utils/types';
 
 interface TimeMultiSelectProps {
   selected?: string[];
@@ -20,6 +21,7 @@ export function TimeMultiSelect({
   selected = [],
   availableTimes,
   selectedDate,
+  selectedDoctorId,
   onChange,
   onSubmit,
 }: TimeMultiSelectProps) {
@@ -40,7 +42,6 @@ export function TimeMultiSelect({
 
     onSubmit(data);
   };
-
   return (
     <>
       <div className="grid grid-cols-6 gap-3">

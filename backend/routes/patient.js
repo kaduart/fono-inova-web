@@ -63,7 +63,6 @@ router.post('/add', auth, async (req, res) => {
       emergencyContact,
       imageAuthorization,
     });
-    console.log('[DEBUG] Criando novo paciente:', patient);
     await patient.save();
     res.status(201).json({ message: 'Patient added successfully!' });
   } catch (error) {
@@ -122,8 +121,6 @@ router.delete('/:id', validateId, auth, async (req, res) => {
 router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('[DEBUG] Iniciando rota de resumo - ID:', id);
-
 
     // Buscar o paciente e verificar se existe
     const patient = await Patient.findById(id);
@@ -137,9 +134,6 @@ router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
       .populate('patientId')  // Popula os dados do paciente (se necessário)
       .populate('doctorId')   // Popula os dados do médico (se necessário)
       .sort({ date: 1 });
-
-    console.log('[DEBUG] Consultas encontradas:', appointments);
-
 
     const now = new Date();
 
