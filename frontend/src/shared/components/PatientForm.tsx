@@ -381,7 +381,7 @@ const PatientForm = ({ patient, patients, isLoading, onSuccess }: PatientFormPro
                                             name="address.zipCode"
                                             render={({ field }) => (
                                                 <Input
-                                                    mask="99.999-99"
+                                                    mask="99.999-999"
                                                     className="max-w-xs"
                                                     {...field}
                                                 />
