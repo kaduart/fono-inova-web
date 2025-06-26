@@ -861,10 +861,7 @@ export default function AdminDashboard() {
   );
 
   const renderFinanceiro = () => (
-    <div className="mt-4">
-      <h2 className="text-xl font-bold mb-4">Controle Financeiro</h2>
-      <PaymentPage patients={patients} doctors={doctors} />
-    </div>
+    <PaymentPage patients={patients} doctors={doctors} />
   );
 
   const handleAvailableSubmit = async (data: AvailableData) => {

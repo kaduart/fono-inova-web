@@ -13,7 +13,7 @@ const paymentSchema = new mongoose.Schema({
     },
     serviceType: {
         type: String,
-        enum: ['evaluation', 'session', 'package'],
+        enum: ['evaluation', 'session', 'package', 'individual_session'],
         required: true,
         default: 'session'
     },
@@ -27,7 +27,8 @@ const paymentSchema = new mongoose.Schema({
         ref: 'Package',
         required: function () {
             return this.serviceType === 'package';
-        }
+        },
+        default: null
     },
     session: {
         type: mongoose.Schema.Types.ObjectId,

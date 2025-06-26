@@ -2,6 +2,7 @@ import { ChevronDown, ChevronUp, DollarSign, Edit, Eye, FileHeart, Phone } from 
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateBrazilian } from "../../utils/dateFormat";
+import { IPatient } from "../../utils/types";
 import { WhatsAppActionButtons } from "../mkt/whatsapp/buttons/WhatsAppActionButtons";
 
 interface PatientTableProps {

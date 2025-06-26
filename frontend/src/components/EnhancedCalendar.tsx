@@ -5,15 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import {
     Box,
-    Button,
-    Chip,
-    CircularProgress,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
     Paper,
-    Select,
     Typography
 } from '@mui/material';
 import axios from 'axios';
@@ -25,9 +17,10 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
 import { DEFAULT_APPOINTMENT } from '../hooks/useTempAppointments';
-import appointmentService, { AvailableSlotsParams, IAppointment } from '../services/appointmentService';
+import appointmentService, { AvailableSlotsParams } from '../services/appointmentService';
 import { patientService } from '../services/patientService';
-import { IDoctor, SelectedEvent } from '../utils/types';
+import { createPayment } from '../services/paymentService';
+import { IAppointment, IDoctor, SelectedEvent } from '../utils/types';
 import ScheduleModal from './ScheduleModal';
 import AppointmentDetailModal from './appointmentDetailModal';
 
@@ -208,8 +201,8 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 };
 
                 const response = await appointmentService.getAvailableSlots(payload)
-                
-               setAvailableSlots(response.data);
+
+                setAvailableSlots(response.data);
             } catch (error) {
                 console.error('Erro ao carregar horários disponíveis:', error);
             }
@@ -278,24 +271,38 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 toast.error('Todos os campos obrigatórios devem ser preenchidos');
                 return;
             }
-
             // Preparar os dados para o serviço
             const payload = {
                 patientId: appointment.patientId,
                 doctorId: appointment.doctorId,
                 date: appointment.date,
                 time: appointment.time,
+                sessionType: appointment.sessionType,
                 status: appointment.status || 'agendado',
-                reason: appointment.reason,
+                notes: appointment.notes,
+                paymentAmount: appointment.paymentAmount,
+                paymentMethod: appointment.paymentMethod
             };
+            console.log('chamouo enchaced', payload)
 
             if ('_id' in appointment && appointment._id) {
                 // Edição
                 await appointmentService.update(appointment._id, payload);
                 toast.success('Agendamento atualizado com sucesso!');
             } else {
-                await appointmentService.create(payload);
-                toast.success('Agendamento criado com sucesso!');
+                const newAppointment = await appointmentService.create(payload);
+
+                await createPayment({
+                    patientId: appointment.patientId,
+                    doctorId: appointment.doctorId,
+                    serviceType: 'evaluation', // Valor padrão
+                    amount: 200, // Valor padrão (pode buscar da tabela de preços)
+                    status: 'pending', // Status padrão
+                    paymentMethod: 'dinheiro', // Método não selecionado inicialmente
+                    notes: `Pagamento referente à consulta agendada para ${appointment.date} às ${appointment.time}`,
+                    // sessionId: newAppointment._id
+                });
+                toast.success('Agendamento e registro de pagamento criados com sucesso!');
             }
 
             // Atualizar lista e fechar modal
@@ -379,16 +386,12 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
 
     return (
         <Box sx={{ p: 3 }}>
-            <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                    <Typography variant="h5" component="h1">
-                        Calendário de Agendamentos
-                    </Typography>
+            <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+                {/* Cabeçalho */}
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <h1 className="text-2xl font-bold text-gray-800">Calendário de Agendamentos</h1>
 
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<Plus size={16} />}
+                    <button
                         onClick={() => {
                             setFormData({
                                 patientId: '',
@@ -398,112 +401,142 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                                 reason: '',
                                 status: 'agendado'
                             });
-                            handleOpenSchedule()
+                            handleOpenSchedule();
                         }}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                     >
-                        Agendamento
-                    </Button>
-                </Box>
+                        <Plus size={16} />
+                        Novo Agendamento
+                    </button>
+                </div>
 
+                {/* Filtros */}
                 {loading ? (
-                    <Box display="flex" justifyContent="center" mt={4}>
-                        <CircularProgress />
-                    </Box>
+                    <div className="flex justify-center items-center h-40">
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                    </div>
                 ) : (
-                    <Grid container spacing={2} sx={{ mb: 3 }}>
-                        <Grid xs={12} md={6}>
-                            <FormControl fullWidth size="small">
-                                <InputLabel>Médico</InputLabel>
-                                <Select
-                                    value={selectedDoctor}
-                                    onChange={(e) => setSelectedDoctor(e.target.value)}
-                                    label="Médico"
-                                >
-                                    <MenuItem value="all">Todos os Médicos</MenuItem>
-                                    {Array.isArray(doctors) && doctors.map((doctor) => (
-                                        <MenuItem key={doctor._id} value={doctor._id}>
-                                            Dr. {doctor.fullName} - {doctor.specialty}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Grid>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            {/* Filtro Médico */}
+                            <div className="flex flex-col">
+                                <label className="text-sm font-medium text-gray-700 mb-1">Médico</label>
+                                <div className="relative">
+                                    <select
+                                        value={selectedDoctor}
+                                        onChange={(e) => setSelectedDoctor(e.target.value)}
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                                    >
+                                        <option value="all">Todos os Médicos</option>
+                                        {Array.isArray(doctors) && doctors.map((doctor) => (
+                                            <option key={doctor._id} value={doctor._id}>
+                                                Dr. {doctor.fullName} - {doctor.specialty}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <Grid xs={12} md={6}>
-                            <FormControl fullWidth size="small">
-                                <InputLabel>Paciente</InputLabel>
-                                <Select
-                                    value={selectedPatient}
-                                    onChange={(e) => setSelectedPatient(e.target.value)}
-                                    label="Paciente"
-                                >
-                                    <MenuItem value="all">Todos os Pacientes</MenuItem>
-                                    {Array.isArray(patients) && patients.map(patient => (
-                                        <MenuItem key={patient._id} value={patient._id}>
-                                            {patient.fullName}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Grid>
+                            {/* Filtro Paciente */}
+                            <div className="flex flex-col">
+                                <label className="text-sm font-medium text-gray-700 mb-1">Paciente</label>
+                                <div className="relative">
+                                    <select
+                                        value={selectedPatient}
+                                        onChange={(e) => setSelectedPatient(e.target.value)}
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                                    >
+                                        <option value="all">Todos os Pacientes</option>
+                                        {Array.isArray(patients) && patients.map(patient => (
+                                            <option key={patient._id} value={patient._id}>
+                                                {patient.fullName}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <Grid xs={12} md={6}>
-                            <FormControl fullWidth size="small">
-                                <InputLabel>Status</InputLabel>
-                                <Select
-                                    value={selectedStatus}
-                                    onChange={(e) => setSelectedStatus(e.target.value)}
-                                    label="Status"
-                                >
-                                    <MenuItem value="all">Todos os Status</MenuItem>
-                                    <MenuItem value="agendado">Agendado</MenuItem>
-                                    <MenuItem value="concluído">Concluído</MenuItem>
-                                    <MenuItem value="cancelado">Cancelado</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                    </Grid>
+                            {/* Filtro Status */}
+                            <div className="flex flex-col">
+                                <label className="text-sm font-medium text-gray-700 mb-1">Status</label>
+                                <div className="relative">
+                                    <select
+                                        value={selectedStatus}
+                                        onChange={(e) => setSelectedStatus(e.target.value)}
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none"
+                                    >
+                                        <option value="all">Todos os Status</option>
+                                        <option value="agendado">Agendado</option>
+                                        <option value="concluído">Concluído</option>
+                                        <option value="cancelado">Cancelado</option>
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Chips de filtro */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                            {selectedDoctor !== 'all' && (
+                                <div className="flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                                    Médico: {doctors.find(d => d._id === selectedDoctor)?.fullName || ''}
+                                    <button
+                                        onClick={() => setSelectedDoctor('all')}
+                                        className="ml-2 text-blue-600 hover:text-blue-800"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            )}
+
+                            {selectedPatient !== 'all' && (
+                                <div className="flex items-center bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                                    Paciente: {patients.find(p => p._id === selectedPatient)?.fullName || ''}
+                                    <button
+                                        onClick={() => setSelectedPatient('all')}
+                                        className="ml-2 text-green-600 hover:text-green-800"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            )}
+
+                            {selectedStatus !== 'all' && (
+                                <div className="flex items-center bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">
+                                    Status: {selectedStatus}
+                                    <button
+                                        onClick={() => setSelectedStatus('all')}
+                                        className="ml-2 text-yellow-600 hover:text-yellow-800"
+                                    >
+                                        ×
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </>
                 )}
 
-                {/* Exibir chips de filtro selecionados */}
-
-                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                    {selectedDoctor !== 'all' && (
-                        <Chip
-                            label={`Médico: ${doctors.find(d => d._id === selectedDoctor)?.fullName || ''}`}
-                            onDelete={() => setSelectedDoctor('all')}
-                            color="primary"
-                            variant="outlined"
-                        />
-                    )}
-
-                    {selectedPatient !== 'all' && (
-                        <Chip
-                            label={`Paciente: ${patients.find(p => p._id === selectedPatient)?.fullName || ''}`}
-                            onDelete={() => setSelectedPatient('all')}
-                            color="primary"
-                            variant="outlined"
-                        />
-                    )}
-
-                    {selectedStatus !== 'all' && (
-                        <Chip
-                            label={`Status: ${selectedStatus}`}
-                            onDelete={() => setSelectedStatus('all')}
-                            color="primary"
-                            variant="outlined"
-                        />
-                    )}
-                </Box>
-            </Paper>
-
-            <Paper elevation={3} sx={{ p: 3 }}>
-                {loading ? (
-                    <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
-                        <CircularProgress />
-                    </Box>
-                ) : (
-                    <div className="p-4 border border-gray-200 rounded-lg shadow-sm bg-white">
+                {/* Calendário */}
+                <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
+                    {loading ? (
+                        <div className="flex justify-center items-center h-64">
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                        </div>
+                    ) : (
                         <FullCalendar
                             ref={calendarRef}
                             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -547,11 +580,11 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                                     </span>
                                 </div>
                             )}
+                            eventClassNames="cursor-pointer"
                         />
-                    </div>
-                )}
-
-            </Paper>
+                    )}
+                </div>
+            </div>
             <ScheduleModal
                 open={openSchedule}
                 onClose={() => setOpenSchedule(false)}

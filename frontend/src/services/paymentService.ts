@@ -7,6 +7,7 @@ export interface FinancialRecord {
     amount: number;
     paid: boolean;
     status: string;
+    specialty: string;
     createdAt: string;
     patientId: string,
     doctorId: string;
@@ -40,11 +41,11 @@ export const updatePayment = (
         status?: 'pending' | 'paid' | 'canceled';
         amount?: number;
         date?: string | Date;
+        specialty?: string,
         paymentMethod?: string;
         serviceType?: string;
     }
 ) => {
-    // Processa a data se existir
     const processedData = {
         ...data,
         date: data.date instanceof Date ? data.date.toISOString() : data.date

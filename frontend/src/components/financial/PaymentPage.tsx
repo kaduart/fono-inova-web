@@ -1,14 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
-    createPayment,
     exportCSV,
     exportPDF,
     FinancialRecord,
     getPayments,
     updatePayment
 } from '../../services/paymentService';
-import { IDoctor } from '../../utils/types';
+import { IDoctor, IPatient } from '../../utils/types';
 import { EditPaymentModal } from './EditPaymentModal';
 import { PaymentActionIcons } from './PaymentAction';
 import { PaymentModal } from './PaymentModal';
@@ -37,6 +36,8 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
     const userRole = localStorage.getItem('userRole');
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
     const [paymentToEdit, setPaymentToEdit] = useState<FinancialRecord | undefined>(undefined);
+    const [paymentSelected, setPaymentSelected] = useState<any>();
+    const [patient, setpatient] = useState<IPatient>();
 
     // Carrega os pagamentos
     const loadPayments = async () => {
@@ -87,25 +88,25 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
         loadPayments();
     }, []);
 
-    const handleCreate = async (data: Partial<FinancialRecord>) => {
-        try {
-            await createPayment(data);
-            await loadPayments();
-            toast.success('Pagamento criado com sucesso!');
-        } catch (error) {
-            console.error('Erro ao criar pagamento:', error);
-            toast.error('Erro ao criar pagamento');
-        }
+    const handleMarkAsPaid = (payment: any) => {
+        setpatient(payment.patient)
+        setPaymentSelected(payment);
+        setShowForm(true);
     };
 
-    const handleMarkAsPaid = async (paymentId: string) => {
-        try {
-            await updatePayment(paymentId, { status: 'paid' });
-            loadPayments();
-            toast.success('Pagamento marcado como pago com sucesso!');
-        } catch (error) {
-            toast.error('Erro ao marcar pagamento como pago');
+    const onUpdatePayment = async (data: any) => {
+        const updateData = {
+            status: 'paid',
+            amount: data.amount,
+            date: data.date,
+            specialty: data.specialty,
+            serviceType: data.serviceType,
+            paymentMethod: data.paymentMethod
         }
+        await updatePayment(paymentSelected._id, updateData);
+        toast.success('Pagamento registrado com sucesso!');
+        loadPayments();
+
     };
 
     const handleCancelPayment = async (paymentId: string) => {
@@ -159,16 +160,18 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
     const getServiceTypeLabel = (type: string) => {
         switch (type) {
             case 'evaluation': return 'Avaliação';
-            case 'session': return 'Sessão Avulsa';
+            case 'session': return 'Sessão do Pacote';
+            case 'individual_session': return 'Sessão Avulsa';
             case 'package': return 'Pacote';
             default: return type;
         }
     };
 
-    const handleSavePayment = async (data: {
+    const handleUpdatePayment = async (data: {
         _id: string;
         amount: number;
         date: string;
+        specialty: string;
         paymentMethod: string;
         serviceType: string;
     }) => {
@@ -176,9 +179,12 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
             await updatePayment(data._id, {
                 amount: data.amount,
                 date: data.date,
+                specialty: data.specialty,
                 serviceType: data.serviceType,
                 paymentMethod: data.paymentMethod
             });
+            console.log('reeeqeust service', data)
+
             await loadPayments();
             toast.success('Pagamento atualizado com sucesso!');
         } catch (error) {
@@ -189,43 +195,44 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
 
     return (
         <div className="space-y-6 p-4">
+            <h1 className="text-2xl font-bold text-gray-800 mb-6">Controle Financeiro</h1>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
+                <PaymentsSummary
+                    totalPayments={localSummary.totalReceived}
+                    totalPending={localSummary.totalPending}
+                    paidCount={localSummary.paidCount}
+                    pendingCount={localSummary.pendingCount}
+                    canceledCount={localSummary.canceledCount}
+                />
+                <div className="flex items-center gap-3">
+                    <button
+                        onClick={handleExportCSV}
+                        disabled={loading}
+                        className="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        Exportar CSV
+                    </button>
+
+                    <button
+                        onClick={handleExportPDF}
+                        disabled={loading}
+                        className="flex items-center gap-2 px-4 py-2 bg-white text-gray-700 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors disabled:opacity-50"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                        Exportar PDF
+                    </button>
+                </div>
+            </div>
             <PaymentsFilters
                 doctors={doctors || []}
                 payments={allPayments}
                 onFilter={setFilteredPayments}
             />
-
-            <PaymentsSummary
-                totalPayments={localSummary.totalReceived}
-                totalPending={localSummary.totalPending}
-                paidCount={localSummary.paidCount}
-                pendingCount={localSummary.pendingCount}
-                canceledCount={localSummary.canceledCount}
-            />
-
-            <div className="flex items-center space-x-2">
-                <button
-                    onClick={() => setShowForm(true)}
-                    disabled={loading}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
-                >
-                    {loading ? 'Carregando...' : 'Adicionar Pagamento'}
-                </button>
-                <button
-                    onClick={handleExportCSV}
-                    disabled={loading}
-                    className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400"
-                >
-                    Exportar CSV
-                </button>
-                <button
-                    onClick={handleExportPDF}
-                    disabled={loading}
-                    className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 disabled:bg-gray-400"
-                >
-                    Exportar PDF
-                </button>
-            </div>
 
             {loading ? (
                 <div>Carregando...</div>
@@ -283,6 +290,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                                                 onEditAmount={handleEditAmount}
                                             />
                                         )}
+
                                     </td>
                                 </tr>
                             ))}
@@ -296,8 +304,13 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                     open={showForm}
                     doctors={doctors || []}
                     patients={patients || []}
-                    onClose={() => setShowForm(false)}
-                    onPaymentSuccess={handleCreate}
+                    patient={patient}
+                    paymentSelected={paymentSelected}
+                    onClose={() => {
+                        setShowForm(false);
+                        setPaymentSelected(null);
+                    }}
+                    onPaymentSuccess={onUpdatePayment}
                 />
             )}
 
@@ -306,7 +319,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                     payment={paymentToEdit}
                     isOpen={isEditModalOpen}
                     onClose={() => setIsEditModalOpen(false)}
-                    onSave={handleSavePayment}
+                    onSave={handleUpdatePayment}
                 />
             )}
         </div>

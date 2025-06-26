@@ -47,7 +47,7 @@ export const PaymentActionIcons = ({
             {payment.status !== 'paid' && payment.status !== 'canceled' && (
                 <>
                     <button
-                        onClick={() => onMarkAsPaid(payment._id)}
+                        onClick={() => onMarkAsPaid(payment)}
                         className="text-green-600 hover:text-green-800 transition-colors"
                         title="Marcar como pago"
                     >

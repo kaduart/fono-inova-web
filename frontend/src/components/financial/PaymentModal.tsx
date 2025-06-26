@@ -1,22 +1,19 @@
-import { Dialog, DialogContent, DialogTitle } from '@mui/material';
-import { X } from 'lucide-react';
+import { Check, ChevronDown, Loader2, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { createPayment } from '../../services/paymentService';
-import { IDoctor, IPatient, PaymentMethods, ServiceTypes } from '../../utils/types';
-import { Button } from '../ui/Button';
-import Input from '../ui/Input';
+import { EspecialidadesDisponiveis, IDoctor, IPatient, PaymentMethods, ServiceTypes } from '../../utils/types';
 import InputCurrency from '../ui/InputCurrency';
-import { Label } from '../ui/Label';
-import { Select } from '../ui/Select';
 
 interface PaymentModalProps {
     open: boolean;
     onClose: () => void;
     patient?: IPatient;
     patients?: IPatient[];
+    paymentSelected?: any,
     doctors: IDoctor[];
-    onPaymentSuccess: () => void;
+    onPaymentSuccess: (id: string) => void
+
 }
 
 export const PaymentModal = ({
@@ -24,20 +21,12 @@ export const PaymentModal = ({
     onClose,
     patient,
     patients,
+    paymentSelected,
     doctors,
     onPaymentSuccess
 }: PaymentModalProps) => {
-    /*     const initialPaymentData = {
-            serviceType: 'evaluation',
-            professionalId: doctors[0]?._id || '',
-            amount: 0,
-            paymentMethod: 'dinheiro',
-            notes: '',
-            patientId: patient?._id || '',
-        }; */
 
-    // Estado principal com inicialização segura
-    const [paymentData, setPaymentData] = useState(() => ({}));
+    const [paymentData, setPaymentData] = useState<any>({});
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -45,11 +34,11 @@ export const PaymentModal = ({
         if (open) {
             setPaymentData(prev => ({
                 ...prev,
-                serviceType: 'evaluation',
+                serviceType: paymentSelected.serviceType,
                 professionalId: doctors[0]?._id || '',
-                amount: 0,
-                paymentMethod: 'dinheiro',
-                notes: '',
+                amount: paymentSelected.amount,
+                paymentMethod: paymentSelected.paymentMethod,
+                notes: paymentSelected.notes,
                 patientId: patient?._id || '',
 
             }));
@@ -78,21 +67,23 @@ export const PaymentModal = ({
 
         try {
             setIsLoading(true);
+            if (!paymentSelected._id) {
+                await createPayment({
+                    patientId: paymentData.patientId,
+                    doctorId: paymentData.professionalId,
+                    serviceType: paymentData.serviceType,
+                    amount: amount,
+                    status: paymentData.status,
+                    specialty: paymentData.specialty,
+                    paymentMethod: paymentData.paymentMethod,
+                    notes: paymentData.notes,
+                    ...(paymentData.serviceType === 'package' && { packageId: paymentData.packageId }),
+                    ...(paymentData.serviceType !== 'evaluation' && { sessionId: paymentData.sessionId })
+                });
+                toast.success('Pagamento criado com sucesso!');
+            }
 
-            await createPayment({
-                patientId: paymentData.patientId,
-                doctorId: paymentData.professionalId,
-                serviceType: paymentData.serviceType,
-                amount: amount,
-                status: paymentData.status,
-                paymentMethod: paymentData.paymentMethod,
-                notes: paymentData.notes,
-                ...(paymentData.serviceType === 'package' && { packageId: paymentData.packageId }),
-                ...(paymentData.serviceType !== 'evaluation' && { sessionId: paymentData.sessionId })
-            });
-
-            toast.success('Pagamento registrado com sucesso!');
-            onPaymentSuccess();
+            onPaymentSuccess(paymentData);
             onClose();
 
             // Reset form
@@ -100,7 +91,7 @@ export const PaymentModal = ({
                 serviceType: 'evaluation',
                 patientId: patient?._id || '', // Mantém o paciente se já estava definido
                 professionalId: doctors.length > 0 ? doctors[0]._id : '',
-                amount: 0,
+                amount: paymentSelected.amount,
                 status: 'pending',
                 paymentMethod: 'dinheiro',
                 notes: '',
@@ -117,147 +108,244 @@ export const PaymentModal = ({
 
     if (!open) return null;
 
+
     return (
-        <Dialog
-            open={open}
-            onClose={isLoading ? undefined : onClose}
-            fullWidth
-            maxWidth="sm"
-        >
-            <DialogTitle>
-                <div className="flex items-center justify-between p-4">
-                    <span>
+        <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 ${open ? 'block' : 'hidden'}`}>
+            <div
+                className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+                onClick={isLoading ? undefined : onClose}
+                aria-hidden="true"
+            />
+
+            <div className="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full mx-auto overflow-hidden transform transition-all">
+                {/* Cabeçalho */}
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
+                    <h3 className="text-xl font-bold text-white">
                         {patient
                             ? `Registrar Pagamento - ${patient.fullName}`
                             : 'Registrar Pagamento'}
-                    </span>
-                    <X
-                        className={`cursor-pointer ${isLoading ? 'opacity-50' : ''}`}
+                    </h3>
+                    <button
+                        type="button"
+                        className="text-white hover:text-blue-200 focus:outline-none disabled:opacity-50"
                         onClick={isLoading ? undefined : onClose}
-                    />
+                        disabled={isLoading}
+                    >
+                        <X className="h-6 w-6" />
+                    </button>
                 </div>
-            </DialogTitle>
 
-            <DialogContent dividers>
-                <div className="space-y-4 p-2">
-                    {patients && patients.length > 0 && (
+                {/* Corpo */}
+                <div className="p-6">
+                    <div className="space-y-6">
+                        {/* Linha 1: Paciente e Tipo de Serviço */}
+                        <div className="flex flex-wrap gap-4">
+                            {patients && patients.length > 0 && (
+                                <div className="flex-1 min-w-[250px]">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Paciente *
+                                    </label>
+                                    <div className="relative">
+                                        <select
+                                            value={paymentData.patientId}
+                                            onChange={(e) => setPaymentData({
+                                                ...paymentData, patientId: e.target.value
+                                            })}
+                                            disabled={isLoading}
+                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
+                                        >
+                                            <option value="">Selecione um paciente</option>
+                                            {patients?.map(patient => (
+                                                <option key={patient._id} value={patient._id}>
+                                                    {patient.fullName}
+                                                </option>
+                                            ))}
+                                        </select>
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <ChevronDown className="h-4 w-4" />
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            <div className="flex-1 min-w-[250px]">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Tipo de Serviço *
+                                </label>
+                                <div className="relative">
+                                    <select
+                                        value={paymentData.serviceType}
+                                        onChange={(e) => setPaymentData({
+                                            ...paymentData,
+                                            serviceType: e.target.value
+                                        })}
+                                        disabled={isLoading}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
+                                    >
+                                        {ServiceTypes.map(service => (
+                                            <option key={service.value} value={service.value}>
+                                                {service.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <ChevronDown className="h-4 w-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Linha 2: Médico e Especialidade */}
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex-1 min-w-[250px]">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Médico/Doutor *
+                                </label>
+                                <div className="relative">
+                                    <select
+                                        value={paymentData.professionalId}
+                                        onChange={(e) => setPaymentData({
+                                            ...paymentData,
+                                            professionalId: e.target.value
+                                        })}
+                                        disabled={isLoading || doctors.length === 0}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
+                                    >
+                                        {doctors && doctors.map(doctor => (
+                                            <option key={doctor._id} value={doctor._id}>
+                                                {doctor.fullName}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <ChevronDown className="h-4 w-4" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex-1 min-w-[250px]">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Especialidade *
+                                </label>
+                                <div className="relative">
+                                    <select
+                                        value={paymentData.specialty}
+                                        onChange={(e) => setPaymentData({
+                                            ...paymentData,
+                                            specialty: e.target.value
+                                        })}
+                                        disabled={isLoading}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
+                                    >
+                                        {EspecialidadesDisponiveis.map(service => (
+                                            <option key={service.value} value={service.value}>
+                                                {service.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <ChevronDown className="h-4 w-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Linha 3: Valor e Forma de Pagamento */}
+                        <div className="flex flex-wrap gap-4">
+                            <div className="flex-1 min-w-[250px]">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Valor (R$) *
+                                </label>
+                                <div className="relative">
+                                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">R$</span>
+                                    <InputCurrency
+                                        value={paymentData.amount}
+                                        onChange={(e) => setPaymentData({
+                                            ...paymentData,
+                                            amount: e.target.value
+                                        })}
+                                        disabled={isLoading}
+                                        className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex-1 min-w-[250px]">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Forma de Pagamento *
+                                </label>
+                                <div className="relative">
+                                    <select
+                                        value={paymentData.paymentMethod}
+                                        onChange={(e) => setPaymentData({
+                                            ...paymentData,
+                                            paymentMethod: e.target.value
+                                        })}
+                                        disabled={isLoading}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
+                                    >
+                                        {PaymentMethods.map(method => (
+                                            <option key={method.value} value={method.value}>
+                                                {method.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <ChevronDown className="h-4 w-4" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Observações (full width) */}
                         <div>
-                            <Label >Paciente *</Label>
-                            <Select
-                                value={paymentData.patientId}
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Observações
+                            </label>
+                            <textarea
+                                value={paymentData.notes}
                                 onChange={(e) => setPaymentData({
-                                    ...paymentData, patientId: e.target.value
+                                    ...paymentData,
+                                    notes: e.target.value
                                 })}
                                 disabled={isLoading}
-                                className="w-full p-2 border rounded"
-                            >
-                                <option value="">Selecione um paciente</option>
-                                {patients?.map(patient => (
-                                    <option key={patient._id} value={patient._id}>
-                                        {patient.fullName}
-                                    </option>
-                                ))}
-                            </Select>
+                                placeholder="Opcional"
+                                rows={3}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100"
+                            />
                         </div>
-                    )}
-                    <div>
-                        <Label>Médico/Doutor *</Label>
-                        <Select
-                            value={paymentData.professionalId}
-                            onChange={(e) => setPaymentData({
-                                ...paymentData,
-                                professionalId: e.target.value
-                            })}
-                            disabled={isLoading || doctors.length === 0}
-                        >
-                            {doctors && doctors.map(doctor => (
-                                <option key={doctor._id} value={doctor._id}>
-                                    {doctor.fullName}
-                                    {doctor.specialty ? ` (${doctor.specialty})` : ''}
-                                </option>
-                            ))}
-                        </Select>
-                    </div>
-                    <div>
-                        <Label>Tipo de Serviço *</Label>
-                        <Select
-                            value={paymentData.serviceType}
-                            onChange={(e) => setPaymentData({
-                                ...paymentData,
-                                serviceType: e.target.value
-                            })}
-                            disabled={isLoading}
-                        >
-                            {ServiceTypes.map(service => (
-                                <option key={service.value} value={service.value}>
-                                    {service.label}
-                                </option>
-                            ))}
-                        </Select>
-                    </div>
-
-                    <div>
-                        <Label>Valor (R$) *</Label>
-                        <InputCurrency
-                            value={paymentData.amount}
-                            onChange={(e) => setPaymentData({
-                                ...paymentData,
-                                amount: e.target.value
-                            })}
-                            disabled={isLoading}
-                            min="0"
-                            step="0.01"
-                        />
-                    </div>
-
-                    <div>
-                        <Label>Forma de Pagamento *</Label>
-                        <Select
-                            value={paymentData.paymentMethod}
-                            onChange={(e) => setPaymentData({
-                                ...paymentData,
-                                paymentMethod: e.target.value
-                            })}
-                            disabled={isLoading}
-                        >
-                            {PaymentMethods.map(method => (
-                                <option key={method.value} value={method.value}>
-                                    {method.label}
-                                </option>
-                            ))}
-                        </Select>
-                    </div>
-
-                    <div>
-                        <Label>Observações</Label>
-                        <Input
-                            value={paymentData.notes}
-                            onChange={(e) => setPaymentData({
-                                ...paymentData,
-                                notes: e.target.value
-                            })}
-                            disabled={isLoading}
-                            placeholder="Opcional"
-                        />
-                    </div>
-
-                    <div className="flex justify-end gap-2 pt-4">
-                        <Button
-                            variant="outline"
-                            onClick={onClose}
-                            disabled={isLoading}
-                        >
-                            Cancelar
-                        </Button>
-                        <Button
-                            onClick={handleSubmit}
-                            disabled={isLoading}
-                        >
-                            {isLoading ? 'Registrando...' : 'Confirmar Pagamento'}
-                        </Button>
                     </div>
                 </div>
-            </DialogContent>
-        </Dialog>
+
+                {/* Rodapé */}
+                <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t border-gray-200">
+                    <button
+                        type="button"
+                        onClick={onClose}
+                        disabled={isLoading}
+                        className="px-5 py-2.5 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 disabled:opacity-50 transition-colors"
+                    >
+                        Cancelar
+                    </button>
+                    <button
+                        onClick={handleSubmit}
+                        disabled={isLoading}
+                        className="px-5 py-2.5 text-white bg-gradient-to-r from-blue-600 to-indigo-700 rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-70 transition-opacity flex items-center"
+                    >
+                        {isLoading ? (
+                            <>
+                                <Loader2 className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" />
+                                Registrando...
+                            </>
+                        ) : (
+                            <>
+                                <Check className="h-5 w-5 mr-2" />
+                                Confirmar Pagamento
+                            </>
+                        )}
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 };

@@ -1,6 +1,9 @@
 import dayjs from 'dayjs';
 import React, { useState } from "react";
 import toast from 'react-hot-toast';
+import appointmentService from '../../services/appointmentService';
+import { createPayment } from '../../services/paymentService';
+import { mergeDateAndTime } from '../../utils/dateFormat';
 import { IDoctor, IPatient, ScheduleAppointment } from "../../utils/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { Button } from "../ui/Button";
@@ -89,6 +92,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         }));
     };
 
+    //aqui chama o agendamento por hora
     const onOpenCloseModals = async (data: any) => {
         setScheduleAppointmentData({
             date: scheduleAppointmentData.date,
@@ -118,48 +122,35 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const handleBooking = async (payload: ScheduleAppointment) => {
-        const [hours, minutes] = payload.time.split(':').map(Number);
-        const datetime = new Date(scheduleAppointmentData.date);
-        datetime.setHours(hours, minutes, 0, 0);
-        payload.date = datetime.toISOString();
-
         const token = localStorage.getItem('token');
         if (!token) {
             toast.error('Usuário não autenticado. Por favor, faça login novamente.');
             return;
         }
 
-        try {
-            const response = await fetch('/api/appointments', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(payload),
+        payload.date = mergeDateAndTime(payload.date, payload.time).toISOString();
 
+        try {
+            const response = await appointmentService.create(payload)
+
+            await createPayment({
+                patientId: payload.patientId,
+                doctorId: payload.doctorId,
+                serviceType: 'evaluation',
+                amount: 200,
+                status: 'pending',
+                paymentMethod: 'dinheiro',
+                notes: `Pagamento referente à consulta agendada para ${payload.date} às ${payload.time}`,
+                // sessionId: newpayload._id
             });
 
-            const result = await response.json();
-
-            if (!response.ok) {
-                if (result?.errors?.date) {
-                    toast.error(`Erro: ${result.errors.date}`);
-                } else if (result?.message) {
-                    toast.error(result.message);
-                } else {
-                    toast.error('Erro ao agendar.');
-                }
-                return;
-            }
-
-            toast.success('Sessão agendada com sucesso!');
+            toast.success('Sessão agendada e pagamento registrado com sucesso!');
 
             setdataUpdateSlots(payload);
-            setIsModalOpen(false);
+            // setIsModalOpen(false);
+            setShowScheduleModal(false);
 
         } catch (err: any) {
-            console.log(err);
             toast.error('Erro inesperado ao agendar.');
         }
     };
@@ -216,9 +207,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
                     // onSubmit={handleCloseScheduleModal}
                     onClose={() => setShowScheduleModal(false)}
                     onSave={(appointment) => {
-
                         handleBooking(appointment);
-                        setShowScheduleModal(false);
                     }
                     }
 

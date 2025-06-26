@@ -1,6 +1,8 @@
 import { X } from 'lucide-react';
 import React, { useCallback, useEffect, useState } from 'react';
-import { STATUS_OPTIONS } from '../utils/types';
+import toast from 'react-hot-toast';
+import { mergeDateAndTime } from '../utils/dateFormat';
+import { IAppointment, STATUS_OPTIONS, TherapyType } from '../utils/types';
 import Input from './ui/Input';
 import { Label } from './ui/Label';
 import { Select } from './ui/Select';
@@ -8,22 +10,13 @@ import { Select } from './ui/Select';
 type ScheduleModalProps = {
     patients: any[];
     doctors: any[];
-    initialData?: Appointment;
+    initialData?: IAppointment;
     payloadToSlots: (data: { doctorId: string; date: string }) => void;
     availableSlots: any[];
     mode: 'create' | 'edit';
-    onSave: (data: Appointment | Omit<Appointment, 'id'>) => void;
+    onSave: (data: IAppointment | Omit<IAppointment, 'id'>) => void;
     onClose: () => void;
     open: boolean;
-};
-
-type Appointment = {
-    patientId: string;
-    doctorId: string;
-    date: string;
-    time: string;
-    reason: string;
-    status: 'agendado' | 'concluído' | 'cancelado';
 };
 
 const InputField: React.FC<{
@@ -72,13 +65,16 @@ const SelectField: React.FC<{
     </div>
 );
 
-const initialDataValues: Appointment = {
+const initialDataValues: IAppointment = {
     patientId: '',
     doctorId: '',
     date: '',
     time: '',
-    reason: '',
+    sessionType: 'fonoaudiologia',
     status: 'agendado',
+    notes: '',
+    paymentAmount: 0,
+    paymentMethod: 'cartao',
 };
 const ScheduleModal: React.FC<ScheduleModalProps> = ({
     open,
@@ -91,7 +87,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
     onSave,
     onClose,
 }) => {
-    const [formState, setFormState] = useState<Appointment>(initialDataValues);
+    const [formState, setFormState] = useState<IAppointment>(initialDataValues);
 
     useEffect(() => {
         if (formState.doctorId && formState.date) {
@@ -115,10 +111,24 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formState.patientId || !formState.doctorId || !formState.date || !formState.time) {
+        const { patientId, doctorId, date, time } = formState;
+
+        if (!patientId || !doctorId || !date || !time) {
+            toast.error('Por favor, preencha os campos obrigatórios.');
             return;
         }
-        onSave(formState);
+
+        const mergedDate = mergeDateAndTime(date, time).toISOString();
+
+        const updatedFormState = {
+            ...formState,
+            date: mergedDate,
+            paymentAmount: 200,
+            paymentMethod: 'cartao',
+            sessionType: 'fonoaudiologia' as TherapyType,
+        };
+
+        onSave(updatedFormState);
     };
 
     if (!open) return null;
@@ -240,8 +250,8 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
                                     Motivo
                                 </Label>
                                 <textarea
-                                    name="reason"
-                                    value={formState.reason}
+                                    name="notes"
+                                    value={formState.notes}
                                     onChange={handleChange}
                                     rows={3}
                                     className="w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2"

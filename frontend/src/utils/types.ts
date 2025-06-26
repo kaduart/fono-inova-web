@@ -194,10 +194,10 @@ export const STATUS_OPTIONS = [
 
 
 export const ServiceTypes = [
-    { value: 'evaluation', label: 'Avaliação Inicial' },
-    { value: 'session', label: 'Sessão Avulsa' },
-    { value: 'package', label: 'Pacote' },
-    { value: 'other', label: 'Outro Serviço' }
+    { value: 'evaluation', label: '01 - Avaliação Inicial' },
+    { value: 'session', label: '02 - Sessão do Pacote' },
+    { value: 'package', label: '03 - Pacote' },
+    { value: 'individual_session', label: '04 -Sessão Individual' },
 ];
 
 export const PaymentMethods = [
@@ -274,32 +274,31 @@ export interface IPatient {
 }
 
 
-const especialidadesDisponiveis = [
-    { id: 'fonoaudiologia', label: 'Fonoaudiologia' },
-    { id: 'psicologia', label: 'Psicologia' },
-    { id: 'terapia_ocupacional', label: 'Terapia Ocupacional' },
-    { id: 'fisioterapia', label: 'Fisioterapia' },
+export const EspecialidadesDisponiveis = [
+    { value: 'fonoaudiologia', label: 'Fonoaudiologia' },
+    { value: 'psicologia', label: 'Psicologia' },
+    { value: 'terapia_ocupacional', label: 'Terapia Ocupacional' },
+    { value: 'fisioterapia', label: 'Fisioterapia' },
 ];
 
+//ajusta a[pra ingles]
 export type AppointmentStatus =
-    | 'scheduled'
-    | 'confirmed'
-    | 'completed'
-    | 'canceled'
-    | 'no_show';
+    | 'agendado'
+    | 'concluído'
+    | 'cancelado'
 
 export interface IAppointment {
     _id: string;
-    patient: IPatient | string;
-    doctor: IDoctor | string;
-    date: Date;
-    startTime: string;
-    endTime: string;
+    patientId: string;
+    doctorId: string;
+    date: string;
+    time: string;
     reason: string;
     status: AppointmentStatus;
-    duration: number; // em minutos
-    sessionType?: TherapyType;
+    duration: number;
+    sessionType: TherapyType;
     paymentMethod?: string;
+    paymentAmount: number;
     notes?: string;
     createdAt: Date;
     updatedAt: Date;

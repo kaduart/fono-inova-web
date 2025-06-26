@@ -97,12 +97,31 @@ router.put('/:id', validateId, auth, async (req, res) => {
 
 // List all patients
 router.get('/', auth, async (req, res) => {
-
   try {
-    const patients = await Patient.find().sort({ createdAt: -1 });
+    let patients;
+    
+    // Tenta primeiro a ordenação no banco de dados
+    try {
+      patients = await Patient.find()
+        .sort({ fullName: 1 })
+        .collation({ locale: 'pt', strength: 1 });
+    } catch (dbSortError) {
+      console.warn('Falha na ordenação no BD, usando ordenação em memória:', dbSortError);
+      
+      // Fallback para ordenação em memória
+      const rawPatients = await Patient.find();
+      patients = rawPatients.sort((a, b) => 
+        a.fullName.localeCompare(b.fullName, 'pt', { sensitivity: 'base' })
+      );
+    }
+    
     res.json(patients);
   } catch (err) {
-    res.status(500).json({ error: 'Server error' });
+    console.error('Erro ao buscar pacientes:', err);
+    res.status(500).json({ 
+      error: 'Erro no servidor',
+      details: process.env.NODE_ENV === 'development' ? err.message : undefined
+    });
   }
 });
 

@@ -77,7 +77,6 @@ const DoctorAgenda = ({ doctors = [], updateSlots, patients, onDaySlotsChange, s
                 date: date
             };
             const response = await appointmentService.getAvailableSlots(payload)
-
             const slots = await response.data;
             setDaySlots([{ date, slots }]);
             onDaySlotsChange?.([{ date, slots }]);

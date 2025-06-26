@@ -9,6 +9,19 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const { patientId, doctorId, serviceType, amount, paymentMethod, status, notes, packageId, sessionId } = req.body;
 
+    if (serviceType === 'individual_session') {
+        const newSession = await Session.create({
+            serviceType,
+            patient,
+            doctor,
+            date,
+            duration,
+            notes,
+            package: null // Força não estar atrelada a pacote
+        });
+
+        return res.status(201).json(newSession);
+    }
     try {
         // Validação básica
         if (!patientId || !doctorId || !serviceType || !amount || !paymentMethod) {
@@ -18,7 +31,7 @@ router.post('/', async (req, res) => {
             });
         }
 
-        // Validação específica por tipo de serviço
+        // Validação específica por tipo de serviço (MODIFICADO)
         if (serviceType === 'package' && !packageId) {
             return res.status(400).json({
                 success: false,
@@ -26,14 +39,15 @@ router.post('/', async (req, res) => {
             });
         }
 
-        if (serviceType !== 'evaluation' && !sessionId) {
+        // Validação para sessões (incluindo avulsas) (NOVO)
+        if ((serviceType === 'session' || serviceType === 'individual_session') && !sessionId) {
             return res.status(400).json({
                 success: false,
                 message: 'ID da sessão é obrigatório para este tipo de serviço'
             });
         }
 
-        // Validação de documentos relacionados
+        // Validação de documentos relacionados (MODIFICADO)
         if (serviceType === 'package') {
             const packageExists = await Package.exists({ _id: packageId });
             if (!packageExists) {
@@ -44,7 +58,8 @@ router.post('/', async (req, res) => {
             }
         }
 
-        if (serviceType !== 'evaluation') {
+        // Validação de sessão para tipos relevantes (NOVO)
+        if (serviceType === 'session' || serviceType === 'individual_session') {
             const sessionExists = await Session.exists({ _id: sessionId });
             if (!sessionExists) {
                 return res.status(404).json({
@@ -65,8 +80,8 @@ router.post('/', async (req, res) => {
             status: status
         };
 
-        // Adiciona campos condicionais
-        if (serviceType !== 'evaluation') {
+        // Adiciona campos condicionais (MODIFICADO)
+        if (serviceType === 'session' || serviceType === 'individual_session') {
             paymentData.session = sessionId;
         }
 
@@ -76,11 +91,11 @@ router.post('/', async (req, res) => {
 
         const payment = await Payment.create(paymentData);
 
-        // Atualiza status da sessão se não for avaliação
-        if (serviceType !== 'evaluation') {
+        // Atualiza status da sessão para tipos relevantes (MODIFICADO)
+        if (serviceType === 'session' || serviceType === 'individual_session') {
             await Session.findByIdAndUpdate(
                 sessionId,
-                status
+                { status: status } // Certifique-se que o campo está correto
             );
         }
 
@@ -207,7 +222,6 @@ router.patch('/:id', auth, async (req, res) => {
     try {
         const { id } = req.params;
         const updateData = req.body;
-
         // 1. Validações iniciais
         const payment = await Payment.findById(id);
         if (!payment) {
@@ -456,6 +470,48 @@ router.get('/totals', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Erro ao calcular totais'
+        });
+    }
+});
+
+
+router.get('/session-individual', async (req, res) => {
+    try {
+        // Construir filtro básico
+        const filter = {
+            type: 'individual_session',
+            package: null // Garante que não está atrelada a pacotes
+        };
+
+        // Filtros opcionais
+        if (req.query.patientId) filter.patient = req.query.patientId;
+        if (req.query.doctorId) filter.doctor = req.query.doctorId;
+        if (req.query.status) filter.status = req.query.status;
+
+        // Filtro por data
+        if (req.query.dateFrom || req.query.dateTo) {
+            filter.date = {};
+            if (req.query.dateFrom) filter.date.$gte = new Date(req.query.dateFrom);
+            if (req.query.dateTo) filter.date.$lte = new Date(req.query.dateTo);
+        }
+
+        // Buscar sessões com populamento de dados relacionados
+        const sessions = await Session.find(filter)
+            .populate('patient', 'name email phone') // Campos do paciente
+            .populate('doctor', 'name specialty')    // Campos do médico
+            .sort({ date: -1 }); // Ordenar por data mais recente
+
+        return res.json({
+            success: true,
+            count: sessions.length,
+            data: sessions
+        });
+
+    } catch (error) {
+        console.error('Erro ao buscar sessões avulsas:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Erro interno do servidor'
         });
     }
 });
