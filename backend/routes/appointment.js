@@ -285,4 +285,61 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
     }
 });
 
+router.get('/count-by-status', async (req, res) => {
+    try {
+        const { dateFrom, dateTo, doctorId } = req.query;
+
+        // Construir filtro
+        const filter = {};
+
+        // Filtro por período
+        if (dateFrom || dateTo) {
+            filter.date = {};
+            if (dateFrom) filter.date.$gte = new Date(dateFrom);
+            if (dateTo) filter.date.$lte = new Date(`${dateTo}T23:59:59.999Z`);
+        }
+
+        // Filtro por médico
+        if (doctorId) filter.doctorId = doctorId;
+
+        // Agregação para contar por status
+        const counts = await Appointment.aggregate([
+            { $match: filter },
+            {
+                $group: {
+                    _id: '$status',
+                    count: { $sum: 1 }
+                }
+            }
+        ]);
+
+        // Formatar resultado com valores padrão
+        const result = {
+            agendado: 0,
+            concluído: 0,
+            cancelado: 0
+        };
+
+        counts.forEach(item => {
+            // Normaliza o status para minúsculas
+            const status = item._id.toLowerCase();
+            if (result.hasOwnProperty(status)) {
+                result[status] = item.count;
+            }
+        });
+
+        return res.json({
+            success: true,
+            data: result
+        });
+
+    } catch (error) {
+        console.error('Erro ao contar agendamentos por status:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Erro interno do servidor'
+        });
+    }
+});
+
 export default router;

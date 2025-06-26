@@ -16,6 +16,12 @@ export type CreateAppointmentParams = {
     status?: string;
 };
 
+export interface IAppointmentStatusCount {
+    agendado: number;
+    concluído: number;
+    cancelado: number;
+}
+
 export type UpdateAppointmentParams = Partial<{
     doctorId: string;
     date: Date;
@@ -159,7 +165,25 @@ export const appointmentService = {
                 date: date.toISOString().split('T')[0]
             }
         });
-    }
+    },
+
+    getStatusCount: async (filters?: {
+        dateFrom?: string;
+        dateTo?: string;
+        doctorId?: string;
+    }) => {
+        // Preparar parâmetros de consulta
+        const params = filters ? {
+            ...(filters.dateFrom && { dateFrom: filters.dateFrom }),
+            ...(filters.dateTo && { dateTo: filters.dateTo }),
+            ...(filters.doctorId && { doctorId: filters.doctorId }),
+        } : undefined;
+
+        return API.get<{
+            success: boolean;
+            data: IAppointmentStatusCount
+        }>('/appointments/count-by-status', { params });
+    },
 };
 
 // Funções auxiliares

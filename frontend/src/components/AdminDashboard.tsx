@@ -1,5 +1,5 @@
 
-import { Activity, ChevronDown, Clock, Eye, EyeOff, Hospital, Stethoscope, UserPlus, Users } from 'lucide-react';
+import { Activity, ChevronDown, Clock, Eye, EyeOff, Hospital, Stethoscope, User2, UserPlus, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { BASE_URL } from '../constants/constants';
 import { usePatients } from '../hooks/usePatients';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
 import { IDoctor, IPatient } from '../utils/types';
+import AppointmentCountCards from './AppointmentCountCards';
 import EnhancedCalendar from './EnhancedCalendar';
 import { PaymentModal } from './financial/PaymentModal';
 import PaymentPage from './financial/PaymentPage';
@@ -541,47 +542,61 @@ export default function AdminDashboard() {
 
     return (
       <>
-        {/* Seção de cards de resumo */}
+        <div className="mb-8">
+          <h3 className="flex items-center gap-2 text-xl font-semibold text-gray-800 mb-3">
+            <User2 /> Pacientes</h3>
+          <PatientTable
+            patients={patients}
+            onEditPatient={(patient) => {
+              setPatientToEdit(patient);
+              setIsModalOpen(true);
+            }}
+            onRegisterPayment={handleRegisterPayment}
+          />
+        </div>
+
+        <AppointmentCountCards />
+        <hr className='m-5' />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-blue-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+          <Card className="bg-pink-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
             <CardHeader >
               <div className="flex items-center space-x-2">
-                <Stethoscope className="h-5 w-5 text-blue-500" />
-                <CardTitle className="text-blue-500">
+                <Stethoscope className="h-5 w-5 text-pink-500" />
+                <CardTitle className="text-pink-500">
                   Total Profissionais
                 </CardTitle>
               </div>
               <div
                 onClick={handleAddProfessional}
-                className='flex justify-end items-center text-blue-700 cursor-pointer hover:text-blue-900 bg-white p-1 rounded'
+                className='flex justify-end items-center text-pink-700 cursor-pointer hover:text-blue-900 bg-white p-1 rounded'
               >
                 <UserPlus />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-blue-500 text-3xl font-bold">{totalDoctors}</div>
-              <p className="text-xs text-blue-500 mt-1">Equipe médica ativa</p>
+              <div className="text-pink-500 text-3xl font-bold">{totalDoctors}</div>
+              <p className="text-xs text-pink-500 mt-1">Equipe médica ativa</p>
 
             </CardContent>
           </Card>
 
-          <Card className="bg-green-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
+          <Card className="bg-amber-50 border border-gray-200 rounded-lg hover:shadow-md transition-shadow">
             <CardHeader >
               <div className="flex items-center space-x-2">
-                <Users className="h-5 w-5 text-green-500" />
-                <CardTitle className="text-green-500">
+                <Users className="h-5 w-5 text-amber-500" />
+                <CardTitle className="text-amber-500">
                   Total Pacientes
                 </CardTitle>
               </div>
               <div onClick={handleAddPatient}
-                className='flex justify-end items-center text-green-700 cursor-pointer hover:text-green-900 bg-white p-1 rounded'
+                className='flex justify-end items-center text-amber-700 cursor-pointer hover:text-amber-900 bg-white p-1 rounded'
               >
                 <UserPlus />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-green-500 text-3xl font-bold">{totalPatients}</div>
-              <p className="text-xs text-green-500 mt-1">Atualmente admitidos</p>
+              <div className="text-amber-500 text-3xl font-bold">{totalPatients}</div>
+              <p className="text-xs text-amber-500 mt-1">Atualmente admitidos</p>
             </CardContent>
           </Card>
 
@@ -606,21 +621,6 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Seção de tabela de pacientes */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold mb-4">Últimos Pacientes</h3>
-          <PatientTable
-            patients={patients}
-            onEditPatient={(patient) => {
-              setPatientToEdit(patient);
-              setIsModalOpen(true);
-            }}
-            onRegisterPayment={handleRegisterPayment}
-          />
-
-        </div>
-
 
         <PaymentModal
           open={paymentModalOpen}
