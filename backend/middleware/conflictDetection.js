@@ -10,13 +10,12 @@ export const checkAppointmentConflicts = async (req, res, next) => {
             return res.status(400).json({ error: "Campos obrigatórios faltando" });
         }
 
-        const startTime = new Date(date); // já vem ISO
+        const startTime = new Date(date);
         if (isNaN(startTime.getTime())) {
             return res.status(400).json({ error: "Data inválida" });
         }
 
         const SESSION_DURATION = SESSION_DURATION_MS;
-
         const endTime = new Date(startTime.getTime() + SESSION_DURATION);
 
         const startOfDay = new Date(startTime);
@@ -24,12 +23,15 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         const endOfDay = new Date(startTime);
         endOfDay.setHours(23, 59, 59, 999);
 
+        // Modificação 1: Ignorar agendamentos cancelados para médico
         const existingAppointments = await Appointment.find({
             doctorId,
             date: { $gte: startOfDay, $lt: endOfDay },
-            ...(appointmentId && { _id: { $ne: appointmentId } })
+            status: { $ne: 'cancelado' }, // Ignora cancelados
+            ...(appointmentId && { _id: { $ne: appointmentId } }) // Exclui o próprio agendamento
         });
 
+        // Modificação 2: Verificação de conflito considerando apenas agendamentos ativos
         const hasDoctorConflict = existingAppointments.some(app => {
             const appStart = new Date(app.date);
             const appEnd = new Date(appStart.getTime() + SESSION_DURATION);
@@ -39,16 +41,19 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         if (hasDoctorConflict) {
             return res.status(409).json({
                 error: 'Conflito de horário',
-                message: 'Médico já possui agendamento neste horário'
+                message: 'Médico já possui agendamento ativo neste horário'
             });
         }
 
+        // Modificação 3: Ignorar agendamentos cancelados para paciente
         const patientAppointments = await Appointment.find({
             patientId,
             date: { $gte: startOfDay, $lt: endOfDay },
-            ...(appointmentId && { _id: { $ne: appointmentId } })
+            status: { $ne: 'cancelado' }, // Ignora cancelados
+            ...(appointmentId && { _id: { $ne: appointmentId } }) // Exclui o próprio agendamento
         });
 
+        // Modificação 4: Verificação de conflito para paciente
         const hasPatientConflict = patientAppointments.some(app => {
             const appStart = new Date(app.date);
             const appEnd = new Date(appStart.getTime() + SESSION_DURATION);
@@ -58,7 +63,7 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         if (hasPatientConflict) {
             return res.status(409).json({
                 error: 'Conflito de horário',
-                message: 'Paciente já possui agendamento neste horário'
+                message: 'Paciente já possui agendamento ativo neste horário'
             });
         }
 
