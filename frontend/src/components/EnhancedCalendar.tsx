@@ -283,7 +283,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 paymentAmount: appointment.paymentAmount,
                 paymentMethod: appointment.paymentMethod
             };
-            console.log('chamouo enchaced', payload)
 
             if ('_id' in appointment && appointment._id) {
                 // Edição

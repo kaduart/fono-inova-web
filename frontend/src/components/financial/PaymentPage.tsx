@@ -183,7 +183,6 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                 serviceType: data.serviceType,
                 paymentMethod: data.paymentMethod
             });
-            console.log('reeeqeust service', data)
 
             await loadPayments();
             toast.success('Pagamento atualizado com sucesso!');

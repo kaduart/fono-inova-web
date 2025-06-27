@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp, DollarSign, Edit, Eye, FileHeart, Phone } from "lucide-react";
-import { useState } from 'react';
+import { useMemo, useState } from 'react'; // Adicionei useMemo
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateBrazilian } from "../../utils/dateFormat";
 import { IPatient } from "../../utils/types";
@@ -18,8 +18,42 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(5);
     const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+    const [loading, setLoading] = useState(true);
 
-    const filteredPatients = patients.filter((patient) => {
+    const [sortConfig, setSortConfig] = useState<{
+        key: string;
+        direction: 'ascending' | 'descending';
+    }>({
+        key: "nextAppointment",
+        direction: "ascending", // 'ascending' = mais próximas primeiro
+    });
+    // Função para ordenar os pacientes
+    const sortedPatients = useMemo(() => {
+        const sortablePatients = [...patients];
+        if (patients.length > 0) {
+            setLoading(false)
+        }
+        sortablePatients.sort((a, b) => {
+            // Trata pacientes sem data
+            const dateA = a.nextAppointment?.date
+                ? new Date(a.nextAppointment.date).getTime()
+                : Number.MAX_SAFE_INTEGER;
+
+            const dateB = b.nextAppointment?.date
+                ? new Date(b.nextAppointment.date).getTime()
+                : Number.MAX_SAFE_INTEGER;
+
+            if (sortConfig.direction === "ascending") {
+                return dateA - dateB;
+            } else {
+                return dateB - dateA;
+            }
+        });
+
+        return sortablePatients;
+    }, [patients, sortConfig]);
+
+    const filteredPatients = sortedPatients.filter((patient) => {
         const term = searchTerm.toLowerCase();
         return (
             (patient.fullName && patient.fullName.toLowerCase().includes(term)) ||
@@ -32,7 +66,7 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginatedPatients = filteredPatients.slice(startIndex, startIndex + itemsPerPage);
 
-    const handlePageChange = (direction) => {
+    const handlePageChange = (direction: 'prev' | 'next') => {
         if (direction === 'prev' && currentPage > 1) {
             setCurrentPage((prev) => prev - 1);
         }
@@ -41,7 +75,15 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
         }
     };
 
-    const handleItemsPerPageChange = (e) => {
+    const sortData = (key: string) => {
+        let direction: 'ascending' | 'descending' = "ascending";
+        if (sortConfig.key === key && sortConfig.direction === "ascending") {
+            direction = "descending";
+        }
+        setSortConfig({ key, direction });
+    };
+
+    const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setItemsPerPage(Number(e.target.value));
         setCurrentPage(1); // reset to first page
     };
@@ -54,206 +96,229 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Buscar por nome, telefone ou CPF"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="mb-4 p-2 border border-gray-300 rounded w-full text-gray-500"
-            />
+        <>
+            {
+                loading ? (
+                    <div className="flex justify-center py-8">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                    </div >
+                ) : (
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Buscar por nome, telefone ou CPF"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="mb-4 p-2 border border-gray-300 rounded w-full text-gray-500"
+                        />
 
-            <div className="mb-4 overflow-hidden rounded-lg border border-gray-200 shadow">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead>
-                        <tr>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Paciente</th>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Última Consulta</th>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Próxima Consulta</th>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Pacote</th>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
-                            <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase"></th>
-                        </tr>
-                    </thead>
-
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {paginatedPatients.map((patient) => (
-                            <>
-                                <tr
-                                    key={patient._id}
-                                    className="hover:bg-gray-50 transition-colors cursor-pointer"
-                                    onClick={() => toggleRow(patient._id)}
-                                >
-                                    {/* Coluna Paciente */}
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="font-semibold text-gray-700 flex items-center gap-2">
-                                            <span className="text-sm">{patient.fullName || '-'}</span>
-                                        </div>
-                                        <div className="text-sm text-gray-500 flex items-center gap-1">
-                                            <Phone className="w-4 h-4 text-gray-400" />
-                                            {patient.phone || '-'}
-                                        </div>
-                                    </td>
-
-                                    {/* Coluna Última Consulta */}
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        {patient.lastAppointment?.date ? (
-                                            <>
-                                                <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">
-                                                    {formatDateBrazilian(patient.lastAppointment.date)}
-                                                </span>
-                                                <div className="text-xs text-gray-500">
-                                                    {patient.lastAppointment?.doctorId?.fullName || '-'}
-                                                </div>
-                                            </>
-                                        ) : '-'}
-                                    </td>
-
-                                    {/* Coluna Próxima Consulta */}
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        {patient.nextAppointment?.date ? (
-                                            <>
-                                                <span className="inline-block bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs">
-                                                    {formatDateBrazilian(patient.nextAppointment.date)}
-                                                </span>
-                                                <div className="text-xs text-gray-500">
-                                                    {patient.nextAppointment?.doctorId?.fullName || '-'}
-                                                </div>
-                                            </>
-                                        ) : '-'}
-                                    </td>
-
-                                    {/* Coluna Pacote */}
-                                    <td className="px-6 py-4 whitespace-nowrap">
-                                        <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs">
-                                            {patient.packageInfo ? `${patient.packageInfo.remaining}/${patient.packageInfo.total} sessões` : 'Pacote não informado'}
-                                        </span>
-                                    </td>
-
-                                    {/* Coluna Ações */}
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                        <div className="flex gap-3">
-                                            <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
-                                                <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
-                                            </Link>
-                                            <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    onRegisterPayment?.(patient);
-                                                }}
-                                                title="Registrar Pagamento"
-                                                className="text-yellow-500 hover:text-green-800"
-                                            >
-                                                <DollarSign className="w-5 h-5" />
-                                            </button>
-                                            <button
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    onEditPatient?.(patient);
-                                                }}
-                                                title="Editar"
-                                                className="text-blue-600 hover:text-blue-800"
-                                            >
-                                                <Edit className="w-5 h-5" />
-                                            </button>
-                                            <Link to={`/evolutions/${patient._id}`} title="Ver evoluções">
-                                                <FileHeart className="w-5 h-5 text-green-600 hover:text-green-800" />
-                                            </Link>
-                                        </div>
-                                    </td>
-
-                                    {/* Coluna Expandir */}
-                                    <td className="px-6 py-4 whitespace-nowrap text-right">
-                                        {expandedRows[patient._id] ? (
-                                            <ChevronUp className="w-5 h-5 text-gray-500" />
-                                        ) : (
-                                            <ChevronDown className="w-5 h-5 text-gray-500" />
-                                        )}
-                                    </td>
-                                </tr>
-
-                                {/* Linha expandida com mensagens */}
-                                {expandedRows[patient._id] && (
-                                    <tr className="bg-gray-50">
-                                        <td colSpan={6} className="px-6 py-4">
-                                            <div className="flex flex-col space-y-2">
-                                                <h4 className="text-sm font-medium text-gray-500 mb-2">Enviar mensagem:</h4>
-                                                {patient.phone && (
-                                                    <WhatsAppActionButtons
-                                                        phone={patient.phone.startsWith('+')
-                                                            ? patient.phone.slice(1)
-                                                            : patient.phone}
-                                                        nome={patient.fullName}
-                                                        profissional={patient?.nextAppointment?.doctorId?.fullName}
-                                                        data={new Date(patient.nextAppointment?.date)}
-                                                        hora={new Date(patient.nextAppointment?.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-                                                        servico={patient?.lastAppointment?.doctorId?.specialty}
-                                                        restantes="2"
-                                                    />
+                        <div className="mb-4 overflow-hidden rounded-lg border border-gray-200 shadow">
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Paciente</th>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Última Consulta</th>
+                                        <th
+                                            className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100"
+                                            onClick={() => sortData("nextAppointment")}
+                                        >
+                                            <div className="flex items-center">
+                                                Próxima Consulta
+                                                {sortConfig.key === "nextAppointment" && (
+                                                    <span className="ml-1">
+                                                        {sortConfig.direction === "ascending" ? "↑" : "↓"}
+                                                    </span>
                                                 )}
+                                            </div>
+                                        </th>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Pacote</th>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase">Ações</th>
+                                        <th className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase"></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {paginatedPatients.map((patient) => (
+                                        <>
+                                            <tr
+                                                key={patient._id}
+                                                className="hover:bg-gray-50 transition-colors cursor-pointer"
+                                                onClick={() => toggleRow(patient._id)}
+                                            >
+                                                {/* Coluna Paciente */}
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    <div className="font-semibold text-gray-700 flex items-center gap-2">
+                                                        <span className="text-sm">{patient.fullName || '-'}</span>
+                                                    </div>
+                                                    <div className="text-sm text-gray-500 flex items-center gap-1">
+                                                        <Phone className="w-4 h-4 text-gray-400" />
+                                                        {patient.phone || '-'}
+                                                    </div>
+                                                </td>
+
+                                                {/* Coluna Última Consulta */}
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                                    {patient.lastAppointment?.date ? (
+                                                        <>
+                                                            <span className="inline-block bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-xs">
+                                                                {formatDateBrazilian(patient.lastAppointment.date)}
+                                                            </span>
+                                                            <div className="text-xs text-gray-500">
+                                                                {patient.lastAppointment?.doctorId?.fullName || '-'}
+                                                            </div>
+                                                        </>
+                                                    ) : '-'}
+                                                </td>
+
+                                                {/* Coluna Próxima Consulta - MANTIDA COMO SOLICITADO */}
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                                    {patient.nextAppointment?.date ? (
+                                                        <>
+                                                            <span className="inline-block bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs">
+                                                                {formatDateBrazilian(patient.nextAppointment.date)}
+                                                            </span>
+                                                            <div className="text-xs text-gray-500">
+                                                                {patient.nextAppointment?.doctorId?.fullName || '-'}
+                                                            </div>
+                                                        </>
+                                                    ) : '-'}
+                                                </td>
+
+                                                {/* Coluna Pacote */}
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    <span className="inline-block bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-xs">
+                                                        {patient.packageInfo ? `${patient.packageInfo.remaining}/${patient.packageInfo.total} sessões` : 'Pacote não informado'}
+                                                    </span>
+                                                </td>
+
+                                                {/* Coluna Ações */}
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                                    <div className="flex gap-3">
+                                                        <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
+                                                            <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
+                                                        </Link>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                onRegisterPayment?.(patient);
+                                                            }}
+                                                            title="Registrar Pagamento"
+                                                            className="text-yellow-500 hover:text-green-800"
+                                                        >
+                                                            <DollarSign className="w-5 h-5" />
+                                                        </button>
+                                                        <button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                onEditPatient?.(patient);
+                                                            }}
+                                                            title="Editar"
+                                                            className="text-blue-600 hover:text-blue-800"
+                                                        >
+                                                            <Edit className="w-5 h-5" />
+                                                        </button>
+                                                        <Link to={`/evolutions/${patient._id}`} title="Ver evoluções">
+                                                            <FileHeart className="w-5 h-5 text-green-600 hover:text-green-800" />
+                                                        </Link>
+                                                    </div>
+                                                </td>
+
+                                                {/* Coluna Expandir */}
+                                                <td className="px-6 py-4 whitespace-nowrap text-right">
+                                                    {expandedRows[patient._id] ? (
+                                                        <ChevronUp className="w-5 h-5 text-gray-500" />
+                                                    ) : (
+                                                        <ChevronDown className="w-5 h-5 text-gray-500" />
+                                                    )}
+                                                </td>
+                                            </tr>
+
+                                            {/* Linha expandida com mensagens */}
+                                            {expandedRows[patient._id] && (
+                                                <tr className="bg-gray-50">
+                                                    <td colSpan={6} className="px-6 py-4">
+                                                        <div className="flex flex-col space-y-2">
+                                                            <h4 className="text-sm font-medium text-gray-500 mb-2">Enviar mensagem:</h4>
+                                                            {patient.phone && (
+                                                                <WhatsAppActionButtons
+                                                                    phone={patient.phone.startsWith('+')
+                                                                        ? patient.phone.slice(1)
+                                                                        : patient.phone}
+                                                                    nome={patient.fullName}
+                                                                    profissional={patient?.nextAppointment?.doctorId?.fullName}
+                                                                    data={new Date(patient.nextAppointment?.date)}
+                                                                    hora={new Date(patient.nextAppointment?.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                                                                    servico={patient?.lastAppointment?.doctorId?.specialty}
+                                                                    restantes="2"
+                                                                />
+                                                            )}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )}
+                                        </>
+                                    ))}
+
+                                    {/* Paginação como linha extra */}
+                                    <tr>
+                                        <td colSpan={5} className="px-6 py-4">
+                                            <div className="flex justify-between items-center">
+                                                <div className="flex items-center space-x-2">
+                                                    <span className="text-sm text-gray-500">Exibir:</span>
+                                                    <select
+                                                        value={itemsPerPage}
+                                                        onChange={handleItemsPerPageChange}
+                                                        className="border border-gray-300 rounded px-2 py-1 text-sm text-gray-700"
+                                                    >
+                                                        <option value={5}>5</option>
+                                                        <option value={10}>10</option>
+                                                        <option value={20}>20</option>
+                                                    </select>
+                                                </div>
+
+                                                <div className="flex items-center space-x-1">
+                                                    <button
+                                                        onClick={() => handlePageChange('prev')}
+                                                        disabled={currentPage === 1}
+                                                        className="px-2 py-1 border border-gray-300 rounded text-gray-600 text-sm hover:bg-gray-100 disabled:opacity-50"
+                                                    >
+                                                        Anterior
+                                                    </button>
+                                                    {Array.from({ length: totalPages }, (_, index) => {
+                                                        const page = index + 1;
+                                                        const isActive = currentPage === page;
+                                                        return (
+                                                            <button
+                                                                key={page}
+                                                                onClick={() => setCurrentPage(page)}
+                                                                className={`px-3 py-1 rounded border text-sm transition-all duration-150 ${isActive
+                                                                    ? 'border-blue-500 text-blue-600 font-semibold bg-blue-50'
+                                                                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-100'
+                                                                    }`}
+                                                            >
+                                                                {page}
+                                                            </button>
+                                                        );
+                                                    })}
+                                                    <button
+                                                        onClick={() => handlePageChange('next')}
+                                                        disabled={currentPage === totalPages}
+                                                        className="px-2 py-1 border border-gray-300 rounded text-gray-600 text-sm hover:bg-gray-100 disabled:opacity-50"
+                                                    >
+                                                        Próxima
+                                                    </button>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
-                                )}
-                            </>
-                        ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                        {/* Paginação como linha extra */}
-                        <tr>
-                            <td colSpan={5} className="px-6 py-4">
-                                <div className="flex justify-between items-center">
-                                    <div className="flex items-center space-x-2">
-                                        <span className="text-sm text-gray-500">Exibir:</span>
-                                        <select
-                                            value={itemsPerPage}
-                                            onChange={handleItemsPerPageChange}
-                                            className="border border-gray-300 rounded px-2 py-1 text-sm text-gray-700"
-                                        >
-                                            <option value={5}>5</option>
-                                            <option value={10}>10</option>
-                                            <option value={20}>20</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="flex items-center space-x-1">
-                                        <button
-                                            onClick={() => handlePageChange('prev')}
-                                            disabled={currentPage === 1}
-                                            className="px-2 py-1 border border-gray-300 rounded text-gray-600 text-sm hover:bg-gray-100 disabled:opacity-50"
-                                        >
-                                            Anterior
-                                        </button>
-                                        {Array.from({ length: totalPages }, (_, index) => {
-                                            const page = index + 1;
-                                            const isActive = currentPage === page;
-                                            return (
-                                                <button
-                                                    key={page}
-                                                    onClick={() => setCurrentPage(page)}
-                                                    className={`px-3 py-1 rounded border text-sm transition-all duration-150 ${isActive
-                                                        ? 'border-blue-500 text-blue-600 font-semibold bg-blue-50'
-                                                        : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-100'
-                                                        }`}
-                                                >
-                                                    {page}
-                                                </button>
-                                            );
-                                        })}
-                                        <button
-                                            onClick={() => handlePageChange('next')}
-                                            disabled={currentPage === totalPages}
-                                            className="px-2 py-1 border border-gray-300 rounded text-gray-600 text-sm hover:bg-gray-100 disabled:opacity-50"
-                                        >
-                                            Próxima
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                )
+            }
+        </>
     );
 };
 
