@@ -79,7 +79,7 @@ export const getAvailableTimeSlots = async (req, res) => {
         }
 
         const SESSION_DURATION_MINUTES = 40;
-        const BLOCKED_DOCTOR_ID = '684072213830f473da1b0b0b'; // ID do médico com restrição
+        const BLOCKED_DOCTOR_ID = '684072213830f473da1b0b0b';
 
         // Função para criar datas no fuso UTC-3
         const toUtc3 = (h, m) => {
@@ -90,7 +90,7 @@ export const getAvailableTimeSlots = async (req, res) => {
         const start = toUtc3(8, 0); // 08:00
         const end = toUtc3(18, 0);  // 18:00
 
-        // Busca agendamentos existentes
+        // Busca TODOS os agendamentos do dia
         const existingAppointments = await Appointment.find({
             doctorId,
             date: { $gte: start, $lte: end }
@@ -109,19 +109,26 @@ export const getAvailableTimeSlots = async (req, res) => {
         const availableSlots = slots.filter(slot => {
             const slotStartTime = slot.getTime();
             const slotEndTime = slotStartTime + SESSION_DURATION_MINUTES * 60000;
-            const hour = slot.getUTCHours() - 3; // Convertendo para UTC-3
+            const hour = slot.getUTCHours() - 3;
 
-            // Regra: Bloquear horário de almoço para médico específico
+            // Bloquear horário de almoço para médico específico
             if (doctorId === BLOCKED_DOCTOR_ID && hour >= 12 && hour < 14) {
                 return false;
             }
 
-            // Verifica conflito com agendamentos existentes
-            return !existingAppointments.some(app => {
+            // Verifica conflito apenas com agendamentos ATIVOS
+            const hasConflict = existingAppointments.some(app => {
+                // Ignora agendamentos cancelados
+                if (app.status === 'cancelado') return false;
+
                 const appStartTime = new Date(app.date).getTime();
                 const appEndTime = appStartTime + SESSION_DURATION_MINUTES * 60000;
+
+                // Verifica sobreposição de horários
                 return slotStartTime < appEndTime && slotEndTime > appStartTime;
             });
+
+            return !hasConflict;
         });
 
         // Formata os horários
@@ -138,7 +145,6 @@ export const getAvailableTimeSlots = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
-
 
 
 
