@@ -91,7 +91,7 @@ export function PaymentsTable({ filters }: PaymentsTableProps) {
                     {payments.map(p => (
                         <tr key={p._id} className="border-t">
                             <td className="px-2 py-1">{p.patientId?.name}</td>
-                            <td className="px-2 py-1">{p.professionalId?.name}</td>
+                            <td className="px-2 py-1">{p.doctorId?.name}</td>
                             <td className="px-2 py-1">{new Date(p.sessionDate).toLocaleDateString()}</td>
                             <td className="px-2 py-1">R$ {p.value.toFixed(2)}</td>
                             <td className="px-2 py-1">

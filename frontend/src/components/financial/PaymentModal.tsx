@@ -1,8 +1,8 @@
 import { Check, ChevronDown, Loader2, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { createPayment } from '../../services/paymentService';
-import { EspecialidadesDisponiveis, IDoctor, IPatient, PaymentMethods, ServiceTypes } from '../../utils/types';
+import { FinancialRecord } from '../../services/paymentService';
+import { EspecialidadesDisponiveis, IDoctor, IPatient, PaymentMethods, ServiceTypes } from '../../utils/types/types';
 import InputCurrency from '../ui/InputCurrency';
 
 interface PaymentModalProps {
@@ -10,9 +10,9 @@ interface PaymentModalProps {
     onClose: () => void;
     patient?: IPatient;
     patients?: IPatient[];
-    paymentSelected?: any,
     doctors: IDoctor[];
-    onPaymentSuccess: (id: string) => void
+    payment?: FinancialRecord;
+    onPaymentSuccess: (data: any) => void
 
 }
 
@@ -21,24 +21,46 @@ export const PaymentModal = ({
     onClose,
     patient,
     patients,
-    paymentSelected,
     doctors,
+    payment,
     onPaymentSuccess
 }: PaymentModalProps) => {
-
-    const [paymentData, setPaymentData] = useState<any>({});
-
+    console.log('patient', patient)
     const [isLoading, setIsLoading] = useState(false);
+    const [paymentData, setPaymentData] = useState<any>(() => {
+        if (payment) {
+            return {
+                ...payment,
+                patientId: payment.patient?._id || '',
+                doctorId: payment.doctor?._id || '',
+                amount: payment.amount,
+                status: 'paid',
+                paymentMethod: payment.paymentMethod,
+                notes: payment.notes
+            };
+        }
+
+        return {
+            serviceType: patient?.serviceType || 'individual_session',
+            doctorId: doctors[0]?._id || '',
+            amount: patient?.amount || 0,
+            paymentMethod: patient?.paymentMethod || 'cartão',
+            notes: patient?.notes || '',
+            patientId: patient?._id || '',
+            status: 'paid'
+        };
+    });
+
 
     useEffect(() => {
         if (open) {
             setPaymentData(prev => ({
                 ...prev,
-                serviceType: paymentSelected.serviceType,
-                professionalId: doctors[0]?._id || '',
-                amount: paymentSelected.amount,
-                paymentMethod: paymentSelected.paymentMethod,
-                notes: paymentSelected.notes,
+                serviceType: patient?.serviceType || 'individual_session',
+                doctorId: doctors[0]?._id || '',
+                amount: patient?.amount || 0,
+                paymentMethod: patient?.paymentMethod || 'cartão',
+                notes: patient?.notes || '',
                 patientId: patient?._id || '',
 
             }));
@@ -46,19 +68,17 @@ export const PaymentModal = ({
     }, [open, patient]);
 
     const handleSubmit = async () => {
-        // Validação do paciente
-        if (!paymentData.patientId) {
+        console.log('paymentData', paymentData)
+        if (!paymentData.patient._id) {
             toast.error('Selecione um paciente');
             return;
         }
 
-        // Validação do profissional
-        if (!paymentData.professionalId) {
+        if (!paymentData.doctorId) {
             toast.error('Selecione um profissional');
             return;
         }
 
-        // Validação do valor
         const amount = parseFloat(paymentData.amount.toString());
         if (isNaN(amount) || amount <= 0) {
             toast.error('Valor inválido');
@@ -67,37 +87,19 @@ export const PaymentModal = ({
 
         try {
             setIsLoading(true);
-            if (!paymentSelected._id) {
-                await createPayment({
-                    patientId: paymentData.patientId,
-                    doctorId: paymentData.professionalId,
-                    serviceType: paymentData.serviceType,
-                    amount: amount,
-                    status: paymentData.status,
-                    specialty: paymentData.specialty,
-                    paymentMethod: paymentData.paymentMethod,
-                    notes: paymentData.notes,
-                    ...(paymentData.serviceType === 'package' && { packageId: paymentData.packageId }),
-                    ...(paymentData.serviceType !== 'evaluation' && { sessionId: paymentData.sessionId })
-                });
-                toast.success('Pagamento criado com sucesso!');
-            }
 
-            onPaymentSuccess(paymentData);
+            onPaymentSuccess(paymentData); // Chama a função de sucesso
             onClose();
 
-            // Reset form
-            setPaymentData({
+            // Reset inteligente mantendo paciente e profissional
+            setPaymentData(prev => ({
+                ...prev,
                 serviceType: 'evaluation',
-                patientId: patient?._id || '', // Mantém o paciente se já estava definido
-                professionalId: doctors.length > 0 ? doctors[0]._id : '',
-                amount: paymentSelected.amount,
-                status: 'pending',
-                paymentMethod: 'dinheiro',
-                notes: '',
-                packageId: '',
-                sessionId: ''
-            });
+                amount: 0,
+                paymentMethod: 'cartao',
+                notes: ''
+            }));
+
         } catch (error: any) {
             console.error('Erro ao registrar pagamento:', error);
             toast.error(error.message || 'Erro ao registrar pagamento');
@@ -121,9 +123,11 @@ export const PaymentModal = ({
                 {/* Cabeçalho */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-4 flex justify-between items-center">
                     <h3 className="text-xl font-bold text-white">
-                        {patient
-                            ? `Registrar Pagamento - ${patient.fullName}`
-                            : 'Registrar Pagamento'}
+                        {payment
+                            ? `Editar Pagamento - ${payment.patient?.fullName || ''}`
+                            : patient
+                                ? `Registrar Pagamento - ${patient.fullName}`
+                                : 'Registrar Pagamento'}
                     </h3>
                     <button
                         type="button"
@@ -203,10 +207,10 @@ export const PaymentModal = ({
                                 </label>
                                 <div className="relative">
                                     <select
-                                        value={paymentData.professionalId}
+                                        value={paymentData.doctorId}
                                         onChange={(e) => setPaymentData({
                                             ...paymentData,
-                                            professionalId: e.target.value
+                                            doctorId: e.target.value
                                         })}
                                         disabled={isLoading || doctors.length === 0}
                                         className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 appearance-none"
@@ -259,6 +263,7 @@ export const PaymentModal = ({
                                 <div className="relative">
                                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">R$</span>
                                     <InputCurrency
+                                        name='amount'
                                         value={paymentData.amount}
                                         onChange={(e) => setPaymentData({
                                             ...paymentData,

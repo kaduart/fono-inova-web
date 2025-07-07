@@ -3,25 +3,13 @@ import PDFDocument from 'pdfkit';
 import { auth, authorize } from '../middleware/auth.js';
 import Package from '../models/Package.js';
 import Payment from '../models/Payment.js';
+import Session from '../models/Session.js';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
     const { patientId, doctorId, serviceType, amount, paymentMethod, status, notes, packageId, sessionId } = req.body;
 
-    if (serviceType === 'individual_session') {
-        const newSession = await Session.create({
-            serviceType,
-            patient,
-            doctor,
-            date,
-            duration,
-            notes,
-            package: null // Força não estar atrelada a pacote
-        });
-
-        return res.status(201).json(newSession);
-    }
     try {
         // Validação básica
         if (!patientId || !doctorId || !serviceType || !amount || !paymentMethod) {
@@ -31,7 +19,20 @@ router.post('/', async (req, res) => {
             });
         }
 
-        // Validação específica por tipo de serviço (MODIFICADO)
+        // Cria sessão individual se necessário
+        let individualSessionId = null;
+        if (serviceType === 'individual_session') {
+            const newSession = await Session.create({
+                serviceType,
+                patient: patientId,
+                doctor: doctorId,
+                notes,
+                package: null
+            });
+            individualSessionId = newSession._id;
+        }
+
+        // Validação específica por tipo de serviço
         if (serviceType === 'package' && !packageId) {
             return res.status(400).json({
                 success: false,
@@ -39,15 +40,15 @@ router.post('/', async (req, res) => {
             });
         }
 
-        // Validação para sessões (incluindo avulsas) (NOVO)
-        if ((serviceType === 'session' || serviceType === 'individual_session') && !sessionId) {
+        // Validação para sessões (exceto individual_session)
+        if (serviceType === 'session' && !sessionId) {
             return res.status(400).json({
                 success: false,
-                message: 'ID da sessão é obrigatório para este tipo de serviço'
+                message: 'ID da sessão é obrigatório para serviço do tipo "session"'
             });
         }
 
-        // Validação de documentos relacionados (MODIFICADO)
+        // Validação de documentos relacionados
         if (serviceType === 'package') {
             const packageExists = await Package.exists({ _id: packageId });
             if (!packageExists) {
@@ -58,8 +59,8 @@ router.post('/', async (req, res) => {
             }
         }
 
-        // Validação de sessão para tipos relevantes (NOVO)
-        if (serviceType === 'session' || serviceType === 'individual_session') {
+        // Validação de sessão para tipo 'session' (individual_session não precisa)
+        if (serviceType === 'session') {
             const sessionExists = await Session.exists({ _id: sessionId });
             if (!sessionExists) {
                 return res.status(404).json({
@@ -80,22 +81,23 @@ router.post('/', async (req, res) => {
             status: status
         };
 
-        // Adiciona campos condicionais (MODIFICADO)
-        if (serviceType === 'session' || serviceType === 'individual_session') {
+        // Adiciona campos condicionais
+        if (serviceType === 'session') {
             paymentData.session = sessionId;
-        }
-
-        if (serviceType === 'package') {
+        } else if (serviceType === 'individual_session') {
+            paymentData.session = individualSessionId;
+        } else if (serviceType === 'package') {
             paymentData.package = packageId;
         }
 
         const payment = await Payment.create(paymentData);
 
-        // Atualiza status da sessão para tipos relevantes (MODIFICADO)
+        // Atualiza status da sessão para tipos relevantes
         if (serviceType === 'session' || serviceType === 'individual_session') {
+            const sessionToUpdate = serviceType === 'individual_session' ? individualSessionId : sessionId;
             await Session.findByIdAndUpdate(
-                sessionId,
-                { status: status } // Certifique-se que o campo está correto
+                sessionToUpdate,
+                { status: status }
             );
         }
 
@@ -116,12 +118,12 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const { doctor, patient, status, startDate, endDate } = req.query;
+        const { doctorId, patientId, status, startDate, endDate } = req.query;
         const filters = {};
 
         // Construção dos filtros
-        if (doctor) filters.doctor = doctor; // Alterado de professional para doctor
-        if (patient) filters.patient = patient;
+        if (doctorId) filters.doctor = doctorId; // Alterado de doctorId para doctor
+        if (patientId) filters.patient = patientId;
         if (status) filters.status = status;
         if (startDate && endDate) {
             filters.createdAt = {
@@ -137,7 +139,7 @@ router.get('/', async (req, res) => {
                 model: 'Patient'
             })
             .populate({
-                path: 'doctor', // Alterado de professional para doctor
+                path: 'doctor',
                 select: 'fullName specialty',
                 model: 'Doctor'
             })
@@ -188,9 +190,9 @@ router.get('/', async (req, res) => {
         // Formatação adicional
         const formattedPayments = payments.map(payment => ({
             ...payment,
-            patientName: payment.patient?.fullName || 'Não informado',
-            doctorName: payment.doctor?.fullName || 'Não informado', // Alterado de professional para doctor
-            doctorSpecialty: payment.doctor?.specialty || 'Não informada', // Alterado de professional para doctor
+            patientName: payment.patientId?.fullName || 'Não informado',
+            doctorName: payment.doctorId?.fullName || 'Não informado', // Alterado de doctorId para doctor
+            doctorSpecialty: payment.doctorId?.specialty || 'Não informada', // Alterado de doctorId para doctor
             packageName: payment.package?.name || null,
             formattedDate: payment.createdAt.toLocaleDateString('pt-BR'),
             formattedAmount: `R$ ${payment.amount.toFixed(2)}`

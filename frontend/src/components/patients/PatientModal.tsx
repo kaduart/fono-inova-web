@@ -2,7 +2,7 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { X } from 'lucide-react';
 import PatientForm from '../../shared/components/PatientForm';
-import { IPatient } from '../../utils/types';
+import { IPatient } from '../../utils/types/types';
 
 interface PatientModalProps {
     open: boolean;

@@ -4,9 +4,9 @@ import { addDays, format, formatISO, startOfWeek } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import { IPatient } from '../../utils/types/types';
 import { Button } from '../ui/Button';
 import { TimeMultiSelect } from './TimeMultiSelect';
-import { IPatient } from '../../utils/types';
 
 const weekdays = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
 
@@ -91,7 +91,7 @@ const DoctorAgendaCalendar = ({
 
 
       <div className="grid grid-cols-5 gap-6 justify-center">
-        {[0, 1, 2, 3, 4].map((index) => {
+        {[0, 1, 2, 3, 4, 5, 6].map((index) => {
           const date = addDays(weekStart, index);
           const formattedDate = formatISO(date, { representation: 'date' });
           const slotsForThisDate = daySlots.find((d) => d.date === formattedDate)?.slots || [];

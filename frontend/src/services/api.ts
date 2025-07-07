@@ -21,7 +21,7 @@ API.interceptors.response.use(
             localStorage.removeItem('token');
             sessionStorage.removeItem('token');
             console.warn('Token inválido ou expirado. Redirecionando para login...');
-            window.location.href = '/login';
+            // window.location.href = '/login';
         }
         return Promise.reject(error);
     }

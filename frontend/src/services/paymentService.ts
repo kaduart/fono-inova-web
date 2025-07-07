@@ -14,6 +14,9 @@ export interface FinancialRecord {
     serviceType: string;
     paymentMethod: string;
     notes: string;
+    packageId: string;
+    sessionId: string;
+
 }
 
 export interface Summary {
@@ -33,8 +36,6 @@ export const getPayment = (id: string) =>
 export const createPayment = (data: Partial<FinancialRecord>) =>
     API.post<FinancialRecord>('/payments', data);
 
-// paymentService.ts
-// paymentService.ts
 export const updatePayment = (
     id: string,
     data: {

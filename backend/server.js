@@ -5,11 +5,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import './models/Doctor.js'; // Crie este modelo se necessário
+import './models/Doctor.js';
 import './models/Package.js';
-import './models/Patient.js'; // Importe antes das rotas
+import './models/Patient.js';
 import './models/Payment.js';
 import './models/Session.js';
+import './models/Specialty.js';
+import './models/User.js';
 import adminRoutes from './routes/admin.js';
 import appointmentRoutes from './routes/appointment.js';
 import doctorRoutes from './routes/doctor.js';
@@ -20,7 +22,8 @@ import PackageRoutes from './routes/Package.js';
 import patientRoutes from './routes/patient.js';
 import PaymentRoutes from './routes/Payment.js';
 import signupRoutes from './routes/signup.js';
-import WppRoutes from './routes/wpp.js';
+import specialtyRouter from './routes/specialty.js';
+import UserRoutes from './routes/user.js';
 
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -39,7 +42,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Could not connect to MongoDB', err));
 
@@ -55,7 +58,9 @@ app.use('/api/evolutions', evolutionRoutes);
 app.use('/api/leads', leadsRouter);
 app.use('/api/packages', PackageRoutes);
 app.use('/api/payments', PaymentRoutes);
-app.use('/api/wpp', WppRoutes);
+app.use('/api/users', UserRoutes);
+
+app.use('/api/specialties', specialtyRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

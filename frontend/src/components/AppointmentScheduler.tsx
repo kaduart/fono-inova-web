@@ -3,18 +3,21 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { BASE_URL } from '../constants/constants';
 import { Appointment, useTempAppointments } from '../hooks/useTempAppointments';
-import EnhancedCalendar from './EnhancedCalendar';
-import ScheduleModal from './ScheduleModal';
+import EnhancedCalendar from './calendar/EnhancedCalendar';
+import ScheduleModal from './calendar/ScheduleModal';
+import { IDoctor } from '../utils/types/types';
 
 // Estado base para um agendamento “vazio”
 const EMPTY_APPOINTMENT: Appointment = {
     id: '',
     profissional: '',
-    dataHora: new Date().toISOString().slice(0, 16), // “YYYY-MM-DDTHH:mm”
+    date: new Date().toISOString().slice(0, 16), // “YYYY-MM-DDTHH:mm”
     sessionType: '',
     status: 'agendado',
     anotacoes: '',
     reason: '',
+    patientName: '',
+    doctorId: ''
 };
 
 const AppointmentScheduler: React.FC = () => {
@@ -24,10 +27,17 @@ const AppointmentScheduler: React.FC = () => {
     // Controle do modal
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+    const [doctors] = useState<IDoctor[]>([
+        { id: '1', name: 'Dr. Silva', specialty: 'Cardiologia' },
+        { id: '2', name: 'Dra. Souza', specialty: 'Pediatria' }
+    ]);
 
     // Ao clicar em um dia/hora no calendário, abre o modal para criação
     const handleDateSelect = (date: string) => {
-        setSelectedAppointment({ ...EMPTY_APPOINTMENT, dataHora: `${date}T09:00` });
+        setSelectedAppointment({ 
+            ...EMPTY_APPOINTMENT, 
+            date: `${date}T09:00` 
+        });
         setIsModalOpen(true);
     };
 
@@ -65,6 +75,7 @@ const AppointmentScheduler: React.FC = () => {
 
             <EnhancedCalendar
                 appointments={appointments}
+                doctors={doctors}
                 onDateSelect={handleDateSelect}
                 onEdit={handleEdit}
             />
@@ -73,8 +84,9 @@ const AppointmentScheduler: React.FC = () => {
                 open={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onSave={handleSave}
-                mode={selectedAppointment ? 'edit' : 'create'}
+                mode={selectedAppointment?.id ? 'edit' : 'create'}
                 initialData={selectedAppointment ?? EMPTY_APPOINTMENT}
+                doctors={doctors}
             />
         </Container>
     );

@@ -1,4 +1,4 @@
-import { IPatient } from "./types";
+import { IPatient } from "./types/types";
 
 export const normalizeIPatient = (IPatient: IPatient): IPatient => {
     const normalizeEmptyStrings = (obj: any): any => {

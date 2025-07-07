@@ -3,7 +3,7 @@ import Evolution from "../models/Evolution.js";
 export const createEvaluation = async (req, res) => {
   try {
     const {
-      doctorId,
+      doctor,
       patientId,
       valuePaid,
       paymentType,
@@ -11,12 +11,12 @@ export const createEvaluation = async (req, res) => {
       time,
     } = req.body;
 
-    if (!doctorId || !patientId || !valuePaid || !paymentType || !date || !time) {
+    if (!doctor || !patientId || !valuePaid || !paymentType || !date || !time) {
       return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
 
     const newEvaluation = new Evolution({
-      doctorId,
+      doctor,
       patientId,
       type: "avaliação",
       valuePaid,
@@ -37,12 +37,11 @@ export const createEvaluation = async (req, res) => {
 
 // GET /api/evaluations/:patientId
 export const getEvaluationsByPatient = async (req, res) => {
-  console.log('bateu no api', req)
   const { patientId } = req.params;
 
   try {
     const evaluations = await Evolution.find({ patientId, type: "avaliação" })
-      .populate("doctorId", "fullName specialty")
+      .populate("doctor", "fullName specialty")
       .sort({ date: -1 });
 
     res.status(200).json(evaluations);

@@ -1,4 +1,4 @@
-import { THERAPY_TYPES } from "../../utils/types";
+import { THERAPY_TYPES } from "../../utils/types/types";
 import { Select } from "../ui/Select";
 
 type Props = {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { IDoctor, ISession } from '../../utils/types';
+import { IDoctor, ISession } from '../../utils/types/types';
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { SessionModal } from '../patients/SessionModal';
 

@@ -1,6 +1,6 @@
-import { AlertTriangle, BookOpenText, CalendarCheck, CheckCircle, Clock1, Clock4, Edit, Plus, TicketPercent, XCircle } from "lucide-react";
+import { AlertTriangle, BookOpenText, CalendarCheck, CheckCircle, Clock4, Edit, Plus, XCircle } from "lucide-react";
 import { formatValidDate } from "../../utils/dateFormat";
-import { ISession } from '../../utils/types';
+import { ISession } from '../../utils/types/types';
 
 export interface SessionListItemProps {
     session: ISession;
@@ -18,7 +18,7 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
         : { dateStr: '--/--/----', timeStr: '--:--' };
 
     const isOverdue = session.status === 'pending' && isDateValid && sessionDate < new Date();
-
+    console.log(session, `session`)
     return (
         <li className={`p-3 mb-3 rounded-lg grid grid-cols-[1fr_auto] gap-4 items-center 
             ${getStatusColor(session.status, isOverdue)} group`}
@@ -97,10 +97,12 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
 
 // Função auxiliar para cores de fundo
 const getStatusColor = (status: string, isOverdue: boolean) => {
+    console.log(status, 'cor do card');
     if (isOverdue) return 'bg-orange-50 hover:bg-orange-100';
 
     switch (status) {
-        case 'completed': return 'bg-green-50 hover:bg-green-100';
+        case 'scheduled': return 'bg-green-50 hover:bg-green-100';
+        case 'completed': return 'bg-gray-50 hover:bg-gray-100';
         case 'pending': return 'bg-blue-50 hover:bg-blue-100';
         case 'canceled': return 'bg-red-50 hover:bg-red-100';
         default: return 'bg-gray-50 hover:bg-gray-100';
@@ -117,7 +119,7 @@ const StatusBadge = ({ status, isPaid }: { status: string, isPaid: boolean }) =>
             color: 'green'
         },
         pending: {
-            icon: <BookOpenText  className="w-4 h-4 text-blue-600" />,
+            icon: <BookOpenText className="w-4 h-4 text-blue-600" />,
             text: 'Disponível para agendamento',
             color: 'blue'
         },
@@ -127,7 +129,7 @@ const StatusBadge = ({ status, isPaid }: { status: string, isPaid: boolean }) =>
             color: 'red'
         },
         schedule: {
-            icon: <Clock4  className="w-4 h-4 text-red-600" />,
+            icon: <Clock4 className="w-4 h-4 text-red-600" />,
             text: 'Agendada',
             color: 'blue'
         },

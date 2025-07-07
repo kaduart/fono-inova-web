@@ -4,7 +4,8 @@ interface CardProps {
 }
 
 export const Card = ({ children, className = '' }: CardProps) => (
-    <div className={`rounded-lg shadow-md ${className}`}>
+    <div className={`rounded-lg shadow-md shadow-lg border-l-4 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg
+     ${className}`}>
         {children}
     </div>
 );

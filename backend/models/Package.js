@@ -19,7 +19,7 @@ const packageSchema = new mongoose.Schema({
         ref: 'Patient',
         required: true
     },
-    professional: {
+    doctor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor',
         required: [true, 'Profissional é obrigatório'],
@@ -95,12 +95,16 @@ packageSchema.pre('save', function (next) {
     this.totalSessions = this.durationMonths * 4 * this.sessionsPerWeek;
 
     // Definir valor por sessão
-    this.sessionValue = this.durationMonths > 2 ? 180 : 200;
+    // this.sessionValue = this.durationMonths > 2 ? 180 : 200;
 
     // Calcular valor total do pacote
     this.balance = (this.totalSessions * this.sessionValue) - this.totalPaid;
 
     next();
+});
+
+packageSchema.virtual('remainingSessions').get(function () {
+    return this.totalSessions - this.sessionsDone;
 });
 
 packageSchema.set('strict', 'throw');

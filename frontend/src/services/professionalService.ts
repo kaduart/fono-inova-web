@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../constants/constants";
-import { IDoctor } from "../utils/types";
+import { IDoctor } from "../utils/types/types";
 import { getAuthToken } from "./authService";
 
 

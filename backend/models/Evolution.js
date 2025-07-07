@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const evolutionSchema = new mongoose.Schema({
-    patientId: {
+    patient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient',
         required: true
     },
-    doctorId: {
+    doctor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor',
         required: true
@@ -47,6 +47,8 @@ const evolutionSchema = new mongoose.Schema({
         type: Map,
         of: Number
     },
+    specialty: { type: String, required: true },
+    content: { type: mongoose.Schema.Types.Mixed },
     observations: String,
     treatmentStatus: {
         type: String,

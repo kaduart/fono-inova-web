@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { BASE_URL } from '../../constants/constants';
 import appointmentService, { AvailableSlotsParams } from '../../services/appointmentService';
-import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types';
+import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types/types';
 import { Card, CardContent, CardTitle } from '../ui/Card';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';

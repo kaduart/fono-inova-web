@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import appointmentService from '../../services/appointmentService';
 import { createPayment } from '../../services/paymentService';
 import { mergeDateAndTime } from '../../utils/dateFormat';
-import { IDoctor, IPatient, ScheduleAppointment } from "../../utils/types";
+import { IDoctor, IPatient, ScheduleAppointment } from "../../utils/types/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import { Button } from "../ui/Button";
 import DoctorAgenda from "./DoctorAgenda";
@@ -68,7 +68,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     const handleViewAgenda = (doctor: IDoctor) => {
 
         setSelectedDoctor(doctor);
-        setshowAgendaModal(true);  // ou outro controle para abrir modal/agendamento
+        setshowAgendaModal(true);
     };
 
     const handleDaySlotsChange = (slots: { date: string; slots: string[] }[]) => {
@@ -129,10 +129,9 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         }
 
         payload.date = mergeDateAndTime(payload.date, payload.time).toISOString();
-
+        payload.specialty = payload.sessionType;
         try {
             const response = await appointmentService.create(payload)
-
             await createPayment({
                 patientId: payload.patientId,
                 doctorId: payload.doctorId,

@@ -4,8 +4,43 @@ import {
     IAppointmentResponse,
     IPaginatedAppointmentResponse,
     TherapyType
-} from '../utils/types';
+} from '../utils/types/types';
 import API from './api';
+
+export interface StatusConfig {
+    [key: string]: {
+        backgroundColor: string;
+        textColor: string;
+        label: string;
+    };
+}
+export const OPERATIONAL_STATUS_CONFIG: StatusConfig = {
+    agendado: {
+        backgroundColor: '#4CAF50', // Verde
+        textColor: '#FFFFFF',
+        label: 'Agendado'
+    },
+    confirmado: {
+        backgroundColor: '#2196F3', // Azul
+        textColor: '#FFFFFF',
+        label: 'Confirmado'
+    },
+    cancelado: {
+        backgroundColor: '#F44336', // Vermelho
+        textColor: '#FFFFFF',
+        label: 'Cancelado'
+    },
+    pago: {
+        backgroundColor: '#9C27B0', // Roxo
+        textColor: '#FFFFFF',
+        label: 'Pago'
+    },
+    faltou: {
+        backgroundColor: '#FF9800', // Laranja
+        textColor: '#FFFFFF',
+        label: 'Faltou'
+    }
+};
 
 export type CreateAppointmentParams = {
     patientId: string;
@@ -13,7 +48,9 @@ export type CreateAppointmentParams = {
     date: Date;
     time: string;
     reason: string;
-    status?: string;
+    specialty: string;
+    clinicalStatus: 'pendente' | 'em_andamento' | 'concluído' | 'faltou';
+    operationalStatus: 'agendado' | 'confirmado' | 'cancelado' | 'pago' | 'faltou';
 };
 
 export interface IAppointmentStatusCount {
@@ -28,7 +65,8 @@ export type UpdateAppointmentParams = Partial<{
     startTime: string;
     duration: number;
     reason: string;
-    status: AppointmentStatus;
+    clinicalStatus: 'pendente' | 'em_andamento' | 'concluído' | 'cancelado' | 'faltou';
+    operationalStatus: 'agendado' | 'confirmado' | 'cancelado' | 'pago' | 'faltou';
     sessionType: TherapyType;
     paymentMethod: string;
     notes: string;
@@ -72,7 +110,7 @@ export const appointmentService = {
     },
 
     get: async (id: string) => {
-        return API.get<IAppointmentResponse>(`/appointments/${id}`);
+        return API.get<IAppointmentResponse>(`/appointments?patient=${id}`);
     },
 
     update: async (id: string, data: UpdateAppointmentParams) => {
@@ -118,6 +156,7 @@ export const appointmentService = {
         return API.patch<IAppointmentResponse>(`/appointments/${id}/cancel`, data);
     },
 
+
     reschedule: async (id: string, data: RescheduleParams) => {
         const payload = {
             ...data,
@@ -130,6 +169,7 @@ export const appointmentService = {
 
     // Consultas
     getAvailableSlots: async (payload: AvailableSlotsParams) => {
+        console.log('payload do getAvailableSlots', payload);
         return API.get<any>(`/appointments/available-slots?doctorId=${payload.doctorId}&date=${payload.date}`);
     },
 

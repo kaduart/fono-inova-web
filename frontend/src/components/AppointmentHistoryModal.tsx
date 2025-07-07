@@ -21,7 +21,7 @@ interface AppointmentHistoryModalProps {
         _id: string;
         date: string;
         time: string;
-        doctorId: { fullName: string };
+        doctor: { fullName: string };
         reason: string;
         status: string;
     }>;
@@ -64,7 +64,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                                 <TableRow key={appt._id}>
                                     <TableCell>{new Date(appt.date).toLocaleDateString()}</TableCell>
                                     <TableCell>{appt.time}</TableCell>
-                                    <TableCell>{`Dr. ${appt?.doctorId?.fullName} | '-'`}</TableCell>
+                                    <TableCell>{`Dr. ${appt?.doctor?.fullName} | '-'`}</TableCell>
                                     <TableCell>{appt.reason}</TableCell>
                                     <TableCell>
                                         <Typography

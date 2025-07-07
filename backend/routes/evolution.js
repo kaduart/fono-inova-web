@@ -23,8 +23,23 @@ router.get('/metrics', async (req, res) => {
 // Criar nova evolução
 router.post('/', authorize(['admin', 'professional']), async (req, res) => {
     try {
-        const evolution = new Evolution(req.body);
+        // Adiciona especialidade automaticamente baseada no profissional
+        const specialty = req.user.specialty;
+
+        const evolutionData = {
+            ...req.body,
+            specialty,
+            therapist: req.user.id
+        };
+
+        const evolution = new Evolution(evolutionData);
         await evolution.save();
+
+        // Processamento especializado para neuropediatria
+        if (specialty === 'neuroped') {
+            await createNeuropedAssessment(evolution);
+        }
+
         res.status(201).json(evolution);
     } catch (error) {
         res.status(400).json({ error: error.message });

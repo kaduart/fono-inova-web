@@ -16,7 +16,7 @@ export const setupInterceptor = (navigate: NavigateFunction) => {
         
         // Redirecionar usando a função navigate guardada
         if (globalNavigate) {
-          globalNavigate('/login');
+         // globalNavigate('/login');
         }
       }
       return Promise.reject(error);

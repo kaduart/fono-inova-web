@@ -1,7 +1,7 @@
 import { User } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { IDoctors, ISession, ITherapyPackage } from '../../utils/types';
+import { IDoctors, IPatient, ISession, ITherapyPackage } from '../../utils/types/types';
 import { SessionListItem } from './SessionListItem';
 import { SessionModal } from './SessionModal';
 
@@ -38,7 +38,7 @@ export default function TherapyPackageCard({
     isPaid: false
   });
   const [loading, setLoading] = useState(false);
-
+  console.log('pack', pack);
   const openModalWithAction = (action: 'edit' | 'use', session?: ISession) => {
     setModalAction(action);
     setSelectedSession(session || null);
@@ -46,11 +46,13 @@ export default function TherapyPackageCard({
   };
 
   const handleSessionSubmit = async () => {
+    console.log('handleSessionSubmit', selectedSession);
     const payload = {
       ...selectedSession,
       package: pack._id, // Garante envio do packageId
       sessionType: pack.sessionType, // Herda do pacote
     };
+    console.log('handleSessionSubmit', payload);
 
     setLoading(true);
 
@@ -59,15 +61,6 @@ export default function TherapyPackageCard({
 
       // Fechar modal e resetar dados
       setIsUseSessionModalOpen(false);
-      setSelectedSession({
-        _id: '',
-        date: new Date().toISOString(),
-        professional: '',
-        sessionType: 'fonoaudiologia',
-        notes: '',
-        isPaid: false,
-        paymentMethod: null,
-      });
 
       setIsModalOpen(false);
 
@@ -247,7 +240,7 @@ export default function TherapyPackageCard({
             sessionData={selectedSession || {
               _id: '',
               date: '',
-              professional: '',
+              doctorId: '',
               package: '',
               sessionType: 'fonoaudiologia',
               status: 'pending',

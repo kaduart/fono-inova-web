@@ -172,7 +172,7 @@ router.get('/doctor-overview', auth, async (req, res) => {
   try {
     const doctors = await Doctor.find().select('fullName specialty');
     const doctorOverview = await Promise.all(doctors.map(async (doctor) => {
-      const uniquePatients = await Appointment.distinct('patientId', { doctorId: doctor._id });
+      const uniquePatients = await Appointment.distinct('patientId', { doctor: doctor._id });
       return {
         name: `${doctor.fullName}`,
         specialty: doctor.specialty,
@@ -208,7 +208,7 @@ router.get('/appointment/completed-cancelled', auth, async (req, res) => {
     const appointments = await Appointment.find({
       status: { $in: ['completed', 'cancelled'] }
     })
-      .populate('doctorId', 'fullName').populate('patientId', 'fullName')
+      .populate('doctor', 'fullName').populate('patientId', 'fullName')
       .sort({ date: -1 }); // Show latest first
 
     res.json(appointments);
@@ -231,7 +231,7 @@ router.get('/appointments/upcoming', auth, async (req, res) => {
       status: 'scheduled',
       date: { $gte: today }
     })
-      .populate('doctorId', 'fullName').populate('patientId', 'fullName')
+      .populate('doctor', 'fullName').populate('patientId', 'fullName')
       .sort({ date: 1, time: 1 });
 
     res.json(upcomingAppointments);

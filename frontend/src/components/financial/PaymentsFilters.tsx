@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { IDoctor } from "../../utils/types";
-import { Label } from "../ui/Label";
-import { Select } from "../ui/Select";
+import { IDoctor } from "../../utils/types/types";
 
 interface Filters {
     doctorId?: string;
@@ -78,10 +76,10 @@ export function PaymentsFilters({ doctors, payments, onFilter, initialFilters = 
         setFilters({});
     };
 
-         return (
+    return (
         <div className="bg-white rounded-xl shadow-sm p-5 mb-6 border border-gray-100">
             <h3 className="text-lg font-medium text-gray-800 mb-4">Filtrar Pagamentos</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                 {/* Filtro por Profissional */}
                 <div className="flex flex-col">
@@ -183,7 +181,7 @@ export function PaymentsFilters({ doctors, payments, onFilter, initialFilters = 
                 <div className="text-sm text-gray-600 bg-gray-100 px-3 py-2 rounded-lg">
                     {filteredPayments.length} de {payments.length} resultados
                 </div>
-                
+
                 <button
                     onClick={clearFilters}
                     className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"

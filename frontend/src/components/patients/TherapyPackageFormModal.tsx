@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packageService, { CreatePackageParams } from '../../services/packageService';
-import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types';
+import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types/types';
 import InputCurrency from '../ui/InputCurrency';
 import { Select } from '../ui/Select';
 
@@ -15,7 +15,7 @@ type Props = {
 
 
 const initialFormState = {
-    professionalId: '',
+    doctorId: '',
     sessionType: '',
     totalSessions: 1,
     sessionValue: 0,
@@ -52,8 +52,8 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
     const handleSave = async (e) => {
         e.preventDefault();
         if (!validate()) return;
-
-        if (!formData.sessionType || !formData.paymentType || !formData.professionalId) { // Adicionado professionalId
+        console.log('handleSave', formData);
+        if (!formData.sessionType || !formData.paymentType || !formData.doctorId) { // Adicionado doctorId
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
             return;
         }
@@ -68,10 +68,10 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         try {
             const packageData = {
                 patientId: patient._id,
-                professional: formData.professionalId, // Corrigido para professional
+               doctorId: formData.doctorId, // Corrigido para professional
                 sessionType: formData.sessionType,
-                /* sessionValue: formData.sessionValue || 0,
-                totalSessions: formData.totalSessions || 0, */
+                sessionValue: formData.sessionValue || 0,
+                /*totalSessions: formData.totalSessions || 0, */
                 paymentType: formData.paymentType, // Tipo de pagamento do pacote
                 amountPaid: formData.totalPaid || 0, // Enviar valor pago
                 paymentMethod: formData.paymentMethod, // Enviar método de pagamento
@@ -176,8 +176,8 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                         <div className="form-group">
                             <label className="block text-sm font-medium mb-1">Profissional</label>
                             <Select
-                                name="professionalId"
-                                value={formData.professionalId}
+                                name="doctorId"
+                                value={formData.doctorId}
                                 onChange={handleChange}
 
                             >
@@ -239,7 +239,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                             </div>
                             <div className="form-group">
                                 <label className="block text-sm font-medium mb-1">Valor por Sessão (R$)</label>
-                                <InputCurrency disabled
+                                <InputCurrency
                                     name="sessionValue"
                                     value={formData.sessionValue}
                                     onChange={handleChange}

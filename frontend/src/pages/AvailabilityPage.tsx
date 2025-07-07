@@ -12,7 +12,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import ScheduleModal from '../components/ScheduleModal';
+import ScheduleModal from '../components/calendar/ScheduleModal';
 import { BASE_URL } from '../constants/constants';
 import { professionalService } from '../services/professionalService';
 

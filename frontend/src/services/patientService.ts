@@ -1,6 +1,6 @@
 // src/services/patientService.ts
 import { normalizeIPatient } from "../utils/normalize";
-import { IPatient } from "../utils/types";
+import { IPatient } from "../utils/types/types";
 import API from "./api";
 import { getAuthToken } from "./authService";
 
@@ -31,7 +31,7 @@ export const patientService = {
      */
     fetchAll: async (withAppointments = false): Promise<any[]> => {
         const patients = await API.get<IPatient[]>('/patients').then(res => res.data);
-
+        console.log('fetching appointments')
         if (!withAppointments) {
             return patients;
         }
@@ -72,7 +72,10 @@ export const patientService = {
     getAppointmentsSummary: (id: string): Promise<{
         lastAppointment: any;
         nextAppointment: any;
-    }> => API.get(`/patients/${id}/appointments-summary`).then(res => res.data),
+    }> => API.get(`/patients/${id}/appointments-summary`).then(res => {
+        console.log('fetching appointments')
+        return res.data
+    }),
 
     getPatientSessions: (patientId: string): Promise<any[]> =>
         API.get(`/patients/${patientId}/sessions`).then(res => res.data),

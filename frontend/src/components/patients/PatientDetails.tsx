@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'; // ou outra lib de roteamento
 import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { BASE_URL } from '../../constants/constants';
-import { IPatient } from '../../utils/types';
+import { IPatient } from '../../utils/types/types';
 const initialPatientState: IPatient = {
     fullName: '',
     dateOfBirth: '',

@@ -1,3 +1,4 @@
+import { RefreshCw } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
@@ -7,16 +8,18 @@ import {
     getPayments,
     updatePayment
 } from '../../services/paymentService';
-import { IDoctor, IPatient } from '../../utils/types';
+import { IDoctor, IPatient } from '../../utils/types/types';
 import { EditPaymentModal } from './EditPaymentModal';
 import { PaymentActionIcons } from './PaymentAction';
-import { PaymentModal } from './PaymentModal';
 import { PaymentsFilters } from './PaymentsFilters';
 import { PaymentsSummary } from './PaymentsSummary';
 
 interface PaymentPageProps {
     patients?: IPatient[];
     doctors?: IDoctor[];
+    initialPayments: any[];
+    onMarkAsPaid: (payment: FinancialRecord) => void;
+    onCancelPayment: (paymentId: string) => void;
 }
 
 interface LocalSummary {
@@ -28,33 +31,38 @@ interface LocalSummary {
     canceledCount: number;
 }
 
-const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
+const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCancelPayment }: PaymentPageProps) => {
     const [allPayments, setAllPayments] = useState<FinancialRecord[]>([]);
     const [filteredPayments, setFilteredPayments] = useState<FinancialRecord[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const [showForm, setShowForm] = useState<boolean>(false);
     const userRole = localStorage.getItem('userRole');
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
     const [paymentToEdit, setPaymentToEdit] = useState<FinancialRecord | undefined>(undefined);
-    const [paymentSelected, setPaymentSelected] = useState<any>();
-    const [patient, setpatient] = useState<IPatient>();
+    const [error, setError] = useState<string | null>(null);
 
-    // Carrega os pagamentos
+    useEffect(() => {
+        if (initialPayments) {
+            setAllPayments(initialPayments);
+        }
+    }, [initialPayments]);
+
     const loadPayments = async () => {
         setLoading(true);
         try {
+            setError(null);
+
             const res = await getPayments();
             setAllPayments(res.data.data);
             setFilteredPayments(res.data.data); // Inicializa com todos os pagamentos
         } catch (error) {
             console.error('Erro ao carregar pagamentos:', error);
+            setError(error instanceof Error ? error.message : 'Erro ao carregar pagamentos');
             toast.error('Erro ao carregar pagamentos');
         } finally {
             setLoading(false);
         }
     };
 
-    // Calcula o resumo localmente
     const localSummary = useMemo<LocalSummary>(() => {
         return filteredPayments.reduce((acc, payment) => {
             acc.grandTotal += payment.amount;
@@ -88,43 +96,36 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
         loadPayments();
     }, []);
 
-    const handleMarkAsPaid = (payment: any) => {
-        setpatient(payment.patient)
-        setPaymentSelected(payment);
-        setShowForm(true);
-    };
-
-    const onUpdatePayment = async (data: any) => {
-        const updateData = {
-            status: 'paid',
-            amount: data.amount,
-            date: data.date,
-            specialty: data.specialty,
-            serviceType: data.serviceType,
-            paymentMethod: data.paymentMethod
-        }
-        await updatePayment(paymentSelected._id, updateData);
-        toast.success('Pagamento registrado com sucesso!');
-        loadPayments();
-
-    };
-
-    const handleCancelPayment = async (paymentId: string) => {
-        try {
-            await updatePayment(paymentId, { status: 'canceled' });
-            loadPayments();
-            toast.success('Pagamento cancelado com sucesso!');
-        } catch (error) {
-            toast.error('Erro ao cancelar pagamento');
-        }
-    };
-
     const handleEditAmount = (paymentId: string) => {
         const payment = allPayments.find(p => p._id === paymentId);
         setPaymentToEdit(payment);
         setIsEditModalOpen(true);
     };
 
+    const handleUpdateAmount = async (data: {
+        _id: string;
+        amount: number;
+        date: string;
+        specialty: string;
+        paymentMethod: string;
+        serviceType: string;
+    }) => {
+        try {
+            await updatePayment(data._id, {
+                amount: data.amount,
+                date: data.date,
+                specialty: data.specialty,
+                serviceType: data.serviceType,
+                paymentMethod: data.paymentMethod
+            });
+
+            await loadPayments();
+            toast.success('Pagamento atualizado com sucesso!');
+        } catch (error) {
+            toast.error('Erro ao atualizar pagamento');
+            throw error;
+        }
+    };
     const handleExportCSV = async () => {
         try {
             const res = await exportCSV();
@@ -203,6 +204,7 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                     pendingCount={localSummary.pendingCount}
                     canceledCount={localSummary.canceledCount}
                 />
+
                 <div className="flex items-center gap-3">
                     <button
                         onClick={handleExportCSV}
@@ -233,8 +235,21 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                 onFilter={setFilteredPayments}
             />
 
-            {loading ? (
-                <div>Carregando...</div>
+            {error ? (
+                <div className="bg-red-50 border border-red-200 text-red-700 p-4 rounded-lg text-center">
+                    <p>{error}</p>
+                    <button
+                        onClick={loadPayments}
+                        className="mt-2 px-4 py-2 bg-red-100 rounded hover:bg-red-200 text-red-700 flex items-center gap-1 mx-auto"
+                    >
+                        <RefreshCw className="w-4 h-4" />
+                        Tentar novamente
+                    </button>
+                </div>
+            ) : loading ? (
+                <div className="flex justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                </div>
             ) : (
                 <div className="overflow-x-auto bg-white rounded-lg shadow">
                     <table className="w-full">
@@ -253,22 +268,22 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                         <tbody className="bg-white divide-y divide-gray-200">
                             {filteredPayments.map(payment => (
                                 <tr key={payment._id}>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {payment.patient?.fullName}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {payment.doctor?.fullName}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {new Date(payment.date || payment.createdAt).toLocaleDateString('pt-BR')}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {getServiceTypeLabel(payment.serviceType)}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {payment.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap">
                                         <span className={`px-2 py-1 rounded-full text-xs font-semibold 
                                             ${payment.status === 'paid' ? 'bg-green-100 text-green-800' :
                                                 payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
@@ -277,15 +292,15 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                                                 payment.status === 'pending' ? 'PENDENTE' : 'CANCELADO'}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
                                         {payment.paymentMethod}
                                     </td>
-                                    <td className="px-4 py-4 whitespace-nowrap text-sm font-medium">
+                                    <td className="px-4 py-4  text-left whitespace-nowrap text-sm font-medium">
                                         {userRole && ['admin', 'secretary'].includes(userRole) && payment.status !== 'canceled' && (
                                             <PaymentActionIcons
                                                 payment={payment}
-                                                onMarkAsPaid={payment.status === 'pending' ? handleMarkAsPaid : undefined}
-                                                onCancelPayment={handleCancelPayment}
+                                                onMarkAsPaid={payment.status === 'pending' ? () => onMarkAsPaid(payment) : undefined}
+                                                onCancelPayment={onCancelPayment}
                                                 onEditAmount={handleEditAmount}
                                             />
                                         )}
@@ -298,27 +313,12 @@ const PaymentPage = ({ patients, doctors }: PaymentPageProps) => {
                 </div>
             )}
 
-            {showForm && (
-                <PaymentModal
-                    open={showForm}
-                    doctors={doctors || []}
-                    patients={patients || []}
-                    patient={patient}
-                    paymentSelected={paymentSelected}
-                    onClose={() => {
-                        setShowForm(false);
-                        setPaymentSelected(null);
-                    }}
-                    onPaymentSuccess={onUpdatePayment}
-                />
-            )}
-
             {isEditModalOpen && paymentToEdit && (
                 <EditPaymentModal
                     payment={paymentToEdit}
                     isOpen={isEditModalOpen}
                     onClose={() => setIsEditModalOpen(false)}
-                    onSave={handleUpdatePayment}
+                    onSave={handleUpdateAmount}
                 />
             )}
         </div>

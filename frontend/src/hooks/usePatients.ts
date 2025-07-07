@@ -1,44 +1,19 @@
 import { useCallback, useState } from 'react';
 import { patientService } from '../services/patientService';
-import { IPatient } from '../utils/types';
+import { IPatient } from '../utils/types/types';
 
 export const usePatients = () => {
     const [patients, setPatients] = useState<IPatient[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchPatients = useCallback(async (withAppointments = false) => {
+    const fetchPatients = useCallback(async () => {
         setLoading(true);
         setError(null);
-
         try {
-            const data = await patientService.fetchAll(withAppointments);
-
-            // Se precisar de informações adicionais de agendamentos
-            if (withAppointments) {
-                const patientsWithAppointments = await Promise.all(
-                    data.map(async (patient) => {
-                        try {
-                            const summary = await patientService.getAppointmentsSummary(patient._id);
-                            return {
-                                ...patient,
-                                lastAppointment: summary.lastAppointment || null,
-                                nextAppointment: summary.nextAppointment || null,
-                            };
-                        } catch (err) {
-                            console.error(`Erro ao buscar resumo para o paciente ${patient._id}`, err);
-                            return {
-                                ...patient,
-                                lastAppointment: null,
-                                nextAppointment: null,
-                            };
-                        }
-                    })
-                );
-                setPatients(patientsWithAppointments);
-            } else {
-                setPatients(data);
-            }
+            // Busca pacientes com todos os dados incluídos
+            const data = await patientService.fetchAll();
+            setPatients(data);
         } catch (err) {
             setError('Falha ao carregar pacientes');
             console.error('Erro ao buscar pacientes:', err);

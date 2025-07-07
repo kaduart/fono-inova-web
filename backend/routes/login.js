@@ -35,9 +35,18 @@ router.post('/', async (req, res) => {
       return res.status(400).send({ error: 'Invalid password' });
     }
 
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '24h' });
+    const tokenPayload = {
+      id: user._id.toString(),
+      role: user.role,
+      name: user.fullName
+    };
+    const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: '24h' });
 
-    res.send({ token, role: user.role });
+    res.send({
+      token,
+      role: user.role,
+      name: user.fullName
+    });
 
   } catch (error) {
     console.error('Erro ao fazer login:', error); // <-- Adiciona este log

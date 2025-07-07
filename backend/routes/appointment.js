@@ -1,12 +1,21 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import validateId from '../middleware/validateId.js';
-
 import { auth } from '../middleware/auth.js';
 import { checkAppointmentConflicts, getAvailableTimeSlots } from '../middleware/conflictDetection.js';
+import validateId from '../middleware/validateId.js';
 import Appointment from '../models/Appointment.js';
 import Patient from '../models/Patient.js';
+import { updatePatientAppointments } from '../utils/appointmentUpdater.js';
+const ObjectId = mongoose.Types.ObjectId;
+
+class ValidationError extends Error {
+    constructor(message, errors) {
+        super(message);
+        this.name = 'ValidationError';
+        this.errors = errors;
+    }
+}
 
 dotenv.config();
 const router = express.Router();
@@ -16,100 +25,243 @@ router.get('/available-slots', auth, getAvailableTimeSlots);
 
 // Cria um novo agendamento
 router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
-
     try {
-        const appointment = new Appointment(req.body);
+        const doctorId = req.body.doctorId || req.user.id;
+        console.log(doctorId, `doooooooo`);
+        /*   const requiredFields = ['patientId', 'date', 'doctor'];
+          const missingFields = requiredFields.filter(field => !req.body[field]);
+          if (missingFields.length > 0) {
+              return res.status(400).json({
+                  error: 'Campos obrigatórios faltando', [field]: req.body[field],
+                  missing: missingFields
+              });
+          } */
+
+        // 1. Buscar paciente sem restrição de médico (admin pode acessar qualquer paciente)
+        const patient = await Patient.findById(req.body.patientId);
+        if (!patient) {
+            return res.status(404).json({ error: 'Paciente nao encontrado' });
+        }
+
+        // 2. Se o paciente não tem doctor, atualize com o doctor do agendamento
+        if (!patient.doctor) {
+            patient.doctor = doctorId;
+            await patient.save();
+        }
+        // 3. Se for médico, verificar propriedade
+        else if (req.user.role === 'doctor' && patient.doctor.toString() !== doctorId) {
+            return res.status(403).json({
+                error: 'Acesso negado',
+                message: 'Este paciente não pertence ao seu consultório'
+            });
+        }
+
+        // 4. Criar agendamento
+        const appointmentData = {
+            date: req.body.date,
+            time: req.body.time,
+            sessionType: req.body.sessionType,
+            notes: req.body.notes,
+            paymentAmount: req.body.paymentAmount,
+            paymentMethod: req.body.paymentMethod,
+            specialty: req.body.specialty || patient.specialty,
+            doctor: doctorId,
+            patient: req.body.patientId,
+            operationalStatus: 'agendado',
+            clinicalStatus: 'pendente',
+        };
+
+        const appointment = new Appointment(appointmentData);
         await appointment.save();
 
-        const patient = await Patient.findById(req.body.patientId);
-        if (!patient) return res.status(404).json({ error: 'Paciente não encontrado' });
-
+        // 5. Atualizar lista de agendamentos do paciente
         patient.appointments = patient.appointments || [];
         patient.appointments.push(appointment._id);
         await patient.save();
-
+        await updatePatientAppointments(req.body.patientId);
         res.status(201).json(appointment);
     } catch (error) {
+        console.error('Erro completo:', {
+            message: error.message,
+            stack: error.stack,
+            name: error.name,
+            body: req.body,
+            user: req.user
+        });
+
         if (error.name === 'ValidationError') {
-            // 💡 Extrai erros campo a campo
             const errors = Object.keys(error.errors).reduce((acc, key) => {
                 acc[key] = error.errors[key].message;
                 return acc;
             }, {});
-
-            return res.status(400).json({
-                message: 'Falha na validação dos dados',
-                errors
-            });
+            return res.status(400).json({ message: 'Falha na validação dos dados', errors });
         }
 
-        return res.status(500).json({ error: 'Erro interno' });
-    }
-});
-
-// Atualiza um agendamento com verificação de conflitos
-router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
-    try {
-        const updated = await Appointment.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.json(updated);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
+        return res.status(500).json({
+            error: 'Erro interno',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     }
 });
 
 // Busca agendamentos com filtros
 router.get('/', auth, async (req, res) => {
     try {
-        const { patientId, doctorId, status } = req.query;
+        const { patientId, doctorId, status, specialty } = req.query;
         const filter = {};
 
-        if (patientId && patientId !== 'all') filter.patientId = new mongoose.Types.ObjectId(patientId);
-        if (doctorId && doctorId !== 'all') filter.doctorId = new mongoose.Types.ObjectId(doctorId);
-        if (status && status !== 'all') filter.status = status;
-
-
-        const appointments = await Appointment.find(filter)
-            .populate('doctorId', 'fullName')
-            .populate('patientId', 'fullName');
-
-        if (!appointments || !Array.isArray(appointments)) {
-            return res.status(500).json({ error: 'Formato inválido de agendamentos' });
+        if (patientId && patientId !== 'all' && mongoose.Types.ObjectId.isValid(patientId)) {
+            filter.patient = new mongoose.Types.ObjectId(patientId);
         }
 
+        if (doctorId && doctorId !== 'all' && mongoose.Types.ObjectId.isValid(doctorId)) {
+            filter.doctor = new mongoose.Types.ObjectId(doctorId);
+        }
+
+        if (status && status !== 'all') filter.status = status;
+        if (specialty && specialty !== 'all') filter.specialty = specialty;
+
+        const populatePatient = {
+            path: 'patient',
+            select: 'fullName dateOfBirth gender phone email cpf rg address appointments lastAppointment nextAppointment',
+            populate: [
+                {
+                    path: 'appointments',
+                    populate: { path: 'doctor', select: 'fullName specialty' }
+                },
+                {
+                    path: 'lastAppointment',
+                    populate: { path: 'doctor', select: 'fullName specialty' }
+                },
+                {
+                    path: 'nextAppointment',
+                    populate: { path: 'doctor', select: 'fullName specialty' }
+                }
+            ]
+        };
+
+        const appointments = await Appointment.find(filter)
+            .populate({ path: 'doctor', select: 'fullName specialty' })
+            .populate(populatePatient)
+            .lean();
+
         const calendarEvents = appointments.map(appointment => {
-            if (!appointment.date || !appointment.doctorId || !appointment.patientId) {
-                console.error('Dados incompletos no agendamento:', appointment._id);
+            const startDate = appointment.date ? new Date(appointment.date) : new Date();
+            if (isNaN(startDate.getTime())) {
+                console.error('Data inválida para agendamento:', appointment._id);
                 return null;
             }
 
-            const startDate = new Date(appointment.date);
-            if (isNaN(startDate.getTime())) {
-                console.error('Data inválida:', appointment.date);
-                return null;
-            }
+            const duration = appointment.duration || 40;
+            const endDate = new Date(startDate.getTime() + duration * 60000);
 
             return {
-                id: appointment._id,
-                title: `${appointment.reason} - Dr. ${appointment.doctorId?.fullName || 'N/A'}`,
+                id: appointment._id.toString(),
+                title: `${appointment.reason || 'Consulta'} - ${appointment.doctor?.fullName || 'Médico'}`,
                 start: startDate.toISOString(),
-                end: new Date(startDate.setHours(startDate.getHours() + 1)).toISOString(),
+                end: endDate.toISOString(),
                 status: appointment.status,
+                specialty: appointment.specialty,
                 description: appointment.reason,
-                patient: appointment.patientId ? {
-                    id: appointment.patientId._id,
-                    name: appointment.patientId.fullName || 'N/A',
-                } : { id: null, name: 'N/A' },
-                doctor: appointment.doctorId ? {
-                    id: appointment.doctorId._id,
-                    name: appointment.doctorId.fullName || 'N/A',
-                } : { id: null, name: 'N/A' },
-            }
-        }).filter(event => event !== null);
+                patient: appointment.patient ? {
+                    id: appointment.patient._id.toString(),
+                    fullName: appointment.patient.fullName,
+                    dateOfBirth: appointment.patient.dateOfBirth,
+                    gender: appointment.patient.gender,
+                    phone: appointment.patient.phone,
+                    email: appointment.patient.email,
+                    cpf: appointment.patient.cpf,
+                    rg: appointment.patient.rg,
+                    address: appointment.patient.address,
+                    appointments: appointment.patient.appointments || [],
+                    lastAppointment: appointment.patient.lastAppointment,
+                    nextAppointment: appointment.patient.nextAppointment,
+                } : {},
+                doctor: appointment.doctor ? {
+                    id: appointment.doctor._id.toString(),
+                    fullName: appointment.doctor.fullName,
+                    specialty: appointment.doctor.specialty
+                } : {},
+                operationalStatus: appointment.operationalStatus,
+                clinicalStatus: appointment.clinicalStatus,
+                reason: appointment.reason
+            };
+        }).filter(Boolean);
 
         res.json(calendarEvents);
+
     } catch (error) {
+        console.error('Erro ao buscar agendamentos:', error);
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                error: 'ID inválido',
+                message: 'O formato do ID fornecido é inválido'
+            });
+        }
+
+        res.status(500).json({
+            error: 'Erro interno',
+            details: error.message
+        });
+    }
+});
+
+
+// Busca agendamentos por especialidade
+router.get('/by-specialty/:specialty', auth, async (req, res) => {
+    try {
+        const { specialty } = req.params;
+        const appointments = await Appointment.find({
+            doctor: req.user._id,
+            specialty
+        }).populate('patient', 'fullName');
+
+        res.json(appointments);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Atualiza um agendamento com verificação de conflitos
+router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
+    try {
+        // 1. Buscar e validar agendamento
+        const appointment = await Appointment.findById(req.params.id);
+        if (!appointment) {
+            return res.status(404).json({ error: 'Agendamento não encontrado' });
+        }
+
+
+        console.log('req.params', req.params)
+        console.log('req.user', req.user)
+        // 2. Verificar permissões
+        if (req.user.role === 'doctor' && appointment.doctor.toString() !== req.user.id) {
+            return res.status(403).json({ error: 'Acesso não autorizado' });
+        }
+
+        // 3. Preparar atualização
+        const updateData = { ...req.body };
+
+        // 4. Manter campos sensíveis se não fornecidos
+        if (!updateData.specialty) updateData.specialty = appointment.specialty;
+        if (!updateData.doctor) updateData.doctor = appointment.doctor;
+
+        // 5. Atualizar com validação
+        const updated = await Appointment.findByIdAndUpdate(
+            req.params.id,
+            updateData,
+            {
+                new: true,
+                runValidators: true,
+                context: 'query'
+            }
+        );
+
+        res.json(updated);
+    } catch (error) {
+        console.error('Erro ao atualizar agendamento:', error);
+
         if (error.name === 'ValidationError') {
-            // 💡 Extrai erros campo a campo
             const errors = Object.keys(error.errors).reduce((acc, key) => {
                 acc[key] = error.errors[key].message;
                 return acc;
@@ -121,7 +273,17 @@ router.get('/', auth, async (req, res) => {
             });
         }
 
-        return res.status(500).json({ error: 'Erro interno' });
+        if (error.name === 'CastError') {
+            return res.status(400).json({
+                error: 'ID inválido',
+                message: 'O formato do ID fornecido é inválido'
+            });
+        }
+
+        res.status(500).json({
+            error: 'Erro interno',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
     }
 });
 
@@ -130,9 +292,10 @@ router.delete('/:id', validateId, auth, async (req, res) => {
     try {
         await Appointment.findByIdAndDelete(req.params.id);
         res.json({ message: 'Agendamento deletado com sucesso' });
+
+        await updatePatientAppointments(req.body.patientId);
     } catch (error) {
         if (error.name === 'ValidationError') {
-            // 💡 Extrai erros campo a campo
             const errors = Object.keys(error.errors).reduce((acc, key) => {
                 acc[key] = error.errors[key].message;
                 return acc;
@@ -154,9 +317,8 @@ router.get('/history/:patientId', async (req, res) => {
         const { patientId } = req.params;
         const history = await Appointment.find({ patientId }).sort({ date: -1 });
         res.json(history);
-    } catch (err) {
+    } catch (error) {
         if (error.name === 'ValidationError') {
-            // 💡 Extrai erros campo a campo
             const errors = Object.keys(error.errors).reduce((acc, key) => {
                 acc[key] = error.errors[key].message;
                 return acc;
@@ -171,7 +333,6 @@ router.get('/history/:patientId', async (req, res) => {
         return res.status(500).json({ error: 'Erro interno' });
     }
 });
-
 
 // Cancela um agendamento
 router.patch('/:id/cancel', validateId, auth, async (req, res) => {
@@ -188,22 +349,23 @@ router.patch('/:id/cancel', validateId, auth, async (req, res) => {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        // Verifica se já está cancelado
-        if (appointment.status === 'cancelado') {
+        if (appointment.operationalStatus === 'cancelado') {
             return res.status(400).json({ error: 'Este agendamento já está cancelado' });
         }
 
-        // Atualiza o status e registra o motivo
         const updatedAppointment = await Appointment.findByIdAndUpdate(
             req.params.id,
             {
+                operationalStatus: 'cancelado',
                 status: 'cancelado',
                 canceledReason: reason,
                 $push: {
                     history: {
                         action: 'cancelamento',
-                        date: new Date(),
-                        by: req.user._id,
+                        newStatus: 'cancelado',
+                        changedBy: req.user._id,
+                        timestamp: new Date(),
+                        context: 'operacional',
                         details: { reason }
                     }
                 }
@@ -219,7 +381,7 @@ router.patch('/:id/cancel', validateId, auth, async (req, res) => {
     }
 });
 
-// Adicione esta rota junto com as outras rotas de appointments
+// Marca agendamento como concluído
 router.patch('/:id/complete', auth, async (req, res) => {
     try {
         const { id } = req.params;
@@ -230,21 +392,21 @@ router.patch('/:id/complete', auth, async (req, res) => {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        // Verifica se já está confirmado
-        if (appointment.status === 'concluído') {
+        if (appointment.operationalStatus === 'concluído') {
             return res.status(400).json({ error: 'Este agendamento já está concluído' });
         }
 
-        // Atualiza o status e registra no histórico
         const updatedAppointment = await Appointment.findByIdAndUpdate(
             id,
             {
-                status: 'concluído',
+                operationalStatus: 'concluído',
                 $push: {
                     history: {
                         action: 'concluído',
-                        date: new Date(),
-                        by: req.user._id,
+                        newStatus: 'concluído',
+                        changedBy: req.user._id,
+                        timestamp: new Date(),
+                        context: 'operacional',
                     }
                 }
             },
@@ -264,12 +426,11 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
     const patientId = req.params.id;
     try {
         const appointments = await Appointment.find({ patientId })
-            .populate('doctorId')
-            .populate('patientId');
+            .populate('doctor')
+            .populate('patient');
         res.json(appointments);
-    } catch (err) {
+    } catch (error) {
         if (error.name === 'ValidationError') {
-            // 💡 Extrai erros campo a campo
             const errors = Object.keys(error.errors).reduce((acc, key) => {
                 acc[key] = error.errors[key].message;
                 return acc;
@@ -285,44 +446,54 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
     }
 });
 
-router.get('/count-by-status', async (req, res) => {
+router.get('/count-by-status', auth, async (req, res) => {
     try {
-        const { dateFrom, dateTo, doctorId } = req.query;
+        const { dateFrom, dateTo, doctor, specialty } = req.query;
+        const userId = req.user._id;
 
-        // Construir filtro
+        // Construir o filtro
         const filter = {};
 
-        // Filtro por período
+        if (userId) {
+            filter.doctor = new ObjectId(userId);
+        }
+
         if (dateFrom || dateTo) {
             filter.date = {};
             if (dateFrom) filter.date.$gte = new Date(dateFrom);
-            if (dateTo) filter.date.$lte = new Date(`${dateTo}T23:59:59.999Z`);
+            if (dateTo) {
+                const endOfDay = new Date(dateTo);
+                endOfDay.setHours(23, 59, 59, 999);
+                filter.date.$lte = endOfDay;
+            }
         }
 
-        // Filtro por médico
-        if (doctorId) filter.doctorId = doctorId;
+        if (specialty && specialty !== 'all') {
+            filter.specialty = specialty;
+        }
 
-        // Agregação para contar por status
+        // Agregação simplificada e atualizada
         const counts = await Appointment.aggregate([
             { $match: filter },
             {
                 $group: {
-                    _id: '$status',
+                    _id: '$operationalStatus',
                     count: { $sum: 1 }
                 }
             }
         ]);
 
-        // Formatar resultado com valores padrão
+        // Formatar resultado com valores atuais
         const result = {
             agendado: 0,
-            concluído: 0,
-            cancelado: 0
+            confirmado: 0,
+            cancelado: 0,
+            pago: 0,
+            faltou: 0
         };
 
         counts.forEach(item => {
-            // Normaliza o status para minúsculas
-            const status = item._id.toLowerCase();
+            const status = item._id;
             if (result.hasOwnProperty(status)) {
                 result[status] = item.count;
             }
@@ -334,11 +505,179 @@ router.get('/count-by-status', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Erro ao contar agendamentos por status:', error);
+        console.error('Erro na rota count-by-status:', error);
         return res.status(500).json({
             success: false,
-            message: 'Erro interno do servidor'
+            message: 'Erro interno do servidor',
+            error: error.message
         });
+    }
+});
+
+// Nova rota para estatísticas completas
+// Atualize a rota de estatísticas
+router.get('/stats', auth, async (req, res) => {
+    try {
+        const todayStart = new Date();
+        todayStart.setHours(0, 0, 0, 0);
+
+        const todayEnd = new Date();
+        todayEnd.setHours(23, 59, 59, 999);
+
+        const doctor = new mongoose.Types.ObjectId(req.user._id);
+
+        // Configuração das especialidades
+        const specialtiesConfig = {
+            'Terapia Ocupacional': {
+                id: 'to',
+                name: 'Terapia Ocupacional',
+                icon: 'accessibility',
+                color: '#9C27B0',
+                sessionDuration: 40,
+                price: 150.00 // Adicionado preço para cálculo de receita
+            },
+            'Psicologia': {
+                id: 'psicologia',
+                name: 'Psicologia',
+                icon: 'psychology',
+                color: '#3F51B5',
+                sessionDuration: 40,
+                price: 200.00
+            },
+            'Psiquiatria': {
+                id: 'psiquiatria',
+                name: 'Psiquiatria',
+                icon: 'medical_services',
+                color: '#009688',
+                sessionDuration: 30,
+                price: 300.00
+            },
+            'Fonoaudiologia': {
+                id: 'fonoaudiologia',
+                name: 'Fonoaudiologia',
+                icon: 'AudioLines',
+                color: '#FF9800',
+                sessionDuration: 40,
+                price: 180.00
+            }
+        };
+
+        const stats = await Appointment.aggregate([
+            { $match: { doctor } },
+            {
+                $facet: {
+                    today: [
+                        { $match: { date: { $gte: todayStart, $lte: todayEnd } } },
+                        { $count: "count" }
+                    ],
+                    confirmed: [
+                        { $match: { status: 'confirmado' } },
+                        { $count: "count" }
+                    ],
+                    totalPatients: [
+                        { $group: { _id: "$patientId" } },
+                        { $count: "count" }
+                    ],
+                    bySpecialty: [
+                        {
+                            $group: {
+                                _id: "$specialty",
+                                scheduled: { $sum: 1 },
+                                completed: {
+                                    $sum: {
+                                        $cond: [{ $eq: ["$operationalStatus", "concluído"] }, 1, 0]
+                                    }
+                                },
+                                canceled: {
+                                    $sum: {
+                                        $cond: [{ $eq: ["$operationalStatus", "cancelado"] }, 1, 0]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]);
+
+        const result = {
+            today: stats[0]?.today[0]?.count || 0,
+            confirmed: stats[0]?.confirmed[0]?.count || 0,
+            totalPatients: stats[0]?.totalPatients[0]?.count || 0,
+            specialties: []
+        };
+
+        const specialtyStats = stats[0]?.bySpecialty || [];
+
+        for (const [name, config] of Object.entries(specialtiesConfig)) {
+            const stat = specialtyStats.find(s => s._id === name) || {
+                scheduled: 0,
+                completed: 0,
+                canceled: 0
+            };
+
+            const revenue = stat.completed * config.price;
+
+            result.specialties.push({
+                ...config,
+                stats: {
+                    scheduled: stat.scheduled || 0,
+                    completed: stat.completed || 0,
+                    canceled: stat.canceled || 0,
+                    revenue: revenue || 0
+                }
+            });
+        }
+
+        res.json(result);
+
+    } catch (error) {
+        console.error('Erro ao buscar estatísticas:', error);
+        res.status(500).json({
+            error: 'Erro interno',
+            details: error.message
+        });
+    }
+});
+
+// backend/controllers/appointmentController.js
+router.patch('/:id/clinical-status', validateId, auth, async (req, res) => {
+    try {
+        const { status } = req.body;
+        const validStatuses = ['em_andamento', 'concluído', 'faltou'];
+
+        if (!validStatuses.includes(status)) {
+            return res.status(400).json({ error: 'Status clínico inválido' });
+        }
+
+        const appointment = await Appointment.findById(req.params.id);
+
+        if (req.user.role === 'doctor' && appointment.doctor.toString() !== req.user.id) {
+            return res.status(403).json({ error: 'Acesso não autorizado' });
+        }
+
+        // Atualização segura que ignora validações problemáticas
+        appointment.clinicalStatus = status;
+        appointment.history.push({
+            action: 'atualização_status_clínico',
+            newStatus: status,
+            changedBy: req.user._id,
+            timestamp: new Date(),
+            context: 'clínico'
+        });
+
+        if (status === 'concluído') {
+            appointment.operationalStatus = 'pago';
+        }
+
+        // Salva sem validar campos problemáticos
+        const updatedAppointment = await appointment.save({ validateBeforeSave: false });
+
+        res.json(updatedAppointment);
+
+    } catch (error) {
+        console.error('Erro ao atualizar status clínico:', error);
+        res.status(500).json({ error: 'Erro interno no servidor' });
     }
 });
 

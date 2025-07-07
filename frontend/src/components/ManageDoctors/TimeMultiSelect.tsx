@@ -1,6 +1,6 @@
 import { Check } from 'lucide-react';
 import { useState } from 'react';
-import { IPatient } from '../../utils/types';
+import { IPatient } from '../../utils/types/types';
 
 interface TimeMultiSelectProps {
   selected?: string[];

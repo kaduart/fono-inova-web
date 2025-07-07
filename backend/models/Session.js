@@ -7,19 +7,23 @@ const sessionSchema = new mongoose.Schema({
         validate: {
             validator: function (date) {
                 if (!date) return true; // Permite null
+
                 const now = new Date();
-                // Compara se a data é futura (mesmo dia com horário adiante)
-                return date.getTime() > now.getTime();
+                return date >= new Date(now.setHours(0, 0, 0, 0));
             },
-            message: "O horário deve ser futuro, mesmo que seja hoje"
+            message: "A data e hora do agendamento devem ser posteriores ao momento atual."
         }
     },
     sessionType: {
         type: String,
-        required: true // se quiser obrigar
     },
-
-    professional: {
+    appointmentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Appointment',
+        default: null,
+        required: false
+    },
+    doctor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor', // String, não importe o modelo aqui!
         required: true
@@ -32,7 +36,6 @@ const sessionSchema = new mongoose.Schema({
     package: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Package', // String
-        required: true
     },
     isPaid: { type: Boolean, default: false },
     paymentMethod: {
@@ -43,16 +46,12 @@ const sessionSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: {
-            values: ['pending', 'completed', 'canceled', 'schedule'],
+            values: ['pending', 'completed', 'canceled', 'scheduled'],
             message: 'Status inválido para sessão'
         },
         default: 'pending'
     },
     notes: { type: String },
-    appointmentId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Appointment'
-    }
 }, {
     timestamps: true,
     toJSON: { virtuals: true },
@@ -62,9 +61,9 @@ const sessionSchema = new mongoose.Schema({
 sessionSchema.post('save', async function (doc) {
     const Package = mongoose.model('Package');
     const Appointment = mongoose.model('Appointment');
-
+    console.log('doccccccccccccccccccc', doc)
     // Atualiza o pacote se a sessão foi completada
-    if (doc.isModified('status') && doc.status === 'completed') {
+    if (doc.isModified('operationalStatus') && doc.status === 'completed') {
         try {
             await Package.findOneAndUpdate(
                 { _id: doc.package },
@@ -76,13 +75,13 @@ sessionSchema.post('save', async function (doc) {
     }
 
     // Sincroniza dados no Appointment
-    if (doc.appointmentId) {
+    if (doc.appointmentId && doc.appointmentId !== null) {
         try {
             await Appointment.findByIdAndUpdate(doc.appointmentId, {
                 date: doc.date,
-                professional: doc.professional,
+                doctor: doc.doctor,
                 notes: doc.notes,
-                status: doc.status,
+                operationalStatus: doc.operationalStatus,
                 sessionType: doc.sessionType, // se estiver no model Session
                 'payment.method': doc.paymentMethod
             });
@@ -93,13 +92,13 @@ sessionSchema.post('save', async function (doc) {
 });
 
 
-sessionSchema.pre('save', function (next) {
+/* sessionSchema.pre('save', function (next) {
     if (this.status === 'completed' && !this.isPaid) {
         return res.status(400).json({ error: 'Sessão não pode ser marcada como concluída sem pagamento.' });
     }
 
     next();
-});
+}); */
 
 
 const Session = mongoose.model('Session', sessionSchema);

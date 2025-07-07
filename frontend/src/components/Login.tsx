@@ -15,7 +15,7 @@ const Login = () => {
   const roles = [
     { id: 'admin', label: 'Admin', icon: Shield },
     { id: 'paciente', label: 'Paciente', icon: User },
-    { id: 'profissional', label: 'Profissional', icon: Stethoscope },
+    { id: 'doctor', label: 'Profissional', icon: Stethoscope },
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -53,7 +53,7 @@ const Login = () => {
         if (data.role === 'admin') {
           navigate('/admin');
         } else if (data.role === 'doctor') {
-          navigate('/doctor');
+          navigate('/dashboard');
         } else {
           navigate('/patient');
         }
@@ -127,7 +127,7 @@ const Login = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder="Insira o email"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
@@ -142,7 +142,7 @@ const Login = () => {
                       type={showPassword ? "text" : "password"}
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
+                      placeholder="Insira a senha"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       required
                     />

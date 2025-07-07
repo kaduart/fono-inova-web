@@ -33,9 +33,9 @@ const paymentSchema = new mongoose.Schema({
     session: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Session',
-        required: function () {
-            return this.serviceType !== 'evaluation';
-        }
+        /*   required: function () {
+              return this.serviceType === 'session' || this.serviceType === 'individual_session;
+          } */
     },
     paymentMethod: {
         type: String,

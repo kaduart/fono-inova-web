@@ -1,4 +1,4 @@
-import { IDoctor, IDoctors } from "../../utils/types";
+import { IDoctor, IDoctors } from "../../utils/types/types";
 import { Button } from "../ui/Button";
 interface DoctorListProps {
     doctor: IDoctor;

@@ -1,8 +1,8 @@
 import { ChevronDown, ChevronUp, DollarSign, Edit, Eye, FileHeart, Phone } from "lucide-react";
-import { useMemo, useState } from 'react'; // Adicionei useMemo
+import React, { useMemo, useState } from 'react'; // Adicionei useMemo
 import { Link, useNavigate } from 'react-router-dom';
 import { formatDateBrazilian } from "../../utils/dateFormat";
-import { IPatient } from "../../utils/types";
+import { IPatient } from "../../utils/types/types";
 import { WhatsAppActionButtons } from "../mkt/whatsapp/buttons/WhatsAppActionButtons";
 
 interface PatientTableProps {
@@ -27,8 +27,10 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
         key: "nextAppointment",
         direction: "ascending", // 'ascending' = mais próximas primeiro
     });
+    console.log('patients', patients)
     // Função para ordenar os pacientes
     const sortedPatients = useMemo(() => {
+        console.log('patients', patients)
         const sortablePatients = [...patients];
         if (patients.length > 0) {
             setLoading(false)
@@ -139,7 +141,8 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
 
                                 <tbody className="bg-white divide-y divide-gray-200">
                                     {paginatedPatients.map((patient) => (
-                                        <>
+                                        <React.Fragment key={patient._id}>
+
                                             <tr
                                                 key={patient._id}
                                                 className="hover:bg-gray-50 transition-colors cursor-pointer"
@@ -164,7 +167,7 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                                 {formatDateBrazilian(patient.lastAppointment.date)}
                                                             </span>
                                                             <div className="text-xs text-gray-500">
-                                                                {patient.lastAppointment?.doctorId?.fullName || '-'}
+                                                                {patient.lastAppointment?.doctor?.fullName || '-'}
                                                             </div>
                                                         </>
                                                     ) : '-'}
@@ -178,7 +181,7 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                                 {formatDateBrazilian(patient.nextAppointment.date)}
                                                             </span>
                                                             <div className="text-xs text-gray-500">
-                                                                {patient.nextAppointment?.doctorId?.fullName || '-'}
+                                                                {patient.nextAppointment?.doctor?.fullName || '-'}
                                                             </div>
                                                         </>
                                                     ) : '-'}
@@ -245,10 +248,10 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                                         ? patient.phone.slice(1)
                                                                         : patient.phone}
                                                                     nome={patient.fullName}
-                                                                    profissional={patient?.nextAppointment?.doctorId?.fullName}
+                                                                    profissional={patient?.nextAppointment?.doctor?.fullName}
                                                                     data={new Date(patient.nextAppointment?.date)}
                                                                     hora={new Date(patient.nextAppointment?.date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-                                                                    servico={patient?.lastAppointment?.doctorId?.specialty}
+                                                                    servico={patient?.lastAppointment?.doctor?.specialty}
                                                                     restantes="2"
                                                                 />
                                                             )}
@@ -256,7 +259,8 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                     </td>
                                                 </tr>
                                             )}
-                                        </>
+                                        </React.Fragment>
+
                                     ))}
 
                                     {/* Paginação como linha extra */}

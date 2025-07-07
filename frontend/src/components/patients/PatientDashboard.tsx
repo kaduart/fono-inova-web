@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
 import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
-import { IDoctors, IPatient, ScheduleAppointment } from '../../utils/types';
+import { IDoctors, IPatient, ScheduleAppointment } from '../../utils/types/types';
 import AppointmentHistoryModal from '../AppointmentHistoryModal';
 import StatusBadge from '../StatusBadge';
 import { Button } from '../ui/Button';
@@ -17,6 +17,7 @@ import { PatientAvailablesCard } from './PatientAvailablesCard';
 import PatientEvolution from './PatientEvolution';
 import { PatientMiniCalendar } from './PatientMiniCalendar';
 import TherapyPackagesSummary from './TherapyPackagesSummary';
+import SpecialtyTimeline from '../SpecialtyTimeline';
 
 const initialPatientState: IPatient = {
   fullName: '',
@@ -464,6 +465,10 @@ export default function PatientDashboard() {
             </ul>
           </CardContent>
         </Card>
+        <div>
+          <h2>Histórico do Paciente</h2>
+        {/* to do aqui  <SpecialtyTimeline patientId={patientId} /> */}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-1 mb-5 gap-6">

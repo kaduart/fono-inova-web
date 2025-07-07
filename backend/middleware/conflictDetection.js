@@ -74,7 +74,6 @@ export const checkAppointmentConflicts = async (req, res, next) => {
     }
 };
 
-
 export const getAvailableTimeSlots = async (req, res) => {
     try {
         const { doctorId, date } = req.query;
@@ -97,7 +96,7 @@ export const getAvailableTimeSlots = async (req, res) => {
 
         // Busca TODOS os agendamentos do dia
         const existingAppointments = await Appointment.find({
-            doctorId,
+            doctor: doctorId,
             date: { $gte: start, $lte: end }
         });
 
@@ -150,6 +149,8 @@ export const getAvailableTimeSlots = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+
+
 
 
 

@@ -1,14 +1,18 @@
 
+import { DateClickArg } from '@fullcalendar/interaction/index.js';
 import { Activity, ChevronDown, Clock, Eye, EyeOff, Hospital, Stethoscope, User2, UserPlus, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../constants/constants';
+import { useAppointments } from '../hooks/useAppointments';
 import { usePatients } from '../hooks/usePatients';
+import { AvailableSlotsParams, CancelParams, CreateAppointmentParams, UpdateAppointmentParams } from '../services/appointmentService';
 import doctorService, { CreateDoctorParams } from '../services/doctorService';
-import { IDoctor, IPatient } from '../utils/types';
+import { createPayment, FinancialRecord, getPayments, updatePayment } from '../services/paymentService';
+import { IAppointment, IDoctor, IPatient } from '../utils/types/types';
 import AppointmentCountCards from './AppointmentCountCards';
-import EnhancedCalendar from './EnhancedCalendar';
+import EnhancedCalendar from './calendar/EnhancedCalendar';
 import { PaymentModal } from './financial/PaymentModal';
 import PaymentPage from './financial/PaymentPage';
 import DoctorFormModal from './ManageDoctors/DoctorFormModal';
@@ -70,8 +74,8 @@ const NavDropdownItem = ({
 );
 
 const defaultAppointmentData = {
-  patientId: '',
-  doctorId: '',
+  patient: '',
+  doctor: '',
   date: '',
   time: '',
   type: 'fonoaudiologia',
@@ -142,10 +146,7 @@ export default function AdminDashboard() {
     phoneNumber: '',
     password: ''
   });
-
-
   const [IPatient, setIPatient] = useState<IPatient>(initialPatientState);
-
   const [showDoctorPassword, setShowDoctorPassword] = useState(false);
   const [showAdminPassword, setShowAdminPassword] = useState(false);
   const [totalDoctors, setTotalDoctors] = useState(0);
@@ -155,12 +156,11 @@ export default function AdminDashboard() {
   const [completedAppointments, setCompletedAppointments] = useState([]);
   const [upcomingAppointments, setUpcomingAppointments] = useState([]);
   const [hospitalCapacity] = useState(150);
-  const [appointments, setAppointments] = useState([]);
+  //const [appointments, setAppointments] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
-    patientId: '',
-    doctorId: '',
+    patient: '',
+    doctor: '',
     date: '',
     time: '',
     type: '',
@@ -193,6 +193,17 @@ export default function AdminDashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null);
   const [showModalAddProfessional, setShowModalAddProfessional] = useState(false);
+  const [paymentModalOpen, setPaymentModalOpen] = useState(false);
+  const [paymentSelected, setPaymentSelected] = useState<any | null>(null);
+  const [allPayments, setAllPayments] = useState<any[]>([]);
+  const [paymentContext, setPaymentContext] = useState<{
+    mode: 'create' | 'edit';
+    patient?: IPatient;
+    payment?: FinancialRecord;
+  }>({ mode: 'create' });
+  const [error, setError] = useState<string | null>(null);
+  const [selectedAppointment, setSelectedAppointment] = useState<IAppointment | null>(null);
+  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
 
   const toggleMenu = (menuName: string) => {
     setOpenMenu(menuName);
@@ -200,18 +211,36 @@ export default function AdminDashboard() {
 
   const {
     patients,
-    loading: patientsLoading,
-    error: patientsError,
     fetchPatients: updatePatients,
     updatePatient,
     createPatient
   } = usePatients();
 
-  // Use este useEffect para carregar os dados iniciais
+  const {
+    appointments,
+    fetchAppointments,
+    createAppointment,
+    updateAppointment,
+    completeAppointment,
+    cancelAppointment,
+    getAvailableSlots
+  } = useAppointments();
+
+  console.log('patients ----------------------> ', patients)
+
   useEffect(() => {
-    updatePatients(true); // true para carregar com informações de agendamentos
+    fetchAppointments();
+  }, [fetchAppointments]);
+
+
+  useEffect(() => {
+    updatePatients(true);
     fetchTotalPatients();
   }, [updatePatients]);
+
+
+  useEffect(() => {
+  }, [paymentModalOpen]);
 
   const formatDate = (date: Date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -227,12 +256,102 @@ export default function AdminDashboard() {
   };
 
   useEffect(() => {
-    updatePatients(true);
-    fetchTotalPatients();
-  }, [updatePatients]);
-
-  useEffect(() => {
   }, [isModalOpen, patientToEdit]);
+
+  const handleDateClick = (arg: DateClickArg) => {
+    console.log('Data clicada:', arg.date);
+    // Abrir modal de agendamento com a data selecionada
+    setAppointmentData({
+      ...defaultAppointmentData,
+      date: arg.date.toISOString().split('T')[0]
+    });
+    setOpenModal(true);
+  };
+
+  // Handler para novo agendamento
+  const handleNewAppointment = async (appointmentData: IAppointment) => {
+    try {
+      console.log('Novo agendamento:', appointmentData);
+      const payload: CreateAppointmentParams = {
+        patientId: appointmentData.patientId,
+        doctorId: appointmentData.doctorId,
+        date: appointmentData.date,
+        time: appointmentData.time,
+        reason: appointmentData.reason,
+        specialty: appointmentData.sessionType,
+        clinicalStatus: 'pendente',
+        operationalStatus: 'agendado'
+      };
+
+      await createAppointment(payload);
+      toast.success('Agendamento criado com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao criar agendamento');
+      console.error(error);
+    }
+  };
+
+  // Handler para cancelar agendamento
+  const handleCancelAppointment = async (appointmentId: string, reason: string) => {
+    try {
+      const cancelParams: CancelParams = {
+        reason,
+        notifyPatient: true
+      };
+      const updateData: UpdateAppointmentParams = {
+        clinicalStatus: 'cancelado',
+        operationalStatus: 'cancelado'
+      };
+
+      await cancelAppointment(appointmentId, cancelParams);
+      toast.success('Agendamento cancelado!');
+    } catch (error) {
+      toast.error('Erro ao cancelar agendamento');
+      console.error(error);
+    }
+  };
+
+  // Handler para completar agendamento
+  const handleCompleteAppointment = async (appointmentId: string) => {
+    try {
+      const updateData: UpdateAppointmentParams = {
+        clinicalStatus: 'concluído',
+        operationalStatus: 'pago'
+      };
+
+      await completeAppointment(appointmentId);
+      toast.success('Agendamento marcado como concluído!');
+    } catch (error) {
+      toast.error('Erro ao completar agendamento');
+      console.error(error);
+    }
+  };
+
+  // Handler para editar agendamento
+  const handleEditAppointment = async (appointmentId: string, updatedData: UpdateAppointmentParams) => {
+    try {
+      await updateAppointment(appointmentId, updatedData);
+      toast.success('Agendamento atualizado!');
+    } catch (error) {
+      toast.error('Erro ao atualizar agendamento');
+      console.error(error);
+    }
+  };
+
+  // Handler para buscar horários disponíveis
+  const handleFetchAvailableSlots = async (payload: AvailableSlotsParams): Promise<string[]> => {
+    try {
+
+      console.log('Buscando horários disponíveis...', payload);
+
+      const slots = await getAvailableSlots(payload);
+      return slots;
+    } catch (error) {
+      toast.error('Erro ao buscar horários disponíveis');
+      console.error(error);
+      return [];
+    }
+  };
 
   const handleAddPatient = () => {
     setPatientToEdit(undefined);
@@ -261,10 +380,84 @@ export default function AdminDashboard() {
 
   };
 
-  const handleRegisterPayment = (patient: IPatient) => {
-
-    setSelectedPatient(patient);
+  const openPaymentModal = (context: {
+    mode: 'create' | 'edit';
+    patient?: IPatient;
+    payment?: FinancialRecord;
+  }) => {
+    setPaymentContext(context);
     setPaymentModalOpen(true);
+  };
+
+
+  const handleCreatePayment = async (data: any) => {
+    try {
+      await createPayment(data);
+      toast.success('Pagamento registrado com sucesso!');
+      setPaymentModalOpen(false);
+      setPaymentContext({ mode: 'create' });
+
+      // Atualizar dados se necessário
+      if (activeTab === 'Dashboard') {
+        updatePatients(true);
+      }
+      loadPayments();
+
+    } catch (error) {
+      toast.error('Erro ao registrar pagamento');
+    }
+  };
+
+  const handleMarkAsPaid = (payment: FinancialRecord) => {
+    console.log('clicou em MARCAR como pago', 'payment', payment);
+    setPaymentContext({
+      mode: 'edit',
+      payment
+    });
+    setPaymentModalOpen(true);
+  };
+
+  const loadPayments = async () => {
+    //  setLoading(true);
+    try {
+      const res = await getPayments();
+      console.log('res', res);
+      setAllPayments(res.data.data);
+      //setFilteredPayments(res.data.data); // Inicializa com todos os pagamentos
+    } catch (error) {
+      console.error('Erro ao carregar pagamentos:', error);
+      toast.error('Erro ao carregar pagamentos');
+    } finally {
+      // setLoading(false);
+    }
+  };
+
+  const handleCancelPayment = async (paymentId: string) => {
+    console.log('clicou handle CANCELAR', 'payment', paymentId);
+
+    try {
+      await updatePayment(paymentId, { status: 'canceled' });
+      loadPayments();
+      toast.success('Pagamento cancelado com sucesso!');
+    } catch (error) {
+      toast.error('Erro ao cancelar pagamento');
+    }
+  };
+  const handleUpdatePayment = async (data: any) => {
+    console.log('clicou handle EDITAR', 'payment', data);
+
+    try {
+      if (paymentContext.payment?._id) {
+        await updatePayment(paymentContext.payment._id, data);
+        toast.success('Pagamento atualizado com sucesso!');
+        setPaymentModalOpen(false);
+        setPaymentContext({ mode: 'create' });
+
+        loadPayments();
+      }
+    } catch (error) {
+      toast.error('Erro ao atualizar pagamento');
+    }
   };
 
   const fetchDoctors = async () => {
@@ -289,7 +482,6 @@ export default function AdminDashboard() {
       console.error('Error fetching doctors:', error);
     }
   };
-
 
   const navigate = useNavigate();
 
@@ -484,26 +676,6 @@ export default function AdminDashboard() {
     }
   };
 
-  const fetchAppointments = async (patientId) => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${BASE_URL}/appointments?patientId=${patientId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setAppointments(data);  // Atualiza o estado com os agendamentos
-      } else {
-        console.error('Erro ao buscar agendamentos:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Erro ao buscar agendamentos:', error);
-    }
-  };
-
   const handleSavePatient = async (formData: IPatient) => {
     setIsLoading(true);
     try {
@@ -522,11 +694,11 @@ export default function AdminDashboard() {
         toast.success("Paciente criado com sucesso!");
       }
 
+      setIsModalOpen(false);
+      setPatientToEdit(undefined);
       updatePatients(true);
       fetchPatientOverview();
       fetchTotalPatients();
-      setIsModalOpen(false);
-      setPatientToEdit(undefined);
       setActiveTab('Dashboard');
 
     } catch (error: any) {
@@ -551,7 +723,13 @@ export default function AdminDashboard() {
               setPatientToEdit(patient);
               setIsModalOpen(true);
             }}
-            onRegisterPayment={handleRegisterPayment}
+            onRegisterPayment={(patient) => {
+              setPaymentContext({
+                mode: 'create',
+                patient
+              });
+              setPaymentModalOpen(true);
+            }}
           />
         </div>
 
@@ -622,17 +800,6 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        <PaymentModal
-          open={paymentModalOpen}
-          patient={selectedPatient}
-          onClose={() => setPaymentModalOpen(false)}
-          doctors={doctors}
-          onPaymentSuccess={() => {
-            updatePatients(); // Atualiza a lista de pacientes
-            //fetchPayments(); // Atualiza a lista de pagamentos
-          }}
-        />
-
         {/* Seção de visões gerais */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="border border-gray-200 rounded-lg">
@@ -685,9 +852,9 @@ export default function AdminDashboard() {
                     <li key={index} className="p-3 hover:bg-gray-50 rounded">
                       <div className="flex justify-between">
                         <div>
-                          <p className="font-medium">{appointment.patientId?.fullName}</p>
+                          <p className="font-medium">{appointment.patient?.fullName}</p>
                           <p className="text-sm text-gray-500">
-                            {appointment.doctorId?.fullName} • {appointment.reason}
+                            {appointment.doctor?.fullName} • {appointment.reason}
                           </p>
                         </div>
                         <div className="text-right">
@@ -841,7 +1008,17 @@ export default function AdminDashboard() {
 
   const renderCalendarGeneral = () => {
     return (
-      <EnhancedCalendar doctors={doctors} />
+      <EnhancedCalendar
+        doctors={doctors}
+        patients={patients}
+        appointments={appointments}
+        onDateClick={handleDateClick}
+        onNewAppointment={handleNewAppointment}
+        onCancelAppointment={handleCancelAppointment}
+        onCompleteAppointment={handleCompleteAppointment}
+        onEditAppointment={handleEditAppointment}
+        onFetchAvailableSlots={handleFetchAvailableSlots}
+      />
     );
   };
 
@@ -861,8 +1038,18 @@ export default function AdminDashboard() {
   );
 
   const renderFinanceiro = () => (
-    <PaymentPage patients={patients} doctors={doctors} />
+    <>
+      <PaymentPage
+        patients={patients}
+        initialPayments={allPayments}
+        doctors={doctors}
+        onMarkAsPaid={handleMarkAsPaid}
+        onCancelPayment={handleCancelPayment}
+      // onEditAmount={handleEditAmount}
+      />
+    </>
   );
+
 
   const handleAvailableSubmit = async (data: AvailableData) => {
     try {
@@ -1120,7 +1307,6 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      {/* Conteúdo principal */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Cabeçalho da página */}
         <div className="mb-6 flex justify-between items-center">
@@ -1153,6 +1339,24 @@ export default function AdminDashboard() {
           {activeTab === 'Add Admin' && renderAddAdmin()}
         </div>
       </main>
+
+      {paymentModalOpen && (
+        <PaymentModal
+          open={paymentModalOpen}
+          patient={paymentContext.patient}
+          doctors={doctors}
+          payment={paymentContext.payment}
+          onClose={() => {
+            setIsModalOpen(false);
+            setPatientToEdit(undefined);
+          }}
+          onPaymentSuccess={
+            paymentContext.mode === 'create'
+              ? handleCreatePayment
+              : handleUpdatePayment
+          }
+        />
+      )}
     </div>
   );
 }

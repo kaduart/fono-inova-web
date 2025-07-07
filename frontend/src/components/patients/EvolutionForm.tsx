@@ -37,7 +37,6 @@ const EvolutionForm: React.FC<EvolutionFormProps> = ({
     appointments
 }) => {
     const { register, handleSubmit, reset } = useForm<EvolutionFormData>();
-
     const submit = (data: any) => {
         data.patientId = patientId;
         onSubmit(data);

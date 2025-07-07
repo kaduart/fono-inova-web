@@ -15,7 +15,7 @@ import Input from '../../components/ui/Input';
 import { Label } from '../../components/ui/Label';
 import { Select } from '../../components/ui/Select';
 import { Textarea } from '../../components/ui/TextArea';
-import { IPatient } from '../../utils/types';
+import { IPatient } from '../../utils/types/types';
 
 const BR_STATES = [
     { value: '', label: 'Selecione' },

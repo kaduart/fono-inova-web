@@ -2,7 +2,7 @@ import { Info } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packagesService, { packageService, UseSessionParams, validatePayment } from '../../services/packageService';
-import { IDoctors, ITherapyPackage } from '../../utils/types';
+import { IDoctors, IPatient, ITherapyPackage } from '../../utils/types/types';
 import TherapyPackageCard from './TherapyPackageCard';
 import TherapyPackageDetails from './TherapyPackageDetails';
 import TherapyPackageDetailsModal from './TherapyPackageDetailsModal';
@@ -91,21 +91,23 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
     };
 
     const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
+        console.log('sessionData', sessionData);
         try {
             validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
-
             const payload = {
-                sessionId: sessionData._id,
+                patientId: sessionData.patient,
+                doctorId: sessionData.doctorId,
                 date: sessionData.date,
+                status: sessionData.status,
+                notes: sessionData.notes,
                 package: sessionData.package,
-                professional: sessionData.professional,
                 sessionType: sessionData.sessionType,
+                specialty: sessionData.sessionType,
+                sessionId: sessionData._id,
                 payment: {
                     amount: Number(sessionData.paymentAmount) || 0,
                     method: sessionData.paymentMethod || 'dinheiro'
                 },
-                notes: sessionData.notes,
-                status: sessionData.status,
             };
 
             let updatedPackage;
@@ -115,15 +117,16 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                 updatedPackage = await packageService.useSession(packId, payload);
             }
 
-            /* // Atualização otimizada do estado
-            setPackages(prev => prev.map(pkg =>
-                pkg?._id === id ? {
-                    ...updatedPackage,
-                    sessions: updatedPackage.sessions,
-                    sessionsDone: updatedPackage.sessionsDone,
-                    balance: updatedPackage.balance
-                } : pkg
-            )); */
+            // Atualização otimizada do estado
+            /*     setPackages(prev => prev.map(pkg =>
+                    console.log('pkgdddddddddddddddddddddddddddddddddddddd', pkg),
+                    pkg?._id === id ? {
+                        ...updatedPackage,
+                        sessions: updatedPackage.sessions,
+                        sessionsDone: updatedPackage.sessionsDone,
+                        balance: updatedPackage.balance
+                    } : pkg
+                )); */
 
             toast.success(modalAction === 'edit' ? "Sessão atualizada!" : "Sessão registrada!");
             fetchBasicPackages();
@@ -183,7 +186,7 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                     onClick={() => setShowManager(true)}
                     className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
                 >
-                    Adiconar Pacote
+                    Adicionar Pacote
                 </button>
 
                 {selectedPackage && !editing && (

@@ -7,7 +7,7 @@ import {
   PackageStatus,
   PaymentType,
   TherapyType
-} from '../utils/types';
+} from '../utils/types/types';
 import API from './api';
 
 export type CreatePackageParams = {
@@ -15,7 +15,7 @@ export type CreatePackageParams = {
   sessionType: TherapyType;
   /* totalSessions: number;
   sessionValue: number; */
-  professional: string;
+  doctorId: string;
   paymentType: string;
   amountPaid: number;
   paymentMethod: string;
@@ -40,7 +40,7 @@ export type PaginationParams = {
 
 export type CreateSessionParams = {
   date: Date;
-  professionalId: string;
+  doctorId: string;
   sessionType: TherapyType;
   value: number;
   notes?: string;
@@ -57,7 +57,8 @@ export type UseSessionParams = {
   _id?: string;
   date: string;
   package: string;
-  professional: string;
+  patient: string;
+  doctorId: string;
   sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
   paymentAmount?: number;
   paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
@@ -104,7 +105,7 @@ export const packageService = {
     return API.post<ISession>(`/packages/${packageId}/sessions`, data);
   },
 
-  updateSession: async (packageId: string, data: Partial<any>) => {
+  updateSession: async (packageId: string, data: ISession) => {
     return API.put<ISession>(`/packages/${packageId}/sessions/${data.sessionId}`, data);
   },
 

@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from "@mui/material";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import { IDoctor, THERAPY_TYPES, TherapyType } from "../../utils/types";
+import { IDoctor, THERAPY_TYPES, TherapyType } from "../../utils/types/types";
 import { Button } from "../ui/Button";
 import Input from "../ui/Input";
 import { Label } from "../ui/Label";

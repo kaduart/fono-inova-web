@@ -14,6 +14,7 @@ const RegisterPaymentForm: React.FC<RegisterPaymentFormProps> = ({ packageId, on
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
         try {
             await createPayment({
                 packageId,

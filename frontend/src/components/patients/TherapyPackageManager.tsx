@@ -1,7 +1,7 @@
 import { Package as PackageIcon } from 'lucide-react';
 import { useState } from 'react';
 import packagesService from '../../services/packageService';
-import { IDoctor, ITherapyPackage } from '../../utils/types';
+import { IDoctor, IPatient, ITherapyPackage } from '../../utils/types/types';
 import TherapyPackageFormModal from './TherapyPackageFormModal';
 import TherapyPackageTable from './TherapyPackageTable';
 

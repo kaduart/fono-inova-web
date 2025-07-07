@@ -1,11 +1,12 @@
 // Crie um novo componente SessionModal.tsx
-import { Button, Select } from '@mui/material';
 import { PlusCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { IDoctor, ISession, THERAPY_TYPES, TherapyType } from '../../utils/types';
+import { IDoctor, ISession, THERAPY_TYPES, TherapyType } from '../../utils/types/types';
+import { Button } from '../ui/Button';
 import Input from '../ui/Input';
 import InputCurrency from '../ui/InputCurrency';
 import { Label } from '../ui/Label';
+import { Select } from '../ui/Select';
 import { Textarea } from '../ui/TextArea';
 
 
@@ -36,7 +37,7 @@ export const SessionModal = ({
             toast.error("Data é obrigatória!");
             return false;
         }
-        if (!sessionData.professional) {
+        if (!sessionData.doctorId) {
             toast.error("Profissional é obrigatório!");
             return false;
         }
@@ -73,7 +74,7 @@ export const SessionModal = ({
                             onChange={(e) =>
                                 onSessionDataChange({
                                     ...sessionData,
-                                    date: new Date(e.target.value).toISOString(),
+                                    date: e.target.value,
                                 })
                             }
                             className="w-full  h-11"
@@ -84,11 +85,11 @@ export const SessionModal = ({
                     <div>
                         <Label >Profissional</Label>
                         <Select
-                            value={sessionData.professional || ''}
+                            value={sessionData.doctorId || ''}
                             onChange={(e) =>
                                 onSessionDataChange({
                                     ...sessionData,
-                                    professional: e.target.value,
+                                    doctorId: e.target.value,
                                 })
                             }
                             className="w-full h-11"
@@ -105,7 +106,7 @@ export const SessionModal = ({
                     {/* TIPO DE SESSÃO */}
                     <div>
                         <Label >Tipo de Sessão</Label>
-                        <Select
+                        <Select disabled={action === 'edit'}
                             value={sessionData.sessionType || ''}
                             onChange={(e) =>
                                 onSessionDataChange({

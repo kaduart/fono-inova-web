@@ -1,5 +1,5 @@
 import { Pencil, Trash2 } from 'lucide-react';
-import { TherapyPackageData } from '../../utils/types';
+import { TherapyPackageData } from '../../utils/types/types';
 
 type Props = {
     packages: TherapyPackageData[];

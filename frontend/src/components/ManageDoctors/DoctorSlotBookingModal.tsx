@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ISession } from "../../utils/types";
+import { ISession } from "../../utils/types/types";
 import { Button } from "../ui/Button";
 import { Select } from "../ui/Select";
 

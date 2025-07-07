@@ -2,7 +2,7 @@ import { parse } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { FinancialRecord } from '../../services/paymentService';
 import { dateFormat } from '../../utils/dateFormat';
-import { PaymentMethods, ServiceTypes } from '../../utils/types';
+import { PaymentMethods, ServiceTypes } from '../../utils/types/types';
 import { Button } from '../ui/Button';
 import Input from '../ui/Input';
 import InputCurrency from '../ui/InputCurrency';

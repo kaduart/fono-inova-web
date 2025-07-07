@@ -1,5 +1,5 @@
 import { Box, Modal } from "@mui/material";
-import { IDoctor } from "../../utils/types";
+import { IDoctor } from "../../utils/types/types";
 import DoctorForm from "./DoctorForm";
 
 interface DoctorFormModalProps {
@@ -10,7 +10,7 @@ interface DoctorFormModalProps {
     openCloseModalResponse: boolean
 };
 const DoctorFormModal = ({ open, openCloseModalResponse, onClose, onSubmitDoctor, selectedDoctor }: DoctorFormModalProps) => {
-    
+
     return (
         <Modal open={open} onClose={onClose}>
             <Box>
