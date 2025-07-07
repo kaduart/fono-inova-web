@@ -10,10 +10,12 @@ type InputCurrencyProps = {
 };
 
 export const InputCurrency = ({ name, value, onChange, disabled, className }: InputCurrencyProps) => {
+    const safeValue = typeof value === 'number' && !isNaN(value) ? value : 0;
+
     const formattedValue = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
-    }).format(value);
+    }).format(safeValue);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // Remove todos os caracteres não numéricos
