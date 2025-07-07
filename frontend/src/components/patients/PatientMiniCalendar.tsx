@@ -13,7 +13,7 @@ interface PatientMiniCalendarProps {
 }
 
 export const PatientMiniCalendar: React.FC<PatientMiniCalendarProps> = ({ appointments }) => {
-    const events = appointments.map(appt => ({
+    const events = appointments?.map(appt => ({
         title: appt?.doctorId?.fullName || '-',
         date: appt.date,
         backgroundColor:
