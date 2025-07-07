@@ -68,7 +68,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         try {
             const packageData = {
                 patientId: patient._id,
-               doctorId: formData.doctorId, // Corrigido para professional
+                doctorId: formData.doctorId, // Corrigido para professional
                 sessionType: formData.sessionType,
                 sessionValue: formData.sessionValue || 0,
                 /*totalSessions: formData.totalSessions || 0, */
@@ -239,14 +239,13 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                             </div>
                             <div className="form-group">
                                 <label className="block text-sm font-medium mb-1">Valor por Sessão (R$)</label>
+
                                 <InputCurrency
                                     name="sessionValue"
-                                    value={formData.sessionValue}
+                                    value={formData.sessionValue || 0 }
                                     onChange={handleChange}
                                     min="0"
-                                    step="0.01"
-
-                                />
+                                    step="0.01" />
                             </div>
 
 

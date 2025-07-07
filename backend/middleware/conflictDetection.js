@@ -84,6 +84,7 @@ export const getAvailableTimeSlots = async (req, res) => {
 
         const SESSION_DURATION_MINUTES = 40;
         const BLOCKED_DOCTOR_ID = '684072213830f473da1b0b0b';
+        const EXTENDED_DOCTOR_ID = '684072213830f473da1b0b0b'; // ID do médico que terá horário estendido
 
         // Função para criar datas no fuso UTC-3
         const toUtc3 = (h, m) => {
@@ -91,8 +92,22 @@ export const getAvailableTimeSlots = async (req, res) => {
             return new Date(Date.UTC(year, month - 1, day, h + 3, m));
         };
 
+        // Determinar dia da semana (0 = Domingo, 1 = Segunda, ..., 6 = Sábado)
+        const dateObj = new Date(date);
+        const dayOfWeek = dateObj.getDay(); // 2 = Terça-feira
+
+        // Definir horário final baseado no dia da semana e médico
+        let endHour = 18;
+        let endMinute = 0;
+
+        // Extender horário para 18:40 nas terças-feiras para o médico específico
+        if (doctorId === EXTENDED_DOCTOR_ID && dayOfWeek === 1) {
+            endHour = 18;
+            endMinute = 40;
+        }
+
         const start = toUtc3(8, 0); // 08:00
-        const end = toUtc3(18, 0);  // 18:00
+        const end = toUtc3(endHour, endMinute); // 18:00 ou 18:40
 
         // Busca TODOS os agendamentos do dia
         const existingAppointments = await Appointment.find({
@@ -104,8 +119,12 @@ export const getAvailableTimeSlots = async (req, res) => {
         const slots = [];
         let current = new Date(start);
 
-        while ((current.getTime() + SESSION_DURATION_MINUTES * 60000) <= end.getTime()) {
-            slots.push(new Date(current));
+        while (current.getTime() <= end.getTime()) {
+            // Verificar se o slot cabe dentro do horário final
+            const slotEndTime = current.getTime() + SESSION_DURATION_MINUTES * 60000;
+            if (slotEndTime <= end.getTime()) {
+                slots.push(new Date(current));
+            }
             current = new Date(current.getTime() + SESSION_DURATION_MINUTES * 60000);
         }
 
@@ -123,7 +142,7 @@ export const getAvailableTimeSlots = async (req, res) => {
             // Verifica conflito apenas com agendamentos ATIVOS
             const hasConflict = existingAppointments.some(app => {
                 // Ignora agendamentos cancelados
-                if (app.status === 'cancelado') return false;
+                if (app.operationalStatus === 'cancelled') return false;
 
                 const appStartTime = new Date(app.date).getTime();
                 const appEndTime = appStartTime + SESSION_DURATION_MINUTES * 60000;
@@ -149,7 +168,6 @@ export const getAvailableTimeSlots = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
-
 
 
 
