@@ -25,9 +25,13 @@ import signupRoutes from './routes/signup.js';
 import specialtyRouter from './routes/specialty.js';
 import UserRoutes from './routes/user.js';
 
-dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, './.env') });
+
+console.log("✅ MONGODB_URI lida do .env:", process.env.MONGODB_URI);
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
