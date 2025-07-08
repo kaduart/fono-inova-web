@@ -1,19 +1,16 @@
 // components/patient/PatientMiniCalendar.tsx
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
-
-interface Appointment {
-    date: string;
-    reason: string;
-    status: string;
-}
+import { Appointment } from '../../utils/types';
 
 interface PatientMiniCalendarProps {
     appointments: Appointment[];
 }
 
 export const PatientMiniCalendar: React.FC<PatientMiniCalendarProps> = ({ appointments }) => {
-    const events = appointments?.map(appt => ({
+    console.log('🚀 ~ appointments', appointments);
+
+    const events = appointments.map(appt => ({
         title: appt?.doctorId?.fullName || '-',
         date: appt.date,
         backgroundColor:

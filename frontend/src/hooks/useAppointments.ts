@@ -1,13 +1,13 @@
 // hooks/useAppointments.ts
-import { useState, useCallback } from 'react';
-import { 
+import { useCallback, useState } from 'react';
+import {
     appointmentService,
-    CreateAppointmentParams,
-    UpdateAppointmentParams,
     AvailableSlotsParams,
-    PaginationParams,
     CancelParams,
-    RescheduleParams
+    CreateAppointmentParams,
+    PaginationParams,
+    RescheduleParams,
+    UpdateAppointmentParams
 } from '../services/appointmentService';
 import { IAppointment } from '../utils/types/types';
 
@@ -22,7 +22,6 @@ export const useAppointments = () => {
         setError(null);
         try {
             const response = await appointmentService.list(params);
-            console.log('response', response);
             setAppointments(response.data);
         } catch (err) {
             setError('Falha ao carregar agendamentos');
@@ -52,7 +51,7 @@ export const useAppointments = () => {
             setLoading(true);
             setError(null);
             const response = await appointmentService.update(id, data);
-            setAppointments(prev => prev.map(a => 
+            setAppointments(prev => prev.map(a =>
                 a._id === id ? { ...a, ...response.data } : a
             ));
             return response.data;
@@ -77,10 +76,11 @@ export const useAppointments = () => {
         }
     }, []);
 
-    const getAppointment = useCallback(async (id: string) => {
+    const fetchAppointmentsByPatient = useCallback(async (id: string) => {
         try {
             setLoading(true);
             const response = await appointmentService.get(id);
+            console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', response)
             return response.data;
         } catch (error) {
             setError('Falha ao buscar agendamento');
@@ -110,7 +110,7 @@ export const useAppointments = () => {
             setLoading(true);
             setError(null);
             const response = await appointmentService.confirm(id, { notes });
-            setAppointments(prev => prev.map(a => 
+            setAppointments(prev => prev.map(a =>
                 a._id === id ? { ...a, ...response.data } : a
             ));
             return response.data;
@@ -127,7 +127,7 @@ export const useAppointments = () => {
             setLoading(true);
             setError(null);
             const response = await appointmentService.complete(id);
-            setAppointments(prev => prev.map(a => 
+            setAppointments(prev => prev.map(a =>
                 a._id === id ? { ...a, ...response.data } : a
             ));
             return response.data;
@@ -144,7 +144,7 @@ export const useAppointments = () => {
             setLoading(true);
             setError(null);
             const response = await appointmentService.cancel(id, data);
-            setAppointments(prev => prev.map(a => 
+            setAppointments(prev => prev.map(a =>
                 a._id === id ? { ...a, ...response.data } : a
             ));
             return response.data;
@@ -161,7 +161,7 @@ export const useAppointments = () => {
             setLoading(true);
             setError(null);
             const response = await appointmentService.reschedule(id, data);
-            setAppointments(prev => prev.map(a => 
+            setAppointments(prev => prev.map(a =>
                 a._id === id ? { ...a, ...response.data } : a
             ));
             return response.data;
@@ -182,7 +182,7 @@ export const useAppointments = () => {
         createAppointment,
         updateAppointment,
         deleteAppointment,
-        getAppointment,
+        fetchAppointmentsByPatient,
         getAvailableSlots,
         confirmAppointment,
         completeAppointment,

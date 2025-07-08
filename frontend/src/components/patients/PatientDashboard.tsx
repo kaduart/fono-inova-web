@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
+import { useAppointments } from '../../hooks/useAppointments';
+import { usePatients } from '../../hooks/usePatients';
 import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
-import { IDoctors, IPatient, ScheduleAppointment } from '../../utils/types/types';
+import { IDoctors, IPatient } from '../../utils/types/types';
 import AppointmentHistoryModal from '../AppointmentHistoryModal';
 import StatusBadge from '../StatusBadge';
 import { Button } from '../ui/Button';
@@ -17,7 +19,6 @@ import { PatientAvailablesCard } from './PatientAvailablesCard';
 import PatientEvolution from './PatientEvolution';
 import { PatientMiniCalendar } from './PatientMiniCalendar';
 import TherapyPackagesSummary from './TherapyPackagesSummary';
-import SpecialtyTimeline from '../SpecialtyTimeline';
 
 const initialPatientState: IPatient = {
   fullName: '',
@@ -82,8 +83,44 @@ export default function PatientDashboard() {
   const [showHistory, setShowHistory] = useState(false);
   const [allAppointments, setAllAppointments] = useState([]);
   const [evaluationToEdit, setEvaluationToEdit] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const { patients, fetchPatients, loading: patientsLoading } = usePatients();
+  const {
+    fetchAppointmentsByPatient,
+    /*   fetchAppointments,
+      createAppointment,
+      updateAppointment,
+      completeAppointment,
+      cancelAppointment,
+      getAvailableSlots */
+  } = useAppointments();
+
+  useEffect(() => {
+    fetchPatients();
+  }, [fetchPatients]);
+
+  useEffect(() => {
+    if (patientId) {
+      fetchAppointmentsByPatient(patientId);
+    }
+  }, [patientId]);
+
+  useEffect(() => {
+    setAppointments(appointments);
+  }, [appointments]);
+
+  useEffect(() => {
+    if (patients.length > 0 && patientId) {
+      const patient = patients.find(p => p._id === patientId);
+      if (patient) {
+        setPatientInfo(patient);
+      }
+    }
+  }, [patients, patientId]);
+
 
   const fetchPatientProfile = async () => {
     try {
@@ -135,7 +172,7 @@ export default function PatientDashboard() {
 
   const today = new Date().toISOString().split('T')[0]; // formato 'YYYY-MM-DD'
 
-  const todaysAppointments = appointments.filter((appt) => {
+  const todaysAppointments = appointments?.filter((appt) => {
     const apptDate = new Date(appt.date).toISOString().split('T')[0];
     return apptDate === today;
   });
@@ -160,20 +197,21 @@ export default function PatientDashboard() {
     }
   };
 
-  const fetchAppointments = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${BASE_URL}/appointments/patient/${patientId}`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setAppointments(data);
+  /*   const fetchAppointments = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`${BASE_URL}/appointments/patient/${patientId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log('🚀 ~ lista agendamento patient', data);
+          setAppointments(data);
+        }
+      } catch (error) {
+        console.error('Erro ao buscar agendamentos:', error);
       }
-    } catch (error) {
-      console.error('Erro ao buscar agendamentos:', error);
-    }
-  };
+    }; */
 
 
   const handleOpenHistory = () => {
@@ -187,13 +225,13 @@ export default function PatientDashboard() {
         navigate('/login');
         return;
       }
-
+  
       const response = await fetch(BASE_URL + '/patient/appointment/completed-cancelled', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         setCompletedAppointments(data);
@@ -320,7 +358,6 @@ export default function PatientDashboard() {
   useEffect(() => {
     fetchPatientProfile();
     fetchDoctors();
-    fetchAppointments();
     fetchCareTeam();
     fetchPrescriptions();
     fetchCompletedAppointments();
@@ -348,12 +385,12 @@ export default function PatientDashboard() {
 
   /* const handleEvaluationSubmit = async (formData: any) => {
     const token = localStorage.getItem("token");
-
+  
     if (!patientInfo?._id || !token) {
       toast.error("Paciente ou token não encontrado.");
       return;
     }
-
+  
     const result = await createEvaluation(
       {
         patientId: patientInfo._id,
@@ -364,7 +401,7 @@ export default function PatientDashboard() {
         time: formData.time,
       },
     );
-
+  
     if (result.success) {
       toast.success("Avaliação criada com sucesso!");
     }
@@ -467,7 +504,7 @@ export default function PatientDashboard() {
         </Card>
         <div>
           <h2>Histórico do Paciente</h2>
-        {/* to do aqui  <SpecialtyTimeline patientId={patientId} /> */}
+          {/* to do aqui  <SpecialtyTimeline patientId={patientId} /> */}
         </div>
       </div>
 
@@ -483,7 +520,10 @@ export default function PatientDashboard() {
 
         />
       </div>
-      <PatientMiniCalendar appointments={appointments} />
+      {appointments && (
+        <PatientMiniCalendar appointments={appointments} />
+      )
+      }
 
       <Card>
         <CardHeader icon={FileText}>

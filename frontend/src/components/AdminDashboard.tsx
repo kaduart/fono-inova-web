@@ -211,7 +211,7 @@ export default function AdminDashboard() {
 
   const {
     patients,
-    fetchPatients: updatePatients,
+    fetchPatients,
     updatePatient,
     createPatient
   } = usePatients();
@@ -234,9 +234,8 @@ export default function AdminDashboard() {
 
 
   useEffect(() => {
-    updatePatients(true);
-    fetchTotalPatients();
-  }, [updatePatients]);
+    fetchPatients();
+  }, [fetchPatients]);
 
 
   useEffect(() => {
