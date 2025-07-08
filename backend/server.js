@@ -46,9 +46,12 @@ app.use(express.json());
 app.use(cookieParser());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Could not connect to MongoDB', err));
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000, // 30 segundos
+  socketTimeoutMS: 45000,
+});
 
 // Routes
 app.use('/api/signup', signupRoutes);
