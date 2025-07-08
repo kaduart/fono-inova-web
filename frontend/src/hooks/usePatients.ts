@@ -1,26 +1,43 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { patientService } from '../services/patientService';
 import { IPatient } from '../utils/types/types';
 
 export const usePatients = () => {
+
     const [patients, setPatients] = useState<IPatient[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    // 1. Função de fetch com logs detalhados
     const fetchPatients = useCallback(async () => {
+
         setLoading(true);
         setError(null);
+
         try {
-            // Busca pacientes com todos os dados incluídos
+
             const data = await patientService.fetchAll();
+
             setPatients(data);
         } catch (err) {
+            console.error('❌ Erro ao buscar pacientes:', err);
             setError('Falha ao carregar pacientes');
-            console.error('Erro ao buscar pacientes:', err);
         } finally {
+
             setLoading(false);
         }
     }, []);
+
+    // 2. useEffect com logs
+    useEffect(() => {
+
+        fetchPatients();
+
+        // Log adicional para garantir que não há erros silenciosos
+        fetchPatients().catch(err => {
+            console.error('🚨 ERRO NÃO TRATADO no fetchPatients:', err);
+        });
+    }, [fetchPatients]);
 
     const createPatient = async (IPatient: IPatient) => {
         try {
