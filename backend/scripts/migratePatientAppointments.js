@@ -5,7 +5,7 @@ import { updatePatientAppointments } from '../utils/appointmentUpdater.js';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Conectado ao MongoDB'))
     .catch(err => console.error('Erro de conexão:', err));
 

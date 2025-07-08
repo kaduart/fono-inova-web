@@ -1,13 +1,13 @@
+import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import Appointment from '../models/Appointment.js';
-import dotenv from 'dotenv';
 
 dotenv.config();
 
 async function runMigration() {
     try {
         // Conectar ao MongoDB
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
@@ -20,7 +20,7 @@ async function runMigration() {
 
         // Etapa 2: Migrar status clínicos/operacionais
         const appointments = await Appointment.find({});
-        
+
         let migratedCount = 0;
         let skippedCount = 0;
         const errors = [];
@@ -29,10 +29,10 @@ async function runMigration() {
             try {
                 // Registrar estado original
                 const originalStatus = appointment.status;
-                
+
                 // Mapear para novos status
                 let operationalStatus, clinicalStatus;
-                
+
                 if (appointment.status === 'concluído') {
                     operationalStatus = 'pago';
                     clinicalStatus = 'concluído';

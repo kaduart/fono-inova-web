@@ -6,7 +6,7 @@ import Appointment from '../../models/Appointment.js';
 dotenv.config();
 
 async function flagInvalidDates() {
-  await mongoose.connect(process.env.MONGODB_URI);
+  await mongoose.connect(process.env.MONGO_URI);
 
   // 1. Encontrar documentos com datas anteriores a 1900
   const filter = {

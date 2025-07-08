@@ -16,12 +16,12 @@ dotenv.config();
 async function deleteAllPatientData() {
     try {
         // Verificar se a URI está definida
-        if (!process.env.MONGODB_URI) {
-            throw new Error('❌ MONGODB_URI não definida no arquivo .env');
+        if (!process.env.MONGO_URI) {
+            throw new Error('❌ MONGO_URI não definida no arquivo .env');
         }
 
         // Conectar ao MongoDB
-        await mongoose.connect(process.env.MONGODB_URI);
+        await mongoose.connect(process.env.MONGO_URI);
         console.log('✅ Conectado ao MongoDB');
 
         // Substitua pelo ID do paciente desejado

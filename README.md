@@ -45,7 +45,7 @@ The Hospital Management System is a web application designed to streamline hospi
 ### ENV file setup
 ```.env
 PORT=your_port
-MONGODB_URI=your_mongodb_uri
+MONGO_URI=your_MONGO_URI
 JWT_SECRET=your_jwt_secret
 ```
 

@@ -30,7 +30,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 
-console.log("✅ MONGODB_URI lida do .env:", process.env.MONGODB_URI);
+console.log("✅ MONGO_URI lida do .env:", process.env.MONGO_URI);
 
 
 const app = express();
@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 30000, // 30 segundos
