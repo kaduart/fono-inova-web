@@ -111,13 +111,7 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
             };
 
             await packageService.updateSession(packId, payload);
-            /* let updatedPackage;
-            if (modalAction === 'edit') {
-            } else {
-                updatedPackage = await packageService.useSession(packId, payload);
-            }
-
-
+          
             toast.success(modalAction === 'edit' ? "Sessão atualizada!" : "Sessão registrada!");
             fetchBasicPackages();
 
