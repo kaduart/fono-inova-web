@@ -117,107 +117,93 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-    try {
-        const { doctorId, patientId, status, startDate, endDate } = req.query;
-        const filters = {};
+  try {
+    const { doctorId, patientId, status, startDate, endDate } = req.query;
+    const filters = {};
 
-        // Construção dos filtros
-        if (doctorId) filters.doctor = doctorId; // Alterado de doctorId para doctor
-        if (patientId) filters.patient = patientId;
-        if (status) filters.status = status;
-        if (startDate && endDate) {
-            filters.createdAt = {
-                $gte: new Date(startDate),
-                $lte: new Date(endDate)
-            };
-        }
-
-        const payments = await Payment.find(filters)
-            .populate({
-                path: 'patient',
-                select: 'fullName email phoneNumber',
-                model: 'Patient'
-            })
-            .populate({
-                path: 'doctor',
-                select: 'fullName specialty',
-                model: 'Doctor'
-            })
-            .populate({
-                path: 'package',
-                select: 'name totalSessions',
-                model: 'Package'
-            })
-            .populate({
-                path: 'session',
-                select: 'date status',
-                model: 'Session'
-            })
-            .sort({ createdAt: -1 })
-            .lean();
-
-        if (!payments || payments.length === 0) {
-            return res.status(404).json({
-                success: false,
-                message: 'Nenhum pagamento encontrado'
-            });
-        }
-
-        const totals = await Payment.aggregate([
-            { $match: filters },
-            {
-                $group: {
-                    _id: null,
-                    totalReceived: {
-                        $sum: {
-                            $cond: [{ $eq: ["$status", "paid"] }, "$amount", 0]
-                        }
-                    },
-                    totalPending: {
-                        $sum: {
-                            $cond: [{ $eq: ["$status", "pending"] }, "$amount", 0]
-                        }
-                    }
-                }
-            }
-        ]);
-
-        const formattedTotals = totals[0] || {
-            totalReceived: 0,
-            totalPending: 0
-        };
-
-        // Formatação adicional
-        const formattedPayments = payments.map(payment => ({
-            ...payment,
-            patientName: payment.patientId?.fullName || 'Não informado',
-            doctorName: payment.doctorId?.fullName || 'Não informado', // Alterado de doctorId para doctor
-            doctorSpecialty: payment.doctorId?.specialty || 'Não informada', // Alterado de doctorId para doctor
-            packageName: payment.package?.name || null,
-            formattedDate: payment.createdAt.toLocaleDateString('pt-BR'),
-            formattedAmount: `R$ ${payment.amount.toFixed(2)}`
-        }));
-
-        res.status(200).json({
-            success: true,
-            count: formattedPayments.length,
-            data: formattedPayments,
-            totals: {
-                received: formattedTotals.totalReceived,
-                pending: formattedTotals.totalPending
-            },
-            count: formattedPayments.length
-        });
-
-    } catch (err) {
-        console.error('Erro ao buscar pagamentos:', err);
-        res.status(500).json({
-            success: false,
-            message: 'Erro ao buscar pagamentos',
-            error: process.env.NODE_ENV === 'development' ? err.message : undefined
-        });
+    if (doctorId) filters.doctor = doctorId;
+    if (patientId) filters.patient = patientId;
+    if (status) filters.status = status;
+    if (startDate && endDate) {
+      filters.createdAt = {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate),
+      };
     }
+
+    const payments = await Payment.find(filters)
+      .populate({
+        path: 'patient',
+        select: 'fullName email phoneNumber',
+        model: 'Patient',
+      })
+      .populate({
+        path: 'doctor',
+        select: 'fullName specialty',
+        model: 'Doctor',
+      })
+      .populate({
+        path: 'package',
+        select: 'name totalSessions',
+        model: 'Package',
+      })
+      .populate({
+        path: 'session',
+        select: 'date status',
+        model: 'Session',
+      })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    const validPayments = payments.filter(
+      (p) => p.session?.status !== 'canceled'
+    );
+
+    if (validPayments.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'Nenhum pagamento encontrado',
+      });
+    }
+
+    const totalReceived = validPayments.reduce((acc, p) => {
+      return p.status === 'paid' ? acc + p.amount : acc;
+    }, 0);
+
+    const totalPending = validPayments.reduce((acc, p) => {
+      return p.status === 'pending' ? acc + p.amount : acc;
+    }, 0);
+
+    const formattedPayments = validPayments.map((payment) => ({
+      ...payment,
+      patientName: payment.patient?.fullName || 'Não informado',
+      doctorName: payment.doctor?.fullName || 'Não informado',
+      doctorSpecialty: payment.doctor?.specialty || 'Não informada',
+      packageName: payment.package?.name || null,
+      formattedDate: new Date(payment.createdAt).toLocaleDateString('pt-BR'),
+      formattedAmount: `R$ ${payment.amount.toFixed(2)}`,
+    }));
+
+    return res.status(200).json({
+      success: true,
+      count: formattedPayments.length,
+      data: formattedPayments,
+      totals: {
+        received: totalReceived,
+        pending: totalPending,
+      },
+    });
+  } catch (err) {
+    console.error('Erro ao buscar pagamentos:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao buscar pagamentos',
+      error:
+        process.env.NODE_ENV === 'development' ? err.message : undefined,
+    });
+  }
 });
+
 
 // Atualizar o status de pagamento e sincronizar o status do pacot
 router.patch('/:id', auth, async (req, res) => {
