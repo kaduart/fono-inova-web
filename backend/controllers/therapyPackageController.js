@@ -55,9 +55,9 @@ export const packageOperations = {
 
             // Validar data inicial
             const startDateObj = new Date(dateTime);
-            if (startDateObj.getTime() < Date.now()) {
-                throw new Error("A data e hora devem ser futuras");
-            }
+            /*  if (startDateObj.getTime() < Date.now()) {
+                 throw new Error("A data e hora devem ser futuras");
+             } */
 
             if (isWeekend(startDateObj)) {
                 throw new Error("A data inicial não pode ser no fim de semana");

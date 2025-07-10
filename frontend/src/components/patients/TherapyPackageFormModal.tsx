@@ -81,6 +81,10 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
             return;
         }
+        if (formData.totalPaid < totalValuePackage) {
+            toast.error('💳 O valor do pacote deve ser quitado integralmente no ato da contratação.');
+            return
+        }
 
         // Validação adicional se um valor foi pago
         if ((formData.totalPaid || 0) > 0 && !formData.paymentMethod) {
@@ -144,6 +148,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         if (formData.sessionsPerWeek < 1 || formData.sessionsPerWeek > 5) {
             newErrors.sessionsPerWeek = 'Frequência inválida';
         }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
