@@ -3,9 +3,9 @@ import toast from 'react-hot-toast';
 import packageService, { CreatePackageParams } from '../../services/packageService';
 import { mergeDateAndTime } from '../../utils/dateFormat';
 import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types/types';
+import { Button } from '../ui/Button';
 import InputCurrency from '../ui/InputCurrency';
 import { Select } from '../ui/Select';
-import { Button } from '../ui/Button';
 
 type Props = {
     initialData: ITherapyPackage | null;
@@ -119,7 +119,6 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
     };
 
     useEffect(() => {
-        const sessionValue = formData.durationMonths > 3 ? 180 : 200;
         let totalSessions = 0;
 
         if (formData.durationMonths && formData.sessionsPerWeek) {
@@ -128,18 +127,14 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
 
         setFormData(prev => ({
             ...prev,
-            sessionValue: sessionValue,
+            sessionValue: formData.sessionValue,
             totalSessions: totalSessions,
             totalPaid: formData.totalPaid || 0,
         }));
-        setTotalValuePackage(totalSessions * sessionValue)
+        setTotalValuePackage(totalSessions * formData.sessionValue)
 
-        /*   return {
-           totalSessions,
-           sessionValue
-       }; */
 
-    }, [formData.durationMonths, formData.sessionsPerWeek]);
+    }, [formData.durationMonths, formData.sessionsPerWeek, formData.sessionValue]);
 
     const validate = () => {
         const newErrors = {};
