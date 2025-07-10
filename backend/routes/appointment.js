@@ -28,14 +28,10 @@ router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
     try {
         const doctorId = req.body.doctorId || req.user.id;
         console.log(doctorId, `doooooooo`);
-        /*   const requiredFields = ['patientId', 'date', 'doctor'];
-          const missingFields = requiredFields.filter(field => !req.body[field]);
-          if (missingFields.length > 0) {
-              return res.status(400).json({
-                  error: 'Campos obrigatórios faltando', [field]: req.body[field],
-                  missing: missingFields
-              });
-          } */
+
+        if (req.user.role === 'patient') {
+            return res.status(403).json({ error: 'Acesso negado' });
+        }
 
         // 1. Buscar paciente sem restrição de médico (admin pode acessar qualquer paciente)
         const patient = await Patient.findById(req.body.patientId);
@@ -154,7 +150,6 @@ router.get('/', auth, async (req, res) => {
 
             const duration = appointment.duration || 40;
             const endDate = new Date(startDate.getTime() + duration * 60000);
-
             return {
                 id: appointment._id.toString(),
                 title: `${appointment.reason || 'Consulta'} - ${appointment.doctor?.fullName || 'Médico'}`,

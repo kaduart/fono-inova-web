@@ -27,10 +27,8 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
         key: "nextAppointment",
         direction: "ascending", // 'ascending' = mais próximas primeiro
     });
-    console.log('patients', patients)
     // Função para ordenar os pacientes
     const sortedPatients = useMemo(() => {
-        console.log('patients', patients)
         const sortablePatients = [...patients];
         if (patients.length > 0) {
             setLoading(false)

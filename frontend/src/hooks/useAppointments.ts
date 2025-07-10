@@ -80,7 +80,6 @@ export const useAppointments = () => {
         try {
             setLoading(true);
             const response = await appointmentService.get(id);
-            console.log('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk', response)
             return response.data;
         } catch (error) {
             setError('Falha ao buscar agendamento');

@@ -60,6 +60,10 @@ const packageSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Session'
     }],
+    date: {
+        type: Date,
+        required: [true, 'Data é obrigatória']
+    },
     sessionsDone: {
         type: Number,
         default: 0

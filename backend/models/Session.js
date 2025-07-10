@@ -43,13 +43,24 @@ const sessionSchema = new mongoose.Schema({
         enum: ['dinheiro', 'pix', 'cartão'],
         default: null
     },
+    session: String,
     status: {
         type: String,
         enum: {
             values: ['pending', 'completed', 'canceled', 'scheduled'],
             message: 'Status inválido para sessão'
         },
-        default: 'pending'
+    },
+    confirmedAbsence: {
+        type: Boolean,
+        default: null,
+        validate: {
+            validator: function (value) {
+                // Campo obrigatório apenas quando status é 'canceled'
+                return this.status !== 'canceled' || value !== null;
+            },
+            message: 'confirmedAbsence é obrigatório para sessões canceladas'
+        }
     },
     notes: { type: String },
 }, {
@@ -58,36 +69,71 @@ const sessionSchema = new mongoose.Schema({
     toObject: { virtuals: true }
 });
 
-sessionSchema.post('save', async function (doc) {
-    const Package = mongoose.model('Package');
-    const Appointment = mongoose.model('Appointment');
-    console.log('doccccccccccccccccccc', doc)
-    // Atualiza o pacote se a sessão foi completada
-    if (doc.isModified('operationalStatus') && doc.status === 'completed') {
-        try {
-            await Package.findOneAndUpdate(
-                { _id: doc.package },
-                { $inc: { sessionsDone: 1 } }
-            );
-        } catch (error) {
-            console.error('Erro ao atualizar o pacote:', error);
-        }
-    }
+// models/Session.js
+sessionSchema.post('save', async function (doc, next) {
+    try {
+        const Package = mongoose.model('Package');
+        const Appointment = mongoose.model('Appointment');
 
-    // Sincroniza dados no Appointment
-    if (doc.appointmentId && doc.appointmentId !== null) {
-        try {
-            await Appointment.findByIdAndUpdate(doc.appointmentId, {
+        // Verifica se a transação ainda está ativa
+        const session = doc.$session();
+        const inTransaction = session && session.inTransaction();
+
+        // Atualiza o pacote se a sessão foi completada
+        if (doc.isModified('status') && doc.status === 'completed') {
+            const updateOp = Package.findOneAndUpdate(
+                { _id: doc.package },
+                { $inc: { sessionsDone: 1 } },
+                { session: inTransaction ? session : null }
+            );
+
+            if (inTransaction) {
+                await updateOp;
+            } else {
+                updateOp.exec();
+            }
+        }
+
+        // Sincroniza dados no Appointment
+        if (doc.appointmentId) {
+            const appointmentUpdate = {
                 date: doc.date,
                 doctor: doc.doctor,
                 notes: doc.notes,
-                operationalStatus: doc.operationalStatus,
-                sessionType: doc.sessionType, // se estiver no model Session
+                sessionType: doc.sessionType,
                 'payment.method': doc.paymentMethod
-            });
-        } catch (error) {
-            console.error('Erro ao sincronizar agendamento:', error);
+            };
+
+            // Mapeia CORRETAMENTE o status da sessão para o status do appointment
+            if (doc.status === 'completed') {
+                // Valores CORRETOS para operationalStatus
+                appointmentUpdate.operationalStatus = 'pago'; // ou 'confirmado' conforme necessário
+                appointmentUpdate.clinicalStatus = 'concluído';
+            } else if (doc.status === 'canceled') {
+                appointmentUpdate.operationalStatus = 'cancelado';
+                appointmentUpdate.clinicalStatus = 'faltou';
+            } else {
+                appointmentUpdate.operationalStatus = 'agendado';
+                appointmentUpdate.clinicalStatus = 'pendente';
+            }
+
+            const updateOp = Appointment.findByIdAndUpdate(
+                doc.appointmentId,
+                appointmentUpdate,
+                { session: inTransaction ? session : null }
+            );
+
+            if (inTransaction) {
+                await updateOp;
+            } else {
+                updateOp.exec();
+            }
         }
+
+        next();
+    } catch (error) {
+        console.error('Erro no hook post-save:', error);
+        next(error);
     }
 });
 

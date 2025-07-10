@@ -142,7 +142,7 @@ export const getAvailableTimeSlots = async (req, res) => {
             // Verifica conflito apenas com agendamentos ATIVOS
             const hasConflict = existingAppointments.some(app => {
                 // Ignora agendamentos cancelados
-                if (app.operationalStatus === 'cancelled') return false;
+                if (app.operationalStatus === 'cancelado') return false;
 
                 const appStartTime = new Date(app.date).getTime();
                 const appEndTime = appStartTime + SESSION_DURATION_MINUTES * 60000;

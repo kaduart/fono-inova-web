@@ -5,7 +5,7 @@ import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { Box, Paper, Typography } from '@mui/material';
 import { Plus } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OPERATIONAL_STATUS_CONFIG, StatusConfig } from '../../services/appointmentService';
 import { IAppointment, IDoctor, IPatient, SelectedEvent } from '../../utils/types/types';
 import ScheduleModal from './ScheduleModal';
@@ -22,6 +22,7 @@ interface EnhancedCalendarProps {
     onEditAppointment: (id: string, data: any) => Promise<void>;
     onFetchAvailableSlots: (params: { doctorId: string; date: string }) => Promise<string[]>;
     statusConfig?: StatusConfig;
+    openModalAppointment?: boolean;
 }
 
 const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
@@ -33,6 +34,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     onCancelAppointment,
     onCompleteAppointment,
     onEditAppointment,
+    openModalAppointment,
     onFetchAvailableSlots,
     statusConfig = OPERATIONAL_STATUS_CONFIG
 }) => {
@@ -52,6 +54,12 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         status: 'agendado'
     });
 
+    useEffect(() => {
+        if (openModalAppointment) {
+            setOpenSchedule(false);
+        }
+    }, [openModalAppointment]);
+
     const getStatusConfig = (status: string) => {
         if (statusConfig[status]) return statusConfig[status];
         if (OPERATIONAL_STATUS_CONFIG[status]) return OPERATIONAL_STATUS_CONFIG[status];
@@ -62,9 +70,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         };
     };
 
-    console.log('appointmenSSSSSS', appointments);
     const events = appointments?.map(appointment => {
-        console.log('appointmentxxxxxxxxxx', appointment);
         const startDate = new Date(appointment.start || appointment.date);
         const endDate = appointment.end
             ? new Date(appointment.end)

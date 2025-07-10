@@ -66,6 +66,7 @@ export type UseSessionParams = {
   durationMonths?: number;
   sessionsPerWeek?: number;
   status?: 'pending' | 'completed' | 'active';
+  confirmedAbsence?: boolean;
 };
 
 export const packageService = {
@@ -100,15 +101,6 @@ export const packageService = {
     });
   },
 
-  // Operações com Sessões
-  createSession: async (packageId: string, data: CreateSessionParams) => {
-    return API.post<ISession>(`/packages/${packageId}/sessions`, data);
-  },
-
-  updateSession: async (packageId: string, data: ISession) => {
-    return API.put<ISession>(`/packages/${packageId}/sessions/${data.sessionId}`, data);
-  },
-
   // Operações com Pagamentos
   createPayment: async (packageId: string, data: CreatePaymentParams) => {
     return API.post<IPayment>(`/packages/${packageId}/payments`, data);
@@ -138,7 +130,17 @@ export const packageService = {
     return API.get<IPayment[]>(`/packages/${packageId}/payments`);
   },
 
+  // Operações com Sessões
+  createSession: async (packageId: string, data: CreateSessionParams) => {
+    return API.post<ISession>(`/packages/${packageId}/sessions`, data);
+  },
 
+  updateSession: async (packageId: string, data: ISession) => {
+    if (data.status !== 'canceled') {
+      data.confirmedAbsence = null;
+    }
+    return API.put<ISession>(`/packages/${packageId}/sessions/${data.sessionId}`, data);
+  },
   // Operação para "usar" uma sessão e atualizar pagamento
   useSession: async (packageId: string, data: UseSessionParams) => {
     return API.patch<ISession>(`/packages/${packageId}/use-session`, data);

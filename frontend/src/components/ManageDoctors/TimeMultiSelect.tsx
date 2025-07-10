@@ -9,7 +9,6 @@ interface TimeMultiSelectProps {
   patients: IPatient[];
   selectedDoctorId?: string;
   onChange: (selected: string[]) => void;
-
   onSubmit: (data: {
     time: string,
     isBookingModalOpen: boolean

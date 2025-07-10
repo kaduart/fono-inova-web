@@ -21,24 +21,26 @@ export default function TherapyPackageCard({
   onUseSession,
   onCardClick = () => { },
 }: Props) {
+
   if (!pack) return null;
+
   const [modalAction, setModalAction] = useState<ModalAction>(null);
   const [isUseSessionModalOpen, setIsUseSessionModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState<ISession>({
     _id: '',
     date: '',
-    professional: '',
+    doctorId: '',
     package: '',
     sessionType: 'fonoaudiologia',
     status: 'pending',
     paymentAmount: 0,
     paymentMethod: 'dinheiro',
     notes: '',
-    isPaid: false
+    isPaid: true,
+    confirmedAbsence: false
   });
   const [loading, setLoading] = useState(false);
-  console.log('pack', pack);
   const openModalWithAction = (action: 'edit' | 'use', session?: ISession) => {
     setModalAction(action);
     setSelectedSession(session || null);

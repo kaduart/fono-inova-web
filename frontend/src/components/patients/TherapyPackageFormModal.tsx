@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packageService, { CreatePackageParams } from '../../services/packageService';
+import { mergeDateAndTime } from '../../utils/dateFormat';
 import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types/types';
 import InputCurrency from '../ui/InputCurrency';
 import { Select } from '../ui/Select';
+import { Button } from '../ui/Button';
 
 type Props = {
     initialData: ITherapyPackage | null;
@@ -17,6 +19,8 @@ type Props = {
 const initialFormState = {
     doctorId: '',
     sessionType: '',
+    date: '',
+    time: '',
     totalSessions: 1,
     sessionValue: 0,
     paymentType: 'full',
@@ -26,12 +30,24 @@ const initialFormState = {
     sessionsPerWeek: 0,
 };
 
+const combineDateTime = (date: string, time: string): Date | null => {
+    if (!date || !time) return null;
+    const [hours, minutes] = time.split(':').map(Number);
+    const combinedDate = new Date(date);
+    combinedDate.setHours(hours, minutes, 0, 0);
+    return combinedDate;
+};
+
 export default function TherapyPackageFormModal({ initialData, patient, doctors, onClose, onSubmit }: Props) {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState(initialFormState);
     const [remainingBalance, setRemainingBalance] = useState(0);
     const [totalValuePackage, setTotalValuePackage] = useState(0);
     const [errors, setErrors] = useState({});
+    const [dateTime, setDateTime] = useState<{ date: string; time: string }>({
+        date: '',
+        time: ''
+    });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
@@ -41,6 +57,13 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         }));
     };
 
+    const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setDateTime(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
     useEffect(() => {
         const newBalance = Math.max(
@@ -52,7 +75,8 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
     const handleSave = async (e) => {
         e.preventDefault();
         if (!validate()) return;
-        console.log('handleSave', formData);
+        const appointmentDate = mergeDateAndTime(dateTime.date, dateTime.time);
+
         if (!formData.sessionType || !formData.paymentType || !formData.doctorId) { // Adicionado doctorId
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
             return;
@@ -77,9 +101,11 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                 paymentMethod: formData.paymentMethod, // Enviar método de pagamento
                 sessionsPerWeek: +formData.sessionsPerWeek, // Enviar método de pagamento
                 durationMonths: formData.durationMonths, // Enviar método de pagamento
-                date: null,
+                dateTime: appointmentDate,
+                time: dateTime.time
             };
 
+            console.log('packageData', packageData);
             await packageService.createPackage(packageData as CreatePackageParams);
 
             onSubmit();
@@ -129,7 +155,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg p-6 w-full max-w-xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg p-6 w-full max-w-3xl space-y-4 max-h-[90vh] overflow-y-auto">
                 <h2 className="text-xl font-semibold border-b pb-2">
                     {initialData ? 'Editar Pacote' : 'Novo Pacote'}
                 </h2>
@@ -206,6 +232,35 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 ))}
                             </Select>
                         </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {/* Campo Data */}
+                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Data *
+                                </label>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={dateTime.date}
+                                    onChange={handleDateTimeChange}
+                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+
+                            {/* Campo Hora */}
+                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Hora *
+                                </label>
+                                <input
+                                    type="time"
+                                    name="time"
+                                    value={dateTime.time}
+                                    onChange={handleDateTimeChange}
+                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Coluna 2 */}
@@ -242,7 +297,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
 
                                 <InputCurrency
                                     name="sessionValue"
-                                    value={formData.sessionValue || 0 }
+                                    value={formData.sessionValue || 0}
                                     onChange={handleChange}
                                     min="0"
                                     step="0.01" />
@@ -305,19 +360,19 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
 
                 {/* Botões */}
                 <div className="flex justify-end gap-2 pt-4 border-t">
-                    <button
+                    <Button
                         onClick={onClose}
-                        className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+                        className="px-4 py-2 text-gray-700  rounded-lg hover:bg-gray-200 transition-colors"
                     >
                         Cancelar
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                         onClick={handleSave}
                         className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                         disabled={remainingBalance < 0}
                     >
                         {loading ? 'Salvando...' : 'Salvar'}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

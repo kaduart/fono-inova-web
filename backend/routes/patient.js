@@ -121,7 +121,6 @@ router.get('/', auth, async (req, res) => {
           select: 'date status doctor reason',
           populate: { path: 'doctor', select: 'fullName specialty' }
         });
-      console.log(patients, 'patients')
     } catch (dbSortError) {
       console.warn('Falha na ordenação no BD, usando ordenação em memória:', dbSortError);
 
@@ -157,7 +156,6 @@ router.delete('/:id', validateId, auth, async (req, res) => {
 router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('id', req.params)
 
     // Buscar o paciente e verificar se existe
     const patient = await Patient.findById(id);
@@ -181,8 +179,6 @@ router.get('/:id/appointments-summary', validateId, auth, async (req, res) => {
     // Obter o último agendamento passado e o próximo futuro
     const lastAppointment = pastAppointments.at(-1) || null;
     const nextAppointment = futureAppointments.at(0) || null;
-    console.log('nextAppointment', nextAppointment)
-    console.log('lastAppointment', lastAppointment)
     // Responder com as informações do último e próximo agendamento
     res.json({ lastAppointment, nextAppointment });
 

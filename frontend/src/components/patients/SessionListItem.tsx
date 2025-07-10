@@ -1,4 +1,4 @@
-import { AlertTriangle, BookOpenText, CalendarCheck, CheckCircle, Clock4, Edit, Plus, XCircle } from "lucide-react";
+import { AlertTriangle, BookOpenText, CalendarCheck, CheckCircle, Clock4, Edit, XCircle } from "lucide-react";
 import { formatValidDate } from "../../utils/dateFormat";
 import { ISession } from '../../utils/types/types';
 
@@ -18,7 +18,7 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
         : { dateStr: '--/--/----', timeStr: '--:--' };
 
     const isOverdue = session.status === 'pending' && isDateValid && sessionDate < new Date();
-    console.log(session, `session`)
+
     return (
         <li className={`p-3 mb-3 rounded-lg grid grid-cols-[1fr_auto] gap-4 items-center 
             ${getStatusColor(session.status, isOverdue)} group`}
@@ -31,6 +31,22 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
                     <span className="text-blue-600 font-semibold">
                         {sessionNumber}ª Sessão
                     </span>
+                    <div className="text-sm text-gray-700 flex items-center gap-2 mb-1">
+
+                        {/* Falta justificada (para canceladas) */}
+                        {session.status === 'canceled' && (
+                            <div className="text-xs text-red-500 mt-2 flex items-center gap-1">
+                                <span>Falta justificada:</span>
+                                <span className="font-medium text-gray-700">
+                                    {session.confirmedAbsence ?
+                                        <b>Sim</b> :
+                                        <b>Não</b>
+                                    }
+                                </span>
+                            </div>
+                        )}
+
+                    </div>
                     {isOverdue && (
                         <span className="text-red-500 text-sm">(Atrasada)</span>
                     )}
@@ -43,61 +59,51 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
                             onEdit(session);
                         }}
                         className="text-blue-600 hover:bg-blue-50 p-1 rounded"
-                        title="Editar sessão"
+                        title="Atualizar sessão"
                     >
                         <Edit className="w-4 h-4" />
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onUse(session);
-                        }}
-                        className="text-green-600 hover:bg-green-50 p-1 rounded"
-                        title="Registrar sessão"
-                    >
-                        <Plus className="w-4 h-4" />
                     </button>
                 </div>
             </div>
             <hr className="w-full mt-0 border-gray-300" />
 
             <div className="col-span-full">
-                <div className="flex items-center gap-2 text-sm">
-                    {isDateValid ? (
-                        <>
-                            <span className="font-medium">{dateStr}</span>
-                            <span className="text-gray-400">às</span>
-                            <span className="text-gray-600">{timeStr}</span>
-                        </>
-                    ) : (
-                        <span className="text-gray-400">Data não informada</span>
-                    )}
+                <div className="flex justify-between items-center gap-2 text-sm">
+                    <div className="flex justify-end items-center mt-2">
+                        {isDateValid ? (
+                            <>
+                                <span className="font-medium">{dateStr}</span>
+                                <span className="text-gray-400">às</span>
+                                <span className="text-gray-600">{timeStr}</span>
+                            </>
+                        ) : (
+                            <span className="text-gray-400">Data não informada</span>
+                        )}
+                    </div>
+                    {/* Status e pagamento */}
+                    <div className="flex justify-end items-center mt-2">
+                        <StatusBadge status={session.status} isPaid={session.isPaid} />
+                        {session.status === 'completed' && !session.isPaid && (
+                            <div className="text-red-500 text-xs flex items-center gap-1">
+                                <AlertTriangle className="w-4 h-4" />
+                                <span>Pagamento Pendente</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
-
-                {session.notes && (
-                    <div className="text-xs text-gray-500 mt-1 italic">
-                        📌 Obs: {session.notes}
-                    </div>
-                )}
             </div>
-
-            <div className="col-span-full flex justify-between items-center mt-2">
-                <StatusBadge status={session.status} isPaid={session.isPaid} />
-
-                {session.status === 'completed' && !session.isPaid && (
-                    <div className="text-red-500 text-xs flex items-center gap-1">
-                        <AlertTriangle className="w-4 h-4" />
-                        <span>Pagamento Pendente</span>
-                    </div>
-                )}
-            </div>
+            {session.notes && (
+                <div className="text-xs text-gray-500 mt-1 italic">
+                    📌 Obs: {session.notes}
+                </div>
+            )}
         </li>
     );
 };
 
 // Função auxiliar para cores de fundo
 const getStatusColor = (status: string, isOverdue: boolean) => {
-    console.log(status, 'cor do card');
+
     if (isOverdue) return 'bg-orange-50 hover:bg-orange-100';
 
     switch (status) {

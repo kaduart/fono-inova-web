@@ -158,6 +158,7 @@ export default function AdminDashboard() {
   const [hospitalCapacity] = useState(150);
   //const [appointments, setAppointments] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+  const [openModalAppointment, setOpenModalAppointement] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
     patient: '',
     doctor: '',
@@ -226,8 +227,6 @@ export default function AdminDashboard() {
     getAvailableSlots
   } = useAppointments();
 
-  console.log('patients ----------------------> ', patients)
-
   useEffect(() => {
     fetchAppointments();
   }, [fetchAppointments]);
@@ -236,10 +235,6 @@ export default function AdminDashboard() {
   useEffect(() => {
     fetchPatients();
   }, [fetchPatients]);
-
-
-  useEffect(() => {
-  }, [paymentModalOpen]);
 
   const formatDate = (date: Date) => {
     const day = String(date.getDate()).padStart(2, '0');
@@ -258,7 +253,6 @@ export default function AdminDashboard() {
   }, [isModalOpen, patientToEdit]);
 
   const handleDateClick = (arg: DateClickArg) => {
-    console.log('Data clicada:', arg.date);
     // Abrir modal de agendamento com a data selecionada
     setAppointmentData({
       ...defaultAppointmentData,
@@ -270,7 +264,6 @@ export default function AdminDashboard() {
   // Handler para novo agendamento
   const handleNewAppointment = async (appointmentData: IAppointment) => {
     try {
-      console.log('Novo agendamento:', appointmentData);
       const payload: CreateAppointmentParams = {
         patientId: appointmentData.patientId,
         doctorId: appointmentData.doctorId,
@@ -284,6 +277,10 @@ export default function AdminDashboard() {
 
       await createAppointment(payload);
       toast.success('Agendamento criado com sucesso!');
+      fetchAppointments();
+
+      setOpenModalAppointement(false);
+
     } catch (error) {
       toast.error('Erro ao criar agendamento');
       console.error(error);
@@ -304,6 +301,7 @@ export default function AdminDashboard() {
 
       await cancelAppointment(appointmentId, cancelParams);
       toast.success('Agendamento cancelado!');
+      fetchAppointments();
     } catch (error) {
       toast.error('Erro ao cancelar agendamento');
       console.error(error);
@@ -320,6 +318,8 @@ export default function AdminDashboard() {
 
       await completeAppointment(appointmentId);
       toast.success('Agendamento marcado como concluído!');
+      fetchAppointments();
+
     } catch (error) {
       toast.error('Erro ao completar agendamento');
       console.error(error);
@@ -340,8 +340,6 @@ export default function AdminDashboard() {
   // Handler para buscar horários disponíveis
   const handleFetchAvailableSlots = async (payload: AvailableSlotsParams): Promise<string[]> => {
     try {
-
-      console.log('Buscando horários disponíveis...', payload);
 
       const slots = await getAvailableSlots(payload);
       return slots;
@@ -396,10 +394,10 @@ export default function AdminDashboard() {
       setPaymentModalOpen(false);
       setPaymentContext({ mode: 'create' });
 
-      // Atualizar dados se necessário
-      if (activeTab === 'Dashboard') {
-        updatePatients(true);
-      }
+      /*  // Atualizar dados se necessário
+       if (activeTab === 'Dashboard') {
+         updatePatient(true);
+       } */
       loadPayments();
 
     } catch (error) {
@@ -408,7 +406,6 @@ export default function AdminDashboard() {
   };
 
   const handleMarkAsPaid = (payment: FinancialRecord) => {
-    console.log('clicou em MARCAR como pago', 'payment', payment);
     setPaymentContext({
       mode: 'edit',
       payment
@@ -420,7 +417,6 @@ export default function AdminDashboard() {
     //  setLoading(true);
     try {
       const res = await getPayments();
-      console.log('res', res);
       setAllPayments(res.data.data);
       //setFilteredPayments(res.data.data); // Inicializa com todos os pagamentos
     } catch (error) {
@@ -432,7 +428,6 @@ export default function AdminDashboard() {
   };
 
   const handleCancelPayment = async (paymentId: string) => {
-    console.log('clicou handle CANCELAR', 'payment', paymentId);
 
     try {
       await updatePayment(paymentId, { status: 'canceled' });
@@ -443,7 +438,6 @@ export default function AdminDashboard() {
     }
   };
   const handleUpdatePayment = async (data: any) => {
-    console.log('clicou handle EDITAR', 'payment', data);
 
     try {
       if (paymentContext.payment?._id) {
@@ -1017,6 +1011,7 @@ export default function AdminDashboard() {
         onCompleteAppointment={handleCompleteAppointment}
         onEditAppointment={handleEditAppointment}
         onFetchAvailableSlots={handleFetchAvailableSlots}
+        openModalAppointment={openModalAppointment}
       />
     );
   };

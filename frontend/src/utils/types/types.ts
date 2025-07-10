@@ -70,6 +70,7 @@ export interface ISession {
     paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
     notes?: string;
     isPaid?: boolean;
+    confirmedAbsence?: boolean | null;
 }
 
 export const DURATION_OPTIONS = Array.from({ length: 12 }, (_, i) => i + 1);

@@ -12,7 +12,7 @@ export default function AppointmentList({ appointments, onUpdateStatus }: Appoin
     if (appointments.length === 0) {
         return <p className="text-gray-500 text-center py-4">Nenhum agendamento encontrado</p>;
     }
-    console.log('appointment list', appointments);
+
     return (
         <div className="space-y-4">
             {appointments.map(appointment => (

@@ -15,7 +15,6 @@ const EvolutionNotesForm = ({ patientId }) => {
         try {
             // Simular envio para API
             await new Promise(resolve => setTimeout(resolve, 1000));
-            console.log('Notas salvas:', { patientId, notes });
             setNotes('');
             // Adicionar feedback para o usuário
         } catch (error) {

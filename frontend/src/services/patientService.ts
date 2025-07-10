@@ -31,7 +31,6 @@ export const patientService = {
      */
     fetchAll: async (withAppointments = false): Promise<any[]> => {
         const patients = await API.get<IPatient[]>('/patients').then(res => res.data);
-        console.log('fetching appointments')
         if (!withAppointments) {
             return patients;
         }
@@ -73,7 +72,6 @@ export const patientService = {
         lastAppointment: any;
         nextAppointment: any;
     }> => API.get(`/patients/${id}/appointments-summary`).then(res => {
-        console.log('fetching appointments')
         return res.data
     }),
 

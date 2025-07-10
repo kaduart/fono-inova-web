@@ -85,6 +85,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({
         };
 
         onSave(updatedFormState);
+        onClose();
     };
 
     if (!open) return null;

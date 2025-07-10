@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 
 export type Appointment = {
     id: string;
@@ -13,7 +13,7 @@ export type Appointment = {
     dataHora: string; // Optional, used for display purposes
     createdAt?: string; // Optional, used for tracking creation time
     updatedAt?: string; // Optional, used for tracking last update time
-    
+
 };
 
 export const DEFAULT_APPOINTMENT = {
@@ -30,6 +30,8 @@ export const useTempAppointments = () => {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
 
     const addAppointment = (appt: Appointment) => {
+        console.log('apppintemtn useeeetemp', appt);
+
         setAppointments((prev) => [...prev, appt]);
     };
 
@@ -39,3 +41,4 @@ export const useTempAppointments = () => {
 
     return { appointments, addAppointment, removeAppointment };
 };
+ */

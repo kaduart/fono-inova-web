@@ -91,7 +91,6 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
     };
 
     const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
-        console.log('sessionData', sessionData);
         try {
             validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
             const payload = {
@@ -104,29 +103,21 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                 sessionType: sessionData.sessionType,
                 specialty: sessionData.sessionType,
                 sessionId: sessionData._id,
+                confirmedAbsence: sessionData.confirmedAbsence,
                 payment: {
                     amount: Number(sessionData.paymentAmount) || 0,
                     method: sessionData.paymentMethod || 'dinheiro'
                 },
             };
 
-            let updatedPackage;
+            await packageService.updateSession(packId, payload);
+            /* let updatedPackage;
             if (modalAction === 'edit') {
-                updatedPackage = await packageService.updateSession(packId, payload);
             } else {
                 updatedPackage = await packageService.useSession(packId, payload);
             }
 
-            // Atualização otimizada do estado
-            /*     setPackages(prev => prev.map(pkg =>
-                    console.log('pkgdddddddddddddddddddddddddddddddddddddd', pkg),
-                    pkg?._id === id ? {
-                        ...updatedPackage,
-                        sessions: updatedPackage.sessions,
-                        sessionsDone: updatedPackage.sessionsDone,
-                        balance: updatedPackage.balance
-                    } : pkg
-                )); */
+            console.log('sessionData no pai', updatedPackage); */
 
             toast.success(modalAction === 'edit' ? "Sessão atualizada!" : "Sessão registrada!");
             fetchBasicPackages();

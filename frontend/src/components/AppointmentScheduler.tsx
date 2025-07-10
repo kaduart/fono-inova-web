@@ -1,4 +1,4 @@
-import { Container, Typography } from '@mui/material';
+/* import { Container, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { BASE_URL } from '../constants/constants';
@@ -49,14 +49,15 @@ const AppointmentScheduler: React.FC = () => {
 
     // Salva no servidor e atualiza o estado local
     const handleSave = async (data: Appointment | Omit<Appointment, 'id'>) => {
+        console.log('apppintemtn scheduleeee', data);
         try {
             if ('id' in data && data.id) {
                 // edição
-                await axios.put(`${BASE_URL}/appointments/${data.id}`, data);
+                //await axios.put(`${BASE_URL}/appointments/${data.id}`, data);
                 updateAppointment(data as Appointment);
             } else {
                 // criação
-                const response = await axios.post(`${BASE_URL}/appointments`, data);
+              //  const response = await axios.post(`${BASE_URL}/appointments`, data);
                 addAppointment(response.data);
             }
         } catch (err) {
@@ -92,4 +93,4 @@ const AppointmentScheduler: React.FC = () => {
     );
 };
 
-export default AppointmentScheduler;
+export default AppointmentScheduler; */
