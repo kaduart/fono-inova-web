@@ -10,7 +10,7 @@ const DynamicEvolutionForm: React.FC<DynamicEvolutionFormProps> = ({ appointment
   switch(appointment.specialty) {
     case 'neuroped':
       return <NeuropedEvolutionForm appointment={appointment} />;
-    case 'fono':
+    case 'fonoaudiologia':
       return <FonoEvolutionForm appointment={appointment} />;
     default:
       return (

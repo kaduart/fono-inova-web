@@ -71,10 +71,24 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     };
 
     const events = appointments?.map(appointment => {
-        const startDate = new Date(appointment.start || appointment.date);
-        const endDate = appointment.end
-            ? new Date(appointment.end)
-            : new Date(startDate.getTime() + (appointment.duration || 60) * 60 * 1000);
+        // Converter a string ISO para objeto Date
+        const dateObj = new Date(appointment.date);
+
+        // Extrair horas e minutos do campo time
+        const [hours, minutes] = appointment.time.split(':').map(Number);
+
+        // Criar data completa combinando date e time
+        const startDate = new Date(
+            dateObj.getFullYear(),
+            dateObj.getMonth(),
+            dateObj.getDate(),
+            hours,
+            minutes
+        );
+
+        // Calcular data de término
+        const duration = appointment.duration || 60;
+        const endDate = new Date(startDate.getTime() + duration * 60 * 1000);
 
         const operationalStatus = appointment.operationalStatus || 'agendado';
         const config = getStatusConfig(operationalStatus);
@@ -82,8 +96,8 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         return {
             id: appointment._id || appointment.id,
             title: `${appointment.patient?.fullName || 'Paciente'} - ${appointment.doctor?.fullName || 'Profissional'}`,
-            start: startDate,
-            end: endDate,
+            start: startDate,  // Objeto Date unificado
+            end: endDate,      // Objeto Date unificado
             extendedProps: {
                 patient: appointment.patient,
                 doctor: appointment.doctor,

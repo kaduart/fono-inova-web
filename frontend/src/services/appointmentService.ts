@@ -110,7 +110,7 @@ export const appointmentService = {
     },
 
     get: async (id: string) => {
-        return API.get<IAppointmentResponse>(`/appointments?patient=${id}`);
+        return API.get<IAppointmentResponse>(`/appointments/patient/${id}`);
     },
 
     update: async (id: string, data: UpdateAppointmentParams) => {
@@ -169,7 +169,6 @@ export const appointmentService = {
 
     // Consultas
     getAvailableSlots: async (payload: AvailableSlotsParams) => {
-        console.log('payload do getAvailableSlots', payload);
         return API.get<any>(`/appointments/available-slots?doctorId=${payload.doctorId}&date=${payload.date}`);
     },
 

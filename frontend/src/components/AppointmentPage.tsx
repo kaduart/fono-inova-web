@@ -29,7 +29,7 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ open, mode, initialData, 
 
     const validate = (): boolean => {
         const newErrors: Partial<Record<keyof Appointment, string>> = {};
-        if (!formState.profissional) newErrors.profissional = 'Profissional obrigatório';
+        if (!formState.doctor) newErrors.doctor = 'Profissional obrigatório';
         if (!formState.dataHora) newErrors.dataHora = 'Data e hora obrigatórias';
         if (!formState.sessionType) newErrors.sessionType = 'Tipo de sessão obrigatório';
         if (!formState.reason) newErrors.reason = 'Motivo obrigatório';
@@ -50,11 +50,11 @@ const ScheduleModal: React.FC<ScheduleModalProps> = ({ open, mode, initialData, 
                 <form onSubmit={handleSubmit}>
                     <Box display="flex" flexDirection="column" gap={2} mt={1}>
                         <TextField
-                            label="Profissional"
-                            value={formState.profissional}
-                            onChange={handleChange('profissional')}
-                            error={!!errors.profissional}
-                            helperText={errors.profissional}
+                            label="doctor"
+                            value={formState.doctor}
+                            onChange={handleChange('doctor')}
+                            error={!!errors.doctor}
+                            helperText={errors.doctor}
                             fullWidth
                         />
                         <TextField

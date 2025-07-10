@@ -49,7 +49,6 @@ router.post('/add-admin', auth, async (req, res) => {
 });
 
 /* router.post('/add', auth, async (req, res) => {
-  console.log('REQ BACK', req);
 
   if (req.user.role !== 'admin') {
     return res.status(403).json({ error: 'Not authorized to add patients' });

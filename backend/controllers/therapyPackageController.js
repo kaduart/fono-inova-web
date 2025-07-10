@@ -41,6 +41,11 @@ export const packageOperations = {
                 throw new Error("Campos obrigatórios faltando: paciente, profissional, tipo de sessão ou data inicial");
             }
 
+            const hour = parseInt(time.split(':')[0]);
+            if (hour < 8 || hour > 19) {
+                throw new Error("Horário fora do expediente (8:00 às 19:00)");
+            }
+
             if (amountPaid && parseFloat(amountPaid) > 0 && !paymentMethod) {
                 throw new Error("Método de pagamento é obrigatório se um valor foi pago");
             }
@@ -51,6 +56,11 @@ export const packageOperations = {
 
             if (sessionsPerWeek < 1 || sessionsPerWeek > 5) {
                 throw new Error("Sessões por semana inválidas (1-5)");
+            }
+
+
+            if (!time.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/)) {
+                throw new Error("Formato de horário inválido. Use HH:mm");
             }
 
             // Validar data inicial
@@ -115,11 +125,32 @@ export const packageOperations = {
 
             // Criar agendamentos para cada sessão
             for (const session of createdSessions) {
+                // Verificar se já existe agendamento
+                const existing = await db.appointments.findOne({
+                    "patient": newAppointment.patient,
+                    "doctor._id": newAppointment.doctor._id,
+                    "date": {
+                        $gte: new Date(newAppointment.date.setHours(0, 0, 0, 0)),
+                        $lt: new Date(newAppointment.date.setHours(23, 59, 59, 999))
+                    },
+                    "time": newAppointment.time
+                });
+
+                if (existing) {
+                    throw new Error("Já existe um agendamento para este paciente/médico no mesmo horário");
+                }
+
+                if (existing) {
+                    await mongoSession.abortTransaction();
+                    const patientName = await User.findById(session.patient).select('name');
+                    const doctorName = await User.findById(session.doctor).select('name');
+                    throw new Error(`Conflito de agendamento: ${patientName.name} já tem sessão com ${doctorName.name} em ${session.date.toLocaleDateString()} às ${time}`);
+                }
                 const appointment = new Appointment({
                     patient: session.patient,
                     doctor: session.doctor,
                     date: session.date,
-                    duration: 40, // Duração padrão em minutos
+                    duration: 40,
                     specialty: session.sessionType,
                     operationalStatus: 'agendado',
                     clinicalStatus: 'pendente',
@@ -129,8 +160,6 @@ export const packageOperations = {
                 });
 
                 await appointment.save({ session: mongoSession });
-
-                // Atualiza a sessão com o ID do agendamento
                 session.appointmentId = appointment._id;
                 await session.save({ session: mongoSession });
             }
@@ -293,7 +322,6 @@ export const packageOperations = {
             }
         },
         search: async (req, res) => {
-            console.log('req.query', req.query);
             try {
                 const { status, type, startDate, endDate } = req.query;
                 const filters = {};

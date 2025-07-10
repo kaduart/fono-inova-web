@@ -54,7 +54,11 @@ const paymentSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
         index: true
-    }
+    },
+    appointment: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Appointment'
+    },
 }, {
     timestamps: true,
     toObject: { virtuals: true },
@@ -153,6 +157,62 @@ paymentSchema.post('save', async function (doc) {
     } catch (error) {
         console.error('Erro no pós-save do pagamento:', error);
     }
+});
+
+paymentSchema.pre('save', async function (next) {
+    // Não processar para pagamentos de pacotes
+    if (this.serviceType === 'package') {
+        return next();
+    }
+
+    // Só processar se não tiver appointment associado
+    if (!this.appointment) {
+        try {
+            // Buscar appointment correspondente
+            const filter = {
+                patient: this.patient,
+                doctor: this.doctor,
+                date: {
+                    $gte: new Date(this.createdAt.getTime() - 3 * 24 * 60 * 60 * 1000),
+                    $lte: new Date(this.createdAt.getTime() + 3 * 24 * 60 * 60 * 1000)
+                },
+                payment: { $exists: false } // Só appointments sem pagamento
+            };
+
+            // Critérios adicionais por tipo de serviço
+            if (this.serviceType === 'evaluation') {
+                filter.specialty = { $exists: true };
+                filter.operationalStatus = 'confirmado';
+            } else if (this.serviceType === 'session') {
+                filter.clinicalStatus = { $in: ['pendente', 'concluído'] };
+            }
+
+            const appointment = await mongoose.model('Appointment').findOne(filter);
+
+            if (appointment) {
+                this.appointment = appointment._id;
+
+                // Atualização segura do appointment
+                await mongoose.model('Appointment').findOneAndUpdate(
+                    { _id: appointment._id },
+                    {
+                        $set: {
+                            payment: this._id,
+                            // Atualiza status apenas para sessões avulsas
+                            ...(this.serviceType === 'session' && { operationalStatus: 'pago' })
+                        }
+                    }
+                );
+            }
+        } catch (error) {
+            // Logar erro sem interromper o fluxo
+            console.error('Erro na associação automática:', {
+                paymentId: this._id,
+                error: error.message
+            });
+        }
+    }
+    next();
 });
 
 const Payment = mongoose.model('Payment', paymentSchema);

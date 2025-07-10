@@ -30,7 +30,6 @@ export const useTempAppointments = () => {
     const [appointments, setAppointments] = useState<Appointment[]>([]);
 
     const addAppointment = (appt: Appointment) => {
-        console.log('apppintemtn useeeetemp', appt);
 
         setAppointments((prev) => [...prev, appt]);
     };

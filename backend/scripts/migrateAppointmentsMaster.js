@@ -15,7 +15,7 @@ async function runMigration() {
         // Etapa 1: Fix missing specialties
         const specialtyFix = await Appointment.updateMany(
             { specialty: { $exists: false } },
-            { $set: { specialty: 'fono' } }
+            { $set: { specialty: 'fonoaudiologia' } }
         );
 
         // Etapa 2: Migrar status clínicos/operacionais

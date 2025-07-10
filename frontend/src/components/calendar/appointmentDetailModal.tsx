@@ -37,7 +37,6 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
         clinicalStatus: ''
     });
 
-    console.log('event', event);
     useEffect(() => {
         if (event) {
             const eventDate = event.date ? new Date(event.date).toISOString().split('T')[0] : '';

@@ -27,7 +27,6 @@ router.get('/available-slots', auth, getAvailableTimeSlots);
 router.post('/', auth, checkAppointmentConflicts, async (req, res) => {
     try {
         const doctorId = req.body.doctorId || req.user.id;
-        console.log(doctorId, `doooooooo`);
 
         if (req.user.role === 'patient') {
             return res.status(403).json({ error: 'Acesso negado' });
@@ -142,7 +141,18 @@ router.get('/', auth, async (req, res) => {
             .lean();
 
         const calendarEvents = appointments.map(appointment => {
-            const startDate = appointment.date ? new Date(appointment.date) : new Date();
+            // Cria objeto Date completo combinando date e time
+            const dateOnly = appointment.date ? new Date(appointment.date) : new Date();
+            const [hours, minutes] = appointment.time.split(':').map(Number);
+
+            const startDate = new Date(
+                dateOnly.getFullYear(),
+                dateOnly.getMonth(),
+                dateOnly.getDate(),
+                hours,
+                minutes
+            );
+
             if (isNaN(startDate.getTime())) {
                 console.error('Data inválida para agendamento:', appointment._id);
                 return null;
@@ -150,11 +160,17 @@ router.get('/', auth, async (req, res) => {
 
             const duration = appointment.duration || 40;
             const endDate = new Date(startDate.getTime() + duration * 60000);
+
             return {
                 id: appointment._id.toString(),
                 title: `${appointment.reason || 'Consulta'} - ${appointment.doctor?.fullName || 'Médico'}`,
                 start: startDate.toISOString(),
                 end: endDate.toISOString(),
+
+                // Mantém os campos separados conforme necessário
+                date: appointment.date,  // Data completa como está no banco
+                time: appointment.time,  // Horário no formato "HH:mm"
+
                 status: appointment.status,
                 specialty: appointment.specialty,
                 description: appointment.reason,
@@ -226,9 +242,6 @@ router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res)
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-
-        console.log('req.params', req.params)
-        console.log('req.user', req.user)
         // 2. Verificar permissões
         if (req.user.role === 'doctor' && appointment.doctor.toString() !== req.user.id) {
             return res.status(403).json({ error: 'Acesso não autorizado' });
@@ -418,11 +431,16 @@ router.patch('/:id/complete', auth, async (req, res) => {
 
 // Busca todos os agendamentos de um paciente
 router.get('/patient/:id', validateId, auth, async (req, res) => {
-    const patientId = req.params.id;
+    const patient = req.params.id;
     try {
-        const appointments = await Appointment.find({ patientId })
-            .populate('doctor')
-            .populate('patient');
+        const appointments = await Appointment.find({ patient }).populate([
+            { path: 'doctor', select: 'fullName crm' },
+            { path: 'patient', select: 'fullName phone' },
+            { path: 'payment' },
+            { path: 'history.changedBy', select: 'name email role' }
+        ]);
+
+
         res.json(appointments);
     } catch (error) {
         if (error.name === 'ValidationError') {

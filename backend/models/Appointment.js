@@ -46,6 +46,11 @@ const appointmentSchema = new mongoose.Schema({
     type: Number,
     default: 40
   },
+  payment: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Payment',
+    
+  },
   specialty: {
     type: String,
     required: true,
@@ -63,6 +68,12 @@ appointmentSchema.pre('findOneAndUpdate', function (next) {
   this.options.context = 'query';
   next();
 });
+
+appointmentSchema.index(
+  { patient: 1, doctor: 1, date: 1, time: 1 },
+  { unique: true, name: 'unique_appointment' }
+);
+
 /* appointmentSchema.pre('save', function (next) {
   // Sincroniza status legado com novo modelo
   if (this.isModified('operationalStatus') || this.isModified('clinicalStatus')) {

@@ -64,7 +64,6 @@ const AppointmentsSection: React.FC<AppointmentsSectionProps> = ({ futureAppoint
         setSelectedAppointment(arg.event.extendedProps.appointment);
         setIsModalOpen(true);
     };
-    console.log('selectedAppointment', selectedAppointment)
     // Funções de formatação
     const formatFullDate = (dateString: string) => {
         try {

@@ -109,7 +109,6 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                 time: dateTime.time
             };
 
-            console.log('packageData', packageData);
             await packageService.createPackage(packageData as CreatePackageParams);
 
             onSubmit();

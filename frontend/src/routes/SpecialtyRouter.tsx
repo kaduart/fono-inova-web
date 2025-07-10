@@ -11,7 +11,7 @@ const SpecialtyRouter = () => {
                 element={
                     specialty === 'neuroped' ?
                         <NeuropedEvolutionPage /> :
-                        specialty === 'fono' ?
+                        specialty === 'fonoaudiologia' ?
                             <FonoEvolutionPage /> :
                             <EvolutionPage />
                 }

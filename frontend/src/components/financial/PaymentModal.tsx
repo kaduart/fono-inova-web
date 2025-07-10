@@ -25,7 +25,6 @@ export const PaymentModal = ({
     payment,
     onPaymentSuccess
 }: PaymentModalProps) => {
-    console.log('patient', patient)
     const [isLoading, setIsLoading] = useState(false);
     const [paymentData, setPaymentData] = useState<any>(() => {
         if (payment) {
@@ -68,7 +67,6 @@ export const PaymentModal = ({
     }, [open, patient]);
 
     const handleSubmit = async () => {
-        console.log('paymentData', paymentData)
         if (!paymentData.patient._id) {
             toast.error('Selecione um paciente');
             return;

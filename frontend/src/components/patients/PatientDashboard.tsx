@@ -1,15 +1,16 @@
 import axios from 'axios';
-import { Calendar, Calendar as CalendarIcon, ChevronDown, Clock, FileText, Home, Hospital, LineChart, UserCircle, Users } from 'lucide-react';
+import { Activity, Calendar, Calendar as CalendarIcon, ChevronDown, FileText, Home, Hospital, LineChart, Plus, UserCircle, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { toast } from "react-hot-toast";
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
 import { useAppointments } from '../../hooks/useAppointments';
 import { usePatients } from '../../hooks/usePatients';
+import { AvailableSlotsParams, CreateAppointmentParams } from '../../services/appointmentService';
 import { createEvaluation, deleteEvaluation, getEvaluationsByPatient, updateEvaluation } from '../../services/evaluationService';
-import { IDoctors, IPatient } from '../../utils/types/types';
+import { IAppointment, IDoctors, IPatient } from '../../utils/types/types';
 import AppointmentHistoryModal from '../AppointmentHistoryModal';
-import StatusBadge from '../StatusBadge';
+import ScheduleModal from '../AppointmentPage';
 import { Button } from '../ui/Button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
 import Input from '../ui/Input';
@@ -75,19 +76,27 @@ export default function PatientDashboard() {
     reason: ''
   });
   const [availableSlots, setAvailableSlots] = useState([]);
-  const [appointments, setAppointments] = useState<ScheduleAppointment[]>([]);
+  //const [appointments, setAppointments] = useState<ScheduleAppointment[]>([]);
   const [careTeam, setCareTeam] = useState([]);
   const [prescriptions, setPrescriptions] = useState([]);
   const [completedAppointments, setCompletedAppointments] = useState([]);
   const [evolutions, setEvolutions] = useState([]);
   const [showHistory, setShowHistory] = useState(false);
-  const [allAppointments, setAllAppointments] = useState([]);
+  const [allAppointmentsById, setAllAppointmentsById] = useState([]);
   const [evaluationToEdit, setEvaluationToEdit] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [openSchedule, setOpenSchedule] = useState(false);
 
+  const [formData, setFormData] = useState({
+    patientId: '',
+    doctorId: '',
+    date: '',
+    time: '',
+    reason: '',
+    status: 'agendado'
+  });
   const navigate = useNavigate();
 
-  const { patients, fetchPatients, loading: patientsLoading } = usePatients();
   const {
     fetchAppointmentsByPatient,
     /*   fetchAppointments,
@@ -98,19 +107,67 @@ export default function PatientDashboard() {
       getAvailableSlots */
   } = useAppointments();
 
-  useEffect(() => {
-    fetchPatients();
-  }, [fetchPatients]);
 
   useEffect(() => {
     if (patientId) {
-      fetchAppointmentsByPatient(patientId);
-    }
-  }, [patientId]);
+      const fetch = async () => {
+        try {
+          const response = await fetchAppointmentsByPatient(patientId);
+          setAllAppointmentsById(response);
+        } catch (err) {
+          console.error('Erro ao buscar agendamentos por paciente:', err);
+        }
+      };
 
-  useEffect(() => {
+      fetch();
+    }
+  }, [patientId, fetchAppointmentsByPatient]);
+  const [mode, setMode] = useState<'create' | 'edit'>('create');
+
+  const {
+    patients,
+    /*   fetchPatients,
+      updatePatient,
+      createPatient */
+  } = usePatients();
+
+  const {
+    appointments,
+    fetchAppointments,
+    createAppointment,
+    /* updateAppointment,
+    completeAppointment,
+    cancelAppointment,*/
+    getAvailableSlots
+  } = useAppointments();
+  const handleNewAppointment = async (appointmentData: IAppointment) => {
+    try {
+      const payload: CreateAppointmentParams = {
+        patientId: appointmentData.patientId,
+        doctorId: appointmentData.doctorId,
+        date: appointmentData.date,
+        time: appointmentData.time,
+        reason: appointmentData.reason,
+        specialty: appointmentData.sessionType,
+        clinicalStatus: 'pendente',
+        operationalStatus: 'agendado'
+      };
+
+      await createAppointment(payload);
+      toast.success('Agendamento criado com sucesso!');
+      fetchAppointments();
+
+      setOpenSchedule(false);
+
+    } catch (error) {
+      toast.error('Erro ao criar agendamento');
+      console.error(error);
+    }
+  };
+
+  /* useEffect(() => {
     setAppointments(appointments);
-  }, [appointments]);
+  }, [appointments]); */
 
   useEffect(() => {
     if (patients.length > 0 && patientId) {
@@ -170,9 +227,29 @@ export default function PatientDashboard() {
     }
   };
 
+  const handlePayloadToSlots = async (data: { doctorId: string; date: string }) => {
+    setFormData(prev => ({ ...prev, ...data }));
+    if (data.doctorId && data.date) {
+      const slots = await handleFetchAvailableSlots(data);
+      setAvailableSlots(slots);
+    }
+  };
+
+  const handleFetchAvailableSlots = async (payload: AvailableSlotsParams): Promise<string[]> => {
+    try {
+
+      const slots = await getAvailableSlots(payload);
+      return slots;
+    } catch (error) {
+      toast.error('Erro ao buscar horários disponíveis');
+      console.error(error);
+      return [];
+    }
+  };
   const today = new Date().toISOString().split('T')[0]; // formato 'YYYY-MM-DD'
 
   const todaysAppointments = appointments?.filter((appt) => {
+
     const apptDate = new Date(appt.date).toISOString().split('T')[0];
     return apptDate === today;
   });
@@ -406,108 +483,200 @@ export default function PatientDashboard() {
       toast.success("Avaliação criada com sucesso!");
     }
   }; */
+  {/* Componente auxiliar para formatar histórico */ }
+  /*  function formatHistory(historyItem) {
+     const date = new Date(historyItem.timestamp).toLocaleString('pt-BR')
+     return `${historyItem.action} em ${date}`
+   } */
+  const handleOpenSchedule = (appointment: IAppointment | null = null, modeType: 'create' | 'edit' = 'create') => {
+    setAppointmentData(appointment);
+    setMode('edit');
+    setOpenSchedule(true);
+  };
   const renderDashboard = () => (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 mb-5 gap-6">
-        <Card>
-          <CardHeader icon={Calendar}>
-            <CardTitle className="text-sm font-medium">Agendamentos para hoje</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              {todaysAppointments.length}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* Card de Agendamentos do Dia - Versão melhorada */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-5 py-4 border-b border-gray-200">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <Calendar className="h-5 w-5 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800">Agendamentos para Hoje</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {new Date().toLocaleDateString('pt-BR', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long'
+                  })}
+                </p>
+              </div>
             </div>
+          </div>
+
+          <div className="p-1">
             {todaysAppointments.length > 0 ? (
-              <p className="text-xs text-gray-500">
-                Próxima: Dr. {appointments[0].doctorId?.fullName} às {appointments[0].time}
-              </p>
+              <div className="space-y-3">
+                {todaysAppointments.map((appointment) => (
+                  <div
+                    key={appointment._id}
+                    className="flex items-center gap-4 p-4 hover:bg-gray-50 rounded-lg transition-colors"
+                  >
+                    <div className="flex-shrink-0">
+                      <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-medium text-gray-900 truncate">
+                          Dr. {appointment.doctor?.fullName}
+                        </h4>
+                        <span className="text-sm font-medium text-gray-500">
+                          {appointment.time}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${appointment.operationalStatus === 'confirmado'
+                          ? 'bg-green-100 text-green-800'
+                          : appointment.operationalStatus === 'cancelado'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-blue-100 text-blue-800'
+                          }`}>
+                          {appointment.operationalStatus}
+                        </span>
+                        <span className="text-xs text-gray-500">
+                          {appointment.duration} min
+                        </span>
+                      </div>
+
+                      {appointment.notes && (
+                        <p className="mt-2 text-sm text-gray-500 line-clamp-2">
+                          {appointment.notes}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             ) : (
-              <p className="text-xs text-gray-500">
-                Sem agendamentos para hoje
-              </p>
+              <div className="py-10 text-center">
+                <div className="mx-auto bg-gray-100 p-4 rounded-full w-max">
+                  <Calendar className="h-8 w-8 text-gray-400 mx-auto" />
+                </div>
+                <h4 className="mt-4 text-lg font-medium text-gray-900">
+                  Nenhum agendamento hoje
+                </h4>
+                <p className="mt-1 text-sm text-gray-500 max-w-md mx-auto">
+                  Você não tem consultas agendadas para hoje. Agende uma nova consulta para começar.
+                </p>
+              </div>
             )}
-          </CardContent>
-          <CardFooter className="p-2 flex justify-between items-center">
-            <Button
-              variant="ghost"
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-              onClick={() => setShowAppointments(!showAppointments)}
-            >
-              {showAppointments ? "Esconder" : "Ver"} Agendamentos para hoje
-              <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showAppointments ? "rotate-180" : ""}`} />
-            </Button>
-            <Button
-              variant="ghost"
-              className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
+          </div>
+
+          <div className="bg-gray-50 px-5 py-3 border-t border-gray-200 flex justify-between">
+            <button
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
               onClick={handleOpenHistory}
             >
               Ver histórico completo
-            </Button>
-          </CardFooter>
+            </button>
+            <button
+            /*   onClick={() => handleOpenSchedule(null, 'create')} */
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus size={16} />
+              Novo Agendamento
+            </button>
+          </div>
+        </div>
 
-          {showAppointments && (
-            <div className="px-4 pb-4">
-              {appointments.length > 0 ? (
-                todaysAppointments.map((appointment, index) => (
-                  <div key={index} className="flex justify-between items-center py-2 border-t">
-                    <div>
-                      <p className="text-sm font-medium">
-                        <StatusBadge status={appointment.status} />
-                        Dr. {appointment.doctorId?.fullName}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {appointment.reason}
-                      </p>
-                    </div>
-                    <p className="text-sm">{appointment.time}</p>
-                  </div>
-                ))
-              ) : (
-                <p className="text-sm text-gray-500 text-center py-4">
-                  Não tem agendamentos para hoje
+        {/* Card de Atividades Recentes - Versão melhorada */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+          <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-5 py-4 border-b border-gray-200">
+            <div className="flex items-center gap-3">
+              <div className="bg-teal-100 p-2 rounded-lg">
+                <Activity className="h-5 w-5 text-teal-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800">Atividades Recentes</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  Histórico das últimas consultas
                 </p>
-              )}
+              </div>
             </div>
-          )}
-        </Card>
+          </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Atividades Recentes</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {completedAppointments.slice(0, 3).map((appointment, index) => (
-                <li key={appointment._id || index} className="flex items-center space-x-2">
-                  <Clock className="h-4 w-4 text-blue-600" />
-                  <span>
-                    {appointment.status === "completed" ? "Completed" : "Cancelled"} appointment with{" "}
-                    <strong>
-                      {appointment.doctorId?.fullName}
-                    </strong>{" "}
-                    na {new Date(appointment.date).toLocaleDateString()} às {appointment.time}
-                  </span>
-                </li>
-              ))}
+          <div className="p-1">
+            {completedAppointments.length > 0 ? (
+              <div className="space-y-4 p-4">
+                {completedAppointments.slice(0, 3).map((appointment) => (
+                  <div key={appointment._id} className="relative pl-6">
+                    <div className="absolute left-0 top-3 w-3 h-3 rounded-full bg-teal-500"></div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="flex justify-between">
+                        <h4 className="font-medium text-gray-900">
+                          {appointment.operationalStatus === 'confirmado'
+                            ? 'Consulta realizada'
+                            : 'Consulta cancelada'}
+                        </h4>
+                        <span className="text-xs font-medium text-gray-500">
+                          {new Date(appointment.date).toLocaleDateString('pt-BR')}
+                        </span>
+                      </div>
 
-              {/* Static fallback if no completed appointments */}
-              {completedAppointments.length === 0 && (
-                <>
-                  <li className="flex items-center space-x-2">
-                    <FileText className="h-4 w-4 text-gray-400" />
-                    <span className="text-gray-400">Nenhum registro encontrado.</span>
-                  </li>
-                </>
-              )}
-            </ul>
-          </CardContent>
-        </Card>
-        <div>
-          <h2>Histórico do Paciente</h2>
-          {/* to do aqui  <SpecialtyTimeline patientId={patientId} /> */}
+                      <div className="mt-2 flex items-center gap-2">
+                        <div className="flex-shrink-0">
+                          <div className="bg-gray-200 border-2 border-dashed rounded-xl w-10 h-10" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-700">
+                            Dr. {appointment.doctor?.fullName}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {appointment.time} • {appointment.duration} min
+                          </p>
+                        </div>
+                      </div>
+
+                      {appointment.history?.length > 0 && (
+                        <div className="mt-3 pt-3 border-t border-gray-100">
+                          <p className="text-xs text-gray-500">
+                            <span className="font-medium">Última ação:</span> {appointment.history[0].action}
+                          </p>
+                          <p className="text-xs text-gray-400 mt-1">
+                            {new Date(appointment.history[0].timestamp).toLocaleString('pt-BR')}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="py-10 text-center">
+                <div className="mx-auto bg-gray-100 p-4 rounded-full w-max">
+                  <Activity className="h-8 w-8 text-gray-400 mx-auto" />
+                </div>
+                <h4 className="mt-4 text-lg font-medium text-gray-900">
+                  Nenhuma atividade recente
+                </h4>
+                <p className="mt-1 text-sm text-gray-500 max-w-md mx-auto">
+                  Suas consultas realizadas e agendamentos futuros aparecerão aqui.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-gray-50 px-5 py-3 border-t border-gray-200 text-center">
+            <button className="text-sm font-medium text-teal-600 hover:text-teal-800 transition-colors">
+              Ver todas as atividades
+            </button>
+          </div>
         </div>
       </div>
-
       <div className="grid grid-cols-1 md:grid-cols-1 mb-5 gap-6">
         <PatientAvailablesCard
           doctors={doctors}
@@ -521,7 +690,7 @@ export default function PatientDashboard() {
         />
       </div>
       {appointments && (
-        <PatientMiniCalendar appointments={appointments} />
+        <PatientMiniCalendar appointments={allAppointmentsById} />
       )
       }
 
@@ -580,7 +749,7 @@ export default function PatientDashboard() {
       <AppointmentHistoryModal
         open={showHistory}
         onClose={() => setShowHistory(false)}
-        appointments={appointments}
+        appointments={allAppointmentsById}
       />
     </>
   );
@@ -800,6 +969,18 @@ export default function PatientDashboard() {
           {activeTab === 'Evolution' && renderEvolution()}
         </div>
       </main>
+
+      <ScheduleModal
+        open={openSchedule}
+        onClose={() => setOpenSchedule(false)}
+        onSave={handleNewAppointment}
+        patients={patients}
+        doctors={doctors}
+        initialData={appointmentData}
+        payloadToSlots={handlePayloadToSlots}
+        availableSlots={availableSlots}
+        mode={mode}
+      />
     </div>
   );
 }

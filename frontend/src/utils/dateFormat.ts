@@ -6,17 +6,23 @@ export const dateFormat = (date: any): string => {
   return `${day}/${month}/${year}`;
 };
 
-export const formatValidDate = (date: Date) => ({
-  dateStr: date.toLocaleDateString('pt-BR', {
-    weekday: 'short',
+export const formatValidDate = (date: Date) => {
+  const dateStr = date.toLocaleDateString('pt-BR', {
+    weekday: 'long',
     day: '2-digit',
-    month: 'short'
-  }),
-  timeStr: date.toLocaleTimeString('pt-BR', {
+    month: 'long',
+    timeZone: 'UTC' // <- FORÇA UTC
+  });
+
+  const timeStr = date.toLocaleTimeString('pt-BR', {
     hour: '2-digit',
-    minute: '2-digit'
-  })
-});
+    minute: '2-digit',
+    timeZone: 'UTC' // <- FORÇA UTC
+  });
+
+  return { dateStr, timeStr };
+};
+
 
 // Função para formatar as datas no formato brasileiro (DD/MM/YYYY)
 export const formatDateBrazilian = (date) => {
