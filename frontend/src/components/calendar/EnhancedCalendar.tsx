@@ -59,7 +59,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             setOpenSchedule(false);
         }
     }, [openModalAppointment]);
-
     const getStatusConfig = (status: string) => {
         if (statusConfig[status]) return statusConfig[status];
         if (OPERATIONAL_STATUS_CONFIG[status]) return OPERATIONAL_STATUS_CONFIG[status];
@@ -69,6 +68,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             label: status.charAt(0).toUpperCase() + status.slice(1)
         };
     };
+    console.log('agendamento', appointments);
 
     const events = appointments?.map(appointment => {
         // Converter a string ISO para objeto Date
@@ -85,7 +85,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             hours,
             minutes
         );
-
         // Calcular data de término
         const duration = appointment.duration || 60;
         const endDate = new Date(startDate.getTime() + duration * 60 * 1000);
@@ -143,7 +142,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         setSelectedEvent({
             id: event.id,
             patient: {
-                id: extendedProps.patient?._id || '',
+                id: extendedProps.patient?._id || extendedProps.patient?.id ||'',
                 fullName: extendedProps.patient?.fullName || "Paciente não informado"
             },
             doctor: {

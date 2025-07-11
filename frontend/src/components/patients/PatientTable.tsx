@@ -198,7 +198,7 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                         <Link to={`/patient-dashboard/${patient._id}`} title="Ver detalhes">
                                                             <Eye className="w-5 h-5 text-orange-600 hover:text-orange-800" />
                                                         </Link>
-                                                        <button
+                                                     {/*    <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
                                                                 onRegisterPayment?.(patient);
@@ -207,7 +207,7 @@ const PatientTable = ({ patients, onEditPatient, onRegisterPayment }: PatientTab
                                                             className="text-yellow-500 hover:text-green-800"
                                                         >
                                                             <DollarSign className="w-5 h-5" />
-                                                        </button>
+                                                        </button> */}
                                                         <button
                                                             onClick={(e) => {
                                                                 e.stopPropagation();

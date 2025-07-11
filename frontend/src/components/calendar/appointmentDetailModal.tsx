@@ -1,6 +1,8 @@
 import { CheckCircle, ClipboardCheck, PencilIcon, XCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { IDoctor, SelectedEvent } from '../../utils/types/types';
+import { Label } from '../ui/Label';
+import { Select } from '../ui/Select';
 
 interface AppointmentDetailModalProps {
     isOpen: boolean;
@@ -30,6 +32,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
     const [isEditing, setIsEditing] = useState(false);
     const [editedAppointment, setEditedAppointment] = useState({
         doctorId: '',
+        patientId: '',
         date: '',
         time: '',
         reason: '',
@@ -41,9 +44,10 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
         if (event) {
             const eventDate = event.date ? new Date(event.date).toISOString().split('T')[0] : '';
             const eventTime = event.startTime || '';
-
+            console.log('agendamento selecionado', event);
             setEditedAppointment({
                 doctorId: event.doctor?.id || '',
+                patientId: event.patient?.id || '',
                 date: eventDate,
                 time: eventTime,
                 reason: event.reason || '',
@@ -105,6 +109,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
             // Formatar dados para envio
             const appointmentData = {
                 doctorId: editedAppointment.doctorId,
+                patientId: editedAppointment.patientId,
                 date: new Date(`${editedAppointment.date}T${editedAppointment.time}`),
                 reason: editedAppointment.reason,
                 operationalStatus: editedAppointment.operationalStatus,
@@ -329,6 +334,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                             {patients.map(patient => (
                                                 <option key={patient._id} value={patient._id}>
                                                     {patient.fullName}
+                                                    
                                                 </option>
                                             ))}
                                         </select>
@@ -336,10 +342,10 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
 
                                     {/* Campo Doutor */}
                                     <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        <Label className="block text-sm font-medium text-gray-700 mb-2">
                                             Doutor *
-                                        </label>
-                                        <select
+                                        </Label>
+                                        <Select
                                             value={editedAppointment.doctorId}
                                             onChange={(e) => handleFieldChange('doctorId', e.target.value)}
                                             className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -350,7 +356,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                                     {doctor.fullName}
                                                 </option>
                                             ))}
-                                        </select>
+                                        </Select>
                                     </div>
                                 </div>
 

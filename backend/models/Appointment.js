@@ -27,7 +27,7 @@ const appointmentSchema = new mongoose.Schema({
   },
   operationalStatus: {
     type: String,
-    enum: ['agendado', 'confirmado', 'cancelado', 'pago', 'faltou'],
+    enum: ['agendado', 'confirmado', 'concluído', 'cancelado', 'pago', 'faltou'],
     default: 'agendado'
   },
   clinicalStatus: {

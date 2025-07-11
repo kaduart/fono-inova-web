@@ -331,6 +331,7 @@ export default function AdminDashboard() {
     try {
       await updateAppointment(appointmentId, updatedData);
       toast.success('Agendamento atualizado!');
+      fetchAppointments();
     } catch (error) {
       toast.error('Erro ao atualizar agendamento');
       console.error(error);

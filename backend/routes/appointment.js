@@ -235,6 +235,8 @@ router.get('/by-specialty/:specialty', auth, async (req, res) => {
 
 // Atualiza um agendamento com verificação de conflitos
 router.put('/:id', validateId, auth, checkAppointmentConflicts, async (req, res) => {
+    console.log(`[BACK] - PUT ATUALZIAR agednamento`, req)
+
     try {
         // 1. Buscar e validar agendamento
         const appointment = await Appointment.findById(req.params.id);
@@ -344,6 +346,8 @@ router.get('/history/:patientId', async (req, res) => {
 
 // Cancela um agendamento
 router.patch('/:id/cancel', validateId, auth, async (req, res) => {
+    console.log(`[BACK] - CANCELAR agednamento`, req)
+
     try {
         const { reason } = req.body;
 
@@ -395,7 +399,6 @@ router.patch('/:id/complete', auth, async (req, res) => {
         const { id } = req.params;
 
         const appointment = await Appointment.findById(id);
-
         if (!appointment) {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
@@ -420,6 +423,7 @@ router.patch('/:id/complete', auth, async (req, res) => {
             },
             { new: true }
         );
+        console.log(`completar agednamento`, appointment)
 
         res.json(updatedAppointment);
 

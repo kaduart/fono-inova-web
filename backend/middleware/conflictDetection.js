@@ -5,6 +5,7 @@ export const checkAppointmentConflicts = async (req, res, next) => {
     try {
         const { doctorId, patientId, date } = req.body;
         const appointmentId = req.body.metadata?.appointmentId || null;
+            console.log(`[BACK][CONFLIT HOOK] - PUT ATUALZIAR agednamento`, req.body)
 
         if (!doctorId || !patientId || !date) {
             return res.status(400).json({ error: "Campos obrigatórios faltando" });
