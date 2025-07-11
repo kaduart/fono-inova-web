@@ -403,18 +403,18 @@ router.patch('/:id/complete', auth, async (req, res) => {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        if (appointment.operationalStatus === 'concluído') {
+        if (appointment.operationalStatus === 'confirmado') {
             return res.status(400).json({ error: 'Este agendamento já está concluído' });
         }
 
         const updatedAppointment = await Appointment.findByIdAndUpdate(
             id,
             {
-                operationalStatus: 'concluído',
+                operationalStatus: 'confirmado',
                 $push: {
                     history: {
-                        action: 'concluído',
-                        newStatus: 'concluído',
+                        action: 'confirmado',
+                        newStatus: 'confirmado',
                         changedBy: req.user._id,
                         timestamp: new Date(),
                         context: 'operacional',

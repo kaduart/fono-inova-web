@@ -311,10 +311,6 @@ export default function AdminDashboard() {
   // Handler para completar agendamento
   const handleCompleteAppointment = async (appointmentId: string) => {
     try {
-      const updateData: UpdateAppointmentParams = {
-        clinicalStatus: 'concluído',
-        operationalStatus: 'pago'
-      };
 
       await completeAppointment(appointmentId);
       toast.success('Agendamento marcado como concluído!');
