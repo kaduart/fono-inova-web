@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 import Appointment from '../models/Appointment.js';
 import Package from '../models/Package.js';
 import Payment from '../models/Payment.js';
-import Appointment from '../models/Appointment.js';
 import Session from '../models/Session.js';
 import { calculateSessionDates, isWeekend } from '../services/packageService.js';
 import { extractTimeFromDateTime } from '../utils/horaFormat.js';
@@ -113,9 +112,7 @@ export const packageOperations = {
                 patient: newPackage.patient,
                 isPaid: true,
                 appointmentId: null,
-                confirmedAbsence: req.body.status === 'canceled'
-                    ? req.body.confirmedAbsence
-                    : null
+                confirmedAbsence: null
             }));
 
             const createdSessions = await Session.insertMany(sessionsToCreate, { session: mongoSession });
