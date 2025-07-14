@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import Appointment from '../models/Appointment.js';
 import Package from '../models/Package.js';
 import Payment from '../models/Payment.js';
+import Appointment from '../models/Appointment.js';
 import Session from '../models/Session.js';
 import { calculateSessionDates, isWeekend } from '../services/packageService.js';
 import { extractTimeFromDateTime } from '../utils/horaFormat.js';
@@ -126,7 +127,7 @@ export const packageOperations = {
             // Criar agendamentos para cada sessão
             for (const session of createdSessions) {
                 // Verificar se já existe agendamento
-                const existing = await db.appointments.findOne({
+                const existing = await Appointment.findOne({
                     "patient": newAppointment.patient,
                     "doctor._id": newAppointment.doctor._id,
                     "date": {
