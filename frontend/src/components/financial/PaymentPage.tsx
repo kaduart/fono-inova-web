@@ -1,10 +1,11 @@
 import { RefreshCw } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import {
     exportCSV,
     exportPDF,
     FinancialRecord,
+    getPaymentCountFinancialRecord,
     getPayments,
     updatePayment
 } from '../../services/paymentService';
@@ -12,7 +13,7 @@ import { IDoctor, IPatient } from '../../utils/types/types';
 import { EditPaymentModal } from './EditPaymentModal';
 import { PaymentActionIcons } from './PaymentAction';
 import { PaymentsFilters } from './PaymentsFilters';
-import { PaymentsSummary } from './PaymentsSummary';
+import FinancialSummaryCard from './PaymentsSummary';
 
 interface PaymentPageProps {
     patients?: IPatient[];
@@ -34,6 +35,7 @@ interface LocalSummary {
 const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCancelPayment }: PaymentPageProps) => {
     const [allPayments, setAllPayments] = useState<FinancialRecord[]>([]);
     const [filteredPayments, setFilteredPayments] = useState<FinancialRecord[]>([]);
+    const [financialRecord, setFinancialRecord] = useState<FinancialRecord[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const userRole = localStorage.getItem('userRole');
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
@@ -52,8 +54,9 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
             setError(null);
 
             const res = await getPayments();
+            const financial = await getPaymentCountFinancialRecord();
             setAllPayments(res.data.data);
-            setFilteredPayments(res.data.data); // Inicializa com todos os pagamentos
+            setFinancialRecord(financial.data.data);
         } catch (error) {
             console.error('Erro ao carregar pagamentos:', error);
             setError(error instanceof Error ? error.message : 'Erro ao carregar pagamentos');
@@ -62,35 +65,6 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
             setLoading(false);
         }
     };
-
-    const localSummary = useMemo<LocalSummary>(() => {
-        return filteredPayments.reduce((acc, payment) => {
-            acc.grandTotal += payment.amount;
-
-            switch (payment.status) {
-                case 'paid':
-                    acc.totalReceived += payment.amount;
-                    acc.paidCount += 1;
-                    break;
-                case 'pending':
-                    acc.totalPending += payment.amount;
-                    acc.pendingCount += 1;
-                    break;
-                case 'canceled':
-                    acc.canceledCount += 1;
-                    break;
-            }
-
-            return acc;
-        }, {
-            grandTotal: 0,
-            totalReceived: 0,
-            totalPending: 0,
-            paidCount: 0,
-            pendingCount: 0,
-            canceledCount: 0
-        });
-    }, [filteredPayments]);
 
     useEffect(() => {
         loadPayments();
@@ -197,12 +171,8 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
         <div className="space-y-6 p-4">
             <h1 className="text-2xl font-bold text-gray-800 mb-6">Controle Financeiro</h1>
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6 p-4 bg-gray-50 rounded-xl">
-                <PaymentsSummary
-                    totalPayments={localSummary.totalReceived}
-                    totalPending={localSummary.totalPending}
-                    paidCount={localSummary.paidCount}
-                    pendingCount={localSummary.pendingCount}
-                    canceledCount={localSummary.canceledCount}
+                <FinancialSummaryCard
+                    data={financialRecord}
                 />
 
                 <div className="flex items-center gap-3">

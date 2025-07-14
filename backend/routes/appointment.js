@@ -465,42 +465,39 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
 
 router.get('/count-by-status', auth, async (req, res) => {
     try {
-        const { dateFrom, dateTo, doctor, specialty } = req.query;
-        const userId = req.user._id;
+        const { dateFrom, dateTo, specialty } = req.query;
 
-        // Construir o filtro
+        // FILTRO SEM MÉDICO (toda clínica)
         const filter = {};
 
-        if (userId) {
-            filter.doctor = new ObjectId(userId);
-        }
-
+        // Filtro de datas
         if (dateFrom || dateTo) {
             filter.date = {};
             if (dateFrom) filter.date.$gte = new Date(dateFrom);
             if (dateTo) {
-                const endOfDay = new Date(dateTo);
-                endOfDay.setHours(23, 59, 59, 999);
-                filter.date.$lte = endOfDay;
+                const end = new Date(dateTo);
+                end.setHours(23, 59, 59, 999);
+                filter.date.$lte = end;
             }
         }
 
+        // Filtro de especialidade
         if (specialty && specialty !== 'all') {
             filter.specialty = specialty;
         }
 
-        // Agregação simplificada e atualizada
+        // Agregação
         const counts = await Appointment.aggregate([
             { $match: filter },
             {
                 $group: {
-                    _id: '$operationalStatus',
+                    _id: "$operationalStatus",
                     count: { $sum: 1 }
                 }
             }
         ]);
 
-        // Formatar resultado com valores atuais
+        // Formatar resultado
         const result = {
             agendado: 0,
             confirmado: 0,
@@ -510,16 +507,12 @@ router.get('/count-by-status', auth, async (req, res) => {
         };
 
         counts.forEach(item => {
-            const status = item._id;
-            if (result.hasOwnProperty(status)) {
-                result[status] = item.count;
+            if (result.hasOwnProperty(item._id)) {
+                result[item._id] = item.count;
             }
         });
 
-        return res.json({
-            success: true,
-            data: result
-        });
+        return res.json({ success: true, data: result });
 
     } catch (error) {
         console.error('Erro na rota count-by-status:', error);

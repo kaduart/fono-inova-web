@@ -26,7 +26,7 @@ export const PatientMiniCalendar: React.FC<PatientMiniCalendarProps> = ({ appoin
                     ? '#4ade80' // verde
                     : '#60a5fa', // azul
     }));
-
+console.log("🚀 ~ file: PatientMiniCalendar.tsx:41 ~ PatientMiniCalendar ~ events:", events)
     return (
         <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
             <FullCalendar

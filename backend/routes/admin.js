@@ -169,16 +169,48 @@ router.get('/total-patients', auth, async (req, res) => {
 
 router.get('/doctor-overview', auth, async (req, res) => {
   try {
-    const doctors = await Doctor.find().select('fullName specialty');
-    const doctorOverview = await Promise.all(doctors.map(async (doctor) => {
-      const uniquePatients = await Appointment.distinct('patientId', { doctor: doctor._id });
-      return {
-        name: `${doctor.fullName}`,
-        specialty: doctor.specialty,
-        patients: uniquePatients.length
-      };
-    }));
-    res.json(doctorOverview);
+    const result = await Appointment.aggregate([
+      {
+        $lookup: {
+          from: "doctors",
+          localField: "doctor",
+          foreignField: "_id",
+          as: "doctorInfo"
+        }
+      },
+      { $unwind: "$doctorInfo" },
+      {
+        $group: {
+          _id: {
+            doctorId: "$doctor",
+            patientId: "$patient"
+          },
+          doctorName: { $first: "$doctorInfo.fullName" },
+          specialty: { $first: "$doctorInfo.specialty" }
+        }
+      },
+      {
+        $group: {
+          _id: {
+            doctorId: "$_id.doctorId",
+            doctorName: "$doctorName",
+            specialty: "$specialty"
+          },
+          patients: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          doctorId: "$_id.doctorId",
+          name: "$_id.doctorName",
+          specialty: "$_id.specialty",
+          patients: 1
+        }
+      }
+    ]);
+
+    res.json(result);
   } catch (error) {
     console.error('Error fetching doctor overview:', error);
     res.status(500).send({ error: 'Server error' });

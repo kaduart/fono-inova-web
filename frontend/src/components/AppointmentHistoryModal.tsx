@@ -11,8 +11,8 @@ import {
     TableRow,
     Typography
 } from '@mui/material';
-import { X } from 'lucide-react';
-import React from 'react';
+import { ChevronDown, ChevronUp, X } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
 import { getStatusColor } from '../utils/statusHelper';
 
 interface AppointmentHistoryModalProps {
@@ -23,8 +23,9 @@ interface AppointmentHistoryModalProps {
         date: string;
         time: string;
         doctor: { fullName: string };
-        reason: string;
-        status: string;
+        specialty: string;
+        operationalStatus: string;
+        payment?: { serviceType: string };
     }>;
 }
 
@@ -33,16 +34,34 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
     onClose,
     appointments
 }) => {
-    // Função para determinar a cor do status
-    /*     const getStatusColor = (status: string) => {
-            console.log('status', status);
-            switch (status?.toLowerCase()) {
-                case 'agendado': return '#4CAF50';
-                case 'concluído': return '#2196F3';
-                case 'cancelado': return '#F44336';
-                default: return '#9E9E9E';
+    // Estado para controlar a ordenação
+    const [sortConfig, setSortConfig] = useState<{
+        key: 'date';
+        direction: 'asc' | 'desc';
+    }>({ key: 'date', direction: 'desc' });
+
+    // Função para alternar a ordenação
+    const handleSort = () => {
+        setSortConfig(prev => ({
+            key: 'date',
+            direction: prev.direction === 'asc' ? 'desc' : 'asc'
+        }));
+    };
+
+    // Ordenar os agendamentos
+    const sortedAppointments = useMemo(() => {
+        const sortableAppointments = [...appointments];
+        sortableAppointments.sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+
+            if (sortConfig.direction === 'asc') {
+                return dateA - dateB;
             }
-        }; */
+            return dateB - dateA;
+        });
+        return sortableAppointments;
+    }, [appointments, sortConfig]);
 
     return (
         <Dialog
@@ -99,7 +118,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
             </DialogTitle>
 
             <DialogContent dividers sx={{ py: 0, px: 0 }}>
-                {appointments.length === 0 ? (
+                {sortedAppointments.length === 0 ? (
                     <Box
                         textAlign="center"
                         py={6}
@@ -140,7 +159,24 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                         >
                             <TableHead sx={{ backgroundColor: '#f8fafc' }}>
                                 <TableRow>
-                                    <TableCell sx={{ py: 2, pl: 3, fontWeight: 600 }}>Data</TableCell>
+                                    <TableCell sx={{ py: 2, pl: 3, fontWeight: 600 }}>
+                                        <Box
+                                            display="flex"
+                                            alignItems="center"
+                                            onClick={handleSort}
+                                            sx={{
+                                                cursor: 'pointer',
+                                                '&:hover': { opacity: 0.8 }
+                                            }}
+                                        >
+                                            Data
+                                            {sortConfig.direction === 'asc' ? (
+                                                <ChevronUp size={18} style={{ marginLeft: 4 }} />
+                                            ) : (
+                                                <ChevronDown size={18} style={{ marginLeft: 4 }} />
+                                            )}
+                                        </Box>
+                                    </TableCell>
                                     <TableCell sx={{ py: 2, fontWeight: 600 }}>Hora</TableCell>
                                     <TableCell sx={{ py: 2, fontWeight: 600 }}>Profissional</TableCell>
                                     <TableCell sx={{ py: 2, fontWeight: 600 }}>Especialidade</TableCell>
@@ -149,7 +185,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {appointments.map((appt) => (
+                                {sortedAppointments.map((appt) => (
                                     <TableRow
                                         key={appt._id}
                                         hover
@@ -186,7 +222,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                                                     session: 'Sessão',
                                                     package: 'Pacote',
                                                     individual_session: 'Sessão Avulsa'
-                                                }[appt.payment.serviceType?.toLowerCase()?.trim()] || 'Desconhecido'}
+                                                }[appt?.payment?.serviceType?.toLowerCase()?.trim()] || 'Desconhecido'}
                                             </Typography>
                                         </TableCell>
                                         <TableCell sx={{ py: 2, pr: 3 }} align="center">
@@ -226,7 +262,7 @@ const AppointmentHistoryModal: React.FC<AppointmentHistoryModalProps> = ({
                 borderTop: '1px solid #f0f0f0'
             }}>
                 <Typography variant="body2" color="textSecondary">
-                    Total: {appointments.length} agendamentos
+                    Total: {sortedAppointments.length} agendamentos
                 </Typography>
                 <Box>
                     <IconButton

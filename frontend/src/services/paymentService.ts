@@ -30,6 +30,9 @@ export interface Summary {
 export const getPayments = (filters: Record<string, any> = {}) =>
     API.get<FinancialRecord[]>('/payments', { params: filters });
 
+export const getPaymentCountFinancialRecord = (filters: Record<string, any> = {}) =>
+    API.get<FinancialRecord[]>('/payments/totals', { params: filters });
+
 export const getPayment = (id: string) =>
     API.get<FinancialRecord>(`/payments/${id}`);
 
