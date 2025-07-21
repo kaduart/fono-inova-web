@@ -52,6 +52,7 @@ const ScheduleAppointmentModal = ({
 
     useEffect(() => {
         if (initialData) {
+
             const isoDate = new Date(initialData.date);
             const formattedDate = isoDate.toISOString().split('T')[0]; // "YYYY-MM-DD"
 
@@ -68,11 +69,12 @@ const ScheduleAppointmentModal = ({
         }
     }, [initialData, isOpen]);
 
-    useEffect(() => 
+    useEffect(() => {
         
         if (formData.packageId && formData.patientId) {
             const selectedPackage = packages?.find(pkg => pkg._id === formData.packageId);
             
+
             if (selectedPackage && selectedPackage.sessions?.length > 0) {
                 const upcomingSessions = selectedPackage.sessions
                     .filter(session => session.status === 'scheduled')
@@ -83,7 +85,7 @@ const ScheduleAppointmentModal = ({
                     const date = closest.date.split('T')[0];
                     const time = closest.date.split('T')[1].slice(0, 5);
 
-    
+        
 
                     setFormData((prev) => ({
                         ...prev,
@@ -130,7 +132,7 @@ const ScheduleAppointmentModal = ({
     };
 
     // Verificação completa de campos obrigatórios
-    const canSchedule = useMemo(() => 
+    const canSchedule = useMemo(() => {
 
         // Verifica campos obrigatórios
         if (!formData.patientId || !formData.doctorId || !formData.date || !formData.time || !formData.sessionType) {
