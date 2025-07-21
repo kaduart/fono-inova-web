@@ -171,8 +171,8 @@ export const packageOperations = {
                 }).session(mongoSession);
 
                 if (existingAppointment) {
-                    const patient = await User.findById(patientId).select('name').lean();
-                    const doctor = await User.findById(doctorId).select('name').lean();
+                    const patient = await Patient.findById(patientId).select('fullName').lean();
+                    const doctor = await Doctor.findById(doctorId).select('fullName').lean();
                     throw new Error(
                         `Conflito de agendamento: ${patient.name} já tem sessão com ${doctor.name} em ${session.date.toLocaleDateString()} às ${time}`
                     );
