@@ -2,12 +2,13 @@ import express from 'express';
 import { generateReport, getPackageById, packageOperations, updateStatus } from '../controllers/therapyPackageController.js';
 import { adminOrSecretary, auth } from '../middleware/auth.js';
 import validateId from '../middleware/validateId.js';
+import { validatePackageInput } from '../middleware/validatePackage.js';
 import validateSession from '../middleware/validateSession.js';
 
 const router = express.Router();
 
 // Rotas Principais
-router.post('/', packageOperations.create);
+router.post('/', validatePackageInput, auth, packageOperations.create);
 router.get('/', auth, adminOrSecretary, packageOperations.get.all);
 router.get('/search', auth, packageOperations.get.search);
 router.get('/:id', auth, getPackageById);

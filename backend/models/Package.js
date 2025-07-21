@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import { syncEvent } from '../services/syncService.js';
+import MedicalEvent from './MedicalEvent.js';
 //delete mongoose.connection.models['Package'];
 const packageSchema = new mongoose.Schema({
     version: { type: Number, default: 0 },
@@ -64,6 +66,9 @@ const packageSchema = new mongoose.Schema({
         type: Date,
         required: [true, 'Data é obrigatória']
     },
+    time: {
+        type: String,
+    },
     sessionsDone: {
         type: Number,
         default: 0
@@ -83,14 +88,12 @@ const packageSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-});
+    specialty: {
+        type: String,
+        required: true,
+        enum: ['fonoaudiologia', 'terapeuta ocupacional', 'psicologia', 'fisioterapia', 'pediatria', 'neuroped'],
 
-packageSchema.pre('findOneAndUpdate', function (next) {
-    const update = this.getUpdate();
-    if (update.$inc) {
-        update.$inc.version = 1; // Incrementa a versão em todas as atualizações
-    }
-    next();
+    },
 });
 
 packageSchema.pre('save', function (next) {
@@ -107,9 +110,90 @@ packageSchema.pre('save', function (next) {
     next();
 });
 
+// package.model.js
+packageSchema.post('save', async function (doc) {
+    try {
+        // Passo 1: Vincular pacote ao paciente
+        const patient = await mongoose.model('Patient').findById(doc.patient);
+
+        if (patient && !patient.packages.includes(doc._id)) {
+            await mongoose.model('Patient').updateOne(
+                { _id: doc.patient },
+                { $addToSet: { packages: doc._id } }
+            );
+        }
+
+        // Passo 2: Criar sessões automaticamente (se necessário)
+        if (doc.isNew) {
+            const sessions = [];
+            for (let i = 0; i < doc.totalSessions; i++) {
+                const session = await mongoose.model('Session').create({
+                    package: doc._id,
+                    status: 'pending',
+                    sessionValue: doc.sessionValue,
+                    specialty: doc.specialty
+                });
+                sessions.push(session._id);
+            }
+
+            // Atualizar pacote com IDs das sessões
+            await mongoose.model('Package').updateOne(
+                { _id: doc._id },
+                { $set: { sessions } }
+            );
+        }
+
+        // Passo 3: Chamar seu sistema de eventos existente
+        await syncEvent(doc, 'package');
+
+    } catch (error) {
+        console.error(`[Package Post-Save Error] ${error.message}`);
+        // Adicione aqui sua lógica de tratamento de erros
+    }
+});
+
+packageSchema.pre('findOneAndUpdate', function (next) {
+    const update = this.getUpdate();
+
+    // Incrementar versão em operações de atualização
+    if (update && !update.$inc) {
+        update.$inc = { version: 1 };
+    } else if (update.$inc && !update.$inc.version) {
+        update.$inc.version = 1;
+    } else if (update.$inc && update.$inc.version) {
+        update.$inc.version += 1;
+    }
+
+    next();
+});
+
+packageSchema.post('findOneAndUpdate', async function (doc) {
+    if (doc) {
+        // Obter a versão atualizada
+        const updatedDoc = await this.model.findOne(this.getQuery());
+        await syncEvent(updatedDoc, 'package');
+    }
+});
+
+
+packageSchema.post('findOneAndDelete', async function (doc) {
+    if (doc) {
+        await MedicalEvent.deleteOne({
+            originalId: doc._id,
+            type: 'package'
+        });
+    }
+});
+
 packageSchema.virtual('remainingSessions').get(function () {
     return this.totalSessions - this.sessionsDone;
 });
+
+
+packageSchema.set('toJSON', { virtuals: true });
+packageSchema.set('toObject', { virtuals: true });
+
+packageSchema.set('strict', 'throw');
 
 packageSchema.set('strict', 'throw');
 const Package = mongoose.model('Package', packageSchema);

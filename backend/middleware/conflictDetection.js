@@ -3,11 +3,11 @@ import Appointment from '../models/Appointment.js';
 
 export const checkAppointmentConflicts = async (req, res, next) => {
     try {
-        const { doctorId, patientId, date } = req.body;
+        const { doctorId, patientId, date, time } = req.body;
         const appointmentId = req.body.metadata?.appointmentId || null;
-            console.log(`[BACK][CONFLIT HOOK] - PUT ATUALZIAR agednamento`, req.body)
+        console.log(`[BACK][CONFLIT HOOK] - PUT ATUALZIAR agednamento`, req.body)
 
-        if (!doctorId || !patientId || !date) {
+        if (!doctorId || !patientId || !date || !time) {
             return res.status(400).json({ error: "Campos obrigatórios faltando" });
         }
 
@@ -46,6 +46,20 @@ export const checkAppointmentConflicts = async (req, res, next) => {
             });
         }
 
+        // Adicionar verificação de sessões de pacote
+        if (req.packageData) {
+            const packageAppointments = await Appointment.find({
+                package: req.packageData._id,
+                status: { $ne: 'cancelado' }
+            });
+
+            if (packageAppointments.length >= req.packageData.totalSessions) {
+                return res.status(409).json({
+                    error: 'Limite de sessões excedido',
+                    message: 'Este pacote já foi totalmente utilizado'
+                });
+            }
+        }
         // Modificação 3: Ignorar agendamentos cancelados para paciente
         const patientAppointments = await Appointment.find({
             patientId,

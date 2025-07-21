@@ -1,4 +1,4 @@
-import { PlusCircle, Save, UserX, CheckCircle2, XCircle } from 'lucide-react';
+import { CheckCircle2, PlusCircle, Save, UserX, XCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { IDoctor, ISession, THERAPY_TYPES, TherapyType } from '../../utils/types/types';
 import { Button } from '../ui/Button';
@@ -55,11 +55,18 @@ export const SessionModal = ({
         onSubmit();
     };
 
-    const toLocalDateTimeString = (dateUTC) => {
-        const date = new Date(dateUTC);
-        const offset = date.getTimezoneOffset() * 60000;
-        const localDate = new Date(date.getTime() - offset);
-        return localDate.toISOString().slice(0, 16);
+
+    function parseDateWithoutTimezone(isoDateStr: string): Date {
+        const [datePart, timePart] = isoDateStr.split('T');
+        const cleanTime = timePart.replace('Z', '').split('.')[0];
+        const [year, month, day] = datePart.split('-').map(Number);
+        const [hour, minute, second] = cleanTime.split(':').map(Number);
+        return new Date(year, month - 1, day, hour, minute, second);
+    }
+
+    const toLocalDateTimeString = (dateStr) => {
+        if (!dateStr) return '';
+        return new Date(dateStr).toISOString().slice(0, 16);
     };
 
     return (
@@ -81,27 +88,8 @@ export const SessionModal = ({
 
                 {/* Corpo do formulário */}
                 <div className="p-6 max-h-[80vh] overflow-y-auto">
-                    <div className="space-y-5">
-                        {/* Data */}
-                        <div className="relative">
-                            <Label className="block mb-2 font-medium text-gray-700 flex items-center">
-                                <span className="text-red-500 mr-1">*</span>
-                                Data
-                            </Label>
-                            <div className="relative">
-                                <Input
-                                    type="datetime-local"
-                                    value={sessionData.date ? toLocalDateTimeString(sessionData.date) : ''}
-                                    onChange={(e) => onSessionDataChange({ ...sessionData, date: e.target.value })}
-                                    className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pl-10 transition-all"
-                                />
-                                <span className="absolute left-3 top-3 text-gray-400">
-                                    📅
-                                </span>
-                            </div>
-                        </div>
+                    <div className="space-y-5 mb-4">
 
-                        {/* Profissional */}
                         <div className="relative">
                             <Label className="block mb-2 font-medium text-gray-700 flex items-center">
                                 <span className="text-red-500 mr-1">*</span>
@@ -125,7 +113,47 @@ export const SessionModal = ({
                                 </span>
                             </div>
                         </div>
+                    </div>
+                    <div className="space-y-5">
+                        <div className="relative w-full">
+                            <Label >
+                                <span className="text-red-500 mr-1">*</span>
+                                Data
+                            </Label>
 
+                            <div className="relative">
+                                <Input
+                                    type="datetime-local"
+                                    value={sessionData.date ? toLocalDateTimeString(sessionData.date) : ''}
+                                    onChange={(e) => onSessionDataChange({ ...sessionData, date: e.target.value })}
+                                    className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pl-10 transition-all"
+                                />
+                                <span className="absolute left-3 top-3 text-gray-400">
+                                    📅
+                                </span>
+                            </div>
+                        </div>
+                        {/*  
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="relative">
+                                <Label className="block mb-2 font-medium text-gray-700 flex items-center">
+                                    <span className="text-red-500 mr-1">*</span>
+                                    Hora
+                                </Label>
+                                <div className="relative">
+                                    <Input
+                                        mask='99:99'
+                                        type="text"
+                                        value={sessionData.time ? (sessionData.time) : ''}
+                                        onChange={(e) => onSessionDataChange({ ...sessionData, time: e.target.value })}
+                                        className="w-full h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pl-10 transition-all"
+                                    />
+                                    <span className="absolute left-3 top-3 text-gray-400">
+                                        📅
+                                    </span>
+                                </div>
+                        </div>
+                            </div> */}
                         {/* Tipo de Sessão e Status */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="relative">
@@ -211,51 +239,55 @@ export const SessionModal = ({
                             </div>
                         </div>
 
-                        {/* Falta Confirmada - Novo campo */}
-                            <div className="bg-red-50 border border-red-100 rounded-lg p-4 mt-2 transition-all">
-                                <Label className="block mb-2 font-medium text-gray-700 flex items-center">
-                                    <UserX className="w-5 h-5 text-red-600 mr-2" />
-                                    Falta Confirmada
-                                </Label>
-                                <div className="flex items-center space-x-4">
-                                    <label className="flex items-center cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="confirmedAbsence"
-                                            checked={sessionData.confirmedAbsence === true}
-                                            onChange={() => onSessionDataChange({ 
-                                                ...sessionData, 
-                                                confirmedAbsence: true 
-                                            })}
-                                            className="h-4 w-4 text-green-600 focus:ring-green-500"
-                                        />
-                                        <span className="ml-2 text-gray-700 flex items-center">
-                                            <CheckCircle2 className="w-4 h-4 text-green-600 mr-1" />
-                                            Sim
-                                        </span>
-                                    </label>
-                                    
-                                    <label className="flex items-center cursor-pointer">
-                                        <input
-                                            type="radio"
-                                            name="confirmedAbsence"
-                                            checked={sessionData.confirmedAbsence === false}
-                                            onChange={() => onSessionDataChange({ 
-                                                ...sessionData, 
-                                                confirmedAbsence: false 
-                                            })}
-                                            className="h-4 w-4 text-red-600 focus:ring-red-500"
-                                        />
-                                        <span className="ml-2 text-gray-700 flex items-center">
-                                            <XCircle className="w-4 h-4 text-red-600 mr-1" />
-                                            Não
-                                        </span>
-                                    </label>
+                        {
+                            sessionData.status === 'canceled' && (
+                                < div className="bg-red-50 border border-red-100 rounded-lg p-4 mt-2 transition-all">
+                                    <Label className="block mb-2 font-medium text-gray-700 flex items-center">
+                                        <UserX className="w-5 h-5 text-red-600 mr-2" />
+                                        Falta Confirmada
+                                    </Label>
+                                    <div className="flex items-center space-x-4">
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="confirmedAbsence"
+                                                checked={sessionData.confirmedAbsence === true}
+                                                onChange={() => onSessionDataChange({
+                                                    ...sessionData,
+                                                    confirmedAbsence: true
+                                                })}
+                                                className="h-4 w-4 text-green-600 focus:ring-green-500"
+                                            />
+                                            <span className="ml-2 text-gray-700 flex items-center">
+                                                <CheckCircle2 className="w-4 h-4 text-green-600 mr-1" />
+                                                Sim
+                                            </span>
+                                        </label>
+
+                                        <label className="flex items-center cursor-pointer">
+                                            <input
+                                                type="radio"
+                                                name="confirmedAbsence"
+                                                checked={sessionData.confirmedAbsence === false}
+                                                onChange={() => onSessionDataChange({
+                                                    ...sessionData,
+                                                    confirmedAbsence: false
+                                                })}
+                                                className="h-4 w-4 text-red-600 focus:ring-red-500"
+                                            />
+                                            <span className="ml-2 text-gray-700 flex items-center">
+                                                <XCircle className="w-4 h-4 text-red-600 mr-1" />
+                                                Não
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <p className="mt-2 text-xs text-gray-500">
+                                        Marque como "Sim" quando o paciente confirmou que não comparecerá à sessão
+                                    </p>
                                 </div>
-                                <p className="mt-2 text-xs text-gray-500">
-                                    Marque como "Sim" quando o paciente confirmou que não comparecerá à sessão
-                                </p>
-                            </div>
+                            )
+                        }
+
 
                         {/* Observações */}
                         <div className="relative mt-3">
@@ -289,8 +321,8 @@ export const SessionModal = ({
                         onClick={handleSubmit}
                         disabled={loading}
                         className={`px-5 py-3 text-white rounded-xl disabled:opacity-70 flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 w-full sm:w-auto
-                            ${action === 'edit' 
-                                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700' 
+                            ${action === 'edit'
+                                ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700'
                                 : 'bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700'}`}
                     >
                         {loading ? (
@@ -307,6 +339,6 @@ export const SessionModal = ({
                     </Button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };

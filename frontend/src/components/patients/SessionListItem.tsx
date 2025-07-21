@@ -73,8 +73,9 @@ export const SessionListItem = ({ session, sessionNumber, onEdit, onUse }: Sessi
                         {isDateValid ? (
                             <>
                                 <span className="font-medium">{dateStr}</span>
-                                <span className="text-gray-400">às</span>
+                                <span className="text-gray-400">&nbsp; às &nbsp;</span>
                                 <span className="text-gray-600">{timeStr}</span>
+                                
                             </>
                         ) : (
                             <span className="text-gray-400">Data não informada</span>

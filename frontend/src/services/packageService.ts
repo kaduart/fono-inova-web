@@ -20,6 +20,10 @@ export type CreatePackageParams = {
   amountPaid: number;
   paymentMethod: string;
   durationMonths: number;
+  dateTime?: {
+    date: string;
+    time: string;
+  };
   sessionsPerWeek: number;
 };
 
@@ -56,6 +60,7 @@ export type CreatePaymentParams = {
 export type UseSessionParams = {
   _id?: string;
   date: string;
+  time: string;
   package: string;
   patient: string;
   doctorId: string;
@@ -72,7 +77,21 @@ export type UseSessionParams = {
 export const packageService = {
   // Operações com Pacotes
   createPackage: async (data: CreatePackageParams) => {
-    return API.post<ITherapyPackage>('/packages', data);
+    try {
+      // Garante que dateTime existe
+      if (!data.dateTime) {
+        data.dateTime = {
+          date: new Date().toISOString().split('T')[0],
+          time: data.time || '12:00'
+        };
+      }
+      const response = await API.post<ITherapyPackage>('/packages', data);
+      return response.data;
+    } catch (error) {
+      console.error('Erro na requisição:', error.config?.data);
+      throw new Error(error.response?.data?.message || 'Erro ao criar pacote');
+    }
+
   },
 
   getPackage: async (id: string) => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import packageService, { CreatePackageParams } from '../../services/packageService';
-import { mergeDateAndTime } from '../../utils/dateFormat';
+import { formatDateTimeForBackend } from '../../utils/dateFormat';
 import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types/types';
 import { Button } from '../ui/Button';
 import InputCurrency from '../ui/InputCurrency';
@@ -75,7 +75,8 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
     const handleSave = async (e) => {
         e.preventDefault();
         if (!validate()) return;
-        const appointmentDate = mergeDateAndTime(dateTime.date, dateTime.time);
+
+        await formatDateTimeForBackend(dateTime.date, dateTime.time);
 
         if (!formData.sessionType || !formData.paymentType || !formData.doctorId) { // Adicionado doctorId
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
@@ -92,6 +93,11 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
             return;
         }
 
+        const backendDateTime = {
+            date: dateTime.date,  // "2025-07-22"
+            time: dateTime.time   // "17:00"
+        };
+
         setLoading(true);
         try {
             const packageData = {
@@ -105,7 +111,8 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                 paymentMethod: formData.paymentMethod, // Enviar método de pagamento
                 sessionsPerWeek: +formData.sessionsPerWeek, // Enviar método de pagamento
                 durationMonths: formData.durationMonths, // Enviar método de pagamento
-                dateTime: appointmentDate,
+                dateTime: backendDateTime,
+                specialty: formData.sessionType,
                 time: dateTime.time
             };
 

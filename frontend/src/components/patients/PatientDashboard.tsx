@@ -16,6 +16,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card
 import Input from '../ui/Input';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
+import { FutureSessionsCard } from './FutureSessionsCard';
 import { PatientAvailablesCard } from './PatientAvailablesCard';
 import PatientEvolution from './PatientEvolution';
 import { PatientMiniCalendar } from './PatientMiniCalendar';
@@ -282,7 +283,6 @@ export default function PatientDashboard() {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log('🚀 ~ lista agendamento patient', data);
           setAppointments(data);
         }
       } catch (error) {
@@ -496,7 +496,7 @@ export default function PatientDashboard() {
   const renderDashboard = () => (
     <>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        {/* Card de Agendamentos do Dia - Versão melhorada */}
+
         <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-5 py-4 border-b border-gray-200">
             <div className="flex items-center gap-3">
@@ -506,11 +506,19 @@ export default function PatientDashboard() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-800">Agendamentos para Hoje</h3>
                 <p className="text-sm text-gray-600 mt-1">
-                  {new Date().toLocaleDateString('pt-BR', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long'
-                  })}
+
+                  <div className="flex justify-end items-center mb-0">
+                    <span className="text-sm text-gray-500">
+                      Atualizado em {new Date().toLocaleString('pt-BR', {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric'
+                      })}
+                    </span>
+                  </div>
                 </p>
               </div>
             </div>
@@ -583,17 +591,10 @@ export default function PatientDashboard() {
             >
               Ver histórico completo
             </button>
-            <button
-            /*   onClick={() => handleOpenSchedule(null, 'create')} */
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Plus size={16} />
-              Novo Agendamento
-            </button>
+
           </div>
         </div>
 
-        {/* Card de Atividades Recentes - Versão melhorada */}
         <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
           <div className="bg-gradient-to-r from-teal-50 to-cyan-50 px-5 py-4 border-b border-gray-200">
             <div className="flex items-center gap-3">
@@ -677,6 +678,11 @@ export default function PatientDashboard() {
           </div>
         </div>
       </div>
+
+      {patientInfo?._id && (
+        <FutureSessionsCard patientId={patientInfo._id} />
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-1 mb-5 gap-6">
         <PatientAvailablesCard
           doctors={doctors}
@@ -689,10 +695,6 @@ export default function PatientDashboard() {
 
         />
       </div>
-      {appointments && (
-        <PatientMiniCalendar appointments={allAppointmentsById} />
-      )
-      }
 
       <Card>
         <CardHeader icon={FileText}>
@@ -712,6 +714,7 @@ export default function PatientDashboard() {
             <ChevronDown className={`h-4 w-4 ml-2 transition-transform ${showPrescriptions ? "rotate-180" : ""}`} />
           </Button>
         </CardFooter>
+
         {showPrescriptions && (
           <div className="px-4 pb-4">
             {prescriptions.map((prescription, index) => (
@@ -817,44 +820,50 @@ export default function PatientDashboard() {
     };
 
     return (
-      <Card className="w-full max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle>Marque uma consulta</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="doctorId">Selecione o profissional</Label>
-              <Select id="doctorId" name="doctorId" value={appointmentData.doctorId} onChange={handleInputChange}>
-                <option value="">Escolha o profissional</option>
-                {doctors.map((doctor) => (
-                  <option key={doctor._id} value={doctor._id}>
-                    Dr. {doctor.fullName} - {doctor.specialty}
-                  </option>
-                ))}
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="date">Data da consulta</Label>
-              <Input id="date" name="date" type="date" value={appointmentData.date} onChange={handleInputChange} />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="time">Hora pretendida</Label>
-              <Select id="time" name="time" value={appointmentData.time} onChange={handleInputChange} disabled={availableSlots.length === 0}>
-                <option value="">Escolha um horário</option>
-                {availableSlots.map((slot) => (
-                  <option key={slot} value={slot}>{slot}</option>
-                ))}
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="reason">Razão da visita</Label>
-              <Input id="reason" name="reason" value={appointmentData.reason} onChange={handleInputChange} placeholder="Brief description of your concern" />
-            </div>
-            <Button type="submit" className="ml-auto">Marcar consulta</Button>
-          </form>
-        </CardContent>
-      </Card>
+      <div>
+        {appointments && (
+          <PatientMiniCalendar appointments={allAppointmentsById} />
+        )
+        }
+        <Card className="w-full max-w-2xl mx-auto">
+          <CardHeader>
+            <CardTitle>Marque uma consulta</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="doctorId">Selecione o profissional</Label>
+                <Select id="doctorId" name="doctorId" value={appointmentData.doctorId} onChange={handleInputChange}>
+                  <option value="">Escolha o profissional</option>
+                  {doctors.map((doctor) => (
+                    <option key={doctor._id} value={doctor._id}>
+                      Dr. {doctor.fullName} - {doctor.specialty}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="date">Data da consulta</Label>
+                <Input id="date" name="date" type="date" value={appointmentData.date} onChange={handleInputChange} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="time">Hora pretendida</Label>
+                <Select id="time" name="time" value={appointmentData.time} onChange={handleInputChange} disabled={availableSlots.length === 0}>
+                  <option value="">Escolha um horário</option>
+                  {availableSlots.map((slot) => (
+                    <option key={slot} value={slot}>{slot}</option>
+                  ))}
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="reason">Razão da visita</Label>
+                <Input id="reason" name="reason" value={appointmentData.reason} onChange={handleInputChange} placeholder="Brief description of your concern" />
+              </div>
+              <Button type="submit" className="ml-auto">Marcar consulta</Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
     );
   };
 
@@ -938,12 +947,25 @@ export default function PatientDashboard() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="mb-6 flex items-center gap-3">
-          <UserCircle className="h-8 w-8 text-blue-500" />
-          <h1 className="text-2xl font-semibold text-gray-800">
-            {patientInfo?.fullName || 'Paciente'}
-          </h1>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center m-4">
+            <UserCircle className="h-8 w-8 text-blue-500" />
+            <h1 className="text-2xl font-semibold text-gray-800">
+              {patientInfo?.fullName || 'Paciente'}
+            </h1>
+          </div>
+          <div className='flex justify-end items-center'>
+            <button
+              /*   onClick={() => handleOpenSchedule(null, 'create')} */
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus size={16} />
+              Novo Agendamento
+            </button>
+          </div>
+
         </div>
+
         <div className="mb-6 flex justify-between items-center">
           <h2 className="text-2xl font-bold text-gray-900">
             {activeTab === 'Dashboard'}
@@ -952,14 +974,6 @@ export default function PatientDashboard() {
             {activeTab === 'Management Packages' && 'Pacotes de Terapia'}
             {activeTab === 'Evolution' && 'Evolução do Tratamento'}
           </h2>
-
-          {activeTab === 'Dashboard' && (
-            <div className="flex items-center space-x-3">
-              <span className="text-sm text-gray-500">
-                Atualizado em {new Date().toLocaleDateString()}
-              </span>
-            </div>
-          )}
         </div>
 
         <div className="bg-white rounded-lg shadow-sm p-6">

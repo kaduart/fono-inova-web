@@ -22,6 +22,7 @@ export const useAppointments = () => {
         setError(null);
         try {
             const response = await appointmentService.list(params);
+
             setAppointments(response.data);
         } catch (err) {
             setError('Falha ao carregar agendamentos');
@@ -47,7 +48,6 @@ export const useAppointments = () => {
     }, []);
 
     const updateAppointment = useCallback(async (id: string, data: UpdateAppointmentParams) => {
-            console.log(`[FRONT][HOOK] - PUT ATUALZIAR agednamento`)
 
         try {
             setLoading(true);
@@ -142,7 +142,7 @@ export const useAppointments = () => {
 
     const cancelAppointment = useCallback(async (id: string, data: CancelParams) => {
         try {
-            
+
             setLoading(true);
             setError(null);
             const response = await appointmentService.cancel(id, data);

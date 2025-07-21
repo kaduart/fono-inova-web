@@ -1,6 +1,6 @@
 import { Box, Modal } from "@mui/material";
 import { useEffect, useState } from "react";
-import { ISession } from "../../utils/types/types";
+import { IPatient, ISession } from "../../utils/types/types";
 import { Button } from "../ui/Button";
 import { Select } from "../ui/Select";
 
@@ -26,32 +26,38 @@ export const DoctorSlotBookingModal = ({
     patients,
     selectedDoctorId,
     selectedBookingData
+
 }: DoctorSlotBookingModalProps) => {
-    const [patientId, setPatientId] = useState('');
+    const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null);
     const [selectedTime, setSelectedTime] = useState<string>(selectedBookingData?.time || '');
     const handleBookingSubmit = () => {
-        if (!patientId || !selectedTime) {
+        if (!selectedPatient || !selectedTime) {
             alert('Selecione um paciente e horário');
             return;
         }
         const sessionData: ISession = {
             _id: '',
             date: `${selectedTime}`, // concatena data com horário
-            professional: selectedDoctorId,
+            doctorId: selectedDoctorId,
             sessionType: 'fonoaudiologia',
             paymentAmount: 0,
             status: 'pending',
-            patient: patientId,
-            package: '',
+            patientId: selectedPatient._id,
+            packages: selectedPatient.packages || [],
             notes: ''
         };
-
         onSubmit(sessionData);
         onClose();
-        setPatientId('');
+        setSelectedPatient(null);
         setSelectedTime('');
     };
 
+    const handlePatientChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const id = e.target.value;
+        setSelectedPatient(id);
+        const found = patients.find((p) => p._id === id);
+        setSelectedPatient(found || null);
+    };
     useEffect(() => {
         if (isOpen && selectedBookingData?.time) {
             // Assumindo que availableTimes tem objetos com `date` e `slots`
@@ -72,7 +78,7 @@ export const DoctorSlotBookingModal = ({
                     <h3 className="text-xl font-bold mb-4">Selecione um Paciente</h3>
 
                     <div className="space-y-4">
-                        <Select value={patientId} onChange={(e) => setPatientId(e.target.value)}>
+                        <Select value={selectedPatient?._id || ''} onChange={handlePatientChange}>
                             <option value="">Selecione o paciente</option>
                             {patients.map((p) => (
                                 <option key={p._id} value={p._id}>

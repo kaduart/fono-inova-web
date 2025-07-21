@@ -68,7 +68,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             label: status.charAt(0).toUpperCase() + status.slice(1)
         };
     };
-    console.log('agendamento', appointments);
 
     const events = appointments?.map(appointment => {
         // Converter a string ISO para objeto Date
@@ -135,14 +134,13 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         const extendedProps = event.extendedProps;
 
         // Extrair hora no formato HH:MM
-        const startTime = event.start
+        const startTime = event.time
             ? `${String(event.start.getHours()).padStart(2, '0')}:${String(event.start.getMinutes()).padStart(2, '0')}`
             : "";
-
         setSelectedEvent({
             id: event.id,
             patient: {
-                id: extendedProps.patient?._id || extendedProps.patient?.id ||'',
+                id: extendedProps.patient?._id || extendedProps.patient?.id || '',
                 fullName: extendedProps.patient?.fullName || "Paciente não informado"
             },
             doctor: {

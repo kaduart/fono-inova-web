@@ -60,6 +60,7 @@ export interface IPayment {
 export interface ISession {
     _id?: string;
     date: string;
+    time: string;
     doctorId: string;
     sessionId?: string;
     patientId: string;
@@ -178,15 +179,22 @@ export const PatientInitialValues = {
 
 export interface ScheduleAppointment {
     patientId: string;
+    packageId?: string;
     doctorId: string;
     date: string;
     time: string;
     sessionType: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
     specialty: 'fonoaudiologia' | 'terapeuta ocupacional' | 'psicologia' | 'fisioterapia';
     notes?: string;
+    serviceType: 'evaluation' | 'session' | 'package_session' | 'individual_session';
     paymentAmount?: number;
     paymentMethod?: 'dinheiro' | 'pix' | 'cartão';
     status: 'agendado' | 'concluído' | 'cancelado';
+    packages?: string[];
+    reason?: string;
+    clinicalStatus?: 'pendente' | 'em_andamento' | 'concluído' | 'faltou';
+    operationalStatus?: 'agendado' | 'confirmado' | 'cancelado' | 'pago' | 'faltou';
+    duration?: number;
 }
 
 export const STATUS_OPTIONS = [
@@ -249,6 +257,7 @@ export interface IPatient {
     email: string;
     cpf: string;
     rg: string;
+    packages: string[];
     specialties: string[];
     mainComplaint: string;
     clinicalHistory: string;

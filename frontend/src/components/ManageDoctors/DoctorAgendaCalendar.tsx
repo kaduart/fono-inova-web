@@ -48,7 +48,7 @@ const DoctorAgendaCalendar = ({
     if (!selectedDoctorId) return;
 
     const formatted = format(date, 'yyyy-MM-dd');
-    onDateChange(dayjs(date));      // atualiza data no estado do pai
+    onDateChange(dayjs(date));
     onDaySelect(formatted);         // dispara busca por horários
     // NÃO expande ainda — espera os dados chegarem via props
   };

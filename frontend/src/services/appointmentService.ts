@@ -114,7 +114,6 @@ export const appointmentService = {
     },
 
     update: async (id: string, data: UpdateAppointmentParams) => {
-        console.log(`[FRONT][HOOK] - PUT ATUALZIAR agednamento`)
 
 
         const payload = data.startTime && data.duration
@@ -123,7 +122,6 @@ export const appointmentService = {
                 endTime: calculateEndTime(data.startTime, data.duration)
             }
             : data;
-        console.log(`SERVICE ATUALIZAR agednamento`,)
 
         return API.put<IAppointmentResponse>(`/appointments/${id}`, payload);
     },
@@ -157,7 +155,6 @@ export const appointmentService = {
     },
 
     cancel: async (id: string, data: CancelParams) => {
-        console.log(`SERVICE CANCELAR agednamento`,)
 
         return API.patch<IAppointmentResponse>(`/appointments/${id}/cancel`, data);
     },

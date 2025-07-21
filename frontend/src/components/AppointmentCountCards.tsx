@@ -43,7 +43,6 @@ const AppointmentStatusCards = () => {
             setError(null);
 
             const response = await appointmentService.getStatusCount(filters);
-            console.log('response statusss agendamentos', response);
             
             if (response.data.success) {
                 // Garante que todos os campos estejam presentes

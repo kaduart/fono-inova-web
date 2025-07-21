@@ -13,13 +13,10 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 async function fixMigrationMetadata() {
   try {
-    // 1. Conectar ao MongoDB
-    console.log('🔗 Conectando ao MongoDB...');
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    console.log('✅ Conectado com sucesso');
+    mongoose.connect(process.env.MONGO_URI)
+      .then(() => console.log('Connected to MongoDB'))
+      .catch((err) => console.error('Could not connect to MongoDB', err));
+
 
     // 2. Encontrar documentos sem metadados
     const filter = {

@@ -13,12 +13,14 @@ import { createPayment, FinancialRecord, getPayments, updatePayment } from '../s
 import { IAppointment, IDoctor, IPatient } from '../utils/types/types';
 import AppointmentCountCards from './AppointmentCountCards';
 import EnhancedCalendar from './calendar/EnhancedCalendar';
+import { AdvancedPaymentModal } from './financial/AdvancedPaymentModal';
 import { PaymentModal } from './financial/PaymentModal';
 import PaymentPage from './financial/PaymentPage';
 import DoctorFormModal from './ManageDoctors/DoctorFormModal';
 import ManageDoctors from './ManageDoctors/ManageDoctors';
 import { LeadsTable } from './mkt/LeadsTable';
 import AppChat from './mkt/whatsapp/AppChat';
+import BirthdayCard from './patients/BirthdayCard';
 import { PatientModal } from './patients/PatientModal';
 import PatientTable from './patients/PatientTable';
 import { Button } from './ui/Button';
@@ -205,6 +207,7 @@ export default function AdminDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [selectedAppointment, setSelectedAppointment] = useState<IAppointment | null>(null);
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+  const [showAdvancedPayment, setShowAdvancedPayment] = useState(false);
 
   const toggleMenu = (menuName: string) => {
     setOpenMenu(menuName);
@@ -383,7 +386,9 @@ export default function AdminDashboard() {
     setPaymentModalOpen(true);
   };
 
-
+  const handleAdvancedPayment = async (data: any) => {
+    setShowAdvancedPayment(true);
+  }
   const handleCreatePayment = async (data: any) => {
     try {
       await createPayment(data);
@@ -403,6 +408,12 @@ export default function AdminDashboard() {
   };
 
   const handleMarkAsPaid = (payment: FinancialRecord) => {
+
+    if (!payment || typeof payment !== 'object') {
+      console.error('Pagamento inválido:', payment);
+      return;
+    }
+
     setPaymentContext({
       mode: 'edit',
       payment
@@ -686,7 +697,7 @@ export default function AdminDashboard() {
 
       setIsModalOpen(false);
       setPatientToEdit(undefined);
-      updatePatients(true);
+      updatePatient(true);
       fetchPatientOverview();
       fetchTotalPatients();
       setActiveTab('Dashboard');
@@ -707,11 +718,19 @@ export default function AdminDashboard() {
         <div className="mb-8">
           <h3 className="flex items-center gap-2 text-xl font-semibold text-gray-800 mb-3">
             <User2 /> Pacientes</h3>
+          <div className="mb-8">
+            <BirthdayCard patients={patients} />
+          </div>
+
           <PatientTable
             patients={patients}
             onEditPatient={(patient) => {
               setPatientToEdit(patient);
               setIsModalOpen(true);
+            }}
+            onPaymentAdvancedSuccess={(patient) => {
+              setShowAdvancedPayment(true);
+              setSelectedPatient(patient);
             }}
             onRegisterPayment={(patient) => {
               setPaymentContext({
@@ -721,7 +740,7 @@ export default function AdminDashboard() {
               setPaymentModalOpen(true);
             }}
           />
-        </div>
+        </div >
 
         <AppointmentCountCards />
         <hr className='m-5' />
@@ -1338,7 +1357,7 @@ export default function AdminDashboard() {
           doctors={doctors}
           payment={paymentContext.payment}
           onClose={() => {
-            setIsModalOpen(false);
+            setPaymentModalOpen(false);
             setPatientToEdit(undefined);
           }}
           onPaymentSuccess={
@@ -1348,6 +1367,14 @@ export default function AdminDashboard() {
           }
         />
       )}
+
+      <AdvancedPaymentModal
+        open={showAdvancedPayment}
+        patients={patients}
+        doctors={doctors}
+        onClose={() => setShowAdvancedPayment(false)}
+        onPaymentAdvancedSuccess={handleAdvancedPayment}
+      />
     </div>
   );
 }

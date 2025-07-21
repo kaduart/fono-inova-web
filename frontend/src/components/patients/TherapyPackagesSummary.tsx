@@ -46,8 +46,6 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
                     ? responseData
                     : responseData.data || []
             ).filter(pkg => pkg); // Filtra entradas null/undefined
-
-            // 5. Atualização otimizada do estado
             setPackages(packageData);
 
             // 6. Feedback condicional baseado nos dados
@@ -92,11 +90,14 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
 
     const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
         try {
+
             validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
+
             const payload = {
                 patientId: sessionData.patient,
                 doctorId: sessionData.doctorId,
                 date: sessionData.date,
+                time: sessionData.time,
                 status: sessionData.status,
                 notes: sessionData.notes,
                 package: sessionData.package,
@@ -111,7 +112,7 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
             };
 
             await packageService.updateSession(packId, payload);
-          
+
             toast.success(modalAction === 'edit' ? "Sessão atualizada!" : "Sessão registrada!");
             fetchBasicPackages();
 

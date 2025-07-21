@@ -30,9 +30,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 
-console.log("✅ MONGO_URI lida do .env:", process.env.MONGO_URI);
-
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -45,13 +42,10 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 30000, // 30 segundos
-  socketTimeoutMS: 45000,
-});
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Could not connect to MongoDB', err));
+
 
 // Routes
 app.use('/api/signup', signupRoutes);

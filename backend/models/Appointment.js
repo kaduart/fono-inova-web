@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import { syncEvent } from '../services/syncService.js';
+import MedicalEvent from './MedicalEvent.js';
 
 
 const appointmentSchema = new mongoose.Schema({
@@ -49,7 +51,7 @@ const appointmentSchema = new mongoose.Schema({
   payment: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Payment',
-    
+    required: false
   },
   specialty: {
     type: String,
@@ -57,6 +59,38 @@ const appointmentSchema = new mongoose.Schema({
     enum: ['fonoaudiologia', 'terapeuta ocupacional', 'psicologia', 'fisioterapia', 'pediatria', 'neuroped'],
 
   },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'paid', 'partial', 'canceled', 'advanced', 'package_paid'],
+    default: 'pending'
+  },
+  advancedSessions: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Appointment'
+  }],
+  package: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Package'
+  },
+  session: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Session'
+  },
+  serviceType: {
+    type: String,
+    enum: ['individual_session', 'package_session', 'evaluation'],
+    required: true
+  },
+  sessionValue: {
+    type: Number,
+    min: 0,
+    default: 200 // Valor padrão
+  },
+  paymentMethod: {
+    type: String,
+    enum: ['dinheiro', 'pix', 'cartão'],
+    default: 'dinheiro'
+  }
 }, {
   timestamps: true,
   toJSON: { virtuals: true },
@@ -73,6 +107,24 @@ appointmentSchema.index(
   { patient: 1, doctor: 1, date: 1, time: 1 },
   { unique: true, name: 'unique_appointment' }
 );
+
+// Middlewares de sincronização
+appointmentSchema.post('save', async function (doc) {
+  await syncEvent(doc, 'appointment');
+});
+
+appointmentSchema.post('findOneAndUpdate', async function (doc) {
+  if (doc) await syncEvent(doc, 'appointment');
+});
+
+appointmentSchema.post('findOneAndDelete', async function (doc) {
+  if (doc) {
+    await MedicalEvent.deleteOne({
+      originalId: doc._id,
+      type: 'appointment'
+    });
+  }
+});
 
 /* appointmentSchema.pre('save', function (next) {
   // Sincroniza status legado com novo modelo
@@ -104,6 +156,7 @@ appointmentSchema.index(
   }
   next();
 }); */
+
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 
 export default Appointment;

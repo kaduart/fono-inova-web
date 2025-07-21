@@ -1,10 +1,11 @@
 import { Check, X } from 'lucide-react';
 import { FaCheckCircle, FaEdit, FaRegTimesCircle } from 'react-icons/fa';
 import { FinancialRecord } from '../../services/paymentService';
+import { useEffect } from 'react';
 
 interface PaymentActionIconsProps {
     payment: FinancialRecord;
-    onMarkAsPaid: (id: string) => void;
+    onMarkAsPaid: (payment: FinancialRecord) => void;
     onCancelPayment: (id: string) => void;
     onEditAmount: (id: string) => void;
 }
@@ -15,6 +16,10 @@ export const PaymentActionIcons = ({
     onCancelPayment,
     onEditAmount
 }: PaymentActionIconsProps) => {
+
+    useEffect(() => {
+        console.log('Payment no componente:', payment);
+    }, [payment]);
     const getStatusIcon = () => {
         switch (payment.status) {
             case 'paid':

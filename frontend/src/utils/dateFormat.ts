@@ -52,4 +52,7 @@ export function mergeDateAndTime(dateString: string, timeString: string): Date {
 }
 
 
-
+export const formatDateTimeForBackend = (dateStr: string, timeStr: string): string => {
+  // Combina data e hora em formato ISO sem conversão de fuso
+  return `${dateStr}T${timeStr}:00-03:00`; // -03:00 representa o fuso de Brasília
+};

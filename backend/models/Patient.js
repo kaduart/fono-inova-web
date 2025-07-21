@@ -57,23 +57,73 @@ const patientSchema = new mongoose.Schema({
       ref: 'Appointment'
     }
   ],
-  lastAppointment: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Appointment'
-  },
-  nextAppointment: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Appointment'
-  },
-  
+  packages: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Package'
+    }
+  ],
   imageAuthorization: { type: Boolean, default: false },
 }, {
   toJSON: { virtuals: true },
   toObject: { virtuals: true },
-  timestamps: true 
+  timestamps: true
 });
 
+// Campos virtuais para lastAppointment e nextAppointment
+patientSchema.virtual('lastAppointment', {
+  ref: 'Appointment',
+  localField: '_id',
+  foreignField: 'patient',
+  justOne: true,
+  match: { date: { $lt: new Date() } },
+  options: { sort: { date: -1 }, limit: 1 }
+});
 
+patientSchema.virtual('nextAppointment', {
+  ref: 'Appointment',
+  localField: '_id',
+  foreignField: 'patient',
+  justOne: true,
+  match: { date: { $gte: new Date() } },
+  options: { sort: { date: 1 }, limit: 1 }
+});
+
+patientSchema.pre('save', function (next) {
+  const patient = this;
+
+  // Só atualiza se appointments foi modificado
+  if (!patient.isModified('appointments')) return next();
+
+  const now = new Date();
+  let lastAppointment = null;
+  let nextAppointment = null;
+
+  // Ordena appointments por data
+  const sortedAppointments = [...patient.appointments].sort((a, b) =>
+    new Date(a.date) - new Date(b.date)
+  );
+
+  // Encontra o último agendamento passado
+  for (let i = sortedAppointments.length - 1; i >= 0; i--) {
+    if (new Date(sortedAppointments[i].date) < now) {
+      lastAppointment = sortedAppointments[i];
+      break;
+    }
+  }
+
+  // Encontra o próximo agendamento futuro
+  for (let i = 0; i < sortedAppointments.length; i++) {
+    if (new Date(sortedAppointments[i].date) >= now) {
+      nextAppointment = sortedAppointments[i];
+      break;
+    }
+  }
+
+  patient.lastAppointment = lastAppointment;
+  patient.nextAppointment = nextAppointment;
+  next();
+});
 
 const Patient = mongoose.model('Patient', patientSchema, 'patients');
 

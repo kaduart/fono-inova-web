@@ -98,38 +98,122 @@ router.put('/:id', validateId, auth, async (req, res) => {
 // List all patients
 router.get('/', auth, async (req, res) => {
   try {
+    // Configurações de população
+    const basePopulate = [
+      {
+        path: 'packages',
+        populate: [
+          { path: 'doctor', select: 'fullName specialty' },
+          { path: 'patient', select: 'fullName' },
+          { path: 'sessions', select: 'date status' }
+        ]
+      },
+      { path: 'doctor', select: 'fullName specialty' },
+      {
+        path: 'lastAppointment',
+        populate: [
+          { path: 'doctor', select: 'fullName specialty' },
+          { path: 'payment', select: 'status amount paymentMethod' }
+        ]
+      },
+      {
+        path: 'nextAppointment',
+        populate: [
+          { path: 'doctor', select: 'fullName specialty' },
+          { path: 'payment', select: 'status amount paymentMethod' }
+        ]
+      }
+    ];
+
+    // População de agendamentos com pacotes
+    const appointmentsPopulate = {
+      path: 'appointments',
+      options: { sort: { date: 1 } },
+      populate: [
+        { path: 'doctor', select: 'fullName specialty' },
+        {
+          path: 'payment',
+          select: 'status amount paymentMethod',
+          populate: {
+            path: 'package',
+            select: 'sessionType sessionsPerWeek durationMonths totalSessions',
+            populate: {
+              path: 'sessions',
+              select: 'date status'
+            }
+          }
+        },
+        {
+          path: 'package',  // Nova população direta de pacotes
+          select: 'sessionType sessionsPerWeek durationMonths totalSessions sessionsDone',
+          populate: {
+            path: 'sessions',
+            select: 'date status'
+          }
+        }
+      ]
+    };
+
     let patients;
 
-    // Tenta primeiro a ordenação no banco de dados
     try {
+      // Consulta principal
       patients = await Patient.find()
+        .populate(basePopulate)
+        .populate(appointmentsPopulate)
+        .sort({ fullName: 1 })  // Ordenação segura no banco
+        .lean();  // Usar lean para melhor performance
+
+    } catch (error) {
+      console.error('Erro na consulta principal:', error);
+
+      // Fallback simplificado
+      patients = await Patient.find()
+        .populate(basePopulate)
         .populate({
           path: 'appointments',
-          options: { sort: { date: 1 } },
           populate: [
-            { path: 'doctor', select: 'fullName specialty' },  // Popula dados do médico
-            { path: 'patient', select: 'fullName specialties' }           // Popula dados do paciente
+            { path: 'doctor', select: 'fullName specialty' },
+            {
+              path: 'package',
+              select: 'sessionType sessionsPerWeek durationMonths totalSessions',
+              populate: {
+                path: 'sessions',
+                select: 'date status'
+              }
+            }
           ]
         })
-        .populate({
-          path: 'lastAppointment',
-          select: 'date status doctor reason',
-          populate: { path: 'doctor', select: 'fullName specialty' }
-        })
-        .populate({
-          path: 'nextAppointment',
-          select: 'date status doctor reason',
-          populate: { path: 'doctor', select: 'fullName specialty' }
-        });
-    } catch (dbSortError) {
-      console.warn('Falha na ordenação no BD, usando ordenação em memória:', dbSortError);
+        .lean();
 
-      // Fallback para ordenação em memória
-      const rawPatients = await Patient.find();
-      patients = rawPatients.sort((a, b) =>
+      // Ordenação em memória
+      patients.sort((a, b) =>
         a.fullName.localeCompare(b.fullName, 'pt', { sensitivity: 'base' })
       );
     }
+
+    // Pós-processamento para garantir pacotes recentes
+    patients = patients.map(patient => {
+      // Coletar pacotes de múltiplas fontes
+      const appointmentPackages = patient.appointments
+        ?.filter(a => a.package)
+        .map(a => a.package) || [];
+
+      const directPackages = patient.packages || [];
+
+      // Combinar e remover duplicatas
+      const allPackages = [
+        ...directPackages,
+        ...appointmentPackages
+      ].filter((pkg, index, self) =>
+        index === self.findIndex(p => p._id.toString() === pkg._id.toString())
+      );
+
+      return {
+        ...patient,
+        packages: allPackages
+      };
+    });
 
     res.json(patients);
   } catch (err) {

@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import React, { useState } from "react";
 import toast from 'react-hot-toast';
 import appointmentService from '../../services/appointmentService';
-import { createPayment } from '../../services/paymentService';
 import { mergeDateAndTime } from '../../utils/dateFormat';
 import { IDoctor, IPatient, ScheduleAppointment } from "../../utils/types/types";
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
@@ -10,7 +9,6 @@ import { Button } from "../ui/Button";
 import DoctorAgenda from "./DoctorAgenda";
 import DoctorFormModal from "./DoctorFormModal";
 import DoctorList from "./DoctorList";
-import { DoctorSlotBookingModal } from './DoctorSlotBookingModal';
 
 const initialSchedules = {
     "1": {
@@ -44,7 +42,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(null);
     const [showAgendaModal, setshowAgendaModal] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isBookingModalOpen, setBookingModalOpen] = useState(false);
     const [showScheduleModal, setShowScheduleModal] = useState(false);
     const [allDaySlots, setAllDaySlots] = useState<(any)[]>([]);
     const [selectedBookingData, setSelectedBookingData] = useState<{
@@ -72,6 +69,8 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
     };
 
     const handleDaySlotsChange = (slots: { date: string; slots: string[] }[]) => {
+
+        setSelectedDate(dayjs(slots[0].date));
         setAllDaySlots(slots);
     };
 
@@ -94,19 +93,20 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
 
     //aqui chama o agendamento por hora
     const onOpenCloseModals = async (data: any) => {
+
         setScheduleAppointmentData({
-            date: scheduleAppointmentData.date,
+            date: selectedDate ? selectedDate.toISOString() : '',
             time: data.time,
-            doctorId: data.professional,
-            patientId: data.patient,
+            doctorId: '',
+            patientId: '',
             sessionType: 'fonoaudiologia',
             status: 'agendado',
             notes: '',
             paymentAmount: 0,
-            paymentMethod: 'dinheiro',
-
+            paymentMethod: 'dinheiro'
         });
-        setBookingModalOpen(data.isBookingModalOpen);
+        setShowScheduleModal(true);
+
         setSelectedBookingData(data);
     }
 
@@ -114,10 +114,11 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         setScheduleAppointmentData({
             ...scheduleAppointmentData,
             date: data.date,
-            doctorId: data.professional,
-            patientId: data.patient,
+            doctorId: data.doctorId,
+            patientId: data.patientId,
+            packages: data.packages,
         });
-        setBookingModalOpen(false);
+        //  setBookingModalOpen(false);
         setShowScheduleModal(true);
     };
 
@@ -131,22 +132,11 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         payload.date = mergeDateAndTime(payload.date, payload.time).toISOString();
         payload.specialty = payload.sessionType;
         try {
-            const response = await appointmentService.create(payload)
-            await createPayment({
-                patientId: payload.patientId,
-                doctorId: payload.doctorId,
-                serviceType: 'evaluation',
-                amount: 200,
-                status: 'pending',
-                paymentMethod: 'dinheiro',
-                notes: `Pagamento referente à consulta agendada para ${payload.date} às ${payload.time}`,
-                // sessionId: newpayload._id
-            });
+            await appointmentService.create(payload)
 
             toast.success('Sessão agendada e pagamento registrado com sucesso!');
 
             setdataUpdateSlots(payload);
-            // setIsModalOpen(false);
             setShowScheduleModal(false);
 
         } catch (err: any) {
@@ -172,6 +162,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
                     onDaySlotsChange={handleDaySlotsChange}
                     onSubmitSlotBooking={onOpenCloseModals}
                     updateSlots={dataUpdateSlots}
+
                 />
             )}
 
@@ -184,17 +175,6 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
                     onSubmitSlotBooking={handleBookingSubmit}
                 />
             )}
-
-            <DoctorSlotBookingModal
-                isOpen={isBookingModalOpen}
-                onClose={() => setBookingModalOpen(false)}
-                onSubmit={handleBookingSubmit}
-                selectedDate={selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') : ''}
-                patients={patients}
-                availableTimes={allDaySlots}
-                selectedDoctorId={selectedDoctor ? selectedDoctor._id : ''}
-                selectedBookingData={selectedBookingData}
-            />
 
             {showScheduleModal && (
                 <ScheduleAppointmentModal

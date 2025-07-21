@@ -2,7 +2,7 @@ import API from "./api";
 
 export interface FinancialRecord {
     _id: string;
-    date: string; // data do pagamento
+    date: string;
     description: string;
     amount: number;
     paid: boolean;
@@ -16,15 +16,108 @@ export interface FinancialRecord {
     notes: string;
     packageId: string;
     sessionId: string;
-
+    advancedSessions: string[]
 }
 
 export interface Summary {
-    total: number;       // soma de todos os valores
-    paidCount: number;   // quantidade de registros pagos
-    unpaidCount: number; // quantidade de registros não pagos
+    total: number;
+    paidCount: number;
+    unpaidCount: number;
 }
 
+// Tipos para fechamento diário
+export interface DailyClosingReport {
+    date: string;
+    period: {
+        start: string;
+        end: string;
+    };
+    totals: {
+        scheduled: {
+            count: number;
+            value: number;
+        };
+        completed: {
+            count: number;
+            value: number;
+        };
+        payments: {
+            count: number;
+            value: number;
+            methods: {
+                dinheiro: number;
+                pix: number;
+                cartão: number;
+            };
+        };
+        absences: {
+            count: number;
+            estimatedLoss: number;
+        };
+    };
+    byProfessional: Array<{
+        doctorId: string;
+        doctorName: string;
+        specialty: string;
+        scheduled: number;
+        scheduledValue: number;
+        completed: number;
+        completedValue: number;
+        absences: number;
+        payments: {
+            total: number;
+            methods: {
+                dinheiro: number;
+                pix: number;
+                cartão: number;
+            };
+        };
+    }>;
+}
+
+export interface DailySession {
+    id: string;
+    date: string;
+    time: string;
+    patient: string;
+    patientPhone?: string;
+    patientEmail?: string;
+    doctor: string;
+    specialty: string;
+    sessionType: string;
+    value: number;
+    status?: string;
+    confirmedAbsence?: boolean;
+    notes?: string;
+    duration?: number;
+}
+
+export interface DailyPayment {
+    id: string;
+    date: string;
+    patient: string;
+    doctor: string;
+    specialty: string;
+    sessionType: string;
+    sessionDate?: string;
+    amount: number;
+    paymentMethod: string;
+    notes?: string;
+}
+
+export interface DailyAbsence {
+    id: string;
+    date: string;
+    time: string;
+    patient: string;
+    patientPhone?: string;
+    doctor: string;
+    specialty: string;
+    sessionType: string;
+    value: number;
+    confirmedAbsence: boolean;
+    notes?: string;
+}
 
 // CRUD básicos
 export const getPayments = (filters: Record<string, any> = {}) =>
@@ -61,22 +154,44 @@ export const updatePayment = (
 export const deletePayment = (id: string) =>
     API.delete<void>(`/payments/${id}`);
 
-// Marca como pago
-/* export const updatePaymentStatus = (
-    id: string,
-    data: {
-        status?: 'pending' | 'paid' | 'canceled';
-        amount?: number;
-    }
-) => {
-    return API.patch(`/payments/${id}/status`, data);
-}; */
+// Fechamento diário completo
+export const getDailyClosing = (date?: string) => {
+    return API.get<DailyClosingReport>('/payments/daily-closing', {
+        params: { date }
+    });
+};
 
+// Detalhes de pagamentos diários
+export const getDailyPayments = (date?: string) => {
+    return API.get<DailyPayment[]>('/payments/daily-payments-details', {
+        params: { date }
+    });
+};
+
+// Detalhes de sessões agendadas
+export const getDailyScheduledDetails = (date?: string) => {
+    return API.get<DailySession[]>('/payments/daily-scheduled-details', {
+        params: { date }
+    });
+};
+
+// Detalhes de sessões realizadas
+export const getDailyCompletedSessions = (date?: string) => {
+    return API.get<DailySession[]>('/payments/daily-completed-details', {
+        params: { date }
+    });
+};
+
+// Detalhes de faltas
+export const getDailyAbsences = (date?: string) => {
+    return API.get<DailyAbsence[]>('/payments/daily-absences-details', {
+        params: { date }
+    });
+};
+
+// Relatórios e exportação
 export const getReport = (params: any) => API.get('/payments/report', { params });
-
-// Resumo
-export const getPaymentSummary = () =>
-    API.get<Summary>('/payments/report/summary');
+export const getPaymentSummary = () => API.get<Summary>('/payments/report/summary');
 
 // Export CSV
 export const exportCSV = (filters: Record<string, any> = {}) => {
