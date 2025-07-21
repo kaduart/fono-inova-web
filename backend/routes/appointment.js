@@ -365,21 +365,20 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
             }
 
             // 6. Sincronizar com MedicalEvent
-            await syncEvent(updated, 'appointment', mongoSession);
+            //  await syncEvent(updated, 'appointment', mongoSession);
 
             // 7. Auditoria de mudanças
-            await createAuditLog({
-                entity: 'Appointment',
-                entityId: appointment._id,
-                action: 'UPDATE',
-                changes: {
-                    before: originalData,
-                    after: updated.toObject()
-                },
-                user: req.user.id
-            }, mongoSession);
+            /*  await createAuditLog({
+                 entity: 'Appointment',
+                 entityId: appointment._id,
+                 action: 'UPDATE',
+                 changes: {
+                     before: originalData,
+                     after: updated.toObject()
+                 },
+                 user: req.user.id
+             }, mongoSession); */
 
-            await mongoSession.commitTransaction();
             res.json(updated);
         } catch (error) {
             console.error('Erro ao atualizar agendamento:', error);
@@ -403,6 +402,19 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
                 });
             }
 
+
+            // Tratamento de erros específicos
+            if (error.message === 'Agendamento não encontrado') {
+                return res.status(404).json({ error: error.message });
+            }
+
+            if (error.message === 'Acesso não autorizado') {
+                return res.status(403).json({ error: error.message });
+            }
+
+            if (error.message === 'Pacote inválido ou sem sessões disponíveis') {
+                return res.status(400).json({ error: error.message });
+            }
             res.status(500).json({
                 error: 'Erro interno',
                 details: process.env.NODE_ENV === 'development' ? error.message : undefined

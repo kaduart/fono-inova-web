@@ -22,37 +22,49 @@ const RETRY_BASE_DELAY = 100; // ms
 
 // Função de retry com backoff exponencial
 async function withSyncRetry(operation, doc, type) {
-    let lastError;
+    async function withSyncRetry(operation, doc, type) {
+        let lastError;
 
-    for (let attempt = 1; attempt <= MAX_SYNC_RETRIES; attempt++) {
-        try {
-            return await operation();
-        } catch (error) {
-            lastError = error;
+        for (let attempt = 1; attempt <= MAX_SYNC_RETRIES; attempt++) {
+            const retrySession = await mongoose.startSession();
+            try {
+                await retrySession.startTransaction();
+                const result = await operation(retrySession);
+                await retrySession.commitTransaction();
+                return result;
+            } catch (error) {
+                // Abortar apenas se a transação foi iniciada
+                if (retrySession.inTransaction()) {
+                    await retrySession.abortTransaction();
+                }
 
-            // Tratar apenas conflitos de escrita
-            if (error.code !== 112) throw error;
+                lastError = error;
 
-            console.warn(`[SYNC] Conflito de escrita (tentativa ${attempt}/${MAX_SYNC_RETRIES}) para ${doc._id}`);
+                // Tratar apenas conflitos específicos
+                if (![112, 251].includes(error.code)) throw error;
 
-            // Backoff exponencial
-            const delay = RETRY_BASE_DELAY * Math.pow(2, attempt);
-            await new Promise(resolve => setTimeout(resolve, delay));
+                console.warn(`[SYNC-RETRY] Tentativa ${attempt}/${MAX_SYNC_RETRIES} para ${doc._id}`, error.message);
 
-            // Recarregar o documento para obter versão atualizada
-            if (type === 'appointment') {
-                doc = await Appointment.findById(doc._id);
-            } else if (type === 'session') {
-                doc = await Session.findById(doc._id).populate('package appointmentId');
-            } else if (type === 'package') {
-                doc = await Package.findById(doc._id);
+                // Backoff exponencial com jitter
+                const delay = RETRY_BASE_DELAY * Math.pow(2, attempt) + Math.random() * 100;
+                await new Promise(resolve => setTimeout(resolve, delay));
+
+                // Recarregar documento com versão atual
+                if (type === 'appointment') {
+                    doc = await Appointment.findById(doc._id);
+                } else if (type === 'session') {
+                    doc = await Session.findById(doc._id).populate('package appointmentId');
+                } else if (type === 'package') {
+                    doc = await Package.findById(doc._id);
+                }
+            } finally {
+                retrySession.endSession();
             }
         }
+
+        throw lastError;
     }
-
-    throw lastError;
 }
-
 const safeObjectId = (id) => {
     if (!id) return null;
     if (typeof id === 'string') return id;
@@ -180,32 +192,3 @@ export const syncEvent = async (originalDoc, type, session = null) => {
     }
 };
 
-async function withSyncRetry(operation, doc, type) {
-    let lastError;
-
-    for (let attempt = 1; attempt <= MAX_SYNC_RETRIES; attempt++) {
-        try {
-            return await operation();
-        } catch (error) {
-            lastError = error;
-
-            // Tratar conflitos e transações abortadas
-            if (![112, 251].includes(error.code)) throw error;
-
-            console.warn(`[SYNC] Conflito/aborto (tentativa ${attempt}/${MAX_SYNC_RETRIES}) para ${doc._id}`);
-
-            const delay = RETRY_BASE_DELAY * Math.pow(2, attempt);
-            await new Promise(resolve => setTimeout(resolve, delay));
-
-            if (type === 'appointment') {
-                doc = await Appointment.findById(doc._id);
-            } else if (type === 'session') {
-                doc = await Session.findById(doc._id).populate('package appointmentId');
-            } else if (type === 'package') {
-                doc = await Package.findById(doc._id);
-            }
-        }
-    }
-
-    throw lastError;
-}
