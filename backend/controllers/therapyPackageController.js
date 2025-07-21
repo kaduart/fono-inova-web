@@ -7,6 +7,8 @@ import Session from '../models/Session.js';
 import { calculateSessionDates, isWeekend } from '../services/packageService.js';
 import { syncEvent } from '../services/syncService.js';
 import { extractTimeFromDateTime } from '../utils/horaFormat.js';
+import Patient from '../models/Patient.js';
+import Doctor from '../models/Doctor.js';
 
 const APPOINTMENTS_API_BASE_URL = 'http://167.234.249.6:5000/api';
 const validateInputs = {
