@@ -44,6 +44,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
 
     useEffect(() => {
         if (event) {
+            console.log('eeeeeeeeeee',event);
             const eventDate = event.date ? new Date(event.date).toISOString().split('T')[0] : '';
             const eventTime = event.startTime || '';
             setEditedAppointment({

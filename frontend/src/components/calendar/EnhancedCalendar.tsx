@@ -130,13 +130,11 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 minute: "2-digit",
             }).format(new Date(event.start))
             : "";
-
+        const time = `${String(event.start.getHours()).padStart(2, '0')}:${String(event.start.getMinutes()).padStart(2, '0')}`;
         const extendedProps = event.extendedProps;
-
+        console.log('event', event);
         // Extrair hora no formato HH:MM
-        const startTime = event.time
-            ? `${String(event.start.getHours()).padStart(2, '0')}:${String(event.start.getMinutes()).padStart(2, '0')}`
-            : "";
+        console.log('time', time);
         setSelectedEvent({
             id: event.id,
             patient: {
@@ -148,7 +146,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 fullName: extendedProps.doctor?.fullName || "Profissional não informado"
             },
             date: event.start ? new Date(event.start) : null,
-            startTime: startTime,
+            startTime: time,
             operationalStatus: extendedProps.operationalStatus || "agendado",
             clinicalStatus: extendedProps.clinicalStatus || "pendente",
             formattedDate,

@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
 import Appointment from '../models/Appointment.js';
+import Doctor from '../models/Doctor.js';
 import MedicalEvent from '../models/MedicalEvent.js';
 import Package from '../models/Package.js';
+import Patient from '../models/Patient.js';
 import Payment from '../models/Payment.js';
 import Session from '../models/Session.js';
 import { calculateSessionDates, isWeekend } from '../services/packageService.js';
 import { syncEvent } from '../services/syncService.js';
 import { extractTimeFromDateTime } from '../utils/horaFormat.js';
-import Patient from '../models/Patient.js';
-import Doctor from '../models/Doctor.js';
 
 const APPOINTMENTS_API_BASE_URL = 'http://167.234.249.6:5000/api';
 const validateInputs = {
@@ -50,7 +50,7 @@ export const packageOperations = {
             const [hours, minutes] = time.split(':').map(Number);
 
             // Configura o horário corretamente (considerando que a data já foi criada com o fuso correto)
-            startDate.setHours(hours, minutes);
+            //   startDate.setHours(hours, minutes);
 
             // Debug
             console.log('Horário LOCAL configurado:', startDate.toString());
@@ -440,7 +440,6 @@ export const packageOperations = {
         },
     },
 
-
     // Atualizar
     update: {
         package: async (req, res) => {
@@ -484,8 +483,9 @@ export const packageOperations = {
         },
         session: async (req, res) => {
             const mongoSession = await mongoose.startSession();
+            await mongoSession.startTransaction();
+
             try {
-                await mongoSession.startTransaction();
                 const { sessionId } = req.params;
                 const {
                     date,
@@ -514,22 +514,30 @@ export const packageOperations = {
                     throw new Error("Para sessões canceladas, o campo 'confirmedAbsence' é obrigatório");
                 }
 
-                // Busca a sessão com transação
-                const sessionDoc = await Session.findById(sessionId)
-                    .populate({
-                        path: 'package',
-                        select: 'sessionType sessionsPerWeek doctor patient sessionValue totalSessions totalPaid sessionsDone status'
-                    })
-                    .populate('appointmentId')
-                    .session(mongoSession);
+                // Busca a sessão com retry para evitar conflitos
+                const sessionDoc = await withRetry(() =>
+                    Session.findById(sessionId)
+                        .populate({
+                            path: 'package',
+                            select: 'sessionType sessionsPerWeek doctor patient sessionValue totalSessions totalPaid sessionsDone status'
+                        })
+                        .populate('appointmentId')
+                        .session(mongoSession)
+                );
 
                 if (!sessionDoc) throw new Error("Sessão não encontrada");
 
                 // Guarda o status anterior para verificar mudanças
                 const previousStatus = sessionDoc.status;
 
-                // Atualiza campos básicos da sessão
-                sessionDoc.date = new Date(date);
+                // Extrair a parte da data (yyyy-MM-dd)
+                const dateOnly = date.split('T')[0]; // "2025-07-07"
+
+                // Montar um Date com fuso -03:00 (São Paulo)
+                const sessionDate = new Date(`${dateOnly}T${time}:00-03:00`);
+
+                // Atualizar campos básicos da sessão
+                sessionDoc.date = sessionDate;
                 sessionDoc.notes = notes || sessionDoc.notes;
 
                 if (doctorId) {
@@ -568,26 +576,29 @@ export const packageOperations = {
                     sessionDoc.sessionType = specialty;
                 }
 
-                // 1. Verificar se o status mudou para 'completed'
+                // 1. Lógica para quando a sessão é marcada como 'completed'
                 if (status === 'completed' && previousStatus !== 'completed') {
-                    // Verificar se o pacote existe
                     if (!sessionDoc.package) {
                         throw new Error("Pacote não encontrado para esta sessão");
                     }
 
-                    // Atualizar o pacote - incrementar sessionsDone
-                    const updatedPackage = await Package.findByIdAndUpdate(
-                        sessionDoc.package._id,
-                        { $inc: { sessionsDone: 1 } },
-                        { new: true, session: mongoSession }
+                    // Atualizar pacote (incrementar sessionsDone)
+                    const updatedPackage = await withRetry(() =>
+                        Package.findByIdAndUpdate(
+                            sessionDoc.package._id,
+                            { $inc: { sessionsDone: 1 } },
+                            { new: true, session: mongoSession }
+                        )
                     );
 
                     // Verificar se o pacote foi concluído
                     if (updatedPackage.sessionsDone >= updatedPackage.totalSessions) {
-                        await Package.findByIdAndUpdate(
-                            updatedPackage._id,
-                            { status: 'finished' },
-                            { session: mongoSession }
+                        await withRetry(() =>
+                            Package.findByIdAndUpdate(
+                                updatedPackage._id,
+                                { status: 'finished' },
+                                { session: mongoSession }
+                            )
                         );
                     }
 
@@ -606,31 +617,33 @@ export const packageOperations = {
                         await payment.save({ session: mongoSession });
 
                         sessionDoc.isPaid = true;
-                        await sessionDoc.save({ session: mongoSession });
                     }
                 }
 
-                // 2. Verificar se o status foi alterado de 'completed' para outro status
+                // 2. Lógica para quando a sessão deixa de ser 'completed'
                 if (previousStatus === 'completed' && status !== 'completed') {
-                    // Verificar se o pacote existe
                     if (!sessionDoc.package) {
                         throw new Error("Pacote não encontrado para esta sessão");
                     }
 
-                    // Atualizar o pacote - decrementar sessionsDone
-                    const updatedPackage = await Package.findByIdAndUpdate(
-                        sessionDoc.package._id,
-                        { $inc: { sessionsDone: -1 } },
-                        { new: true, session: mongoSession }
+                    // Atualizar pacote (decrementar sessionsDone)
+                    const updatedPackage = await withRetry(() =>
+                        Package.findByIdAndUpdate(
+                            sessionDoc.package._id,
+                            { $inc: { sessionsDone: -1 } },
+                            { new: true, session: mongoSession }
+                        )
                     );
 
                     // Reverter status se necessário
                     if (updatedPackage.status === 'finished' &&
                         updatedPackage.sessionsDone < updatedPackage.totalSessions) {
-                        await Package.findByIdAndUpdate(
-                            updatedPackage._id,
-                            { status: 'active' },
-                            { session: mongoSession }
+                        await withRetry(() =>
+                            Package.findByIdAndUpdate(
+                                updatedPackage._id,
+                                { status: 'active' },
+                                { session: mongoSession }
+                            )
                         );
                     }
                 }
@@ -651,11 +664,12 @@ export const packageOperations = {
                     return 'pendente';
                 };
 
-                // Gerenciamento de agendamento
+                // Gerenciamento de agendamento associado
                 if (sessionDoc.appointmentId) {
                     // Atualização de agendamento existente
-                    const appointment = await Appointment.findById(sessionDoc.appointmentId._id)
-                        .session(mongoSession);
+                    const appointment = await withRetry(() =>
+                        Appointment.findById(sessionDoc.appointmentId._id).session(mongoSession)
+                    );
 
                     if (appointment) {
                         appointment.patient = patientId || sessionDoc.patient;
@@ -670,8 +684,7 @@ export const packageOperations = {
                         appointment.sessionType = sessionType || sessionDoc.sessionType;
                         appointment.time = formattedTime;
 
-                        console.log('requisicao para atualziar apppoiiiitnemtn', appointment);
-                        await appointment.save({ session: mongoSession });
+                        await withRetry(() => appointment.save({ session: mongoSession }));
                     }
                 } else {
                     // Criação de novo agendamento
@@ -688,31 +701,43 @@ export const packageOperations = {
                         time: formattedTime
                     });
 
-                    await appointment.save({ session: mongoSession });
+                    await withRetry(() => appointment.save({ session: mongoSession }));
                     sessionDoc.appointmentId = appointment._id;
                 }
 
                 // Salvar sessão atualizada
-                await sessionDoc.save({ session: mongoSession });
+                await withRetry(() => sessionDoc.save({ session: mongoSession }));
 
-                // SINCRONIZAÇÃO COM O MODELO UNIFICADO - PONTO CRÍTICO!
-                // 1. Recarregar a sessão com dados populados
-                const refreshedSession = await Session.findById(sessionId)
-                    .populate('package')
-                    .populate('appointmentId')
-                    .session(mongoSession);
+                // Sincronização CRÍTICA dentro da transação
+                await withRetry(() => syncEvent(sessionDoc, 'session', mongoSession));
 
-                // 2. Sincronizar a sessão
-                await syncEvent(refreshedSession, 'session');
-
-                // 3. Se houver appointment associado, sincronizá-lo também
-                if (refreshedSession.appointmentId) {
-                    const appointment = await Appointment.findById(refreshedSession.appointmentId._id)
-                        .session(mongoSession);
-                    await syncEvent(appointment, 'appointment');
+                if (sessionDoc.appointmentId) {
+                    const appointment = await withRetry(() =>
+                        Appointment.findById(sessionDoc.appointmentId._id).session(mongoSession)
+                    );
+                    await withRetry(() => syncEvent(appointment, 'appointment', mongoSession));
                 }
 
+                // Commit da transação
                 await mongoSession.commitTransaction();
+
+                // Sincronização adicional ASSÍNCRONA fora da transação
+                setTimeout(async () => {
+                    try {
+                        const freshSession = await Session.findById(sessionId)
+                            .populate('package')
+                            .populate('appointmentId');
+
+                        await syncEvent(freshSession, 'session');
+
+                        if (freshSession.appointmentId) {
+                            const freshAppointment = await Appointment.findById(freshSession.appointmentId._id);
+                            await syncEvent(freshAppointment, 'appointment');
+                        }
+                    } catch (asyncError) {
+                        console.error('Erro na sincronização assíncrona:', asyncError);
+                    }
+                }, 3000); // Delay de 3 segundos
 
                 // Buscar dados completos para resposta
                 const updatedSession = await Session.findById(sessionId)
@@ -728,7 +753,6 @@ export const packageOperations = {
                     session: updatedSession,
                     package: updatedSession.package
                 });
-
             } catch (error) {
                 console.error("Erro na atualização da sessão:", error);
                 if (mongoSession.inTransaction()) {
