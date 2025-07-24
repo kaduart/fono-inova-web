@@ -56,3 +56,9 @@ export const formatDateTimeForBackend = (dateStr: string, timeStr: string): stri
   // Combina data e hora em formato ISO sem conversão de fuso
   return `${dateStr}T${timeStr}:00-03:00`; // -03:00 representa o fuso de Brasília
 };
+
+
+export function buildLocalDateOnly(dateString: string) {
+  const [year, month, day] = dateString.split('-').map(Number);
+  return new Date(year, month - 1, day); // cria com hora 00:00 no fuso local
+}

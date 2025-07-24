@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import toast from 'react-hot-toast';
+import ReactInputMask from 'react-input-mask';
 import packageService, { CreatePackageParams } from '../../services/packageService';
-import { formatDateTimeForBackend } from '../../utils/dateFormat';
+import { buildLocalDateOnly } from '../../utils/dateFormat';
 import { DURATION_OPTIONS, FREQUENCY_OPTIONS, IDoctor, IPatient, ITherapyPackage, PAYMENT_TYPES, THERAPY_TYPES } from '../../utils/types/types';
 import { Button } from '../ui/Button';
 import InputCurrency from '../ui/InputCurrency';
@@ -18,6 +20,7 @@ type Props = {
 
 const initialFormState = {
     doctorId: '',
+    patientId: '',
     sessionType: '',
     date: '',
     time: '',
@@ -30,24 +33,23 @@ const initialFormState = {
     sessionsPerWeek: 0,
 };
 
-const combineDateTime = (date: string, time: string): Date | null => {
-    if (!date || !time) return null;
-    const [hours, minutes] = time.split(':').map(Number);
-    const combinedDate = new Date(date);
-    combinedDate.setHours(hours, minutes, 0, 0);
-    return combinedDate;
-};
-
 export default function TherapyPackageFormModal({ initialData, patient, doctors, onClose, onSubmit }: Props) {
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState(initialFormState);
     const [remainingBalance, setRemainingBalance] = useState(0);
     const [totalValuePackage, setTotalValuePackage] = useState(0);
     const [errors, setErrors] = useState({});
-    const [dateTime, setDateTime] = useState<{ date: string; time: string }>({
-        date: '',
-        time: ''
-    });
+    const isFormValid = !!(
+        formData.patientId &&
+        formData.doctorId &&
+        formData.sessionType &&
+        formData.paymentType &&
+        formData.sessionValue > 0 &&
+        formData.totalPaid > 0 &&
+        formData.paymentMethod &&
+        formData.date &&
+        formData.time
+    );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
@@ -57,13 +59,14 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         }));
     };
 
-    const handleDateTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setDateTime(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    useEffect(() => {
+        if (patient?._id) {
+            setFormData(prev => ({
+                ...prev,
+                patientId: patient._id,
+            }));
+        }
+    }, [patient]); 
 
     useEffect(() => {
         const newBalance = Math.max(
@@ -76,7 +79,7 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         e.preventDefault();
         if (!validate()) return;
 
-        await formatDateTimeForBackend(dateTime.date, dateTime.time);
+        // await formatDateTimeForBackend(dateTime.date, dateTime.time);
 
         if (!formData.sessionType || !formData.paymentType || !formData.doctorId) { // Adicionado doctorId
             toast.error('Preencha todos os campos obrigatórios (profissional, tipo de sessão, tipo de pagamento do pacote).');
@@ -94,26 +97,26 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
         }
 
         const backendDateTime = {
-            date: dateTime.date,  // "2025-07-22"
-            time: dateTime.time   // "17:00"
+            date: formData.date,  // "2025-07-22"
+            time: formData.time   // "17:00"
         };
 
         setLoading(true);
         try {
             const packageData = {
                 patientId: patient._id,
-                doctorId: formData.doctorId, // Corrigido para professional
+                doctorId: formData.doctorId,
                 sessionType: formData.sessionType,
                 sessionValue: formData.sessionValue || 0,
                 /*totalSessions: formData.totalSessions || 0, */
-                paymentType: formData.paymentType, // Tipo de pagamento do pacote
-                amountPaid: formData.totalPaid || 0, // Enviar valor pago
-                paymentMethod: formData.paymentMethod, // Enviar método de pagamento
-                sessionsPerWeek: +formData.sessionsPerWeek, // Enviar método de pagamento
-                durationMonths: formData.durationMonths, // Enviar método de pagamento
+                paymentType: formData.paymentType,
+                amountPaid: formData.totalPaid || 0,
+                paymentMethod: formData.paymentMethod,
+                sessionsPerWeek: +formData.sessionsPerWeek,
+                durationMonths: formData.durationMonths,
                 dateTime: backendDateTime,
                 specialty: formData.sessionType,
-                time: dateTime.time
+                time: formData.time
             };
 
             await packageService.createPackage(packageData as CreatePackageParams);
@@ -244,13 +247,36 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Data *
                                 </label>
-                                <input
-                                    type="date"
-                                    name="date"
-                                    value={dateTime.date}
-                                    onChange={handleDateTimeChange}
+                                <DatePicker
+                                    selected={
+                                        formData.date ? buildLocalDateOnly(formData.date) : null
+                                    }
+                                    onChange={(date: Date | null) => {
+                                        if (!date) return;
+
+                                        const formattedDate = date.toISOString().split('T')[0];
+
+                                        const fakeEvent = {
+                                            target: {
+                                                name: 'date',
+                                                value: formattedDate,
+                                                type: 'text',
+                                            },
+                                        } as React.ChangeEvent<HTMLInputElement>;
+
+                                        handleChange(fakeEvent);
+                                    }}
+                                    customInput={
+                                        <ReactInputMask
+                                            mask="99/99/9999"
+                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    }
+                                    placeholderText='dd/MM/yyyy'
+                                    dateFormat="dd/MM/yyyy"
                                     className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
+
                             </div>
 
                             {/* Campo Hora */}
@@ -258,11 +284,40 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Hora *
                                 </label>
-                                <input
-                                    type="time"
-                                    name="time"
-                                    value={dateTime.time}
-                                    onChange={handleDateTimeChange}
+                                <DatePicker
+                                    selected={
+                                        formData.time
+                                            ? new Date(`1970-01-01T${formData.time}`)
+                                            : null
+                                    }
+                                    onChange={(date: Date | null) => {
+                                        if (!date) return;
+
+                                        const formattedTime = date.toTimeString().slice(0, 5); // "HH:mm"
+
+                                        const fakeEvent = {
+                                            target: {
+                                                name: 'time',
+                                                value: formattedTime,
+                                                type: 'text',
+                                            },
+                                        } as React.ChangeEvent<HTMLInputElement>;
+
+                                        handleChange(fakeEvent);
+                                    }}
+                                    showTimeSelect
+                                    showTimeSelectOnly
+                                    timeIntervals={15}
+                                    timeFormat="HH:mm"
+                                    dateFormat="HH:mm"
+                                    placeholderText='HH:MM'
+
+                                    customInput={
+                                        <ReactInputMask
+                                            mask="99:99"
+                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    }
                                     className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
@@ -364,22 +419,28 @@ export default function TherapyPackageFormModal({ initialData, patient, doctors,
                     </div>
                 </div>
 
-                {/* Botões */}
-                <div className="flex justify-end gap-2 pt-4 border-t">
+                <div className="flex justify-end gap-2 mt-6">
                     <Button
+                        type="button"
                         onClick={onClose}
-                        className="px-4 py-2 text-gray-700  rounded-lg hover:bg-gray-200 transition-colors"
+                        className="bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 transition"
                     >
                         Cancelar
                     </Button>
+
                     <Button
+                        type="submit"
                         onClick={handleSave}
-                        className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-                        disabled={remainingBalance < 0}
+                        disabled={!isFormValid}
+                        className={`px-4 py-2 rounded-md text-white transition ${isFormValid
+                            ? 'bg-blue-600 hover:bg-blue-700'
+                            : 'bg-blue-300 cursor-not-allowed'
+                            }`}
                     >
-                        {loading ? 'Salvando...' : 'Salvar'}
+                        Agendar
                     </Button>
                 </div>
+
             </div>
         </div>
     );

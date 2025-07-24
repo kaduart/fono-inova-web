@@ -18,7 +18,6 @@ export const PaymentActionIcons = ({
 }: PaymentActionIconsProps) => {
 
     useEffect(() => {
-        console.log('Payment no componente:', payment);
     }, [payment]);
     const getStatusIcon = () => {
         switch (payment.status) {

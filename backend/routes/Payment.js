@@ -341,29 +341,71 @@ router.get('/', async (req, res) => {
 });
 
 router.patch('/:id', auth, async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { amount, paymentMethod, status, advanceSessions = [] } = req.body;
+    const { id } = req.params;
+    const { amount, paymentMethod, status, advanceSessions = [] } = req.body;
+    const MAX_RETRIES = 8;  // Aumentamos para 8 tentativas
+    let retryCount = 0;
+    let result;
+
+    // Função para executar operações críticas com tratamento especial
+    const executeCriticalOperation = async (operation, session, entity, filter, update) => {
+        try {
+            return await operation(entity, filter, update, { session });
+        } catch (error) {
+            if (error.code === 112 || error.codeName === 'WriteConflict') {
+                console.warn('Conflito detectado em operação crítica. Tentando abordagem alternativa...');
+
+                // Abordagem alternativa: operação individual
+                if (filter._id) {
+                    // Se for uma operação em documento único
+                    return await operation(entity, filter, update, { session });
+                } else {
+                    // Se for operação em múltiplos documentos, fazemos um a um
+                    const docs = await entity.find(filter).session(session);
+                    for (const doc of docs) {
+                        await operation(entity, { _id: doc._id }, update, { session });
+                    }
+                    return { modifiedCount: docs.length };
+                }
+            }
+            throw error;
+        }
+    };
+
+    while (retryCount < MAX_RETRIES) {
         const mongoSession = await mongoose.startSession();
-        await mongoSession.startTransaction();
 
         try {
-            // 1. Buscar e atualizar pagamento
-            let payment = await Payment.findById(id).session(mongoSession);
+            await mongoSession.startTransaction({
+                readConcern: { level: "snapshot" },
+                writeConcern: { w: "majority", wtimeout: 10000 } // 10 segundos de timeout
+            });
+
+
+            // 1. Buscar e atualizar pagamento com lock explícito
+            let payment = await Payment.findById(id)
+                .session(mongoSession)
+                .select()
+                .lean(); // Usar lean para melhor performance
+
             if (!payment) {
                 await mongoSession.abortTransaction();
                 return res.status(404).json({ error: 'Pagamento não encontrado' });
             }
 
             // Atualizar campos básicos
-            if (amount !== undefined) payment.amount = amount;
-            if (paymentMethod !== undefined) payment.paymentMethod = paymentMethod;
-            if (status !== undefined) payment.status = status;
+            const updateData = {
+                ...(amount !== undefined && { amount }),
+                ...(paymentMethod !== undefined && { paymentMethod }),
+                ...(status !== undefined && { status })
+            };
+
+            // Atualização direta para evitar conflitos
+            await Payment.updateOne({ _id: id }, { $set: updateData }, { session: mongoSession });
 
             // 2. Processar sessões futuras (se existirem)
             if (advanceSessions.length > 0) {
-                payment.advanceSessions = payment.advanceSessions || [];
-                payment.isAdvance = true;
+                const advanceSessionsData = [];
 
                 for (const sessionData of advanceSessions) {
                     // Criar Appointment
@@ -390,7 +432,7 @@ router.patch('/:id', auth, async (req, res) => {
                         sessionValue: sessionData.amount || payment.amount,
                         patient: payment.patient,
                         doctor: payment.doctor,
-                        status: status === 'paid' ? 'scheduled' : 'pending',
+                        status: status === 'paid' ? 'completed' : 'pending',
                         isPaid: status === 'paid',
                         paymentMethod: paymentMethod || payment.paymentMethod,
                         isAdvance: true,
@@ -399,69 +441,84 @@ router.patch('/:id', auth, async (req, res) => {
                     await newSession.save({ session: mongoSession });
 
                     // Atualizar Appointment com referência da Session
-                    newAppointment.session = newSession._id;
-                    await newAppointment.save({ session: mongoSession });
+                    await Appointment.updateOne(
+                        { _id: newAppointment._id },
+                        { $set: { session: newSession._id } },
+                        { session: mongoSession }
+                    );
 
                     // Adicionar ao pagamento
-                    payment.advanceSessions.push({
+                    advanceSessionsData.push({
                         session: newSession._id,
                         appointment: newAppointment._id,
                         used: false,
                         scheduledDate: sessionData.date
                     });
                 }
-            }
 
-            // Salvar atualizações do pagamento
-            await payment.save({ session: mongoSession });
-
-            // 3. Lógica existente para pacotes
-            if (payment.package) {
-                await Session.updateMany(
-                    { package: payment.package },
+                // Atualizar pagamento com novas sessões
+                await Payment.updateOne(
+                    { _id: id },
                     {
-                        $set: {
-                            isPaid: true,
-                            status: 'completed'
-                        }
+                        $set: { isAdvance: true },
+                        $push: { advanceSessions: { $each: advanceSessionsData } }
                     },
                     { session: mongoSession }
                 );
+            }
+
+            // 3. Lógica existente para pacotes com tratamento especial
+            if (payment.package) {
+                await executeCriticalOperation(
+                    Session.updateMany.bind(Session),
+                    mongoSession,
+                    Session,
+                    { package: payment.package },
+                    { $set: { isPaid: true, status: 'completed' } }
+                );
+
                 await updatePackageStatus(payment.package, mongoSession);
             }
-            // 4. Lógica existente para sessão individual
-            else if (payment.session) {
-                await Session.findByIdAndUpdate(
-                    payment.session,
-                    {
-                        isPaid: status === 'paid',
-                        status: status === 'paid' ? 'completed' : 'pending'
-                    },
-                    { session: mongoSession }
-                );
-            }
 
-            // 5. Atualizar status em agendamentos vinculados
-            await Appointment.updateMany(
-                {
-                    $or: [
-                        { payment: id },
-                        { _id: { $in: payment.advanceSessions?.map(a => a.appointment) } }
-                    ]
-                },
+            // 4. Lógica existente para sessão individual com tratamento especial
+            if (payment.session) {
+                Session.findByIdAndUpdate.bind(Session),
+                    mongoSession,
+                    Session,
+                    { _id: payment.session },
                 {
                     $set: {
-                        paymentStatus: status === 'paid' ? 'paid' : 'pending',
-                        operationalStatus: status === 'paid' ? 'confirmado' : 'pendente'
+                        isPaid: status === 'paid',
+                        status: status === 'paid' ? 'completed' : 'pending'
                     }
-                },
-                { session: mongoSession }
-            );
+                }
+            }
+
+            // 5. Atualizar status em agendamentos vinculados com tratamento especial
+            const appointmentIds = [
+                ...(payment.advanceSessions?.map(a => a.appointment) || []),
+                ...(advanceSessions.map(s => s.appointmentId) || [])
+            ].filter(id => id);
+
+            if (appointmentIds.length > 0) {
+                await executeCriticalOperation(
+                    Appointment.updateMany.bind(Appointment),
+                    mongoSession,
+                    Appointment,
+                    { _id: { $in: appointmentIds } },
+                    {
+                        $set: {
+                            paymentStatus: status === 'paid' ? 'paid' : 'pending',
+                            operationalStatus: status === 'paid' ? 'confirmado' : 'pendente'
+                        }
+                    }
+                );
+            }
 
             await mongoSession.commitTransaction();
 
             // Recarregar o pagamento com as relações populadas
-            const updatedPayment = await Payment.findById(id)
+            result = await Payment.findById(id)
                 .populate('patient doctor session')
                 .populate({
                     path: 'advanceSessions.session',
@@ -476,33 +533,59 @@ router.patch('/:id', auth, async (req, res) => {
                     model: 'Appointment'
                 });
 
-            res.json(updatedPayment);
+            // Retornar resultado e sair do loop
+            return res.json(result);
 
         } catch (error) {
-            await mongoSession.abortTransaction();
+            const isWriteConflict = error.code === 112 ||
+                error.codeName === 'WriteConflict' ||
+                (error.errorLabels && error.errorLabels.includes('TransientTransactionError'));
+
+            if (isWriteConflict && retryCount < MAX_RETRIES - 1) {
+                retryCount++;
+                const delay = 150 * Math.pow(4, retryCount); // Backoff mais agressivo: 600, 2400, 9600ms
+                console.warn(`Conflito detectado. Tentando novamente em ${delay}ms (${retryCount}/${MAX_RETRIES})`);
+
+                if (mongoSession.inTransaction()) {
+                    await mongoSession.abortTransaction();
+                }
+
+                await new Promise(resolve => setTimeout(resolve, delay));
+                continue;
+            }
+
+            // Tratamento de erros
             console.error('Erro durante a transação:', error);
-            throw error;
+            if (mongoSession.inTransaction()) {
+                await mongoSession.abortTransaction();
+            }
+
+            if (error.name === 'ValidationError') {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Erro de validação',
+                    errors: error.errors
+                });
+            }
+
+            return res.status(500).json({
+                success: false,
+                message: 'Erro interno ao atualizar pagamento',
+                error: error.message
+            });
+
         } finally {
             await mongoSession.endSession();
         }
-
-    } catch (err) {
-        console.error('Erro ao atualizar pagamento:', err);
-
-        if (err.name === 'ValidationError') {
-            return res.status(400).json({
-                success: false,
-                message: 'Erro de validação',
-                errors: err.errors
-            });
-        }
-
-        res.status(500).json({
-            success: false,
-            message: 'Erro interno ao atualizar pagamento',
-            error: err.message
-        });
     }
+
+    // Se chegou aqui após todas as tentativas sem sucesso
+    console.error(`Falha após ${MAX_RETRIES} tentativas para atualizar pagamento ${id}`);
+    return res.status(500).json({
+        success: false,
+        message: 'Falha após múltiplas tentativas',
+        error: 'Não foi possível completar a operação devido a conflitos repetidos'
+    });
 });
 
 // Função para atualizar status do pacote

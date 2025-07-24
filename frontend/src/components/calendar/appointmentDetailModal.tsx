@@ -1,5 +1,9 @@
-import { CheckCircle, ClipboardCheck, PencilIcon, XCircle, X } from 'lucide-react';
+import { ptBR } from 'date-fns/locale';
+import { CheckCircle, ClipboardCheck, PencilIcon, X, XCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import ReactInputMask from 'react-input-mask';
+import { buildLocalDateOnly } from '../../utils/dateFormat';
 import { IDoctor, SelectedEvent } from '../../utils/types/types';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
@@ -8,7 +12,7 @@ interface AppointmentDetailModalProps {
     isOpen: boolean;
     onClose: () => void;
     doctors: IDoctor[];
-    event: SelectedEvent;
+    event?: SelectedEvent;
     onCancelAppointment: (id: string, reason: string) => Promise<void>;
     onCompleteAppointment: (id: string) => Promise<void>;
     onEditAppointment: (id: string, data: any) => Promise<void>;
@@ -41,11 +45,12 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
         operationalStatus: '',
         clinicalStatus: ''
     });
-
+    registerLocale("pt-BR", ptBR);
     useEffect(() => {
         if (event) {
-            console.log('eeeeeeeeeee',event);
-            const eventDate = event.date ? new Date(event.date).toISOString().split('T')[0] : '';
+
+            const eventDate = event.date ? new Date(event.date).toLocaleDateString('sv-SE') : '';
+
             const eventTime = event.startTime || '';
             setEditedAppointment({
                 doctorId: event.doctor?.id || '',
@@ -101,13 +106,16 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
             alert('Data e hora são obrigatórias');
             return;
         }
-        
+
+        // Para garantir que não converta para UTC:
+        const isoLocal = `${editedAppointment.date}T${editedAppointment.time}:00`;
+
         setIsEditing(true);
         try {
             const appointmentData = {
                 doctorId: editedAppointment.doctorId,
                 patientId: editedAppointment.patientId,
-                date: new Date(`${editedAppointment.date}T${editedAppointment.time}`),
+                date: isoLocal,
                 time: editedAppointment.time,
                 reason: editedAppointment.reason,
                 operationalStatus: editedAppointment.operationalStatus,
@@ -130,6 +138,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
             onCancelAdvancedSession(sessionId);
         }
     };
+
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -179,11 +188,11 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                 <h3 className="text-lg font-semibold text-gray-800 mb-3">
                                     Sessões Futuras Pagas
                                 </h3>
-                                
+
                                 <div className="space-y-3">
                                     {event.advancedSessions.map((session, index) => (
-                                        <div 
-                                            key={session._id || index} 
+                                        <div
+                                            key={session._id || index}
                                             className="flex items-center justify-between bg-blue-50 p-3 rounded-lg border border-blue-100"
                                         >
                                             <div>
@@ -194,14 +203,14 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                                     {session.specialty} • {session.doctor?.fullName}
                                                 </p>
                                             </div>
-                                            
+
                                             <div className="flex items-center">
                                                 <span className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
                                                     {session.operationalStatus === 'agendado' ? 'Pago' : 'Utilizado'}
                                                 </span>
-                                                
+
                                                 {session.operationalStatus === 'agendado' && onCancelAdvancedSession && (
-                                                    <button 
+                                                    <button
                                                         className="ml-2 text-red-500 hover:text-red-700"
                                                         onClick={() => handleCancelAdvancedSession(session._id)}
                                                     >
@@ -212,7 +221,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                         </div>
                                     ))}
                                 </div>
-                                
+
                                 {event.payment && (
                                     <div className="mt-4 text-sm text-gray-500">
                                         Pagamento realizado em: {new Date(event.payment.createdAt).toLocaleDateString()}
@@ -222,7 +231,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         )}
                     </div>
                 );
-                
+
             case 'confirm':
                 return (
                     <div className="space-y-6">
@@ -257,7 +266,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         </div>
                     </div>
                 );
-                
+
             case 'cancel':
                 return (
                     <div className="space-y-6">
@@ -300,7 +309,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         </div>
                     </div>
                 );
-                
+
             case 'edit':
                 return (
                     <div className="space-y-6">
@@ -360,10 +369,24 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Data *
                                 </label>
-                                <input
-                                    type="date"
-                                    value={editedAppointment.date}
-                                    onChange={(e) => handleFieldChange('date', e.target.value)}
+
+                                <DatePicker
+                                    selected={editedAppointment.date ? buildLocalDateOnly(editedAppointment.date) : null}
+                                    onChange={(date) => {
+                                        if (!date) return;
+                                        const formatted = date.toLocaleDateString('sv-SE'); // "2025-07-31"
+                                        handleFieldChange('date', formatted);
+                                    }}
+                                    customInput={
+                                        <ReactInputMask
+                                            mask="99/99/9999"
+                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    }
+                                    placeholderText='dd/MM/yyyy'
+                                    locale={ptBR}
+
+                                    dateFormat="dd/MM/yyyy"
                                     className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
@@ -372,10 +395,23 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Hora *
                                 </label>
-                                <input
-                                    type="time"
-                                    value={editedAppointment.time}
-                                    onChange={(e) => handleFieldChange('time', e.target.value)}
+                                <DatePicker
+                                    selected={new Date(`1970-01-01T${editedAppointment.time}`)}
+                                    onChange={(date) =>
+                                        handleFieldChange('time', date.toTimeString().slice(0, 5))
+                                    }
+                                    customInput={
+                                        <ReactInputMask
+                                            mask="99:99"
+                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                    }
+                                    placeholderText='HH:MM'
+                                    showTimeSelect
+                                    showTimeSelectOnly
+                                    timeIntervals={15}
+                                    timeFormat="HH:mm"
+                                    dateFormat="HH:mm"
                                     className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
@@ -430,7 +466,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         </div>
                     </div>
                 );
-                
+
             default:
                 return null;
         }
@@ -461,7 +497,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         )}
                     </button>
                 );
-                
+
             case 'cancel':
                 return (
                     <button
@@ -485,7 +521,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         )}
                     </button>
                 );
-                
+
             case 'edit':
                 return (
                     <button
@@ -509,7 +545,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                         )}
                     </button>
                 );
-                
+
             default:
                 return null;
         }

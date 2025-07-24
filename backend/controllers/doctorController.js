@@ -431,9 +431,7 @@ export const getFutureAppointments = async (req, res) => {
     ]);
 
     // Log para debug - REMOVER EM PRODUÇÃO
-    console.log('Appointments found:', appointments.length);
     if (appointments.length > 0) {
-      console.log('First appointment patient data:',
         JSON.stringify(appointments[0].patient, null, 2));
     }
 

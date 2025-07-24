@@ -7,7 +7,6 @@ dotenv.config();
 async function updateOperationalStatusOnly() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ Conectado ao MongoDB');
 
     const statusMap = {
       'agendado': 'agendado',
@@ -18,7 +17,6 @@ async function updateOperationalStatusOnly() {
     };
 
     const appointments = await Appointment.find({ status: { $in: Object.keys(statusMap) } });
-    console.log(`🔍 Encontrados ${appointments.length} agendamentos com status válidos.`);
 
     let atualizados = 0;
 
@@ -27,12 +25,11 @@ async function updateOperationalStatusOnly() {
       if (appt.operationalStatus !== newStatus) {
         appt.operationalStatus = newStatus;
         await appt.save();
-        console.log(`✅ ${i + 1}: ${appt._id} - "${appt.status}" → "${newStatus}"`);
+
         atualizados++;
       }
     }
 
-    console.log(`\n🎉 Atualização concluída. Total atualizados: ${atualizados}`);
     process.exit(0);
   } catch (err) {
     console.error('❌ Erro durante atualização:', err);

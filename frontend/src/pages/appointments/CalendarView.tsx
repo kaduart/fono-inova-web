@@ -1,8 +1,8 @@
-import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { ptBR } from "date-fns/locale";
 import { useEffect, useState } from 'react';
 import { Appointment } from '../../hooks/useTempAppointments';
 import API from '../../services/api';
@@ -71,7 +71,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({ specialty }) => {
             <FullCalendar
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 initialView="timeGridWeek"
-                locale={ptBrLocale}
+                locale={ptBR}
                 height="100%"
                 slotMinTime="07:00:00"
                 slotMaxTime="20:00:00"

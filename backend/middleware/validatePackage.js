@@ -4,7 +4,6 @@ export const validatePackageInput = (req, res, next) => {
     if (!dateTime && !time) {
         return res.status(400).json({ error: "Data e hora são obrigatórias" });
     }
-
     if (dateTime) {
         if (!dateTime.date || !dateTime.time) {
             return res.status(400).json({ error: "Formato de data inválido. Use {date, time}" });

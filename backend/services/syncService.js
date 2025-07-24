@@ -141,7 +141,7 @@ export const syncEvent = async (originalDoc, type, session = null) => {
             if ((type === 'appointment' || type === 'session') && originalDoc.time) {
                 const [hour, minute] = originalDoc.time.split(':').map(Number);
                 const dateCopy = new Date(originalDoc.date);
-                dateCopy.setUTCHours(hour + 3, minute, 0, 0); // Ajuste para UTC-3
+                 dateCopy.setHours(hour, minute, 0, 0); // Ajuste para UTC-3
                 finalDate = dateCopy;
             }
 

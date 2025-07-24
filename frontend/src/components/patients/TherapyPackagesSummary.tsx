@@ -90,9 +90,7 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
 
     const handleUseSession = async (packId: string, sessionData: UseSessionParams, modalAction: string) => {
         try {
-
             validatePayment(sessionData.paymentAmount, selectedPackage?.balance);
-
             const payload = {
                 patientId: sessionData.patient,
                 doctorId: sessionData.doctorId,
@@ -169,9 +167,9 @@ export default function TherapyPackagesSummary({ patient, doctors }: TherapyPack
             <div className="mt-6 flex justify-center">
                 <button
                     onClick={() => setShowManager(true)}
-                    className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+                    className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
                 >
-                    Adicionar Pacote
+                    Gerenciar Pacote
                 </button>
 
                 {selectedPackage && !editing && (

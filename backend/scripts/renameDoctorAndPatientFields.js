@@ -7,7 +7,6 @@ dotenv.config();
 async function renameDoctorAndPatientFields() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('✅ Conectado ao MongoDB');
 
     // Encontra agendamentos com doctorId OU patientId
     const appointments = await Appointment.find({
@@ -17,7 +16,6 @@ async function renameDoctorAndPatientFields() {
       ]
     });
 
-    console.log(`🔍 Encontrados ${appointments.length} agendamentos para atualizar.`);
 
     let atualizados = 0;
 
@@ -44,12 +42,10 @@ async function renameDoctorAndPatientFields() {
           { _id: appt._id },
           update
         );
-        console.log(`🔄 ${i + 1}: ${appt._id} atualizado`);
         atualizados++;
       }
     }
 
-    console.log(`\n🎉 Migração concluída. Total atualizados: ${atualizados}`);
     process.exit(0);
   } catch (err) {
     console.error('❌ Erro durante migração:', err);

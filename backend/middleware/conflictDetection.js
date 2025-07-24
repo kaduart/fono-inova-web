@@ -5,7 +5,6 @@ export const checkAppointmentConflicts = async (req, res, next) => {
     try {
         const { doctorId, patientId, date, time } = req.body;
         const appointmentId = req.body.metadata?.appointmentId || null;
-        console.log(`[BACK][CONFLIT HOOK] - PUT ATUALZIAR agednamento`, req.body)
 
         if (!doctorId || !patientId || !date || !time) {
             return res.status(400).json({ error: "Campos obrigatórios faltando" });
@@ -88,6 +87,15 @@ export const checkAppointmentConflicts = async (req, res, next) => {
         res.status(500).json({ error: 'Erro interno ao verificar conflitos' });
     }
 };
+
+function toUTCFromBrasilia(dateStr, timeStr) {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const [hour, minute] = timeStr.split(':').map(Number);
+
+    // Convertendo horário de Brasília para UTC
+    return new Date(Date.UTC(year, month - 1, day, hour + 3, minute));
+}
+
 
 export const getAvailableTimeSlots = async (req, res) => {
     try {

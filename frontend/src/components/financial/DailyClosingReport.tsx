@@ -243,14 +243,22 @@ const DailyClosingReport = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-5">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                {/* Header modernizado */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-5 border-b border-gray-200">
                     <div className="flex flex-col md:flex-row md:justify-between md:items-center">
-                        <div>
-                            <h2 className="text-2xl font-bold text-white">
-                                Fechamento Diário - {report.date}
-                            </h2>
+                        <div className="flex items-center">
+                            <div className="bg-gradient-to-r from-blue-500 to-indigo-600 p-2 rounded-lg mr-3">
+                                <CalendarIcon className="h-6 w-6 text-white" />
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold text-gray-800">
+                                    Fechamento Diário
+                                </h2>
+                                <p className="text-sm text-gray-600 mt-1">
+                                    {report.date}
+                                </p>
+                            </div>
                         </div>
                         <div className="mt-4 md:mt-0">
                             {renderDateSelector()}
@@ -258,80 +266,135 @@ const DailyClosingReport = () => {
                     </div>
                 </div>
 
-                {/* Totais Gerais */}
+                {/* Totais Gerais - Design modernizado */}
                 <div className="px-6 py-5">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-4">Resumo Geral</h3>
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg font-semibold text-gray-800">Resumo Geral</h3>
+                        <div className="text-sm text-gray-500">
+                            Atualizado às {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                    </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 shadow-sm">
+                        {/* Agendadas */}
+                        <div className="border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-start">
-                                <div className="bg-blue-100 p-3 rounded-lg mr-4">
-                                    <CalendarIcon className="h-6 w-6 text-blue-600" />
+                                <div className="bg-blue-100/20 p-3 rounded-lg mr-4">
+                                    <CalendarIcon className="h-6 w-6 text-blue-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-medium text-blue-700">Agendadas</h3>
+                                    <h3 className="font-medium text-gray-700">Agendadas</h3>
                                     <p className="text-2xl font-bold mt-1 text-gray-800">
                                         {report.totals.scheduled.count}
                                     </p>
-                                    <p className="text-blue-600 font-medium">{formatCurrency(report.totals.scheduled.value)}</p>
+                                    <div className="mt-2 text-sm text-gray-600">
+                                        Valor: <span className="font-medium text-blue-600">{formatCurrency(report.totals.scheduled.value)}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-green-50 border border-green-100 rounded-xl p-5 shadow-sm">
+                        {/* Realizadas */}
+                        <div className="border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-start">
-                                <div className="bg-green-100 p-3 rounded-lg mr-4">
-                                    <CheckCircleIcon className="h-6 w-6 text-green-600" />
+                                <div className="bg-green-100/20 p-3 rounded-lg mr-4">
+                                    <CheckCircleIcon className="h-6 w-6 text-green-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-medium text-green-700">Realizadas</h3>
+                                    <h3 className="font-medium text-gray-700">Realizadas</h3>
                                     <p className="text-2xl font-bold mt-1 text-gray-800">
                                         {report.totals.completed.count}
                                     </p>
-                                    <p className="text-green-600 font-medium">{formatCurrency(report.totals.completed.value)}</p>
+                                    <div className="mt-2 text-sm text-gray-600">
+                                        Valor: <span className="font-medium text-green-600">{formatCurrency(report.totals.completed.value)}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-purple-50 border border-purple-100 rounded-xl p-5 shadow-sm">
+                        {/* Pagamentos */}
+                        <div className="border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-start">
-                                <div className="bg-purple-100 p-3 rounded-lg mr-4">
-                                    <BsCurrencyDollar className="h-6 w-6 text-purple-600" />
+                                <div className="bg-purple-100/20 p-3 rounded-lg mr-4">
+                                    <BsCurrencyDollar className="h-6 w-6 text-purple-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-medium text-purple-700">Pagamentos</h3>
+                                    <h3 className="font-medium text-gray-700">Pagamentos</h3>
                                     <p className="text-2xl font-bold mt-1 text-gray-800">
                                         {report.totals.payments.count}
                                     </p>
-                                    <p className="text-purple-600 font-medium">{formatCurrency(report.totals.payments.value)}</p>
+                                    <p className="text-purple-600 font-medium mt-1">{formatCurrency(report.totals.payments.value)}</p>
                                 </div>
                             </div>
-                            <div className="mt-3 pt-3 border-t border-purple-100">
+                            <div className="mt-3 pt-3 border-t border-gray-100">
                                 <div className="flex justify-between text-sm text-gray-600">
-                                    <span>Dinheiro:</span>
+                                    <span className="flex items-center">
+                                        <div className="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+                                        Dinheiro
+                                    </span>
                                     <span className="font-medium">{formatCurrency(report.totals.payments.methods.dinheiro)}</span>
                                 </div>
-                                <div className="flex justify-between text-sm text-gray-600 mt-1">
-                                    <span>PIX:</span>
+                                <div className="flex justify-between text-sm text-gray-600 mt-2">
+                                    <span className="flex items-center">
+                                        <div className="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+                                        PIX
+                                    </span>
                                     <span className="font-medium">{formatCurrency(report.totals.payments.methods.pix)}</span>
                                 </div>
-                                <div className="flex justify-between text-sm text-gray-600 mt-1">
-                                    <span>Cartão:</span>
+                                <div className="flex justify-between text-sm text-gray-600 mt-2">
+                                    <span className="flex items-center">
+                                        <div className="w-2 h-2 rounded-full bg-gray-400 mr-2"></div>
+                                        Cartão
+                                    </span>
                                     <span className="font-medium">{formatCurrency(report.totals.payments.methods.cartão)}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="bg-red-50 border border-red-100 rounded-xl p-5 shadow-sm">
+                        {/* Faltas */}
+                        <div className="border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                             <div className="flex items-start">
-                                <div className="bg-red-100 p-3 rounded-lg mr-4">
-                                    <XCircleIcon className="h-6 w-6 text-red-600" />
+                                <div className="bg-red-100/20 p-3 rounded-lg mr-4">
+                                    <XCircleIcon className="h-6 w-6 text-red-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-medium text-red-700">Faltas</h3>
+                                    <h3 className="font-medium text-gray-700">Faltas</h3>
                                     <p className="text-2xl font-bold mt-1 text-gray-800">
                                         {report.totals.absences.count}
                                     </p>
-                                    <p className="text-red-600 font-medium">Perda: {formatCurrency(report.totals.absences.estimatedLoss)}</p>
+                                    <div className="mt-2 text-sm text-red-500">
+                                        Perda estimada: <span className="font-medium">{formatCurrency(report.totals.absences.estimatedLoss)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Barra de status adicional */}
+                    <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <div className="grid grid-cols-4 gap-4">
+                            <div className="text-center">
+                                <div className="text-sm text-gray-600">Taxa de comparecimento</div>
+                                <div className="text-xl font-bold text-green-600">
+                                    {Math.round((report.totals.completed.count / report.totals.scheduled.count) * 100 || 0)}%
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-sm text-gray-600">Média por sessão</div>
+                                <div className="text-xl font-bold text-blue-600">
+                                    {formatCurrency(report.totals.completed.value / report.totals.completed.count || 0)}
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-sm text-gray-600">Sessões canceladas</div>
+                                <div className="text-xl font-bold text-gray-600">
+                                    {report.totals.canceled?.count || 0}
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <div className="text-sm text-gray-600">Pacientes atendidos</div>
+                                <div className="text-xl font-bold text-purple-600">
+                                    {report.totals.uniquePatients || 0}
                                 </div>
                             </div>
                         </div>
@@ -526,8 +589,8 @@ const DetailsView = ({ type, date, onClose }: {
                                             <td className="py-3 px-4 font-medium text-blue-600">{formatCurrency(item.value)}</td>
                                             <td className="py-3 px-4">
                                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.status === 'completed' ? 'bg-green-100 text-green-800' :
-                                                        item.status === 'canceled' ? 'bg-red-100 text-red-800' :
-                                                            'bg-yellow-100 text-yellow-800'
+                                                    item.status === 'canceled' ? 'bg-red-100 text-red-800' :
+                                                        'bg-yellow-100 text-yellow-800'
                                                     }`}>
                                                     {item.status}
                                                 </span>
@@ -550,8 +613,8 @@ const DetailsView = ({ type, date, onClose }: {
                                             <td className="py-3 px-4 font-medium text-purple-600">{formatCurrency(item.amount)}</td>
                                             <td className="py-3 px-4 capitalize">
                                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${item.paymentMethod === 'dinheiro' ? 'bg-green-100 text-green-800' :
-                                                        item.paymentMethod === 'pix' ? 'bg-blue-100 text-blue-800' :
-                                                            'bg-purple-100 text-purple-800'
+                                                    item.paymentMethod === 'pix' ? 'bg-blue-100 text-blue-800' :
+                                                        'bg-purple-100 text-purple-800'
                                                     }`}>
                                                     {item.paymentMethod}
                                                 </span>

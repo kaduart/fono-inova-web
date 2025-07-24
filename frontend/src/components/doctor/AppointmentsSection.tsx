@@ -1,10 +1,9 @@
-import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
+import { ptBR } from "date-fns/locale";
 import { Calendar, ClipboardCheck, Mail, MapPin, Phone, User, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 
@@ -114,7 +113,7 @@ const AppointmentsSection: React.FC<AppointmentsSectionProps> = ({ futureAppoint
                     center: "title",
                     right: "dayGridMonth,timeGridWeek,timeGridDay",
                 }}
-                locale={ptBrLocale}
+                locale={ptBR}
                 initialView="dayGridMonth"
                 weekends
                 events={events}

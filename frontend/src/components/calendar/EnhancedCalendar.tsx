@@ -1,4 +1,3 @@
-import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
@@ -6,10 +5,13 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { Box, Paper, Typography } from '@mui/material';
 import { Plus } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { OPERATIONAL_STATUS_CONFIG, StatusConfig } from '../../services/appointmentService';
-import { IAppointment, IDoctor, IPatient, SelectedEvent } from '../../utils/types/types';
-import ScheduleModal from './ScheduleModal';
+import toast from 'react-hot-toast';
+import appointmentService, { OPERATIONAL_STATUS_CONFIG, StatusConfig } from '../../services/appointmentService';
+import { mergeDateAndTime } from '../../utils/dateFormat';
+import { IAppointment, IDoctor, IPatient, ScheduleAppointment, SelectedEvent } from '../../utils/types/types';
+import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import AppointmentDetailModal from './appointmentDetailModal';
+import { ptBR } from "date-fns/locale"
 
 interface EnhancedCalendarProps {
     appointments: IAppointment[];
@@ -132,9 +134,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             : "";
         const time = `${String(event.start.getHours()).padStart(2, '0')}:${String(event.start.getMinutes()).padStart(2, '0')}`;
         const extendedProps = event.extendedProps;
-        console.log('event', event);
-        // Extrair hora no formato HH:MM
-        console.log('time', time);
         setSelectedEvent({
             id: event.id,
             patient: {
@@ -157,6 +156,42 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
         });
 
         setIsAppointmentDetailModalOpen(true);
+    };
+
+    const handleBooking = async (payload: ScheduleAppointment) => {
+
+        const token = localStorage.getItem('token');
+        if (!token) {
+            toast.error('Usuário não autenticado. Por favor, faça login novamente.');
+            return;
+        }
+
+        const mergedDate = mergeDateAndTime(payload.date, payload.time);
+        if (isNaN(mergedDate.getTime())) {
+            toast.error('Data/hora inválida');
+            return;
+        }
+        payload.specialty = payload.sessionType;
+        try {
+            await appointmentService.create({
+                ...payload,
+                date: mergedDate.toISOString(),
+                specialty: payload.sessionType
+            });
+
+            if (calendarRef.current) {
+                calendarRef.current.getApi().refetchEvents();
+            }
+
+
+            toast.success('Sessão agendada e pagamento registrado com sucesso!');
+            // setdataUpdateSlots(payload);
+            setOpenSchedule(false);
+
+
+        } catch (err) {
+            toast.error('Erro inesperado ao agendar.');
+        }
     };
 
     const handleOpenSchedule = (appointment: IAppointment | null = null, modeType: 'create' | 'edit' = 'create') => {
@@ -188,7 +223,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                             center: "title",
                             right: "dayGridMonth,timeGridWeek,timeGridDay",
                         }}
-                        locale={ptBrLocale}
+                        locale={ptBR}
                         initialView="dayGridMonth"
                         weekends
                         events={events}
@@ -243,7 +278,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 </div>
             </div>
 
-            <ScheduleModal
+            {/*     <ScheduleModal
                 open={openSchedule}
                 onClose={() => setOpenSchedule(false)}
                 onSave={onNewAppointment}
@@ -253,7 +288,23 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 payloadToSlots={handlePayloadToSlots}
                 availableSlots={availableSlots}
                 mode={mode}
+            /> */}
+
+            <ScheduleAppointmentModal
+                isOpen={openSchedule}
+                initialData={null}
+                doctors={doctors}
+                patients={patients}
+                //loading={false}
+                // onSubmit={handleCloseScheduleModal}
+                //  onClose={() => setOpenSchedule(false)}
+                onSave={(appointment) => {
+                    handleBooking(appointment);
+                }
+                }
+
             />
+
 
             <AppointmentDetailModal
                 isOpen={isAppointmentDetailModalOpen}

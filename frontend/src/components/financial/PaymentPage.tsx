@@ -228,63 +228,62 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                             </div>
                         ) : (
                             <div className="overflow-x-auto bg-white rounded-lg shadow">
-                                <table className="w-full">
+                                <table className="w-full min-w-[800px]"> {/* Largura mínima ajustada */}
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Paciente</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profissional</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agendada Para:</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sessões Pagas Adiantadas</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Método</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                            {/* Cabeçalhos otimizados */}
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Paciente</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Profissional</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Agendada Para:</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[10%]">Sessões</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[10%]">Tipo</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[10%]">Valor</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[10%]">Status</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[10%]">Método</th>
+                                            <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[5%]">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {currentPayments.map(payment => (
                                             <tr key={payment._id}>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                {/* Células com truncate para textos longos */}
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500 truncate max-w-[120px]" title={payment.patient?.fullName}>
                                                     {payment.patient?.fullName}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500 truncate max-w-[120px]" title={payment.doctor?.fullName}>
                                                     {payment.doctor?.fullName}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500">
                                                     {payment && payment.appointment
                                                         ? `${new Date(payment.appointment.date).toLocaleDateString('pt-BR')} às ${payment.appointment.time}`
                                                         : '0'}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500">
                                                     {payment && payment.advancedSessions?.length > 0 ? payment.advancedSessions.length : '0'}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500">
                                                     {getServiceTypeLabel(payment.serviceType)}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500">
                                                     {payment.amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap">
                                                     <span className={`px-2 py-1 rounded-full text-xs font-semibold 
-                                                    ${payment.status === 'paid' ? 'bg-green-100 text-green-800' :
+            ${payment.status === 'paid' ? 'bg-green-100 text-green-800' :
                                                             payment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
                                                                 'bg-red-100 text-red-800'}`}>
                                                         {payment.status === 'paid' ? 'PAGO' :
                                                             payment.status === 'pending' ? 'PENDENTE' : 'CANCELADO'}
                                                     </span>
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm text-gray-500">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500">
                                                     {payment.paymentMethod}
                                                 </td>
-                                                <td className="px-4 py-4  text-left whitespace-nowrap text-sm font-medium">
+                                                <td className="px-2 py-2 text-left whitespace-nowrap text-sm font-medium">
                                                     {userRole && ['admin', 'secretary'].includes(userRole) && payment.status !== 'canceled' && (
                                                         <PaymentActionIcons
-
                                                             payment={payment}
-                                                            onMarkAsPaid={() => {
-                                                                onMarkAsPaid(payment)
-                                                            }}
+                                                            onMarkAsPaid={() => onMarkAsPaid(payment)}
                                                             onCancelPayment={onCancelPayment}
                                                             onEditAmount={handleEditAmount}
                                                         />
@@ -330,8 +329,8 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                                                                     key={page}
                                                                     onClick={() => setCurrentPage(page)}
                                                                     className={`px-3 py-1 rounded border text-sm transition-all duration-150 ${isActive
-                                                                            ? 'border-blue-500 text-blue-600 font-semibold bg-blue-50'
-                                                                            : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-100'
+                                                                        ? 'border-blue-500 text-blue-600 font-semibold bg-blue-50'
+                                                                        : 'border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-100'
                                                                         }`}
                                                                 >
                                                                     {page}

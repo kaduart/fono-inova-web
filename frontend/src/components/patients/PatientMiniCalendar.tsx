@@ -1,12 +1,12 @@
 // components/patient/PatientMiniCalendar.tsx
 import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
-import { Appointment } from '../../utils/types';
-import { getStatusConfig } from '../../utils/statusHelper';
-import { useRef } from 'react';
-import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
+import { ptBR } from "date-fns/locale";
+import { useRef } from 'react';
+import { getStatusConfig } from '../../utils/statusHelper';
+import { Appointment } from '../../utils/types';
 
 interface PatientMiniCalendarProps {
     appointments: Appointment[];
@@ -36,7 +36,7 @@ export const PatientMiniCalendar: React.FC<PatientMiniCalendarProps> = ({ appoin
                     center: "title",
                     right: "dayGridMonth,timeGridWeek,timeGridDay",
                 }}
-                locale={ptBrLocale}
+                locale={ptBR}
                 initialView="dayGridMonth"
                 weekends
                 events={events}

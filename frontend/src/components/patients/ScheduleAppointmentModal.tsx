@@ -1,9 +1,12 @@
 import { Calendar, DollarSign, User, Users, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
+
+import { ptBR } from "date-fns/locale";
+import ReactInputMask from 'react-input-mask';
 import Modal from 'react-modal';
 import { IDoctor, IPatient, ScheduleAppointment } from '../../utils/types/types';
 import { Button } from '../ui/Button';
-import Input from '../ui/Input';
 import InputCurrency from '../ui/InputCurrency';
 import { Label } from '../ui/Label';
 import { Select } from '../ui/Select';
@@ -27,12 +30,12 @@ const defaultForm: ScheduleAppointment = {
 
 type Props = {
     isOpen: boolean;
-    onClose: () => void;
+    onClose?: () => void;
     onSave: (appointment: ScheduleAppointment) => void;
     doctors?: IDoctor[];
     patients?: IPatient[];
     packages?: any[];
-    initialData?: ScheduleAppointment;
+    initialData?: ScheduleAppointment | null;
 };
 
 const ScheduleAppointmentModal = ({
@@ -48,6 +51,7 @@ const ScheduleAppointmentModal = ({
     const [isLoading, setIsLoading] = useState(false);
     const [packages, setPackages] = useState<any[]>([]);
     const [selectedPatient, setSelectedPatient] = useState<IPatient | null>(null);
+    registerLocale("pt-BR", ptBR);
 
 
     useEffect(() => {
@@ -70,10 +74,10 @@ const ScheduleAppointmentModal = ({
     }, [initialData, isOpen]);
 
     useEffect(() => {
-        
+
         if (formData.packageId && formData.patientId) {
             const selectedPackage = packages?.find(pkg => pkg._id === formData.packageId);
-            
+
 
             if (selectedPackage && selectedPackage.sessions?.length > 0) {
                 const upcomingSessions = selectedPackage.sessions
@@ -85,7 +89,7 @@ const ScheduleAppointmentModal = ({
                     const date = closest.date.split('T')[0];
                     const time = closest.date.split('T')[1].slice(0, 5);
 
-        
+
 
                     setFormData((prev) => ({
                         ...prev,
@@ -125,10 +129,9 @@ const ScheduleAppointmentModal = ({
     const handleSubmit = () => {
         if (serviceType === 'package_session') {
             formData.paymentAmount = 0;
-          //  formData.paymentMethod = '';
+            //  formData.paymentMethod = '';
         }
         onSave(formData);
-        onClose();
     };
 
     // Verificação completa de campos obrigatórios
@@ -158,13 +161,27 @@ const ScheduleAppointmentModal = ({
         return true;
     }, [formData, packages]);
 
+    const handleFieldChange = (field: string, value: string) => {
+        setFormData(prev => ({ ...prev, [field]: value }));
+    };
 
+    // Adicionado: Função para cancelar sessão avançada
+    const handleCancelAdvancedSession = (sessionId: string) => {
+        if (onCancelAdvancedSession) {
+            onCancelAdvancedSession(sessionId);
+        }
+    };
+
+    function buildLocalDateOnly(dateString: string) {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day); // cria com hora 00:00 no fuso local
+    }
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onClose}
-            className="p-6 bg-white rounded-xl max-w-2xl mx-auto my-10 shadow-xl w-full outline-none"
-            overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4"
+            className="p-6 bg-white rounded-xl max-w-2xl mx-auto my-10 shadow-xl w-full max-h-[90vh] overflow-y-auto outline-none z-[99999]"
+            overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[99998]"
             ariaHideApp={false}
         >
             <div className="flex justify-between items-center mb-6 pb-3 border-b border-gray-200">
@@ -266,24 +283,64 @@ const ScheduleAppointmentModal = ({
                 {/* Data e Hora */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-gray-50 p-4 rounded-lg">
-                        <Label className="block mb-2 font-medium text-gray-700">Data</Label>
-                        <Input
+                        <Label className="block mb-2 font-medium text-gray-700">
+                            Data
+                        </Label>
+                        {/*  <Input
                             type="date"
                             name="date"
                             value={formData.date}
                             onChange={handleChange}
                             className="w-full p-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        /> */}
+                        <DatePicker
+                            selected={formData.date ? buildLocalDateOnly(formData.date) : null}
+                            onChange={(date) => {
+                                if (!date) return;
+                                const formatted = date.toLocaleDateString('sv-SE'); // yyyy-MM-dd
+                                handleFieldChange('date', formatted);
+                            }}
+                            customInput={
+                                <ReactInputMask
+                                    mask="99/99/9999"
+                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            }
+                            locale={ptBR}
+
+                            placeholderText='DD/MM/YYYY'
+                            dateFormat="dd/MM/yyyy"
                         />
                     </div>
 
                     <div className="bg-gray-50 p-4 rounded-lg">
-                        <Label className="block mb-2 font-medium text-gray-700">Hora</Label>
-                        <Input
+                        <Label className="block mb-2 font-medium text-gray-700">
+                            Hora
+                        </Label>
+                        {/* <Input
                             type="time"
                             name="time"
                             value={formData.time}
                             onChange={handleChange}
                             className="w-full p-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        /> */}
+                        <DatePicker
+                            selected={formData.time ? new Date(`1970-01-01T${formData.time}`) : null}
+                            onChange={(date) =>
+                                handleFieldChange('time', date?.toTimeString().slice(0, 5) ?? '')
+                            }
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            timeFormat="HH:mm"
+                            dateFormat="HH:mm"
+                            placeholderText='HH:MM'
+                            customInput={
+                                <ReactInputMask
+                                    mask="99:99"
+                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                />
+                            }
                         />
                     </div>
                 </div>

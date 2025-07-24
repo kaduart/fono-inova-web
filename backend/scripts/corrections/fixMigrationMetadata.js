@@ -25,7 +25,6 @@ async function fixMigrationMetadata() {
     };
 
     const appointments = await Appointment.find(filter);
-    console.log(`🔍 ${appointments.length} documentos sem metadados encontrados`);
 
     // 3. Processar cada documento
     let updatedCount = 0;
@@ -62,14 +61,8 @@ async function fixMigrationMetadata() {
     }
 
     // 5. Relatório final
-    console.log(`
-🎉 Atualização concluída!
-✅ Documentos atualizados: ${updatedCount}
-❌ Erros: ${errors.length}
-    `);
 
     if (errors.length > 0) {
-      console.log('📝 Detalhes dos erros:');
       console.table(errors);
     }
 
@@ -78,7 +71,6 @@ async function fixMigrationMetadata() {
   } finally {
     // 6. Desconectar
     await mongoose.disconnect();
-    console.log('✅ Conexão encerrada');
     process.exit(0);
   }
 }

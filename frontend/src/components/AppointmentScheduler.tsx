@@ -49,7 +49,6 @@ const AppointmentScheduler: React.FC = () => {
 
     // Salva no servidor e atualiza o estado local
     const handleSave = async (data: Appointment | Omit<Appointment, 'id'>) => {
-        console.log('apppintemtn scheduleeee', data);
         try {
             if ('id' in data && data.id) {
                 // edição

@@ -108,13 +108,14 @@ appointmentSchema.index(
   { unique: true, name: 'unique_appointment' }
 );
 
-// Middlewares de sincronização
 appointmentSchema.post('save', async function (doc) {
   await syncEvent(doc, 'appointment');
 });
 
 appointmentSchema.post('findOneAndUpdate', async function (doc) {
-  if (doc) await syncEvent(doc, 'appointment');
+  if (doc) {
+    await syncEvent(doc, 'appointment');
+  }
 });
 
 appointmentSchema.post('findOneAndDelete', async function (doc) {

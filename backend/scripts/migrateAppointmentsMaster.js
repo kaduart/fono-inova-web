@@ -73,14 +73,7 @@ async function runMigration() {
             }
         }
 
-        console.log(`
-🎉 Migração completa!
-✅ Migrados: ${migratedCount}
-⏭️ Ignorados: ${skippedCount}
-        `);
-
         if (errors.length > 0) {
-            console.log('📝 Erros detalhados:');
             console.table(errors);
         }
 

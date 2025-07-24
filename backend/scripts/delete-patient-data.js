@@ -30,21 +30,16 @@ async function deleteAllPatientData() {
             throw new Error('❌ ID do paciente inválido');
         }
 
-        console.log(`🔍 Buscando dados do paciente ${PATIENT_ID}...`);
-
+        
         // Excluir todos os agendamentos do paciente
         const appointmentsResult = await Appointment.deleteMany({ patient: PATIENT_ID });
-        console.log(`🗑️ ${appointmentsResult.deletedCount} agendamento(s) excluído(s)`);
-
+        
         // Excluir todas as sessões do paciente
         const sessionsResult = await Session.deleteMany({ patient: PATIENT_ID });
-        console.log(`🗑️ ${sessionsResult.deletedCount} sessão(ões) excluída(s)`);
-
+        
         // Excluir todos os pagamentos do paciente
         const paymentsResult = await Payment.deleteMany({ patient: PATIENT_ID });
-        console.log(`🗑️ ${paymentsResult.deletedCount} pagamento(s) excluído(s)`);
-
-        console.log('\n🎉 Todos os dados do paciente foram excluídos com sucesso!');
+        
         process.exit(0);
     } catch (err) {
         console.error('❌ Erro durante a exclusão:', err.message);

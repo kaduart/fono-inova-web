@@ -27,15 +27,33 @@ db.sessions.deleteMany({
 
 //consulta sessao por id
 db.sessions.find({
-  doctor: ObjectId("686024fb74dcf94b84ade15a"),
-  status: "scheduled"
-}).sort({ date: 1 }).limit(10).pretty()
+  _id: ObjectId("68819ebcb271704721db64df"),
+});
 
 
 //consulta agendamento por id
 db.appointments.find({
-  doctor: ObjectId("685c2affaec14c71635863b7"),
+  doctor: ObjectId("684072213830f473da1b0b0b"),
 }).sort({ date: 1 }).limit(10).pretty()
+
+
+/// criar agednaemnto na mao
+db.appointments.insertOne({
+  _id: ObjectId('686fd2039276a58116d07568'),
+  patient: ObjectId('685c29afaec14c716358622a'),
+  doctor: ObjectId('684072213830f473da1b0b0b'),
+  date: ISODate('2025-07-22T18:00:00.000Z'),
+  time: '02:40',
+  operationalStatus: 'agendado',
+  clinicalStatus: 'pendente',
+  duration: 40,
+  specialty: 'fonoaudiologia',
+  history: [],
+  createdAt: ISODate('2025-07-10T14:45:23.465Z'),
+  updatedAt: ISODate('2025-07-10T14:52:58.430Z'),
+  __v: 0,
+  payment: ObjectId('68703164f4d174ee9016aaa6')
+});
 
 
 // Verificar sessões atualizadas
@@ -43,10 +61,8 @@ const updatedSessions = await Session.find({
   time: { $exists: true },
   updatedAt: { $gte: new Date(Date.now() - 60000) } // Último minuto
 });
-console.log(`Sessões atualizadas recentemente: ${updatedSessions.length}`);
 
 // Verificar sessões ainda sem time
 const stillWithoutTime = await Session.countDocuments({
   time: { $exists: false }
 });
-console.log(`Sessões ainda sem horário: ${stillWithoutTime}`);

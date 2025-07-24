@@ -20,7 +20,6 @@ const validateInputs = {
 // Operações CRUD Completas
 export const packageOperations = {
     create: async (req, res) => {
-        console.log('Criando pacote...', req.body);
         const mongoSession = await mongoose.startSession();
 
         const {
@@ -40,7 +39,6 @@ export const packageOperations = {
 
         try {
             await mongoSession.startTransaction();
-            console.log('datetimee', dateTime);
             const effectiveDateTime = dateTime || { date: new Date().toISOString().split('T')[0], time };
 
             // Substitua parseDateTime por esta implementação direta:
@@ -49,14 +47,6 @@ export const packageOperations = {
             // Extrai horas e minutos do time fornecido
             const [hours, minutes] = time.split(':').map(Number);
 
-            // Configura o horário corretamente (considerando que a data já foi criada com o fuso correto)
-            //   startDate.setHours(hours, minutes);
-
-            // Debug
-            console.log('Horário LOCAL configurado:', startDate.toString());
-            console.log('Horário UTC que será armazenado:', startDate.toISOString());
-
-            // ===== VALIDAÇÕES FORTALECIDAS =====
             const requiredFields = ['patientId', 'doctorId', 'sessionType', 'dateTime', 'time', 'paymentType', 'specialty'];
             const missingFields = requiredFields.filter(field => !req.body[field]);
 
@@ -99,10 +89,6 @@ export const packageOperations = {
                 throw new Error("A data inicial não pode ser no fim de semana");
             }
 
-            // Ajuste de fuso horário (UTC-3)
-            //  startDate.setHours(startDate.getHours() + 3);
-
-            // ===== CRIAÇÃO DO PACOTE PRINCIPAL =====
             const newPackage = new Package({
                 patient: patientId,
                 doctor: doctorId,
@@ -146,8 +132,6 @@ export const packageOperations = {
                 paymentMethod: paymentMethod,
                 confirmedAbsence: null
             }));
-            console.log('sessionsToCreate----------------------------------------------------',
-                sessionsToCreate)
             // ===== CRIAÇÃO EM MASSA DAS SESSÕES =====
             const createdSessions = await Session.insertMany(sessionsToCreate, { session: mongoSession });
 
@@ -384,7 +368,6 @@ export const packageOperations = {
                     .populate('patient', 'name');
                 if (!pkg) return res.status(404).json({ error: 'Pacote não encontrado' });
                 res.json(pkg);
-                console.log('pacote por paciente', pkg);
             } catch (error) {
                 if (error.name === 'ValidationError') {
                     // 💡 Extrai erros campo a campo
@@ -665,7 +648,7 @@ export const packageOperations = {
                     if (appointment) {
                         appointment.patient = patientId || sessionDoc.patient;
                         appointment.doctor = doctorId || sessionDoc.doctor;
-                        appointment.date = new Date(date);
+                        appointment.date = sessionDate;
                         appointment.time = time;
                         appointment.duration = 40;
                         appointment.specialty = sessionType || sessionDoc.sessionType;
@@ -675,7 +658,6 @@ export const packageOperations = {
                         appointment.sessionType = sessionType || sessionDoc.sessionType;
                         appointment.time = formattedTime;
 
-                        console.log('requisicao para atualziar apppoiiiitnemtn', appointment);
                         await appointment.save({ session: mongoSession });
                     }
                 } else {
@@ -683,7 +665,7 @@ export const packageOperations = {
                     const appointment = new Appointment({
                         patient: patientId || sessionDoc.patient,
                         doctor: doctorId || sessionDoc.doctor,
-                        date: new Date(date),
+                        date: sessionDate,
                         duration: 40,
                         specialty: sessionType || sessionDoc.sessionType,
                         operationalStatus: getOperationalStatus(),
@@ -909,7 +891,6 @@ export const packageOperations = {
             // Extrair apenas os campos necessários
             const { sessionId, payment } = req.body;
             const { status } = req.body; // Novo campo para status
-            console.log(`requisiocao use session`, req.body)
             // Validação reforçada
             if (!sessionId) throw new Error("ID da sessão é obrigatório.");
             if (!status) throw new Error("Status é obrigatório.");

@@ -21,7 +21,6 @@ const migrate = async () => {
     await syncEvent(pkg, 'package');
   }
 
-  console.log('Migração concluída!');
 };
 
 mongoose.connect(process.env.MONGO_URI)

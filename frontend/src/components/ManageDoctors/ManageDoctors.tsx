@@ -122,6 +122,7 @@ const ManageDoctors: React.FC<ManageDoctorsProps> = ({
         setShowScheduleModal(true);
     };
 
+    //to do ja ta no admiondash so adaptar
     const handleBooking = async (payload: ScheduleAppointment) => {
         const token = localStorage.getItem('token');
         if (!token) {

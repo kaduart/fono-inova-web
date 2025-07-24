@@ -29,11 +29,8 @@ async function flagInvalidDates() {
     }
   );
 
-  console.log(`✅ ${result.modifiedCount} documentos marcados com data inválida`);
-
   // 3. Listar IDs problemáticos para inspeção manual
   const invalidApps = await Appointment.find(filter).select('_id date');
-  console.log('📋 IDs problemáticos:');
   console.table(invalidApps.map(app => ({
     _id: app._id,
     date: app.date.toISOString()

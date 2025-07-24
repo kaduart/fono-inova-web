@@ -74,7 +74,6 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
                 return res.status(400).json({ error: 'Pacote sem sessões disponíveis' });
             }
         }
-        console.log(' request front', req.body)
 
         const specialtyValue = req.body.specialty || patient.specialty;
         const validSpecialties = ['fonoaudiologia', 'psicologia', 'terapia_ocupacional', 'psicopedagogia'];
@@ -103,7 +102,7 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
             paymentAmount: req.body.paymentAmount,
             paymentMethod: req.body.paymentMethod,
         };
-        console.log('criar agendamento prequest', appointmentData)
+
 
         const appointment = new Appointment(appointmentData);
         await appointment.save({ session: mongoSession });
@@ -122,14 +121,33 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
                 serviceType: 'individual_session',
                 appointment: appointment._id,
                 paymentMethod: req.body.paymentMethod,
-
             });
 
-            console.log('payment', payment)
             await payment.save({ session: mongoSession });
+
             appointment.payment = payment._id;
             appointment.paymentStatus = 'pending';
+            await appointment.save({ session: mongoSession });
+
+            const session = await Session.create([{
+                serviceType: 'individual_session',
+                patient: patient._id,
+                doctor: doctorId,
+                appointment: appointment._id,
+                payment: payment._id,
+                sessionType: req.body.sessionType,
+                date: req.body.date,
+                time: req.body.time,
+                notes: req.body.notes,
+                status: 'scheduled',
+                isPaid: true,
+                paymentMethod: req.body.paymentMethod,
+            }], { session: mongoSession });
+
+            payment.session = session[0]._id;
+            await payment.save({ session: mongoSession });
         }
+
         // Atualizar pacote se for serviço de pacote
         else if (req.body.serviceType === 'package_session') {
             if (appointment.package && appointment.package.remainingSessions > 0) {
@@ -144,7 +162,7 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
 
         await appointment.save({ session: mongoSession });
 
-        console.log('5')
+
 
         // ATUALIZAÇÃO DO PACIENTE DE FORMA SEGURA
         await Patient.findByIdAndUpdate(
@@ -154,9 +172,9 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
         );
         await patient.save({ session: mongoSession });
         await mongoSession.commitTransaction();
-        console.log('7')
+
         await updatePatientAppointments(patient._id);
-        console.log('8')
+
 
         try {
             await updatePatientAppointments(patient._id);
@@ -166,7 +184,7 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
         } catch (syncError) {
             console.error('Erro em operações pós-transação:', syncError);
         }
-        console.log('10')
+
 
         res.status(201).json({
             appointment,
@@ -310,13 +328,19 @@ router.get('/by-specialty/:specialty', auth, async (req, res) => {
 // Atualiza um agendamento com verificação de conflitos
 router.put('/:id', validateId, auth, checkPackageAvailability,
     validateIndividualPayment, checkAppointmentConflicts, async (req, res) => {
-        console.log(`[BACK] - PUT ATUALZIAR agednamento`, req.body)
+
         const mongoSession = await mongoose.startSession();
-        await mongoSession.startTransaction();
 
         try {
-            // 1. Buscar e validar agendamento
-            const appointment = await Appointment.findById(req.params.id).session(mongoSession);
+            await mongoSession.startTransaction();
+
+            // 1. Buscar e validar agendamento com lock
+            const appointment = await Appointment.findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: {} }, // Operação vazia apenas para travar o documento
+                { new: true, session: mongoSession }
+            );
+
             if (!appointment) {
                 await mongoSession.abortTransaction();
                 return res.status(404).json({ error: 'Agendamento não encontrado' });
@@ -328,18 +352,23 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
                 return res.status(403).json({ error: 'Acesso não autorizado' });
             }
 
-            // 3. Backup dos dados originais para auditoria
-            const originalData = { ...appointment.toObject() };
-
-            // 4. Atualizar com validação
+            // 3. Aplicar atualizações manualmente
             const updateData = { ...req.body };
-            const updated = await Appointment.findByIdAndUpdate(
-                req.params.id,
-                updateData,
-                { new: true, runValidators: true, session: mongoSession }
-            );
 
-            // 5. Tratamento especial para mudanças de pacote
+            // Atualizar campos individualmente
+            Object.keys(updateData).forEach(key => {
+                if (key !== '_id' && key !== '__v') {
+                    appointment[key] = updateData[key];
+                }
+            });
+
+            // 4. Validar antes de salvar
+            await appointment.validate();
+
+            // 5. Salvar as alterações
+            const updated = await appointment.save({ session: mongoSession });
+
+            // 6. Tratamento especial para mudanças de pacote
             if (updateData.serviceType === 'package_session' && updateData.packageId) {
                 // Verificar e atualizar pacote
                 const newPackage = await Package.findById(updateData.packageId).session(mongoSession);
@@ -364,28 +393,28 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
                 await newPackage.save({ session: mongoSession });
             }
 
-            // 6. Sincronizar com MedicalEvent
-            //  await syncEvent(updated, 'appointment', mongoSession);
+            // 7. Commit da transação
+            await mongoSession.commitTransaction();
 
-            // 7. Auditoria de mudanças
-            /*  await createAuditLog({
-                 entity: 'Appointment',
-                 entityId: appointment._id,
-                 action: 'UPDATE',
-                 changes: {
-                     before: originalData,
-                     after: updated.toObject()
-                 },
-                 user: req.user.id
-             }, mongoSession); */
+            // 8. Sincronização assíncrona (fora da transação)
+            setTimeout(() => {
+                syncEvent(updated, 'appointment')
+                    .catch(err => console.error('Erro na sincronização:', err));
+            }, 100);
 
             res.json(updated);
         } catch (error) {
             console.error('Erro ao atualizar agendamento:', error);
 
+            // Abortar transação se ainda estiver ativa
+            if (mongoSession.inTransaction()) {
+                await mongoSession.abortTransaction();
+            }
+
+            // Tratamento de erros
             if (error.name === 'ValidationError') {
-                const errors = Object.keys(error.errors).reduce((acc, key) => {
-                    acc[key] = error.errors[key].message;
+                const errors = Object.values(error.errors).reduce((acc, err) => {
+                    acc[err.path] = err.message;
                     return acc;
                 }, {});
 
@@ -402,23 +431,16 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
                 });
             }
 
-
-            // Tratamento de erros específicos
-            if (error.message === 'Agendamento não encontrado') {
-                return res.status(404).json({ error: error.message });
-            }
-
-            if (error.message === 'Acesso não autorizado') {
-                return res.status(403).json({ error: error.message });
-            }
-
             if (error.message === 'Pacote inválido ou sem sessões disponíveis') {
                 return res.status(400).json({ error: error.message });
             }
+
             res.status(500).json({
                 error: 'Erro interno',
                 details: process.env.NODE_ENV === 'development' ? error.message : undefined
             });
+        } finally {
+            await mongoSession.endSession();
         }
     });
 
@@ -471,7 +493,7 @@ router.get('/history/:patientId', async (req, res) => {
 
 // Cancela um agendamento
 router.patch('/:id/cancel', validateId, auth, async (req, res) => {
-    console.log(`[BACK] - CANCELAR agednamento`, req)
+
 
     try {
         const { reason } = req.body;
@@ -628,7 +650,7 @@ router.patch('/:id/complete', auth, async (req, res) => {
 
 // Busca todos os agendamentos de um paciente
 router.get('/patient/:id', validateId, auth, async (req, res) => {
-    console.log(`[BACK] - Buscar agendamentos do paciente ${req.params.id}`)
+
     const patient = req.params.id;
     try {
         const appointments = await Appointment.find({ patient }).populate([
@@ -683,7 +705,7 @@ router.get('/patient/:id', validateId, auth, async (req, res) => {
             };
         });
 
-        console.log(`[BACK] - Buscar agendamentos do paciente ${patient}`, formattedAppointments,)
+
         res.json(formattedAppointments);
     } catch (error) {
         if (error.name === 'ValidationError') {
