@@ -56,7 +56,6 @@ const ScheduleAppointmentModal = ({
 
     useEffect(() => {
         if (initialData) {
-
             const isoDate = new Date(initialData.date);
             const formattedDate = isoDate.toISOString().split('T')[0]; // "YYYY-MM-DD"
 

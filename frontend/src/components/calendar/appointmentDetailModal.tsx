@@ -312,7 +312,8 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
 
             case 'edit':
                 return (
-                    <div className="space-y-6">
+                    <div className="space-y-4">
+                        {/* Alerta de edição */}
                         <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-lg">
                             <div className="flex">
                                 <div className="flex-shrink-0">
@@ -326,15 +327,17 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {/* Grid responsivo para campos principais */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {/* Paciente */}
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">
                                     Paciente *
                                 </label>
                                 <select
                                     value={editedAppointment.patientId}
                                     onChange={(e) => handleFieldChange('patientId', e.target.value)}
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 >
                                     <option value="">Selecione um paciente</option>
                                     {patients.map(patient => (
@@ -345,14 +348,15 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                 </select>
                             </div>
 
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <Label className="block text-sm font-medium text-gray-700 mb-2">
+                            {/* Doutor */}
+                            <div className="space-y-1">
+                                <Label className="block text-sm font-medium text-gray-700">
                                     Doutor *
                                 </Label>
                                 <Select
                                     value={editedAppointment.doctorId}
                                     onChange={(e) => handleFieldChange('doctorId', e.target.value)}
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 >
                                     <option value="">Selecione um médico</option>
                                     {doctors.map(doctor => (
@@ -362,37 +366,34 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                     ))}
                                 </Select>
                             </div>
-                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                            {/* Data */}
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">
                                     Data *
                                 </label>
-
                                 <DatePicker
                                     selected={editedAppointment.date ? buildLocalDateOnly(editedAppointment.date) : null}
                                     onChange={(date) => {
                                         if (!date) return;
-                                        const formatted = date.toLocaleDateString('sv-SE'); // "2025-07-31"
+                                        const formatted = date.toLocaleDateString('sv-SE');
                                         handleFieldChange('date', formatted);
                                     }}
                                     customInput={
                                         <ReactInputMask
                                             mask="99/99/9999"
-                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                         />
                                     }
                                     placeholderText='dd/MM/yyyy'
                                     locale={ptBR}
-
                                     dateFormat="dd/MM/yyyy"
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
 
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                            {/* Hora */}
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">
                                     Hora *
                                 </label>
                                 <DatePicker
@@ -403,7 +404,7 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                     customInput={
                                         <ReactInputMask
                                             mask="99:99"
-                                            className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                         />
                                     }
                                     placeholderText='HH:MM'
@@ -412,33 +413,34 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                     timeIntervals={15}
                                     timeFormat="HH:mm"
                                     dateFormat="HH:mm"
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 />
                             </div>
                         </div>
 
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {/* Motivo da Consulta */}
+                        <div className="space-y-1">
+                            <label className="block text-sm font-medium text-gray-700">
                                 Motivo da Consulta
                             </label>
                             <textarea
                                 value={editedAppointment.reason}
                                 onChange={(e) => handleFieldChange('reason', e.target.value)}
-                                rows={3}
-                                className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                rows={2}
+                                className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Descreva o motivo da consulta..."
                             />
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                        {/* Status */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">
                                     Status Operacional
                                 </label>
                                 <select
                                     value={editedAppointment.operationalStatus}
                                     onChange={(e) => handleFieldChange('operationalStatus', e.target.value)}
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 >
                                     <option value="agendado">Agendado</option>
                                     <option value="confirmado">Confirmado</option>
@@ -448,14 +450,14 @@ const AppointmentDetailModal: React.FC<AppointmentDetailModalProps> = ({
                                 </select>
                             </div>
 
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">
                                     Status Clínico
                                 </label>
                                 <select
                                     value={editedAppointment.clinicalStatus}
                                     onChange={(e) => handleFieldChange('clinicalStatus', e.target.value)}
-                                    className="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    className="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                 >
                                     <option value="pendente">Pendente</option>
                                     <option value="em_andamento">Em Andamento</option>

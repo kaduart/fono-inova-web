@@ -430,11 +430,6 @@ export const getFutureAppointments = async (req, res) => {
       }
     ]);
 
-    // Log para debug - REMOVER EM PRODUÇÃO
-    if (appointments.length > 0) {
-        JSON.stringify(appointments[0].patient, null, 2));
-    }
-
     res.json(appointments);
   } catch (error) {
     console.error('Erro ao buscar agendamentos futuros:', error);

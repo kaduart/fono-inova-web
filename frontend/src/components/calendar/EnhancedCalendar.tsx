@@ -3,6 +3,7 @@ import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import FullCalendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { Box, Paper, Typography } from '@mui/material';
+import { ptBR } from "date-fns/locale";
 import { Plus } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -11,7 +12,6 @@ import { mergeDateAndTime } from '../../utils/dateFormat';
 import { IAppointment, IDoctor, IPatient, ScheduleAppointment, SelectedEvent } from '../../utils/types/types';
 import ScheduleAppointmentModal from '../patients/ScheduleAppointmentModal';
 import AppointmentDetailModal from './appointmentDetailModal';
-import { ptBR } from "date-fns/locale"
 
 interface EnhancedCalendarProps {
     appointments: IAppointment[];
@@ -25,6 +25,7 @@ interface EnhancedCalendarProps {
     onFetchAvailableSlots: (params: { doctorId: string; date: string }) => Promise<string[]>;
     statusConfig?: StatusConfig;
     openModalAppointment?: boolean;
+    closeModalSignal?: number;
 }
 
 const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
@@ -37,6 +38,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     onCompleteAppointment,
     onEditAppointment,
     openModalAppointment,
+    closeModalSignal,
     onFetchAvailableSlots,
     statusConfig = OPERATIONAL_STATUS_CONFIG
 }) => {
@@ -57,10 +59,16 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     });
 
     useEffect(() => {
-        if (openModalAppointment) {
+        if (closeModalSignal && closeModalSignal > 0) {
             setOpenSchedule(false);
+            setSelectedEvent(null); // Se necessário
+            //setIsAppointmentDetailModalOpen(false); // Se necessário
         }
-    }, [openModalAppointment]);
+    }, [closeModalSignal]);
+
+    useEffect(() => {
+    }, [openSchedule])
+
     const getStatusConfig = (status: string) => {
         if (statusConfig[status]) return statusConfig[status];
         if (OPERATIONAL_STATUS_CONFIG[status]) return OPERATIONAL_STATUS_CONFIG[status];
@@ -165,7 +173,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             toast.error('Usuário não autenticado. Por favor, faça login novamente.');
             return;
         }
-
         const mergedDate = mergeDateAndTime(payload.date, payload.time);
         if (isNaN(mergedDate.getTime())) {
             toast.error('Data/hora inválida');
@@ -189,8 +196,8 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             setOpenSchedule(false);
 
 
-        } catch (err) {
-            toast.error('Erro inesperado ao agendar.');
+        } catch (err: any) {
+            toast.error(err.response.data.error || 'Erro ao agendar sessão');
         }
     };
 
@@ -297,7 +304,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
                 patients={patients}
                 //loading={false}
                 // onSubmit={handleCloseScheduleModal}
-                //  onClose={() => setOpenSchedule(false)}
+                onClose={() => setOpenSchedule(false)}
                 onSave={(appointment) => {
                     handleBooking(appointment);
                 }

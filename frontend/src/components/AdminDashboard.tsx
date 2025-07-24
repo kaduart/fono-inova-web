@@ -159,6 +159,7 @@ export default function AdminDashboard() {
   const [upcomingAppointments, setUpcomingAppointments] = useState([]);
   const [hospitalCapacity] = useState(150);
   //const [appointments, setAppointments] = useState([]);
+  const [closeModalSignal, setCloseModalSignal] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [openModalAppointment, setOpenModalAppointement] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
@@ -266,29 +267,27 @@ export default function AdminDashboard() {
 
   // Handler para novo agendamento
   const handleNewAppointment = async (appointmentData: IAppointment) => {
+    const payload: CreateAppointmentParams = {
+      patientId: appointmentData.patientId,
+      doctorId: appointmentData.doctorId,
+      date: appointmentData.date,
+      time: appointmentData.time,
+      reason: appointmentData.reason,
+      specialty: appointmentData.sessionType,
+      clinicalStatus: 'pendente',
+      operationalStatus: 'agendado'
+    };
     try {
-      const payload: CreateAppointmentParams = {
-        patientId: appointmentData.patientId,
-        doctorId: appointmentData.doctorId,
-        date: appointmentData.date,
-        time: appointmentData.time,
-        reason: appointmentData.reason,
-        specialty: appointmentData.sessionType,
-        clinicalStatus: 'pendente',
-        operationalStatus: 'agendado'
-      };
-
       await createAppointment(payload);
       toast.success('Agendamento criado com sucesso!');
       fetchAppointments();
-
-      setOpenModalAppointement(false);
-
-    } catch (error) {
-      toast.error('Erro ao criar agendamento');
-      console.error(error);
+      setCloseModalSignal(s => s + 1);
+    } catch (error: any) {
+      console.error('[FRONT] Erro ao criar agendamento:', error);
+      toast.error(error.message || 'Erro ao criar agendamento');
     }
   };
+
 
   // Handler para cancelar agendamento
   const handleCancelAppointment = async (appointmentId: string, reason: string) => {
@@ -305,6 +304,8 @@ export default function AdminDashboard() {
       await cancelAppointment(appointmentId, cancelParams);
       toast.success('Agendamento cancelado!');
       fetchAppointments();
+      setCloseModalSignal(s => s + 1);
+
     } catch (error) {
       toast.error('Erro ao cancelar agendamento');
       console.error(error);
@@ -318,6 +319,7 @@ export default function AdminDashboard() {
       await completeAppointment(appointmentId);
       toast.success('Agendamento marcado como concluído!');
       fetchAppointments();
+      setCloseModalSignal(s => s + 1);
 
     } catch (error) {
       toast.error('Erro ao completar agendamento');
@@ -331,6 +333,8 @@ export default function AdminDashboard() {
       await updateAppointment(appointmentId, updatedData);
       toast.success('Agendamento atualizado!');
       fetchAppointments();
+      setCloseModalSignal(s => s + 1);
+
     } catch (error) {
       toast.error('Erro ao atualizar agendamento');
       console.error(error);
@@ -1028,6 +1032,8 @@ export default function AdminDashboard() {
         onEditAppointment={handleEditAppointment}
         onFetchAvailableSlots={handleFetchAvailableSlots}
         openModalAppointment={openModalAppointment}
+        closeModalSignal={closeModalSignal}
+
       />
     );
   };

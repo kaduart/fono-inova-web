@@ -193,8 +193,14 @@ router.post('/', auth, checkPackageAvailability, validateIndividualPayment, chec
         });
 
     } catch (error) {
-        await mongoSession.abortTransaction();
         console.error('Erro completo:', error);
+        await mongoSession.abortTransaction();
+        // 🔴 TRATAMENTO DE AGENDAMENTO DUPLICADO
+        if (error.code === 11000 && error.keyPattern?.patient && error.keyPattern?.doctor && error.keyPattern?.date && error.keyPattern?.time) {
+            return res.status(409).json({
+                error: 'Já existe um agendamento para este paciente, médico, data e hora.'
+            });
+        }
 
         if (error.name === 'ValidationError') {
             const errors = Object.keys(error.errors).reduce((acc, key) => {
