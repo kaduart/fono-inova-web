@@ -1,4 +1,4 @@
-// src/hooks/usePaymentNotifications.ts
+/* // src/hooks/usePaymentNotifications.ts
 import { useEffect } from 'react';
 import { useNotification } from '../contexts/NotificationContext';
 import io from 'socket.io-client';
@@ -8,7 +8,7 @@ const usePaymentNotifications = () => {
 
   useEffect(() => {
     // URL do socket usando variável de ambiente do Vite (ou CRA)
-    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
+  //  const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
     
     const socket = io(socketUrl, {
       transports: ['websocket'],
@@ -44,4 +44,4 @@ const usePaymentNotifications = () => {
   }, [showPaymentNotification]);
 };
 
-export default usePaymentNotifications;
+export default usePaymentNotifications; */
