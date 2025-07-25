@@ -1,4 +1,4 @@
-// src/hooks/usePaymentNotifications.ts
+/* // src/hooks/usePaymentNotifications.ts
 import { useEffect } from 'react';
 import io from 'socket.io-client';
 import { useNotification } from '../contexts/NotificationContext';
@@ -44,4 +44,4 @@ const usePaymentNotifications = () => {
     }, [showPaymentNotification]);
 };
 
-export default usePaymentNotifications;
+export default usePaymentNotifications; */
