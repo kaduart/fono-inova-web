@@ -1,5 +1,6 @@
 import { parse } from 'date-fns';
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { FinancialRecord } from '../../services/paymentService';
 import { dateFormat } from '../../utils/dateFormat';
 import { PaymentMethods, ServiceTypes } from '../../utils/types/types';
@@ -28,43 +29,80 @@ export const EditPaymentModal = ({
     onClose,
     onSave
 }: EditPaymentModalProps) => {
+    if (!payment) return null;
     const [formData, setFormData] = useState({
-        amount: payment.amount,
-        serviceType: payment.serviceType,
-        date: payment.date || payment.createdAt,
-        paymentMethod: payment.paymentMethod,
+        amount: '',
+        serviceType: '',
+        date: '',
+        paymentMethod: '',
         status: '',
     });
     const [isSaving, setIsSaving] = useState(false);
-
-    useEffect(() => {
-        setFormData({
-            amount: payment.amount,
-            date: payment.date || payment.createdAt,
-            paymentMethod: payment.paymentMethod,
-            status: payment.status || '',
-            serviceType: payment.serviceType || 'evaluation', // Default to 'evaluation' if not set
-        });
-    }, [payment]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSaving(true);
-        try {
-            const isoDate = parse(formData.date, 'dd/MM/yyyy', new Date()).toISOString();
-            await onSave({
-                ...payment,
-                amount: formData.amount,
-                date: isoDate,
-                status: formData.status,
-                paymentMethod: formData.paymentMethod,
-                serviceType: formData.serviceType,
-            });
-
-        } finally {
-            setIsSaving(false);
-        }
+    
+   useEffect(() => {
+  if (payment) {
+    // Converter para formato legível apenas se for uma string ISO válida
+    const formatDate = (dateString: string | undefined) => {
+      if (!dateString) return '';
+      
+      try {
+        const date = new Date(dateString);
+        return isNaN(date.getTime()) ? '' : dateFormat(dateString);
+      } catch {
+        return '';
+      }
     };
+
+    setFormData({
+      amount: payment.amount,
+      date: formatDate(payment.date || payment.createdAt),
+      paymentMethod: payment.paymentMethod,
+      status: payment.status || '',
+      serviceType: payment.serviceType || 'evaluation',
+    });
+  }
+}, [payment, isOpen]);
+
+  // Corrigir o tratamento de datas
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsSaving(true);
+  
+  try {
+    // Validar e formatar a data corretamente
+    let isoDate: string;
+    
+    if (formData.date) {
+      // Tentar converter de dd/MM/yyyy para ISO
+      const parsedDate = parse(formData.date, 'dd/MM/yyyy', new Date());
+      
+      if (isNaN(parsedDate.getTime())) {
+        // Se falhar, usar a data original como fallback
+        isoDate = payment.date || payment.createdAt;
+      } else {
+        isoDate = parsedDate.toISOString();
+      }
+    } else {
+      isoDate = payment.date || payment.createdAt;
+    }
+
+    await onSave({
+      ...payment,
+      amount: formData.amount,
+      date: isoDate,
+      status: formData.status,
+      paymentMethod: formData.paymentMethod,
+      serviceType: formData.serviceType,
+    });
+    onClose(); // Fechar modal após salvar
+
+  } catch (error) {
+    console.error("Erro ao salvar pagamento:", error);
+    toast.error("Erro ao atualizar pagamento");
+  } finally {
+    setIsSaving(false);
+  }
+};
 
     if (!isOpen) return null;
 
