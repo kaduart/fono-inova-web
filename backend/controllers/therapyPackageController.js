@@ -593,6 +593,26 @@ export const packageOperations = {
                         });
                         await payment.save({ session: mongoSession });
 
+                        const sessionsPaidCount = Math.floor(amountPaid / sessionValue);
+
+                        if (sessionsPaidCount > 0) {
+                            const sessionsToMarkAsPaid = await Session.find({
+                                package: newPackage._id,
+                                isPaid: false
+                            })
+                                .sort({ createdAt: 1 })
+                                .limit(sessionsPaidCount)
+                                .session(mongoSession);
+
+                            if (sessionsToMarkAsPaid.length > 0) {
+                                const sessionIdsToUpdate = sessionsToMarkAsPaid.map(s => s._id);
+                                await Session.updateMany(
+                                    { _id: { $in: sessionIdsToUpdate } },
+                                    { $set: { isPaid: true, paymentMethod: paymentMethod } },
+                                    { session: mongoSession }
+                                );
+                            }
+                        }
                         sessionDoc.isPaid = true;
                         await sessionDoc.save({ session: mongoSession });
                     }

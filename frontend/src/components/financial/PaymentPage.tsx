@@ -29,7 +29,6 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
     const [filteredPayments, setFilteredPayments] = useState<FinancialRecord[]>([]);
     const [financialRecord, setFinancialRecord] = useState<FinancialRecord[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
-    const userRole = localStorage.getItem('userRole');
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
     const [paymentToEdit, setPaymentToEdit] = useState<FinancialRecord | undefined>(undefined);
     const [error, setError] = useState<string | null>(null);
@@ -42,6 +41,12 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
     const totalPages = Math.ceil(filteredPayments.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentPayments = filteredPayments.slice(startIndex, startIndex + itemsPerPage);
+    const [userRole, setUserRole] = useState<string | null>(null);
+
+    useEffect(() => {
+    const role = localStorage.getItem('userRole');
+    setUserRole(role);
+    }, []);
 
     useEffect(() => {
         if (initialPayments) {
@@ -57,6 +62,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
             const res = await getPayments();
             const financial = await getPaymentCountFinancialRecord();
             setAllPayments(res.data.data);
+            console.log('Pagamentos carregados:', res.data);
             setFinancialRecord(financial.data.data);
         } catch (error) {
             console.error('Erro ao carregar pagamentos:', error);
@@ -73,6 +79,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
 
     const handleEditAmount = (paymentId: string) => {
         const payment = allPayments.find(p => p._id === paymentId);
+        console.log('Editing payment:', payment);
         setPaymentToEdit(payment);
         setIsEditModalOpen(true);
     };
@@ -94,7 +101,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                 paymentMethod: data.paymentMethod
             });
 
-            await loadPayments();
+             loadPayments();
             toast.success('Pagamento atualizado com sucesso!');
         } catch (error) {
             toast.error('Erro ao atualizar pagamento');
@@ -147,7 +154,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
 
     return (
         <div className="space-y-4">
-            {/* Accordion para o Relatório Diário */}
+            
             <div className="border rounded-lg overflow-hidden">
                 <button
                     className={`flex justify-between items-center w-full p-4 text-left font-medium ${dailyReportOpen ? 'bg-blue-50 text-blue-700' : 'bg-gray-50 text-gray-700'
@@ -164,7 +171,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                 )}
             </div>
 
-            {/* Accordion para o Controle Financeiro */}
+            
             <div className="border rounded-lg overflow-hidden">
                 <button
                     className={`flex justify-between items-center w-full p-4 text-left font-medium ${financialControlOpen ? 'bg-green-50 text-green-700' : 'bg-gray-50 text-gray-700'
@@ -228,10 +235,9 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                             </div>
                         ) : (
                             <div className="overflow-x-auto bg-white rounded-lg shadow">
-                                <table className="w-full min-w-[800px]"> {/* Largura mínima ajustada */}
+                                <table className="w-full min-w-[800px]"> 
                                     <thead className="bg-gray-50">
                                         <tr>
-                                            {/* Cabeçalhos otimizados */}
                                             <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Paciente</th>
                                             <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Profissional</th>
                                             <th className="px-2 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-[15%]">Agendada Para:</th>
@@ -246,7 +252,6 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {currentPayments.map(payment => (
                                             <tr key={payment._id}>
-                                                {/* Células com truncate para textos longos */}
                                                 <td className="px-2 py-2 text-left whitespace-nowrap text-sm text-gray-500 truncate max-w-[120px]" title={payment.patient?.fullName}>
                                                     {payment.patient?.fullName}
                                                 </td>
@@ -320,7 +325,6 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                                                         >
                                                             Anterior
                                                         </button>
-
                                                         {Array.from({ length: totalPages }, (_, index) => {
                                                             const page = index + 1;
                                                             const isActive = currentPage === page;
@@ -337,7 +341,6 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                                                                 </button>
                                                             );
                                                         })}
-
                                                         <button
                                                             onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))}
                                                             disabled={currentPage === totalPages}
@@ -366,7 +369,7 @@ const PaymentPage = ({ patients, doctors, initialPayments, onMarkAsPaid, onCance
                 )}
             </div>
 
-            {/* Botões para controlar todos os accordions */}
+            
             <div className="flex gap-4">
                 <button
                     className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
