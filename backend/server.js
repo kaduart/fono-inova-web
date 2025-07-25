@@ -24,7 +24,7 @@ import PaymentRoutes from './routes/Payment.js';
 import signupRoutes from './routes/signup.js';
 import specialtyRouter from './routes/specialty.js';
 import UserRoutes from './routes/user.js';
-import { initializeSocket } from './socket';
+//import { initializeSocket } from './socket';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,13 +40,15 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
+/* 
+descomentar qdo ativar o websocket do sicob
 const server = http.createServer(app);
+ initializeSocket(server); */
 
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log('Connected to MongoDB'))
-.catch((err) => console.error('Could not connect to MongoDB', err));
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Could not connect to MongoDB', err));
 
-initializeSocket(server);
 
 // Routes
 app.use('/api/signup', signupRoutes);
