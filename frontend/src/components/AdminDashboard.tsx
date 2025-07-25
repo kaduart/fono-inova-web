@@ -903,8 +903,8 @@ export default function AdminDashboard() {
                 setActiveTab('Dashboard'); // Volta para a dashboard após fechar
               }}
               onSaveSuccess={(patient) => {
-
                 handleSavePatient(patient);
+                 setShouldShowPatientModal(false);
               }}
             />
           )}
