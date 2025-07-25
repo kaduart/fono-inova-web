@@ -32,8 +32,8 @@ db.sessions.find({
 
 
 //consulta agendamento por id
-db.appointments.find({
-  doctor: ObjectId("684072213830f473da1b0b0b"),
+db.payments.find({
+  patient: ObjectId("6855c921c033e150e1dc6066"),
 }).sort({ date: 1 }).limit(10).pretty()
 
 

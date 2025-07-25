@@ -27,4 +27,14 @@ API.interceptors.response.use(
     }
 );
 
+export const generatePixPayment = async (appointmentId: string) => {
+    const response = await API.post('/api/pix/generate', { appointmentId });
+    return response.data;
+};
+
+export const checkPixStatus = async (txid: string) => {
+    const response = await API.get(`/api/pix/status/${txid}`);
+    return response.data;
+};
+
 export default API;

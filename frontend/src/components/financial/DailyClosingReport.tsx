@@ -441,35 +441,54 @@ const DetailsView = ({ type, date, onClose }: {
     const [localError, setLocalError] = useState<string | null>(null);
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchDetails = async () => {
             try {
                 setLocalLoading(true);
                 setLocalError(null);
 
+                let res: any;
                 switch (type) {
-                    case 'scheduled':
-                        await fetchDailyScheduledSessions(date);
+                    case "scheduled":
+                        res = await fetchDailyScheduledSessions(date);
                         break;
-                    case 'completed':
-                        await fetchDailyCompletedSessions(date);
+                    case "completed":
+                        res = await fetchDailyCompletedSessions(date);
                         break;
-                    case 'payments':
-                        await fetchDailyPayments(date);
+                    case "payments":
+                        res = await fetchDailyPayments(date);
                         break;
-                    case 'absences':
-                        await fetchDailyAbsences(date);
+                    case "absences":
+                        res = await fetchDailyAbsences(date);
                         break;
+                    default:
+                        res = null;
+                }
+
+                if (isMounted) {
+                    // atualize seu estado com 'res'
+                    // ex: setState(res)
                 }
             } catch (err) {
-                setLocalError('Erro ao carregar detalhes');
+                if (isMounted) {
+                    setLocalError("Erro ao carregar detalhes");
+                }
                 console.error(err);
             } finally {
-                setLocalLoading(false);
+                if (isMounted) {
+                    setLocalLoading(false);
+                }
             }
         };
 
         fetchDetails();
+
+        return () => {
+            isMounted = false; // evita atualização após desmontagem
+        };
     }, [type, date]);
+
 
     useEffect(() => {
         // Atualizar os dados baseados no tipo
@@ -578,7 +597,7 @@ const DetailsView = ({ type, date, onClose }: {
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                             {data.map((item, index) => (
-                                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                <tr key={item.id || `${item.type}-${index}`} className="hover:bg-gray-50 transition-colors">
                                     {type === 'scheduled' ? (
                                         <>
                                             <td className="py-3 px-4 text-gray-800 font-medium">{item.patient || 'N/A'}</td>

@@ -22,11 +22,15 @@ import DashboardPage from './pages/dashboard';
 import ProfessionalProfilePage from './pages/professional/profile';
 import SchedulePage from './pages/schedule';
 import SpecialtyRouter from './routes/SpecialtyRouter';
+import usePaymentNotifications from './hooks/usePaymentNotifications';
 
 const App: React.FC = () => {
   Modal.setAppElement('#root');
 
+  usePaymentNotifications();
+
   return (
+
     <Router>
       <div className="App">
         <Routes>
