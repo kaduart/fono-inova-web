@@ -61,7 +61,6 @@ export const EditPaymentModal = ({
                 serviceType: formData.serviceType,
             });
 
-            onClose();
         } finally {
             setIsSaving(false);
         }
@@ -72,12 +71,7 @@ export const EditPaymentModal = ({
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
-        // Se for o campo de valor, manter o valor como string
-        if (name === 'value') {
-            setFormData((prev) => ({ ...prev, [name]: value }));
-        } else {
-            setFormData((prev) => ({ ...prev, [name]: value }));
-        }
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     useEffect(() => {
