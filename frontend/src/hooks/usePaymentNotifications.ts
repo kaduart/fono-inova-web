@@ -1,47 +1,47 @@
-/* // src/hooks/usePaymentNotifications.ts
+// src/hooks/usePaymentNotifications.ts
 import { useEffect } from 'react';
-import { useNotification } from '../contexts/NotificationContext';
 import io from 'socket.io-client';
+import { useNotification } from '../contexts/NotificationContext';
 
 const usePaymentNotifications = () => {
-  const { showPaymentNotification } = useNotification();
+    const { showPaymentNotification } = useNotification();
 
-  useEffect(() => {
-    // URL do socket usando variável de ambiente do Vite (ou CRA)
-  //  const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3001';
-    
-    const socket = io(socketUrl, {
-      transports: ['websocket'],
-      reconnection: true,
-      reconnectionAttempts: 5,
-      reconnectionDelay: 3000,
-    });
+    useEffect(() => {
+        // URL do socket usando variável de ambiente do Vite (ou CRA)
+        const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:9001';
 
-    socket.on('payment-confirmed', (data: {
-      appointmentId: string;
-      amount: number;
-      date: Date;
-      patientName: string;
-      doctorName: string;
-    }) => {
-      showPaymentNotification({
-        id: `payment-${Date.now()}`,
-        appointmentId: data.appointmentId,
-        amount: data.amount,
-        date: new Date(data.date),
-        patientName: data.patientName,
-        doctorName: data.doctorName
-      });
-    });
+        const socket = io(socketUrl, {
+            transports: ['websocket'],
+            reconnection: true,
+            reconnectionAttempts: 5,
+            reconnectionDelay: 3000,
+        });
 
-    socket.on('connect_error', (err) => {
-      console.error('Erro de conexão Socket.io:', err.message);
-    });
+        socket.on('payment-confirmed', (data: {
+            appointmentId: string;
+            amount: number;
+            date: Date;
+            patientName: string;
+            doctorName: string;
+        }) => {
+            showPaymentNotification({
+                id: `payment-${Date.now()}`,
+                appointmentId: data.appointmentId,
+                amount: data.amount,
+                date: new Date(data.date),
+                patientName: data.patientName,
+                doctorName: data.doctorName
+            });
+        });
 
-    return () => {
-      socket.disconnect();
-    };
-  }, [showPaymentNotification]);
+        socket.on('connect_error', (err) => {
+            console.error('Erro de conexão Socket.io:', err.message);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, [showPaymentNotification]);
 };
 
-export default usePaymentNotifications; */
+export default usePaymentNotifications;
