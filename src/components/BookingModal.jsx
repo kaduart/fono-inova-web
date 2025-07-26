@@ -151,7 +151,6 @@ Aguardo confirmação. Obrigado!`
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
-          {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-bold font-poppins">Agendar Consulta</h2>
@@ -165,7 +164,6 @@ Aguardo confirmação. Obrigado!`
             </button>
           </div>
 
-          {/* Progress Bar */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-2">
               {[1, 2, 3, 4].map((step) => (
@@ -189,7 +187,6 @@ Aguardo confirmação. Obrigado!`
             </div>
           </div>
 
-          {/* Step Content */}
           {currentStep === 1 && (
             <div className="space-y-4">
               <div className="text-center mb-6">
@@ -399,7 +396,6 @@ Aguardo confirmação. Obrigado!`
             </div>
           )}
 
-          {/* Navigation Buttons */}
           <div className="flex justify-between pt-6 mt-6 border-t">
             <Button 
               variant="outline" 

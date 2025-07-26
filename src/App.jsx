@@ -6,7 +6,6 @@ import {
   ArrowRight,
   Brain,
   Calendar,
-  Heart,
   Mail,
   MapPin,
   Menu,
@@ -20,6 +19,7 @@ import { useState } from 'react'
 import './App.css'
 import logoImg from './assets/fonoinova_logo.png'
 import BookingModal from './components/BookingModal.jsx'
+import ImageCarousel from './components/ImageCarousel.jsx'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -84,14 +84,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background font-inter">
-      {/* Header */}
-      <header  style={{ backgroundColor: 'oklch(0.55 0.13 174.92)' }} className="fixed top-0 w-full backdrop-blur-sm border-b border-border z-50">
+      <header className="fixed top-0 w-full backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <img src={logoImg} alt="Clínica Fono Inova" className="h-12" />
           </div>
-          
-          {/* Desktop Menu */}
+
           <nav className="hidden md:flex items-center space-x-8">
             <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-primary transition-colors">
               Serviços
@@ -111,8 +109,7 @@ function App() {
             </Button>
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -120,7 +117,6 @@ function App() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-border">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
@@ -145,7 +141,6 @@ function App() {
         )}
       </header>
 
-      {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -160,12 +155,12 @@ function App() {
                 <span className="text-secondary"> Conquistas</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Na Clínica Fono Inova, convertemos desafios em conquistas por meio de terapias inovadoras, 
+                Na Clínica Fono Inova, convertemos desafios em conquistas por meio de terapias inovadoras,
                 focadas no desenvolvimento e no sucesso das crianças.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   onClick={() => setIsModalOpen(true)}
                   className="bg-accent hover:bg-accent/90 text-lg px-8 py-6"
                 >
@@ -173,9 +168,9 @@ function App() {
                   Agendar Consulta
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
+                <Button
+                  size="lg"
+                  variant="outline"
                   onClick={() => scrollToSection('services')}
                   className="text-lg px-8 py-6"
                 >
@@ -185,7 +180,7 @@ function App() {
             </div>
             <div className="relative">
               <div className="w-full h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl flex items-center justify-center animate-float">
-                <Heart className="w-24 h-24 text-white" />
+                <ImageCarousel />
               </div>
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent rounded-full flex items-center justify-center animate-pulse">
                 <Star className="w-12 h-12 text-white" />
@@ -195,7 +190,6 @@ function App() {
         </div>
       </section>
 
-      {/* Services Section */}
       <section id="services" className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -203,7 +197,7 @@ function App() {
               Nossos Serviços
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-              Cuidado Multidisciplinar para Cada Fase do 
+              Cuidado Multidisciplinar para Cada Fase do
               <span className="text-primary"> Desenvolvimento Infantil</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -231,7 +225,6 @@ function App() {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="about" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -240,15 +233,15 @@ function App() {
                 Sobre Nós
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-                Promovendo o Crescimento e 
+                Promovendo o Crescimento e
                 <span className="text-secondary"> Bem-Estar Infantil</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Na Clínica Fono Inova, nossa missão é oferecer cuidado multidisciplinar de excelência para crianças, 
+                Na Clínica Fono Inova, nossa missão é oferecer cuidado multidisciplinar de excelência para crianças,
                 guiados por valores como empatia, inovação e compromisso com o desenvolvimento integral.
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                Oferecemos serviços especializados como fonoaudiologia, psicologia, terapia ocupacional e fisioterapia, 
+                Oferecemos serviços especializados como fonoaudiologia, psicologia, terapia ocupacional e fisioterapia,
                 sempre com foco no bem-estar e na evolução das crianças.
               </p>
               <div className="grid grid-cols-2 gap-6">
@@ -264,14 +257,13 @@ function App() {
             </div>
             <div className="relative">
               <div className="w-full h-96 bg-gradient-to-br from-secondary to-accent rounded-3xl flex items-center justify-center">
-                <Users className="w-24 h-24 text-white" />
+                <img src="/images/psicologia/psico3.jpg" alt="Atendimento de Psicologia" className="w-full h-96 rounded-lg" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section id="testimonials" className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -279,7 +271,7 @@ function App() {
               Depoimentos
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-              O que os 
+              O que os
               <span className="text-accent"> Pais </span>
               dizem sobre nós
             </h2>
@@ -308,7 +300,6 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -316,7 +307,7 @@ function App() {
               Entre em Contato
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-              Apoio Integrado para o 
+              Apoio Integrado para o
               <span className="text-primary"> Crescimento Infantil</span>
             </h2>
             <p className="text-xl text-muted-foreground">
@@ -345,7 +336,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Telefone</h3>
-                  <p className="text-muted-foreground">+55 62 99201-3573</p>
+                  <p className="text-muted-foreground">(62) 3706-3924</p>
                 </div>
               </div>
 
@@ -371,16 +362,16 @@ function App() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2">Nome</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="Seu nome"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Telefone</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="(62) 99999-9999"
                     />
@@ -388,8 +379,8 @@ function App() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">E-mail</label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="seu@email.com"
                   />
@@ -406,7 +397,7 @@ function App() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Mensagem</label>
-                  <textarea 
+                  <textarea
                     rows={4}
                     className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Conte-nos mais sobre suas necessidades..."
@@ -422,7 +413,6 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer style={{ backgroundColor: 'oklch(0.55 0.13 174.92)' }} className="text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
@@ -454,18 +444,27 @@ function App() {
               <div className="space-y-2 text-background/80">
                 <p>Avenida Minas Gerais, 405</p>
                 <p>Bairro Jundiaí, Anápolis – GO</p>
-                <p>+55 62 99201-3573</p>
-                <p>contato@fonoinova.com.br</p>
+                <div className="flex gap-2">
+                  <Phone className="w-4 h-6 text-green-500" />
+                  <span>(62) 3706-3924</span>
+                </div>
+                <div className="flex gap-2">
+                  <MessageCircle className="w-4 h-6 text-green-500" />
+                  <p>(62) 99201-3573</p>
+                </div>
+                <div className="flex gap-2">
+                  <Mail className="w-4 h-6 text-green-500" />
+                  <span>contato@fonoinova.com.br</span>
+                </div>
               </div>
             </div>
           </div>
           <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
-            <p>&copy; 2024 Clínica Fono Inova. Todos os direitos reservados.</p>
+            <p>&copy; 2025 Clínica Fono Inova. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
       <button
         onClick={openWhatsApp}
         className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-50"
@@ -473,10 +472,9 @@ function App() {
         <MessageCircle className="w-7 h-7 text-white" />
       </button>
 
-      {/* Modal de Agendamento */}
-      <BookingModal 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </div>
   )
