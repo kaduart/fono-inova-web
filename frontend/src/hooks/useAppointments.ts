@@ -5,7 +5,6 @@ import {
     AvailableSlotsParams,
     CancelParams,
     CreateAppointmentParams,
-    PaginationParams,
     RescheduleParams,
     UpdateAppointmentParams
 } from '../services/appointmentService';
@@ -17,13 +16,20 @@ export const useAppointments = () => {
     const [error, setError] = useState<string | null>(null);
     const [availableSlots, setAvailableSlots] = useState<string[]>([]);
 
-    const fetchAppointments = useCallback(async (params: PaginationParams = {}) => {
+    const fetchAppointments = useCallback(async (params = {}) => {
         setLoading(true);
         setError(null);
         try {
             const response = await appointmentService.list(params);
+      console.log('Agendamento criado com sucesso!', response);
 
-            setAppointments(response.data);
+          setAppointments(prev => {
+            const updated = [...prev, ...response.data]; // ou apenas response.data se for substituição
+            console.log('[HOOK] Atualizado appointments:', updated);
+            return updated;
+        });
+
+
         } catch (err) {
             setError('Falha ao carregar agendamentos');
             console.error('Erro ao buscar agendamentos:', err);

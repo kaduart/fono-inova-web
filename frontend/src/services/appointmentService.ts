@@ -65,7 +65,7 @@ export type UpdateAppointmentParams = Partial<{
     startTime: string;
     duration: number;
     reason: string;
-    clinicalStatus: 'pendente' | 'em_andamento' | 'concluído' | 'cancelado' | 'faltou';
+    clinicalStatus: 'pendente' | 'em_andamento' | 'concluído' | 'canceled' | 'faltou';
     operationalStatus: 'agendado' | 'confirmado' | 'cancelado' | 'pago' | 'faltou';
     sessionType: TherapyType;
     paymentMethod: string;

@@ -141,7 +141,7 @@ export const syncEvent = async (originalDoc, type, session = null) => {
             if ((type === 'appointment' || type === 'session') && originalDoc.time) {
                 const [hour, minute] = originalDoc.time.split(':').map(Number);
                 const dateCopy = new Date(originalDoc.date);
-                 dateCopy.setHours(hour, minute, 0, 0); // Ajuste para UTC-3
+                dateCopy.setHours(hour, minute, 0, 0); // Ajuste para UTC-3
                 finalDate = dateCopy;
             }
 
@@ -161,6 +161,17 @@ export const syncEvent = async (originalDoc, type, session = null) => {
                         ? safeObjectId(originalDoc.appointmentId)
                         : null
             };
+
+            if (type === 'appointment' &&
+                originalDoc.serviceType === 'package_session' &&
+                originalDoc.session) {
+
+                // Sincronizar a sessão vinculada
+                const relatedSession = await Session.findById(originalDoc.session);
+                if (relatedSession) {
+                    await syncEvent(relatedSession, 'session', session);
+                }
+            }
 
             console.log(`[SYNC] Sincronizando evento: `, updateData);
 
@@ -191,4 +202,116 @@ export const syncEvent = async (originalDoc, type, session = null) => {
         throw error;
     }
 };
+
+
+export const handlePackageSessionUpdate = async (appointment, action, user, details = {}) => {
+    const session = await mongoose.startSession();
+    
+    try {
+        await session.startTransaction();
+
+        // 1. Atualizar a sessão relacionada com tratamento para history
+        const sessionDoc = await Session.findById(appointment.session).session(session);
+        if (!sessionDoc) throw new Error('Sessão não encontrada');
+
+        // Inicializa history se não existir
+        if (!sessionDoc.history) {
+            sessionDoc.history = [];
+        }
+
+        // Cria entrada de histórico padrão
+        const historyEntry = {
+            action,
+            changedBy: user._id,
+            timestamp: new Date(),
+            details: details.changes || {}
+        };
+
+        // 2. Lógica específica por ação
+        switch (action) {
+            case 'cancel':
+                sessionDoc.status = 'canceled';
+                sessionDoc.confirmedAbsence = details.changes?.confirmedAbsence || false;
+                
+                // Adiciona entrada específica de cancelamento
+                sessionDoc.history.push({
+                    ...historyEntry,
+                    action: 'cancelamento',
+                    details: {
+                        reason: details.changes?.reason,
+                        confirmedAbsence: details.changes?.confirmedAbsence
+                    }
+                });
+                
+                if (appointment.package) {
+                    await adjustPackageSession(
+                        appointment.package,
+                        appointment._id,
+                        'remove',
+                        session
+                    );
+                }
+                break;
+
+            case 'change_package':
+                if (details.previousData?.package) {
+                    await adjustPackageSession(
+                        details.previousData.package,
+                        appointment._id,
+                        'remove',
+                        session
+                    );
+                }
+                await adjustPackageSession(
+                    details.changes.packageId,
+                    appointment._id,
+                    'add',
+                    session
+                );
+                sessionDoc.history.push(historyEntry);
+                break;
+
+            case 'reschedule':
+                if (details.changes?.date) sessionDoc.date = details.changes.date;
+                if (details.changes?.time) sessionDoc.time = details.changes.time;
+                sessionDoc.history.push(historyEntry);
+                break;
+
+            case 'update':
+                if (details.changes?.status) sessionDoc.status = details.changes.status;
+                sessionDoc.history.push(historyEntry);
+                break;
+        }
+
+        await sessionDoc.save({ session });
+        await syncEvent(sessionDoc, 'session');
+        await session.commitTransaction();
+        
+    } catch (error) {
+        await session.abortTransaction();
+        console.error('Erro no handlePackageSessionUpdate:', {
+            error: error.message,
+            appointmentId: appointment?._id,
+            sessionId: appointment?.session,
+            action,
+            stack: error.stack
+        });
+        throw error;
+    } finally {
+        await session.endSession();
+    }
+};
+
+async function adjustPackageSession(packageId, appointmentId, operation, session) {
+    const update = operation === 'add'
+        ? { $inc: { remainingSessions: -1 }, $push: { sessions: appointmentId } }
+        : { $inc: { remainingSessions: 1 }, $pull: { sessions: appointmentId } };
+
+    const result = await Package.findByIdAndUpdate(packageId, update, { session });
+
+    if (!result) throw new Error(`Pacote ${packageId} não encontrado`);
+    if (operation === 'add' && result.remainingSessions <= 0) {
+        throw new Error('Pacote sem sessões disponíveis');
+    }
+}
 

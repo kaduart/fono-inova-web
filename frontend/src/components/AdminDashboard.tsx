@@ -280,7 +280,9 @@ export default function AdminDashboard() {
     try {
       await createAppointment(payload);
       toast.success('Agendamento criado com sucesso!');
-      fetchAppointments();
+      console.log('Agendamento criado com sucesso!');
+      await fetchAppointments();
+      
       setCloseModalSignal(s => s + 1);
     } catch (error: any) {
       console.error('[FRONT] Erro ao criar agendamento:', error);
@@ -297,8 +299,8 @@ export default function AdminDashboard() {
         notifyPatient: true
       };
       const updateData: UpdateAppointmentParams = {
-        clinicalStatus: 'cancelado',
-        operationalStatus: 'cancelado'
+        clinicalStatus: 'canceled',
+        operationalStatus: 'canceled'
       };
 
       await cancelAppointment(appointmentId, cancelParams);

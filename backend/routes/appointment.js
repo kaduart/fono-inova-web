@@ -11,7 +11,7 @@ import Package from '../models/Package.js';
 import Patient from '../models/Patient.js';
 import Payment from '../models/Payment.js';
 import Session from '../models/Session.js';
-import { syncEvent } from '../services/syncService.js';
+import { handlePackageSessionUpdate, syncEvent } from '../services/syncService.js';
 import { updatePatientAppointments } from '../utils/appointmentUpdater.js';
 
 const ObjectId = mongoose.Types.ObjectId;
@@ -347,6 +347,7 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
                 { new: true, session: mongoSession }
             );
 
+            console.log('Agendamento antes de atualizar:', appointment);
             if (!appointment) {
                 await mongoSession.abortTransaction();
                 return res.status(404).json({ error: 'Agendamento não encontrado' });
@@ -360,52 +361,52 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
 
             // 3. Aplicar atualizações manualmente
             const updateData = { ...req.body };
+            console.log('Agendamento 1:', updateData);
 
-            // Atualizar campos individualmente
-            Object.keys(updateData).forEach(key => {
-                if (key !== '_id' && key !== '__v') {
-                    appointment[key] = updateData[key];
-                }
-            });
+            // Atualizar 
+            const previousData = appointment.toObject();
+            Object.assign(appointment, req.body);
 
             // 4. Validar antes de salvar
             await appointment.validate();
-
-            // 5. Salvar as alterações
             const updated = await appointment.save({ session: mongoSession });
 
-            // 6. Tratamento especial para mudanças de pacote
-            if (updateData.serviceType === 'package_session' && updateData.packageId) {
-                // Verificar e atualizar pacote
-                const newPackage = await Package.findById(updateData.packageId).session(mongoSession);
+            if (appointment.session) {
+                const session = await Session.findById(appointment.session).session(mongoSession);
+                console.log('session 122:', session);
 
-                if (!newPackage || newPackage.remainingSessions <= 0) {
-                    await mongoSession.abortTransaction();
-                    return res.status(400).json({ error: 'Pacote inválido ou sem sessões disponíveis' });
+                if (session) {
+                    if (req.body.date) session.date = req.body.date;
+                    if (req.body.time) session.time = req.body.time;
+                    if (req.body.status) session.status = req.body.status;
+                    await session.save({ session: mongoSession });
                 }
-
-                // Remover do pacote anterior (se existir)
-                if (appointment.package) {
-                    const oldPackage = await Package.findById(appointment.package).session(mongoSession);
-                    if (oldPackage) {
-                        oldPackage.remainingSessions += 1;
-                        await oldPackage.save({ session: mongoSession });
-                    }
-                }
-
-                // Adicionar ao novo pacote
-                newPackage.remainingSessions -= 1;
-                newPackage.sessions.push(updated._id);
-                await newPackage.save({ session: mongoSession });
             }
 
-            // 7. Commit da transação
             await mongoSession.commitTransaction();
 
-            // 8. Sincronização assíncrona (fora da transação)
-            setTimeout(() => {
-                syncEvent(updated, 'appointment')
-                    .catch(err => console.error('Erro na sincronização:', err));
+            setTimeout(async () => {
+                try {
+                    // Sincronização básica do agendamento
+                    await syncEvent(updated, 'appointment');
+
+                    // Se for sessão de pacote, tratar no syncService
+                    if (updated.serviceType === 'package_session') {
+                        const action = determineActionType(req.body, previousData);
+
+                        await handlePackageSessionUpdate(
+                            updated,
+                            action,
+                            req.user,
+                            {
+                                changes: req.body,
+                                previousData
+                            }
+                        );
+                    }
+                } catch (err) {
+                    console.error('Erro na sincronização pós-atualização:', err);
+                }
             }, 100);
 
             res.json(updated);
@@ -449,6 +450,12 @@ router.put('/:id', validateId, auth, checkPackageAvailability,
             await mongoSession.endSession();
         }
     });
+
+function determineActionType(updateData) {
+    if (updateData.status === 'canceled') return 'cancel';
+    if (updateData.date || updateData.time) return 'reschedule';
+    return 'update';
+}
 
 // Deleta um agendamento
 router.delete('/:id', validateId, auth, async (req, res) => {
@@ -499,50 +506,148 @@ router.get('/history/:patientId', async (req, res) => {
 
 // Cancela um agendamento
 router.patch('/:id/cancel', validateId, auth, async (req, res) => {
-
+    const dbSession = await mongoose.startSession();
 
     try {
-        const { reason } = req.body;
-
+        await dbSession.startTransaction();
+        
+        // 1. Validação básica
+        const { reason, confirmedAbsence = false } = req.body;
         if (!reason) {
+            await dbSession.abortTransaction();
             return res.status(400).json({ error: 'O motivo do cancelamento é obrigatório' });
         }
 
-        const appointment = await Appointment.findById(req.params.id);
+        // 2. Buscar e travar o agendamento
+        const appointment = await Appointment.findOneAndUpdate(
+            { _id: req.params.id },
+            { $set: {} },
+            { 
+                new: true, 
+                session: dbSession 
+            }
+        ).populate('session'); // Popula a sessão relacionada
 
         if (!appointment) {
+            await dbSession.abortTransaction();
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        if (appointment.operationalStatus === 'cancelado') {
+        // 3. Verificar status atual
+        if (appointment.operationalStatus === 'canceled') {
+            await dbSession.abortTransaction();
             return res.status(400).json({ error: 'Este agendamento já está cancelado' });
         }
 
+        // 4. Preparar dados do histórico
+        const historyEntry = {
+            action: 'cancelamento',
+            newStatus: 'canceled',
+            changedBy: req.user._id,
+            timestamp: new Date(),
+            context: 'operacional',
+            details: { reason, confirmedAbsence }
+        };
+
+        // 5. Atualizar agendamento
         const updatedAppointment = await Appointment.findByIdAndUpdate(
             req.params.id,
             {
                 operationalStatus: 'cancelado',
-                status: 'cancelado',
+                status: 'canceled',
                 canceledReason: reason,
-                $push: {
-                    history: {
-                        action: 'cancelamento',
-                        newStatus: 'cancelado',
-                        changedBy: req.user._id,
-                        timestamp: new Date(),
-                        context: 'operacional',
-                        details: { reason }
+                confirmedAbsence,
+                $push: { history: historyEntry }
+            },
+            { new: true, session: dbSession }
+        );
+
+        // 6. Atualizar sessão relacionada se existir
+        if (appointment.session) {
+            await Session.findByIdAndUpdate(
+                appointment.session._id,
+                {
+                    $set: {
+                        status: 'canceled',
+                        confirmedAbsence
+                    },
+                    $push: {
+                        history: {
+                            action: 'cancelamento_via_agendamento',
+                            changedBy: req.user._id,
+                            timestamp: new Date(),
+                            details: { reason }
+                        }
+                    }
+                },
+                { session: dbSession }
+            );
+        }
+
+        await dbSession.commitTransaction();
+
+        // 7. Sincronização assíncrona
+        setTimeout(async () => {
+            try {
+                // Sincronizar agendamento
+                await syncEvent(updatedAppointment, 'appointment');
+                
+                // Se for sessão de pacote, sincronizar tudo
+                if (updatedAppointment.serviceType === 'package_session') {
+                    // Sincronizar sessão
+                    if (appointment.session) {
+                        const updatedSession = await Session.findById(appointment.session._id);
+                        await syncEvent(updatedSession, 'session');
+                    }
+                    
+                    // Sincronizar pacote
+                    if (appointment.package) {
+                        await syncPackageUpdate({
+                            packageId: appointment.package,
+                            action: 'cancel',
+                            changes: { reason, confirmedAbsence },
+                            appointmentId: appointment._id
+                        });
                     }
                 }
-            },
-            { new: true }
-        );
+            } catch (syncError) {
+                console.error('Erro na sincronização pós-cancelamento:', {
+                    error: syncError.message,
+                    appointmentId: appointment?._id,
+                    stack: syncError.stack
+                });
+                // Implementar lógica de retry aqui se necessário
+            }
+        }, 100);
 
         res.json(updatedAppointment);
 
     } catch (error) {
-        console.error('Erro ao cancelar agendamento:', error);
-        res.status(500).json({ error: 'Erro interno no servidor' });
+        // Tratamento de erros
+        if (dbSession.inTransaction()) {
+            await dbSession.abortTransaction();
+        }
+
+        console.error('Erro ao cancelar agendamento:', {
+            error: error.message,
+            appointmentId: req.params.id,
+            stack: error.stack
+        });
+
+        if (error.name === 'ValidationError') {
+            const errors = Object.values(error.errors).reduce((acc, err) => {
+                acc[err.path] = err.message;
+                return acc;
+            }, {});
+            return res.status(400).json({ errors });
+        }
+
+        res.status(500).json({
+            error: 'Erro interno no servidor',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        });
+    } finally {
+        await dbSession.endSession();
     }
 });
 
