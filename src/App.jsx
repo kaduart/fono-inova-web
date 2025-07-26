@@ -84,8 +84,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background font-inter">
-      <header className="fixed top-0 w-full backdrop-blur-sm border-b border-border z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+      <header class="fixed top-0 left-0 w-full backdrop-blur-sm border-b border-border z-50">
+        <div className="max-w-[1355px] mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <img src={logoImg} alt="Clínica Fono Inova" className="h-12" />
           </div>
@@ -109,17 +109,14 @@ function App() {
             </Button>
           </nav>
 
-          <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-border">
-            <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            <nav className="max-w-[1355px] mx-auto px-4 py-4 flex flex-col space-y-4">
               <button onClick={() => scrollToSection('services')} className="text-left text-foreground hover:text-primary transition-colors">
                 Serviços
               </button>
