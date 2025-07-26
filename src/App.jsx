@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import { Badge } from '@/components/ui/badge.jsx'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
-import BookingModal from './components/BookingModal.jsx'
-import { 
-  Heart, 
-  Brain, 
-  Users, 
-  Activity, 
-  Phone, 
-  MapPin, 
-  Mail, 
-  Calendar,
-  Star,
+import {
+  Activity,
   ArrowRight,
+  Brain,
+  Calendar,
+  Heart,
+  Mail,
+  MapPin,
   Menu,
-  X,
-  MessageCircle
+  MessageCircle,
+  Phone,
+  Star,
+  Users,
+  X
 } from 'lucide-react'
+import { useState } from 'react'
 import './App.css'
 import logoImg from './assets/fonoinova_logo.png'
+import BookingModal from './components/BookingModal.jsx'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -85,7 +85,7 @@ function App() {
   return (
     <div className="min-h-screen bg-background font-inter">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
+      <header  style={{ backgroundColor: 'oklch(0.55 0.13 174.92)' }} className="fixed top-0 w-full backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <img src={logoImg} alt="Clínica Fono Inova" className="h-12" />
@@ -423,7 +423,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-12">
+      <footer style={{ backgroundColor: 'oklch(0.55 0.13 174.92)' }} className="text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
