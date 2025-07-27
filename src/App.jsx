@@ -138,49 +138,52 @@ function App() {
         )}
       </header>
 
-      <section className="pt-24 pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      <section className="pt-32 pb-12 md:pt-24 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="animate-fade-in-up">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Text Content */}
+            <div className="order-2 lg:order-1 animate-fade-in-up">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 Apoio Multidisciplinar
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold font-poppins mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-4 md:mb-6 leading-tight">
                 Transformando
                 <span className="text-primary"> Desafios </span>
                 em
                 <span className="text-secondary"> Conquistas</span>
               </h1>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Na Clínica Fono Inova, convertemos desafios em conquistas por meio de terapias inovadoras,
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
+                Na <b>Clínica Fono Inova</b>, convertemos desafios em conquistas por meio de terapias inovadoras,
                 focadas no desenvolvimento e no sucesso das crianças.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Button
                   size="lg"
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-accent hover:bg-accent/90 text-lg px-8 py-6"
+                  className="bg-accent hover:bg-accent/90 text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6"
                 >
-                  <Calendar className="w-5 h-5 mr-2" />
+                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                   Agendar Consulta
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   onClick={() => scrollToSection('services')}
-                  className="text-lg px-8 py-6"
+                  className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6"
                 >
                   Conhecer Serviços
                 </Button>
               </div>
             </div>
-            <div className="relative">
-              <div className="w-full h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl flex items-center justify-center animate-float">
+
+            {/* Image Carousel */}
+            <div className="order-1 lg:order-2 relative w-full mb-8 lg:mb-0">
+              <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
                 <ImageCarousel />
               </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent rounded-full flex items-center justify-center animate-pulse">
-                <Star className="w-12 h-12 text-white" />
+              <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-accent rounded-full flex items-center justify-center animate-pulse">
+                <Star className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
               </div>
             </div>
           </div>
