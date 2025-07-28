@@ -12,6 +12,8 @@
     "allowJs": true,
     "jsx": "react-jsx",
     "moduleResolution": "node",
+      "skipLibCheck": true,
+    "noEmitOnError": false,
     "typeRoots": [
       "./types",
       "./node_modules/@types"
