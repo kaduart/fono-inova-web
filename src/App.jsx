@@ -346,7 +346,7 @@ function App() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">E-mail</h3>
-                  <p className="text-muted-foreground">contato@fonoinova.com.br</p>
+                  <p className="text-muted-foreground">contato@clinicafonoinova.com.br</p>
                 </div>
               </div>
             </div>
