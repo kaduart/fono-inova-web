@@ -892,106 +892,112 @@ router.get('/daily-closing', async (req, res) => {
         const targetDate = date || new Date().toISOString().split('T')[0];
         const [year, month, day] = targetDate.split('-').map(Number);
 
-        // 1. Ajuste de fuso horário (UTC-3)
-        const startOfDay = new Date(Date.UTC(year, month - 1, day, 3, 0, 0));
-        const endOfDay = new Date(Date.UTC(year, month - 1, day + 1, 2, 59, 59, 999));
+        // Define o período do "dia" considerando horário Brasília (UTC-3)
+        const startOfDay = new Date(Date.UTC(year, month - 1, day, 3, 0, 0));  // 03:00 UTC início
+        const endOfDay = new Date(Date.UTC(year, month - 1, day + 1, 2, 59, 59, 999)); // 02:59:59 próximo dia
         const displayDate = `${String(day).padStart(2, '0')}/${String(month).padStart(2, '0')}/${year}`;
 
-        // 2. Buscar dados em paralelo (otimizado)
-        const [allSessions, allAppointments, allPayments, allDoctors] = await Promise.all([
-            Session.find({ date: { $gte: startOfDay, $lte: endOfDay } })
-                .populate('doctor patient package'),
+        // Buscar agendamentos do dia com dados essenciais
+        const allAppointments = await Appointment.find({ date: { $gte: startOfDay, $lte: endOfDay } })
+            .populate('doctor package patient payment')
+            .lean();
 
-            Appointment.find({ date: { $gte: startOfDay, $lte: endOfDay } })
-                .populate('doctor patient session package'),
+        // IDs únicos de pacotes usados nos agendamentos
+        const packageIds = [...new Set(
+            allAppointments
+                .filter(a => a.package)
+                .map(a => {
+                    // Se for string, use direto
+                    if (typeof a.package === 'string') return a.package;
 
-            Payment.find({
-                createdAt: { $gte: startOfDay, $lte: endOfDay },
-                status: 'paid' // CORREÇÃO: status correto
-            }).populate('doctor patient'),
+                    // Se for objeto populado, pegue o _id
+                    if (a.package._id) return a.package._id.toString();
 
-            Doctor.find().select('_id fullName specialty')
-        ]);
+                    // fallback, tenta converter para string
+                    if (a.package.toString) return a.package.toString();
 
-        // 3. Classificação correta de eventos
-        const events = [];
+                    return null;
+                })
+        )].filter(id => id !== null);
 
-        // Processar sessões
-        allSessions.forEach(session => {
-            events.push({
-                type: 'session',
-                id: session._id,
-                date: session.date,
-                doctor: session.doctor,
-                patient: session.patient,
-                package: session.package,
-                value: session.sessionValue,
-                status: session.status,
-                operationalStatus: session.isPaid ? 'pago' : 'pendente',
-                clinicalStatus: session.status === 'completed' ? 'concluído' : 'pendente'
-            });
-        });
+        // Buscar pacotes relacionados
+        const allPackages = await Package.find({ _id: { $in: packageIds } }).lean();
 
-        // Processar agendamentos
-        allAppointments.forEach(appt => {
-            events.push({
-                type: 'appointment',
-                id: appt._id,
-                date: appt.date,
-                doctor: appt.doctor,
-                patient: appt.patient,
-                package: appt.package,
-                value: appt.sessionValue,
-                status: appt.operationalStatus,
-                operationalStatus: appt.operationalStatus,
-                clinicalStatus: appt.clinicalStatus
-            });
-        });
+        // Buscar todos os médicos
+        const allDoctors = await Doctor.find().select('_id fullName specialty').lean();
 
-        // 4. Função para determinar valor do evento
-        const getEventValue = (event) => {
-            // Prioridade: valor direto > valor do pacote > valor padrão por especialidade
-            if (event.value > 0) return event.value;
+        // Função para normalizar método de pagamento
+        function normalizePaymentMethod(method) {
+            if (!method || typeof method !== 'string') return 'dinheiro';
+            console.log('method', method)
+            const normalized = method.trim().toLowerCase();
 
-            if (event.package?.sessionValue > 0) {
-                return event.package.sessionValue;
-            }
+            if (normalized.includes('pix')) return 'pix';
+            if (normalized.includes('cartao') || normalized.includes('cartão') || normalized.includes('card')) return 'cartão';
+            if (normalized.includes('dinheiro') || normalized.includes('cash')) return 'dinheiro';
 
-            const specialtyValues = {
-                'fonoaudiologia': 180,
-                'psicologia': 200,
-                'terapia ocupacional': 170,
-                'fisioterapia': 160,
-                'pediatria': 220,
-                'neuroped': 250
-            };
+            return 'dinheiro'; // fallback seguro
+        }
 
-            return specialtyValues[event.sessionType] || 0;
+
+        // Inicializa objeto resumo de pagamentos do dia
+        const paymentsSummary = {
+            count: 0,
+            value: 0,
+            methods: { dinheiro: 0, pix: 0, cartão: 0 }
         };
 
-        // 5. Inicializar estrutura do relatório
+        // Set para contar pacientes únicos concluídos
+        const uniquePatientIds = new Set();
+
+        // Inicia o relatório com totais e agrupamentos
         const report = {
             date: displayDate,
             period: { start: startOfDay.toISOString(), end: endOfDay.toISOString() },
             totals: {
                 scheduled: { count: 0, value: 0 },
                 completed: { count: 0, value: 0 },
-                payments: { count: 0, value: 0, methods: { dinheiro: 0, pix: 0, cartão: 0 } },
-                absences: { count: 0, estimatedLoss: 0 }
+                payments: paymentsSummary,
+                absences: { count: 0, estimatedLoss: 0 },
+                canceled: { count: 0, value: 0 },
+                uniquePatients: 0
             },
-            byProfessional: {}
+            byProfessional: {},
+            financialSummary: {
+                totalExpected: 0,
+                totalAbatido: 0,
+                totalAReceber: 0,
+                totalPacotesPagos: 0
+            },
+            paymentsList: [],
+            packagesPaidDetails: []
         };
 
-        // 6. Processar todos os eventos
-        events.forEach(event => {
-            const eventValue = getEventValue(event);
+        // Função auxiliar para pegar valor da sessão (com fallback)
+        function getSessionValue(event, pkg) {
+            if (event.sessionValue > 0) return event.sessionValue;
+            if (pkg?.sessionValue > 0) return pkg.sessionValue;
 
-            // Total de agendados (TODOS os eventos)
-            report.totals.scheduled.count++;
-            report.totals.scheduled.value += eventValue;
+            // fallback valores por especialidade
+            const fallback = {
+                fonoaudiologia: 180,
+                psicologia: 200,
+                'terapia ocupacional': 170,
+                fisioterapia: 160,
+                pediatria: 220,
+                neuroped: 250
+            };
+            return fallback[event.specialty] || 0;
+        }
 
-            // Inicializar profissional se necessário
-            const doctorId = event.doctor?._id.toString() || 'unknown';
+        // Processa cada agendamento
+        for (const event of allAppointments) {
+            const pkg = (event.package && event.package._id) ? event.package : null;
+
+            const doctorId = event.doctor?._id?.toString() || 'unknown';
+            const value = getSessionValue(event, pkg);
+
+            // Inicializa agrupamento por profissional se não existir
             if (!report.byProfessional[doctorId]) {
                 report.byProfessional[doctorId] = {
                     doctorId,
@@ -1002,63 +1008,112 @@ router.get('/daily-closing', async (req, res) => {
                     completed: 0,
                     completedValue: 0,
                     absences: 0,
+                    canceled: 0,
                     payments: { total: 0, methods: { dinheiro: 0, pix: 0, cartão: 0 } }
                 };
             }
+            const prof = report.byProfessional[doctorId];
 
-            const profData = report.byProfessional[doctorId];
-            profData.scheduled++;
-            profData.scheduledValue += eventValue;
+            // Totais agendados
+            report.totals.scheduled.count++;
+            report.totals.scheduled.value += value;
+            report.financialSummary.totalExpected += value;
 
-            // Eventos realizados (somente concluídos)
-            if (event.clinicalStatus === 'concluído' || event.status === 'completed') {
+            prof.scheduled++;
+            prof.scheduledValue += value;
+
+            // Status
+            const opStatus = (event.operationalStatus || '').toLowerCase();
+            const clinicalStatus = (event.clinicalStatus || '').toLowerCase();
+
+            // Concluídos (usando status clínico ou operacional)
+            if (['concluído', 'concluido', 'completed'].includes(clinicalStatus) || ['concluído', 'concluido', 'completed'].includes(opStatus)) {
                 report.totals.completed.count++;
-                report.totals.completed.value += eventValue;
-                profData.completed++;
-                profData.completedValue += eventValue;
+                report.totals.completed.value += value;
+                prof.completed++;
+                prof.completedValue += value;
+
+                if (event.patient?._id) uniquePatientIds.add(event.patient._id.toString());
             }
 
-            // Faltas/cancelamentos
-            if (['cancelado', 'faltou', 'canceled'].includes(event.operationalStatus)) {
+            // Ausências
+            if (opStatus === 'faltou') {
                 report.totals.absences.count++;
-                report.totals.absences.estimatedLoss += eventValue; // PERDA REAL
-                profData.absences++;
+                report.totals.absences.estimatedLoss += value;
+                prof.absences++;
             }
-        });
 
-        // 7. Processar pagamentos
-        allPayments.forEach(payment => {
-            report.totals.payments.count++;
-            report.totals.payments.value += payment.amount;
-
-            const method = payment.paymentMethod || 'dinheiro';
-            report.totals.payments.methods[method] += payment.amount;
-
-            const doctorId = payment.doctor?._id.toString() || 'unknown';
-            if (report.byProfessional[doctorId]) {
-                const profData = report.byProfessional[doctorId];
-                profData.payments.total += payment.amount;
-                profData.payments.methods[method] += payment.amount;
+            // Cancelados
+            if (['cancelado', 'canceled'].includes(opStatus)) {
+                report.totals.canceled.count++;
+                report.totals.canceled.value += value;
+                prof.canceled++;
             }
-        });
 
-        // 8. Converter para array e adicionar profissionais sem eventos
-        report.byProfessional = allDoctors.map(doctor => {
-            const doctorId = doctor._id.toString();
-            return report.byProfessional[doctorId] || {
-                doctorId,
-                doctorName: doctor.fullName,
-                specialty: doctor.specialty,
-                scheduled: 0,
-                scheduledValue: 0,
-                completed: 0,
-                completedValue: 0,
-                absences: 0,
-                payments: { total: 0, methods: { dinheiro: 0, pix: 0, cartão: 0 } }
-            };
-        });
+            // Valores abatidos e a receber (pacote ou avulso)
+            if (event.serviceType === 'package_session') {
+                report.financialSummary.totalAbatido += value;
+            } else {
+                report.financialSummary.totalAReceber += value;
+            }
+            // Pagamentos para o resumo por profissional e geral
+            let paymentMethod = '';
+            if (event.serviceType === 'package_session' && pkg) {
+                paymentMethod = normalizePaymentMethod(pkg.paymentMethod);
+            } else {
+                paymentMethod = normalizePaymentMethod(event.paymentMethod);
+            }
 
-        // 9. Auditoria detalhada
+            paymentsSummary.count++;
+            paymentsSummary.value += value;
+            paymentsSummary.methods[paymentMethod] += value;
+
+            prof.payments.total += value;
+            prof.payments.methods[paymentMethod] += value;
+        }
+
+        report.totals.uniquePatients = uniquePatientIds.size;
+
+        // Montar array byProfessional para enviar no JSON
+        report.byProfessional = Object.values(report.byProfessional);
+
+        // Total pago dos pacotes no dia (soma totalPaid dos pacotes vinculados)
+        let totalPacotesPagos = 0;
+        for (const pkg of allPackages) {
+            if (pkg.payments && typeof pkg.totalPaid === 'number') {
+                totalPacotesPagos += pkg.totalPaid;
+            } else if (pkg.totalPaid && typeof pkg.totalPaid === 'number') {
+                totalPacotesPagos += pkg.totalPaid;
+            }
+        }
+        report.financialSummary.totalPacotesPagos = totalPacotesPagos;
+
+        // Montar lista detalhada de pagamentos para o front (busca pagamentos pagos do dia)
+        const paymentsOnDay = await Payment.find({ createdAt: { $gte: startOfDay, $lte: endOfDay }, status: 'paid' })
+            .populate('doctor patient')
+            .lean();
+
+        report.paymentsList = paymentsOnDay.map(payment => ({
+            id: payment._id,
+            amount: payment.amount,
+            paymentMethod: payment.paymentMethod || 'dinheiro',
+            date: payment.createdAt,
+            doctorName: payment.doctor?.fullName || 'Desconhecido',
+            patientName: payment.patient?.fullName || 'Desconhecido'
+        }));
+
+        // Detalhes dos pacotes pagos no dia (filtra pacotes com pagamentos no período)
+        report.packagesPaidDetails = allPackages.filter(pkg =>
+            pkg.payments?.some(p => p.createdAt >= startOfDay && p.createdAt <= endOfDay)
+        ).map(pkg => ({
+            id: pkg._id,
+            patientId: pkg.patient,
+            doctorId: pkg.doctor,
+            totalPaid: pkg.totalPaid || 0,
+            balance: pkg.balance || 0,
+            sessionsPerWeek: pkg.sessionsPerWeek,
+            durationMonths: pkg.durationMonths
+        }));
 
         res.json(report);
 
@@ -1070,6 +1125,8 @@ router.get('/daily-closing', async (req, res) => {
         });
     }
 });
+
+
 
 // Detalhamento de sessões agendadas
 router.get('/daily-scheduled-details', async (req, res) => {

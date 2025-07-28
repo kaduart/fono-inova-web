@@ -67,7 +67,8 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
     }, [closeModalSignal]);
 
     useEffect(() => {
-    }, [openSchedule])
+        console.log('Appointments updated:', appointments);
+    }, [appointments])
 
     const getStatusConfig = (status: string) => {
         if (statusConfig[status]) return statusConfig[status];
@@ -78,6 +79,7 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             label: status.charAt(0).toUpperCase() + status.slice(1)
         };
     };
+console.log('appointments', appointments)
 
     const events = appointments?.map(appointment => {
         // Converter a string ISO para objeto Date
@@ -128,7 +130,6 @@ const EnhancedCalendar: React.FC<EnhancedCalendarProps> = ({
             setAvailableSlots(slots);
         }
     };
-
     const handleEventClick = (info: { event: any }) => {
         const { event } = info;
         const formattedDate = event.start

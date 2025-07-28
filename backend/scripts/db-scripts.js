@@ -66,3 +66,5 @@ const updatedSessions = await Session.find({
 const stillWithoutTime = await Session.countDocuments({
   time: { $exists: false }
 });
+
+//buscar pacote 

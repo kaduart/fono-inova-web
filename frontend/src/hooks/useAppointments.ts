@@ -20,16 +20,8 @@ export const useAppointments = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await appointmentService.list(params);
-      console.log('Agendamento criado com sucesso!', response);
-
-          setAppointments(prev => {
-            const updated = [...prev, ...response.data]; // ou apenas response.data se for substituição
-            console.log('[HOOK] Atualizado appointments:', updated);
-            return updated;
-        });
-
-
+           const response = await appointmentService.list(params);
+            setAppointments(response.data);
         } catch (err) {
             setError('Falha ao carregar agendamentos');
             console.error('Erro ao buscar agendamentos:', err);
