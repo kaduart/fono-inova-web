@@ -17,7 +17,8 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import './App.css'
-import logoImg from './assets/fonoinova_logo.png'
+import logoImgFooter from './assets/LOGO_CLÍNICA_FONO_INOVA_WHITE.png'
+import logoImgHeader from './assets/LOGO_FONO_INOVA_HORIZONTAL_NEGRITO.png'
 import BookingModal from './components/BookingModal.jsx'
 import ImageCarousel from './components/ImageCarousel.jsx'
 
@@ -87,7 +88,7 @@ function App() {
       <header class="fixed top-0 left-0 w-full backdrop-blur-sm border-b border-border z-50">
         <div className="max-w-[1355px] mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <img src={logoImg} alt="Clínica Fono Inova" className="h-12" />
+            <img src={logoImgHeader} alt="Clínica Fono Inova" className="h-16" />
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -138,7 +139,7 @@ function App() {
         )}
       </header>
 
-      <section className="pt-32 pb-12 md:pt-24 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text Content */}
@@ -417,7 +418,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <img src={logoImg} alt="Clínica Fono Inova" className="h-12 mb-4 brightness-0 invert" />
+              <img src={logoImgFooter} alt="Clínica Fono Inova" className="h-12 mb-4 brightness-0 invert" />
               <p className="text-background/80 leading-relaxed">
                 Construir um novo padrão de cuidado infantil, onde diferentes saberes se unem para transformar vidas.
               </p>
