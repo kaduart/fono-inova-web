@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/fonoinova_logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica Fono Inova - Apoio Multidisciplinar para o Desenvolvimento Infantil</title>
+
+  <!-- ✅ Meta tags para SEO -->
+  <meta name="description"
+    content="Clínica especializada em fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil. Transformando desafios em conquistas." />
+
+  <!-- ✅ Open Graph para redes sociais -->
+  <meta property="og:title" content="Clínica Fono Inova - Apoio Multidisciplinar" />
+  <meta property="og:description"
+    content="Cuidado multidisciplinar para o desenvolvimento infantil com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia." />
+  <meta property="og:image" content="https://clinicafonoinova.com.br/images/og-image.jpg" />
+  <meta property="og:url" content="https://clinicafonoinova.com.br" />
+  <meta property="og:type" content="website" />
+
+  <!-- ✅ Preconnect para performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N59X7PNQZZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-N59X7PNQZZ');
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- ✅ Script de Acessibilidade -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Widget de acessibilidade
+      const widgetScript = document.createElement('script');
+      widgetScript.src = 'https://cdn.jsdelivr.net/npm/accessibility-widget@latest/dist/widget.min.js';
+      document.body.appendChild(widgetScript);
+
+      // Modo leitura
+      if (localStorage.getItem('readerMode') === 'enabled') {
+        document.body.classList.add('reader-mode');
+      }
+    });
+  </script>
+
+  <style>
+    /* ✅ Estilos de acessibilidade */
+    .reader-mode {
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white !important;
+      color: #333 !important;
+    }
+
+    .reader-mode header,
+    .reader-mode footer,
+    .reader-mode .hidden {
+      display: none !important;
+    }
+  </style>
+</body>
+
+</html>
