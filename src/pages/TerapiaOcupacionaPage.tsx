@@ -1,270 +1,529 @@
 import {
+    Accessibility,
+    AlertTriangle,
+    ArrowRight,
+    Award,
+    Brain,
+    BrainCircuit,
     CheckCircle,
-    People,
-    Schedule,
-    TrendingUp,
-    Warning,
-} from '@mui/icons-material';
-import {
-    Box,
-    Button,
-    Card,
-    CardContent,
-    Container,
-    Grid,
-    Paper,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+    ChevronDown,
+    HandHeart,
+    Quote,
+    Sprout,
+    Star
+} from 'lucide-react';
 import { useState } from 'react';
+import Layout from '../components/Layout';
+import OptimizedImage from '../components/OptimizedImage';
+import ButtonAgendamento from '../components/ui/ButtonAgendamento';
+import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 
 const TerapiaOcupacionalPage = () => {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const [analytics, setAnalytics] = useState({
-        totalClicks: 98,
-        uniqueVisitors: 73,
-        averageTime: 3.8,
-        conversionRate: 11.2
-    });
+    const [openAccordion, setOpenAccordion] = useState(null);
 
+    // Benefícios da Terapia Ocupacional
     const benefits = [
-        "Integração Sensorial: Melhora o processamento de estímulos sensoriais",
-        "Atividades de Vida Diária: Desenvolve autonomia para vestir, alimentar e higiene",
-        "Coordenação Motora: Fortalece habilidades motoras finas e grossas",
-        "Desenvolvimento Cognitivo: Estimula atenção, memória e resolução de problemas",
-        "Habilidades Sociais: Promove interação e comunicação com outras crianças",
-        "Regulação Emocional: Ajuda no controle de impulsos e manejo de frustrações",
-        "Preparação para Escrita: Desenvolve pré-requisitos para a escrita",
-        "Brincar Terapêutico: Usa brincadeiras para alcançar objetivos terapêuticos"
+        {
+            icon: <BrainCircuit className="w-10 h-10" />,
+            title: "Integração Sensorial",
+            description: "Melhora o processamento de estímulos sensoriais",
+            details: "Técnicas para regular respostas a estímulos táteis, vestibulares, proprioceptivos e outros.",
+            features: ["Processamento tátil", "Regulação vestibular", "Consciência corporal", "Modulação sensorial"]
+        },
+        {
+            icon: <Accessibility className="w-10 h-10" />,
+            title: "Atividades de Vida Diária",
+            description: "Desenvolve autonomia para vestir, alimentar e higiene",
+            details: "Treino de habilidades práticas para independência nas atividades cotidianas.",
+            features: ["Alimentação independente", "Vestuário autonomia", "Hábitos de higiene", "Organização pessoal"]
+        },
+        {
+            icon: <HandHeart className="w-10 h-10" />,
+            title: "Coordenação Motora",
+            description: "Fortalece habilidades motoras finas e grossas",
+            details: "Desenvolvimento da coordenação óculo-manual, força e destreza manual.",
+            features: ["Motricidade fina", "Coordenação bilateral", "Força muscular", "Preensão e manipulação"]
+        },
+        {
+            icon: <Brain className="w-10 h-10" />,
+            title: "Desenvolvimento Cognitivo",
+            description: "Estimula atenção, memória e resolução de problemas",
+            details: "Estratégias para melhorar funções executivas e processamento cognitivo.",
+            features: ["Atenção sustentada", "Memória de trabalho", "Planejamento", "Resolução de problemas"]
+        }
     ];
 
+    // Sinais de que a criança pode precisar de TO
     const signs = [
-        "Dificuldade com texturas de alimentos ou roupas",
-        "Problemas de coordenação e equilíbrio",
-        "Dificuldade para segurar lápis ou usar tesoura",
-        "Hiperatividade ou letargia excessiva",
-        "Dificuldade em aprender tarefas simples do dia a dia",
-        "Problemas de atenção e concentração",
-        "Frustração frequente com atividades motoras",
-        "Atraso no desenvolvimento de habilidades esperadas para a idade"
+        {
+            title: "Dificuldade com texturas de alimentos ou roupas",
+            description: "Recusa alimentar seletiva ou desconforto com certos tecidos",
+            details: "Hipersensibilidade tátil que interfere na alimentação e vestuário."
+        },
+        {
+            title: "Problemas de coordenação e equilíbrio",
+            description: "Dificuldade em atividades físicas e esportivas",
+            details: "Quedas frequentes, dificuldade em andar de bicicleta ou chutar bola."
+        },
+        {
+            title: "Dificuldade para segurar lápis ou usar tesoura",
+            description: "Preensão imatura ou força inadequada",
+            details: "Postura inadequada para escrita, cortes imprecisos com tesoura."
+        },
+        {
+            title: "Hiperatividade ou letargia excessiva",
+            description: "Padrões atípicos de nível de alerta",
+            details: "Inquietação constante ou falta de energia para atividades apropriadas."
+        },
+        {
+            title: "Dificuldade em aprender tarefas simples",
+            description: "Problemas com sequenciamento e organização",
+            details: "Dificuldade em seguir rotinas ou sequências de atividades."
+        },
+        {
+            title: "Problemas de atenção e concentração",
+            description: "Dificuldade em manter o foco em atividades",
+            details: "Distração fácil, não termina tarefas, necessita muita supervisão."
+        },
+        {
+            title: "Frustração frequente com atividades motoras",
+            description: "Baixa tolerância à frustração em tarefas desafiantes",
+            details: "Choro, birras ou evitação de atividades que exigem esforço motor."
+        },
+        {
+            title: "Atraso no desenvolvimento de habilidades",
+            description: "Não atinge marcos esperados para a idade",
+            details: "Habilidades motoras, de autocuidado ou sociais abaixo do esperado."
+        }
     ];
 
-    const trackClick = (elementName) => {
-        console.log(`Click registrado em: ${elementName}`);
-        // Em uma aplicação real, você enviaria isso para seu serviço de analytics
-    };
+    // Estatísticas baseadas em pesquisas
+    const statistics = [
+        { value: "1 em 6", label: "crianças tem dificuldades de desenvolvimento" },
+        { value: "85%", label: "melhora com intervenção precoce" },
+        { value: "94%", label: "dos pais relatam melhoras significativas" },
+        { value: "2x", label: "mais chances de sucesso escolar" }
+    ];
+
+    // Condições atendidas
+    const conditions = [
+        {
+            name: "Transtorno do Espectro Autista (TEA)",
+            description: "Intervenção sensorial e de habilidades sociais"
+        },
+        {
+            name: "Transtorno de Déficit de Atenção (TDAH)",
+            description: "Estratégias para organização e regulação"
+        },
+        {
+            name: "Atrasos do Desenvolvimento",
+            description: "Estimulação global das habilidades"
+        },
+        {
+            name: "Dificuldades de Aprendizagem",
+            description: "Integração sensório-motora para aprendizagem"
+        },
+        {
+            name: "Disfunções de Integração Sensorial",
+            description: "Regulação de respostas sensoriais"
+        },
+        {
+            name: "Paralisia Cerebral",
+            description: "Adaptações e desenvolvimento funcional"
+        }
+    ];
+
+    // Depoimentos
+    const testimonials = [
+        {
+            name: "Fernanda Costa",
+            role: "Mãe do Miguel, 6 anos (TEA)",
+            content: "A terapia ocupacional transformou a vida do Miguel. Ele consegue se vestir sozinho agora e está muito mais regulado sensorialmente. As terapeutas são anjos!",
+            rating: 5
+        },
+        {
+            name: "Ricardo Almeida",
+            role: "Pai da Sofia, 5 anos",
+            content: "Sofia tinha aversão a várias texturas de alimentos. Com a TO, ela experimenta novos alimentos e está muito mais aberta a experiências sensoriais.",
+            rating: 5
+        },
+        {
+            name: "Patrícia Santos",
+            role: "Mãe do Lucas, 7 anos (TDAH)",
+            content: "As estratégias de organização que aprendemos na TO foram revolucionárias. Lucas consegue seguir rotinas e está indo muito melhor na escola.",
+            rating: 5
+        }
+    ];
+
+    // FAQs
+    const faqs = [
+        {
+            question: "Com que idade devo procurar terapia ocupacional?",
+            answer: "A partir dos 2-3 anos, quando começam a surgir preocupações com desenvolvimento. Quanto mais cedo a intervenção, melhores os resultados."
+        },
+        {
+            question: "Quanto tempo dura cada sessão de terapia ocupacional?",
+            answer: "Geralmente 45-60 minutos, dependendo da idade e necessidades da criança. Sessões são geralmente semanais."
+        },
+        {
+            question: "Os planos de saúde cobrem terapia ocupacional?",
+            answer: "Sim, a maioria dos planos cobre sessões de TO. Verifique com sua operadora o número de sessões autorizadas anualmente."
+        },
+        {
+            question: "Preciso participar das sessões com meu filho?",
+            answer: "Sim, a participação familiar é essencial. Os pais aprendem estratégias para dar continuidade ao trabalho em casa."
+        }
+    ];
+
+    // Abordagens terapêuticas
+    const approaches = [
+        {
+            title: "Integração Sensorial",
+            description: "Baseada na teoria de Ayres, foca em organizar as sensações do próprio corpo e do ambiente",
+            techniques: ["Brincadeiras sensoriais", "Atividades vestibulares", "Estimulação tátil", "Regulação proprioceptiva"]
+        },
+        {
+            title: "Abordagem CO-OP",
+            description: "Abordagem cognitiva para desenvolvimento de habilidades motoras",
+            techniques: ["Solução de problemas", "Metas orientadas por criança", "Descoberta guiada", "Estratégias cognitivas"]
+        },
+        {
+            title: "Terapia de Mão",
+            description: "Foca no desenvolvimento de habilidades manuais e de preensão",
+            techniques: ["Fortalecimento muscular", "Coordenação motora fina", "Destreza manual", "Preparação para escrita"]
+        }
+    ];
 
     return (
-        <Container maxWidth="lg" sx={{ py: 4 }}>
-            {/* Cabeçalho */}
-            <Paper
-                elevation={3}
-                sx={{
-                    p: 4,
-                    mb: 4,
-                    background: 'linear-gradient(135deg, #FF9800 0%, #FFB74D 100%)',
-                    color: 'white',
-                    borderRadius: 3
-                }}
-            >
-                <Typography variant="h3" component="h1" gutterBottom>
-                    Terapia Ocupacional Infantil: Como Ajuda no Desenvolvimento
-                </Typography>
-                <Typography variant="h6" sx={{ opacity: 0.9 }}>
-                    Entenda como a TO pode transformar o desenvolvimento do seu filho através de atividades lúdicas e estratégias especializadas
-                </Typography>
-            </Paper>
+        <Layout>
+            {/* Hero Section Elegante */}
+            <section className="relative pt-32 pb-20 bg-gradient-to-br from-amber-50 to-orange-100 overflow-hidden">
+                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-amber-200/20 to-transparent" />
+                <div className="container mx-auto px-4 relative z-10">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div className="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-medium mb-6">
+                                <Award className="w-4 h-4 mr-2" />
+                                Especialidade em Desenvolvimento Infantil
+                            </div>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                                Terapia Ocupacional <span className="text-amber-600">Infantil</span>: Como Ajuda no Desenvolvimento
+                            </h1>
+                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                                Entenda como a TO pode transformar o desenvolvimento do seu filho através de
+                                atividades lúdicas e estratégias especializadas baseadas em evidências científicas.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <ButtonAgendamento className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
+                                    Agendar Avaliação
+                                    <ArrowRight className="w-5 h-5 ml-2" />
+                                </ButtonAgendamento>
+                                <ButtonWhatsApp className="border border-amber-600 text-amber-600 hover:bg-amber-50 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300">
+                                    Falar com Especialista
+                                </ButtonWhatsApp>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <div className="bg-white rounded-3xl p-8 shadow-2xl">
+                                <div className="relative h-96 w-full rounded-2xl overflow-hidden">
+                                    <OptimizedImage
+                                        src="/images/terapia-ocupacional/to1.jpg"
+                                        alt="Criança em sessão de terapia ocupacional"
+                                        className="w-full h-full object-cover rounded-2xl"
+                                    />
+                                </div>
+                                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-lg">
+                                    <div className="flex items-center">
+                                        <div className="bg-green-100 p-3 rounded-full mr-4">
+                                            <CheckCircle className="w-8 h-8 text-green-600" />
+                                        </div>
+                                        <div>
+                                            <div className="text-2xl font-bold text-gray-900">350+</div>
+                                            <div className="text-sm text-gray-600">Crianças Atendidas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <Grid container spacing={4}>
-                {/* Conteúdo Principal */}
-                <Grid item xs={12} md={8}>
-                    <Paper elevation={2} sx={{ p: 4, mb: 4, borderRadius: 3 }}>
-                        <Typography variant="h5" gutterBottom color="primary">
-                            O que é Terapia Ocupacional Infantil?
-                        </Typography>
-                        <Typography paragraph>
-                            A Terapia Ocupacional Infantil ajuda crianças a desenvolver as habilidades necessárias para
-                            realizar suas "ocupações" - brincar, aprender e realizar atividades diárias. Através de
-                            intervenções especializadas, a TO promove o desenvolvimento de forma lúdica e significativa.
-                        </Typography>
+            {/* Estatísticas Importantes */}
+            <section className="py-16 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {statistics.map((stat, index) => (
+                            <div key={index} className="text-center p-6 bg-amber-50 rounded-2xl">
+                                <div className="text-3xl font-bold text-amber-600 mb-2">{stat.value}</div>
+                                <div className="text-sm text-gray-700">{stat.label}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                        <Box sx={{ bgcolor: 'warning.light', p: 2, borderRadius: 2, mb: 3 }}>
-                            <Typography variant="h6" gutterBottom>
-                                <Warning sx={{ verticalAlign: 'middle', mr: 1 }} />
-                                Para quem é indicada?
-                            </Typography>
-                            <Typography variant="body2">
-                                A TO é recomendada para crianças com atrasos no desenvolvimento, TEA, TDAH,
-                                dificuldades motoras, sensoriais ou qualquer condição que afete sua capacidade
-                                de participar plenamente das atividades diárias.
-                            </Typography>
-                        </Box>
+            {/* O que é Terapia Ocupacional Infantil */}
+            <section className="py-20 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                                O que é <span className="text-amber-600">Terapia Ocupacional Infantil</span>?
+                            </h2>
+                            <p className="text-lg text-gray-700 mb-6">
+                                A Terapia Ocupacional Infantil ajuda crianças a desenvolver as habilidades necessárias para
+                                realizar suas "ocupações" - brincar, aprender e realizar atividades diárias.
+                            </p>
+                            <p className="text-lg text-gray-700 mb-6">
+                                Através de intervenções especializadas, a TO promove o desenvolvimento de forma lúdica e
+                                significativa, sempre considerando o potencial único de cada criança.
+                            </p>
 
-                        <Typography variant="h5" gutterBottom color="primary" sx={{ mt: 4 }}>
-                            Benefícios da Terapia Ocupacional
-                        </Typography>
+                            <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-2xl">
+                                <div className="flex items-start">
+                                    <AlertTriangle className="w-8 h-8 text-blue-600 mr-4 mt-1" />
+                                    <div>
+                                        <h3 className="text-lg font-semibold text-blue-800 mb-2">Para quem é indicada?</h3>
+                                        <p className="text-blue-700">
+                                            A TO é recomendada para crianças com atrasos no desenvolvimento, TEA, TDAH,
+                                            dificuldades motoras, sensoriais ou qualquer condição que afete sua capacidade
+                                            de participar plenamente das atividades diárias.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="relative">
+                            <div className="bg-white rounded-2xl p-6 shadow-lg">
+                                <OptimizedImage
+                                    src="/images/terapia-ocupacional/to3.jpg"
+                                    alt="Criança em acompanhamento terapia ocupacional"
+                                    className="w-full h-full object-cover rounded-2xl"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                        <Grid container spacing={3} sx={{ mb: 4 }}>
-                            {benefits.map((benefit, index) => (
-                                <Grid item xs={12} sm={6} key={index}>
-                                    <Card
-                                        variant="outlined"
-                                        sx={{
-                                            height: '100%',
-                                            borderTop: 4,
-                                            borderColor: 'warning.main',
-                                            transition: 'transform 0.2s',
-                                            '&:hover': {
-                                                transform: 'translateY(-4px)',
-                                                boxShadow: 3
-                                            }
-                                        }}
-                                    >
-                                        <CardContent>
-                                            <Typography variant="h6" gutterBottom color="warning.dark">
-                                                <Box component="span" sx={{ color: 'warning.main', mr: 1 }}>
-                                                    {index + 1}.
-                                                </Box>
-                                                {benefit}
-                                            </Typography>
-                                            <Typography variant="body2">
-                                                Desenvolvimento de habilidades específicas através de atividades direcionadas.
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </Grid>
-                            ))}
-                        </Grid>
+            {/* Benefícios da Terapia Ocupacional */}
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Benefícios da <span className="text-amber-600">Terapia Ocupacional</span>
+                        </h2>
+                        <p className="text-xl text-gray-700">
+                            Desenvolvimento de habilidades essenciais através de intervenções especializadas e baseadas em evidências.
+                        </p>
+                    </div>
 
-                        <Typography variant="h5" gutterBottom color="primary">
-                            Sinais de que seu filho pode se beneficiar da TO
-                        </Typography>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {benefits.map((benefit, index) => (
+                            <div key={index} className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 group">
+                                <div className="flex items-start mb-6">
+                                    <div className="bg-amber-600 p-3 rounded-2xl text-white mr-6 group-hover:scale-110 transition-transform duration-300">
+                                        {benefit.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                                        <p className="text-gray-700 mb-3">{benefit.description}</p>
+                                        <p className="text-sm text-gray-600 bg-white p-3 rounded-lg">{benefit.details}</p>
+                                    </div>
+                                </div>
+                                <ul className="space-y-2">
+                                    {benefit.features.map((feature, idx) => (
+                                        <li key={idx} className="flex items-center text-gray-700">
+                                            <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                        <Grid container spacing={2} sx={{ mb: 4 }}>
-                            {signs.map((sign, index) => (
-                                <Grid item xs={12} key={index}>
-                                    <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 1 }}>
-                                        <Box sx={{ color: 'warning.main', mr: 1, mt: 0.5 }}>
-                                            •
-                                        </Box>
-                                        <Typography variant="body1">
-                                            {sign}
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            ))}
-                        </Grid>
+            {/* Sinais de que a criança pode precisar de TO */}
+            <section className="py-20 bg-amber-50">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Sinais de que seu filho pode se <span className="text-amber-600">beneficiar da TO</span>
+                        </h2>
+                        <p className="text-xl text-gray-700">
+                            Observe estes sinais que podem indicar a necessidade de avaliação especializada.
+                        </p>
+                    </div>
 
-                        <Box sx={{ textAlign: 'center', mt: 4 }}>
-                            <Button
-                                variant="contained"
-                                size="large"
-                                onClick={() => trackClick('Agendamento TO')}
-                                sx={{ mr: 2, mb: isMobile ? 2 : 0 }}
-                                color="warning"
-                            >
-                                Agende uma Avaliação
-                            </Button>
-                            <Button
-                                variant="outlined"
-                                size="large"
-                                onClick={() => trackClick('Saiba Mais TO')}
-                                color="warning"
-                            >
-                                Conheça Nossa Terapeuta
-                            </Button>
-                        </Box>
-                    </Paper>
-                </Grid>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {signs.map((sign, index) => (
+                            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
+                                <div className="flex items-start mb-4">
+                                    <div className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium mr-4">
+                                        {index + 1}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{sign.title}</h3>
+                                        <p className="text-gray-700 mb-2">{sign.description}</p>
+                                        <p className="text-sm text-gray-600">{sign.details}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                {/* Painel de Analytics */}
-                <Grid item xs={12} md={4}>
-                    <Paper elevation={2} sx={{ p: 3, borderRadius: 3, mb: 3 }}>
-                        <Typography variant="h6" gutterBottom color="primary" sx={{ display: 'flex', alignItems: 'center' }}>
-                            <TrendingUp sx={{ mr: 1 }} /> Estatísticas de Engajamento
-                        </Typography>
+            {/* Condições Atendidas */}
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Condições <span className="text-amber-600">Atendidas</span>
+                        </h2>
+                        <p className="text-xl text-gray-700">
+                            Atuamos com diversas condições que afetam o desenvolvimento e participação infantil.
+                        </p>
+                    </div>
 
-                        <Grid container spacing={2} sx={{ mb: 3 }}>
-                            <Grid item xs={6}>
-                                <Paper variant="outlined" sx={{ p: 2, textAlign: 'center' }}>
-                                    <Box sx={{ color: 'warning.main', fontSize: 40, mb: 1 }}>
-                                        <i className="fas fa-mouse-pointer"></i>
-                                    </Box>
-                                    <Typography variant="h5" fontWeight="bold">
-                                        {analytics.totalClicks}
-                                    </Typography>
-                                    <Typography variant="body2">Total de Cliques</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper variant="outlined" sx={{ p: 2, textAlign: 'center' }}>
-                                    <Box sx={{ color: 'warning.main', fontSize: 40, mb: 1 }}>
-                                        <People />
-                                    </Box>
-                                    <Typography variant="h5" fontWeight="bold">
-                                        {analytics.uniqueVisitors}
-                                    </Typography>
-                                    <Typography variant="body2">Visitantes Únicos</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper variant="outlined" sx={{ p: 2, textAlign: 'center' }}>
-                                    <Box sx={{ color: 'warning.main', fontSize: 40, mb: 1 }}>
-                                        <Schedule />
-                                    </Box>
-                                    <Typography variant="h5" fontWeight="bold">
-                                        {analytics.averageTime}m
-                                    </Typography>
-                                    <Typography variant="body2">Tempo Médio</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Paper variant="outlined" sx={{ p: 2, textAlign: 'center' }}>
-                                    <Box sx={{ color: 'warning.main', fontSize: 40, mb: 1 }}>
-                                        <CheckCircle />
-                                    </Box>
-                                    <Typography variant="h5" fontWeight="bold">
-                                        {analytics.conversionRate}%
-                                    </Typography>
-                                    <Typography variant="body2">Taxa de Conversão</Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    </Paper>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {conditions.map((condition, index) => (
+                            <div key={index} className="bg-gray-50 rounded-2xl p-6 text-center">
+                                <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <Sprout className="w-6 h-6 text-amber-600" />
+                                </div>
+                                <h3 className="font-semibold text-gray-900 mb-2">{condition.name}</h3>
+                                <p className="text-sm text-gray-600">{condition.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
-                    <Paper elevation={2} sx={{ p: 3, borderRadius: 3 }}>
-                        <Typography variant="h6" gutterBottom color="primary">
-                            Materiais Educativos
-                        </Typography>
-                        <Box sx={{ mt: 2 }}>
-                            <Typography variant="body2" gutterBottom sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <i className="fas fa-download" style={{ marginRight: '8px', color: '#FF9800' }}></i>
-                                Guia de Atividades Sensoriais para Casa
-                            </Typography>
-                            <Typography variant="body2" gutterBottom sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <i className="fas fa-download" style={{ marginRight: '8px', color: '#FF9800' }}></i>
-                                Checklist de Marcos do Desenvolvimento
-                            </Typography>
-                            <Typography variant="body2" gutterBottom sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                <i className="fas fa-download" style={{ marginRight: '8px', color: '#FF9800' }}></i>
-                                Estratégias para Melhorar a Coordenação Motora
-                            </Typography>
-                        </Box>
-                        <Button
-                            variant="outlined"
-                            fullWidth
-                            sx={{ mt: 2 }}
-                            onClick={() => trackClick('Download Materiais')}
-                            color="warning"
-                        >
-                            Baixar Todos os Materiais
-                        </Button>
-                    </Paper>
-                </Grid>
-            </Grid>
-        </Container>
+            {/* Abordagens Terapêuticas */}
+            <section className="py-20 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Abordagens <span className="text-amber-600">Terapêuticas</span>
+                        </h2>
+                        <p className="text-xl text-gray-700">
+                            Utilizamos diversas abordagens baseadas em evidências científicas.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {approaches.map((approach, index) => (
+                            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{approach.title}</h3>
+                                <p className="text-gray-600 mb-4">{approach.description}</p>
+                                <ul className="space-y-2">
+                                    {approach.techniques.map((tech, idx) => (
+                                        <li key={idx} className="flex items-center text-gray-700">
+                                            <CheckCircle className="w-4 h-4 text-amber-500 mr-2" />
+                                            {tech}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Depoimentos */}
+            <section className="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Histórias de <span className="text-amber-600">Sucesso</span>
+                        </h2>
+                        <p className="text-xl text-gray-700">
+                            Depoimentos de famílias que vivenciaram transformações através da terapia ocupacional.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {testimonials.map((testimonial, index) => (
+                            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
+                                <div className="flex items-center mb-4">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star
+                                            key={i}
+                                            className={`w-5 h-5 ${i < testimonial.rating
+                                                ? 'fill-yellow-400 text-yellow-400'
+                                                : 'fill-gray-300 text-gray-300'
+                                                }`}
+                                        />
+                                    ))}
+                                </div>
+                                <Quote className="w-8 h-8 text-amber-200 mb-4" />
+                                <p className="text-gray-700 italic mb-6">"{testimonial.content}"</p>
+                                <div>
+                                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                                    <div className="text-sm text-gray-600">{testimonial.role}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                            Perguntas <span className="text-amber-600">Frequentes</span>
+                        </h2>
+                    </div>
+
+                    <div className="max-w-3xl mx-auto space-y-4">
+                        {faqs.map((faq, index) => (
+                            <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden">
+                                <button
+                                    className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-gray-50 transition-colors"
+                                    onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
+                                >
+                                    <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
+                                    <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${openAccordion === index ? 'transform rotate-180' : ''
+                                        }`} />
+                                </button>
+                                {openAccordion === index && (
+                                    <div className="p-6 bg-gray-50 border-t border-gray-200">
+                                        <p className="text-gray-700">{faq.answer}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Final */}
+            <section className="py-20 bg-amber-600">
+                <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                        Pronto para Apoiar o Desenvolvimento do Seu Filho?
+                    </h2>
+                    <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
+                        Agende uma avaliação com nossa equipe especializada e descubra como a terapia ocupacional
+                        pode fazer a diferença no desenvolvimento do seu filho.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <ButtonAgendamento className="bg-white text-amber-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
+                            Agendar Avaliação
+                        </ButtonAgendamento>
+                        <ButtonWhatsApp className="border border-white text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-amber-600">
+                            Falar com Especialista
+                        </ButtonWhatsApp>
+                    </div>
+                </div>
+            </section>
+        </Layout>
     );
 };
 

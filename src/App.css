@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -79,7 +80,7 @@
 }
 
 #root {
-  max-width: 1355px;
+  max-width: 1764px;
   margin: auto auto;
 }
 
@@ -214,3 +215,77 @@ html {
   background: #3bb3ac;
 }
 
+/* Adicione isso ao seu arquivo CSS global */
+.accessibility-mode {
+  font-size: 110%;
+  line-height: 1.6;
+}
+
+.text-large {
+  font-size: 120% !important;
+}
+
+.text-x-large {
+  font-size: 140% !important;
+}
+
+.high-contrast {
+  --primary: #000000 !important;
+  --secondary: #333333 !important;
+  --accent: #555555 !important;
+  --background: #FFFFFF !important;
+  --foreground: #000000 !important;
+  --muted-foreground: #333333 !important;
+  color: #000000 !important;
+  background-color: #FFFFFF !important;
+}
+
+.high-contrast * {
+  color: #000000 !important;
+  background-color: #FFFFFF !important;
+  border-color: #000000 !important;
+}
+
+.inverted-colors {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.simplified-ui * {
+  transition: none !important;
+  animation: none !important;
+}
+
+.simplified-ui button,
+.simplified-ui a {
+  border: 2px solid #000000 !important;
+  outline: 2px solid transparent !important;
+}
+
+.simplified-ui button:focus,
+.simplified-ui a:focus {
+  outline: 2px solid #FF0000 !important;
+  outline-offset: 2px !important;
+}
+
+/* Melhorar focus para teclado */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #0066CC !important;
+  outline-offset: 2px !important;
+}
+
+/* Estilos para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

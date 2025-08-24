@@ -17,6 +17,7 @@ const ImageCarousel = () => {
     };
 
     const images = [
+        "/images/fonoaudiologia/img-fono-atendimento-01.png",
         "/images/fonoaudiologia/fono2.jpg",
         "/images/fisioterapia/fisio2.jpg",
         "/images/psicologia/psico2.jpg",

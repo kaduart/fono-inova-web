@@ -1,4 +1,4 @@
-// src/components/Layout/index.jsx
+// components/Layout/index.jsx - Versão Simplificada
 import Footer from '../Footer';
 import Header from '../Header';
 

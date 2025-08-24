@@ -1,11 +1,12 @@
 // src/main.jsx
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async'; // importa o HelmetProvider
+import { BrowserRouter } from 'react-router-dom';
+import './App.css';
+import App from './App.jsx';
 
-// Configuração MÍNIMA do Google Analytics
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // ← SEU ID AQUI
+const GA_MEASUREMENT_ID = 'G-N59X7PNQZZ';
 
 // Script do Google Analytics (adiciona dinamicamente)
 const gaScript = document.createElement('script');
@@ -20,8 +21,10 @@ gtag('config', GA_MEASUREMENT_ID);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
   </StrictMode>,
 )
