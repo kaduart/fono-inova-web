@@ -3,6 +3,7 @@ import { Badge, Button, Card, CardContent, CardHeader } from '@mui/material';
 import {
   Accessibility,
   Instagram,
+  Facebook,
   MapPin,
   MessageCircle,
   Youtube
@@ -19,9 +20,6 @@ import ServiceCards from '../components/ServiceCards.jsx';
 import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 // Adicione estes imports no topo do arquivo
-import {
-  Facebook
-} from 'lucide-react';
 import {
   trackButtonClick,
   trackPhoneCall,
