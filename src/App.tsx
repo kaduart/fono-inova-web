@@ -13,6 +13,7 @@ import PsicoPage from './pages/PsisoPage'
 import TerapiaOcupacionalPage from './pages/TerapiaOcupacionaPage'
 import Articles from './pages/Articles'
 import ArticlePage from './pages/Article'
+import AnalyticsTest from './components/AnalyticsTest'
 
 // Hook simples para analytics
 const useAnalytics = () => {
@@ -41,6 +42,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/analytics" element={<AnalyticsTest />} />
         <Route path="/artigos" element={<Articles />} />
         <Route path="/artigos/:slug" element={<ArticlePage />} />
         <Route path="/fonoaudiologia" element={<FonoPage />} />

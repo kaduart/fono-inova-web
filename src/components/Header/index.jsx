@@ -77,6 +77,11 @@ const Header = () => {
         handleHashScroll();
     }, [location]); // Executa sempre que a location mudar
 
+    const handleAgendarConsulta = () => {
+        trackButtonClick('Agendar Consulta - Hero');
+        setIsModalOpen(true);
+    };
+
     return (
         <>
             <header className="fixed top-0 left-0 w-full backdrop-blur-sm border-b border-border z-50">
@@ -151,7 +156,7 @@ const Header = () => {
 
                         {/* Botão de Agendamento */}
                         <Button
-                            onClick={() => setIsModalOpen(true)}
+                            onClick={handleAgendarConsulta}
                             className="group relative overflow-hidden rounded-xl px-6 py-3 font-semibold 
              bg-gradient-to-r from-primary to-secondary 
              text-white shadow-lg transition-all duration-300

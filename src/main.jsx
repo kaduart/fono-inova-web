@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'; // importa o HelmetProvider
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import App from './App.jsx';
+import AnalyticsProvider from './components/AnalyticsProvider.jsx';
 
 const GA_MEASUREMENT_ID = 'G-N59X7PNQZZ';
 
@@ -23,7 +24,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
-        <App />
+        <AnalyticsProvider>
+          <App />
+        </AnalyticsProvider>
       </BrowserRouter>
     </HelmetProvider>
   </StrictMode>,

@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
 import { Button } from '@/components/ui/button.jsx'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
-import { Badge } from '@/components/ui/badge.jsx'
-import { 
-  X, 
-  Calendar, 
-  Clock, 
-  User, 
-  Phone, 
-  MessageCircle,
-  CheckCircle,
+import { Card, CardContent } from '@/components/ui/card.jsx'
+import {
   ArrowLeft,
-  ArrowRight
+  ArrowRight,
+  Calendar,
+  CheckCircle,
+  MessageCircle,
+  User,
+  X
 } from 'lucide-react'
+import { useState } from 'react'
+import { useFormTracking } from '../hooks/useFormTracking'
 
 const BookingModal = ({ isOpen, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -27,7 +25,7 @@ const BookingModal = ({ isOpen, onClose }) => {
     notes: ''
   })
   const [errors, setErrors] = useState({})
-
+  const { trackFieldInteraction, trackFormSubmission } = useFormTracking('Formulário_Agendamento_Modal');
   const specialties = [
     {
       id: 'fonoaudiologia',
@@ -62,18 +60,18 @@ const BookingModal = ({ isOpen, onClose }) => {
 
   const validateStep = (step) => {
     const newErrors = {}
-    
+
     if (step === 1) {
       if (!formData.name.trim()) newErrors.name = 'Nome é obrigatório'
       if (!formData.phone.trim()) newErrors.phone = 'Telefone é obrigatório'
       if (!formData.email.trim()) newErrors.email = 'E-mail é obrigatório'
       if (!formData.childAge.trim()) newErrors.childAge = 'Idade da criança é obrigatória'
     }
-    
+
     if (step === 2) {
       if (!formData.specialty) newErrors.specialty = 'Selecione uma especialidade'
     }
-    
+
     if (step === 3) {
       if (!formData.preferredDate) newErrors.preferredDate = 'Selecione uma data'
       if (!formData.preferredTime) newErrors.preferredTime = 'Selecione um horário'
@@ -101,6 +99,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   }
 
   const handleSubmit = () => {
+    trackFieldInteraction('nome_modal', e.target.value);
     if (validateStep(3)) {
       const selectedSpecialty = specialties.find(s => s.id === formData.specialty)
       const message = `Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.
@@ -156,7 +155,7 @@ Aguardo confirmação. Obrigado!`
               <h2 className="text-2xl font-bold font-poppins">Agendar Consulta</h2>
               <p className="text-muted-foreground">Passo {currentStep} de 4</p>
             </div>
-            <button 
+            <button
               onClick={onClose}
               className="text-muted-foreground hover:text-foreground"
             >
@@ -169,18 +168,17 @@ Aguardo confirmação. Obrigado!`
               {[1, 2, 3, 4].map((step) => (
                 <div
                   key={step}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step <= currentStep
-                      ? 'bg-primary text-white'
-                      : 'bg-muted text-muted-foreground'
-                  }`}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${step <= currentStep
+                    ? 'bg-primary text-white'
+                    : 'bg-muted text-muted-foreground'
+                    }`}
                 >
                   {step < currentStep ? <CheckCircle className="w-4 h-4" /> : step}
                 </div>
               ))}
             </div>
             <div className="w-full bg-muted rounded-full h-2">
-              <div 
+              <div
                 className="bg-primary h-2 rounded-full transition-all duration-300"
                 style={{ width: `${(currentStep / 4) * 100}%` }}
               />
@@ -194,60 +192,57 @@ Aguardo confirmação. Obrigado!`
                 <h3 className="text-xl font-semibold">Dados Pessoais</h3>
                 <p className="text-muted-foreground">Informe seus dados para contato</p>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Nome Completo *</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={formData.name}
                     onChange={(e) => handleInputChange('name', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                      errors.name ? 'border-red-500' : 'border-border'
-                    }`}
+                    onFocus={() => trackFieldInteraction('nome_modal_focus', 'focused')}
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.name ? 'border-red-500' : 'border-border'
+                      }`}
                     placeholder="Digite seu nome completo"
                   />
                   {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium mb-2">Telefone *</label>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                      errors.phone ? 'border-red-500' : 'border-border'
-                    }`}
+                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.phone ? 'border-red-500' : 'border-border'
+                      }`}
                     placeholder="(62) 99999-2635"
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">E-mail *</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                    errors.email ? 'border-red-500' : 'border-border'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.email ? 'border-red-500' : 'border-border'
+                    }`}
                   placeholder="seu@email.com"
                 />
                 {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Idade da Criança *</label>
-                <input 
-                  type="number" 
+                <input
+                  type="number"
                   value={formData.childAge}
                   onChange={(e) => handleInputChange('childAge', e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                    errors.childAge ? 'border-red-500' : 'border-border'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.childAge ? 'border-red-500' : 'border-border'
+                    }`}
                   placeholder="Ex: 5"
                   min="0"
                   max="18"
@@ -264,16 +259,15 @@ Aguardo confirmação. Obrigado!`
                 <h3 className="text-xl font-semibold">Escolha a Especialidade</h3>
                 <p className="text-muted-foreground">Selecione o tipo de terapia necessária</p>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {specialties.map((specialty) => (
-                  <Card 
+                  <Card
                     key={specialty.id}
-                    className={`cursor-pointer transition-all hover:shadow-lg ${
-                      formData.specialty === specialty.id 
-                        ? 'ring-2 ring-primary bg-primary/5' 
-                        : 'hover:bg-muted/50'
-                    }`}
+                    className={`cursor-pointer transition-all hover:shadow-lg ${formData.specialty === specialty.id
+                      ? 'ring-2 ring-primary bg-primary/5'
+                      : 'hover:bg-muted/50'
+                      }`}
                     onClick={() => handleInputChange('specialty', specialty.id)}
                   >
                     <CardContent className="p-4">
@@ -302,21 +296,20 @@ Aguardo confirmação. Obrigado!`
                 <h3 className="text-xl font-semibold">Data e Horário</h3>
                 <p className="text-muted-foreground">Escolha sua data e horário preferidos</p>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Data Preferida *</label>
-                <input 
-                  type="date" 
+                <input
+                  type="date"
                   value={formData.preferredDate}
                   onChange={(e) => handleInputChange('preferredDate', e.target.value)}
                   min={getMinDate()}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                    errors.preferredDate ? 'border-red-500' : 'border-border'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${errors.preferredDate ? 'border-red-500' : 'border-border'
+                    }`}
                 />
                 {errors.preferredDate && <p className="text-red-500 text-sm mt-1">{errors.preferredDate}</p>}
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Horário Preferido *</label>
                 <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
@@ -325,11 +318,10 @@ Aguardo confirmação. Obrigado!`
                       key={time}
                       type="button"
                       onClick={() => handleInputChange('preferredTime', time)}
-                      className={`p-2 text-sm rounded-md border transition-all ${
-                        formData.preferredTime === time
-                          ? 'bg-primary text-white border-primary'
-                          : 'bg-white hover:bg-muted border-border'
-                      }`}
+                      className={`p-2 text-sm rounded-md border transition-all ${formData.preferredTime === time
+                        ? 'bg-primary text-white border-primary'
+                        : 'bg-white hover:bg-muted border-border'
+                        }`}
                     >
                       {time}
                     </button>
@@ -337,10 +329,10 @@ Aguardo confirmação. Obrigado!`
                 </div>
                 {errors.preferredTime && <p className="text-red-500 text-sm mt-2">{errors.preferredTime}</p>}
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-2">Observações</label>
-                <textarea 
+                <textarea
                   rows={3}
                   value={formData.notes}
                   onChange={(e) => handleInputChange('notes', e.target.value)}
@@ -358,7 +350,7 @@ Aguardo confirmação. Obrigado!`
                 <h3 className="text-xl font-semibold mb-2">Confirmar Agendamento</h3>
                 <p className="text-muted-foreground">Revise suas informações antes de enviar</p>
               </div>
-              
+
               <Card className="text-left">
                 <CardContent className="p-4 space-y-3">
                   <div className="flex justify-between">
@@ -387,7 +379,7 @@ Aguardo confirmação. Obrigado!`
                   </div>
                 </CardContent>
               </Card>
-              
+
               <div className="bg-blue-50 p-4 rounded-lg">
                 <p className="text-sm text-blue-800">
                   <strong>Próximo passo:</strong> Você será redirecionado para o WhatsApp para confirmar o agendamento com nossa equipe.
@@ -397,8 +389,8 @@ Aguardo confirmação. Obrigado!`
           )}
 
           <div className="flex justify-between pt-6 mt-6 border-t">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               onClick={currentStep === 1 ? onClose : prevStep}
               className="flex items-center"
             >
@@ -414,8 +406,8 @@ Aguardo confirmação. Obrigado!`
                 </>
               )}
             </Button>
-            
-            <Button 
+
+            <Button
               onClick={currentStep === 4 ? handleSubmit : nextStep}
               className="flex items-center bg-primary hover:bg-primary/90"
             >

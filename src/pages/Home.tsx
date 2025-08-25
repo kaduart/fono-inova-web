@@ -20,14 +20,20 @@ import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 // Adicione estes imports no topo do arquivo
 import {
-  Facebook,
-  Linkedin
+  Facebook
 } from 'lucide-react';
+import {
+  trackButtonClick,
+  trackPhoneCall,
+  trackWhatsAppClick
+} from '../hooks/useAnalytics';
+import { useFormTracking } from '../hooks/useFormTracking.js';
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [accessibilityWizardOpen, setAccessibilityWizardOpen] = useState(false);
+  const { trackFieldInteraction, trackFormSubmission } = useFormTracking('Formulário_Contato_Home');
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
@@ -35,6 +41,7 @@ function Home() {
   };
 
   const openWhatsApp = () => {
+    trackWhatsAppClick();
     window.open('https://wa.me/5562992013573?text=Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.', '_blank');
   };
 
@@ -46,6 +53,11 @@ function Home() {
     link.href = '/favicon.ico';
     document.head.appendChild(link);
   }, []);
+
+  const handleConhecerServicos = () => {
+    trackButtonClick('Conhecer Serviços');
+    scrollToSection('services');
+  };
 
   return (
     <Layout>
@@ -89,7 +101,7 @@ function Home() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => scrollToSection('services')}
+                  onClick={() => handleConhecerServicos}
                   className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6"
                 >
                   Conhecer Serviços
@@ -100,7 +112,7 @@ function Home() {
             {/* Video/Image Section */}
             <div className="order-1 lg:order-2 relative w-full mb-8 lg:mb-0">
               <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
-                <ImageCarousel />
+                <ImageCarousel typeImages="nichos" />
 
                 {/* Substitua por um vídeo quando disponível */}
                 {/*  <div className="relative w-full h-full">
@@ -179,11 +191,13 @@ function Home() {
           {/* Coluna da imagem */}
           <div className="relative w-full">
             <div className="w-full h-full rounded-3xl overflow-hidden">
-              <img
+              <ImageCarousel typeImages="clinica" />
+
+              {/*  <img
                 src="/images/clinica/fachada-clinica.jpg"
                 alt="Exterior da Clínica Fono Inova"
                 className="w-full h-full object-cover"
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -276,7 +290,13 @@ function Home() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Telefone</h3>
-                  <p className="text-muted-foreground">(62) 3706-3924</p>
+                  <a
+                    href="tel:6237063924"
+                    onClick={() => trackPhoneCall('(62) 3706-3924')}
+                    className="hover:text-secondary transition-colors"
+                  >
+                    (62) 3706-3924
+                  </a>
                 </div>
               </div>
 
@@ -362,6 +382,8 @@ function Home() {
                       type="text"
                       className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="Seu nome"
+                      onChange={(e) => trackFieldInteraction('nome', e.target.value)}
+                      onFocus={() => trackFieldInteraction('nome_focus', 'focused')}
                     />
                   </div>
                   <div>
@@ -370,6 +392,8 @@ function Home() {
                       type="tel"
                       className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                       placeholder="(62) 99999-9999"
+                      onChange={(e) => trackFieldInteraction('telefone', e.target.value)}
+                      onFocus={() => trackFieldInteraction('telefone_focus', 'focused')}
                     />
                   </div>
                 </div>
@@ -379,16 +403,22 @@ function Home() {
                     type="email"
                     className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="seu@email.com"
+                    onChange={(e) => trackFieldInteraction('email', e.target.value)}
+                    onFocus={() => trackFieldInteraction('email_focus', 'focused')}
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2">Especialidade</label>
-                  <select className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary">
-                    <option>Selecione uma especialidade</option>
-                    <option>Fonoaudiologia</option>
-                    <option>Psicologia</option>
-                    <option>Terapia Ocupacional</option>
-                    <option>Fisioterapia</option>
+                  <select
+                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    onChange={(e) => trackFieldInteraction('especialidade', e.target.value)}
+                    onFocus={() => trackFieldInteraction('especialidade_focus', 'focused')}
+                  >
+                    <option value="">Selecione uma especialidade</option>
+                    <option value="fonoaudiologia">Fonoaudiologia</option>
+                    <option value="psicologia">Psicologia</option>
+                    <option value="terapia_ocupacional">Terapia Ocupacional</option>
+                    <option value="fisioterapia">Fisioterapia</option>
                   </select>
                 </div>
                 <div>
@@ -397,9 +427,17 @@ function Home() {
                     rows={4}
                     className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     placeholder="Conte-nos mais sobre suas necessidades..."
+                    onChange={(e) => trackFieldInteraction('mensagem', e.target.value.length > 0 ? 'preenchido' : 'vazio')}
+                    onFocus={() => trackFieldInteraction('mensagem_focus', 'focused')}
                   ></textarea>
                 </div>
-                <Button onClick={openWhatsApp} className="w-full bg-green-500 hover:bg-green-600">
+                <Button
+                  onClick={() => {
+                    trackFormSubmission(true); // Rastreia o envio do formulário
+                    openWhatsApp();
+                  }}
+                  className="w-full bg-green-500 hover:bg-green-600"
+                >
                   <MessageCircle className="w-4 h-4 mr-2" />
                   Enviar via WhatsApp
                 </Button>

@@ -2,7 +2,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
-const ImageCarousel = () => {
+type ImageCarouselProps = {
+    typeImages: "clinica" | "nichos";
+};
+
+const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -16,7 +20,18 @@ const ImageCarousel = () => {
         cssEase: 'linear'
     };
 
-    const images = [
+    const imagesClinica = [
+        "/images/clinica/IMG-20250527-WA0026.jpg",
+        "/images/clinica/IMG-20250527-WA0028.jpg",
+        "/images/clinica/IMG-20250527-WA0029.jpg",
+        "/images/clinica/IMG-20250527-WA0030.jpg",
+        "/images/clinica/IMG-20250527-WA0031.jpg",
+        "/images/clinica/IMG-20250527-WA0032.jpg",
+        "/images/clinica/IMG-20250527-WA0033.jpg",
+        "/images/clinica/IMG-20250527-WA0034.jpg",
+        "/images/clinica/IMG-20250527-WA0035.jpg",
+    ];
+    const imagesNichos = [
         "/images/fonoaudiologia/img-fono-atendimento-01.png",
         "/images/fonoaudiologia/fono2.jpg",
         "/images/fisioterapia/fisio2.jpg",
@@ -24,6 +39,8 @@ const ImageCarousel = () => {
         "/images/terapia-ocupacional/to2.jpg",
         "/images/fonoaudiologia/fono1.jpg",
     ];
+
+    const images = typeImages === "clinica" ? imagesClinica : imagesNichos;
 
     return (
         <div className="w-full h-96 rounded-3xl overflow-hidden">
