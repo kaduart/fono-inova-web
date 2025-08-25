@@ -1,25 +1,33 @@
 import { useEffect, useState } from 'react';
+import { 
+  MessageCircle, 
+  Calendar, 
+  X, 
+  Users, 
+  MessageSquare,
+  Clock
+} from 'lucide-react';
 import BookingModal from '../BookingModal';
 
 const SpecialistPopup = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [userInteracted, setUserInteracted] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isExiting, setIsExiting] = useState(false);
 
     useEffect(() => {
-        // Se já foi fechado nesta sessão, não mostrar novamente
         if (sessionStorage.getItem("popupClosed") === "true") return;
 
         const popupTimer = setTimeout(() => {
+            setIsVisible(true);
             setShowPopup(true);
-
-            // Som só toca se o usuário não tiver interagido
+            
             if (!userInteracted) {
                 playNotificationSound();
             }
-        }, 8000); // 8 segundos em produção
+        }, 8000);
 
-        // Detectar interação do usuário
         const handleInteraction = () => {
             if (!userInteracted) {
                 setUserInteracted(true);
@@ -29,19 +37,21 @@ const SpecialistPopup = () => {
         window.addEventListener('click', handleInteraction);
         window.addEventListener('scroll', handleInteraction);
         window.addEventListener('keydown', handleInteraction);
+        window.addEventListener('touchstart', handleInteraction);
 
         return () => {
             clearTimeout(popupTimer);
             window.removeEventListener('click', handleInteraction);
             window.removeEventListener('scroll', handleInteraction);
             window.removeEventListener('keydown', handleInteraction);
+            window.removeEventListener('touchstart', handleInteraction);
         };
     }, [userInteracted]);
 
     const playNotificationSound = () => {
         try {
             const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3');
-            audio.volume = 0.3;
+            audio.volume = 0.2;
             audio.play().catch(e => console.log("Reprodução de áudio bloqueada:", e));
         } catch (error) {
             console.log("Erro ao reproduzir áudio:", error);
@@ -49,242 +59,182 @@ const SpecialistPopup = () => {
     };
 
     const handleClosePopup = () => {
-        setShowPopup(false);
-        sessionStorage.setItem("popupClosed", "true"); // não mostra de novo na mesma sessão
+        setIsExiting(true);
+        setTimeout(() => {
+            setShowPopup(false);
+            setIsVisible(false);
+            setIsExiting(false);
+            sessionStorage.setItem("popupClosed", "true");
+        }, 300);
     };
 
-    const handleClosePopupAndOpenModalAppointment = () => {
-        setShowPopup(false);
-        setIsModalOpen(true);
-        sessionStorage.setItem("popupClosed", "true");
+    const handleClosePopupAndOpenModal = () => {
+        setIsExiting(true);
+        setTimeout(() => {
+            setShowPopup(false);
+            setIsVisible(false);
+            setIsExiting(false);
+            setIsModalOpen(true);
+            sessionStorage.setItem("popupClosed", "true");
+        }, 300);
     };
 
     const handleOpenPopup = () => {
+        setIsVisible(true);
         setShowPopup(true);
         if (!userInteracted) playNotificationSound();
     };
 
     const openWhatsApp = () => {
         window.open('https://wa.me/5562992013573?text=Olá! Gostaria de mais informações sobre as terapias na Clínica Fono Inova.', '_blank');
-        setShowPopup(false);
-        sessionStorage.setItem("popupClosed", "true");
+        handleClosePopup();
     };
 
     return (
         <>
-            {/* Botão fixo no footer */}
-            <div style={styles.footerButton} onClick={handleOpenPopup}>
-                <span style={styles.buttonIcon}>💬</span>
-                <div style={styles.notificationBadge}>1</div>
+            {/* Botão flutuante moderno NO RODAPÉ DIREITO */}
+            <div 
+                className={`
+                    fixed bottom-6 right-1 z-40
+                    w-16 h-16 bg-gradient-to-br from-primary to-primary-dark
+                    rounded-full shadow-2xl cursor-pointer
+                    flex items-center justify-center
+                    transition-all duration-300
+                    hover:scale-110 hover:shadow-3xl
+                    animate-pulse
+                    border-2 border-white
+                `}
+                onClick={handleOpenPopup}
+            >
+                <MessageCircle className="w-7 h-7 text-white" />
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-accent rounded-full flex items-center justify-center">
+                    <span className="text-xs text-white font-bold">1</span>
+                </div>
             </div>
 
-            {/* Popup */}
+            {/* Popup que aparece automaticamente */}
             {showPopup && (
-                <div style={styles.overlay} onClick={handleClosePopup}>
-                    <div style={styles.popup} onClick={(e) => e.stopPropagation()}>
-                        <div style={styles.header}>
-                            <h3 style={styles.title}>Fale com nossos especialistas</h3>
-                            <button onClick={handleClosePopup} style={styles.closeButton}>
-                                ✕
-                            </button>
+                <div 
+                    className={`
+                        fixed inset-0 bg-black bg-opacity-60 z-50
+                        flex items-center justify-center p-4
+                        transition-opacity duration-300
+                        ${isVisible ? 'opacity-100' : 'opacity-0'}
+                        ${isExiting ? 'opacity-0' : ''}
+                    `}
+                    onClick={handleClosePopup}
+                >
+                    <div 
+                        className={`
+                            bg-white rounded-2xl shadow-2xl max-w-md w-full
+                            transform transition-all duration-300
+                            ${isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
+                            ${isExiting ? 'scale-95 opacity-0' : ''}
+                        `}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Header */}
+                        <div className="bg-gradient-to-r from-primary to-primary-light rounded-t-2xl p-6 relative">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-3">
+                                    <div className="p-2 bg-white bg-opacity-20 rounded-full">
+                                        <Users className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h3 className="text-white text-xl font-semibold">
+                                        Fale com nossos especialistas
+                                    </h3>
+                                </div>
+                                <button
+                                    onClick={handleClosePopup}
+                                    className="text-white hover:text-gray-200 transition-colors"
+                                >
+                                    <X className="w-6 h-6" />
+                                </button>
+                            </div>
                         </div>
 
-                        <div style={styles.content}>
-                            <div style={styles.iconContainer}>
-                                <div style={styles.icon}>
-                                    <span style={styles.iconText}>👥</span>
+                        {/* Content */}
+                        <div className="p-6 bg-gray-50">
+                            <div className="text-center mb-6">
+                                <div className="w-20 h-20 bg-gradient-to-br from-secondary to-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <MessageSquare className="w-10 h-10 text-white" />
+                                </div>
+                                
+                                <p className="text-gray-700 text-lg mb-4">
+                                    Nossa equipe de <span className="font-semibold text-primary">12+ especialistas</span> 
+                                    está pronta para ajudar no desenvolvimento do seu filho.
+                                </p>
+
+                                <div className="flex items-center justify-center text-sm text-gray-500 mb-6">
+                                    <Clock className="w-4 h-4 mr-2" />
+                                    <span>Disponíveis de segunda a sábado</span>
                                 </div>
                             </div>
 
-                            <p style={styles.text}>
-                                Nossa equipe de <strong>12+ especialistas</strong> está disponível para ajudar no seu tratamento.
-                            </p>
-
-                            <div style={styles.buttonContainer}>
-                                <button onClick={openWhatsApp} style={styles.primaryButton}>
-                                    <span style={styles.buttonIcon}>💬</span>
-                                    Conversar agora
+                            <div className="space-y-3">
+                                <button
+                                    onClick={openWhatsApp}
+                                    className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-4 px-6 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-3"
+                                >
+                                    <MessageCircle className="w-5 h-5" />
+                                    <span>Conversar agora pelo WhatsApp</span>
                                 </button>
 
                                 <button
-                                    onClick={handleClosePopupAndOpenModalAppointment}
-                                    style={styles.secondaryButton}
+                                    onClick={handleClosePopupAndOpenModal}
+                                    className="w-full bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white py-4 px-6 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg flex items-center justify-center space-x-3"
                                 >
-                                    <span style={styles.buttonIcon}>📅</span>
-                                    Agendar horário
+                                    <Calendar className="w-5 h-5" />
+                                    <span>Agendar avaliação</span>
                                 </button>
+                            </div>
+
+                            <div className="mt-4 text-center">
+                                <p className="text-xs text-gray-500">
+                                    Respondemos em até 5 minutos durante o horário comercial
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
+
             <BookingModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
             />
+
+            {/* Estilos de animação */}
+            <style jsx>{`
+                @keyframes slideIn {
+                    from {
+                        transform: translateY(20px) scale(0.95);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateY(0) scale(1);
+                        opacity: 1;
+                    }
+                }
+                
+                .animate-pulse {
+                    animation: pulse 2s infinite;
+                }
+                
+                @keyframes pulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(66, 153, 225, 0.5);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(66, 153, 225, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(66, 153, 225, 0);
+                    }
+                }
+            `}</style>
         </>
     );
-};
-
-// Paleta da clínica
-const colors = {
-    primary: '#2D6EE0',
-    primaryLight: '#5A8DE4',
-    secondary: '#4CAF50',
-    accent: '#FF9800',
-    light: '#F5F9FF',
-    dark: '#2C3E50',
-    white: '#FFFFFF',
-};
-
-// Estilos
-const styles = {
-    footerButton: {
-        position: 'fixed',
-        bottom: '80px', // antes era 20px
-        right: '9px',
-        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%)`,
-        color: colors.white,
-        border: 'none',
-        borderRadius: '50%',
-        width: '60px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        boxShadow: '0 4px 15px rgba(45, 110, 224, 0.3)',
-        zIndex: 999,
-        fontSize: '24px',
-        transition: 'all 0.3s ease',
-        animation: 'pulse 2s infinite',
-    },
-    notificationBadge: {
-        position: 'absolute',
-        top: '-5px',
-        right: '-5px',
-        background: colors.accent,
-        color: colors.white,
-        borderRadius: '50%',
-        width: '20px',
-        height: '20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        animation: 'pulse 1.5s infinite',
-        boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-    },
-    overlay: {
-        position: 'fixed',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: 1000,
-        padding: '20px',
-    },
-    popup: {
-        background: colors.white,
-        borderRadius: '16px',
-        width: '380px',
-        maxWidth: '90vw',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)',
-        overflow: 'hidden',
-        animation: 'slideIn 0.4s ease-out',
-    },
-    header: {
-        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%)`,
-        padding: '20px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    title: {
-        color: colors.white,
-        fontSize: '18px',
-        fontWeight: '600',
-        margin: 0,
-    },
-    closeButton: {
-        background: 'rgba(255, 255, 255, 0.2)',
-        color: colors.white,
-        border: 'none',
-        borderRadius: '50%',
-        width: '32px',
-        height: '32px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        fontSize: '16px',
-        fontWeight: 'bold',
-    },
-    content: {
-        padding: '25px',
-        textAlign: 'center',
-        background: colors.light,
-    },
-    iconContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '20px',
-    },
-    icon: {
-        width: '80px',
-        height: '80px',
-        borderRadius: '50%',
-        background: `linear-gradient(135deg, ${colors.secondary} 0%, #66BB6A 100%)`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    iconText: { fontSize: '36px' },
-    text: {
-        color: colors.dark,
-        fontSize: '16px',
-        lineHeight: '1.6',
-        marginBottom: '25px',
-    },
-    buttonContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '12px',
-    },
-    primaryButton: {
-        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%)`,
-        color: colors.white,
-        border: 'none',
-        borderRadius: '8px',
-        padding: '14px 20px',
-        fontSize: '16px',
-        fontWeight: '600',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '8px',
-    },
-    secondaryButton: {
-        background: colors.white,
-        color: colors.primary,
-        border: `2px solid ${colors.primary}`,
-        borderRadius: '8px',
-        padding: '14px 20px',
-        fontSize: '16px',
-        fontWeight: '600',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '8px',
-    },
-    buttonIcon: { fontSize: '18px' },
 };
 
 export default SpecialistPopup;

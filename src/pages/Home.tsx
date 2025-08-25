@@ -62,7 +62,7 @@ function Home() {
   return (
     <Layout>
       {/* Botão de Acessibilidade */}
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed bottom-30 right-3 mt-0 z-50">
         <button
           onClick={() => setAccessibilityWizardOpen(true)}
           className="p-3 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center"
