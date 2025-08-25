@@ -187,11 +187,10 @@ const ArticlePage = () => {
                     <img
                         src={article.image}
                         alt={article.title}
-                        className="w-full h-64 md:h-96 object-cover"
+                        className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover"
                     />
                     <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </Box>
-
                 {/* Conteúdo do artigo */}
                 <Box className="max-w-3xl mx-auto mb-12">
                     {styledContent}
