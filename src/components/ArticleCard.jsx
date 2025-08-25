@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { trackArticleClick } from '../hooks/useAnalytics';
 
 const ArticleCard = ({ article }) => {
   // Função para determinar as classes de cor baseadas na categoria
@@ -36,6 +37,11 @@ const ArticleCard = ({ article }) => {
   };
 
   const colorClasses = getCategoryColor(article.categoryColor);
+
+  const handleArticleClick = () => {
+    // Track clique no artigo
+    trackArticleClick(article.id, article.title);
+  };
 
   return (
     <div className="border-0 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col overflow-hidden bg-white group">
@@ -91,6 +97,7 @@ const ArticleCard = ({ article }) => {
           className={`inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 
             border ${colorClasses.border} ${colorClasses.text} ${colorClasses.hover} 
             hover:shadow-md hover:-translate-y-0.5`}
+          onClick={handleArticleClick}
         >
           Ler Artigo
           <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

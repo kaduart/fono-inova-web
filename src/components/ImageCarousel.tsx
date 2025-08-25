@@ -21,7 +21,11 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
     };
 
     const imagesClinica = [
+        "/images/clinica/fachada-clinica.jpg",
+        "/images/clinica/IMG-20250527-WA0024.jpg",
+        "/images/clinica/IMG-20250527-WA0025.jpg",
         "/images/clinica/IMG-20250527-WA0026.jpg",
+        "/images/clinica/IMG-20250527-WA0027.jpg",
         "/images/clinica/IMG-20250527-WA0028.jpg",
         "/images/clinica/IMG-20250527-WA0029.jpg",
         "/images/clinica/IMG-20250527-WA0030.jpg",

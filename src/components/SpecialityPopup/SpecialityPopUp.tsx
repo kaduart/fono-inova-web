@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
-import { 
-  MessageCircle, 
-  Calendar, 
-  X, 
-  Users, 
-  MessageSquare,
-  Clock
+import {
+    Calendar,
+    Clock,
+    MessageCircle,
+    MessageSquare,
+    Users,
+    X
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { trackBookingInitiated, trackPopupClosed, trackPopupOpened, trackWhatsAppClick } from '../../hooks/useAnalytics';
 import BookingModal from '../BookingModal';
 
 const SpecialistPopup = () => {
@@ -22,7 +23,9 @@ const SpecialistPopup = () => {
         const popupTimer = setTimeout(() => {
             setIsVisible(true);
             setShowPopup(true);
-            
+
+            trackPopupOpened('auto_timer');
+
             if (!userInteracted) {
                 playNotificationSound();
             }
@@ -65,6 +68,8 @@ const SpecialistPopup = () => {
             setIsVisible(false);
             setIsExiting(false);
             sessionStorage.setItem("popupClosed", "true");
+
+            trackPopupClosed();
         }, 300);
     };
 
@@ -76,16 +81,26 @@ const SpecialistPopup = () => {
             setIsExiting(false);
             setIsModalOpen(true);
             sessionStorage.setItem("popupClosed", "true");
+
+            // Track agendamento iniciado
+            trackBookingInitiated('popup');
         }, 300);
     };
 
     const handleOpenPopup = () => {
         setIsVisible(true);
         setShowPopup(true);
+
+        // Track popup aberto manualmente
+        trackPopupOpened('manual_click');
+
         if (!userInteracted) playNotificationSound();
+
     };
 
     const openWhatsApp = () => {
+        trackWhatsAppClick();
+
         window.open('https://wa.me/5562992013573?text=Olá! Gostaria de mais informações sobre as terapias na Clínica Fono Inova.', '_blank');
         handleClosePopup();
     };
@@ -93,7 +108,7 @@ const SpecialistPopup = () => {
     return (
         <>
             {/* Botão flutuante moderno NO RODAPÉ DIREITO */}
-            <div 
+            <div
                 className={`
                     fixed bottom-6 right-1 z-40
                     w-16 h-16 bg-gradient-to-br from-primary to-primary-dark
@@ -114,7 +129,7 @@ const SpecialistPopup = () => {
 
             {/* Popup que aparece automaticamente */}
             {showPopup && (
-                <div 
+                <div
                     className={`
                         fixed inset-0 bg-black bg-opacity-60 z-50
                         flex items-center justify-center p-4
@@ -124,7 +139,7 @@ const SpecialistPopup = () => {
                     `}
                     onClick={handleClosePopup}
                 >
-                    <div 
+                    <div
                         className={`
                             bg-white rounded-2xl shadow-2xl max-w-md w-full
                             transform transition-all duration-300
@@ -159,9 +174,9 @@ const SpecialistPopup = () => {
                                 <div className="w-20 h-20 bg-gradient-to-br from-secondary to-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <MessageSquare className="w-10 h-10 text-white" />
                                 </div>
-                                
+
                                 <p className="text-gray-700 text-lg mb-4">
-                                    Nossa equipe de <span className="font-semibold text-primary">12+ especialistas</span> 
+                                    Nossa equipe de <span className="font-semibold text-primary">12+ especialistas</span>
                                     está pronta para ajudar no desenvolvimento do seu filho.
                                 </p>
 

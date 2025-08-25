@@ -2,8 +2,8 @@ import { Mail, Phone, Star } from '@mui/icons-material';
 import { Badge, Button, Card, CardContent, CardHeader } from '@mui/material';
 import {
   Accessibility,
-  Instagram,
   Facebook,
+  Instagram,
   MapPin,
   MessageCircle,
   Youtube
@@ -23,6 +23,7 @@ import { articlesData } from '../data/articlesData.jsx';
 import {
   trackButtonClick,
   trackPhoneCall,
+  trackSocialMediaClick,
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
@@ -36,6 +37,9 @@ function Home() {
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
+
+    // Track scroll to section
+    trackButtonClick(`Scroll to ${sectionId}`);
   };
 
   const openWhatsApp = () => {
@@ -50,6 +54,9 @@ function Home() {
     link.rel = 'shortcut icon';
     link.href = '/favicon.ico';
     document.head.appendChild(link);
+
+    // Track page view for home
+    trackButtonClick('Home Page Loaded');
   }, []);
 
   const handleConhecerServicos = () => {
@@ -57,12 +64,25 @@ function Home() {
     scrollToSection('services');
   };
 
+  const handleOpenAccessibility = () => {
+    trackButtonClick('Open Accessibility Wizard');
+    setAccessibilityWizardOpen(true);
+  };
+
+  const handleVerTodosArtigos = () => {
+    trackButtonClick('Ver Todos os Artigos');
+  };
+
+  const handleSocialMediaClick = (platform) => {
+    trackSocialMediaClick(platform);
+  };
+
   return (
     <Layout>
       {/* Botão de Acessibilidade */}
       <div className="fixed bottom-30 right-3 mt-0 z-50">
         <button
-          onClick={() => setAccessibilityWizardOpen(true)}
+          onClick={handleOpenAccessibility}
           className="p-3 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-colors flex items-center justify-center"
           aria-label="Configurações de acessibilidade"
         >
@@ -73,7 +93,10 @@ function Home() {
       {/* Wizard de Acessibilidade */}
       <AccessibilityWizard
         open={accessibilityWizardOpen}
-        onClose={() => setAccessibilityWizardOpen(false)}
+        onClose={() => {
+          trackButtonClick('Close Accessibility Wizard');
+          setAccessibilityWizardOpen(false);
+        }}
       />
 
       <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
@@ -95,11 +118,10 @@ function Home() {
                 focadas no desenvolvimento e no sucesso das crianças.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={() => handleConhecerServicos}
+                  onClick={handleConhecerServicos}
                   className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6"
                 >
                   Conhecer Serviços
@@ -110,23 +132,10 @@ function Home() {
             {/* Video/Image Section */}
             <div className="order-1 lg:order-2 relative w-full mb-8 lg:mb-0">
               <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
-                <ImageCarousel typeImages="nichos" />
-
-                {/* Substitua por um vídeo quando disponível */}
-                {/*  <div className="relative w-full h-full">
-                  <img
-                    src="/images/hero-video-placeholder.jpg"
-                    alt="Clínica Fono Inova"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent flex items-center justify-center">
-                    <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 hover:bg-white/30 transition-all">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                      </svg>
-                    </button>
-                  </div>
-                </div> */}
+                <ImageCarousel
+                  typeImages="nichos"
+                  onImageClick={() => trackButtonClick('Hero Image Click')}
+                />
               </div>
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-accent rounded-full flex items-center justify-center animate-pulse">
                 <Star className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
@@ -151,9 +160,12 @@ function Home() {
             </p>
           </div>
 
-          <ServiceCards />
+          <ServiceCards
+            onServiceClick={(serviceName) => trackButtonClick(`Service Click - ${serviceName}`)}
+          />
         </div>
       </section>
+
       <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Coluna de texto */}
@@ -187,20 +199,17 @@ function Home() {
           </div>
 
           {/* Coluna da imagem */}
-          <div className="relative w-full">
-            <div className="w-full h-full rounded-3xl overflow-hidden">
-              <ImageCarousel typeImages="clinica" />
-
-              {/*  <img
-                src="/images/clinica/fachada-clinica.jpg"
-                alt="Exterior da Clínica Fono Inova"
-                className="w-full h-full object-cover"
-              /> */}
+          <div className="order-1 lg:order-2 relative w-full mb-8 lg:mb-0">
+              <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
+                
+              <ImageCarousel
+                typeImages="clinica"
+                onImageClick={() => trackButtonClick('Clinic Image Click')}
+              />
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Seção Blog/Artigos */}
       <section id="blog" className="py-16 bg-background">
@@ -219,7 +228,11 @@ function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articlesData.slice(0, 3).map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard
+                key={article.id}
+                article={article}
+                onArticleClick={() => trackButtonClick(`Article Click - ${article.title}`)}
+              />
             ))}
           </div>
 
@@ -229,12 +242,14 @@ function Home() {
               size="large"
               component={Link}
               to="/artigos"
+              onClick={handleVerTodosArtigos}
             >
               Ver Todos os Artigos
             </Button>
           </div>
         </div>
       </section>
+
       <section id="testimonials" className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -248,7 +263,9 @@ function Home() {
             </h2>
           </div>
 
-          <TestimonialCards />
+          <TestimonialCards
+            onTestimonialClick={(testimonialId) => trackButtonClick(`Testimonial Click - ${testimonialId}`)}
+          />
         </div>
       </section>
 
@@ -316,6 +333,7 @@ function Home() {
                     href="https://www.instagram.com/clinicafonoinova"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialMediaClick('Instagram')}
                     className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
                     aria-label="Siga-nos no Instagram"
                   >
@@ -325,6 +343,7 @@ function Home() {
                     href="https://www.youtube.com/clinicafonoinova"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialMediaClick('YouTube')}
                     className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center text-white hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
                     aria-label="Inscreva-se no nosso YouTube"
                   >
@@ -334,6 +353,7 @@ function Home() {
                     href="https://www.facebook.com/clinicafonoinova"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialMediaClick('Facebook')}
                     className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
                     aria-label="Curta nossa página no Facebook"
                   >
@@ -347,6 +367,7 @@ function Home() {
                     href="https://www.instagram.com/clinicafonoinova"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialMediaClick('Instagram')}
                     className="text-sm text-primary hover:text-secondary flex items-center gap-1"
                   >
                     <Instagram className="w-4 h-4" />
@@ -356,6 +377,7 @@ function Home() {
                     href="https://www.youtube.com/clinicafonoinova"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialMediaClick('YouTube')}
                     className="text-sm text-primary hover:text-secondary flex items-center gap-1"
                   >
                     <Youtube className="w-4 h-4" />
@@ -431,7 +453,8 @@ function Home() {
                 </div>
                 <Button
                   onClick={() => {
-                    trackFormSubmission(true); // Rastreia o envio do formulário
+                    trackFormSubmission(true);
+                    trackButtonClick('Formulário WhatsApp Submit');
                     openWhatsApp();
                   }}
                   className="w-full bg-green-500 hover:bg-green-600"
@@ -447,7 +470,14 @@ function Home() {
 
       <BookingModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          trackButtonClick('Close Booking Modal');
+          setIsModalOpen(false);
+        }}
+        onBookingSuccess={() => {
+          trackFormSubmission(true);
+          trackButtonClick('Booking Success');
+        }}
       />
 
       {/* Adicionar CSS para modo acessibilidade */}

@@ -70,3 +70,20 @@ export const trackWhatsAppClick = () => {
 export const trackSocialMediaClick = (platform) => {
     trackEvent('social_media_click', 'Social Media', platform);
 };
+
+// Novas funções específicas para os componentes
+export const trackPopupOpened = (triggerType) => {
+    trackEvent('popup_opened', 'Engagement', `Popup - ${triggerType}`);
+};
+
+export const trackPopupClosed = () => {
+    trackEvent('popup_closed', 'Engagement', 'Popup Closed');
+};
+
+export const trackBookingInitiated = (source) => {
+    trackEvent('booking_initiated', 'Conversion', `Booking from ${source}`);
+};
+
+export const trackArticleClick = (articleId, articleTitle) => {
+    trackEvent('article_clicked', 'Content Engagement', articleTitle, articleId);
+};
