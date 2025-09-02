@@ -165,7 +165,7 @@ const Header = () => {
                             {/* Efeito Glow ao passar o mouse */}
                             <span className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
 
-                            <div className="flex items-center justify-center">
+                            <div className="flex items-center justify-center text-white">
                                 <Calendar className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:rotate-12" />
                                 <span>Agendar Consulta</span>
                             </div>

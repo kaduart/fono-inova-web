@@ -117,16 +117,17 @@ function Home() {
                 Na <b>Clínica Fono Inova</b>, convertemos desafios em conquistas por meio de terapias inovadoras,
                 focadas no desenvolvimento e no sucesso das crianças.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-blue-600">
                 <Button
                   size="lg"
-                  variant="outline"
+                  variant="default"
                   onClick={handleConhecerServicos}
-                  className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6"
+                  className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 bg-blue-600 text-white hover:bg-blue-700 shadow-lg rounded-xl transition-all"
                 >
                   Conhecer Serviços
                 </Button>
               </div>
+
             </div>
 
             {/* Video/Image Section */}
@@ -200,8 +201,8 @@ function Home() {
 
           {/* Coluna da imagem */}
           <div className="order-1 lg:order-2 relative w-full mb-8 lg:mb-0">
-              <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
-                
+            <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-primary to-secondary rounded-3xl overflow-hidden animate-float">
+
               <ImageCarousel
                 typeImages="clinica"
                 onImageClick={() => trackButtonClick('Clinic Image Click')}
