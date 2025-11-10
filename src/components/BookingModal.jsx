@@ -11,6 +11,29 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { useFormTracking } from '../hooks/useFormTracking'
+// Helpers de analytics (simples e seguros)
+const getGtag = () =>
+  (typeof window !== 'undefined' && typeof window.gtag === 'function')
+    ? window.gtag
+    : null;
+
+const reportLeadConversion = () => {
+  const gtag = getGtag();
+  if (!gtag) return;
+  // Conversão de LEAD no Google Ads
+  gtag('event', 'conversion', {
+    send_to: 'AW-17010705949/ceJrCLKfz70bEJ2Mq68_',
+    value: 1.0,
+    currency: 'BRL',
+  });
+};
+
+const gaEvent = (name, params = {}) => {
+  const gtag = getGtag();
+  if (!gtag) return;
+  gtag('event', name, params);
+};
+
 
 const BookingModal = ({ isOpen, onClose }) => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -99,10 +122,27 @@ const BookingModal = ({ isOpen, onClose }) => {
   }
 
   const handleSubmit = () => {
-    trackFieldInteraction('nome_modal', e.target.value);
-    if (validateStep(3)) {
-      const selectedSpecialty = specialties.find(s => s.id === formData.specialty)
-      const message = `Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.
+    // Valida o passo 3 antes de confirmar
+    if (!validateStep(3)) return;
+
+    // Tracking interno do seu hook
+    try {
+      trackFormSubmission(true);
+      trackFieldInteraction('confirmacao_modal', 'confirmar_via_whatsapp');
+    } catch { }
+
+    // GA4: marcamos a intenção de envio (lead via modal)
+    gaEvent('generate_lead', {
+      source: 'booking_modal',
+      specialty: formData.specialty || '(none)',
+    });
+
+    // Google Ads: conversão de lead
+    reportLeadConversion();
+
+    // Monta a mensagem e redireciona pro WhatsApp
+    const selectedSpecialty = specialties.find(s => s.id === formData.specialty);
+    const message = `Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.
 
 *Dados do Responsável:*
 Nome: ${formData.name}
@@ -113,30 +153,32 @@ E-mail: ${formData.email}
 Idade: ${formData.childAge} anos
 
 *Consulta:*
-Especialidade: ${selectedSpecialty?.name}
+Especialidade: ${selectedSpecialty?.name || ''}
 Data preferida: ${formData.preferredDate}
 Horário preferido: ${formData.preferredTime}
 
 ${formData.notes ? `*Observações:*\n${formData.notes}` : ''}
 
-Aguardo confirmação. Obrigado!`
+Aguardo confirmação. Obrigado!`;
 
-      const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`
-      window.open(whatsappUrl, '_blank')
-      onClose()
-      setCurrentStep(1)
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        specialty: '',
-        childAge: '',
-        preferredDate: '',
-        preferredTime: '',
-        notes: ''
-      })
-    }
-  }
+    const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+    // Limpa e fecha
+    onClose?.();
+    setCurrentStep(1);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      specialty: '',
+      childAge: '',
+      preferredDate: '',
+      preferredTime: '',
+      notes: ''
+    });
+  };
+
 
   const getMinDate = () => {
     const tomorrow = new Date()

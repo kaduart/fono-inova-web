@@ -7,11 +7,14 @@ import {
   Brain,
   CheckCircle,
   ChevronDown,
+  Clock,
   Clock3,
   FileText,
   HeartPulse,
   MessageCircle,
+  Phone,
   Quote,
+  Shield,
   Speech,
   Star,
   Target
@@ -475,31 +478,91 @@ const FonoPage = () => {
         </div>
       </section>
 
-      {/* CTA Final - MELHORADA */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Pronto para Transformar a Comunicação do Seu Filho?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Agende uma avaliação com nossa equipe especializada e dê o primeiro passo rumo ao desenvolvimento da fala e linguagem.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <ButtonAgendamento
-              className="bg-white text-blue-700 px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 hover:bg-blue-50 hover:text-blue-800 hover:shadow-2xl shadow-md border-2 border-white hover:border-blue-100"
-            >
-              Agendar Avaliação
-            </ButtonAgendamento>
-            <ButtonWhatsApp
-              className="bg-blue-500 border-2 border-white text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 hover:bg-blue-400 hover:shadow-2xl shadow-md"
-              message="Olá! Gostaria de agendar uma consulta na Clínica Fono Inova."
-            >
-              Falar com Especialista
-            </ButtonWhatsApp>
+      {/* CTA Final Otimizado */}
+      {/* CTA Final Otimizado */}
+      <section
+        className="
+    relative isolate z-10
+    py-20
+    bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800
+    text-white
+    overflow-hidden
+  "
+      >
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Urgência */}
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
+              <Clock className="w-5 h-5 text-white" />
+              <span className="font-semibold">Apenas 5 vagas disponíveis esta semana</span>
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Pronto para Transformar a Comunicação do Seu Filho?
+            </h2>
+
+            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
+              Não espere mais! Agende agora sua avaliação fonoaudiológica e dê o primeiro passo
+              para o desenvolvimento da fala e linguagem.
+            </p>
+
+            {/* Benefícios Rápidos */}
+            <div className="grid md:grid-cols-3 gap-4 mb-10 max-w-3xl mx-auto">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <CheckCircle className="w-8 h-8 mx-auto mb-2 text-white" />
+                <p className="font-semibold">Avaliação Completa</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <CheckCircle className="w-8 h-8 mx-auto mb-2 text-white" />
+                <p className="font-semibold">Plano Individualizado</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <CheckCircle className="w-8 h-8 mx-auto mb-2 text-white" />
+                <p className="font-semibold">Acompanhamento Próximo</p>
+              </div>
+            </div>
+
+            {/* Botões */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <ButtonWhatsApp
+                sendConversion
+                className="bg-white hover:bg-gray-100 text-blue-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
+                message="Olá! Vi a página e gostaria de agendar uma avaliação para meu filho(a)."
+                aria-label="Agendar avaliação pelo WhatsApp"
+              >
+                <MessageCircle className="w-6 h-6" />
+                Agendar Avaliação Agora
+              </ButtonWhatsApp>
+
+              <a
+                href="tel:6237063924"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
+              >
+                <Phone className="w-6 h-6" />
+                Ligar Agora
+              </a>
+            </div>
+
+            {/* Garantias */}
+            <div className="mt-8 flex items-center justify-center gap-6 flex-wrap text-sm">
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-white" />
+                <span>Ambiente Seguro</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award className="w-5 h-5 text-white" />
+                <span>Equipe Certificada</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-white fill-white" />
+                <span>4.9/5 Avaliação</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-    </Layout>
+
+    </Layout >
   );
 
 };

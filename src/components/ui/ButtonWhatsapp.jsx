@@ -1,4 +1,5 @@
 import { Phone } from 'lucide-react';
+import { reportWhatsappConversion } from '../../helper/analytics';
 
 const ButtonWhatsApp = ({
     className = '',
@@ -7,6 +8,7 @@ const ButtonWhatsApp = ({
     children = 'Falar com Especialista',
     size = 'default',
     icon: IconComponent = Phone,
+    onClick,                 // permite tracking externo
     ...props
 }) => {
     const sizeClasses = {
@@ -16,15 +18,24 @@ const ButtonWhatsApp = ({
         xl: 'px-8 py-6 text-xl'
     };
 
-    const openWhatsApp = () => {
+    const handleClick = () => {
+        // Seus próprios eventos (ex.: trackFormSubmission, trackButtonClick)
+        if (typeof onClick === 'function') onClick();
+
+        // Monta URL e dispara conversão do Google Ads (com callback para abrir)
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        if (typeof window !== 'undefined') {
+            reportWhatsappConversion(url);
+        }
     };
 
     return (
         <button
-            onClick={openWhatsApp}
+            type="button"
+            onClick={handleClick}
             className={`${sizeClasses[size]} ${className}`}
+            aria-label="Agendar via WhatsApp"
             {...props}
         >
             <IconComponent className="w-4 h-4 mr-2" />

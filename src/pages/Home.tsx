@@ -1,7 +1,10 @@
 import { Mail, Phone, Star } from '@mui/icons-material';
-import { Badge, Button, Card, CardContent, CardHeader } from '@mui/material';
+import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
+  Award,
+  CheckCircle,
+  Clock,
   Facebook,
   Instagram,
   MapPin,
@@ -20,6 +23,8 @@ import ServiceCards from '../components/ServiceCards.jsx';
 import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 // Adicione estes imports no topo do arquivo
+import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
+import { reportWhatsappConversion } from '../helper/analytics.js';
 import {
   trackButtonClick,
   trackPhoneCall,
@@ -27,6 +32,10 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
+
+const WHATSAPP_URL =
+  "https://wa.me/5562992013573?text=Olá! Vi o site e gostaria de agendar uma avaliação.";
+
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -117,15 +126,38 @@ function Home() {
                 Na <b>Clínica Fono Inova</b>, convertemos desafios em conquistas por meio de terapias inovadoras,
                 focadas no desenvolvimento e no sucesso das crianças.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-blue-600">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                {/* CTA Principal - WhatsApp com destaque */}
+                <ButtonWhatsApp
+                  onClick={() => {
+                    // seus eventos locais (opcional)
+                    trackFormSubmission?.(true);
+                    trackButtonClick?.("WhatsApp CTA Principal");
+                  }}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 animate-pulse hover:animate-none"
+                  message="Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação para meu filho(a). Pode me ajudar?"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  Agendar Avaliação
+                </ButtonWhatsApp>
+
+                {/* CTA Secundário */}
                 <Button
                   size="lg"
-                  variant="default"
+                  variant="outline"
                   onClick={handleConhecerServicos}
-                  className="text-base md:text-lg px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6 bg-blue-600 text-white hover:bg-blue-700 shadow-lg rounded-xl transition-all"
+                  className="text-base md:text-lg px-6 py-4 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
                 >
                   Conhecer Serviços
                 </Button>
+              </div>
+
+              {/* Badge de Urgência - NOVO */}
+              <div className="flex items-center gap-2 mt-4 bg-orange-50 px-4 py-2 rounded-lg inline-flex">
+                <Clock className="w-4 h-4 text-orange-600" />
+                <span className="text-sm text-gray-800">
+                  <strong className="text-orange-600">Apenas 5 vagas</strong> disponíveis esta semana
+                </span>
               </div>
 
             </div>
@@ -141,6 +173,77 @@ function Home() {
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-accent rounded-full flex items-center justify-center animate-pulse">
                 <Star className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 bg-gradient-to-r from-green-50 via-blue-50 to-purple-50">
+        <div className="container mx-auto px-4">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 max-w-5xl mx-auto border-2 border-green-200">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold mb-3">
+                Por que <span className="text-green-600">centenas de famílias</span> nos escolhem?
+              </h3>
+              <p className="text-gray-600 text-lg">
+                Agende agora e receba atendimento especializado em até 48 horas
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+              <div className="text-center p-4 bg-green-50 rounded-xl">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-3xl font-bold text-green-600 mb-1">500+</div>
+                <p className="text-sm text-gray-600 font-medium">Crianças Atendidas</p>
+              </div>
+
+              <div className="text-center p-4 bg-blue-50 rounded-xl">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Star className="w-8 h-8 text-white fill-white" />
+                </div>
+                <div className="text-3xl font-bold text-blue-600 mb-1">4.9/5</div>
+                <p className="text-sm text-gray-600 font-medium">Avaliação Média</p>
+              </div>
+
+              <div className="text-center p-4 bg-purple-50 rounded-xl">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Award className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-3xl font-bold text-purple-600 mb-1">12+</div>
+                <p className="text-sm text-gray-600 font-medium">Especialistas</p>
+              </div>
+
+              <div className="text-center p-4 bg-orange-50 rounded-xl">
+                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-3xl font-bold text-orange-600 mb-1">48h</div>
+                <p className="text-sm text-gray-600 font-medium">Resposta Rápida</p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-6 text-center text-white">
+              <p className="text-xl font-semibold mb-4">
+                🎁 Primeira Avaliação com <span className="text-yellow-300">Desconto Especial</span> para novos pacientes
+              </p>
+              <ButtonWhatsApp
+                onClick={() => {
+                  trackButtonClick?.("WhatsApp CTA Desconto");
+                  trackFormSubmission?.(true);
+                }}
+                className="bg-white hover:bg-gray-100 text-green-600 px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all inline-flex items-center gap-2"
+                message="Olá! Vi a oferta no site e gostaria de agendar minha avaliação com desconto especial."
+                aria-label="Garantir desconto pelo WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Garantir Desconto Agora
+              </ButtonWhatsApp>
+
+              <p className="text-sm mt-3 text-green-100">
+                ⏰ Oferta válida apenas para agendamentos feitos hoje
+              </p>
             </div>
           </div>
         </div>
@@ -270,201 +373,166 @@ function Home() {
         </div>
       </section>
 
-      <section id="contact" className="py-16 bg-background">
+      <section id="contact" className="py-16 bg-gradient-to-br from-green-600 via-blue-600 to-purple-700">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-              Entre em Contato
-            </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-              Apoio Integrado para o
-              <span className="text-primary"> Crescimento Infantil</span>
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Entre em contato para cuidar do futuro do seu pequeno.
-            </p>
-          </div>
+          <div className="max-w-5xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                Atendimento Rápido
+              </Badge>
+              <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6 text-white">
+                Agende Agora Mesmo pelo
+                <span className="text-green-300"> WhatsApp</span>
+              </h2>
+              <p className="text-xl text-white/90 max-w-2xl mx-auto">
+                Atendimento imediato • Sem burocracia • Resposta em até 2 horas úteis
+              </p>
+            </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Coluna 1: Informações de Contato */}
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20">
+                <h3 className="text-2xl font-bold text-white mb-6">
+                  Fale Conosco
+                </h3>
+
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-white">
+                      <h4 className="font-semibold text-lg mb-1">Endereço</h4>
+                      <p className="text-white/80">
+                        Avenida Minas Gerais, 405<br />
+                        Bairro Jundiaí - Anápolis/GO
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-white">
+                      <h4 className="font-semibold text-lg mb-1">Telefone</h4>
+                      <a
+                        href="tel:6237063924"
+                        onClick={() => trackPhoneCall('(62) 3706-3924')}
+                        className="hover:text-green-300 transition-colors text-white/80"
+                      >
+                        (62) 3706-3924
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="text-white">
+                      <h4 className="font-semibold text-lg mb-1">E-mail</h4>
+                      <p className="text-white/80">contato@clinicafonoinova.com.br</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Endereço</h3>
-                  <p className="text-muted-foreground">
-                    Avenida Minas Gerais, 405, Bairro Jundiaí<br />
-                    Anápolis – GO
+
+                {/* Redes Sociais */}
+                <div className="mt-8 pt-8 border-t border-white/20">
+                  <h4 className="font-semibold text-white text-lg mb-4">Siga-nos</h4>
+                  <div className="flex space-x-3">
+                    <a
+                      href="https://www.instagram.com/clinicafonoinova"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialMediaClick('Instagram')}
+                      className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                    >
+                      <Instagram className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.youtube.com/clinicafonoinova"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialMediaClick('YouTube')}
+                      className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                    >
+                      <Youtube className="w-6 h-6" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com/clinicafonoinova"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => handleSocialMediaClick('Facebook')}
+                      className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+                    >
+                      <Facebook className="w-6 h-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Coluna 2: CTA WhatsApp */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-2xl">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle className="w-10 h-10 text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Atendimento Imediato pelo WhatsApp
+                  </h3>
+                  <p className="text-gray-600">
+                    Fale diretamente com nossa equipe e agende sua consulta agora
+                  </p>
+                </div>
+
+                {/* Benefícios */}
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm text-gray-800">Resposta em até 2 horas úteis</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm text-gray-800">Escolha o melhor horário para você</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                    <span className="text-sm text-gray-800">Tire todas as suas dúvidas antes</span>
+                  </div>
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border-2 border-orange-200">
+                    <Star className="w-5 h-5 text-orange-600 flex-shrink-0 fill-orange-600" />
+                    <span className="text-sm text-gray-800 font-semibold">Desconto especial para novos pacientes</span>
+                  </div>
+                </div>
+
+                {/* Botão Principal */}
+                <ButtonWhatsApp
+                  onClick={() => {
+                    trackFormSubmission(true);
+                    trackButtonClick('WhatsApp CTA Principal');
+                  }}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-5 text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 mb-4"
+                  message="Olá! Vi o site e gostaria de agendar uma avaliação na Clínica Fono Inova."
+                >
+                  Agendar Agora pelo WhatsApp
+                </ButtonWhatsApp>
+
+
+                {/* Prova Social */}
+                <div className="text-center">
+                  <div className="flex items-center justify-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    <strong>500+ famílias</strong> já agendaram pelo WhatsApp
                   </p>
                 </div>
               </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">Telefone</h3>
-                  <a
-                    href="tel:6237063924"
-                    onClick={() => trackPhoneCall('(62) 3706-3924')}
-                    className="hover:text-secondary transition-colors"
-                  >
-                    (62) 3706-3924
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-accent rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-2">E-mail</h3>
-                  <p className="text-muted-foreground">contato@clinicafonoinova.com.br</p>
-                </div>
-              </div>
-
-              {/* Redes Sociais */}
-              <div className="pt-4">
-                <h3 className="font-semibold text-lg mb-4">Siga-nos nas redes sociais</h3>
-                <div className="flex space-x-4">
-                  <a
-                    href="https://www.instagram.com/clinicafonoinova"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleSocialMediaClick('Instagram')}
-                    className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center text-white hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
-                    aria-label="Siga-nos no Instagram"
-                  >
-                    <Instagram className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/clinicafonoinova"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleSocialMediaClick('YouTube')}
-                    className="w-12 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-full flex items-center justify-center text-white hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
-                    aria-label="Inscreva-se no nosso YouTube"
-                  >
-                    <Youtube className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.facebook.com/clinicafonoinova"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleSocialMediaClick('Facebook')}
-                    className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"
-                    aria-label="Curta nossa página no Facebook"
-                  >
-                    <Facebook className="w-6 h-6" />
-                  </a>
-                </div>
-
-                {/* Links diretos para facilitar o acesso */}
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <a
-                    href="https://www.instagram.com/clinicafonoinova"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleSocialMediaClick('Instagram')}
-                    className="text-sm text-primary hover:text-secondary flex items-center gap-1"
-                  >
-                    <Instagram className="w-4 h-4" />
-                    @clinicafonoinova
-                  </a>
-                  <a
-                    href="https://www.youtube.com/clinicafonoinova"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => handleSocialMediaClick('YouTube')}
-                    className="text-sm text-primary hover:text-secondary flex items-center gap-1"
-                  >
-                    <Youtube className="w-4 h-4" />
-                    Clínica Fono Inova
-                  </a>
-                </div>
-              </div>
             </div>
-
-            <Card className="border-0 shadow-lg">
-              <CardHeader>
-                <div className="text-2xl font-poppins">Agende sua Consulta</div>
-                <div>
-                  Preencha o formulário e entraremos em contato em breve.
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Nome</label>
-                    <input
-                      type="text"
-                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="Seu nome"
-                      onChange={(e) => trackFieldInteraction('nome', e.target.value)}
-                      onFocus={() => trackFieldInteraction('nome_focus', 'focused')}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Telefone</label>
-                    <input
-                      type="tel"
-                      className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                      placeholder="(62) 99999-9999"
-                      onChange={(e) => trackFieldInteraction('telefone', e.target.value)}
-                      onFocus={() => trackFieldInteraction('telefone_focus', 'focused')}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">E-mail</label>
-                  <input
-                    type="email"
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="seu@email.com"
-                    onChange={(e) => trackFieldInteraction('email', e.target.value)}
-                    onFocus={() => trackFieldInteraction('email_focus', 'focused')}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Especialidade</label>
-                  <select
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    onChange={(e) => trackFieldInteraction('especialidade', e.target.value)}
-                    onFocus={() => trackFieldInteraction('especialidade_focus', 'focused')}
-                  >
-                    <option value="">Selecione uma especialidade</option>
-                    <option value="fonoaudiologia">Fonoaudiologia</option>
-                    <option value="psicologia">Psicologia</option>
-                    <option value="terapia_ocupacional">Terapia Ocupacional</option>
-                    <option value="fisioterapia">Fisioterapia</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Mensagem</label>
-                  <textarea
-                    rows={4}
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Conte-nos mais sobre suas necessidades..."
-                    onChange={(e) => trackFieldInteraction('mensagem', e.target.value.length > 0 ? 'preenchido' : 'vazio')}
-                    onFocus={() => trackFieldInteraction('mensagem_focus', 'focused')}
-                  ></textarea>
-                </div>
-                <Button
-                  onClick={() => {
-                    trackFormSubmission(true);
-                    trackButtonClick('Formulário WhatsApp Submit');
-                    openWhatsApp();
-                  }}
-                  className="w-full bg-green-500 hover:bg-green-600"
-                >
-                  <MessageCircle className="w-4 h-4 mr-2" />
-                  Enviar via WhatsApp
-                </Button>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
@@ -497,6 +565,47 @@ function Home() {
         image="/images/logo-seo.jpg"
         url="https://www.clinicafonoinova.com.br"
       />
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+        {/* Tooltip animado */}
+        {/* Tooltip animado (abre modal, sem conversão) */}
+        <button
+          type="button"
+          onClick={() => {
+            trackButtonClick?.('Tooltip CTA - abrir modal');
+            setIsModalOpen(true);
+          }}
+          className="bg-white px-4 py-3 rounded-xl shadow-2xl animate-bounce border-2 border-green-500 hidden md:block"
+          aria-label="Abrir agendamento"
+        >
+          <p className="text-sm font-bold text-gray-800">💬 Agende sua consulta!</p>
+          <p className="text-xs text-gray-600">Resposta em até 2h</p>
+        </button>
+
+
+        {/* Botão */}
+        <button
+          onClick={() => {
+            // (opcional) seu analytics interno
+            // trackWhatsAppClick?.();
+
+            // Conversão Google Ads + abrir WhatsApp via callback
+            reportWhatsappConversion(WHATSAPP_URL);
+          }}
+          className="relative bg-green-500 hover:bg-green-600 text-white p-5 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group animate-pulse hover:animate-none"
+          aria-label="Agendar via WhatsApp"
+        >
+          <MessageCircle className="w-8 h-8" />
+
+          {/* Badge de notificação */}
+          <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-7 h-7 flex items-center justify-center animate-pulse border-2 border-white">
+            5
+          </span>
+
+          {/* Pulse effect */}
+          <span className="absolute inset-0 rounded-full bg-green-500 animate-ping opacity-75"></span>
+        </button>
+      </div>
+
     </Layout >
   );
 }

@@ -8,9 +8,13 @@ import {
     Bone,
     CheckCircle,
     ChevronDown,
+    Clock,
     FileText,
     Footprints,
+    MessageCircle,
+    Phone,
     Quote,
+    Shield,
     Star,
     Target,
     Users
@@ -431,26 +435,78 @@ const FisioPage = () => {
                 </div>
             </section>
 
-            {/* CTA Final */}
-            <section className="py-20 bg-purple-600">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                        Pronto para Ajudar no Desenvolvimento do Seu Filho?
-                    </h2>
-                    <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-                        Agende uma avaliação com nossa equipe especializada e dê o primeiro passo rumo ao pleno desenvolvimento motor.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <ButtonAgendamento className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
-                            Agendar Avaliação
-                        </ButtonAgendamento>
-                        <ButtonWhatsApp className="border border-white text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-purple-600">
-                            Falar com Especialista
-                        </ButtonWhatsApp>
+            {/* CTA Final Otimizado */}
+            <section className="py-20 bg-gradient-to-br from-purple-600 via-pink-700 to-fuchsia-800">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center text-white">
+                        {/* Urgência */}
+                        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full mb-6">
+                            <Clock className="w-5 h-5" />
+                            <span className="font-semibold">Apenas 5 vagas disponíveis esta semana</span>
+                        </div>
+
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                            Pronto para Ajudar no Desenvolvimento Motor do Seu Filho?
+                        </h2>
+
+                        <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto leading-relaxed">
+                            Agende uma avaliação com nossa equipe especializada e dê o primeiro passo rumo ao pleno desenvolvimento motor infantil.
+                        </p>
+
+                        {/* Benefícios Rápidos */}
+                        <div className="grid md:grid-cols-3 gap-4 mb-10 max-w-3xl mx-auto">
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                                <CheckCircle className="w-8 h-8 mx-auto mb-2" />
+                                <p className="font-semibold">Avaliação Motora</p>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                                <CheckCircle className="w-8 h-8 mx-auto mb-2" />
+                                <p className="font-semibold">Técnicas Lúdicas</p>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                                <CheckCircle className="w-8 h-8 mx-auto mb-2" />
+                                <p className="font-semibold">Evolução Rápida</p>
+                            </div>
+                        </div>
+
+                        {/* Botões */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                            <ButtonWhatsApp
+                                className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
+                                message="Olá! Vi a página de Fisioterapia e gostaria de agendar uma avaliação para meu filho(a)."
+                            >
+                                <MessageCircle className="w-6 h-6" />
+                                Agendar Avaliação Agora
+                            </ButtonWhatsApp>
+
+                            <a
+                                href="tel:6237063924"
+                                className="border-2 border-white text-white hover:bg-white hover:text-purple-700 px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
+                            >
+                                <Phone className="w-6 h-6" />
+                                Ligar Agora
+                            </a>
+                        </div>
+
+                        {/* Garantia/Trust */}
+                        <div className="mt-8 flex items-center justify-center gap-6 flex-wrap text-sm">
+                            <div className="flex items-center gap-2">
+                                <Shield className="w-5 h-5" />
+                                <span>Espaço Adequado</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Award className="w-5 h-5" />
+                                <span>Fisioterapeutas Especializados</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Star className="w-5 h-5 fill-white" />
+                                <span>4.9/5 Avaliação</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-        </Layout>
+        </Layout >
     );
 };
 

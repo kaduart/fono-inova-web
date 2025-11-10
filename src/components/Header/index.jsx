@@ -4,6 +4,7 @@ import { Calendar, ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoImgHeader from '../../assets/LOGO_FONO_INOVA_HORIZONTAL_NEGRITO.png';
+import { trackButtonClick } from '../../hooks/useAnalytics';
 import BookingModal from '../BookingModal';
 
 const Header = () => {
@@ -12,6 +13,7 @@ const Header = () => {
     const [openDropdown, setOpenDropdown] = useState(null);
     const location = useLocation();
     const navigate = useNavigate();
+
 
     const services = [
         {
@@ -78,13 +80,21 @@ const Header = () => {
     }, [location]); // Executa sempre que a location mudar
 
     const handleAgendarConsulta = () => {
-        trackButtonClick('Agendar Consulta - Hero');
+        try { trackButtonClick?.('Agendar Consulta'); } catch { }
+        // GA4 (evento de UI, não é conversão):
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('event', 'open_booking_modal', {
+                location: 'header_desktop',
+                page_path: location.pathname,
+            });
+        }
         setIsModalOpen(true);
     };
 
     return (
         <>
             <header className="fixed top-0 left-0 w-full backdrop-blur-sm border-b border-border z-50">
+
                 <div className="max-w-[1355px] mx-auto px-4 py-4 flex items-center justify-between">
                     {/* Logo */}
                     <div className="flex items-center space-x-2">
@@ -155,21 +165,30 @@ const Header = () => {
                         </button>
 
                         {/* Botão de Agendamento */}
-                        <Button
+                        <button
+                            type="button"
                             onClick={handleAgendarConsulta}
-                            className="group relative overflow-hidden rounded-xl px-6 py-3 font-semibold 
-             bg-gradient-to-r from-primary to-secondary 
-             text-white shadow-lg transition-all duration-300
-             hover:shadow-2xl hover:scale-105 active:scale-95"
+                            className="group relative w-full md:w-auto
+    rounded-2xl px-7 py-4 font-extrabold
+    text-white shadow-xl hover:shadow-2xl
+    transition-all duration-300
+    bg-gradient-to-r from-green-600 via-green-500 to-emerald-500
+    hover:from-green-600 hover:via-emerald-500 hover:to-green-600
+    ring-2 ring-green-300/40 hover:ring-green-200/60
+    hover:-translate-y-0.5
+  "
+                            aria-label="Agendar consulta"
                         >
-                            {/* Efeito Glow ao passar o mouse */}
-                            <span className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-
-                            <div className="flex items-center justify-center text-white">
+                            {/* Glow suave atrás */}
+                            <span className="pointer-events-none absolute inset-0 rounded-2xl blur-md opacity-40 bg-green-500/40"></span>
+                            {/* Ping delicado */}
+                            <span className="pointer-events-none absolute -inset-1 rounded-3xl animate-pulse bg-emerald-500/10"></span>
+                            {/* Conteúdo */}
+                            <div className="relative z-10 flex items-center justify-center text-white">
                                 <Calendar className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:rotate-12" />
                                 <span>Agendar Consulta</span>
                             </div>
-                        </Button>
+                        </button>
 
                     </nav>
 
@@ -219,8 +238,13 @@ const Header = () => {
                                 </button>
                             </div>
 
-                            <Button
-                                onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}
+                            <Button onClick={() => {
+                                if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+                                    window.gtag('event', 'open_booking_modal', { location: 'header_mobile' });
+                                }
+                                setIsModalOpen(true);
+                                setIsMenuOpen(false);
+                            }}
                                 className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white mt-4"
                             >
                                 <Calendar className="w-4 h-4 mr-2" />
@@ -229,7 +253,21 @@ const Header = () => {
                         </nav>
                     </div>
                 )}
-            </header>
+                {/* GA4 + Google Ads (forma segura em React) */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-N59X7PNQZZ"></script>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N59X7PNQZZ');   /* GA4 */
+      gtag('config', 'AW-17010705949'); /* Google Ads */
+    `,
+                    }}
+                />
+
+            </header >
             <BookingModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
