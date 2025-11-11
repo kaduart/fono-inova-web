@@ -35,6 +35,7 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
         "/images/clinica/IMG-20250527-WA0034.jpg",
         "/images/clinica/IMG-20250527-WA0035.jpg",
     ];
+    
     const imagesNichos = [
         "/images/fonoaudiologia/img-fono-atendimento-01.png",
         "/images/fonoaudiologia/fono2.jpg",

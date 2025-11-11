@@ -35,8 +35,24 @@ const Header = () => {
             name: "Fisioterapia",
             path: "/fisioterapia",
             description: "Fortalecimento e reabilitação"
+        },
+        {
+            name: "Psicopedagogia",
+            path: "/psicopedagogia",
+            description: "Dificuldades de aprendizagem"
+        },
+        {
+            name: "Avaliação Neuropsicológica",
+            path: "/avaliacao-neuropsicologica",
+            description: "Avaliação cognitiva completa"
+        },
+        {
+            name: "Freio Lingual",
+            path: "/freio-lingual",
+            description: "Avaliação e tratamento"
         }
     ];
+
 
     const isActiveLink = (path) => {
         return location.pathname === path;

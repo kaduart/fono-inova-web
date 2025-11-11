@@ -24,6 +24,7 @@ import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import SEO from '../components/SEO';
 
 const FonoPage = () => {
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -177,6 +178,13 @@ const FonoPage = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Fonoaudiologia Infantil - Clínica Fono Inova"
+        description="Especialistas em fonoaudiologia infantil: tratamento para atraso de fala, distúrbios de linguagem, comunicação e alimentação."
+        keywords="fonoaudiologia infantil, atraso de fala, distúrbios linguagem, terapia fala, comunicação"
+        image="/images/servicos/fonoaudiologia.jpg"
+        url="https://www.clinicafonoinova.com.br/fonoaudiologia"
+      />
       {/* Hero Section Elegante - MELHORADA */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-200/30 to-transparent" />

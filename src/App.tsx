@@ -1,19 +1,21 @@
-// src/App.jsx
 import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
 // Import das páginas
+import AnalyticsTest from './components/AnalyticsTest'
 import BookingModal from './components/BookingModal'
 import SpecialistPopup from './components/SpecialityPopup/SpecialityPopUp'
+import ArticlePage from './pages/Article'
+import Articles from './pages/Articles'
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar'
 import FisioPage from './pages/FisioPage'
 import FonoPage from './pages/FonoPage'
+import FreioLingualPage from './pages/FreioLingual'
 import Home from './pages/Home'
+import NeuropsicologicaPage from './pages/NeuroPsicologia'
+import PsicopedagogiaPage from './pages/PsicopedagogiaPage'
 import PsicoPage from './pages/PsisoPage'
 import TerapiaOcupacionalPage from './pages/TerapiaOcupacionaPage'
-import Articles from './pages/Articles'
-import ArticlePage from './pages/Article'
-import AnalyticsTest from './components/AnalyticsTest'
 
 // Hook simples para analytics
 const useAnalytics = () => {
@@ -51,6 +53,9 @@ function App() {
         <Route path="/terapia-ocupacional" element={<TerapiaOcupacionalPage />} />
         <Route path="/fisioterapia" element={<FisioPage />} />
         <Route path="/abordagem-multidisciplinar" element={<ClinicaMultidisciplinar />} />
+        <Route path="/psicopedagogia" element={<PsicopedagogiaPage />} />
+        <Route path="/avaliacao-neuropsicologica" element={<NeuropsicologicaPage />} />
+        <Route path="/freio-lingual" element={<FreioLingualPage />} />
       </Routes>
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>

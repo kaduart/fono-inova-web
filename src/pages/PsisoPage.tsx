@@ -22,10 +22,13 @@ import {
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
+import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { useServiceViewTime } from '../hooks/useAnalytics';
 
 const PsicoPage = () => {
+    useServiceViewTime('Psicologia');
     const [openAccordion, setOpenAccordion] = useState(null);
 
     // Sintomas de TDAH - Conteúdo enriquecido
@@ -170,6 +173,13 @@ const PsicoPage = () => {
 
     return (
         <Layout>
+            <SEO
+                title="Psicologia Infantil - Clínica Fono Inova"
+                description="Acompanhamento psicológico infantil para desenvolvimento emocional e comportamental. Atendimento especializado para crianças e adolescentes."
+                keywords="psicologia infantil, terapia criança, desenvolvimento emocional, psicólogo infantil, TDAH, autismo, ansiedade infantil"
+                image="/images/servicos/psicologia.jpg"
+                url="https://www.clinicafonoinova.com.br/psicologia"
+            />
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-green-50 to-teal-100 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-green-200/20 to-transparent" />

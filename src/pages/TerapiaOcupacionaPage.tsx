@@ -19,10 +19,13 @@ import {
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
+import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { useServiceViewTime } from '../hooks/useAnalytics';
 
 const TerapiaOcupacionalPage = () => {
+    useServiceViewTime('Terapia Ocupacional');
     const [openAccordion, setOpenAccordion] = useState(null);
 
     // Benefícios da Terapia Ocupacional
@@ -200,6 +203,13 @@ const TerapiaOcupacionalPage = () => {
 
     return (
         <Layout>
+            <SEO
+                title="Terapia Ocupacional Infantil - Clínica Fono Inova"
+                description="Terapia ocupacional para desenvolvimento de habilidades motoras, independência e autonomia infantil. Atendimento especializado em atividades diárias."
+                keywords="terapia ocupacional infantil, habilidades motoras, autonomia criança, atividades diárias, desenvolvimento sensorial, integração sensorial"
+                image="/images/servicos/terapia-ocupacional.jpg"
+                url="https://www.clinicafonoinova.com.br/terapia-ocupacional"
+            />
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-amber-50 to-orange-100 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-amber-200/20 to-transparent" />
