@@ -131,7 +131,7 @@ const SpecialistPopup = () => {
             {showPopup && (
                 <div
                     className={`
-                        fixed inset-0 bg-black bg-opacity-60 z-50
+                        fixed inset-0 bg-green bg-opacity-60 z-50
                         flex items-center justify-center p-4
                         transition-opacity duration-300
                         ${isVisible ? 'opacity-100' : 'opacity-0'}
@@ -220,7 +220,7 @@ const SpecialistPopup = () => {
             />
 
             {/* Estilos de animação */}
-            <style jsx>{`
+            <style >{`
                 @keyframes slideIn {
                     from {
                         transform: translateY(20px) scale(0.95);
