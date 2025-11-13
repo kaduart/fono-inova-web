@@ -115,7 +115,7 @@ const Header = () => {
                     {/* Logo */}
                     <div className="flex items-center space-x-2">
                         <Link to="/">
-                            <img src={logoImgHeader} alt="Clínica Fono Inova" className="h-14" />
+                            <img src={logoImgHeader} alt="Clínica Fono Inova" className="h-[44px] sm:h-[52px] md:h-[56px] lg:h-[70px] w-auto" />
                         </Link>
                     </div>
 
