@@ -210,7 +210,7 @@ const ArticlePage = () => {
                     </Typography>
                     <div className="flex justify-center space-x-4">
                         <a
-                            href="https://wa.me/5562992013573"
+                            href="https://wa.me/5562993377726"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"

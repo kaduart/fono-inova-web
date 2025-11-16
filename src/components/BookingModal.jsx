@@ -118,7 +118,7 @@ E-mail: ${formData.email}
 
 Aguardo contato para mais informações. Obrigado!`;
 
-    const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5562993377726?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
     // Pequeno delay para garantir que o WhatsApp abriu

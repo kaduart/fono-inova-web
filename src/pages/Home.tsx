@@ -34,7 +34,7 @@ import {
 import { useFormTracking } from '../hooks/useFormTracking.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562992013573?text=Olá! Vi o site e gostaria de agendar uma avaliação.";
+  "https://wa.me/5562993377726?text=Olá! Vi o site e gostaria de agendar uma avaliação.";
 
 
 function Home() {
@@ -53,7 +53,7 @@ function Home() {
 
   const openWhatsApp = () => {
     trackWhatsAppClick();
-    window.open('https://wa.me/5562992013573?text=Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.', '_blank');
+    window.open('https://wa.me/5562993377726?text=Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.', '_blank');
   };
 
   useEffect(() => {

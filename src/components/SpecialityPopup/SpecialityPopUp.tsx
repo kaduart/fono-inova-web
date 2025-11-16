@@ -101,7 +101,7 @@ const SpecialistPopup = () => {
     const openWhatsApp = () => {
         trackWhatsAppClick();
 
-        window.open('https://wa.me/5562992013573?text=Olá! Gostaria de mais informações sobre as terapias na Clínica Fono Inova.', '_blank');
+        window.open('https://wa.me/5562993377726?text=Olá! Gostaria de mais informações sobre as terapias na Clínica Fono Inova.', '_blank');
         handleClosePopup();
     };
 

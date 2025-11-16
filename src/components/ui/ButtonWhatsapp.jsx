@@ -3,7 +3,7 @@ import { reportWhatsappConversion } from '../../helper/analytics';
 
 const ButtonWhatsApp = ({
     className = '',
-    phoneNumber = '5562992013573',
+    phoneNumber = '5562993377726',
     message = 'Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.',
     children = 'Falar com Especialista',
     size = 'default',
