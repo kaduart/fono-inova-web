@@ -135,7 +135,7 @@ function Home() {
                     trackButtonClick?.("WhatsApp CTA Principal");
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 animate-pulse hover:animate-none"
-                  message="Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação para meu filho(a). Pode me ajudar?"
+                  message="Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação. Pode me ajudar?"
                 >
                   <MessageCircle className="w-5 h-5" />
                   Agendar Avaliação
