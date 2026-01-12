@@ -3,12 +3,17 @@ import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
   Award,
+  BookOpen,
+  Brain,
   CheckCircle,
+  ChevronRight,
   Clock,
   Facebook,
   Instagram,
   MapPin,
   MessageCircle,
+  MessageSquare,
+  Mic,
   Youtube
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -269,7 +274,93 @@ function Home() {
           />
         </div>
       </section>
+      {/* Seção: Nossos Principais Atendimentos - ADICIONAR NA HOME */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
+              Encontre o <span className="text-primary">Atendimento Ideal</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Selecione a situação que mais se encaixa com a sua necessidade
+            </p>
+          </div>
 
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card TEA */}
+            <Link to="/avaliacao-tea" className="group">
+              <div className="bg-white border-2 border-purple-200 hover:border-purple-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <Brain className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-purple-600">
+                  Suspeita de Autismo
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Avaliação multidisciplinar completa para crianças com sinais de TEA
+                </p>
+                <div className="flex items-center text-purple-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Fala Tardia */}
+            <Link to="/fala-tardia" className="group">
+              <div className="bg-white border-2 border-orange-200 hover:border-orange-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <MessageSquare className="w-8 h-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-orange-600">
+                  Fala Tardia (2-5 anos)
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Fonoterapia especializada para crianças com atraso na fala
+                </p>
+                <div className="flex items-center text-orange-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Dificuldade Escolar */}
+            <Link to="/dificuldade-escolar" className="group">
+              <div className="bg-white border-2 border-blue-200 hover:border-blue-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <BookOpen className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-blue-600">
+                  Dificuldade Escolar
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Avaliação neuropsicológica para TDAH, dislexia e outros
+                </p>
+                <div className="flex items-center text-blue-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Adulto */}
+            <Link to="/fonoaudiologia-adulto" className="group">
+              <div className="bg-white border-2 border-emerald-200 hover:border-emerald-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <Mic className="w-8 h-8 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-emerald-600">
+                  Fonoaudiologia Adulto
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Tratamento de voz profissional e disfagia (dificuldade para engolir)
+                </p>
+                <div className="flex items-center text-emerald-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
       <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
         <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Coluna de texto */}
