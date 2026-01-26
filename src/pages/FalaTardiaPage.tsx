@@ -86,10 +86,36 @@ const FalaTardiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fala Tardia - Fonoaudiologia Infantil - Clínica Fono Inova"
-                description="Fonoterapia especializada para crianças com atraso na fala. Avaliação e tratamento em Anápolis-GO."
-                keywords="fala tardia, atraso fala, fonoaudiologia infantil, estimulação linguagem, Anápolis"
+                title="Fala Tardia Infantil em Anápolis | Fonoaudiologia Clínica Fono Inova"
+                description="Tratamento especializado para crianças com atraso na fala em Anápolis-GO."
+                image="/images/servicos/fala-tardia.jpg"
+                url="https://www.clinicafonoinova.com.br/fala-tardia"
+                type="article"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Fala Tardia Infantil em Anápolis",
+                    "description": "Tratamento especializado para atraso na fala em crianças.",
+                    "image": "https://www.clinicafonoinova.com.br/images/servicos/fala-tardia.jpg",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://www.clinicafonoinova.com.br/logo.png"
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://www.clinicafonoinova.com.br/fala-tardia"
+                    }
+                }}
             />
+
 
             {/* Hero */}
             <section className="pt-32 pb-20 bg-gradient-to-br from-orange-50 via-white to-orange-50">

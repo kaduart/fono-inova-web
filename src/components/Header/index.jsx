@@ -50,7 +50,7 @@ const Header = () => {
             name: "Freio Lingual",
             path: "/freio-lingual",
             description: "Avaliação e tratamento"
-        }
+        },
     ];
 
 
@@ -179,6 +179,15 @@ const Header = () => {
                         >
                             Contato
                         </button>
+
+                        <Link
+                            to="/faq"
+                            className="block w-full text-left py-2 px-4 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            FAQ
+                        </Link>
+
 
                         {/* Botão de Agendamento */}
                         <button

@@ -174,12 +174,14 @@ const PsicoPage = () => {
     return (
         <Layout>
             <SEO
-                title="Psicologia Infantil - Clínica Fono Inova"
-                description="Acompanhamento psicológico infantil para desenvolvimento emocional e comportamental. Atendimento especializado para crianças e adolescentes."
-                keywords="psicologia infantil, terapia criança, desenvolvimento emocional, psicólogo infantil, TDAH, autismo, ansiedade infantil"
+                title="Psicologia Infantil em Anápolis | Clínica Fono Inova"
+                description="Atendimento psicológico infantil para desenvolvimento emocional, comportamento, ansiedade, TDAH e autismo."
+                keywords="psicologia infantil, terapia infantil, ansiedade infantil, TDAH, autismo, psicólogo infantil, Anápolis"
                 image="/images/servicos/psicologia.jpg"
                 url="https://www.clinicafonoinova.com.br/psicologia"
+                type="article"
             />
+
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-green-50 to-teal-100 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-green-200/20 to-transparent" />

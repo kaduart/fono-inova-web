@@ -154,12 +154,14 @@ const FisioPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fisioterapia Infantil - Clínica Fono Inova"
-                description="Fisioterapia pediátrica para desenvolvimento motor, reabilitação e fortalecimento muscular. Atendimento para bebês, crianças e adolescentes."
-                keywords="fisioterapia infantil, desenvolvimento motor, reabilitação criança, fortalecimento muscular, coordenação motora, fisioterapia pediátrica"
+                title="Fisioterapia Infantil em Anápolis | Desenvolvimento Motor - Clínica Fono Inova"
+                description="Fisioterapia pediátrica para bebês e crianças: desenvolvimento motor, reabilitação e coordenação motora em Anápolis-GO."
+                keywords="fisioterapia infantil, desenvolvimento motor, coordenação motora, reabilitação infantil, fisioterapia pediátrica, Anápolis"
                 image="/images/servicos/fisioterapia.jpg"
                 url="https://www.clinicafonoinova.com.br/fisioterapia"
+                type="article"
             />
+
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-purple-50 to-pink-100 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-200/20 to-transparent" />

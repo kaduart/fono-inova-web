@@ -179,12 +179,14 @@ const FreioLingualPage = () => {
     return (
         <Layout>
             <SEO
-                title="Freio Lingual - Avaliação e Tratamento da Língua Presa"
-                description="Especialistas em freio lingual: avaliação completa, frenotomia e tratamento para língua presa em bebês, crianças e adultos."
-                keywords="freio lingual, língua presa, frenotomia, amamentação, fala, avaliação freio lingual"
+                title="Freio Lingual em Anápolis | Avaliação e Frenotomia - Clínica Fono Inova"
+                description="Avaliação e tratamento do freio lingual (língua presa) em bebês, crianças e adultos. Atendimento especializado em Anápolis-GO."
+                keywords="freio lingual, língua presa, frenotomia, amamentação, fala, avaliação freio lingual, Anápolis"
                 image="/images/servicos/freio-lingual.jpg"
                 url="https://www.clinicafonoinova.com.br/freio-lingual"
+                type="article"
             />
+
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-200/30 to-transparent" />

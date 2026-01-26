@@ -59,9 +59,34 @@ const DificuldadeEscolarPage = () => {
     return (
         <Layout>
             <SEO
-                title="Dificuldade Escolar - Avaliação Neuropsicológica - Clínica Fono Inova"
-                description="Avaliação neuropsicológica para dificuldades de aprendizagem, TDAH e dislexia em Anápolis-GO."
-                keywords="dificuldade escolar, dislexia, TDAH, neuropsicologia, avaliação neuropsicológica, Anápolis"
+                title="Dificuldade Escolar em Anápolis | Avaliação Neuropsicológica"
+                description="Avaliação neuropsicológica para dificuldade escolar, dislexia e TDAH."
+                image="/images/servicos/dificuldade-escolar.jpg"
+                url="https://www.clinicafonoinova.com.br/dificuldade-escolar"
+                type="article"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Dificuldade Escolar em Anápolis",
+                    "description": "Avaliação para dislexia, TDAH e dificuldades de aprendizagem.",
+                    "image": "https://www.clinicafonoinova.com.br/images/servicos/dificuldade-escolar.jpg",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://www.clinicafonoinova.com.br/logo.png"
+                        }
+                    },
+                    "mainEntityOfPage": {
+                        "@type": "WebPage",
+                        "@id": "https://www.clinicafonoinova.com.br/dificuldade-escolar"
+                    }
+                }}
             />
 
             {/* Hero */}

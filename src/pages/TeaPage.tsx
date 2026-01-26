@@ -77,9 +77,28 @@ const TeaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Avaliação TEA (Autismo) - Clínica Fono Inova"
-                description="Avaliação multidisciplinar completa para suspeita de TEA. Equipe especializada em autismo infantil em Anápolis-GO."
-                keywords="autismo, TEA, avaliação autismo, diagnóstico precoce, terapia autismo, Anápolis"
+                title="Avaliação TEA (Autismo Infantil) em Anápolis | Clínica Fono Inova"
+                description="Avaliação multidisciplinar para diagnóstico precoce do autismo infantil. Psicologia, fonoaudiologia e TO em Anápolis-GO."
+                keywords="avaliação TEA, autismo infantil, psicólogo autismo, fonoaudiologia autismo, Anápolis"
+                url="https://www.clinicafonoinova.com.br/avaliacao-autismo-infantil"
+                type="article"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "MedicalWebPage",
+                    "headline": "Avaliação de Autismo Infantil (TEA)",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://www.clinicafonoinova.com.br/logo.png"
+                        }
+                    }
+                }}
             />
 
             {/* Hero Section */}

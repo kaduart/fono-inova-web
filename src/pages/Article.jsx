@@ -116,6 +116,30 @@ const ArticlePage = () => {
                     image={article.image}
                     url={`https://www.clinicafonoinova.com.br/artigos/${article.slug}`}
                     type="article"
+                    schema={{
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": article.title,
+                        "description": article.excerpt,
+                        "image": article.image,
+                        "author": {
+                            "@type": "Person",
+                            "name": article.author
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Clínica Fono Inova",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://www.clinicafonoinova.com.br/logo.png"
+                            }
+                        },
+                        "datePublished": article.date,
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": `https://www.clinicafonoinova.com.br/artigos/${article.slug}`
+                        }
+                    }}
                 />
 
                 {/* Breadcrumb */}

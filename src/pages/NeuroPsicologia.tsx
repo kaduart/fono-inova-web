@@ -180,12 +180,14 @@ const NeuropsicologicaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Avaliação Neuropsicológica - Diagnóstico Completo"
-                description="Avaliação neuropsicológica especializada para diagnóstico de TDAH, TEA, dislexia e outros transtornos do neurodesenvolvimento."
-                keywords="avaliação neuropsicológica, TDAH, TEA, dislexia, funções cognitivas, neuropsicologia"
+                title="Avaliação Neuropsicológica em Anápolis | TDAH, TEA e Dislexia"
+                description="Avaliação neuropsicológica completa para diagnóstico de TDAH, TEA, dislexia e dificuldades cognitivas em Anápolis-GO."
+                keywords="avaliação neuropsicológica, TDAH, TEA, dislexia, funções cognitivas, neuropsicologia, Anápolis"
                 image="/images/servicos/neuropsicologica.jpg"
                 url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica"
+                type="article"
             />
+
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-200/30 to-transparent" />

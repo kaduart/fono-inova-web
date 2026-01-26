@@ -91,6 +91,24 @@ function Home() {
     trackSocialMediaClick(platform);
   };
 
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MedicalBusiness",
+      "name": "Clínica Fono Inova",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenida Minas Gerais, 405",
+        "addressLocality": "Anápolis",
+        "addressRegion": "GO",
+        "postalCode": "75000-000",
+        "addressCountry": "BR"
+      },
+      "telephone": "+556237063924",
+      "url": "https://www.clinicafonoinova.com.br"
+    })}
+  </script>
+
   return (
     <Layout>
       {/* Botão de Acessibilidade */}
@@ -121,12 +139,12 @@ function Home() {
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 Apoio Multidisciplinar
               </Badge>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-4 md:mb-6 leading-tight">
-                Transformando
-                <span className="text-primary"> Desafios </span>
-                em
-                <span className="text-secondary"> Conquistas</span>
+              <h1>
+                Clínica Multidisciplinar Infantil em Anápolis
+                <span className="text-primary"> Transformando Desafios </span>
+                em <span className="text-secondary"> Conquistas</span>
               </h1>
+
               <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
                 Na <b>Clínica Fono Inova</b>, convertemos desafios em conquistas por meio de terapias inovadoras,
                 focadas no desenvolvimento e no sucesso das crianças.
@@ -288,7 +306,7 @@ function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Card TEA */}
-            <Link to="/avaliacao-tea" className="group">
+            <Link to="/avaliacao-autismo-infantil" className="group">
               <div className="bg-white border-2 border-purple-200 hover:border-purple-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
                 <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <Brain className="w-8 h-8 text-purple-600" />
@@ -324,7 +342,7 @@ function Home() {
             </Link>
 
             {/* Card Dificuldade Escolar */}
-            <Link to="/dificuldade-escolar" className="group">
+            <Link to="/avaliacao-neuropsicologica-dificuldade-escolar" className="group">
               <div className="bg-white border-2 border-blue-200 hover:border-blue-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
                 <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
                   <BookOpen className="w-8 h-8 text-blue-600" />
@@ -442,6 +460,25 @@ function Home() {
               Ver Todos os Artigos
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-4xl text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Perguntas Frequentes sobre Desenvolvimento Infantil
+          </h2>
+
+          <p className="text-gray-600 mb-6">
+            Tire suas dúvidas sobre atraso na fala, autismo, avaliações e terapias.
+          </p>
+
+          <Link
+            to="/faq"
+            className="inline-block bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition"
+          >
+            Acessar Perguntas Frequentes (FAQ)
+          </Link>
         </div>
       </section>
 
@@ -649,13 +686,27 @@ function Home() {
           color: #000 !important;
         }
       `}</style>
+
       <SEO
-        title="Clínica Fono Inova - Especialistas em Desenvolvimento Infantil"
-        description="Clínica multidisciplinar especializada em fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil em Anápolis-GO."
-        keywords="fonoaudiologia, psicologia infantil, terapia ocupacional, fisioterapia, desenvolvimento infantil, Anápolis"
+        title="Clínica Fono Inova em Anápolis | Desenvolvimento Infantil"
+        description="Clínica multidisciplinar especializada em desenvolvimento infantil."
         image="/images/logo-seo.jpg"
         url="https://www.clinicafonoinova.com.br"
+        type="website"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Clínica Fono Inova",
+          "url": "https://www.clinicafonoinova.com.br",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.clinicafonoinova.com.br/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }}
       />
+
+
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         {/* Tooltip animado */}
         {/* Tooltip animado (abre modal, sem conversão) */}

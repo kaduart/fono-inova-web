@@ -22,6 +22,7 @@ import AdultoVozPage from './pages/AdultoVozPage';
 import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
 import TeaPage from './pages/TeaPage';
+import FaqPage from './pages/Faq.jsx';
 
 // Hook simples para analytics
 const useAnalytics = () => {
@@ -43,9 +44,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background font-inter">
+      {/*  popup page inicial 
       <div className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl -mt-5">
         <SpecialistPopup />
-      </div>
+      </div> 
+      */}
 
       <Routes>
         {/* Rotas existentes */}
@@ -63,10 +66,11 @@ function App() {
         <Route path="/freio-lingual" element={<FreioLingualPage />} />
 
         {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
-        <Route path="/avaliacao-tea" element={<TeaPage />} />
+        <Route path="/avaliacao-tea-autismo-infantil" element={<TeaPage />} />
         <Route path="/fala-tardia" element={<FalaTardiaPage />} />
-        <Route path="/dificuldade-escolar" element={<DificuldadeEscolarPage />} />
+        <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
         <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
+        <Route path="/faq" element={<FaqPage />} />
       </Routes>
 
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

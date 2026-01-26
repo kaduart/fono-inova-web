@@ -204,12 +204,14 @@ const TerapiaOcupacionalPage = () => {
     return (
         <Layout>
             <SEO
-                title="Terapia Ocupacional Infantil - Clínica Fono Inova"
-                description="Terapia ocupacional para desenvolvimento de habilidades motoras, independência e autonomia infantil. Atendimento especializado em atividades diárias."
-                keywords="terapia ocupacional infantil, habilidades motoras, autonomia criança, atividades diárias, desenvolvimento sensorial, integração sensorial"
+                title="Terapia Ocupacional Infantil em Anápolis | Clínica Fono Inova"
+                description="Terapia ocupacional para crianças com dificuldades motoras, sensoriais e autonomia em atividades do dia a dia."
+                keywords="terapia ocupacional infantil, integração sensorial, autonomia criança, habilidades motoras, Anápolis"
                 image="/images/servicos/terapia-ocupacional.jpg"
                 url="https://www.clinicafonoinova.com.br/terapia-ocupacional"
+                type="article"
             />
+
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-amber-50 to-orange-100 overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-amber-200/20 to-transparent" />

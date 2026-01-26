@@ -79,10 +79,27 @@ const AdultoVozPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fonoaudiologia para Adultos - Voz e Disfagia - Clínica Fono Inova"
-                description="Tratamento de problemas vocais e disfagia em adultos. Reabilitação vocal para profissionais da voz em Anápolis-GO."
-                keywords="fonoaudiologia adulto, problemas vocais, rouquidão, disfagia, voz profissional, Anápolis"
+                title="Fonoaudiologia para Adultos em Anápolis | Voz e Disfagia"
+                description="Tratamento para rouquidão, voz profissional e disfagia."
+                image="/images/servicos/fonoaudiologia-adulto.jpg"
+                url="https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"
+                type="article"
+                schema={{
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": "Fonoaudiologia para Adultos em Anápolis",
+                    "description": "Tratamento de voz e disfagia em adultos.",
+                    "image": "https://www.clinicafonoinova.com.br/images/servicos/fonoaudiologia-adulto.jpg",
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Clínica Fono Inova"
+                    },
+                    "mainEntityOfPage": {
+                        "@id": "https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"
+                    }
+                }}
             />
+
 
             {/* Hero */}
             <section className="pt-32 pb-20 bg-gradient-to-br from-emerald-50 via-white to-emerald-50">

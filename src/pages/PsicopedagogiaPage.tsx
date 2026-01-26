@@ -182,11 +182,12 @@ const PsicopedagogiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Psicopedagogia - Avaliação de Dificuldades de Aprendizagem"
-                description="Especialistas em psicopedagogia: identificação e tratamento de dificuldades de aprendizagem, dislexia, TDAH e desenvolvimento escolar."
-                keywords="psicopedagogia, dificuldades de aprendizagem, dislexia, TDAH, avaliação psicopedagógica, terapia aprendizagem"
+                title="Psicopedagogia em Anápolis | Dificuldades de Aprendizagem"
+                description="Avaliação e tratamento psicopedagógico para dificuldades de aprendizagem, dislexia e TDAH em Anápolis-GO."
+                keywords="psicopedagogia, dificuldades de aprendizagem, dislexia, TDAH, avaliação psicopedagógica, Anápolis"
                 image="/images/servicos/psicopedagogia.jpg"
                 url="https://www.clinicafonoinova.com.br/psicopedagogia"
+                type="article"
             />
 
             {/* Hero Section */}
