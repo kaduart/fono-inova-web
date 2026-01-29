@@ -34,13 +34,18 @@ const ButtonWhatsApp = ({
         <button
             type="button"
             onClick={handleClick}
-            className={`${sizeClasses[size]} ${className}`}
+            className={`
+    inline-flex items-center gap-2
+    ${sizeClasses[size]}
+    ${className}
+  `}
             aria-label="Agendar via WhatsApp"
             {...props}
         >
-            <IconComponent className="w-4 h-4 mr-2" />
-            {children}
+            <IconComponent className="w-4 h-4 shrink-0" />
+            <span className="whitespace-nowrap">{children}</span>
         </button>
+
     );
 };
 
