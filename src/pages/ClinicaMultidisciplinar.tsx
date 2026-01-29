@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
-import { 
-  Calendar, 
-  Star, 
+import {
+  Calendar,
+  Star,
   ArrowRight,
   Users,
   Target,
@@ -23,6 +23,8 @@ import {
   BarChart3,
   Eye
 } from 'lucide-react';
+import SEO from '../components/SEO';
+import { schemaFAQMultidisciplinar, schemaMultidisciplinar } from '../schemas/clinicaSchemas';
 
 const ClinicaMultidisciplinar = () => {
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -132,21 +134,32 @@ const ClinicaMultidisciplinar = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Clínica Multidisciplinar Infantil em Anápolis | Jundiaí - Fono Inova"
+        description="Clínica multidisciplinar no bairro Jundiaí, Anápolis. Fonoaudiologia, psicologia, fisioterapia e terapia ocupacional integradas no mesmo local."
+        keywords="clinica multidisciplinar anapolis, clinica infantil jundiai, terapia infantil anapolis, desenvolvimento infantil"
+        image="/images/servicos/multidisciplinar.jpg"
+        url="https://www.clinicafonoinova.com.br/abordagem-multidisciplinar"
+        type="article"
+        schema={[schemaMultidisciplinar, schemaFAQMultidisciplinar]}
+      />
       {/* Hero Section Elegante */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-pink-50 to-rose-100 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-pink-200/20 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center px-4 py-2 bg-pink-100 text-pink-800 rounded-full text-sm font-medium mb-6">
-                <Award className="w-4 h-4 mr-2" />
-                Abordagem Integrada
-              </div>
+              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                Se seu filho estuda muito em <strong>Anápolis</strong> mas as notas não acompanham o esforço,
+                nossa equipe especializada no bairro <strong>Jundiaí</strong> realiza avaliação neuropsicológica
+                completa para identificar dislexia, TDAH ou discalculia, criando um plano de intervenção
+                que devolve a confiança e melhora o desempenho escolar.
+              </p>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
                 5 Vantagens de uma Clínica <span className="text-pink-600">Multidisciplinar</span> para Seu Filho
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Descubra por que a abordagem integrada oferece os melhores resultados para o desenvolvimento infantil, 
+                Descubra por que a abordagem integrada oferece os melhores resultados para o desenvolvimento infantil,
                 com equipe especializada trabalhando de forma coordenada para potencializar a evolução da criança.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -164,9 +177,9 @@ const ClinicaMultidisciplinar = () => {
             <div className="relative">
               <div className="bg-white rounded-3xl p-8 shadow-2xl">
                 <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl overflow-hidden">
-                  <img 
-                    src="/api/placeholder/600/400" 
-                    alt="Equipe multidisciplinar em reunião" 
+                  <img
+                    src="/api/placeholder/600/400"
+                    alt="Equipe multidisciplinar em reunião"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -201,6 +214,16 @@ const ClinicaMultidisciplinar = () => {
         </div>
       </section>
 
+      {/* Localização */}
+      <section className="py-8 bg-pink-50 border-y border-pink-100">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-pink-800 font-medium">
+            📍 Clínica multidisciplinar no bairro Jundiaí, Anápolis/GO |
+            Av. Minas Gerais, 405 | Todos os especialistas em um só lugar
+          </p>
+        </div>
+      </section>
+
       {/* O que é uma Equipe Multidisciplinar */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -219,14 +242,14 @@ const ClinicaMultidisciplinar = () => {
                 atrasos no desenvolvimento ou transtornos como TEA e TDAH raramente se resolvem com
                 uma única abordagem.
               </p>
-              
+
               <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-2xl">
                 <div className="flex items-start">
                   <Lightbulb className="w-8 h-8 text-blue-600 mr-4 mt-1" />
                   <div>
                     <h3 className="text-lg font-semibold text-blue-800 mb-2">Por que a Abordagem Multidisciplinar?</h3>
                     <p className="text-blue-700">
-                      Crianças não se desenvolvem em compartimentos isolados. O que afeta a fala impacta a socialização, 
+                      Crianças não se desenvolvem em compartimentos isolados. O que afeta a fala impacta a socialização,
                       que por sua vez influencia o desenvolvimento emocional e cognitivo. Por isso, a abordagem integrada é essencial.
                     </p>
                   </div>
@@ -235,9 +258,9 @@ const ClinicaMultidisciplinar = () => {
             </div>
             <div className="relative">
               <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <img 
-                  src="/api/placeholder/500/350" 
-                  alt="Equipe multidisciplinar trabalhando junta" 
+                <img
+                  src="/api/placeholder/500/350"
+                  alt="Equipe multidisciplinar trabalhando junta"
                   className="w-full h-auto rounded-lg"
                 />
               </div>
@@ -352,11 +375,10 @@ const ClinicaMultidisciplinar = () => {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-5 h-5 ${
-                        i < testimonial.rating
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'fill-gray-300 text-gray-300'
-                      }`}
+                      className={`w-5 h-5 ${i < testimonial.rating
+                        ? 'fill-yellow-400 text-yellow-400'
+                        : 'fill-gray-300 text-gray-300'
+                        }`}
                     />
                   ))}
                 </div>
@@ -389,9 +411,8 @@ const ClinicaMultidisciplinar = () => {
                   onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
                 >
                   <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
-                  <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${
-                    openAccordion === index ? 'transform rotate-180' : ''
-                  }`} />
+                  <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform ${openAccordion === index ? 'transform rotate-180' : ''
+                    }`} />
                 </button>
                 {openAccordion === index && (
                   <div className="p-6 bg-gray-50 border-t border-gray-200">
@@ -411,10 +432,10 @@ const ClinicaMultidisciplinar = () => {
             Pronto para Experimentar os Benefícios da Abordagem Multidisciplinar?
           </h2>
           <p className="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">
-            Agende uma avaliação com nossa equipe integrada e descubra como podemos juntos 
-            potencializar o desenvolvimento do seu filho.
+            Agende uma avaliação com nossa equipe integrada no bairro Jundiaí e descubra
+            como podemos juntos potencializar o desenvolvimento do seu filho em Anápolis.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <button className="bg-white text-pink-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
               <Calendar className="w-5 h-5 mr-2" />
               Agendar Avaliação
@@ -423,6 +444,15 @@ const ClinicaMultidisciplinar = () => {
               <Phone className="w-5 h-5 mr-2" />
               Falar com Especialista
             </button>
+          </div>
+          {/* Endereço completo */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-white/80">
+              📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+            </p>
+            <p className="text-xs text-white/60 mt-1">
+              Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+            </p>
           </div>
         </div>
       </section>

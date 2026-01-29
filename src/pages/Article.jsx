@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { articlesData } from '../data/articlesData';
+import { schemaArticle } from '../schemas/clinicaSchemas';
 
 const ArticlePage = () => {
     const { slug } = useParams();
@@ -116,30 +117,7 @@ const ArticlePage = () => {
                     image={article.image}
                     url={`https://www.clinicafonoinova.com.br/artigos/${article.slug}`}
                     type="article"
-                    schema={{
-                        "@context": "https://schema.org",
-                        "@type": "Article",
-                        "headline": article.title,
-                        "description": article.excerpt,
-                        "image": article.image,
-                        "author": {
-                            "@type": "Person",
-                            "name": article.author
-                        },
-                        "publisher": {
-                            "@type": "Organization",
-                            "name": "Clínica Fono Inova",
-                            "logo": {
-                                "@type": "ImageObject",
-                                "url": "https://www.clinicafonoinova.com.br/logo.png"
-                            }
-                        },
-                        "datePublished": article.date,
-                        "mainEntityOfPage": {
-                            "@type": "WebPage",
-                            "@id": `https://www.clinicafonoinova.com.br/artigos/${article.slug}`
-                        }
-                    }}
+                    schema={schemaArticle}
                 />
 
                 {/* Breadcrumb */}

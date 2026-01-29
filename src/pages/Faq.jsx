@@ -2,6 +2,7 @@ import { Calendar, HelpCircle, MessageCircle } from 'lucide-react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaFAQ } from '../schemas/clinicaSchemas';
 
 const faq = [
     {
@@ -46,18 +47,7 @@ const FaqPage = () => {
                 description="Tire suas dúvidas sobre atraso na fala, autismo, avaliações e terapias infantis em Anápolis."
                 keywords="faq fonoaudiologia, dúvidas pais, atraso na fala, autismo infantil, Anápolis"
                 url="https://www.clinicafonoinova.com.br/faq"
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    "mainEntity": faq.map(item => ({
-                        "@type": "Question",
-                        "name": item.pergunta,
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": item.resposta
-                        }
-                    }))
-                }}
+                schema={schemaFAQ}
             />
 
             {/* Hero */}

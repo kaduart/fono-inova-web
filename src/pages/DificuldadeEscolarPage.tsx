@@ -2,6 +2,7 @@ import { BookOpen, Brain, Calendar, CheckCircle, MessageCircle, Target } from 'l
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar } from '../schemas/clinicaSchemas';
 
 const DificuldadeEscolarPage = () => {
     const sinaisDificuldade = [
@@ -59,34 +60,12 @@ const DificuldadeEscolarPage = () => {
     return (
         <Layout>
             <SEO
-                title="Dificuldade Escolar em Anápolis | Avaliação Neuropsicológica"
-                description="Avaliação neuropsicológica para dificuldade escolar, dislexia e TDAH."
+                title="Meu Filho Não Aprende na Escola em Anápolis | Jundiaí - Fono Inova"
+                description="Seu filho estuda muito mas tira notas baixas em Anápolis? Avaliação neuropsicológica no bairro Jundiaí para identificar dislexia, TDAH. Agende pelo WhatsApp."
                 image="/images/servicos/dificuldade-escolar.jpg"
-                url="https://www.clinicafonoinova.com.br/dificuldade-escolar"
+                url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar"
                 type="article"
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "Article",
-                    "headline": "Dificuldade Escolar em Anápolis",
-                    "description": "Avaliação para dislexia, TDAH e dificuldades de aprendizagem.",
-                    "image": "https://www.clinicafonoinova.com.br/images/servicos/dificuldade-escolar.jpg",
-                    "author": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://www.clinicafonoinova.com.br/logo.png"
-                        }
-                    },
-                    "mainEntityOfPage": {
-                        "@type": "WebPage",
-                        "@id": "https://www.clinicafonoinova.com.br/dificuldade-escolar"
-                    }
-                }}
+                schema={[schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar]}
             />
 
             {/* Hero */}
@@ -201,6 +180,24 @@ const DificuldadeEscolarPage = () => {
                 </div>
             </section>
 
+            {/* CTA Interrupção - Desespero */}
+            <section className="py-12 bg-orange-50 border-y border-orange-200">
+                <div className="container mx-auto px-4 text-center max-w-3xl">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        Seu Filho Chora ao Fazer Lição de Casa?
+                    </h3>
+                    <p className="text-gray-700 mb-6">
+                        A frustração escolar é real. Se seu filho demora 3 horas para fazer o que deveria levar 30 minutos,
+                        <strong> não é preguiça</strong>. É hora de investigar. No bairro Jundiaí, fazemos avaliação expressa.
+                    </p>
+                    <ButtonWhatsApp
+                        message="Meu filho tem muita dificuldade com lição de casa. Quero agendar avaliação neuropsicológica no Jundiaí."
+                        className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-bold shadow-lg"
+                    >
+                        Quero Avaliação Expressa
+                    </ButtonWhatsApp>
+                </div>
+            </section>
             {/* Por que é essencial */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
@@ -268,6 +265,21 @@ const DificuldadeEscolarPage = () => {
                 </div>
             </section>
 
+            <section className="py-12 bg-gray-50 border-t border-gray-200">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-gray-600 mb-4">Outros pais de Anápolis buscaram por:</p>
+                    <div className="flex flex-wrap justify-center gap-3 text-sm">
+                        <a href="/fala-tardia" className="text-blue-600 hover:underline">Atraso na Fala</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/avaliacao-autismo-infantil" className="text-blue-600 hover:underline">Suspeita de Autismo</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/psicopedagogia" className="text-blue-600 hover:underline">Dislexia</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/fonoaudiologia" className="text-blue-600 hover:underline">Fonoaudiologia</a>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Final */}
             <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
                 <div className="container mx-auto px-4 max-w-4xl">
@@ -309,6 +321,14 @@ const DificuldadeEscolarPage = () => {
                                 📍 Clínica Fono Inova - Anápolis, GO
                             </p>
                         </div>
+                    </div>
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-white/80">
+                            📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                            Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                        </p>
                     </div>
                 </div>
             </section>

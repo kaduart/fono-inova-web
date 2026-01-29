@@ -4,7 +4,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 // Import das páginas existentes
 import AnalyticsTest from './components/AnalyticsTest';
 import BookingModal from './components/BookingModal.jsx';
-import SpecialistPopup from './components/SpecialityPopup/SpecialityPopUp';
 import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
@@ -21,8 +20,8 @@ import TerapiaOcupacionalPage from './pages/TerapiaOcupacionaPage';
 import AdultoVozPage from './pages/AdultoVozPage';
 import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
-import TeaPage from './pages/TeaPage';
 import FaqPage from './pages/Faq.jsx';
+import TeaPage from './pages/TeaPage';
 
 // Hook simples para analytics
 const useAnalytics = () => {
@@ -66,7 +65,7 @@ function App() {
         <Route path="/freio-lingual" element={<FreioLingualPage />} />
 
         {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
-        <Route path="/avaliacao-tea-autismo-infantil" element={<TeaPage />} />
+        <Route path="/avaliacao-autismo-infantil" element={<TeaPage />} />
         <Route path="/fala-tardia" element={<FalaTardiaPage />} />
         <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
         <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />

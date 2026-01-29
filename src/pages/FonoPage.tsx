@@ -22,9 +22,10 @@ import {
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
+import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
-import SEO from '../components/SEO';
+import { schemaFAQ, schemaFonoaudiologia } from '../schemas/clinicaSchemas';
 
 const FonoPage = () => {
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -185,6 +186,7 @@ const FonoPage = () => {
         image="/images/servicos/fonoaudiologia.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia"
         type="article"
+        schema={[schemaFonoaudiologia, schemaFAQ]}
       />
 
       {/* Hero Section Elegante - MELHORADA */}
@@ -203,7 +205,8 @@ const FonoPage = () => {
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 Um guia completo baseado em evidências científicas para entender o desenvolvimento da linguagem infantil
-                e identificar quando buscar ajuda especializada.
+                e identificar quando buscar ajuda especializada em <strong>Anápolis</strong>.
+                No bairro <strong>Jundiaí</strong>, a Fono Inova oferece fonoaudiologia infantil com avaliação especializada.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <ButtonAgendamento
@@ -248,6 +251,14 @@ const FonoPage = () => {
         </div>
       </section>
 
+      <section className="py-4 bg-blue-50 border-y">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm font-medium text-blue-800">
+            📍 Atendimento no bairro Jundiaí, Anápolis/GO | Av. Minas Gerais, 405
+          </p>
+        </div>
+      </section>
+
       {/* Estatísticas Importantes - MELHORADA */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
@@ -260,6 +271,12 @@ const FonoPage = () => {
                 <div className="text-sm text-gray-700 mt-3 font-medium">{stat.label}</div>
               </div>
             ))}
+          </div>
+          <div className="bg-blue-50 p-6 rounded-2xl mt-8 text-center">
+            <p className="text-blue-800 font-medium">
+              📍 Atendimento presencial no bairro Jundiaí, Anápolis/GO.
+              Fácil acesso para Vila Santa e Centro.
+            </p>
           </div>
         </div>
       </section>
@@ -488,7 +505,17 @@ const FonoPage = () => {
         </div>
       </section>
 
-      {/* CTA Final Otimizado */}
+      <section className="py-12 bg-gray-50 border-t border-gray-200">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-gray-600 text-sm">Veja também:</p>
+          <div className="flex justify-center gap-4 mt-2 text-sm">
+            <a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">Dificuldade Escolar</a>
+            <a href="/fala-tardia" className="text-blue-600 hover:underline">Fala Tardia</a>
+            <a href="/freio-lingual" className="text-blue-600 hover:underline">Teste da Linguinha</a>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Final Otimizado */}
       <section
         className="
@@ -568,10 +595,17 @@ const FonoPage = () => {
                 <span>4.9/5 Avaliação</span>
               </div>
             </div>
+            <p className="text-sm text-gray-500 mt-4">
+              📍 Clínica Fono Inova - Av. Minas Gerais, Jundiaí, Anápolis/GO
+            </p>
           </div>
         </div>
       </section>
-
+      <section className="py-12 bg-gray-50 text-center">
+        <p className="text-gray-600">
+          Clínica Fono Inova • Av. Minas Gerais, 405 • Jundiaí • Anápolis/GO
+        </p>
+      </section>
     </Layout >
   );
 

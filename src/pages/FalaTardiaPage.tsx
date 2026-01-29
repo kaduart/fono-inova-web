@@ -1,7 +1,8 @@
-import { Calendar, CheckCircle, Clock, Heart, MessageCircle, MessageSquare } from 'lucide-react';
+import { AlertCircle, Calendar, CheckCircle, Clock, Heart, MapPin, MessageCircle, MessageSquare } from 'lucide-react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaFalaTardia, schemaFAQFalaTardia } from '../schemas/clinicaSchemas';
 
 const FalaTardiaPage = () => {
     const sinaisAtraso = [
@@ -86,34 +87,12 @@ const FalaTardiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fala Tardia Infantil em Anápolis | Fonoaudiologia Clínica Fono Inova"
-                description="Tratamento especializado para crianças com atraso na fala em Anápolis-GO."
+                title="Meu Filho Não Fala aos 3 Anos em Anápolis | Fonoaudiologia Jundiaí"
+                description="Seu filho tem 2-3 anos e ainda não fala? Fonoaudiologia infantil no bairro Jundiaí, Anápolis. Avaliação do atraso de fala. Agende pelo WhatsApp."
                 image="/images/servicos/fala-tardia.jpg"
                 url="https://www.clinicafonoinova.com.br/fala-tardia"
                 type="article"
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "Article",
-                    "headline": "Fala Tardia Infantil em Anápolis",
-                    "description": "Tratamento especializado para atraso na fala em crianças.",
-                    "image": "https://www.clinicafonoinova.com.br/images/servicos/fala-tardia.jpg",
-                    "author": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://www.clinicafonoinova.com.br/logo.png"
-                        }
-                    },
-                    "mainEntityOfPage": {
-                        "@type": "WebPage",
-                        "@id": "https://www.clinicafonoinova.com.br/fala-tardia"
-                    }
-                }}
+                schema={[schemaFalaTardia, schemaFAQFalaTardia]}
             />
 
 
@@ -127,9 +106,10 @@ const FalaTardiaPage = () => {
                                 <span className="text-orange-600">Não Fala</span>?
                             </h1>
                             <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Cada criança tem seu próprio ritmo, mas alguns sinais indicam que é hora de
-                                buscar ajuda especializada. A fonoaudiologia pode desbloquear a comunicação
-                                do seu filho e trazer tranquilidade para toda a família.
+                                Cada criança tem seu próprio ritmo, mas se você está em <strong>Anápolis</strong>
+                                e nota que seu filho de 3 anos ainda não forma frases, é hora de buscar ajuda.
+                                No bairro <strong>Jundiaí</strong>, a Fono Inova oferece fonoaudiologia
+                                especializada para desbloquear a comunicação do seu filho.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
@@ -166,6 +146,16 @@ const FalaTardiaPage = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section className="py-6 bg-orange-50 border-y border-orange-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-orange-800 font-medium flex items-center justify-center gap-2">
+                        <MapPin className="w-5 h-5" />
+                        Fonoaudióloga infantil no bairro Jundiaí, Anápolis/GO |
+                        Atendemos atraso de fala, autismo e TEA
+                    </p>
                 </div>
             </section>
 
@@ -231,6 +221,31 @@ const FalaTardiaPage = () => {
                 </div>
             </section>
 
+            <section className="py-10 bg-red-50 border-l-4 border-red-500 my-8">
+                <div className="container mx-auto px-4 max-w-3xl">
+                    <div className="flex items-start gap-4">
+                        <div className="bg-red-100 p-3 rounded-full">
+                            <AlertCircle className="w-6 h-6 text-red-600" />
+                        </div>
+                        <div>
+                            <h3 className="text-xl font-bold text-red-900 mb-2">
+                                Se seu filho tem +2 anos e fala menos de 20 palavras...
+                            </h3>
+                            <p className="text-red-800 mb-4">
+                                Isso não é "falta de estimulação". Pode ser necessário intervenção fonoaudiológica urgente
+                                para liberar a comunicação. Não espere até os 4 anos.
+                            </p>
+                            <ButtonWhatsApp
+                                message="URGENTE: Meu filho tem [X] anos e fala pouco. Preciso de avaliação fonoaudiológica no Jundiaí."
+                                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold"
+                            >
+                                Agendar Avaliação Urgente
+                            </ButtonWhatsApp>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Por que acontece */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
@@ -282,7 +297,8 @@ const FalaTardiaPage = () => {
                             Como a <span className="text-orange-600">Fonoaudiologia</span> Funciona
                         </h2>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Sessões lúdicas e eficazes para estimular a comunicação do seu filho
+                            Sessões lúdicas de fonoaudiologia infantil no <strong>bairro Jundiaí</strong>,
+                            com fácil acesso para famílias de toda Anápolis e região.
                         </p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-8">
@@ -377,7 +393,7 @@ const FalaTardiaPage = () => {
                                 </ButtonWhatsApp>
                             </div>
                             <p className="text-sm text-gray-500 mt-4">
-                                📍 Clínica Fono Inova - Anápolis, GO
+                                📍 Clínica Fono Inova - Av. Minas Gerais, Jundiaí, Anápolis/GO
                             </p>
                         </div>
                     </div>

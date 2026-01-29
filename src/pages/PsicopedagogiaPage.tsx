@@ -11,6 +11,7 @@ import {
     Clock,
     FileText,
     GraduationCap,
+    MapPin,
     MessageCircle,
     Pencil,
     Phone,
@@ -27,6 +28,7 @@ import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaFAQPsicopedagogia, schemaPsicopedagogia } from '../schemas/clinicaSchemas';
 
 const PsicopedagogiaPage = () => {
     useServiceViewTime('Psicopedagogia');
@@ -182,12 +184,13 @@ const PsicopedagogiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Psicopedagogia em Anápolis | Dificuldades de Aprendizagem"
-                description="Avaliação e tratamento psicopedagógico para dificuldades de aprendizagem, dislexia e TDAH em Anápolis-GO."
-                keywords="psicopedagogia, dificuldades de aprendizagem, dislexia, TDAH, avaliação psicopedagógica, Anápolis"
+                title="Psicopedagogia em Anápolis | Dislexia e Dificuldades Escolares - Fono Inova"
+                description="Avaliação psicopedagógica para dificuldades de aprendizagem, dislexia e TDAH no bairro Jundiaí, Anápolis. Atendimento especializado infantil."
+                keywords="psicopedagogia anapolis, dislexia anapolis, dificuldade escolar jundiai, psicopedagoga anapolis"
                 image="/images/servicos/psicopedagogia.jpg"
                 url="https://www.clinicafonoinova.com.br/psicopedagogia"
                 type="article"
+                schema={[schemaPsicopedagogia, schemaFAQPsicopedagogia]} // Array aqui!
             />
 
             {/* Hero Section */}
@@ -205,7 +208,9 @@ const PsicopedagogiaPage = () => {
                                 Psicopedagogia: <span className="text-amber-600">8 Sinais</span> de Dificuldades de Aprendizagem
                             </h1>
                             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Entenda quando seu filho precisa de apoio psicopedagógico e como transformar dificuldades em conquistas escolares.
+                                Entenda quando seu filho precisa de apoio psicopedagógico em <strong>Anápolis</strong>.
+                                No bairro <strong>Jundiaí</strong>, ajudamos crianças com dificuldades de alfabetização,
+                                dislexia e TDAH a transformarem desafios escolares em conquistas.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-2xl shadow-md">
@@ -257,6 +262,17 @@ const PsicopedagogiaPage = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Localização */}
+            <section className="py-8 bg-amber-50 border-y border-amber-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-amber-800 font-medium flex items-center justify-center gap-2">
+                        <MapPin className="w-5 h-5" />
+                        Atendimento presencial no bairro Jundiaí, Anápolis/GO |
+                        Fácil acesso para Centro e Vila Santa
+                    </p>
                 </div>
             </section>
 
@@ -540,6 +556,15 @@ const PsicopedagogiaPage = () => {
                                 <Star className="w-5 h-5 text-white fill-white" />
                                 <span>4.9/5 Avaliação</span>
                             </div>
+                        </div>
+                        {/* Endereço completo */}
+                        <div className="mt-8 text-center">
+                            <p className="text-sm text-white/80">
+                                📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                            </p>
+                            <p className="text-xs text-white/60 mt-1">
+                                Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                            </p>
                         </div>
                     </div>
                 </div>

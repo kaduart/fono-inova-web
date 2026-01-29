@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.clinicafonoinova.com.br/sitemap.xml
+
+# Bloquear páginas de teste (se houver)
+Disallow: /teste
+Disallow: /admin

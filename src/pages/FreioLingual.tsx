@@ -24,6 +24,7 @@ import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaFAQFreioLingual, schemaFreioLingual } from '../schemas/clinicaSchemas';
 
 const FreioLingualPage = () => {
     useServiceViewTime('Freio Lingual');
@@ -179,12 +180,13 @@ const FreioLingualPage = () => {
     return (
         <Layout>
             <SEO
-                title="Freio Lingual em Anápolis | Avaliação e Frenotomia - Clínica Fono Inova"
-                description="Avaliação e tratamento do freio lingual (língua presa) em bebês, crianças e adultos. Atendimento especializado em Anápolis-GO."
-                keywords="freio lingual, língua presa, frenotomia, amamentação, fala, avaliação freio lingual, Anápolis"
+                title="Teste da Linguinha em Anápolis | Freio Lingual Jundiaí - Fono Inova"
+                description="Avaliação e tratamento do freio lingual (língua presa) no bairro Jundiaí, Anápolis. Atendimento para bebês com dificuldade na amamentação e crianças."
+                keywords="teste da linguinha anapolis, freio lingual jundiai, frenotomia anapolis, lingua presa bebe anapolis"
                 image="/images/servicos/freio-lingual.jpg"
                 url="https://www.clinicafonoinova.com.br/freio-lingual"
                 type="article"
+                schema={[schemaFreioLingual, schemaFAQFreioLingual]}
             />
 
             {/* Hero Section */}
@@ -194,10 +196,11 @@ const FreioLingualPage = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 rounded-full text-sm font-medium mb-6 shadow-sm">
-                                <Award className="w-4 h-4 mr-2" />
-                                Especialistas em Freio Lingual
-                            </div>
+                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                                Se você está em <strong>Anápolis</strong> e suspeita que seu bebê ou criança tem a língua presa (freio lingual),
+                                nossa especialista no bairro <strong>Jundiaí</strong> faz a avaliação completa do teste da linguinha.
+                                Da amamentação à fala, ajudamos desde os primeiros dias de vida.
+                            </p>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
                                 Freio Lingual: <span className="text-purple-600">8 Sinais</span> que Você Precisa Conhecer
                             </h1>
@@ -237,6 +240,16 @@ const FreioLingualPage = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Localização - Teste da Linguinha Anápolis */}
+            <section className="py-8 bg-purple-50 border-y border-purple-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-purple-800 font-medium">
+                        📍 Clínica especializada em teste da linguinha no bairro Jundiaí, Anápolis/GO |
+                        Av. Minas Gerais, 405 | Pronto atendimento para bebês
+                    </p>
                 </div>
             </section>
 
@@ -533,6 +546,15 @@ const FreioLingualPage = () => {
                                 <span>4.9/5 Avaliação</span>
                             </div>
                         </div>
+                    </div>
+                    {/* Endereço completo */}
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-white/80">
+                            📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                            Especialistas em teste da linguinha • Atendimento de segunda a sábado
+                        </p>
                     </div>
                 </div>
             </section>

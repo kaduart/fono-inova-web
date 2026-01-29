@@ -26,6 +26,7 @@ import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaFAQPsicologia, schemaPsicologia } from '../schemas/clinicaSchemas';
 
 const PsicoPage = () => {
     useServiceViewTime('Psicologia');
@@ -180,6 +181,7 @@ const PsicoPage = () => {
                 image="/images/servicos/psicologia.jpg"
                 url="https://www.clinicafonoinova.com.br/psicologia"
                 type="article"
+                schema={[schemaPsicologia, schemaFAQPsicologia]}
             />
 
             {/* Hero Section Elegante */}
@@ -196,8 +198,9 @@ const PsicoPage = () => {
                                 TDAH em Crianças: <span className="text-green-600">Entenda</span> os Sintomas e Quando Buscar Ajuda
                             </h1>
                             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Um guia completo baseado em evidências científicas para identificar e compreender
-                                o Transtorno de Déficit de Atenção e Hiperatividade na infância.
+                                Um guia completo para identificar TDAH. Se você está em <strong>Anápolis</strong>
+                                e nota sinais de hiperatividade ou desatenção no seu filho, nossa equipe no bairro
+                                <strong> Jundiaí</strong> oferece avaliação psicológica especializada.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonAgendamento className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
@@ -247,6 +250,14 @@ const PsicoPage = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            <section className="py-4 bg-green-50 border-y">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-sm font-medium text-green-800">
+                        📍 Atendimento no bairro Jundiaí, Anápolis/GO | Av. Minas Gerais, 405
+                    </p>
                 </div>
             </section>
 
@@ -495,7 +506,17 @@ const PsicoPage = () => {
                 </div>
             </section>
 
-            {/* CTA Final Otimizado */}
+            <section className="py-12 bg-white border-t border-gray-200">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-gray-600 text-sm">Veja também:</p>
+                    <div className="flex justify-center gap-4 mt-2 text-sm">
+                        <a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-green-600 hover:underline">Dificuldade Escolar</a>
+                        <a href="/fala-tardia" className="text-green-600 hover:underline">Fala Tardia</a>
+                        <a href="/freio-lingual" className="text-green-600 hover:underline">Teste da Linguinha</a>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Final – Verde Fono Inova */}
             <section
                 className="
@@ -548,13 +569,14 @@ const PsicoPage = () => {
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>
 
-                            <a
-                                href="tel:6237063924"
-                                className="border-2 border-white text-white hover:bg-white hover:text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
-                            >
-                                <Phone className="w-6 h-6" />
-                                Ligar Agora
-                            </a>
+                            <div className="mt-6 text-center">
+                                <p className="text-sm text-gray-500">
+                                    📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Jundiaí • Anápolis/GO
+                                </p>
+                                <p className="text-xs text-gray-400 mt-1">
+                                    Atendimento de segunda a sábado
+                                </p>
+                            </div>
                         </div>
 
                         {/* Garantias */}
@@ -575,7 +597,11 @@ const PsicoPage = () => {
                     </div>
                 </div>
             </section>
-
+            <section className="py-12 bg-gray-50 text-center">
+                <p className="text-gray-600">
+                    Clínica Fono Inova • Av. Minas Gerais, 405 • Jundiaí • Anápolis/GO
+                </p>
+            </section>
         </Layout>
     );
 };

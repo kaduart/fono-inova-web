@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaFAQTea, schemaTea } from '../schemas/clinicaSchemas';
 
 const TeaPage = () => {
     const [openAccordion, setOpenAccordion] = useState(null);
@@ -77,28 +78,13 @@ const TeaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Avaliação TEA (Autismo Infantil) em Anápolis | Clínica Fono Inova"
-                description="Avaliação multidisciplinar para diagnóstico precoce do autismo infantil. Psicologia, fonoaudiologia e TO em Anápolis-GO."
-                keywords="avaliação TEA, autismo infantil, psicólogo autismo, fonoaudiologia autismo, Anápolis"
+                title="Meu Filho Não Olha nos Olhos em Anápolis | Avaliação TEA Jundiaí"
+                description="Seu filho não responde ao nome ou tem manias repetitivas em Anápolis? Avaliação de autismo (TEA) no bairro Jundiaí. Diagnóstico precoce. Agende."
+                keywords="avaliação tea anapolis, autismo infantil anapolis, psicologo autismo jundiai, diagnostico autismo anapolis"
+                image="/images/servicos/tea-avaliacao.jpg"
                 url="https://www.clinicafonoinova.com.br/avaliacao-autismo-infantil"
                 type="article"
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "MedicalWebPage",
-                    "headline": "Avaliação de Autismo Infantil (TEA)",
-                    "author": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://www.clinicafonoinova.com.br/logo.png"
-                        }
-                    }
-                }}
+                schema={[schemaTea, schemaFAQTea]} // Array aqui!
             />
 
             {/* Hero Section */}
@@ -107,10 +93,18 @@ const TeaPage = () => {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div className="animate-fade-in-up">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 leading-tight">
-                                Você Desconfia que Seu Filho Pode Ter{' '}
-                                <span className="text-purple-600">Autismo</span>?
-                            </h1>
+                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                                Se você está em <strong>Anápolis</strong> e desconfia que seu filho pode ter autismo (TEA),
+                                estamos no bairro <strong>Jundiaí</strong> para ajudar. A boa notícia é que quanto antes
+                                iniciar o acompanhamento especializado, melhores são os resultados no desenvolvimento
+                                da criança.
+                            </p>
+                            <div className="bg-purple-50 border-l-4 border-purple-600 p-4 mb-6 rounded-r-lg">
+                                <p className="text-purple-900 font-medium">
+                                    ⚠️ A janela de ouro do tratamento é entre 2-5 anos.
+                                    Cada mês sem terapia é uma oportunidade perdida no desenvolvimento cerebral.
+                                </p>
+                            </div>
                             <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                                 Sabemos que a suspeita de TEA traz muitas dúvidas e ansiedade.
                                 A boa notícia é que quanto antes iniciar o acompanhamento especializado,
@@ -183,6 +177,16 @@ const TeaPage = () => {
                             Não deixe a dúvida te paralisar.
                         </p>
                     </div>
+                </div>
+            </section>
+
+            {/* Localização estratégica */}
+            <section className="py-8 bg-purple-50 border-y border-purple-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-purple-800 font-medium">
+                        📍 Atendimento presencial no bairro Jundiaí, Anápolis/GO |
+                        Fácil acesso para famílias de toda a região
+                    </p>
                 </div>
             </section>
 
@@ -331,7 +335,7 @@ const TeaPage = () => {
                                 </ButtonWhatsApp>
                             </div>
                             <p className="text-sm text-gray-500 mt-4">
-                                📍 Clínica Fono Inova - Anápolis, GO
+                                📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
                             </p>
                         </div>
                     </div>

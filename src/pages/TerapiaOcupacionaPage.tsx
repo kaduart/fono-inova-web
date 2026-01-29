@@ -23,6 +23,7 @@ import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaFAQTO, schemaTerapiaOcupacional } from '../schemas/clinicaSchemas';
 
 const TerapiaOcupacionalPage = () => {
     useServiceViewTime('Terapia Ocupacional');
@@ -204,12 +205,13 @@ const TerapiaOcupacionalPage = () => {
     return (
         <Layout>
             <SEO
-                title="Terapia Ocupacional Infantil em Anápolis | Clínica Fono Inova"
-                description="Terapia ocupacional para crianças com dificuldades motoras, sensoriais e autonomia em atividades do dia a dia."
-                keywords="terapia ocupacional infantil, integração sensorial, autonomia criança, habilidades motoras, Anápolis"
+                title="Terapia Ocupacional Infantil em Anápolis | Jundiaí - Fono Inova"
+                description="Terapia ocupacional para integração sensorial e autonomia infantil no bairro Jundiaí, Anápolis. Sessões de integração sensorial e coordenação motora."
+                keywords="terapia ocupacional infantil anapolis, integracao sensorial jundiai, autonomia criança anapolis, to infantil"
                 image="/images/servicos/terapia-ocupacional.jpg"
                 url="https://www.clinicafonoinova.com.br/terapia-ocupacional"
                 type="article"
+                schema={[schemaTerapiaOcupacional, schemaFAQTO]}
             />
 
             {/* Hero Section Elegante */}
@@ -218,10 +220,11 @@ const TerapiaOcupacionalPage = () => {
                 <div className="container mx-auto px-4 relative z-10">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
-                            <div className="inline-flex items-center px-4 py-2 bg-amber-100 text-amber-800 rounded-full text-sm font-medium mb-6">
-                                <Award className="w-4 h-4 mr-2" />
-                                Especialidade em Desenvolvimento Infantil
-                            </div>
+                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                                Se você está em <strong>Anápolis</strong> e seu filho tem dificuldades de coordenação,
+                                autonomia ou sensibilidade a texturas, nossa equipe no bairro <strong>Jundiaí</strong>
+                                oferece terapia ocupacional especializada para transformar o desenvolvimento infantil.
+                            </p>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
                                 Terapia Ocupacional <span className="text-amber-600">Infantil</span>: Como Ajuda no Desenvolvimento
                             </h1>
@@ -276,6 +279,16 @@ const TerapiaOcupacionalPage = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            {/* Localização estratégica */}
+            <section className="py-8 bg-amber-50 border-y border-amber-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-amber-800 font-medium">
+                        📍 Atendimento presencial no bairro Jundiaí, Anápolis/GO |
+                        Fácil acesso para Vila Santa e Centro
+                    </p>
                 </div>
             </section>
 
@@ -586,6 +599,15 @@ const TerapiaOcupacionalPage = () => {
                                 <span>4.9/5 Avaliação</span>
                             </div>
                         </div>
+                    </div>
+                    {/* Endereço completo */}
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-white/80">
+                            📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                            Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                        </p>
                     </div>
                 </div>
             </section>

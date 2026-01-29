@@ -26,6 +26,7 @@ import SEO from '../components/SEO';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaFAQFisio, schemaFisioterapia } from '../schemas/clinicaSchemas';
 
 const FisioPage = () => {
     useServiceViewTime('Fisioterapia');
@@ -160,7 +161,7 @@ const FisioPage = () => {
                 image="/images/servicos/fisioterapia.jpg"
                 url="https://www.clinicafonoinova.com.br/fisioterapia"
                 type="article"
-            />
+                schema={[schemaFisioterapia, schemaFAQFisio]} />
 
             {/* Hero Section Elegante */}
             <section className="relative pt-32 pb-20 bg-gradient-to-br from-purple-50 to-pink-100 overflow-hidden">
@@ -175,9 +176,9 @@ const FisioPage = () => {
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
                                 Fisioterapia <span className="text-purple-600">Pediátrica</span>: Para Que Serve e Seu Filho Precisa?
                             </h1>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Entenda como a fisioterapia especializada pode ajudar no desenvolvimento motor do seu filho
-                                através de técnicas lúdicas e baseadas em evidências científicas.
+                            <p className="...">
+                                Se você está em <strong>Anápolis</strong> e [problema específico da página],
+                                nossa equipe no bairro <strong>Jundiaí</strong> oferece [solução].
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonAgendamento className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
@@ -226,6 +227,14 @@ const FisioPage = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+            </section>
+
+            <section className="py-4 bg-purple-50 border-y">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-sm font-medium text-purple-800">
+                        📍 Atendimento no bairro Jundiaí, Anápolis/GO | Av. Minas Gerais, 405
+                    </p>
                 </div>
             </section>
 
@@ -447,6 +456,18 @@ const FisioPage = () => {
                 </div>
             </section>
 
+            <section className="py-12 bg-white border-t border-gray-200">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-gray-600 text-sm">Veja também:</p>
+                    <div className="flex justify-center gap-4 mt-2 text-sm">
+                        <a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-purple-600 hover:underline">Dificuldade Escolar</a>
+                        <a href="/fala-tardia" className="text-purple-600 hover:underline">Fala Tardia</a>
+                        <a href="/freio-lingual" className="text-purple-600 hover:underline">Teste da Linguinha</a>
+                    </div>
+                </div>
+            </section>
+
+
             {/* CTA Final Otimizado */}
             <section className="py-20 bg-gradient-to-br from-purple-600 via-pink-700 to-fuchsia-800">
                 <div className="container mx-auto px-4">
@@ -515,6 +536,14 @@ const FisioPage = () => {
                                 <span>4.9/5 Avaliação</span>
                             </div>
                         </div>
+                    </div>
+                    <div className="mt-8 text-center">
+                        <p className="text-sm text-white/80">
+                            📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                        </p>
+                        <p className="text-xs text-white/60 mt-1">
+                            Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                        </p>
                     </div>
                 </div>
             </section>

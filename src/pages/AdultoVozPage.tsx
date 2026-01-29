@@ -2,6 +2,7 @@ import { AlertCircle, Calendar, CheckCircle, MessageCircle, Mic, Users } from 'l
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaAdultoVoz, schemaFAQAdulto } from '../schemas/clinicaSchemas';
 
 const AdultoVozPage = () => {
     const sinaisProblemaVoz = [
@@ -79,25 +80,13 @@ const AdultoVozPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fonoaudiologia para Adultos em Anápolis | Voz e Disfagia"
-                description="Tratamento para rouquidão, voz profissional e disfagia."
+                title="Fonoaudiologia para Adultos em Anápolis | Voz e Disfagia Jundiaí"
+                description="Tratamento para rouquidão, voz profissional e disfagia no bairro Jundiaí, Anápolis. Fonoaudiologia adulta especializada."
+                keywords="fonoaudiologia adulta anapolis, rouquidao tratamento jundiai, disfagia anapolis, voz profissional"
                 image="/images/servicos/fonoaudiologia-adulto.jpg"
                 url="https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"
                 type="article"
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "Article",
-                    "headline": "Fonoaudiologia para Adultos em Anápolis",
-                    "description": "Tratamento de voz e disfagia em adultos.",
-                    "image": "https://www.clinicafonoinova.com.br/images/servicos/fonoaudiologia-adulto.jpg",
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Clínica Fono Inova"
-                    },
-                    "mainEntityOfPage": {
-                        "@id": "https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"
-                    }
-                }}
+                schema={[schemaAdultoVoz, schemaFAQAdulto]}
             />
 
 
@@ -106,9 +95,12 @@ const AdultoVozPage = () => {
                 <div className="container mx-auto px-4">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="animate-fade-in-up">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 leading-tight">
-                                Sua Voz Está <span className="text-emerald-600">Falhando</span>?
-                            </h1>
+                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                                Se você está em <strong>Anápolis</strong> e sua voz está falhando (rouquidão, cansaço)
+                                ou tem dificuldade para engolir, nossa fonoaudióloga no bairro <strong>Jundiaí</strong>
+                                pode ajudar. Atendemos professores, palestrantes e profissionais da voz, além de reabilitação
+                                da deglutição.
+                            </p>
                             <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                                 Rouquidão, cansaço vocal e dificuldade para falar alto não são normais.
                                 Se você depende da sua voz para trabalhar (professor, palestrante, cantor)
@@ -211,6 +203,16 @@ const AdultoVozPage = () => {
                             </p>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Localização */}
+            <section className="py-8 bg-emerald-50 border-y border-emerald-100">
+                <div className="container mx-auto px-4 text-center">
+                    <p className="text-emerald-800 font-medium">
+                        📍 Atendimento fonoaudiológico para adultos no bairro Jundiaí, Anápolis/GO |
+                        Av. Minas Gerais, 405 | Fácil estacionamento
+                    </p>
                 </div>
             </section>
 
@@ -333,9 +335,15 @@ const AdultoVozPage = () => {
                                     Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>
-                            <p className="text-sm text-gray-500 mt-4">
-                                📍 Clínica Fono Inova - Anápolis, GO
-                            </p>
+                            {/* Endereço completo */}
+                            <div className="mt-6 text-center">
+                                <p className="text-sm text-gray-500">
+                                    📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
+                                </p>
+                                <p className="text-xs text-gray-400 mt-1">
+                                    Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

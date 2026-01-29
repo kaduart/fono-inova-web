@@ -25,6 +25,7 @@ import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
+import { schemaNeuropsicologia } from '../schemas/clinicaSchemas';
 
 const NeuropsicologicaPage = () => {
     useServiceViewTime('Avaliação Neuropsicológica');
@@ -186,6 +187,7 @@ const NeuropsicologicaPage = () => {
                 image="/images/servicos/neuropsicologica.jpg"
                 url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica"
                 type="article"
+                schema={schemaNeuropsicologia}
             />
 
             {/* Hero Section */}

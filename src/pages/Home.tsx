@@ -37,6 +37,7 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
+import { schemaHome } from '../schemas/clinicaSchemas.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Olá! Vi o site e gostaria de agendar uma avaliação.";
@@ -693,17 +694,7 @@ function Home() {
         image="/images/logo-seo.jpg"
         url="https://www.clinicafonoinova.com.br"
         type="website"
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Clínica Fono Inova",
-          "url": "https://www.clinicafonoinova.com.br",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.clinicafonoinova.com.br/?s={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
-        }}
+        schema={schemaHome}
       />
 
 

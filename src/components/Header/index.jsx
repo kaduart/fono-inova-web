@@ -278,19 +278,6 @@ const Header = () => {
                         </nav>
                     </div>
                 )}
-                {/* GA4 + Google Ads (forma segura em React) */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-N59X7PNQZZ"></script>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-N59X7PNQZZ');   /* GA4 */
-      gtag('config', 'AW-17010705949'); /* Google Ads */
-    `,
-                    }}
-                />
 
             </header >
             <BookingModal
