@@ -9,7 +9,7 @@ export const articlesData = [
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
     date: "15 de Maio, 2025",
-    image: "https://images.unsplash.com/photo-1577896851231-70ef18881754",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
     content: (
       <>
         <p>
@@ -79,7 +79,7 @@ export const articlesData = [
     categoryColor: "secondary",
     author: "Dra. Ana Santos",
     date: "22 de Agosto, 2025",
-    image: "/images/terapia-ocupacional/to3.jpg",
+    image: "/images/terapia-ocupacional/sessao-sensorial.png",
     content: (
       <>
         <p>O Transtorno do Espectro Autista (TEA) é uma condição do neurodesenvolvimento caracterizada por desafios na comunicação social e por comportamentos restritivos e repetitivos.</p>
@@ -119,7 +119,7 @@ export const articlesData = [
     categoryColor: "accent",
     author: "Dr. Pedro Almeida",
     date: "30 de Julho, 2025",
-    image: "/images/fisioterapia/fisio2.jpg",
+    image: "/images/clinica/sala-ludica.png",
     content: (
       <>
         <p>O desenvolvimento motor é um processo sequencial e contínuo através do qual a criança adquire gradualmente habilidades de movimento. Separamos algumas atividades simples que podem ser realizadas em casa para estimular esse desenvolvimento.</p>
@@ -152,7 +152,7 @@ export const articlesData = [
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
     date: "10 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
     content: (
       <>
         <p>A fala tardia é uma das maiores preocupações dos pais nos primeiros anos de vida. Muitas famílias ficam em dúvida se é apenas uma fase ou se a criança precisa de acompanhamento profissional.</p>
@@ -206,7 +206,7 @@ export const articlesData = [
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
     date: "10 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216",
+    image: "/images/clinica/recepcao.png",
     content: (
       <>
         <p>Reunimos as principais dúvidas dos pais sobre desenvolvimento infantil e terapias realizadas na Clínica Fono Inova em Anápolis.</p>
@@ -251,7 +251,7 @@ export const articlesData = [
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
     date: "15 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1503454537195-2fd9c5128f59",
+    image: "/images/clinica/sala-ludica.png",
     content: (
       <>
         <p>O Transtorno do Déficit de Atenção com Hiperatividade (TDAH) é uma das condições neurobiológicas mais comuns na infância, afetando a aprendizagem e o comportamento social.</p>
@@ -286,7 +286,7 @@ export const articlesData = [
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
     date: "18 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1473093226795-af9932fe5856",
+    image: "/images/terapia-ocupacional/sessao-sensorial.png",
     content: (
       <>
         <p>Muitas crianças passam por fases de recusa alimentar, mas quando o repertório de alimentos é extremamente restrito, podemos estar diante da seletividade alimentar.</p>
@@ -313,7 +313,7 @@ export const articlesData = [
     categoryColor: "accent",
     author: "Dra. Lorrany Siqueira",
     date: "20 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
     content: (
       <>
         <p>O transtorno do processamento auditivo ocorre quando o ouvido funciona perfeitamente, mas o cérebro tem dificuldade em interpretar as informações sonoras.</p>
@@ -340,7 +340,7 @@ export const articlesData = [
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
     date: "22 de Fevereiro, 2026",
-    image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a",
+    image: "/images/clinica/sala-espera.png",
     content: (
       <>
         <p>As poucas horas semanais de terapia precisam ser estendidas para o cotidiano da criança. É aí que entra a orientação parental.</p>
