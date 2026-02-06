@@ -67,9 +67,9 @@ function Home() {
   useEffect(() => {
     // Adicionar o favicon dinamicamente
     const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-    link.type = 'image/x-icon';
+    link.type = 'image/png';
     link.rel = 'shortcut icon';
-    link.href = '/favicon.ico';
+    link.href = '/images/icone-colorido.png';
     document.head.appendChild(link);
 
     // Track page view for home
@@ -723,7 +723,7 @@ function Home() {
       `}</style>
 
       <SEO
-        title="Clínica Fono Inova em Anápolis | Desenvolvimento Infantil"
+        title="Clínica Fono Inova em Anápolis"
         description="Clínica multidisciplinar especializada em fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis."
         keywords="clínica fonoaudiologia anápolis, fonoaudiólogo infantil, psicologia infantil anápolis, terapia ocupacional anápolis, fisioterapia infantil, desenvolvimento infantil"
         image="/images/og-image.jpg"

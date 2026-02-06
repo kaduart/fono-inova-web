@@ -9,7 +9,7 @@ const SEO = ({ title, description, keywords = "", image, url, type = "website", 
   return (
     <Helmet>
       <html lang="pt-BR" />
-      <title>{title} | Clínica Fono Inova</title>
+      <title>{title.includes("Clínica Fono Inova") ? title : `${title} | Clínica Fono Inova em Anápolis`}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={absoluteUrl} />
