@@ -31,13 +31,13 @@ const Articles = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article) => (
-            <Grid item xs={12} md={6} lg={4} key={article.id}>
+            <div key={article.id} className="h-full">
               <ArticleCard article={article} />
-            </Grid>
+            </div>
           ))}
-        </Grid>
+        </div>
       </Container>
     </Layout>
   );

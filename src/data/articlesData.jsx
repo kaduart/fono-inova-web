@@ -72,8 +72,8 @@ export const articlesData = [
   },
   {
     id: 2,
-    slug: "entendendo-espectro-autista",
-    title: "Atraso na fala: como estimular a linguagem da criança em casa",
+    slug: "entendendo-espectro-auta",
+    title: "Entendendo o Espectro Autista: Guia para Pais",
     excerpt: "Guia completo para compreender os sinais e intervenções precoces.",
     category: "Psicologia",
     categoryColor: "secondary",
@@ -152,7 +152,7 @@ export const articlesData = [
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
     date: "10 de Fevereiro, 2026",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
+    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
     content: (
       <>
         <p>A fala tardia é uma das maiores preocupações dos pais nos primeiros anos de vida. Muitas famílias ficam em dúvida se é apenas uma fase ou se a criança precisa de acompanhamento profissional.</p>
