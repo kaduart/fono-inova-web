@@ -357,6 +357,87 @@ export const articlesData = [
         </ul>
       </>
     )
+  },
+  {
+    id: 10,
+    slug: "importancia-psicomotricidade-desenvolvimento-infantil",
+    title: "A Importância da Psicomotricidade no Desenvolvimento",
+    excerpt: "Descubra como o movimento e a consciência corporal são fundamentais para o aprendizado e a regulação emocional das crianças.",
+    category: "Terapias",
+    categoryColor: "accent",
+    author: "Equipe Clínica Fono Inova",
+    date: "25 de Fevereiro, 2026",
+    image: "/images/artigo-psicomotricidade.png",
+    content: (
+      <>
+        <p>A psicomotricidade é a ciência que estuda a relação entre o pensamento, a emoção e o movimento. Em crianças, ela é a base para o desenvolvimento de habilidades cognitivas mais complexas.</p>
+
+        <h2>Benefícios Principais</h2>
+        <ul>
+          <li>Melhora do equilíbrio e coordenação motora</li>
+          <li>Desenvolvimento da lateralidade e noção espacial</li>
+          <li>Fortalecimento da autoestima e confiança</li>
+          <li>Auxílio direto na alfabetização e atenção</li>
+        </ul>
+
+        <h2>Quando buscar?</h2>
+        <p>Se você nota que seu filho cai com frequência, tem dificuldade em atividades físicas ou mostra desinteresse por desafios motores, uma avaliação psicomotora pode ser indicada.</p>
+      </>
+    )
+  },
+  {
+    id: 11,
+    slug: "psicopedagogia-alem-das-dificuldades-escolares",
+    title: "Psicopedagogia: Além das Dificuldades Escolares",
+    excerpt: "Entenda como a psicopedagogia clínica ajuda a criança a descobrir seu próprio estilo de aprendizagem e superar bloqueios cognitivos.",
+    category: "Educação",
+    categoryColor: "primary",
+    author: "Equipe Clínica Fono Inova",
+    date: "27 de Fevereiro, 2026",
+    image: "/images/artigo-psicopedagogia.png",
+    content: (
+      <>
+        <p>Muitas vezes, o desinteresse escolar esconde barreiras no processo de aprendizagem que a psicopedagogia é capaz de identificar e tratar.</p>
+
+        <h2>O Papel do Psicopedagogo</h2>
+        <p>Diferente de uma aula de reforço, a psicopedagogia foca em <em>como</em> a criança aprende, trabalhando as funções executivas, a memória e a percepção.</p>
+
+        <h2>Indicações</h2>
+        <ul>
+          <li>Baixa performance escolar persistente</li>
+          <li>Dificuldade em ler, escrever ou calcular</li>
+          <li>Falta de organização com materiais e prazos</li>
+          <li>Bloqueios emocionais relacionados ao estudo</li>
+        </ul>
+      </>
+    )
+  },
+  {
+    id: 12,
+    slug: "musicoterapia-e-tea-conexoes-atraves-do-som",
+    title: "Musicoterapia e TEA: Conexões através do Som",
+    excerpt: "Saiba como a música pode ser uma ponte poderosa para a comunicação e interação social em crianças no espectro autista.",
+    category: "Neurodiversidade",
+    categoryColor: "secondary",
+    author: "Equipe Clínica Fono Inova",
+    date: "01 de Março, 2026",
+    image: "/images/musicoterapia-hero.png",
+    content: (
+      <>
+        <p>A música ativa diversas áreas do cérebro simultaneamente, tornando-se uma ferramenta lúdica e eficaz para o engajamento social e a expressão em crianças autistas.</p>
+
+        <h2>Por que a música funciona?</h2>
+        <p>Para muitas crianças com TEA, o som rítmico é previsível e reconfortante, o que facilita a regulação sensorial e o estabelecimento de contato visual e turnos de fala.</p>
+
+        <h2>Objetivos Terapêuticos</h2>
+        <ul>
+          <li>Estimulação da comunicação verbal e não-verbal</li>
+          <li>Redução de comportamentos repetitivos</li>
+          <li>Melhora da interação em grupo</li>
+          <li>Expressão de sentimentos através da sonoridade</li>
+        </ul>
+      </>
+    )
   }
 ];
 

@@ -21,28 +21,19 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
     };
 
     const imagesClinica = [
-        "/images/clinica/fachada-clinica.jpg",
-        "/images/clinica/IMG-20250527-WA0024.jpg",
-        "/images/clinica/IMG-20250527-WA0025.jpg",
-        "/images/clinica/IMG-20250527-WA0026.jpg",
-        "/images/clinica/IMG-20250527-WA0027.jpg",
-        "/images/clinica/IMG-20250527-WA0028.jpg",
-        "/images/clinica/IMG-20250527-WA0029.jpg",
-        "/images/clinica/IMG-20250527-WA0030.jpg",
-        "/images/clinica/IMG-20250527-WA0031.jpg",
-        "/images/clinica/IMG-20250527-WA0032.jpg",
-        "/images/clinica/IMG-20250527-WA0033.jpg",
-        "/images/clinica/IMG-20250527-WA0034.jpg",
-        "/images/clinica/IMG-20250527-WA0035.jpg",
+        "/images/clinica/fachada-premium.png",
+        "/images/clinica/recepcao.png",
+        "/images/clinica/sala-espera.png",
+        "/images/clinica/sala-ludica.png",
     ];
-    
+
     const imagesNichos = [
         "/images/fonoaudiologia/img-fono-atendimento-01.png",
-        "/images/fonoaudiologia/fono2.jpg",
-        "/images/fisioterapia/fisio2.jpg",
-        "/images/psicologia/psico2.jpg",
-        "/images/terapia-ocupacional/to2.jpg",
-        "/images/fonoaudiologia/fono1.jpg",
+        "/images/fonoaudiologia/atendimento-premium.png",
+        "/images/terapia-occupacional/sessao-sensorial.png",
+        "/images/psicomotricidade-hero.png",
+        "/images/psicopedagogia-hero.png",
+        "/images/musicoterapia-hero.png",
     ];
 
     const images = typeImages === "clinica" ? imagesClinica : imagesNichos;

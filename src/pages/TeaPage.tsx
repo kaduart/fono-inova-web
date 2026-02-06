@@ -82,7 +82,7 @@ const TeaPage = () => {
                 title="Meu Filho Não Olha nos Olhos em Anápolis | Avaliação TEA Jundiaí"
                 description="Seu filho não responde ao nome ou tem manias repetitivas em Anápolis? Avaliação de autismo (TEA) no bairro Jundiaí. Diagnóstico precoce. Agende."
                 keywords="avaliação tea anapolis, autismo infantil anapolis, psicologo autismo jundiai, diagnostico autismo anapolis"
-                image="/images/servicos/tea-avaliacao.jpg"
+                image="/images/fonoaudiologia/atendimento-premium.png"
                 url="https://www.clinicafonoinova.com.br/avaliacao-autismo-infantil"
                 type="article"
                 schema={[schemaTea, schemaFAQTea]} // Array aqui!
@@ -114,8 +114,8 @@ const TeaPage = () => {
                                     onClick={() => { }}
                                     message="Olá! Vim através do site e gostaria de agendar uma avaliação para suspeita de TEA."
                                     className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    icon={Calendar}
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Avaliação
                                 </ButtonWhatsApp>
                             </div>
@@ -215,7 +215,7 @@ const TeaPage = () => {
                         </div>
                         <div>
                             <img
-                                src="/images/tea/ava-neuropsico.jpeg"
+                                src="/images/fonoaudiologia/atendimento-premium.png"
                                 alt="Terapia multidisciplinar"
                                 className="rounded-2xl shadow-xl w-full"
                                 onError={(e) => {

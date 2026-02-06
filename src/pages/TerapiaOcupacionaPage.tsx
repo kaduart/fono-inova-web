@@ -210,7 +210,7 @@ const TerapiaOcupacionalPage = () => {
                 title="Terapia Ocupacional Infantil em Anápolis | Jundiaí - Fono Inova"
                 description="Terapia ocupacional para integração sensorial e autonomia infantil no bairro Jundiaí, Anápolis. Sessões de integração sensorial e coordenação motora."
                 keywords="terapia ocupacional infantil anapolis, integracao sensorial jundiai, autonomia criança anapolis, to infantil"
-                image="/images/servicos/terapia-ocupacional.jpg"
+                image="/images/terapia-ocupacional/sessao-sensorial.png"
                 url="https://www.clinicafonoinova.com.br/terapia-ocupacional"
                 type="article"
                 schema={[schemaTerapiaOcupacional, schemaFAQTO]}
@@ -246,7 +246,7 @@ const TerapiaOcupacionalPage = () => {
                             <div className="bg-white rounded-3xl p-8 shadow-2xl">
                                 <div className="relative h-96 w-full rounded-2xl overflow-hidden">
                                     <OptimizedImage
-                                        src="/images/terapia-ocupacional/to1.jpg"
+                                        src="/images/terapia-ocupacional/sessao-sensorial.png"
                                         alt="Criança em sessão de terapia ocupacional"
                                         className="w-full h-full object-cover rounded-2xl"
                                     />

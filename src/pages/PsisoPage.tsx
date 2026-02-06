@@ -180,7 +180,7 @@ const PsicoPage = () => {
                 title="Psicologia Infantil em Anápolis | Clínica Fono Inova"
                 description="Atendimento psicológico infantil para desenvolvimento emocional, comportamento, ansiedade, TDAH e autismo."
                 keywords="psicologia infantil, terapia infantil, ansiedade infantil, TDAH, autismo, psicólogo infantil, Anápolis"
-                image="/images/servicos/psicologia.jpg"
+                image="/images/fonoaudiologia/atendimento-premium.png"
                 url="https://www.clinicafonoinova.com.br/psicologia"
                 type="article"
                 schema={[schemaPsicologia, schemaFAQPsicologia]}
@@ -219,7 +219,7 @@ const PsicoPage = () => {
                                 <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl overflow-hidden">
 
                                     <OptimizedImage
-                                        src="/images/psicologia/psico2.jpg"
+                                        src="/images/fonoaudiologia/atendimento-premium.png"
                                         alt="Criança em acompanhamento psicológico"
                                         className="w-full h-full object-cover rounded-2xl"
                                     />

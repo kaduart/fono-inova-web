@@ -12,7 +12,7 @@ const Clinica = () => {
                 title="Nossa Clínica | Clínica Fono Inova"
                 description="Conheça a infraestrutura moderna e acolhedora da Clínica Fono Inova em Anápolis."
                 keywords="infraestrutura clínica, ambiente acessível, clínica infantil anápolis, salas temáticas"
-                image="/images/clinica/ambiente-fono-inova.jpg"
+                image="/images/clinica/fachada-premium.png"
                 url="/nossa-clinica"
                 schema={{
                     "@context": "https://schema.org",
@@ -20,7 +20,7 @@ const Clinica = () => {
                     "name": "Clínica Fono Inova",
                     "url": "https://www.clinicafonoinova.com.br/nossa-clinica",
                     "logo": "https://www.clinicafonoinova.com.br/images/logo-unica.png",
-                    "image": "https://www.clinicafonoinova.com.br/images/clinica/ambiente-fono-inova.jpg",
+                    "image": "https://www.clinicafonoinova.com.br/images/clinica/fachada-premium.png",
                     "description": "A Clínica Fono Inova possui infraestrutura moderna e acolhedora no bairro Jundiaí em Anápolis, com salas temáticas e cabine acústica."
                 }}
             />

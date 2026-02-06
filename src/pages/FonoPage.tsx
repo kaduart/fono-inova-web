@@ -185,7 +185,7 @@ const FonoPage = () => {
         title="Fonoaudiologia Infantil em Anápolis | Clínica Fono Inova"
         description="Especialistas em fonoaudiologia infantil para atraso na fala, distúrbios da linguagem, comunicação e alimentação."
         keywords="fonoaudiologia infantil, atraso na fala, linguagem infantil, terapia da fala, comunicação, Anápolis"
-        image="/images/servicos/fonoaudiologia.jpg"
+        image="/images/fonoaudiologia/atendimento-premium.png"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia"
         type="article"
         schema={[schemaFonoaudiologia, schemaFAQ]}
