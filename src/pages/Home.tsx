@@ -9,6 +9,7 @@ import {
   ChevronRight,
   Clock,
   Facebook,
+  GraduationCap,
   Instagram,
   MapPin,
   MessageCircle,
@@ -28,6 +29,7 @@ import ServiceCards from '../components/ServiceCards.jsx';
 import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 // Adicione estes imports no topo do arquivo
+import { Footprints, Music } from 'lucide-react';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { reportWhatsappConversion } from '../helper/analytics.js';
 import {
@@ -92,23 +94,6 @@ function Home() {
     trackSocialMediaClick(platform);
   };
 
-  <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "MedicalBusiness",
-      "name": "Clínica Fono Inova",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Avenida Minas Gerais, 405",
-        "addressLocality": "Anápolis",
-        "addressRegion": "GO",
-        "postalCode": "75000-000",
-        "addressCountry": "BR"
-      },
-      "telephone": "+556237063924",
-      "url": "https://www.clinicafonoinova.com.br"
-    })}
-  </script>
 
   return (
     <Layout>
@@ -132,33 +117,31 @@ function Home() {
         }}
       />
 
-      <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
+      <section className="pt-[96px] md:pt-[122px] pb-12 md:pb-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Text Content */}
             <div className="order-2 lg:order-1 animate-fade-in-up">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-                Apoio Multidisciplinar
+              <Badge className="mb-4 bg-primary/5 text-primary border-primary/10 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                Apoio Multidisciplinar Especializado
               </Badge>
-              <h1>
-                Clínica Multidisciplinar Infantil em Anápolis
-                <span className="text-primary"> Transformando Desafios </span>
-                em <span className="text-secondary"> Conquistas</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                Clínica Multidisciplinar <br />
+                <span className="text-primary">Desenvolvimento Infantil </span>
+                em Anápolis
               </h1>
 
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 leading-relaxed">
-                Na <b>Clínica Fono Inova</b>, convertemos desafios em conquistas por meio de terapias inovadoras,
-                focadas no desenvolvimento e no sucesso das crianças.
+              <p className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 md:mb-8 leading-relaxed max-w-xl">
+                Na <b>Clínica Fono Inova</b>, unimos ciência e humanização para transformar desafios em conquistas, focando no desenvolvimento pleno de cada criança.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                {/* CTA Principal - WhatsApp com destaque */}
+                {/* CTA Principal - WhatsApp com destaque mais sóbrio */}
                 <ButtonWhatsApp
                   onClick={() => {
-                    // seus eventos locais (opcional)
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp CTA Principal");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 animate-pulse hover:animate-none"
+                  className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-base md:text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação. Pode me ajudar?"
                 >
                   <MessageCircle className="w-5 h-5" />
@@ -202,91 +185,89 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-12 bg-gradient-to-r from-green-50 via-blue-50 to-purple-50">
+      <section className="py-16 bg-white border-y border-slate-100">
         <div className="container mx-auto px-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 max-w-5xl mx-auto border-2 border-green-200">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">
-                Por que <span className="text-green-600">centenas de famílias</span> nos escolhem?
+          <div className="bg-slate-50/50 rounded-3xl p-8 md:p-12 max-w-6xl mx-auto border border-slate-100">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                Excelência e <span className="text-primary">Confiança</span> em Saúde Infantil
+              </h2>
+              <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+                Nossa clínica é referência em Anápolis, com infraestrutura moderna e equipe altamente qualificada.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-all border border-slate-100">
+                  <CheckCircle className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">500+</div>
+                <p className="text-sm text-slate-500 font-medium">Famílias Atendidas</p>
+              </div>
+
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-all border border-slate-100">
+                  <Star className="w-8 h-8 text-amber-400 fill-amber-400" />
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">4.9/5</div>
+                <p className="text-sm text-slate-500 font-medium">Avaliação no Google</p>
+              </div>
+
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-all border border-slate-100">
+                  <Award className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">12+</div>
+                <p className="text-sm text-slate-500 font-medium">Especialistas</p>
+              </div>
+
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm group-hover:shadow-md transition-all border border-slate-100">
+                  <Clock className="w-8 h-8 text-primary" />
+                </div>
+                <div className="text-3xl font-bold text-slate-900 mb-1">Rápido</div>
+                <p className="text-sm text-slate-500 font-medium">Agendamento Ágil</p>
+              </div>
+            </div>
+
+            <div className="bg-primary rounded-2xl p-8 text-center text-white shadow-xl shadow-primary/20">
+              <h3 className="text-xl md:text-2xl font-semibold mb-4">
+                Inicie a jornada de desenvolvimento do seu filho hoje
               </h3>
-              <p className="text-gray-600 text-lg">
-                Agende agora e receba atendimento especializado em até 48 horas
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-              <div className="text-center p-4 bg-green-50 rounded-xl">
-                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <CheckCircle className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-green-600 mb-1">500+</div>
-                <p className="text-sm text-gray-600 font-medium">Crianças Atendidas</p>
-              </div>
-
-              <div className="text-center p-4 bg-blue-50 rounded-xl">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Star className="w-8 h-8 text-white fill-white" />
-                </div>
-                <div className="text-3xl font-bold text-blue-600 mb-1">4.9/5</div>
-                <p className="text-sm text-gray-600 font-medium">Avaliação Média</p>
-              </div>
-
-              <div className="text-center p-4 bg-purple-50 rounded-xl">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Award className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-purple-600 mb-1">12+</div>
-                <p className="text-sm text-gray-600 font-medium">Especialistas</p>
-              </div>
-
-              <div className="text-center p-4 bg-orange-50 rounded-xl">
-                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Clock className="w-8 h-8 text-white" />
-                </div>
-                <div className="text-3xl font-bold text-orange-600 mb-1">48h</div>
-                <p className="text-sm text-gray-600 font-medium">Resposta Rápida</p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-xl p-6 text-center text-white">
-              <p className="text-xl font-semibold mb-4">
-                🎁 Primeira Avaliação com <span className="text-yellow-300">Desconto Especial</span> para novos pacientes
-              </p>
               <ButtonWhatsApp
                 onClick={() => {
                   trackButtonClick?.("WhatsApp CTA Desconto");
                   trackFormSubmission?.(true);
                 }}
-                className="bg-white hover:bg-gray-100 text-green-600 px-10 py-4 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all inline-flex items-center gap-2"
-                message="Olá! Vi a oferta no site e gostaria de agendar minha avaliação com desconto especial."
+                className="bg-white hover:bg-slate-100 text-primary px-12 py-4 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-2"
+                message="Olá! Gostaria de agendar uma avaliação na Clínica Fono Inova."
                 aria-label="Garantir desconto pelo WhatsApp"
               >
                 <MessageCircle className="w-5 h-5" />
-                Garantir Desconto Agora
+                Agendar Agora
               </ButtonWhatsApp>
-
-              <p className="text-sm mt-3 text-green-100">
-                ⏰ Oferta válida apenas para agendamentos feitos hoje
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-16 bg-background">
+
+      <section id="services" className="py-20 bg-slate-50/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-secondary/10 text-secondary border-secondary/20">
-              Nossos Serviços
+            <Badge className="mb-4 bg-primary/5 text-primary border-primary/10 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+              Nossas Especialidades
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-bold font-poppins mb-6">
-              Cuidado Multidisciplinar para Cada Fase do
-              <span className="text-primary"> Desenvolvimento Infantil</span>
+            <h2 className="text-3xl md:text-5xl font-bold font-poppins text-slate-900 mb-6 transition-all">
+              Cuidado <span className="text-primary underline decoration-primary/20 underline-offset-8">Multidisciplinar</span> focado no <br />
+              Desenvolvimento Infantil
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Oferecemos uma ampla gama de serviços especializados, priorizando excelência e satisfação no atendimento.
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              Integramos diferentes áreas da saúde para oferecer um suporte completo e individualizado, respeitando o tempo de cada criança.
             </p>
           </div>
+
 
           <ServiceCards
             onServiceClick={(serviceName) => trackButtonClick(`Service Click - ${serviceName}`)}
@@ -305,7 +286,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {/* Card TEA */}
             <Link to="/avaliacao-autismo-infantil" className="group">
               <div className="bg-white border-2 border-purple-200 hover:border-purple-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
@@ -373,6 +354,59 @@ function Home() {
                   Tratamento de voz profissional e disfagia (dificuldade para engolir)
                 </p>
                 <div className="flex items-center text-emerald-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+            {/* Card Psicomotricidade */}
+            <Link to="/psicomotricidade" className="group">
+              <div className="bg-white border-2 border-pink-200 hover:border-pink-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-pink-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <Footprints className="w-8 h-8 text-pink-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-pink-600">
+                  Psicomotricidade
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Desenvolvimento motor, sensorial e emocional para TEA, Síndrome de Down e outras condições
+                </p>
+                <div className="flex items-center text-pink-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Psicopedagogia Clínica */}
+            <Link to="/psicopedagogia-clinica" className="group">
+              <div className="bg-white border-2 border-amber-200 hover:border-amber-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <GraduationCap className="w-8 h-8 text-amber-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-amber-600">
+                  Psicopedagogia Clínica
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Dislexia, discalculia, TDAH e dificuldades de aprendizagem com intervenção personalizada
+                </p>
+                <div className="flex items-center text-amber-600 font-semibold">
+                  Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+
+            {/* Card Musicoterapia */}
+            <Link to="/musicoterapia" className="group">
+              <div className="bg-white border-2 border-indigo-200 hover:border-indigo-600 rounded-2xl p-6 transition-all hover:shadow-2xl h-full">
+                <div className="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <Music className="w-8 h-8 text-indigo-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-indigo-600">
+                  Musicoterapia
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  A música como terapia para comunicação, socialização e desenvolvimento infantil
+                </p>
+                <div className="flex items-center text-indigo-600 font-semibold">
                   Saiba mais <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -679,7 +713,7 @@ function Home() {
       />
 
       {/* Adicionar CSS para modo acessibilidade */}
-      <style jsx>{`
+      <style>{`
         .accessibility-mode {
           font-size: 110%;
         }
@@ -690,9 +724,10 @@ function Home() {
 
       <SEO
         title="Clínica Fono Inova em Anápolis | Desenvolvimento Infantil"
-        description="Clínica multidisciplinar especializada em desenvolvimento infantil."
-        image="/images/logo-seo.jpg"
-        url="https://www.clinicafonoinova.com.br"
+        description="Clínica multidisciplinar especializada em fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis."
+        keywords="clínica fonoaudiologia anápolis, fonoaudiólogo infantil, psicologia infantil anápolis, terapia ocupacional anápolis, fisioterapia infantil, desenvolvimento infantil"
+        image="/images/og-image.jpg"
+        url="/"
         type="website"
         schema={schemaHome}
       />

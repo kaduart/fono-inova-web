@@ -5,6 +5,7 @@ import {
     Award,
     Brain,
     BrainCircuit,
+    Calendar,
     CheckCircle,
     ChevronDown,
     Clock,
@@ -20,6 +21,7 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
@@ -27,7 +29,7 @@ import { schemaFAQTO, schemaTerapiaOcupacional } from '../schemas/clinicaSchemas
 
 const TerapiaOcupacionalPage = () => {
     useServiceViewTime('Terapia Ocupacional');
-    const [openAccordion, setOpenAccordion] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
     // Benefícios da Terapia Ocupacional
     const benefits = [
@@ -214,31 +216,29 @@ const TerapiaOcupacionalPage = () => {
                 schema={[schemaTerapiaOcupacional, schemaFAQTO]}
             />
 
-            {/* Hero Section Elegante */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-br from-amber-50 to-orange-100 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-amber-200/20 to-transparent" />
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Se você está em <strong>Anápolis</strong> e seu filho tem dificuldades de coordenação,
-                                autonomia ou sensibilidade a texturas, nossa equipe no bairro <strong>Jundiaí</strong>
-                                oferece terapia ocupacional especializada para transformar o desenvolvimento infantil.
-                            </p>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                                Terapia Ocupacional <span className="text-amber-600">Infantil</span>: Como Ajuda no Desenvolvimento
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-amber-50/30 to-white overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-amber-50 text-amber-700 border-amber-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Terapia Ocupacional Infantil
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Desenvolvimento e <span className="text-amber-600">Autonomia</span> Infantil
                             </h1>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Entenda como a TO pode transformar o desenvolvimento do seu filho através de
-                                atividades lúdicas e estratégias especializadas baseadas em evidências científicas.
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Terapia ocupacional especializada em integração sensorial e coordenação motora no bairro <strong>Jundiaí</strong>, Anápolis.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <ButtonAgendamento className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
+                                <ButtonWhatsApp
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação de terapia ocupacional para meu filho."
+                                    icon={Calendar}
+                                    className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
                                     Agendar Avaliação
-                                    <ArrowRight className="w-5 h-5 ml-2" />
-                                </ButtonAgendamento>
-                                <ButtonWhatsApp className="border border-amber-600 text-amber-600 hover:bg-amber-50 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300">
-                                    Falar com Especialista
                                 </ButtonWhatsApp>
                             </div>
                         </div>
@@ -569,10 +569,11 @@ const TerapiaOcupacionalPage = () => {
                         {/* Botões */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={MessageCircle}
                                 className="bg-white hover:bg-gray-100 text-amber-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Olá! Vi a página de Terapia Ocupacional e gostaria de agendar uma avaliação para meu filho(a)."
                             >
-                                <MessageCircle className="w-6 h-6" />
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>
 

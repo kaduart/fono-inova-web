@@ -2,6 +2,7 @@ import { Brain, Calendar, CheckCircle, Heart, MessageCircle, Users } from 'lucid
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaFAQTea, schemaTea } from '../schemas/clinicaSchemas';
 
@@ -88,49 +89,41 @@ const TeaPage = () => {
             />
 
             {/* Hero Section */}
-            <section className="pt-32 pb-20 bg-gradient-to-br from-purple-50 via-white to-purple-50">
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-purple-50/30 to-white overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
-                        <div className="animate-fade-in-up">
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Se você está em <strong>Anápolis</strong> e desconfia que seu filho pode ter autismo (TEA),
-                                estamos no bairro <strong>Jundiaí</strong> para ajudar. A boa notícia é que quanto antes
-                                iniciar o acompanhamento especializado, melhores são os resultados no desenvolvimento
-                                da criança.
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-purple-50 text-purple-700 border-purple-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Avaliação Especializada
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Suspeita de <span className="text-purple-600">Autismo (TEA)</span>: Guia para Pais
+                            </h1>
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Se você percebe comportamentos diferentes no desenvolvimento do seu filho, estamos aqui para oferecer acolhimento e clareza diagnóstica no bairro <strong>Jundiaí, Anápolis</strong>.
                             </p>
-                            <div className="bg-purple-50 border-l-4 border-purple-600 p-4 mb-6 rounded-r-lg">
-                                <p className="text-purple-900 font-medium">
-                                    ⚠️ A janela de ouro do tratamento é entre 2-5 anos.
-                                    Cada mês sem terapia é uma oportunidade perdida no desenvolvimento cerebral.
+                            <div className="bg-amber-50 border-l-4 border-amber-400 p-5 mb-8 rounded-r-xl shadow-sm">
+                                <p className="text-amber-900 text-sm leading-relaxed">
+                                    <strong className="block text-base mb-1">A Janela de Ouro</strong>
+                                    A intervenção precoce entre 2 e 5 anos é fundamental. Cada mês de estimulação adequada potencializa drasticamente o desenvolvimento cerebral.
                                 </p>
                             </div>
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Sabemos que a suspeita de TEA traz muitas dúvidas e ansiedade.
-                                A boa notícia é que quanto antes iniciar o acompanhamento especializado,
-                                melhores são os resultados no desenvolvimento da criança.
-                            </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Vim através do site e gostaria de agendar uma avaliação para suspeita de TEA."
-                                    className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
                                     <Calendar className="w-5 h-5" />
                                     Agendar Avaliação
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre a avaliação de TEA. Pode me ajudar?"
-                                    className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>
                         </div>
 
                         {/* Imagem */}
-                        <div className="relative">
-                            <div className="aspect-square bg-gradient-to-br from-purple-200 to-purple-400 rounded-3xl overflow-hidden">
+                        <div className="relative order-1 lg:order-2">
+                            <div className="aspect-square bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
                                 <img
                                     src="/images/tea/tea-fantochy.jpeg"
                                     alt="Criança em terapia"
@@ -140,9 +133,9 @@ const TeaPage = () => {
                                     }}
                                 />
                             </div>
-                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
-                                <p className="text-4xl font-bold text-purple-600">+500</p>
-                                <p className="text-sm text-gray-600">Crianças atendidas</p>
+                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-50">
+                                <p className="text-4xl font-bold text-purple-600">500+</p>
+                                <p className="text-sm font-semibold text-slate-500">Famílias auxiliadas</p>
                             </div>
                         </div>
                     </div>
@@ -152,25 +145,26 @@ const TeaPage = () => {
             {/* Sinais de Alerta */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-                            Você Reconhece <span className="text-purple-600">Esses Sinais</span>?
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <Badge variant="outline" className="mb-4 text-purple-600 border-purple-200">Observação Clínica</Badge>
+                        <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-6">
+                            Sinais que merecem <span className="text-purple-600">atenção</span>
                         </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Alguns comportamentos merecem atenção especializada. Quanto mais sinais você identificar,
-                            mais importante é fazer uma avaliação.
+                        <p className="text-lg text-slate-600">
+                            Identificar precocemente comportamentos específicos é o primeiro passo para o suporte adequado. Verifique se seu filho apresenta algum desses sinais:
                         </p>
                     </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {sinaisTea.map((sinal, index) => (
-                            <div key={index} className="bg-white border-l-4 border-purple-600 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                            <div key={index} className="bg-slate-50 border border-slate-100 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:bg-white hover:border-purple-200 group">
                                 <div className="flex items-start gap-3">
-                                    <CheckCircle className="w-6 h-6 text-purple-600 flex-shrink-0 mt-1" />
-                                    <p className="text-gray-800 font-medium">{sinal}</p>
+                                    <CheckCircle className="w-6 h-6 text-purple-400 group-hover:text-purple-600 flex-shrink-0 mt-0.5" />
+                                    <p className="text-slate-700 font-medium leading-tight">{sinal}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
+
                     <div className="text-center mt-8">
                         <p className="text-gray-600 italic">
                             <strong>Importante:</strong> Apenas um profissional pode confirmar o diagnóstico.
@@ -320,17 +314,19 @@ const TeaPage = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Gostaria de agendar uma avaliação multidisciplinar para TEA."
+                                    icon={Calendar}
                                     className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Agora
                                 </ButtonWhatsApp>
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Tenho dúvidas sobre a avaliação de TEA. Pode me explicar melhor?"
+                                    icon={MessageCircle}
                                     className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
                                 >
-                                    <MessageCircle className="w-5 h-5" />
                                     Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>

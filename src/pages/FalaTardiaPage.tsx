@@ -1,6 +1,7 @@
 import { AlertCircle, Calendar, CheckCircle, Clock, Heart, MapPin, MessageCircle, MessageSquare } from 'lucide-react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaFalaTardia, schemaFAQFalaTardia } from '../schemas/clinicaSchemas';
 
@@ -89,6 +90,7 @@ const FalaTardiaPage = () => {
             <SEO
                 title="Meu Filho Não Fala aos 3 Anos em Anápolis | Fonoaudiologia Jundiaí"
                 description="Seu filho tem 2-3 anos e ainda não fala? Fonoaudiologia infantil no bairro Jundiaí, Anápolis. Avaliação do atraso de fala. Agende pelo WhatsApp."
+                keywords="atraso na fala anapolis, fonoaudiologia infantil jundiai, fonoaudiologo anapolis, crianca nao fala aos 3 anos"
                 image="/images/servicos/fala-tardia.jpg"
                 url="https://www.clinicafonoinova.com.br/fala-tardia"
                 type="article"
@@ -96,41 +98,37 @@ const FalaTardiaPage = () => {
             />
 
 
-            {/* Hero */}
-            <section className="pt-32 pb-20 bg-gradient-to-br from-orange-50 via-white to-orange-50">
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-orange-50/30 to-white overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="animate-fade-in-up">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 leading-tight">
-                                Seu Filho Tem 3 Anos e Ainda{' '}
-                                <span className="text-orange-600">Não Fala</span>?
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-orange-50 text-orange-700 border-orange-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Desenvolvimento da Fala
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Seu Filho tem 3 Anos e <span className="text-orange-600">Ainda Não Fala?</span>
                             </h1>
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Cada criança tem seu próprio ritmo, mas se você está em <strong>Anápolis</strong>
-                                e nota que seu filho de 3 anos ainda não forma frases, é hora de buscar ajuda.
-                                No bairro <strong>Jundiaí</strong>, a Fono Inova oferece fonoaudiologia
-                                especializada para desbloquear a comunicação do seu filho.
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Cada criança tem seu tempo, mas o suporte especializado na hora certa faz toda a diferença. Estamos no bairro <strong>Jundiaí, Anápolis</strong> para ajudar.
                             </p>
+
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Vim através do site e gostaria de agendar uma avaliação fonoaudiológica para fala tardia."
-                                    className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    icon={Calendar}
+                                    className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Avaliação
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre atraso na fala. Pode me ajudar?"
-                                    className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>
                         </div>
 
-                        <div className="relative">
-                            <div className="aspect-square bg-gradient-to-br from-orange-200 to-orange-400 rounded-3xl overflow-hidden">
+                        {/* Imagem */}
+                        <div className="relative order-1 lg:order-2">
+                            <div className="aspect-square bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
                                 <img
                                     src="/images/fala-tardia-hero.jpg"
                                     alt="Criança em fonoterapia"
@@ -140,9 +138,9 @@ const FalaTardiaPage = () => {
                                     }}
                                 />
                             </div>
-                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
+                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-50">
                                 <p className="text-4xl font-bold text-orange-600">85%</p>
-                                <p className="text-sm text-gray-600">Melhora em 6 meses</p>
+                                <p className="text-sm font-semibold text-slate-500">Melhora em 6 meses</p>
                             </div>
                         </div>
                     </div>
@@ -236,6 +234,7 @@ const FalaTardiaPage = () => {
                                 para liberar a comunicação. Não espere até os 4 anos.
                             </p>
                             <ButtonWhatsApp
+                                onClick={() => { }}
                                 message="URGENTE: Meu filho tem [X] anos e fala pouco. Preciso de avaliação fonoaudiológica no Jundiaí."
                                 className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-bold"
                             >
@@ -378,17 +377,19 @@ const FalaTardiaPage = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para meu filho."
-                                    className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
+                                    icon={Calendar}
+                                    className="bg-orange-600 hover:bg-orange-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg flex items-center justify-center gap-2"
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Agora
                                 </ButtonWhatsApp>
                                 <ButtonWhatsApp
+                                    onClick={() => { }}
                                     message="Olá! Tenho dúvidas sobre a fonoterapia infantil. Pode me ajudar?"
-                                    className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
+                                    icon={MessageCircle}
+                                    className="border-2 border-orange-600 text-orange-600 hover:bg-slate-50 px-10 py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-2"
                                 >
-                                    <MessageCircle className="w-5 h-5" />
                                     Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>

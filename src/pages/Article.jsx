@@ -115,9 +115,15 @@ const ArticlePage = () => {
                     description={article.excerpt}
                     keywords={`${article.category}, desenvolvimento infantil, ${article.title.toLowerCase()}`}
                     image={article.image}
-                    url={`https://www.clinicafonoinova.com.br/artigos/${article.slug}`}
+                    url={`/artigos/${article.slug}`}
                     type="article"
-                    schema={schemaArticle}
+                    schema={schemaArticle(
+                        article.title,
+                        article.excerpt,
+                        article.image,
+                        `https://www.clinicafonoinova.com.br/artigos/${article.slug}`,
+                        article.date
+                    )}
                 />
 
                 {/* Breadcrumb */}

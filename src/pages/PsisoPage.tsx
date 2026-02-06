@@ -5,6 +5,7 @@ import {
     Award,
     Baby,
     Brain,
+    Calendar,
     CheckCircle,
     ChevronDown,
     Clock,
@@ -23,6 +24,7 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
@@ -30,7 +32,7 @@ import { schemaFAQPsicologia, schemaPsicologia } from '../schemas/clinicaSchemas
 
 const PsicoPage = () => {
     useServiceViewTime('Psicologia');
-    const [openAccordion, setOpenAccordion] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
     // Sintomas de TDAH - Conteúdo enriquecido
     const symptoms = [
@@ -184,18 +186,17 @@ const PsicoPage = () => {
                 schema={[schemaPsicologia, schemaFAQPsicologia]}
             />
 
-            {/* Hero Section Elegante */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-br from-green-50 to-teal-100 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-green-200/20 to-transparent" />
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-6">
-                                <Award className="w-4 h-4 mr-2" />
-                                Especialidade em Neurodesenvolvimento
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                                TDAH em Crianças: <span className="text-green-600">Entenda</span> os Sintomas e Quando Buscar Ajuda
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-green-50/30 to-white overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-green-50 text-green-700 border-green-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Neuropsicologia & Psicologia Infantil
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                TDAH em Crianças: <span className="text-green-600">Entenda</span> Sinais e Tratamentos
                             </h1>
                             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                                 Um guia completo para identificar TDAH. Se você está em <strong>Anápolis</strong>
@@ -203,12 +204,13 @@ const PsicoPage = () => {
                                 <strong> Jundiaí</strong> oferece avaliação psicológica especializada.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <ButtonAgendamento className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
+                                <ButtonWhatsApp
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação psicológica infantil."
+                                    icon={Calendar}
+                                    className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
                                     Agendar Avaliação
-                                    <ArrowRight className="w-5 h-5 ml-2" />
-                                </ButtonAgendamento>
-                                <ButtonWhatsApp className="border border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300">
-                                    Falar com Especialista
                                 </ButtonWhatsApp>
                             </div>
                         </div>
@@ -562,10 +564,11 @@ const PsicoPage = () => {
                         {/* Botões */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={Calendar}
                                 className="bg-white hover:bg-gray-100 text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Olá! Vi a página de Psicologia e gostaria de agendar uma avaliação."
                             >
-                                <MessageCircle className="w-6 h-6" />
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>
 

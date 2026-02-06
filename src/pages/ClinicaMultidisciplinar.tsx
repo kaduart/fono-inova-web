@@ -24,10 +24,12 @@ import {
   Eye
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
+import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaFAQMultidisciplinar, schemaMultidisciplinar } from '../schemas/clinicaSchemas';
 
 const ClinicaMultidisciplinar = () => {
-  const [openAccordion, setOpenAccordion] = useState(null);
+  const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
   // Vantagens da abordagem multidisciplinar
   const advantages = [
@@ -143,57 +145,45 @@ const ClinicaMultidisciplinar = () => {
         type="article"
         schema={[schemaMultidisciplinar, schemaFAQMultidisciplinar]}
       />
-      {/* Hero Section Elegante */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-pink-50 to-rose-100 overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-pink-200/20 to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Se seu filho estuda muito em <strong>Anápolis</strong> mas as notas não acompanham o esforço,
-                nossa equipe especializada no bairro <strong>Jundiaí</strong> realiza avaliação neuropsicológica
-                completa para identificar dislexia, TDAH ou discalculia, criando um plano de intervenção
-                que devolve a confiança e melhora o desempenho escolar.
-              </p>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                5 Vantagens de uma Clínica <span className="text-pink-600">Multidisciplinar</span> para Seu Filho
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-rose-50/30 to-white overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+            {/* Texto */}
+            <div className="animate-fade-in-up order-2 lg:order-1">
+              <Badge variant="secondary" className="mb-4 bg-rose-50 text-rose-700 border-rose-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                Clínica Multidisciplinar
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                Cuidado <span className="text-rose-600">Completo e Integrado</span>
               </h1>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Descubra por que a abordagem integrada oferece os melhores resultados para o desenvolvimento infantil,
-                com equipe especializada trabalhando de forma coordenada para potencializar a evolução da criança.
+              <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                Todas as especialidades que seu filho precisa em um só lugar, no bairro <strong>Jundiaí</strong>, Anápolis.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Agendar Avaliação
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </button>
-                <button className="border border-pink-600 text-pink-600 hover:bg-pink-50 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Falar com Especialista
-                </button>
+                <ButtonWhatsApp
+                  onClick={() => { }}
+                  message="Olá! Gostaria de agendar uma triagem multidisciplinar para meu filho(a)."
+                  icon={Calendar}
+                  className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                >
+                  Agendar Triagem
+                </ButtonWhatsApp>
               </div>
             </div>
-            <div className="relative">
-              <div className="bg-white rounded-3xl p-8 shadow-2xl">
-                <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-2xl overflow-hidden">
-                  <img
-                    src="/api/placeholder/600/400"
-                    alt="Equipe multidisciplinar em reunião"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-lg">
-                  <div className="flex items-center">
-                    <div className="bg-green-100 p-3 rounded-full mr-4">
-                      <CheckCircle className="w-8 h-8 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-gray-900">12+</div>
-                      <div className="text-sm text-gray-600">Especialistas Integrados</div>
-                    </div>
-                  </div>
-                </div>
+
+            {/* Imagem */}
+            <div className="relative order-1 lg:order-2">
+              <div className="aspect-square bg-gradient-to-br from-rose-200 to-rose-400 rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/logo-fono-inova.png"
+                  alt="Clínica Fono Inova"
+                  className="w-full h-full object-contain p-12"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-rose-50">
+                <p className="text-4xl font-bold text-rose-600">12+</p>
+                <p className="text-sm text-gray-600">Especialistas</p>
               </div>
             </div>
           </div>
@@ -436,10 +426,14 @@ const ClinicaMultidisciplinar = () => {
             como podemos juntos potencializar o desenvolvimento do seu filho em Anápolis.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="bg-white text-pink-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
-              <Calendar className="w-5 h-5 mr-2" />
+            <ButtonWhatsApp
+              onClick={() => { }}
+              message="Olá! Gostaria de agendar uma avaliação multidisciplinar."
+              icon={Calendar}
+              className="bg-white text-rose-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl"
+            >
               Agendar Avaliação
-            </button>
+            </ButtonWhatsApp>
             <button className="border border-white text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-pink-600">
               <Phone className="w-5 h-5 mr-2" />
               Falar com Especialista

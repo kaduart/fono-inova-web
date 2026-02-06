@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Container, Typography, Box, Grid } from '@mui/material';
 import Layout from '../components/Layout';
 import ArticleCard from '../components/ArticleCard';
+import SEO from '../components/SEO';
 import { articlesData } from '../data/articlesData';
 
 const Articles = () => {
@@ -14,6 +15,12 @@ const Articles = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Artigos sobre Desenvolvimento Infantil"
+        description="Confira nossos conteúdos exclusivos sobre fonoaudiologia, psicologia e terapias infantis em Anápolis."
+        keywords="artigos fonoaudiologia, desenvolvimento infantil, blog clinica fono inova, dicas pais anapolis"
+        url="/artigos"
+      />
       <Container maxWidth="lg" className="py-16 mt-16">
         <Box textAlign="center" mb={6}>
           <Typography variant="h2" component="h1" className="font-poppins font-bold mb-4">

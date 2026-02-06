@@ -17,19 +17,21 @@ import {
     Shield,
     Star,
     Target,
-    TrendingUp
+    TrendingUp,
+    Calendar
 } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
 import { schemaNeuropsicologia } from '../schemas/clinicaSchemas';
 
 const NeuropsicologicaPage = () => {
     useServiceViewTime('Avaliação Neuropsicológica');
-    const [openAccordion, setOpenAccordion] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
     // Serviços de avaliação neuropsicológica
     const services = [
@@ -191,52 +193,44 @@ const NeuropsicologicaPage = () => {
             />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-200/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-r from-cyan-200/20 to-transparent" />
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-800 rounded-full text-sm font-medium mb-6 shadow-sm">
-                                <Award className="w-4 h-4 mr-2" />
-                                Especialistas em Neuropsicologia
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                                Avaliação Neuropsicológica: <span className="text-teal-600">8 Sinais</span> de Que Você Precisa
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-teal-50/30 to-white overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-teal-50 text-teal-700 border-teal-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Neuropsicologia Clínica
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Avaliação <span className="text-teal-600">Neuropsicológica</span> Completa
                             </h1>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Entenda quando buscar uma avaliação neuropsicológica e como ela pode transformar o desempenho acadêmico e a qualidade de vida.
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Investigação profunda das funções cognitivas, TDAH e TEA no bairro <strong>Jundiaí</strong>, Anápolis.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-2xl shadow-md">
+                                <ButtonWhatsApp
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação neuropsicológica."
+                                    icon={Calendar}
+                                    className="bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
                                     Agendar Avaliação
-                                </button>
-                                <button className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 shadow-sm">
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    Falar com Neuropsicólogo
-                                </button>
+                                </ButtonWhatsApp>
                             </div>
                         </div>
-                        <div className="relative">
-                            <div className="bg-white rounded-3xl p-6 shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
-                                <div className="relative h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-teal-100 to-cyan-100 flex items-center justify-center">
-                                    <OptimizedImage
-                                        src="/images/neuropsicologia/neuro-2.jpeg"
-                                        alt="Criança em terapia fonoaudiológica"
-                                        className="w-full h-full object-cover rounded-2xl"
-                                    />
-                                </div>
+
+                        {/* Imagem */}
+                        <div className="relative order-1 lg:order-2">
+                            <div className="aspect-square bg-gradient-to-br from-teal-200 to-teal-400 rounded-3xl overflow-hidden shadow-2xl">
+                                <OptimizedImage
+                                    src="/images/neuropsicologia/neuro-2.jpeg"
+                                    alt="Avaliação neuropsicológica"
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
-                            <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl p-5 shadow-lg border border-gray-100">
-                                <div className="flex items-center">
-                                    <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-3 rounded-full mr-4 shadow-inner">
-                                        <CheckCircle className="w-7 h-7 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-gray-900">400+</div>
-                                        <div className="text-sm text-gray-600 font-medium">Avaliações Realizadas</div>
-                                    </div>
-                                </div>
+                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-teal-50">
+                                <p className="text-4xl font-bold text-teal-600">400+</p>
+                                <p className="text-sm text-gray-600">Avaliações Realizadas</p>
                             </div>
                         </div>
                     </div>
@@ -511,10 +505,11 @@ const NeuropsicologicaPage = () => {
                         {/* Botões */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={MessageCircle}
                                 className="bg-white hover:bg-gray-100 text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Olá! Vi a página de Psicologia e gostaria de agendar uma avaliação."
                             >
-                                <MessageCircle className="w-6 h-6" />
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>
 
@@ -546,7 +541,7 @@ const NeuropsicologicaPage = () => {
                 </div>
             </section>
 
-        </Layout>
+        </Layout >
     );
 };
 

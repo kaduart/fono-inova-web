@@ -5,6 +5,7 @@ import {
     Baby,
     BookOpen,
     Brain,
+    Calendar,
     CheckCircle,
     ChevronDown,
     Clock,
@@ -23,12 +24,14 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
+import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
 import { schemaFAQFreioLingual, schemaFreioLingual } from '../schemas/clinicaSchemas';
 
 const FreioLingualPage = () => {
     useServiceViewTime('Freio Lingual');
-    const [openAccordion, setOpenAccordion] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
     // Serviços relacionados ao freio lingual
     const services = [
@@ -182,7 +185,7 @@ const FreioLingualPage = () => {
             <SEO
                 title="Teste da Linguinha em Anápolis | Freio Lingual Jundiaí - Fono Inova"
                 description="Avaliação e tratamento do freio lingual (língua presa) no bairro Jundiaí, Anápolis. Atendimento para bebês com dificuldade na amamentação e crianças."
-                keywords="teste da linguinha anapolis, freio lingual jundiai, frenotomia anapolis, lingua presa bebe anapolis"
+                keywords="teste da linguinha anapolis, freio lingual jundiai, frenotomia anapolis, lingua presa bebe anapolis, fonoaudiologia jundiai"
                 image="/images/servicos/freio-lingual.jpg"
                 url="https://www.clinicafonoinova.com.br/freio-lingual"
                 type="article"
@@ -190,31 +193,29 @@ const FreioLingualPage = () => {
             />
 
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-200/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-gradient-to-r from-pink-200/20 to-transparent" />
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Se você está em <strong>Anápolis</strong> e suspeita que seu bebê ou criança tem a língua presa (freio lingual),
-                                nossa especialista no bairro <strong>Jundiaí</strong> faz a avaliação completa do teste da linguinha.
-                                Da amamentação à fala, ajudamos desde os primeiros dias de vida.
-                            </p>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                                Freio Lingual: <span className="text-purple-600">8 Sinais</span> que Você Precisa Conhecer
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-pink-50/30 to-white overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-pink-50 text-pink-700 border-pink-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Teste da Linguinha & Freio
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Avaliação de <span className="text-pink-600">Freio Lingual</span> em Anápolis
                             </h1>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Guia completo sobre língua presa: da identificação precoce ao tratamento adequado para cada idade.
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Teste da linguinha, avaliação funcional e suporte especializado para bebês e crianças no bairro <strong>Jundiaí</strong>.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-2xl shadow-md">
+                                <ButtonWhatsApp
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação de freio lingual (teste da linguinha)."
+                                    icon={Calendar}
+                                    className="bg-pink-600 hover:bg-pink-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
                                     Agendar Avaliação
-                                </button>
-                                <button className="border-2 border-green-500 text-green-600 hover:bg-green-500 hover:text-white px-8 py-4 rounded-xl font-semibold flex items-center justify-center transition-all duration-300 shadow-sm">
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    Falar com Especialista
-                                </button>
+                                </ButtonWhatsApp>
                             </div>
                         </div>
                         <div className="relative">
@@ -518,10 +519,14 @@ const FreioLingualPage = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                            <button className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3">
-                                <MessageCircle className="w-6 h-6" />
+                            <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={MessageCircle}
+                                className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
+                                message="Olá! Vi a página de Freio Lingual e gostaria de agendar uma avaliação."
+                            >
                                 Agendar Avaliação Agora
-                            </button>
+                            </ButtonWhatsApp>
 
                             <a
                                 href="tel:6237063924"

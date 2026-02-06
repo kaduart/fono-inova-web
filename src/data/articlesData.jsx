@@ -241,8 +241,122 @@ export const articlesData = [
         <p><strong>💚 Agende sua avaliação na Clínica Fono Inova agora mesmo.</strong></p>
       </>
     )
+  },
+  {
+    id: 6,
+    slug: "tdah-infantil-guia-completo-pais",
+    title: "TDAH Infantil: O Guia Completo para Pais",
+    excerpt: "Entenda o que é o TDAH, como identificar os sinais na infância e a importância do diagnóstico e tratamento multidisciplinar.",
+    category: "Neuropsicologia",
+    categoryColor: "secondary",
+    author: "Equipe Clínica Fono Inova",
+    date: "15 de Fevereiro, 2026",
+    image: "https://images.unsplash.com/photo-1503454537195-2fd9c5128f59",
+    content: (
+      <>
+        <p>O Transtorno do Déficit de Atenção com Hiperatividade (TDAH) é uma das condições neurobiológicas mais comuns na infância, afetando a aprendizagem e o comportamento social.</p>
+
+        <h2>Sinais de Desatentividade</h2>
+        <ul>
+          <li>Dificuldade em manter o foco em tarefas ou brincadeiras</li>
+          <li>Parece não ouvir quando se fala diretamente com ela</li>
+          <li>Comete erros por descuido em tarefas escolares</li>
+          <li>Perde objetos necessários para atividades</li>
+        </ul>
+
+        <h2>Sinais de Hiperatividade e Impulsividade</h2>
+        <ul>
+          <li>Agitação de mãos ou pés ou se remexe na cadeira</li>
+          <li>Dificuldade em brincar calmamente</li>
+          <li>Fala excessivamente</li>
+          <li>Dificuldade em esperar sua vez</li>
+        </ul>
+
+        <h2>Como a Clínica Fono Inova pode ajudar?</h2>
+        <p>Realizamos uma avaliação neuropsicológica e fonoaudiológica detalhada para traçar um plano de intervenção que ajude a criança a desenvolver estratégias de foco e regulação emocional.</p>
+      </>
+    )
+  },
+  {
+    id: 7,
+    slug: "seletividade-alimentar-infantil",
+    title: "Seletividade Alimentar: Quando comer vira um desafio",
+    excerpt: "Saiba identificar a diferença entre 'frescura' e seletividade alimentar, e como a fonoaudiologia e a terapia ocupacional auxiliam.",
+    category: "Terapias",
+    categoryColor: "primary",
+    author: "Equipe Clínica Fono Inova",
+    date: "18 de Fevereiro, 2026",
+    image: "https://images.unsplash.com/photo-1473093226795-af9932fe5856",
+    content: (
+      <>
+        <p>Muitas crianças passam por fases de recusa alimentar, mas quando o repertório de alimentos é extremamente restrito, podemos estar diante da seletividade alimentar.</p>
+
+        <h2>O que observar</h2>
+        <ul>
+          <li>Recusa de grupos alimentares inteiros (ex: nenhuma fruta ou verdura)</li>
+          <li>Hipersensibilidade a texturas, cheiros ou cores</li>
+          <li>Náuseas ou vômitos diante de novos alimentos</li>
+          <li>Refeições marcadas por grande estresse familiar</li>
+        </ul>
+
+        <h2>O Papel da Terapia</h2>
+        <p>A abordagem multidisciplinar trabalha a integração sensorial e a motricidade orofacial, ajudando a criança a explorar novos sabores de forma lúdica e sem pressão.</p>
+      </>
+    )
+  },
+  {
+    id: 8,
+    slug: "processamento-auditivo-central-pac",
+    title: "O que é Processamento Auditivo Central (PAC)?",
+    excerpt: "Sua criança ouve bem, mas parece não entender o que foi dito? Entenda como o cérebro processa o som.",
+    category: "Fonoaudiologia",
+    categoryColor: "accent",
+    author: "Dra. Lorrany Siqueira",
+    date: "20 de Fevereiro, 2026",
+    image: "https://images.unsplash.com/photo-1551076805-e1869033e561",
+    content: (
+      <>
+        <p>O transtorno do processamento auditivo ocorre quando o ouvido funciona perfeitamente, mas o cérebro tem dificuldade em interpretar as informações sonoras.</p>
+
+        <h2>Sinais Comuns</h2>
+        <ul>
+          <li>Dificuldade em entender a fala em ambientes barulhentos</li>
+          <li>Parece "desligar" quando há muitas pessoas falando</li>
+          <li>Dificuldade em seguir instruções verbais complexas</li>
+          <li>Trocas de letras na fala ou escrita</li>
+        </ul>
+
+        <h2>Diagnóstico e Treinamento Auditivo</h2>
+        <p>Com equipamentos especializados e cabine acústica, realizamos a avaliação do PAC e o treinamento auditivo para fortalecer as vias auditivas centrais.</p>
+      </>
+    )
+  },
+  {
+    id: 9,
+    slug: "importancia-orientacao-parental",
+    title: "A Importância da Orientação Parental no Tratamento",
+    excerpt: "O sucesso da terapia depende da parceria entre clínica e família. Saiba como a orientação parental acelera os resultados.",
+    category: "Psicologia",
+    categoryColor: "secondary",
+    author: "Equipe Clínica Fono Inova",
+    date: "22 de Fevereiro, 2026",
+    image: "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a",
+    content: (
+      <>
+        <p>As poucas horas semanais de terapia precisam ser estendidas para o cotidiano da criança. É aí que entra a orientação parental.</p>
+
+        <h2>Como Funciona</h2>
+        <p>Nossos especialistas orientam os pais sobre como lidar com comportamentos desafiadores, como estimular a fala no dia a dia e como criar um ambiente favorável ao desenvolvimento.</p>
+
+        <h2>Benefícios</h2>
+        <ul>
+          <li>Redução da ansiedade dos pais</li>
+          <li>Generalização das habilidades aprendidas na clínica</li>
+          <li>Fortalecimento do vínculo afetivo</li>
+          <li>Resultados terapêuticos mais rápidos e consistentes</li>
+        </ul>
+      </>
+    )
   }
-
-
 ];
 

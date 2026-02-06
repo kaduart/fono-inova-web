@@ -1,8 +1,14 @@
 import { useState } from "react";
 
-const OptimizedImage = ({ src, alt, className }) => {
+interface OptimizedImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+const OptimizedImage = ({ src, alt, className }: OptimizedImageProps) => {
   const [loaded, setLoaded] = useState(false);
-  
+
   return (
     <img
       src={src}
@@ -11,7 +17,7 @@ const OptimizedImage = ({ src, alt, className }) => {
       onLoad={() => setLoaded(true)}
       onError={(e) => {
         console.error(`Erro ao carregar imagem: ${src}`);
-        e.target.src = "/images/placeholder.jpg"; // Imagem de fallback
+        (e.target as HTMLImageElement).src = "/images/placeholder.jpg"; // Imagem de fallback
       }}
     />
   );

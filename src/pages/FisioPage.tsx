@@ -17,12 +17,14 @@ import {
     Shield,
     Star,
     Target,
-    Users
+    Users,
+    Calendar
 } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonAgendamento from '../components/ui/ButtonAgendamento';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
@@ -30,7 +32,7 @@ import { schemaFAQFisio, schemaFisioterapia } from '../schemas/clinicaSchemas';
 
 const FisioPage = () => {
     useServiceViewTime('Fisioterapia');
-    const [openAccordion, setOpenAccordion] = useState(null);
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
     // Condições tratadas
     const conditions = [
@@ -163,30 +165,29 @@ const FisioPage = () => {
                 type="article"
                 schema={[schemaFisioterapia, schemaFAQFisio]} />
 
-            {/* Hero Section Elegante */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-br from-purple-50 to-pink-100 overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-200/20 to-transparent" />
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-6">
-                                <Award className="w-4 h-4 mr-2" />
-                                Especialidade em Desenvolvimento Motor
-                            </div>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
-                                Fisioterapia <span className="text-purple-600">Pediátrica</span>: Para Que Serve e Seu Filho Precisa?
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-purple-50/30 to-white overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-purple-50 text-purple-700 border-purple-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Fisioterapia Pediátrica
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Fisioterapia <span className="text-purple-600">Pediátrica</span> em Anápolis
                             </h1>
-                            <p className="...">
-                                Se você está em <strong>Anápolis</strong> e [problema específico da página],
-                                nossa equipe no bairro <strong>Jundiaí</strong> oferece [solução].
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Desenvolvimento motor, reabilitação e acompanhamento especializado para seu filho no bairro <strong>Jundiaí</strong>.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <ButtonAgendamento className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl">
+                                <ButtonWhatsApp
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação de fisioterapia pediátrica."
+                                    icon={Calendar}
+                                    className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                >
                                     Agendar Avaliação
-                                    <ArrowRight className="w-5 h-5 ml-2" />
-                                </ButtonAgendamento>
-                                <ButtonWhatsApp className="border border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300">
-                                    Falar com Especialista
                                 </ButtonWhatsApp>
                             </div>
                         </div>
@@ -505,10 +506,11 @@ const FisioPage = () => {
                         {/* Botões */}
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={MessageCircle}
                                 className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Olá! Vi a página de Fisioterapia e gostaria de agendar uma avaliação para meu filho(a)."
                             >
-                                <MessageCircle className="w-6 h-6" />
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>
 

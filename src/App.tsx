@@ -15,6 +15,11 @@ import NeuropsicologicaPage from './pages/NeuroPsicologia';
 import PsicopedagogiaPage from './pages/PsicopedagogiaPage';
 import PsicoPage from './pages/PsisoPage';
 import TerapiaOcupacionalPage from './pages/TerapiaOcupacionaPage';
+import PsicomotricidadePage from './pages/PsicomotricidadePage';
+import PsicopedagogiaLPPage from './pages/PsicopedagogiaLPPage';
+import MusicoterapiaPage from './pages/MusicoterapiaPage';
+import EquipePage from './pages/Equipe';
+import ClinicaPage from './pages/Clinica';
 
 // Import das NOVAS páginas de funil (landing pages de marketing)
 import AdultoVozPage from './pages/AdultoVozPage';
@@ -28,8 +33,8 @@ const useAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (typeof window.gtag !== 'undefined') {
-      window.gtag('config', 'G-N59X7PNQZZ', {
+    if (typeof (window as any).gtag !== 'undefined') {
+      (window as any).gtag('config', 'G-N59X7PNQZZ', {
         page_path: location.pathname,
         page_title: document.title
       });
@@ -70,6 +75,11 @@ function App() {
         <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
         <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
         <Route path="/faq" element={<FaqPage />} />
+        <Route path="/psicomotricidade" element={<PsicomotricidadePage />} />
+        <Route path="/psicopedagogia-clinica" element={<PsicopedagogiaLPPage />} />
+        <Route path="/musicoterapia" element={<MusicoterapiaPage />} />
+        <Route path="/equipe" element={<EquipePage />} />
+        <Route path="/nossa-clinica" element={<ClinicaPage />} />
       </Routes>
 
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

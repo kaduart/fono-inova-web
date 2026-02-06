@@ -1,10 +1,14 @@
-import { BookOpen, Brain, Calendar, CheckCircle, MessageCircle, Target } from 'lucide-react';
+import { AlertTriangle, BookOpen, Brain, Calendar, CheckCircle, ChevronDown, Clock, MessageCircle, Phone, Quote, Shield, Star, Target } from 'lucide-react';
+import { useState } from 'react';
 import Layout from '../components/Layout';
+import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar } from '../schemas/clinicaSchemas';
 
 const DificuldadeEscolarPage = () => {
+    const [openAccordion, setOpenAccordion] = useState<number | null>(null);
     const sinaisDificuldade = [
         'Notas baixas mesmo estudando muito',
         'Dificuldade para ler ou escrever',
@@ -62,41 +66,36 @@ const DificuldadeEscolarPage = () => {
             <SEO
                 title="Meu Filho Não Aprende na Escola em Anápolis | Jundiaí - Fono Inova"
                 description="Seu filho estuda muito mas tira notas baixas em Anápolis? Avaliação neuropsicológica no bairro Jundiaí para identificar dislexia, TDAH. Agende pelo WhatsApp."
+                keywords="dificuldade de aprendizagem anapolis, dislexia anapolis, tdah infantil anapolis, avaliacao neuropsicologica jundiai"
                 image="/images/servicos/dificuldade-escolar.jpg"
                 url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar"
                 type="article"
                 schema={[schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar]}
             />
 
-            {/* Hero */}
-            <section className="pt-32 pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-white overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="animate-fade-in-up">
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 leading-tight">
-                                Seu Filho se Esforça, mas as Notas{' '}
-                                <span className="text-blue-600">Não Melhoram</span>?
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-blue-50 text-blue-700 border-blue-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Dificuldade de Aprendizagem
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Seu Filho se Esforça, mas as Notas <span className="text-blue-600">Não Melhoram</span>?
                             </h1>
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Dificuldades de aprendizagem não são falta de esforço ou "preguiça".
-                                Muitas vezes, são condições tratáveis como dislexia, TDAH ou discalculia.
-                                Com o diagnóstico correto e apoio especializado, seu filho pode recuperar
-                                a confiança e ter sucesso na escola.
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Avaliação neuropsicológica completa no bairro <strong>Jundiaí</strong> para identificar dislexia, TDAH e outras condições em Anápolis.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
-                                    message="Olá! Vim através do site e gostaria de agendar uma avaliação neuropsicológica para dificuldade escolar."
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação neuropsicológica para meu filho."
+                                    icon={Calendar}
+                                    className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Avaliação
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre avaliação neuropsicológica. Pode me ajudar?"
-                                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>
                         </div>
@@ -192,6 +191,8 @@ const DificuldadeEscolarPage = () => {
                     </p>
                     <ButtonWhatsApp
                         message="Meu filho tem muita dificuldade com lição de casa. Quero agendar avaliação neuropsicológica no Jundiaí."
+                        onClick={() => { }}
+                        icon={Calendar}
                         className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-bold shadow-lg"
                     >
                         Quero Avaliação Expressa
@@ -301,22 +302,14 @@ const DificuldadeEscolarPage = () => {
                             <p className="text-lg font-bold text-blue-600 mb-6">
                                 A partir de R$ 220 (primeira consulta)
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <ButtonWhatsApp
-                                    message="Olá! Gostaria de agendar uma avaliação neuropsicológica para meu filho."
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
-                                >
-                                    <Calendar className="w-5 h-5" />
-                                    Agendar Agora
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre a avaliação neuropsicológica. Pode me explicar melhor?"
-                                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
-                                </ButtonWhatsApp>
-                            </div>
+                            <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={Calendar}
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
+                                message="Olá! Gostaria de agendar uma avaliação neuropsicológica para meu filho."
+                            >
+                                Agendar Agora
+                            </ButtonWhatsApp>
                             <p className="text-sm text-gray-500 mt-4">
                                 📍 Clínica Fono Inova - Anápolis, GO
                             </p>

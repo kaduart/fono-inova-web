@@ -1,8 +1,9 @@
-import { Activity, ArrowRight, Brain, GraduationCap, MessageCircle, Scissors, Users } from 'lucide-react';
+import { Activity, ArrowRight, Brain, Footprints, GraduationCap, MessageCircle, Music, Scissors, Users } from 'lucide-react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { trackServiceClick, trackServiceView } from '../hooks/useAnalytics';
 import SEO from './SEO';
+
 
 const ServiceCards = () => {
     const services = [
@@ -102,6 +103,48 @@ const ServiceCards = () => {
                 keywords: "freio lingual, língua presa, frenotomia, amamentação, fala",
                 image: "/images/servicos/freio-lingual.jpg",
                 url: "https://www.clinicafonoinova.com.br/freio-lingual"
+            }
+        },
+        {
+            icon: <Footprints className="w-8 h-8" />,
+            title: "Psicomotricidade",
+            description: "Integra corpo, mente e emoção para desenvolver coordenação, equilíbrio e consciência corporal em crianças com TEA, Síndrome de Down e outras condições.",
+            color: "bg-pink-600",
+            link: "/psicomotricidade",
+            seo: {
+                title: "Psicomotricidade Infantil - TEA e Síndromes | Clínica Fono Inova",
+                description: "Psicomotricidade para crianças com TEA, Síndrome de Down e atrasos no desenvolvimento motor, cognitivo e emocional.",
+                keywords: "psicomotricidade infantil, TEA, síndrome de down, desenvolvimento motor, coordenação",
+                image: "/images/servicos/psicomotricidade.jpg",
+                url: "https://www.clinicafonoinova.com.br/psicomotricidade"
+            }
+        },
+        {
+            icon: <GraduationCap className="w-8 h-8" />,
+            title: "Psicopedagogia Clínica",
+            description: "Investiga e trata dificuldades de aprendizagem como dislexia, discalculia e TDAH, com estratégias personalizadas para cada criança.",
+            color: "bg-amber-600",
+            link: "/psicopedagogia-clinica",
+            seo: {
+                title: "Psicopedagogia Clínica - Dificuldades de Aprendizagem | Clínica Fono Inova",
+                description: "Psicopedagogia clínica para dislexia, discalculia, TDAH e dificuldades escolares. Avaliação e intervenção personalizada.",
+                keywords: "psicopedagogia clínica, dislexia, discalculia, TDAH, dificuldades aprendizagem",
+                image: "/images/servicos/psicopedagogia-clinica.jpg",
+                url: "https://www.clinicafonoinova.com.br/psicopedagogia-clinica"
+            }
+        },
+        {
+            icon: <Music className="w-8 h-8" />,
+            title: "Musicoterapia",
+            description: "Usa a música como ferramenta terapêutica para desenvolver comunicação, interação social e regulação emocional em crianças com TEA e outros transtornos.",
+            color: "bg-indigo-600",
+            link: "/musicoterapia",
+            seo: {
+                title: "Musicoterapia Infantil - TEA e Desenvolvimento | Clínica Fono Inova",
+                description: "Musicoterapia para crianças com autismo e transtornos do neurodesenvolvimento. Comunicação, socialização e regulação emocional através da música.",
+                keywords: "musicoterapia infantil, TEA, autismo, comunicação, desenvolvimento infantil",
+                image: "/images/servicos/musicoterapia.jpg",
+                url: "https://www.clinicafonoinova.com.br/musicoterapia"
             }
         }
     ];

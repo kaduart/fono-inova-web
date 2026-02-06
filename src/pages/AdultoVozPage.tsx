@@ -1,6 +1,8 @@
-import { AlertCircle, Calendar, CheckCircle, MessageCircle, Mic, Users } from 'lucide-react';
+import { AlertCircle, Calendar, CheckCircle, MessageCircle, Mic, Phone, Quote, Shield, Star, Users } from 'lucide-react';
 import Layout from '../components/Layout';
+import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
+import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaAdultoVoz, schemaFAQAdulto } from '../schemas/clinicaSchemas';
 
@@ -90,37 +92,30 @@ const AdultoVozPage = () => {
             />
 
 
-            {/* Hero */}
-            <section className="pt-32 pb-20 bg-gradient-to-br from-emerald-50 via-white to-emerald-50">
+            {/* Hero Section */}
+            <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-emerald-50/30 to-white overflow-hidden">
                 <div className="container mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="animate-fade-in-up">
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Se você está em <strong>Anápolis</strong> e sua voz está falhando (rouquidão, cansaço)
-                                ou tem dificuldade para engolir, nossa fonoaudióloga no bairro <strong>Jundiaí</strong>
-                                pode ajudar. Atendemos professores, palestrantes e profissionais da voz, além de reabilitação
-                                da deglutição.
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Texto */}
+                        <div className="animate-fade-in-up order-2 lg:order-1">
+                            <Badge variant="secondary" className="mb-4 bg-emerald-50 text-emerald-700 border-emerald-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                                Fonoaudiologia Adulta
+                            </Badge>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Saúde Vocal e <span className="text-emerald-600">Reabilitação</span> Adulta
+                            </h1>
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
+                                Tratamento especializado para profissionais da voz e reabilitação de deglutição (disfagia) no bairro <strong>Jundiaí, Anápolis</strong>.
                             </p>
-                            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                                Rouquidão, cansaço vocal e dificuldade para falar alto não são normais.
-                                Se você depende da sua voz para trabalhar (professor, palestrante, cantor)
-                                ou tem dificuldade para engolir, a fonoaudiologia pode te ajudar a recuperar
-                                sua qualidade de vida.
-                            </p>
+
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
-                                    message="Olá! Vim através do site e gostaria de agendar uma avaliação fonoaudiológica para adultos."
-                                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    onClick={() => { }}
+                                    message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para adultos (voz/deglutição)."
+                                    icon={Calendar}
+                                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
-                                    <Calendar className="w-5 h-5" />
                                     Agendar Avaliação
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre fonoaudiologia para adultos. Pode me ajudar?"
-                                    className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
                                 </ButtonWhatsApp>
                             </div>
                         </div>
@@ -319,22 +314,14 @@ const AdultoVozPage = () => {
                             <p className="text-lg font-bold text-emerald-600 mb-6">
                                 Avaliação: R$ 220 | Sessão: R$ 220
                             </p>
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <ButtonWhatsApp
-                                    message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para voz/disfagia."
-                                    className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
-                                >
-                                    <Calendar className="w-5 h-5" />
-                                    Agendar Agora
-                                </ButtonWhatsApp>
-                                <ButtonWhatsApp
-                                    message="Olá! Tenho dúvidas sobre o tratamento de voz/disfagia. Pode me explicar?"
-                                    className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Tirar Dúvidas
-                                </ButtonWhatsApp>
-                            </div>
+                            <ButtonWhatsApp
+                                onClick={() => { }}
+                                icon={Calendar}
+                                className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
+                                message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para voz/disfagia."
+                            >
+                                Agendar Agora
+                            </ButtonWhatsApp>
                             {/* Endereço completo */}
                             <div className="mt-6 text-center">
                                 <p className="text-sm text-gray-500">
