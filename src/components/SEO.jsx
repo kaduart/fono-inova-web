@@ -29,7 +29,11 @@ const SEO = ({ title, description, keywords = "", image, url, type = "website", 
       {/* 🔥 SCHEMA JSON-LD */}
       {schema && (
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify(
+            Array.isArray(schema) 
+              ? { "@context": "https://schema.org", "@graph": schema }
+              : schema
+          )}
         </script>
       )}
     </Helmet>

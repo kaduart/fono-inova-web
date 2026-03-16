@@ -10,7 +10,8 @@ import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { articlesData } from '../data/articlesData';
-import { schemaArticle } from '../schemas/clinicaSchemas';
+import { schemaArticle, schemaFAQArticle } from '../schemas/clinicaSchemas';
+import { RelatedLandingPages, CTABox, articleInterlinks } from '../components/RelatedContent';
 
 const ArticlePage = () => {
     const { slug } = useParams();
@@ -74,7 +75,7 @@ const ArticlePage = () => {
 
                 // Estilizar parágrafos
                 if (child.type === 'p') {
-                    return <p className="text-lg text-gray-700 leading-relaxed">{child}</p>;
+                    return <p className="text-lg text-gray-700 leading-relaxed">{child.props.children}</p>;
                 }
 
                 // Estilizar cabeçalhos
@@ -117,13 +118,20 @@ const ArticlePage = () => {
                     image={article.image}
                     url={`/artigos/${article.slug}`}
                     type="article"
-                    schema={schemaArticle(
-                        article.title,
-                        article.excerpt,
-                        article.image,
-                        `https://www.clinicafonoinova.com.br/artigos/${article.slug}`,
-                        article.date
-                    )}
+                    schema={[
+                        schemaArticle(
+                            article.title,
+                            article.excerpt,
+                            article.image,
+                            `https://www.clinicafonoinova.com.br/artigos/${article.slug}`,
+                            article.dateISO || article.date,
+                            article.author,
+                            article.authorRole,
+                            article.authorCredentials,
+                            article.dateModifiedISO || article.dateISO || article.date
+                        ),
+                        ...(article.faq && article.faq.length > 0 ? [schemaFAQArticle(article.faq)] : [])
+                    ]}
                 />
 
                 {/* Breadcrumb */}
@@ -194,8 +202,11 @@ const ArticlePage = () => {
                 <Box className="mb-10 rounded-xl overflow-hidden shadow-lg relative">
                     <img
                         src={article.image}
-                        alt={article.title}
+                        alt={article.imageAlt || `${article.title} - Clínica Fono Inova em Anápolis`}
                         className="w-full h-[500px] md:h-[600px] lg:h-[700px] object-cover"
+                        width="1200"
+                        height="700"
+                        loading="eager"
                     />
                     <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </Box>
@@ -255,6 +266,18 @@ const ArticlePage = () => {
                         </a>
                     </div>
                 </Box>
+
+                {/* INTERLINKING: Landing Pages relacionadas */}
+                {articleInterlinks[article.slug] && (
+                    <>
+                        <RelatedLandingPages 
+                            links={articleInterlinks[article.slug].landingPages} 
+                        />
+                        <CTABox 
+                            {...articleInterlinks[article.slug].cta}
+                        />
+                    </>
+                )}
 
                 {/* Artigos relacionados */}
                 <Box className="mt-12 pt-8 border-t border-gray-200">

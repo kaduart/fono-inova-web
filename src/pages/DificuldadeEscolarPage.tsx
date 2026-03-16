@@ -1,14 +1,20 @@
 import { AlertTriangle, BookOpen, Brain, Calendar, CheckCircle, ChevronDown, Clock, MessageCircle, Phone, Quote, Shield, Star, Target } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar } from '../schemas/clinicaSchemas';
+import { trackLandingPageView } from '../services/landingPageAnalytics';
 
 const DificuldadeEscolarPage = () => {
     const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+    
+    // Tracking da página
+    useEffect(() => {
+        trackLandingPageView('avaliacao-neuropsicologica-dificuldade-escolar', 'aprendizagem');
+    }, []);
     const sinaisDificuldade = [
         'Notas baixas mesmo estudando muito',
         'Dificuldade para ler ou escrever',
@@ -94,6 +100,8 @@ const DificuldadeEscolarPage = () => {
                                     message="Olá! Gostaria de agendar uma avaliação neuropsicológica para meu filho."
                                     icon={Calendar}
                                     className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                    lpSlug="avaliacao-neuropsicologica-dificuldade-escolar"
+                                    lpCategory="aprendizagem"
                                 >
                                     Agendar Avaliação
                                 </ButtonWhatsApp>

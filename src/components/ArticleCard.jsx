@@ -51,7 +51,7 @@ const ArticleCard = ({ article }) => {
       <meta itemProp="headline" content={article.title} />
       <meta itemProp="author" content={article.author} />
       <meta itemProp="datePublished" content={article.date} />
-      <meta itemProp="image" content={article.image} />
+      <meta itemProp="image" content={`https://www.clinicafonoinova.com.br${article.image}`} />
       <meta itemProp="mainEntityOfPage" content={`https://www.clinicafonoinova.com.br/artigos/${article.slug}`} />
 
       {/* Imagem */}
@@ -60,11 +60,11 @@ const ArticleCard = ({ article }) => {
 
         <img
           src={article.image}
-          alt={`Artigo sobre ${article.title} - Clínica Fono Inova`}
+          alt={article.imageAlt || `Artigo sobre ${article.title} - Clínica Fono Inova`}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           itemProp="image"
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/800x450?text=Fono+Inova';
+            e.target.src = 'https://images.unsplash.com/photo-1540479859555-17af45c78602?w=800&q=80';
           }}
         />
 

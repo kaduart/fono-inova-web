@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Import das páginas existentes
+import AnalyticsDashboard from './components/AnalyticsDashboard';
 import AnalyticsTest from './components/AnalyticsTest';
 import BookingModal from './components/BookingModal.jsx';
 import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
+import LandingPage from './pages/lp/LandingPage';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
 import FisioPage from './pages/FisioPage';
 import FonoPage from './pages/FonoPage';
@@ -28,7 +30,7 @@ import FalaTardiaPage from './pages/FalaTardiaPage';
 import FaqPage from './pages/Faq.jsx';
 import TeaPage from './pages/TeaPage';
 
-// Hook simples para analytics
+// Hook simples para analytics (GA4 já faz o tracking)
 const useAnalytics = () => {
   const location = useLocation();
 
@@ -58,6 +60,7 @@ function App() {
         {/* Rotas existentes */}
         <Route path="/" element={<Home />} />
         <Route path="/analytics" element={<AnalyticsTest />} />
+<Route path="/dashboard" element={<AnalyticsDashboard />} />
         <Route path="/artigos" element={<Articles />} />
         <Route path="/artigos/:slug" element={<ArticlePage />} />
         <Route path="/fonoaudiologia" element={<FonoPage />} />
@@ -80,6 +83,9 @@ function App() {
         <Route path="/musicoterapia" element={<MusicoterapiaPage />} />
         <Route path="/equipe" element={<EquipePage />} />
         <Route path="/nossa-clinica" element={<ClinicaPage />} />
+        
+        {/* Rota dinâmica para Landing Pages SEO */}
+        <Route path="/lp/:slug" element={<LandingPage />} />
       </Routes>
 
       <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />

@@ -1,5 +1,6 @@
 import { Phone } from 'lucide-react';
 import { reportWhatsappConversion } from '../../helper/analytics';
+import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 
 const ButtonWhatsApp = ({
     className = '',
@@ -9,6 +10,9 @@ const ButtonWhatsApp = ({
     size = 'default',
     icon: IconComponent = Phone,
     onClick,                 // permite tracking externo
+    // Props para tracking de Landing Page
+    lpSlug = null,
+    lpCategory = null,
     ...props
 }) => {
     const sizeClasses = {
@@ -21,6 +25,14 @@ const ButtonWhatsApp = ({
     const handleClick = () => {
         // Seus próprios eventos (ex.: trackFormSubmission, trackButtonClick)
         if (typeof onClick === 'function') onClick();
+        
+        // Tracking de Landing Page (se aplicável)
+        if (lpSlug && lpCategory) {
+            trackLandingPageLead(lpSlug, lpCategory, {
+                source: 'whatsapp_button',
+                location: window.location.pathname
+            });
+        }
 
         // Monta URL e dispara conversão do Google Ads (com callback para abrir)
         const encodedMessage = encodeURIComponent(message);

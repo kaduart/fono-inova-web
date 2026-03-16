@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { useFormTracking } from '../hooks/useFormTracking'
+import { useCRMIntegration } from '../hooks/useCRMIntegration'
 
 // Helpers de analytics (simples e seguros)
 const getGtag = () =>
@@ -31,7 +32,7 @@ const gaEvent = (name, params = {}) => {
   gtag('event', name, params);
 };
 
-const BookingModal = ({ isOpen, onClose }) => {
+const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -40,6 +41,7 @@ const BookingModal = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { trackFieldInteraction, trackFormSubmission } = useFormTracking('Formulário_Agendamento_Modal');
+  const { submitLead } = useCRMIntegration();
 
   const validateForm = () => {
     const newErrors = {}
@@ -86,12 +88,13 @@ const BookingModal = ({ isOpen, onClose }) => {
     handleInputChange('phone', formatted)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     if (!validateForm()) return
 
     setIsSubmitting(true)
+    setCrmStatus('sending')
 
     // Tracking interno do seu hook
     try {
@@ -107,6 +110,15 @@ const BookingModal = ({ isOpen, onClose }) => {
 
     // Google Ads: conversão de lead
     reportLeadConversion();
+
+    // 🔄 ENVIAR LEAD PARA O CRM
+    await submitLead({
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      serviceInterest: serviceInterest,
+      formSource: 'booking_modal'
+    });
 
     // Monta a mensagem simplificada para o WhatsApp
     const message = `Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.

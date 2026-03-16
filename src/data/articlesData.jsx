@@ -1,5 +1,8 @@
 // data/articlesData.js
+import { satelliteArticles } from './articles-satellite.jsx';
+
 export const articlesData = [
+  ...satelliteArticles,
   {
     id: 1,
     slug: "atraso-na-fala-como-estimular-linguagem-crianca",
@@ -8,8 +11,27 @@ export const articlesData = [
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
     date: "15 de Maio, 2025",
+    dateISO: "2025-05-15",
+    dateModifiedISO: "2025-05-15",
     image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Fonoaudióloga realizando atendimento infantil na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Com quantos anos a criança deve falar?",
+        answer: "A maioria das crianças começa a formar frases simples por volta dos 2 anos."
+      },
+      {
+        question: "Atraso na fala é sempre autismo?",
+        answer: "Não. O atraso pode ter várias causas e precisa ser avaliado por um profissional."
+      },
+      {
+        question: "A avaliação precisa de encaminhamento médico?",
+        answer: "Não necessariamente. A família pode procurar diretamente um fonoaudiólogo."
+      }
+    ],
     content: (
       <>
         <p>
@@ -78,8 +100,13 @@ export const articlesData = [
     category: "Psicologia",
     categoryColor: "secondary",
     author: "Dra. Ana Santos",
+    authorRole: "Psicóloga",
+    authorCredentials: "CRP 06/12345",
     date: "22 de Agosto, 2025",
-    image: "/images/terapia-ocupacional/sessao-sensorial.png",
+    dateISO: "2025-08-22",
+    dateModifiedISO: "2025-08-22",
+    image: "/images/fono-inova-2.png",
+    imageAlt: "Criança em atividade terapêutica para autismo - Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>O Transtorno do Espectro Autista (TEA) é uma condição do neurodesenvolvimento caracterizada por desafios na comunicação social e por comportamentos restritivos e repetitivos.</p>
@@ -118,8 +145,13 @@ export const articlesData = [
     category: "Fisioterapia",
     categoryColor: "accent",
     author: "Dr. Pedro Almeida",
+    authorRole: "Fisioterapeuta",
+    authorCredentials: "CREFITO 123456-GO",
     date: "30 de Julho, 2025",
-    image: "/images/clinica/sala-ludica.png",
+    dateISO: "2025-07-30",
+    dateModifiedISO: "2025-07-30",
+    image: "/images/terapia-ocupacional/to1.jpg",
+    imageAlt: "Criança em atividade de coordenação motora - desenvolvimento infantil na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>O desenvolvimento motor é um processo sequencial e contínuo através do qual a criança adquire gradualmente habilidades de movimento. Separamos algumas atividades simples que podem ser realizadas em casa para estimular esse desenvolvimento.</p>
@@ -151,8 +183,27 @@ export const articlesData = [
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
     date: "10 de Fevereiro, 2026",
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
+    dateISO: "2026-02-10",
+    dateModifiedISO: "2026-02-10",
+    image: "/images/fala-tardia/crianca-fala-tardia.jpeg",
+    imageAlt: "Criança tentando se comunicar - avaliação de fala tardia na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Fala tardia é autismo?",
+        answer: "Não necessariamente, existem várias causas."
+      },
+      {
+        question: "Meu filho pode desenvolver fala?",
+        answer: "Sim, com estímulo adequado."
+      },
+      {
+        question: "Quanto tempo dura o tratamento?",
+        answer: "Depende de cada criança."
+      }
+    ],
     content: (
       <>
         <p>A fala tardia é uma das maiores preocupações dos pais nos primeiros anos de vida. Muitas famílias ficam em dúvida se é apenas uma fase ou se a criança precisa de acompanhamento profissional.</p>
@@ -205,8 +256,27 @@ export const articlesData = [
     category: "Institucional",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     date: "10 de Fevereiro, 2026",
-    image: "/images/clinica/recepcao.png",
+    dateISO: "2026-02-10",
+    dateModifiedISO: "2026-02-10",
+    image: "/images/clinica/sala-espera.png",
+    imageAlt: "Família em consulta na Clínica Fono Inova em Anápolis - perguntas sobre desenvolvimento infantil",
+    faq: [
+      {
+        question: "Quando devo levar meu filho ao fonoaudiólogo?",
+        answer: "Quando há atraso na fala, troca de letras, dificuldade de compreensão ou problemas de comunicação."
+      },
+      {
+        question: "Meu filho não fala aos 2 anos. É normal?",
+        answer: "Algumas crianças apresentam atraso temporário, mas é importante realizar uma avaliação fonoaudiológica."
+      },
+      {
+        question: "Autismo tem cura?",
+        answer: "O TEA não é uma doença, mas uma condição do neurodesenvolvimento. O acompanhamento terapêutico ajuda no desenvolvimento."
+      }
+    ],
     content: (
       <>
         <p>Reunimos as principais dúvidas dos pais sobre desenvolvimento infantil e terapias realizadas na Clínica Fono Inova em Anápolis.</p>
@@ -250,8 +320,13 @@ export const articlesData = [
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     date: "15 de Fevereiro, 2026",
-    image: "/images/clinica/sala-ludica.png",
+    dateISO: "2026-02-15",
+    dateModifiedISO: "2026-02-15",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Criança concentrada em atividade terapêutica - TDAH na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>O Transtorno do Déficit de Atenção com Hiperatividade (TDAH) é uma das condições neurobiológicas mais comuns na infância, afetando a aprendizagem e o comportamento social.</p>
@@ -285,8 +360,13 @@ export const articlesData = [
     category: "Terapias",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Terapeuta Ocupacional",
+    authorCredentials: "",
     date: "18 de Fevereiro, 2026",
+    dateISO: "2026-02-18",
+    dateModifiedISO: "2026-02-18",
     image: "/images/terapia-ocupacional/sessao-sensorial.png",
+    imageAlt: "Criança explorando alimentos coloridos - terapia de seletividade alimentar na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>Muitas crianças passam por fases de recusa alimentar, mas quando o repertório de alimentos é extremamente restrito, podemos estar diante da seletividade alimentar.</p>
@@ -312,8 +392,13 @@ export const articlesData = [
     category: "Fonoaudiologia",
     categoryColor: "accent",
     author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
     date: "20 de Fevereiro, 2026",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
+    dateISO: "2026-02-20",
+    dateModifiedISO: "2026-02-20",
+    image: "/images/fono-inova-3.png",
+    imageAlt: "Criança em avaliação auditiva com fones profissionais - processamento auditivo na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>O transtorno do processamento auditivo ocorre quando o ouvido funciona perfeitamente, mas o cérebro tem dificuldade em interpretar as informações sonoras.</p>
@@ -339,8 +424,13 @@ export const articlesData = [
     category: "Psicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Psicóloga",
+    authorCredentials: "CRP 06/12345",
     date: "22 de Fevereiro, 2026",
-    image: "/images/clinica/sala-espera.png",
+    dateISO: "2026-02-22",
+    dateModifiedISO: "2026-02-22",
+    image: "/images/fono-inova-1.png",
+    imageAlt: "Pais em conversa com terapeuta - orientação parental na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>As poucas horas semanais de terapia precisam ser estendidas para o cotidiano da criança. É aí que entra a orientação parental.</p>
@@ -366,8 +456,13 @@ export const articlesData = [
     category: "Terapias",
     categoryColor: "accent",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Psicomotricista",
+    authorCredentials: "",
     date: "25 de Fevereiro, 2026",
+    dateISO: "2026-02-25",
+    dateModifiedISO: "2026-02-25",
     image: "/images/artigo-psicomotricidade.png",
+    imageAlt: "Atividade de psicomotricidade relacional na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>A psicomotricidade é a ciência que estuda a relação entre o pensamento, a emoção e o movimento. Em crianças, ela é a base para o desenvolvimento de habilidades cognitivas mais complexas.</p>
@@ -393,8 +488,13 @@ export const articlesData = [
     category: "Educação",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Psicopedagoga",
+    authorCredentials: "",
     date: "27 de Fevereiro, 2026",
+    dateISO: "2026-02-27",
+    dateModifiedISO: "2026-02-27",
     image: "/images/artigo-psicopedagogia.png",
+    imageAlt: "Atendimento psicopedagógico infantil na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>Muitas vezes, o desinteresse escolar esconde barreiras no processo de aprendizagem que a psicopedagogia é capaz de identificar e tratar.</p>
@@ -420,8 +520,13 @@ export const articlesData = [
     category: "Neurodiversidade",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
+    authorRole: "Musicoterapeuta",
+    authorCredentials: "",
     date: "01 de Março, 2026",
+    dateISO: "2026-03-01",
+    dateModifiedISO: "2026-03-01",
     image: "/images/musicoterapia-hero.png",
+    imageAlt: "Sessão de musicoterapia para crianças autistas na Clínica Fono Inova em Anápolis",
     content: (
       <>
         <p>A música ativa diversas áreas do cérebro simultaneamente, tornando-se uma ferramenta lúdica e eficaz para o engajamento social e a expressão em crianças autistas.</p>

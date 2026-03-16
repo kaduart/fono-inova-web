@@ -15,7 +15,7 @@ const ENDERECO_COMPLETO = {
 };
 
 const CONTATO = {
-    telephone: "+55-62-9XXXX-XXXX", // Substitua pelo seu WhatsApp real
+    telephone: "+55-62-99337-7726",
     email: "contato@clinicafonoinova.com.br",
     url: "https://www.clinicafonoinova.com.br"
 };
@@ -104,7 +104,7 @@ export const schemaFAQPsicopedagogia = {
             "name": "Como saber se meu filho precisa de psicopedagogo em Anápolis?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Se seu filho tem dificuldades persistentes na alfabetização, troca letras, escreve espelhado ou tem notas baixas apesar de estudar, é hora de buscar ajuda psicopedagógica no Jundiaí."
+                "text": "Se seu filho tem dificuldades persistentes na alfabetização, troca letras (b/d, p/q), escreve espelhado ou tem notas baixas apesar de estudar, é hora de buscar ajuda psicopedagógica no Jundiaí."
             }
         },
         {
@@ -520,7 +520,7 @@ export const schemaFAQFalaTardia = {
 };
 
 // 15. ARTIGOS/BLOG (Articles.tsx e Article.jsx) - Article schema
-export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao) => ({
+export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao, authorName = "Clínica Fono Inova", authorRole = "", authorCredentials = "", dataModificacao = null) => ({
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": titulo,
@@ -528,9 +528,12 @@ export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao) =>
     "image": imagem,
     "url": url,
     "datePublished": dataPublicacao,
+    "dateModified": dataModificacao || dataPublicacao,
     "author": {
-        "@type": "Organization",
-        "name": "Clínica Fono Inova"
+        "@type": "Person",
+        "name": authorName,
+        "jobTitle": authorRole,
+        "description": authorCredentials || undefined
     },
     "publisher": {
         "@type": "MedicalBusiness",
@@ -540,6 +543,20 @@ export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao) =>
             "url": "https://www.clinicafonoinova.com.br/images/logo.png"
         }
     }
+});
+
+// Schema FAQ para artigos
+export const schemaFAQArticle = (faqs) => ({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+        }
+    }))
 });
 
 export const schemaFAQFisio = {
@@ -674,3 +691,86 @@ export const schemaFAQFreioLingual = {
         }
     ]
 };
+
+// ==========================================
+// SCHEMAS PARA LANDING PAGES
+// ==========================================
+
+// Schema generator para Landing Pages
+export const schemaLandingPage = (data) => {
+    const baseSchema = {
+        "@context": "https://schema.org",
+        "@type": "MedicalWebPage",
+        "@id": `https://www.clinicafonoinova.com.br/lp/${data.slug}#webpage`,
+        "name": data.title,
+        "description": data.description,
+        "url": `https://www.clinicafonoinova.com.br/lp/${data.slug}`,
+        "datePublished": data.datePublished,
+        "dateModified": data.dateModified || data.datePublished,
+        "isPartOf": {
+            "@id": "https://www.clinicafonoinova.com.br/#website"
+        },
+        "about": {
+            "@type": "MedicalCondition",
+            "name": data.conditionName || "Desenvolvimento Infantil"
+        },
+        "provider": {
+            "@type": "MedicalBusiness",
+            "name": "Clínica Fono Inova",
+            "address": ENDERECO_COMPLETO,
+            "telephone": CONTATO.telephone,
+            "url": CONTATO.url
+        },
+        "image": data.image.startsWith('http') ? data.image : `https://www.clinicafonoinova.com.br${data.image}`,
+        "author": {
+            "@type": "Person",
+            "name": data.author,
+            "jobTitle": data.authorRole,
+            "description": data.authorCredentials || undefined
+        }
+    };
+
+    // Se tiver FAQ, adicionar FAQPage ao @graph
+    if (data.faq && data.faq.length > 0) {
+        return {
+            "@context": "https://schema.org",
+            "@graph": [
+                baseSchema,
+                {
+                    "@type": "FAQPage",
+                    "@id": `https://www.clinicafonoinova.com.br/lp/${data.slug}#faq`,
+                    "mainEntity": data.faq.map(faq => ({
+                        "@type": "Question",
+                        "name": faq.question,
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": faq.answer
+                        }
+                    }))
+                }
+            ]
+        };
+    }
+
+    return baseSchema;
+};
+
+// Schema para breadcrumbs de landing pages
+export const schemaLandingPageBreadcrumb = (data) => ({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.clinicafonoinova.com.br/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": data.title,
+            "item": `https://www.clinicafonoinova.com.br/lp/${data.slug}`
+        }
+    ]
+});
