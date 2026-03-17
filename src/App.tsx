@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Import das páginas existentes
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import AnalyticsTest from './components/AnalyticsTest';
-import BookingModal from './components/BookingModal.jsx';
 import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
 import LandingPage from './pages/lp/LandingPage';
@@ -45,11 +44,10 @@ const useAnalytics = () => {
 };
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   useAnalytics(); // → Analytics funcionando!
 
   return (
-    <div className="min-h-screen bg-background font-inter">
+    <div className="min-h-screen bg-background font-inter overflow-x-hidden">
       {/*  popup page inicial 
       <div className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl -mt-5">
         <SpecialistPopup />
@@ -88,7 +86,6 @@ function App() {
         <Route path="/lp/:slug" element={<LandingPage />} />
       </Routes>
 
-      <BookingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

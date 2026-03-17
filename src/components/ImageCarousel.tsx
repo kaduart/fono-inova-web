@@ -30,7 +30,7 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
     const imagesNichos = [
         "/images/fono-inova-1.png",
         "/images/fono-inova-2.png",
-        "/images/fono-inova-3.png",
+
         "/images/fono-inova-4.png",
         "/images/fonoaudiologia/atendimento-premium.png",
         "/images/fonoaudiologia/img-fono-atendimento-01.png",
