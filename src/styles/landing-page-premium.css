@@ -1,0 +1,718 @@
+/* ========================================
+   LANDING PAGE PREMIUM - CSS
+   Design sofisticado para páginas geográficas
+   ======================================== */
+
+/* Variáveis Premium */
+:root {
+  /* Cores principais - Paleta Infantil Acolhedora */
+  --lp-primary: #6366F1;
+  --lp-primary-light: #818CF8;
+  --lp-primary-dark: #4F46E5;
+  --lp-secondary: #10B981;
+  --lp-secondary-light: #34D399;
+  --lp-accent: #F59E0B;
+  --lp-accent-light: #FBBF24;
+  --lp-rose: #F472B6;
+  --lp-cyan: #22D3EE;
+  --lp-purple: #A78BFA;
+  
+  /* Gradientes Premium */
+  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --gradient-warm: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --gradient-cool: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  --gradient-ocean: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-sunset: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  --gradient-mint: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  
+  /* Sombras Premium */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+  --shadow-colored: 0 10px 40px rgba(99, 102, 241, 0.2);
+  
+  /* Bordas */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+}
+
+/* ========================================
+   HERO SECTION PREMIUM
+   ======================================== */
+
+.lp-hero {
+  position: relative;
+  min-height: 90vh;
+  background: linear-gradient(135deg, 
+    rgba(168, 237, 234, 0.4) 0%, 
+    rgba(254, 214, 227, 0.4) 25%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(254, 207, 239, 0.3) 75%,
+    rgba(167, 139, 250, 0.2) 100%
+  );
+  overflow: hidden;
+}
+
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.lp-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float-slow 15s ease-in-out infinite reverse;
+}
+
+.lp-hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.lp-hero-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #1e293b 0%, #475569 50%, #6366F1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.lp-hero-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: #64748b;
+  line-height: 1.7;
+  font-weight: 400;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.lp-hero-image-wrapper {
+  position: relative;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.lp-hero-image {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-large);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.lp-hero-image:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+.lp-hero-badge {
+  position: absolute;
+  bottom: 24px;
+  left: -24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-lg);
+  padding: 16px 24px;
+  box-shadow: var(--shadow-medium);
+  animation: float 4s ease-in-out infinite;
+}
+
+.lp-hero-badge-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* ========================================
+   BOTÕES PREMIUM
+   ======================================== */
+
+.lp-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%);
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.lp-btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.lp-btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+}
+
+.lp-btn-primary:hover::before {
+  left: 100%;
+}
+
+.lp-btn-primary:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.lp-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #6366F1;
+  background: white;
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-medium);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.lp-btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-large);
+  border-color: #6366F1;
+}
+
+/* ========================================
+   CARDS PREMIUM
+   ======================================== */
+
+.lp-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.lp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6366F1, #A78BFA, #F472B6);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.lp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-large);
+}
+
+.lp-card:hover::before {
+  transform: scaleX(1);
+}
+
+.lp-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.lp-card:hover .lp-card-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.lp-card-icon-red {
+  background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+  color: #DC2626;
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.15);
+}
+
+.lp-card-icon-blue {
+  background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%);
+  color: #2563EB;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+}
+
+.lp-card-icon-green {
+  background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+  color: #059669;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.15);
+}
+
+.lp-card-icon-purple {
+  background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
+  color: #7C3AED;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.15);
+}
+
+.lp-card-icon-orange {
+  background: linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%);
+  color: #EA580C;
+  box-shadow: 0 8px 20px rgba(234, 88, 12, 0.15);
+}
+
+.lp-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.lp-card-text {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* ========================================
+   SEÇÃO CTA PREMIUM
+   ======================================== */
+
+.lp-cta-section {
+  position: relative;
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A78BFA 100%);
+  overflow: hidden;
+}
+
+.lp-cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.lp-cta-section::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.lp-cta-content {
+  position: relative;
+  z-index: 10;
+}
+
+.lp-cta-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.lp-cta-text {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   SEÇÃO PROCESSO PREMIUM
+   ======================================== */
+
+.lp-process-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.lp-step {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.lp-step:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.lp-step-number {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  color: white;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.lp-step-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.lp-step-text {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* ========================================
+   SEÇÃO FAQ PREMIUM
+   ======================================== */
+
+.lp-faq-section {
+  background: linear-gradient(180deg, #f1f5f9 0%, #f8fafc 100%);
+}
+
+.lp-faq-item {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.lp-faq-item:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.lp-faq-question {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lp-faq-question::before {
+  content: 'Q.';
+  color: #6366F1;
+  font-weight: 800;
+}
+
+.lp-faq-answer {
+  color: #64748b;
+  line-height: 1.7;
+  padding-left: 32px;
+}
+
+/* ========================================
+   SEÇÃO FINAL CTA PREMIUM
+   ======================================== */
+
+.lp-final-cta {
+  position: relative;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  overflow: hidden;
+}
+
+.lp-final-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.lp-final-cta-content {
+  position: relative;
+  z-index: 10;
+}
+
+.lp-final-cta-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lp-final-cta-text {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.7;
+}
+
+.lp-contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.lp-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lp-contact-item:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.lp-contact-item svg {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+}
+
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(5deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(-5deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 4s ease-in-out 1s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ========================================
+   DECORAÇÕES
+   ======================================== */
+
+.lp-decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.lp-decoration-circle-1 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1));
+  top: 10%;
+  right: 5%;
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.lp-decoration-circle-2 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.2), rgba(251, 191, 36, 0.1));
+  bottom: 20%;
+  left: 5%;
+  animation: float-slow 15s ease-in-out infinite reverse;
+}
+
+/* ========================================
+   BREADCRUMB PREMIUM
+   ======================================== */
+
+.lp-breadcrumb {
+  background: transparent;
+  padding: 0;
+}
+
+.lp-breadcrumb a {
+  color: #64748b;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lp-breadcrumb a:hover {
+  color: #6366F1;
+}
+
+.lp-breadcrumb-current {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .lp-hero {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+  
+  .lp-hero-badge {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 24px;
+  }
+  
+  .lp-card {
+    padding: 24px;
+  }
+  
+  .lp-step {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .lp-contact-item {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ========================================
+   UTILITÁRIOS
+   ======================================== */
+
+.lp-text-gradient {
+  background: linear-gradient(135deg, #6366F1 0%, #A78BFA 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lp-section-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.lp-section-subtitle {
+  font-size: 1.125rem;
+  color: #64748b;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  line-height: 1.7;
+}
+
+.lp-section-light {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.lp-section-muted {
+  background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%);
+}

@@ -88,9 +88,9 @@ const WhatsAppCTA = ({
   };
 
   const variants = {
-    primary: "bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/30",
-    secondary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/30",
-    outline: "border-2 border-green-500 text-green-600 hover:bg-green-50"
+    primary: "lp-btn-primary",
+    secondary: "lp-btn-secondary",
+    outline: "border-2 border-green-500 text-green-600 hover:bg-green-50 rounded-full px-6 py-3 font-semibold transition-all"
   };
 
   const sizes = {
