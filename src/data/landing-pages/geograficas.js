@@ -6,6 +6,7 @@ export const geograficasLPs = [
   {
     id: "lp-geo-001",
     slug: "fonoaudiologo-anapolis",
+    category: "geografica",
     
     title: "Fonoaudiólogo em Anápolis | Clínica Fono Inova - Jundiaí",
     description: "Procure fonoaudiólogo em Anápolis? Clínica Fono Inova no bairro Jundiaí oferece fonoaudiologia infantil especializada. Agende sua avaliação.",
@@ -95,6 +96,7 @@ export const geograficasLPs = [
   {
     id: "lp-geo-002",
     slug: "psicologo-infantil-anapolis",
+    category: "geografica",
     
     title: "Psicólogo Infantil em Anápolis | Clínica Fono Inova - Jundiaí",
     description: "Psicólogo infantil em Anápolis no bairro Jundiaí. Atendimento para TDAH, autismo, ansiedade e desenvolvimento infantil. Agende sua consulta.",
@@ -179,6 +181,7 @@ export const geograficasLPs = [
   {
     id: "lp-geo-003",
     slug: "terapia-ocupacional-anapolis",
+    category: "geografica",
     
     title: "Terapia Ocupacional em Anápolis | Clínica Fono Inova - Jundiaí",
     description: "Terapia ocupacional infantil em Anápolis no bairro Jundiaí. Integração sensorial, coordenação motora e autonomia. Agende sua avaliação.",
@@ -262,6 +265,7 @@ export const geograficasLPs = [
   {
     id: "lp-geo-004",
     slug: "avaliacao-neuropsicologica-anapolis",
+    category: "geografica",
     
     title: "Avaliação Neuropsicológica em Anápolis | Clínica Fono Inova",
     description: "Avaliação neuropsicológica infantil em Anápolis. Diagnóstico de TDAH, dislexia, autismo e dificuldades de aprendizagem. Agende agora.",
