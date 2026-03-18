@@ -1,6 +1,7 @@
-// Componente WhatsApp CTA com tracking para Landing Pages
+// Componente WhatsApp CTA com tracking completo de origem
 import { trackEvent } from '../../hooks/useAnalytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
+import { getLeadTracking, buildTrackingPayload } from '../../hooks/useLeadTracking';
 
 const WhatsAppCTA = ({ 
   text = "Fale Conosco no WhatsApp", 
@@ -13,7 +14,9 @@ const WhatsAppCTA = ({
   message = "Olá! Vim pelo site e gostaria de agendar uma avaliação para meu filho.",
   // Props para tracking de LP
   lpSlug = null,
-  lpCategory = null
+  lpCategory = null,
+  // Props para tracking de especialidade
+  specialty = null
 }) => {
   // Adicionar mensagem pronta ao link do WhatsApp
   const getWhatsAppLink = () => {
@@ -24,19 +27,34 @@ const WhatsAppCTA = ({
   };
 
   const handleClick = () => {
-    // Tracking GA4
+    // Capturar tracking de origem
+    const tracking = getLeadTracking();
+    const trackingPayload = buildTrackingPayload();
+    
+    console.log('🎯 WhatsApp CTA - Tracking:', tracking);
+
+    // Tracking GA4 com dados de origem
     trackEvent('whatsapp_click', {
       event_category: 'conversion',
       event_label: trackingLabel,
       location: window.location.pathname,
+      source: tracking.source,
+      campaign: tracking.campaign,
+      medium: tracking.medium
     });
 
     // Tracking LP no CRM (se for landing page)
     if (lpSlug && lpCategory) {
       trackLandingPageLead(lpSlug, lpCategory, {
-        source: 'whatsapp_cta',
+        source: tracking.source,
+        origin: tracking.origin,
+        campaign: tracking.campaign,
+        medium: tracking.medium,
+        gclid: tracking.gclid,
+        fbclid: tracking.fbclid,
         location: window.location.pathname,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        specialty: specialty || lpCategory
       });
     }
 
@@ -44,9 +62,29 @@ const WhatsAppCTA = ({
     if (typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'Contact', {
         content_name: trackingLabel,
-        content_category: 'whatsapp'
+        content_category: 'whatsapp',
+        source: tracking.source,
+        campaign: tracking.campaign
       });
     }
+
+    // Tracking Google Ads Conversion (se tem gclid)
+    if (tracking.gclid && typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17010705949/whatsapp_lead',
+        value: 50.0,
+        currency: 'BRL',
+        transaction_id: `whatsapp_${Date.now()}`,
+        campaign: tracking.campaign
+      });
+    }
+
+    // Salvar tracking no sessionStorage para uso posterior
+    sessionStorage.setItem('last_click_tracking', JSON.stringify({
+      ...trackingPayload,
+      clickedAt: new Date().toISOString(),
+      element: 'whatsapp_cta'
+    }));
   };
 
   const variants = {
