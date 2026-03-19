@@ -1,8 +1,70 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
-    ]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/lp/crianca-2-anos-nao-fala",
+      "destination": "/fala-tardia",
+      "permanent": true
+    },
+    {
+      "source": "/lp/atraso-na-fala-infantil",
+      "destination": "/fala-tardia",
+      "permanent": true
+    },
+    {
+      "source": "/lp/crianca-nao-forma-frases",
+      "destination": "/fala-tardia",
+      "permanent": true
+    },
+    {
+      "source": "/lp/dificuldade-pronunciar-r",
+      "destination": "/lp/troca-letras-crianca",
+      "permanent": true
+    },
+    {
+      "source": "/lp/fala-enrolada-crianca",
+      "destination": "/lp/troca-letras-crianca",
+      "permanent": true
+    },
+    {
+      "source": "/lp/sinais-autismo-bebe",
+      "destination": "/avaliacao-autismo-infantil",
+      "permanent": true
+    },
+    {
+      "source": "/lp/sinais-autismo-2-anos",
+      "destination": "/avaliacao-autismo-infantil",
+      "permanent": true
+    },
+    {
+      "source": "/lp/crianca-nao-responde-nome",
+      "destination": "/avaliacao-autismo-infantil",
+      "permanent": true
+    },
+    {
+      "source": "/lp/crianca-nao-olha-olhos",
+      "destination": "/avaliacao-autismo-infantil",
+      "permanent": true
+    },
+    {
+      "source": "/lp/avaliacao-tea-anapolis",
+      "destination": "/avaliacao-autismo-infantil",
+      "permanent": true
+    },
+    {
+      "source": "/lp/sinais-dislexia",
+      "destination": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "permanent": true
+    },
+    {
+      "source": "/lp/crianca-nao-aprende-ler",
+      "destination": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "permanent": true
+    }
+  ]
 }

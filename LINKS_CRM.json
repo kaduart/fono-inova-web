@@ -1,0 +1,96 @@
+{
+  "landing_pages": [
+    {
+      "url": "https://clinicafonoinova.com.br/fala-tardia",
+      "titulo": "Fala Tardia Infantil em Anápolis",
+      "categoria": "conversao",
+      "prioridade": 0.95,
+      "cta_principal": "Falar com Especialista Agora",
+      "mensagem_whatsapp": "Oi, vi no site sobre fala tardia. Meu filho tem atraso na fala e gostaria de agendar uma avaliação. Pode me explicar como funciona?",
+      "publico_alvo": "Pais de crianças 2-5 anos com atraso na fala",
+      "keywords": ["fala tardia", "atraso na fala", "crianca nao fala", "fonoaudiologia anapolis"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/avaliacao-autismo-infantil",
+      "titulo": "Avaliação de Autismo (TEA) em Anápolis",
+      "categoria": "conversao",
+      "prioridade": 0.95,
+      "cta_principal": "Agendar Avaliação Multidisciplinar",
+      "mensagem_whatsapp": "Oi, vi no site sobre avaliação de autismo. Tenho suspeita sobre meu filho e gostaria de agendar. Pode me explicar como funciona?",
+      "publico_alvo": "Pais com suspeita ou diagnóstico de TEA",
+      "keywords": ["autismo infantil", "tea", "avaliacao autismo", "sinais autismo", "diagnostico autismo anapolis"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/dislexia-infantil",
+      "titulo": "Dislexia Infantil - Avaliação e Tratamento",
+      "categoria": "conversao",
+      "prioridade": 0.90,
+      "cta_principal": "Falar com Especialista",
+      "mensagem_whatsapp": "Oi, vi no site sobre dislexia. Meu filho tem dificuldade para ler/confunde letras. Pode me explicar como funciona a avaliação?",
+      "publico_alvo": "Pais de crianças com dificuldade de leitura/escrita",
+      "keywords": ["dislexia infantil", "troca letras", "dificuldade para ler", "psicopedagogia anapolis"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/tdah-infantil",
+      "titulo": "TDAH Infantil - Avaliação Neuropsicológica",
+      "categoria": "conversao",
+      "prioridade": 0.90,
+      "cta_principal": "Agendar Avaliação",
+      "mensagem_whatsapp": "Oi, vi no site sobre TDAH. Meu filho é muito inquieto/tem dificuldade de atenção. Pode me explicar como funciona a avaliação?",
+      "publico_alvo": "Pais de crianças hiperativas ou com déficit de atenção",
+      "keywords": ["tdah infantil", "hiperatividade", "deficit atencao", "crianca inquieta", "avaliacao neuropsicologica"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar",
+      "titulo": "Dificuldade Escolar - Avaliação Completa",
+      "categoria": "conversao",
+      "prioridade": 0.95,
+      "cta_principal": "Agendar Avaliação",
+      "mensagem_whatsapp": "Oi, vi no site sobre dificuldade escolar. Meu filho tem problemas na escola e gostaria de uma avaliação. Pode me explicar como funciona?",
+      "publico_alvo": "Pais de crianças com baixo rendimento escolar",
+      "keywords": ["dificuldade escolar", "baixo rendimento", "problemas escola", "avaliacao neuropsicologica"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/freio-lingual",
+      "titulo": "Freio Lingual - Avaliação e Cirurgia",
+      "categoria": "conversao",
+      "prioridade": 0.90,
+      "cta_principal": "Agendar Avaliação",
+      "mensagem_whatsapp": "Oi, vi no site sobre freio lingual. Suspeito que meu filho tem lingua presa. Pode me explicar como funciona a avaliação?",
+      "publico_alvo": "Pais com suspeita de anquiloglossia",
+      "keywords": ["freio lingual", "lingua presa", "anquiloglossia", "problema amamentacao"]
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/fonoaudiologia-adulto",
+      "titulo": "Fonoaudiologia Adulto - Voz e Disfagia",
+      "categoria": "conversao",
+      "prioridade": 0.85,
+      "cta_principal": "Agendar Consulta",
+      "mensagem_whatsapp": "Oi, vi no site sobre fonoaudiologia adulto. Tenho problema de voz/rouquidao e gostaria de agendar. Pode me explicar como funciona?",
+      "publico_alvo": "Adultos com disfonia, rouquidão ou dificuldade para engolir",
+      "keywords": ["fonoaudiologia adulto", "disfonia", "rouquidao", "professores voz", "dificuldade para engolir"]
+    }
+  ],
+  "geo_pages": [
+    {
+      "url": "https://clinicafonoinova.com.br/lp/fonoaudiologo-anapolis",
+      "titulo": "Fonoaudiólogo em Anápolis",
+      "local": "Anápolis"
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/lp/psicologo-infantil-anapolis",
+      "titulo": "Psicólogo Infantil em Anápolis",
+      "local": "Anápolis"
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/lp/terapia-ocupacional-anapolis",
+      "titulo": "Terapia Ocupacional em Anápolis",
+      "local": "Anápolis"
+    },
+    {
+      "url": "https://clinicafonoinova.com.br/lp/avaliacao-neuropsicologica-anapolis",
+      "titulo": "Avaliação Neuropsicológica em Anápolis",
+      "local": "Anápolis"
+    }
+  ]
+}

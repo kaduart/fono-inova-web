@@ -25,8 +25,10 @@ import ClinicaPage from './pages/Clinica';
 // Import das NOVAS páginas de funil (landing pages de marketing)
 import AdultoVozPage from './pages/AdultoVozPage';
 import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
+import DislexiaPage from './pages/DislexiaPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
 import FaqPage from './pages/Faq.jsx';
+import TdahPage from './pages/TdahPage';
 import TeaPage from './pages/TeaPage';
 
 // Hook de tracking
@@ -86,6 +88,8 @@ function App() {
           {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
           <Route path="/avaliacao-autismo-infantil" element={<TeaPage />} />
           <Route path="/fala-tardia" element={<FalaTardiaPage />} />
+          <Route path="/dislexia-infantil" element={<DislexiaPage />} />
+          <Route path="/tdah-infantil" element={<TdahPage />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
           <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
           <Route path="/faq" element={<FaqPage />} />

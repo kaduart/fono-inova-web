@@ -3,7 +3,8 @@ import { Button } from '@mui/material';
 import { Calendar, ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logoImgHeader from '../../assets/LOGO_FONO_INOVA_HORIZONTAL_NEGRITO.png';
+import logoImgHeader from '../../assets/Logo_Fono_Inova_Horizontal_3D.png';
+import logoIconMobile from '../../assets/Icone-logo-cabeca-Fono-Inova-3D.png';
 import { trackButtonClick } from '../../hooks/useAnalytics';
 import BookingModal from '../BookingModal';
 
@@ -50,20 +51,28 @@ const Header = () => {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50">
-                <div className="max-w-[1355px] mx-auto px-4 h-14 flex items-center justify-between">
+            <header className="fixed top-0 left-0 w-full bg-white shadow-lg border-b border-gray-100 z-50">
+                <div className="max-w-[1355px] mx-auto px-4 h-16 lg:h-20 flex items-center justify-between">
 
                     {/* Logo */}
-                    <Link to="/" onClick={() => window.scrollTo({ top: 0 })} className="flex-shrink-0">
-                        <span className="block xl:hidden font-bold text-teal-500 text-lg">Fono Inova</span>
-                        <img src={logoImgHeader} alt="Fono Inova" className="hidden xl:block h-12 w-auto" />
+                    <Link to="/" onClick={() => window.scrollTo({ top: 0 })} className="flex-shrink-0 flex items-center">
+                        <img 
+                            src={logoIconMobile} 
+                            alt="Fono Inova" 
+                            className="block xl:hidden h-12 w-auto object-contain drop-shadow-md" 
+                        />
+                        <img 
+                            src={logoImgHeader} 
+                            alt="Fono Inova" 
+                            className="hidden xl:block h-14 lg:h-16 w-auto object-contain drop-shadow-md" 
+                        />
                     </Link>
 
                     {/* Desktop Navigation - sempre hidden até montar */}
                     <nav className="hidden xl:flex items-center gap-6">
                         <div className="relative">
                             <button
-                                className="flex items-center gap-1 text-gray-700 hover:text-teal-500 font-medium"
+                                className="flex items-center gap-1 text-gray-800 hover:text-teal-600 font-semibold transition-colors"
                                 onClick={() => setOpenDropdown(openDropdown === 'services' ? null : 'services')}
                             >
                                 Serviços <ChevronDown className="w-4 h-4" />
@@ -78,10 +87,10 @@ const Header = () => {
                                 </div>
                             )}
                         </div>
-                        <button onClick={() => scrollToSection('about')} className="text-gray-700 hover:text-teal-500">Sobre</button>
-                        <button onClick={() => scrollToSection('testimonials')} className="text-gray-700 hover:text-teal-500">Depoimentos</button>
-                        <Link to="/faq" className="text-gray-700 hover:text-teal-500">FAQ</Link>
-                        <button onClick={handleAgendar} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium text-sm">
+                        <button onClick={() => scrollToSection('about')} className="text-gray-800 hover:text-teal-600 font-semibold transition-colors">Sobre</button>
+                        <button onClick={() => scrollToSection('testimonials')} className="text-gray-800 hover:text-teal-600 font-semibold transition-colors">Depoimentos</button>
+                        <Link to="/faq" className="text-gray-800 hover:text-teal-600 font-semibold transition-colors">FAQ</Link>
+                        <button onClick={handleAgendar} className="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all">
                             Agendar
                         </button>
                     </nav>
@@ -100,7 +109,7 @@ const Header = () => {
 
                 {/* Mobile Menu */}
                 {isMenuOpen && mounted && (
-                    <div className="xl:hidden bg-white border-t border-gray-200 absolute top-14 left-0 w-full max-h-[calc(100vh-56px)] overflow-y-auto shadow-lg">
+                    <div className="xl:hidden bg-white border-t border-gray-200 absolute top-16 left-0 w-full max-h-[calc(100vh-64px)] overflow-y-auto shadow-lg">
                         <nav className="px-4 py-3">
                             <div className="font-semibold text-gray-900 py-2">Serviços</div>
                             {services.map((s) => (

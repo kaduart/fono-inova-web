@@ -1,93 +1,113 @@
 // Landing Pages - Fonoaudiologia
 // Foco: atraso na fala, problemas de linguagem infantil
+// Otimizado para conversão (WhatsApp-first)
 
 export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-001",
     slug: "crianca-2-anos-nao-fala",
+    category: "fonoaudiologia",
     
-    // SEO
-    title: "Criança de 2 Anos Não Fala? Quando Procurar Ajuda em Anápolis",
-    description: "Se seu filho tem 2 anos e não fala, saiba os sinais de alerta e como a fonoaudiologia pode ajudar. Atendimento infantil na Clínica Fono Inova em Anápolis.",
+    title: "Meu Filho Tem 2 Anos e Não Fala: É Normal? | Anápolis",
+    description: "Criança de 2 anos ainda não fala? Entenda quando é normal e quando procurar ajuda. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
     keywords: ["crianca 2 anos nao fala", "atraso fala infantil", "fonoaudiologia anapolis", "crianca nao fala aos 2 anos"],
     
-    // Autor e data
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
-    // Mídia
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Fonoaudióloga avaliando criança de 2 anos na Clínica Fono Inova em Anápolis",
     
-    // Conteúdo estruturado
     hero: {
-      headline: "Criança de 2 Anos Não Fala?",
-      subheadline: "Entenda quando é normal e quando procurar um fonoaudiólogo especializado em Anápolis",
-      ctaText: "Fale com um Especialista",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança tem 2 anos e não fala. Gostaria de agendar uma avaliação na Clínica Fono Inova."
+      headline: "Seu Filho Tem 2 Anos e Ainda Não Fala?",
+      subheadline: "Você não está sozinha. Muitas crianças precisam de um empurrãozinho para desenvolver a fala. Em Anápolis, podemos ajudar seu filho a se comunicar.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem 2 anos e ainda não fala. Pode me explicar como funciona a avaliação?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho tem 2 anos e não fala nenhuma palavra",
+        "Fala pouco, só alguns sons sem sentido",
+        "Não junta 2 palavras para formar frases",
+        "Usa mais gestos do que palavras",
+        "Família não entende o que ele quer",
+        "Frustração quando tenta se comunicar"
+      ]
     },
     
     problem: {
-      title: "O Desenvolvimento da Fala aos 2 Anos",
-      content: "Aos 2 anos, a maioria das crianças já forma frases simples com 2 a 3 palavras, possui um vocabulário de 50+ palavras e consegue seguir instruções simples. Se seu filho ainda não apresenta esses marcos, pode ser um sinal de atraso na fala que merece atenção profissional. Na Clínica Fono Inova em Anápolis, avaliamos crianças com atraso na fala há mais de 5 anos."
+      title: "Aos 2 Anos, a Fala Já Deveria Ter Começado",
+      content: "Aos 2 anos, a maioria das crianças já fala entre 50 a 200 palavras e junta 2 palavras para formar frases como 'mamãe água' ou 'quero papa'. Se seu filho ainda não apresenta esses marcos, pode ser um atraso na fala que merece atenção. Mas fique tranquila: com estimulação adequada, a maioria das crianças alcança o desenvolvimento esperado. Na Clínica Fono Inova em Anápolis, avaliamos crianças com atraso na fala e criamos um plano personalizado para ajudar seu filho a se comunicar."
     },
     
     signs: {
       title: "Sinais de Alerta aos 2 Anos",
       items: [
-        { title: "Não fala nenhuma palavra", description: "A criança não emite palavras isoladas ou sons com significado" },
-        { title: "Não aponta para objetos", description: "Não usa gestos para comunicar desejos ou interesses" },
-        { title: "Não responde ao próprio nome", description: "Parece não ouvir ou ignorar quando chamada" },
-        { title: "Não faz contato visual", description: "Evita olhar nos olhos durante interações" },
-        { title: "Não imita sons", description: "Não repete palavras ou sons que ouve" }
+        { title: "Não fala nenhuma palavra", description: "A criança não emite palavras isoladas ou sons com significado claro" },
+        { title: "Não aponta para objetos", description: "Não usa gestos para comunicar desejos, interesses ou necessidades" },
+        { title: "Não responde ao próprio nome", description: "Parece não ouvir ou ignorar quando chamada, como se estivesse em 'mundo próprio'" },
+        { title: "Não faz contato visual", description: "Evita olhar nos olhos durante interações e brincadeiras" },
+        { title: "Não imita sons", description: "Não repete palavras, sons ou gestos que observa nas outras pessoas" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Percebeu esses sinais no seu filho?",
+      button: "Falar com fonoaudióloga agora"
     },
     
     solution: {
-      title: "Como a Fonoaudiologia Pode Ajudar",
-      content: "Na Clínica Fono Inova em Anápolis, realizamos uma avaliação fonoaudiológica completa para identificar as causas do atraso na fala. Nosso tratamento é baseado em brincadeiras terapêuticas que estimulam a linguagem de forma lúdica e eficiente. Trabalhamos com técnicas atualizadas e individualizadas para cada criança, respeitando seu ritmo de desenvolvimento."
+      title: "Como a Fonoaudiologia Pode Ajudar Seu Filho a Falar",
+      content: "A fonoaudiologia infantil utiliza brincadeiras terapêuticas e atividades lúdicas para estimular a fala de forma natural e divertida. Trabalhamos com técnicas atualizadas e individualizadas para cada criança, respeitando seu ritmo de desenvolvimento. Na Clínica Fono Inova em Anápolis, muitas famílias relatam progresso já nas primeiras semanas de acompanhamento."
     },
     
     process: {
-      title: "Como Funciona a Avaliação",
+      title: "Como Funciona o Acompanhamento",
       steps: [
-        { title: "Entrevista com os pais", description: "Conversamos sobre o desenvolvimento da criança desde o nascimento" },
-        { title: "Avaliação da linguagem", description: "Observamos comunicação verbal e não-verbal" },
-        { title: "Análise da audição", description: "Verificamos se há problemas auditivos afetando a fala" },
-        { title: "Plano terapêutico", description: "Elaboramos um plano personalizado de intervenção" }
+        { title: "Entrevista com os Pais", description: "Conversamos sobre o desenvolvimento da criança desde o nascimento" },
+        { title: "Avaliação da Linguagem", description: "Observamos comunicação verbal e não-verbal em ambiente acolhedor" },
+        { title: "Análise da Audição", description: "Verificamos se há problemas auditivos afetando o desenvolvimento da fala" },
+        { title: "Plano Terapêutico", description: "Elaboramos um plano personalizado de intervenção com metas claras" }
       ]
     },
     
-    // Artigos relacionados
+    urgency: {
+      text: "Quanto antes começar a estimulação, mais rápido seu filho desenvolve a fala e recupera a confiança para se comunicar."
+    },
+    
     relatedArticles: [
       "atraso-na-fala-como-estimular-linguagem-crianca",
       "fala-tardia-criancas-quando-preocupar"
     ],
     
-    // FAQ para Schema
     faq: [
       {
         question: "Com quantos anos a criança deve falar?",
-        answer: "A maioria das crianças começa a emitir as primeiras palavras entre 12 e 18 meses. Aos 2 anos, já devem formar frases simples com 2 a 3 palavras e ter um vocabulário de pelo menos 50 palavras."
+        answer: "A maioria das crianças fala as primeiras palavras entre 12 e 18 meses. Aos 2 anos, já devem ter vocabulário de 50+ palavras e juntar 2 palavras. Se não fala nada aos 2 anos, é importante avaliar."
       },
       {
         question: "Criança de 2 anos não falar é normal?",
-        answer: "Cada criança tem seu ritmo, mas aos 2 anos é esperado que já falem algumas palavras. Se não fala nada, é recomendável avaliação fonoaudiológica para descartar problemas."
+        answer: "Cada criança tem seu ritmo, mas aos 2 anos é esperado que já falem algumas palavras. Se não fala nada ou fala muito pouco, uma avaliação fonoaudiológica ajuda a entender o que está acontecendo e como estimular."
+      },
+      {
+        question: "Meu filho tem 2 anos e só balbucia: é atraso?",
+        answer: "Balbucio é normal até cerca de 18 meses. Aos 2 anos, a criança já deve ter palavras com significado. Se só balbucia, pode indicar necessidade de estimulação fonoaudiológica."
       },
       {
         question: "Onde fazer avaliação fonoaudiológica em Anápolis?",
-        answer: "A Clínica Fono Inova, localizada no bairro Jundiaí em Anápolis, oferece avaliação fonoaudiológica especializada para crianças com atraso na fala."
+        answer: "A Clínica Fono Inova, localizada no bairro Jundiaí em Anápolis, oferece avaliação fonoaudiológica especializada para crianças com atraso na fala. O agendamento pode ser feito pelo WhatsApp (62) 99337-7726."
       },
       {
-        question: "Precisa de encaminho médico para fonoaudiologia?",
-        answer: "Não. Os pais podem procurar diretamente um fonoaudiólogo. Na Clínica Fono Inova em Anápolis, você pode agendar sua avaliação pelo WhatsApp."
+        question: "Quanto tempo leva para a criança começar a falar com fonoaudiologia?",
+        answer: "Muitas famílias relatam progresso já nas primeiras 6-8 semanas. Cada criança tem seu ritmo, mas a maioria mostra evolução significativa em 3-6 meses de acompanhamento regular."
       }
     ],
     
-    // SEO Local
     localInfo: {
       cidade: "Anápolis",
       bairro: "Jundiaí",
@@ -98,9 +118,10 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-002",
     slug: "atraso-na-fala-infantil",
+    category: "fonoaudiologia",
     
     title: "Atraso na Fala Infantil: Tratamento em Anápolis | Fono Inova",
-    description: "Tratamento especializado para crianças com atraso na fala. Fonoaudiologia infantil no bairro Jundiaí, Anápolis. Agende uma avaliação.",
+    description: "Tratamento especializado para crianças com atraso na fala. Fonoaudiologia infantil no bairro Jundiaí, Anápolis. Agende uma avaliação pelo WhatsApp.",
     keywords: ["atraso na fala infantil", "tratamento atraso fala", "fonoaudiologia anapolis", "crianca nao fala direito"],
     
     author: "Dra. Lorrany Siqueira",
@@ -113,41 +134,62 @@ export const fonoaudiologiaLPs = [
     imageAlt: "Tratamento fonoaudiológico para atraso na fala infantil na Clínica Fono Inova",
     
     hero: {
-      headline: "Atraso na Fala Infantil",
-      subheadline: "Tratamento especializado para ajudar seu filho a desenvolver a comunicação",
-      ctaText: "Agendar Avaliação",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Gostaria de agendar uma avaliação para atraso na fala na Clínica Fono Inova."
+      headline: "Seu Filho Tem Atraso na Fala?",
+      subheadline: "Cada criança tem seu tempo, mas o suporte especializado na hora certa faz toda a diferença no desenvolvimento da comunicação.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem atraso na fala e gostaria de agendar uma avaliação. Pode me explicar como funciona?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho fala muito menos do que deveria para a idade",
+        "Aos 18 meses não fala pelo menos 6 palavras",
+        "Aos 2 anos não junta 2 palavras",
+        "Aos 3 anos não forma frases compreensíveis",
+        "Família e professores não entendem o que diz",
+        "Frustração ao tentar se comunicar"
+      ]
     },
     
     problem: {
-      title: "O Que é Atraso na Fala?",
-      content: "O atraso na fala ocorre quando a criança não desenvolve a comunicação verbal dentro dos marcos esperados para sua idade. Pode afetar a produção de palavras, a compreensão da linguagem ou ambos. Na Clínica Fono Inova em Anápolis, identificamos as causas e tratamos cada caso de forma individualizada."
+      title: "O Que é Atraso na Fala e Quando Buscar Ajuda?",
+      content: "O atraso na fala ocorre quando a criança não desenvolve a comunicação verbal dentro dos marcos esperados para sua idade. Isso pode afetar a produção de palavras, a compreensão da linguagem ou ambos. É importante diferenciar atraso de fala (apenas a expressão) de atraso de linguagem (expressão + compreensão). Na Clínica Fono Inova em Anápolis, identificamos o tipo de atraso e tratamos cada caso de forma individualizada."
     },
     
     signs: {
-      title: "Sinais de Atraso na Fala",
+      title: "Marcos de Alerta por Idade",
       items: [
-        { title: "Aos 18 meses", description: "Não fala pelo menos 6 palavras" },
-        { title: "Aos 2 anos", description: "Não junta 2 palavras para formar frases" },
-        { title: "Aos 3 anos", description: "Não forma frases completas compreensíveis" },
-        { title: "Dificuldade de compreensão", description: "Não entende comandos simples" },
-        { title: "Frustração", description: "Chora ou se irrita ao tentar se comunicar" }
+        { title: "Aos 18 meses", description: "Não fala pelo menos 6 palavras com significado" },
+        { title: "Aos 2 anos", description: "Não junta 2 palavras para formar frases simples" },
+        { title: "Aos 3 anos", description: "Não forma frases completas compreensíveis para desconhecidos" },
+        { title: "Dificuldade de compreensão", description: "Não entende ou não segue comandos simples" },
+        { title: "Frustração constante", description: "Chora ou se irrita ao tentar se comunicar ou ser entendido" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Preocupada com o desenvolvimento da fala do seu filho?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Tratamento na Clínica Fono Inova",
-      content: "Nosso tratamento fonoaudiológico utiliza abordagens lúdicas e baseadas em evidências. Trabalhamos em um ambiente acolhedor no bairro Jundiaí, em Anápolis, onde as crianças se sentem à vontade para aprender e se desenvolver."
+      title: "Tratamento Especializado para Atraso na Fala em Anápolis",
+      content: "Nosso tratamento fonoaudiológico utiliza abordagens lúdicas e baseadas em evidências científicas. Trabalhamos em um ambiente acolhedor no bairro Jundiaí, em Anápolis, onde as crianças se sentem à vontade para aprender e se desenvolver. Cada sessão é planejada de acordo com as necessidades específicas da criança."
     },
     
     process: {
-      title: "Nosso Método",
+      title: "Nosso Método de Trabalho",
       steps: [
-        { title: "Avaliação completa", description: "Identificamos o perfil comunicativo da criança" },
-        { title: "Estimulação direcionada", description: "Exercícios específicos para cada necessidade" },
-        { title: "Orientação parental", description: "Ensinamos estratégias para aplicar em casa" },
-        { title: "Acompanhamento", description: "Monitoramos a evolução constantemente" }
+        { title: "Avaliação Completa", description: "Identificamos o perfil comunicativo da criança e o tipo de atraso" },
+        { title: "Estimulação Direcionada", description: "Exercícios específicos para cada necessidade e idade" },
+        { title: "Orientação Parental", description: "Ensinamos estratégias para aplicar em casa no dia a dia" },
+        { title: "Acompanhamento", description: "Monitoramos a evolução e ajustamos o plano conforme o progresso" }
       ]
+    },
+    
+    urgency: {
+      text: "A estimulação precoce é fundamental. Quanto antes começar, mais rápido seu filho alcança o desenvolvimento esperado."
     },
     
     relatedArticles: [
@@ -158,11 +200,19 @@ export const fonoaudiologiaLPs = [
     faq: [
       {
         question: "Atraso na fala tem cura?",
-        answer: "Com estimulação fonoaudiológica adequada, a maioria das crianças desenvolve a fala normalmente. Quanto mais cedo começar o tratamento, melhores os resultados."
+        answer: "O atraso na fala tem tratamento. Com estimulação fonoaudiológica adequada, a maioria das crianças alcança o desenvolvimento esperado. O resultado depende da causa, idade de início e frequência das sessões."
       },
       {
-        question: "Quanto tempo dura o tratamento?",
-        answer: "O tempo varia conforme a gravidade e as características de cada criança. Em média, observamos resultados significativos em 3 a 6 meses de acompanhamento regular."
+        question: "Qual a diferença entre atraso de fala e atraso de linguagem?",
+        answer: "Atraso de fala afeta apenas a produção de palavras (a criança entende mas não fala). Atraso de linguagem afeta expressão e compreensão. A avaliação fonoaudiológica identifica qual é o caso do seu filho."
+      },
+      {
+        question: "Atraso na fala é sinal de autismo?",
+        answer: "Nem sempre. Atraso na fala pode ter várias causas: audição, desenvolvimento motor oral, ambiente pouco estimulante, etc. Apenas uma avaliação profissional pode determinar a causa e se há relação com autismo."
+      },
+      {
+        question: "Quanto tempo dura o tratamento para atraso na fala?",
+        answer: "Varia conforme a causa e gravidade. Muitas crianças mostram progresso em 3-6 meses. Algumas precisam de acompanhamento por 1-2 anos. A avaliação inicial dá uma estimativa mais precisa."
       }
     ],
     
@@ -176,71 +226,101 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-003",
     slug: "troca-letras-crianca",
+    category: "fonoaudiologia",
     
-    title: "Criança Troca Letras na Fala: O Que Fazer? | Anápolis",
-    description: "Sua criança troca letras na fala? Saiba quando isso é normal e quando procurar ajuda. Fonoaudiologia infantil na Clínica Fono Inova em Anápolis.",
-    keywords: ["troca letras crianca", "crianca troca letras fala", "disturbio articulacao", "fonoaudiologia anapolis"],
+    title: "Criança Troca Letras na Fala: Quando Preocupar? | Anápolis",
+    description: "Seu filho troca R por L, F por P ou outras letras? Entenda quando é normal e quando buscar fonoaudiologia. Atendimento em Anápolis.",
+    keywords: ["crianca troca letras", "troca r por l", "dislalia infantil", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Avaliação fonoaudiológica para troca de letras na Clínica Fono Inova em Anápolis",
+    image: "/images/fonoaudiologia/troca-letras.png",
+    imageAlt: "Tratamento para criança que troca letras na fala na Clínica Fono Inova",
     
     hero: {
-      headline: "Criança Troca Letras na Fala?",
-      subheadline: "Entenda quando a troca de letras é normal e quando pode indicar distúrbio articulatório",
-      ctaText: "Agendar Avaliação",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança troca letras na fala. Gostaria de agendar uma avaliação na Clínica Fono Inova."
+      headline: "Seu Filho Troca Letras ao Falar?",
+      subheadline: "Trocar R por L, F por P ou outras letras pode ser normal em certa idade, mas em outros casos indica necessidade de acompanhamento fonoaudiológico.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho troca letras ao falar. Pode me explicar como funciona a avaliação?"
     },
     
-    problem: {
-      title: "Troca de Letras na Infância",
-      content: "É comum crianças pequenas trocarem alguns sons enquanto estão aprendendo a falar. Porém, quando essas trocas persistem além da idade esperada, podem indicar um distúrbio articulatório que precisa de acompanhamento fonoaudiológico. Na Clínica Fono Inova em Anápolis, avaliamos e tratamos esses casos com sucesso."
-    },
-    
-    signs: {
-      title: "Trocas Mais Comuns",
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
       items: [
-        { title: "Trocar R por L", description: "Dizer 'lelo' em vez de 'relo'" },
-        { title: "Trocar S por CH", description: "Dizer 'chapo' em vez de 'sapo'" },
-        { title: "Trocar F por P", description: "Dizer 'pato' em vez de 'fato'" },
-        { title: "Trocar L por U", description: "Dizer 'caua' em vez de 'cala'" },
-        { title: "Omissão de sons", description: "Dizer 'ato' em vez de 'gato'" }
+        "Meu filho troca R por L ('léio' em vez de 'réio')",
+        "Troca F por P ('pêio' em vez de 'fêio')",
+        "Troca S por T ('tônico' em vez de 'sônico')",
+        "Troca L por U ('uâmpada' em vez de 'lâmpada')",
+        "Fala enrolada, difícil de entender",
+        "Já tem 4-5 anos e ainda troca muitas letras"
       ]
     },
     
+    problem: {
+      title: "Trocar Letras é Normal ou Precisa de Tratamento?",
+      content: "Trocar alguns sons é normal durante o desenvolvimento da fala. Por exemplo, trocar R por L é comum até os 5-6 anos. Mas se persistir além da idade esperada, ou se a criança troca muitos sons diferentes, pode ser dislalia — uma dificuldade na articulação de sons da fala que tem tratamento. Na Clínica Fono Inova, avaliamos se a troca de letras do seu filho é esperada para a idade ou se precisa de acompanhamento."
+    },
+    
+    signs: {
+      title: "Quando a Troca de Letras Precisa de Avaliação",
+      items: [
+        { title: "Persiste após a idade esperada", description: "R por L além dos 5-6 anos, S e Z além dos 6-7 anos" },
+        { title: "Troca muitos sons diferentes", description: "Não é apenas uma letra, mas várias (R, L, S, F, J, etc.)" },
+        { title: "Dificuldade para ser entendido", description: "Desconhecidos não entendem o que a criança fala" },
+        { title: "Frustração ao falar", description: "Criança percebe que não é entendida e fica chateada" },
+        { title: "Evita falar", description: "Fica quieta ou responde com gestos para não ter que falar" }
+      ]
+    },
+    
+    ctaMid: {
+      text: "Seu filho troca letras além da idade esperada?",
+      button: "Agendar avaliação fonoaudiológica"
+    },
+    
     solution: {
-      title: "Tratamento Fonoaudiológico",
-      content: "Na Clínica Fono Inova em Anápolis, trabalhamos a articulação dos sons através de exercícios lúdicos e específicos. Nosso objetivo é ajudar a criança a produzir corretamente os sons da fala de forma natural e espontânea."
+      title: "Tratamento para Criança que Troca Letras",
+      content: "A fonoterapia para dislalia trabalha a percepção auditiva, a posição correta da língua, lábios e mandíbula para produzir os sons, e a prática gradual até a automatização. Com sessões regulares e exercícios em casa, a maioria das crianças corrige a troca de letras em poucos meses."
     },
     
     process: {
       title: "Como Funciona o Tratamento",
       steps: [
-        { title: "Avaliação articulatória", description: "Identificamos quais sons a criança não consegue produzir" },
-        { title: "Terapia fonoaudiológica", description: "Trabalhamos os sons de forma gradual e lúdica" },
-        { title: "Prática em casa", description: "Orientamos os pais para reforçar em casa" },
-        { title: "Generalização", description: "A criança começa a usar os sons naturalmente" }
+        { title: "Avaliação Fonoaudiológica", description: "Identificamos quais sons estão trocados e a causa" },
+        { title: "Consciência Fonológica", description: "Ensinamos a criança a perceber a diferença entre os sons" },
+        { title: "Exercícios Articulatórios", description: "Trabalhamos a posição correta da língua, lábios e mandíbula" },
+        { title: "Generalização", description: "Praticamos até o som sair natural em palavras e frases" }
       ]
     },
     
+    urgency: {
+      text: "Quanto mais cedo corrigir a troca de letras, mais fácil é o tratamento e menos impacto na autoestima da criança."
+    },
+    
     relatedArticles: [
-      "atraso-na-fala-como-estimular-linguagem-crianca",
-      "fala-tardia-criancas-quando-preocupar"
+      "fala-tardia-criancas-quando-preocupar",
+      "processamento-auditivo-central-pac"
     ],
     
     faq: [
       {
+        question: "Criança de 4 anos trocando R por L é normal?",
+        answer: "Sim, trocar R por L é normal até cerca de 5-6 anos. Se aos 6 anos ainda persiste, é indicado fazer uma avaliação fonoaudiológica."
+      },
+      {
         question: "Até que idade é normal trocar letras?",
-        answer: "Cada som tem uma idade esperada de aquisição. O som R, por exemplo, pode demorar até 5-6 anos para ser dominado. Mas se as trocas prejudicam a compreensão, é melhor avaliar."
+        answer: "Cada som tem sua idade esperada: F e V até 3 anos, S e Z até 6-7 anos, R forte até 5-6 anos, J até 6-7 anos. Após essas idades, a troca persistente merece avaliação."
+      },
+      {
+        question: "Como corrigir criança que troca letras?",
+        answer: "A correção deve ser feita por fonoaudiólogo. Em casa, você pode modelar a fala correta (falar devagar mostrando o som), mas evite corrigir excessivamente para não frustrar a criança."
       },
       {
         question: "Troca de letras tem cura?",
-        answer: "Sim! Com fonoterapia adequada, a maioria das crianças consegue produzir corretamente todos os sons da fala."
+        answer: "Sim! Com fonoterapia regular, a maioria das crianças corrige a troca de letras. O tempo de tratamento varia de 3 meses a 1 ano, dependendo de quantos sons estão trocados."
       }
     ],
     
@@ -254,56 +334,78 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-004",
     slug: "crianca-nao-forma-frases",
+    category: "fonoaudiologia",
     
-    title: "Criança Não Forma Frases: O Que Fazer? | Fono Inova Anápolis",
-    description: "Sua criança fala palavras soltas mas não junta frases? Saiba o que pode ser. Avaliação fonoaudiológica na Clínica Fono Inova em Anápolis.",
-    keywords: ["crianca nao forma frases", "crianca nao fala frases", "atraso linguagem", "fonoaudiologia anapolis"],
+    title: "Criança Não Forma Frases: O Que Fazer? | Fonoaudiologia Anápolis",
+    description: "Seu filho fala palavras soltas mas não forma frases? Entenda causas e tratamento. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
+    keywords: ["crianca nao forma frases", "fala palavras soltas", "atraso linguagem", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
-    imageAlt: "Terapia para criança que não forma frases na Clínica Fono Inova em Anápolis",
+    image: "/images/fonoaudiologia/nao-forma-frases.png",
+    imageAlt: "Atendimento fonoaudiológico para criança que não forma frases na Clínica Fono Inova",
     
     hero: {
-      headline: "Criança Não Forma Frases?",
-      subheadline: "Entenda por que algumas crianças falam palavras mas não conseguem juntar frases",
-      ctaText: "Falar com Especialista",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança fala palavras mas não forma frases. Gostaria de ajuda."
+      headline: "Seu Filho Fala Palavras Soltas Mas Não Forma Frases?",
+      subheadline: "Falar 'água', 'mamãe', 'bola' isoladamente sem juntar palavras pode indicar necessidade de acompanhamento fonoaudiológico.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho fala palavras soltas mas não forma frases. Pode me explicar como funciona a avaliação?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho fala várias palavras mas não junta",
+        "Só aponta e fala o nome do objeto ('água', 'papa')",
+        "Não fala frases de 2 palavras aos 2 anos",
+        "Não faz pedidos completos ('quero água')",
+        "Não conta o que aconteceu no dia",
+        "Comunicação muito limitada para a idade"
+      ]
     },
     
     problem: {
-      title: "Da Palavra à Frase",
-      content: "A transição de falar palavras isoladas para formar frases é um marco importante do desenvolvimento linguístico. Normalmente, crianças começam a juntar 2 palavras aos 24 meses. Se sua criança tem vocabulário mas não forma frases, pode haver dificuldades na organização da linguagem que merecem atenção. Na Clínica Fono Inova em Anápolis, avaliamos esses casos."
+      title: "Por Que Minha Criança Não Forma Frases?",
+      content: "Juntar palavras para formar frases é um marco importante do desenvolvimento da linguagem. Normalmente, crianças começam a fazer isso entre 18 meses e 2 anos. Se seu filho fala palavras isoladas mas não consegue organizá-las em frases além dessa idade, pode haver uma dificuldade na organização da linguagem que precisa de estimulação profissional."
     },
     
     signs: {
       title: "Sinais de Alerta",
       items: [
-        { title: "Só fala substantivos", description: "Usa palavras isoladas sem verbos ou conectivos" },
-        { title: "Não usa verbos", description: "Não consegue expressar ações" },
-        { title: "Fala telegráfica", description: "Omite palavras importantes da frase" },
-        { title: "Não entende ordem", description: "Dificuldade em seguir comandos de 2 passos" },
-        { title: "Repete como papagaio", description: "Ecolalia sem compreensão do significado" }
+        { title: "Aos 2 anos", description: "Não junta 2 palavras para formar frases simples como 'mamãe água'" },
+        { title: "Aos 3 anos", description: "Não forma frases de 3 palavras ou mais" },
+        { title: "Fala telegráfica", description: "Só fala substantivos, sem verbos ou palavras funcionais" },
+        { title: "Não narra", description: "Não conta o que está fazendo ou o que aconteceu" },
+        { title: "Não faz perguntas", description: "Não usa 'onde?', 'por quê?', 'como?'" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Preocupada porque seu filho não forma frases?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Como Podemos Ajudar",
-      content: "Avaliamos se a dificuldade é de compreensão, expressão ou organização da linguagem. A fonoaudiologia trabalha para expandir as habilidades de organização das ideias e formação de frases."
+      title: "Como a Fonoaudiologia Ajuda a Formar Frases",
+      content: "Trabalhamos a expansão da fala, ensinando a criança a juntar palavras de forma gradual. Começamos com frases de 2 palavras e vamos expandindo o vocabulário e a complexidade. Usamos brincadeiras e atividades do cotidiano para estimular a linguagem de forma natural."
     },
     
     process: {
-      title: "Nosso Trabalho",
+      title: "Nosso Método",
       steps: [
-        { title: "Avaliação da linguagem", description: "Verificamos compreensão e expressão" },
-        { title: "Estimulação sintática", description: "Trabalhamos estrutura de frases" },
-        { title: "Expansão de vocabulario", description: "Ensinamos novas palavras e funções" },
-        { title: "Prática funcional", description: "Usamos frases em situações do dia a dia" }
+        { title: "Avaliação da Linguagem", description: "Verificamos o nível de organização da fala e compreensão" },
+        { title: "Expansão de Frases", description: "Ensinamos a juntar 2, 3, 4+ palavras de forma gradual" },
+        { title: "Modelagem", description: "Modelamos frases completas para a criança imitar e aprender" },
+        { title: "Contextualização", description: "Praticamos frases em situações do dia a dia" }
       ]
+    },
+    
+    urgency: {
+      text: "Aos 2-3 anos é a janela ideal para estimular a formação de frases. Quanto antes começar, mais rápido seu filho se comunica melhor."
     },
     
     relatedArticles: [
@@ -314,11 +416,15 @@ export const fonoaudiologiaLPs = [
     faq: [
       {
         question: "Com quantos anos a criança deve formar frases?",
-        answer: "Aos 24 meses já deveria juntar 2 palavras. Aos 3 anos, frases completas com sujeito, verbo e objeto."
+        answer: "Entre 18 meses e 2 anos a criança já deve juntar 2 palavras. Aos 3 anos, frases de 3-4 palavras. Se não forma frases aos 2-3 anos, é indicado avaliar."
       },
       {
-        question: "Por que minha criança fala palavras mas não junta?",
-        answer: "Pode ser dificuldade na organização da linguagem, processamento auditivo ou questões neurológicas. A avaliação identifica a causa."
+        question: "Criança fala palavras mas não frases: o que fazer?",
+        answer: "Levar para avaliação fonoaudiológica. O terapeuta vai identificar se é atraso na organização da linguagem e criar um plano de estimulação."
+      },
+      {
+        question: "Autismo pode causar não formação de frases?",
+        answer: "Sim, mas nem toda criança que não forma frases tem autismo. Pode ser atraso de linguagem específico, problema de processamento auditivo, etc. A avaliação profissional é essencial."
       }
     ],
     
@@ -332,70 +438,101 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-005",
     slug: "gagueira-infantil",
+    category: "fonoaudiologia",
     
-    title: "Gagueira Infantil: Tratamento em Anápolis | Clínica Fono Inova",
-    description: "Tratamento especializado para gagueira em crianças. Fonoaudiologia para fluência na Clínica Fono Inova em Anápolis.",
-    keywords: ["gagueira infantil", "crianca gagueja", "tratamento gagueira", "fonoaudiologia fluencia anapolis"],
+    title: "Gagueira Infantil: Tratamento em Anápolis | Fono Inova",
+    description: "Seu filho gagueja, repete sílabas ou bloqueia ao falar? Tratamento especializado para gagueira infantil em Anápolis. Agende pelo WhatsApp.",
+    keywords: ["gagueira infantil", "crianca gagueja", "repeticao silabas", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Tratamento de gagueira infantil na Clínica Fono Inova em Anápolis",
+    image: "/images/fonoaudiologia/gagueira.png",
+    imageAlt: "Tratamento para gagueira infantil na Clínica Fono Inova em Anápolis",
     
     hero: {
-      headline: "Gagueira Infantil",
-      subheadline: "Tratamento especializado para ajudar seu filho a falar com mais fluência e tranquilidade",
-      ctaText: "Agendar Avaliação",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança gagueja. Gostaria de agendar uma avaliação na Clínica Fono Inova."
+      headline: "Seu Filho Gagueja ou Bloqueia ao Falar?",
+      subheadline: "A gagueira infantil tem tratamento. Quanto antes começar, melhores os resultados para a comunicação fluente do seu filho.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho gagueja/bloqueia ao falar. Pode me explicar como funciona o tratamento?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho repete sílabas ('ca-ca-casa')",
+        "Prolonga sons ('caaaaasa')",
+        "Bloqueia e não consegue falar a palavra",
+        "Faz movimentos estranhos ao falar (piscar, torcer boca)",
+ "Evita falar para não gaguejar",
+        "Fica ansioso quando tem que falar"
+      ]
     },
     
     problem: {
-      title: "Entendendo a Gagueira",
-      content: "A gagueira é um distúrbio da fluência caracterizado por repetições de sons, sílabas ou palavras, prolongamentos e bloqueios na fala. Pode começar entre 2 e 5 anos de idade. Na Clínica Fono Inova em Anápolis, oferecemos tratamento especializado com técnicas atualizadas."
+      title: "Gagueira Infantil: Entenda e Saiba que Tem Tratamento",
+      content: "A gagueira é um distúrbio da fluência da fala que afeta cerca de 5% das crianças. Pode se manifestar como repetição de sílabas, prolongamento de sons ou bloqueios. A boa notícia é que a gagueira infantil tem ótimos resultados com tratamento fonoaudiológico, especialmente quando iniciado precocemente. Na Clínica Fono Inova, trabalhamos com técnicas modernas para ajudar seu filho a falar de forma fluente."
     },
     
     signs: {
-      title: "Sinais da Gagueira",
+      title: "Tipos de Gagueira Infantil",
       items: [
-        { title: "Repetições", description: "Repetir sons ou sílabas: 'ca-ca-ca-casa'" },
-        { title: "Prolongamentos", description: "Esticar sons: 'ssssssapo'" },
-        { title: "Bloqueios", description: "Ficar travado sem conseguir emitir o som" },
-        { title: "Tensão facial", description: "Esforço visível para falar" },
-        { title: "Evita falar", description: "Criança fica quieta para não gaguejar" }
+        { title: "Repetição", description: "Repete sílabas, sons ou palavras: 'ca-ca-casa'" },
+        { title: "Prolongamento", description: "Estende o som: 'caaaaaasa' ou 'tiiiiia'" },
+        { title: "Bloqueio", description: "Para e não consegue emitir o som, como se travasse" },
+        { title: "Movimentos de escape", description: "Pisca, fecha os olhos, torce a boca ao falar" },
+        { title: "Evitação", description: "Troca palavras ou fica quieto para não gaguejar" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Seu filho apresenta algum desses sinais de gagueira?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Tratamento para Fluência",
-      content: "O tratamento fonoaudiológico para gagueira envolve técnicas específicas para melhorar a fluência da fala, trabalhar o controle da respiração e reduzir a tensão. Também orientamos a família sobre como ajudar em casa."
+      title: "Tratamento para Gagueira Infantil em Anápolis",
+      content: "O tratamento fonoaudiológico para gagueira trabalha a fluência da fala, a respiração, o ritmo e a redução da ansiedade ao falar. Usamos técnicas lúdicas para que a criança aprenda a falar de forma fluente sem se sentir pressionada. O envolvimento da família é fundamental para o sucesso do tratamento."
     },
     
     process: {
-      title: "Como Tratamos",
+      title: "Como Funciona o Tratamento",
       steps: [
-        { title: "Avaliação da fluência", description: "Analisamos o padrão da gagueira" },
-        { title: "Técnicas de fluência", description: "Ensinamos estratégias para falar mais fluido" },
-        { title: "Controle da respiração", description: "Trabalhamos suporte respiratório" },
-        { title: "Orientação familiar", description: "Ensinamos como responder à gagueira" }
+        { title: "Avaliação da Fluência", description: "Analisamos o tipo e frequência da gagueira" },
+        { title: "Técnicas de Fluência", description: "Ensinamos respiração, ritmo e maneiras de falar mais fluente" },
+        { title: "Redução de Ansiedade", description: "Trabalhamos para que a criança fique mais confortável ao falar" },
+        { title: "Acompanhamento Familiar", description: "Orientamos os pais sobre como ajudar em casa" }
       ]
     },
     
+    urgency: {
+      text: "A gagueira infantil tem melhor prognóstico quando tratada precocemente. Não espere para buscar ajuda."
+    },
+    
     relatedArticles: [
-      "atraso-na-fala-como-estimular-linguagem-crianca"
+      "fala-tardia-criancas-quando-preocupar",
+      "processamento-auditivo-central-pac"
     ],
     
     faq: [
       {
-        question: "Gagueira tem cura?",
-        answer: "A gagueira pode ser controlada e muito melhorada com tratamento adequado. Quanto mais cedo começar, melhores os resultados."
+        question: "Gagueira infantil tem cura?",
+        answer: "A gagueira tem tratamento e controle. Crianças que iniciam tratamento precocemente (antes dos 6 anos) têm maiores chances de recuperação completa ou fluência controlada."
       },
       {
-        question: "O que fazer quando a criança gagueja?",
-        answer: "Mantenha a calma, não interrompa e não peça para repetir devagar. Agende uma avaliação fonoaudiológica."
+        question: "Até que idade é normal gaguejar?",
+        answer: "Entre 2-4 anos pode ocorrer gagueira de desenvolvimento (normal). Se persistir após os 4 anos ou piorar, é indicado avaliar com fonoaudiólogo."
+      },
+      {
+        question: "O que causa gagueira em criança?",
+        answer: "Pode ser genética, neurológica, desorganização do ritmo da fala, ou desencadeada por momentos de ansiedade. A avaliação identifica as causas no caso específico."
+      },
+      {
+        question: "Devo corrigir minha filha quando ela gagueja?",
+        answer: "Não. Corrigir, repreender ou mostrar preocupação pode aumentar a ansiedade e piorar a gagueira. Aguarde ela terminar e fale normalmente. Busque tratamento profissional."
       }
     ],
     
@@ -409,56 +546,78 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-006",
     slug: "dificuldade-pronunciar-r",
+    category: "fonoaudiologia",
     
-    title: "Criança Não Fala o R: Dificuldade para Pronunciar | Anápolis",
-    description: "Sua criança troca o R por L? Saiba quando isso é normal e como tratar. Fonoaudiologia na Clínica Fono Inova em Anápolis.",
-    keywords: ["crianca nao fala o r", "troca r por l", "dificuldade pronunciar r", "fonoaudiologia anapolis"],
+    title: "Criança Não Fala o R: Tratamento em Anápolis | Fono Inova",
+    description: "Seu filho fala 'léio' em vez de 'réio'? Tratamento para criança que não pronuncia R. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
+    keywords: ["crianca nao fala r", "troca r por l", "fala leio", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
+    image: "/images/fonoaudiologia/r-errado.png",
     imageAlt: "Tratamento para criança que não pronuncia o R na Clínica Fono Inova",
     
     hero: {
-      headline: "Criança Não Fala o R?",
-      subheadline: "Entenda por que algumas crianças têm dificuldade com o som R e como podemos ajudar",
-      ctaText: "Agendar Avaliação",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança não fala o R. Gostaria de uma avaliação na Clínica Fono Inova."
+      headline: "Seu Filho Fala 'Léio' em Vez de 'Réio'?",
+      subheadline: "Trocar R por L é comum em crianças pequenas, mas se persistir além dos 5-6 anos, é indicado fazer fonoterapia.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho trocar R por L/não fala o R direito. Pode me explicar como funciona o tratamento?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho fala 'léio' em vez de 'réio'",
+        "Fala 'latão' em vez de 'ratão'",
+        "Já tem 5-6 anos e ainda troca R por L",
+        "Rolou o R (erro) ou não fala nenhum R",
+        "Dificuldade com R no início, meio e fim das palavras",
+        "Frustração ao tentar falar palavras com R"
+      ]
     },
     
     problem: {
-      title: "A Dificuldade com o Som R",
-      content: "O som R é um dos últimos a serem adquiridos na fala infantil. É normal crianças até 5-6 anos trocarem o R por L. Porém, se a troca persiste além dessa idade ou interfere na compreensão, a fonoaudiologia pode ajudar. Na Clínica Fono Inova em Anápolis, trabalhamos a aquisição desse som de forma lúdica."
+      title: "Por Que Meu Filho Não Fala o R?",
+      content: "O som R é um dos mais difíceis de aprender. Trocar R por L (também chamado de 'erro') é normal até os 5-6 anos. A criança precisa aprender a posicionar a língua de forma diferente — mais para trás na boca. Se aos 6 anos ainda não consegue, a fonoterapia ensina a posição correta da língua e faz exercícios para fortalecer a musculatura."
     },
     
     signs: {
-      title: "Quando se Preocupar",
+      title: "Quando Buscar Ajuda para o R",
       items: [
-        { title: "Persiste após 6 anos", description: "Ainda troca R por L na escola" },
-        { title: "Dificuldade na escrita", description: "Erros ortográficos por causa da troca" },
-        { title: "Consciência fonológica", description: "Não consegue perceber a diferença" },
-        { title: "Insegurança", description: "Criança evita palavras com R" },
-        { title: "Frustração", description: "Chora quando corrigida" }
+        { title: "Persiste após os 5-6 anos", description: "Trocar R por L além dessa idade indica necessidade de acompanhamento" },
+        { title: "Não fala nenhum R", description: "Nem no início, nem no meio, nem no fim das palavras" },
+        { title: "R 'molengo'", description: "Tenta falar R mas sai um som fraco, não vibrante" },
+        { title: "Evita palavras com R", description: "Troca o nome ou fica quieto para não ter que falar R" },
+        { title: "Frustração", description: "Chora ou fica irritado quando tenta falar R e não consegue" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Seu filho tem mais de 5 anos e ainda troca R por L?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Tratamento Fonoaudiológico",
-      content: "Trabalhamos a aquisição do som R através de exercícios específicos que ensinam a posição correta da língua e o controle do ar. Usamos jogos e atividades lúdicas para tornar o aprendizado divertido."
+      title: "Como Ensinar o R para Criança",
+      content: "A fonoterapia para R trabalha a posicionamento da língua (mais para trás na boca), a tensão muscular necessária para vibrar o som, e a transição gradual desde o L até o R correto. Usamos exercícios lúdicos e estimulação da musculatura oral."
     },
     
     process: {
-      title: "Como Trabalhamos",
+      title: "Passos do Tratamento",
       steps: [
-        { title: "Avaliação", description: "Verificamos como a criança produz o som" },
-        { title: "Consciência", description: "Ensinamos a diferença entre R e L" },
-        { title: "Posicionamento", description: "Trabalhamos a posição da língua" },
-        { title: "Generalização", description: "Usamos em palavras do dia a dia" }
+        { title: "Avaliação", description: "Verificamos como a criança posiciona a língua ao tentar falar R" },
+        { title: "Consciência Articulatória", description: "Ensinamos a sentir a diferença entre L e R na boca" },
+        { title: "Exercícios de Posicionamento", description: "Praticamos colocar a língua na posição correta" },
+        { title: "Generalização", description: "Passamos para sílabas, palavras, frases e conversação" }
       ]
+    },
+    
+    urgency: {
+      text: "Quanto antes começar, mais fácil é aprender o som R e evitar que vire um hábito difícil de corrigir."
     },
     
     relatedArticles: [
@@ -468,12 +627,16 @@ export const fonoaudiologiaLPs = [
     
     faq: [
       {
-        question: "Com quantos anos a criança deve falar o R?",
-        answer: "O som R pode levar até 5-6 anos para ser dominado completamente. Cada criança tem seu ritmo."
+        question: "Como ensinar criança a falar o R?",
+        answer: "A melhor forma é com fonoaudiólogo. Em casa, você pode brincar de 'máquina de lavar' (vibrar a língua) ou 'motor de carro', mas a fonoterapia acelera o aprendizado."
       },
       {
-        question: "Como ensinar meu filho a falar o R?",
-        answer: "Não force a criança. Agende uma avaliação fonoaudiológica. O profissional saberá as técnicas adequadas."
+        question: "Criança de 5 anos não fala R: é normal?",
+        answer: "Ainda pode ser normal, mas já é indicado avaliar. Aos 6 anos, se ainda não fala R, é recomendado iniciar fonoterapia."
+      },
+      {
+        question: "Todo mundo fala R do mesmo jeito?",
+        answer: "Não. Existe o R simples (de 'caro') e o R forte ou duplo (de 'carro'). O R forte é mais difícil e pode demorar mais para aprender."
       }
     ],
     
@@ -487,56 +650,78 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-007",
     slug: "fala-enrolada-crianca",
+    category: "fonoaudiologia",
     
-    title: "Fala Enrolada em Crianças: Causas e Tratamento | Anápolis",
-    description: "Sua criança fala enrolada? Entenda as causas e como a fonoaudiologia pode ajudar. Clínica Fono Inova em Anápolis.",
-    keywords: ["fala enrolada crianca", "crianca fala enrolada", "fala enrolada tratamento", "fonoaudiologia anapolis"],
+    title: "Fala Enrolada em Criança: O Que Fazer? | Anápolis",
+    description: "Seu filho fala enrolado, difícil de entender? Tratamento para fala enrolada infantil em Anápolis. Fonoaudiologia especializada. Agende pelo WhatsApp.",
+    keywords: ["fala enrolada", "crianca fala enrolada", "fala confusa", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/atendimento-premium.png",
+    image: "/images/fonoaudiologia/fala-enrolada.png",
     imageAlt: "Tratamento para fala enrolada infantil na Clínica Fono Inova em Anápolis",
     
     hero: {
-      headline: "Fala Enrolada em Crianças",
-      subheadline: "Descubra por que algumas crianças têm fala enrolada e como tratar",
-      ctaText: "Falar com Especialista",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Minha criança fala enrolada. Gostaria de uma avaliação."
+      headline: "Seu Filho Fala Enrolado, Difícil de Entender?",
+      subheadline: "Fala confusa, misturada ou incompreensível pode indicar dificuldades articulatórias que têm tratamento.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho fala enrolado/difícil de entender. Pode me explicar como funciona a avaliação?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situação?",
+      items: [
+        "Meu filho fala mas ninguém entende direito",
+        "Fala parece 'mixuruca', enrolada",
+        "Mistura vários sons de forma confusa",
+        "Precisa repetir várias vezes para ser entendido",
+        "Desconhecidos não entendem nada do que fala",
+        "Frustração porque não consegue se comunicar"
+      ]
     },
     
     problem: {
-      title: "O Que é Fala Enrolada?",
-      content: "Fala enrolada, ou dislalia, é quando a criança produz os sons de forma incorreta, deixando a fala difícil de entender. Pode ser causada por questões anatômicas, motoras ou de aprendizado. Na Clínica Fono Inova em Anápolis, identificamos a causa e tratamos adequadamente."
+      title: "Por Que Minha Criança Fala Enrolado?",
+      content: "Fala enrolada ou confusa pode ser causada por dificuldades na articulação (dislalia severa), problemas na coordenação motora oral, ou dificuldades neurológicas na programação da fala. Às vezes a criança 'falha' na sequência dos movimentos necessários para produzir os sons. A fonoaudiologia ajuda a organizar esses movimentos para a fala sair mais clara."
     },
     
     signs: {
-      title: "Características",
+      title: "Características da Fala Enrolada",
       items: [
-        { title: "Fala difícil de entender", description: "Pessoas de fora não compreendem" },
-        { title: "Trocas múltiplas", description: "Vários sons articulados incorretamente" },
-        { title: "Omissões", description: "Deixar de falar alguns sons" },
-        { title: "Adições", description: "Colocar sons a mais nas palavras" },
-        { title: "Distorsões", description: "Produzir sons de forma estranha" }
+        { title: "Incompreensível", description: "Só quem convive entende; desconhecidos não entendem" },
+        { title: "Mistura muitos sons", description: "Troca várias letras de forma inconsistente" },
+        { title: "Sequência confusa", description: "Sai um som no lugar do outro sem padrão claro" },
+        { title: "Falha motora", description: "Sabe o que quer dizer mas não consegue coordenar a boca" },
+        { title: "Frustração alta", description: "Chora ou desiste de falar porque não é entendido" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Preocupada porque seu filho fala enrolado?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Tratamento para Fala Enrolada",
-      content: "A fonoaudiologia trabalha a articulação correta dos sons através de exercícios específicos. Com treinamento adequado, a criança consegue falar de forma clara e compreensível."
+      title: "Tratamento para Fala Enrolada Infantil",
+      content: "O tratamento trabalha a coordenação motora oral, a clareza articulatória dos sons e a organização da sequência de movimentos para falar. Usamos exercícios específicos para cada som que está comprometido e técnicas para melhorar a inteligibilidade da fala."
     },
     
     process: {
-      title: "Nosso Método",
+      title: "Como Funciona o Tratamento",
       steps: [
-        { title: "Avaliação completa", description: "Identificamos todos os sons afetados" },
-        { title: "Terapia articulatória", description: "Trabalhamos cada som de forma gradual" },
-        { title: "Consciência fonológica", description: "Melhoramos a percepção dos sons" },
-        { title: "Generalização", description: "Aplicamos na fala espontânea" }
+        { title: "Avaliação Detalhada", description: "Identificamos quais sons estão comprometidos e a causa" },
+        { title: "Exercícios de Precisão", description: "Trabalhamos cada som de forma isolada para clarear" },
+        { title: "Coordenação Motora", description: "Exercícios para melhorar a sequência dos movimentos" },
+        { title: "Prática na Conversação", description: "Passamos para frases e diálogo do dia a dia" }
       ]
+    },
+    
+    urgency: {
+      text: "Fala enrolada afeta a comunicação e a autoestima da criança. Quanto antes tratar, melhor para o desenvolvimento social."
     },
     
     relatedArticles: [
@@ -546,12 +731,16 @@ export const fonoaudiologiaLPs = [
     
     faq: [
       {
-        question: "Fala enrolada tem tratamento?",
-        answer: "Sim! Com fonoterapia adequada, a grande maioria das crianças consegue falar de forma clara."
+        question: "Fala enrolada tem cura?",
+        answer: "Sim! Com fonoterapia regular, a maioria das crianças consegue falar de forma clara e compreensível. O tempo de tratamento depende da gravidade."
       },
       {
-        question: "Por que minha filha fala enrolada?",
-        answer: "Pode ser causado por imaturidade motora oral, dificuldades de aprendizado ou questões estruturais. A avaliação identifica a causa."
+        question: "Por que meu filho fala enrolado?",
+        answer: "Pode ser dificuldade na coordenação dos movimentos da boca, dislalia severa, ou problemas neurológicos leves na programação da fala. A avaliação identifica a causa."
+      },
+      {
+        question: "Como ajudar criança que fala enrolado?",
+        answer: "Leve para fonoaudiólogo. Em casa, peça para falar devagar, olhando para você, mas evite repetir ou corrigir excessivamente para não frustrar."
       }
     ],
     
@@ -565,71 +754,101 @@ export const fonoaudiologiaLPs = [
   {
     id: "lp-fono-008",
     slug: "processamento-auditivo",
+    category: "fonoaudiologia",
     
-    title: "Processamento Auditivo Central em Crianças | Anápolis",
-    description: "Sua criança ouve mas não entende? Pode ser processamento auditivo. Avaliação na Clínica Fono Inova em Anápolis.",
-    keywords: ["processamento auditivo", "crianca ouve nao entende", "pac infantil", "fonoaudiologia anapolis"],
+    title: "Processamento Auditivo em Crianças: Tratamento em Anápolis",
+    description: "Criança ouve mas não entende? Pode ser TPA. Transtorno do Processamento Auditivo tem tratamento. Fonoaudiologia em Anápolis. Agende pelo WhatsApp.",
+    keywords: ["processamento auditivo", "TPA infantil", "crianca ouve nao entende", "fonoaudiologia anapolis"],
     
     author: "Dra. Lorrany Siqueira",
     authorRole: "Fonoaudióloga",
     authorCredentials: "CRFA 1234-GO",
-    datePublished: "2025-06-03",
-    dateModified: "2025-06-03",
+    datePublished: "2025-06-01",
+    dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Avaliação de processamento auditivo central na Clínica Fono Inova em Anápolis",
+    image: "/images/fonoaudiologia/proc-auditivo.png",
+    imageAlt: "Avaliação de processamento auditivo infantil na Clínica Fono Inova",
     
     hero: {
-      headline: "Processamento Auditivo Central",
-      subheadline: "Quando a criança ouve mas tem dificuldade para entender o que foi dito",
-      ctaText: "Agendar Avaliação",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Suspeito de problema de processamento auditivo na minha criança. Gostaria de uma avaliação."
+      headline: "Seu Filho Ouve Mas Não Entende Direito?",
+      subheadline: "Pode ser Transtorno do Processamento Auditivo (TPA). A audição está normal, mas o cérebro tem dificuldade para interpretar os sons.",
+      ctaText: "Falar com especialista no WhatsApp",
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Suspeito que meu filho tem problema de processamento auditivo. Pode me explicar como funciona a avaliação?"
+    },
+    
+    identification: {
+      title: "Você se identifica com alguma dessas situações?",
+      items: [
+        "Meu filho ouve mas não entende o que foi dito",
+        "Confunde palavras parecidas (pato/pato, catorze/quatorze)",
+        "Dificuldade para entender em lugares barulhentos",
+ "Demora para responder quando chamado",
+        "Problemas para seguir instruções com várias etapas",
+        "Dificuldade de aprendizagem na escola"
+      ]
     },
     
     problem: {
-      title: "O Que é PAC?",
-      content: "O Processamento Auditivo Central é a habilidade do cérebro de interpretar os sons que ouvimos. Uma criança com PAC pode ter audição normal, mas dificuldade em entender a fala, especialmente em ambientes barulhentos. Na Clínica Fono Inova em Anápolis, avaliamos e tratamos esse distúrbio."
+      title: "O Que é Transtorno do Processamento Auditivo (TPA)?",
+      content: "No TPA, a audição está normal (a criança ouve), mas o cérebro tem dificuldade para processar e interpretar o que foi ouvido. É como se o 'sistema' captasse o som, mas não conseguisse 'decodificar' a mensagem. Isso afeta o aprendizado, a comunicação e o comportamento. O TPA tem tratamento e quanto antes identificado, melhor."
     },
     
     signs: {
-      title: "Sinais de Alerta",
+      title: "Sinais de TPA em Crianças",
       items: [
-        { title: "Dificuldade em lugar barulhento", description: "Não entende quando há muito barulho" },
-        { title: "Pede para repetir", description: "Pede 'o quê?' frequentemente" },
-        { title: "Dificuldade com instruções", description: "Não segue comandos de várias etapas" },
-        { title: "Distração", description: "Parece desatento quando falam com ela" },
-        { title: "Problemas de leitura", description: "Dificuldade para associar som à letra" }
+        { title: "Dificuldade em ambientes barulhentos", description: "Entende bem em lugares quietos, mas se perde em salas barulhentas" },
+        { title: "Confunde sons similares", description: "Pato/pato, sessenta/cento, tio/pio" },
+        { title: "Problemas de atenção", description: "Parece distraído ou desatento quando na verdade não processou a informação" },
+        { title: "Dificuldade com instruções", description: "Só entende se falar uma coisa de cada vez; se dizer 'pega o livro e senta', faz só uma parte" },
+        { title: "Problemas de leitura e escrita", description: "Dificuldade para associar som-letra, afetando alfabetização" }
       ]
+    },
+    
+    ctaMid: {
+      text: "Seu filho apresenta sinais de TPA?",
+      button: "Agendar avaliação fonoaudiológica"
     },
     
     solution: {
-      title: "Treinamento Auditivo",
-      content: "O tratamento para PAC envolve treinamento auditivo específico que ajuda o cérebro a processar melhor os sons. Utilizamos jogos e exercícios em cabine acústica na Clínica Fono Inova em Anápolis."
+      title: "Tratamento para TPA (Transtorno do Processamento Auditivo)",
+      content: "O tratamento fonoaudiológico para TPA envolve terapia auditiva para treinar o cérebro a processar sons de forma mais eficiente. Trabalhamos discriminação auditiva, memória auditiva, atenção e integração visomotora. O tratamento melhora a compreensão, o aprendizado e a qualidade de vida da criança."
     },
     
     process: {
-      title: "Como Funciona",
+      title: "Como Funciona o Tratamento",
       steps: [
-        { title: "Avaliação do PAC", description: "Testes específicos em cabine acústica" },
-        { title: "Treinamento auditivo", description: "Exercícios para melhorar o processamento" },
-        { title: "Terapia fonoaudiológica", description: "Trabalhamos linguagem e compreensão" },
-        { title: "Estratégias compensatórias", description: "Orientamos a família e escola" }
+        { title: "Avaliação Especializada", description: "Testes específicos para TPA além da audição convencional" },
+        { title: "Terapia Auditiva", description: "Exercícios para treinar o cérebro a processar sons" },
+        { title: "Estratégias Compensatórias", description: "Ensinamos a criança a usar recursos visuais e contextuais" },
+        { title: "Orientação Escolar", description: "Damos dicas para professores adaptarem o ambiente de aprendizagem" }
       ]
+    },
+    
+    urgency: {
+      text: "TPA afeta aprendizado e autoestima. Diagnóstico precoce e tratamento adequado fazem toda diferença no desenvolvimento escolar."
     },
     
     relatedArticles: [
       "processamento-auditivo-central-pac",
-      "atraso-na-fala-como-estimular-linguagem-crianca"
+      "dislexia-infantil-sinais"
     ],
     
     faq: [
       {
-        question: "PAC é surdez?",
-        answer: "Não. A audição é normal, mas o cérebro tem dificuldade em interpretar os sons. É um problema neurológico, não sensorial."
+        question: "TPA tem cura?",
+        answer: "TPA tem tratamento e melhora significativa. Com terapia auditiva regular, a maioria das crianças desenvolve melhor capacidade de processamento e estratégias compensatórias."
       },
       {
-        question: "PAC tem cura?",
-        answer: "Com treinamento auditivo adequado, a maioria das crianças melhora significativamente a habilidade de processar sons."
+        question: "TPA é autismo?",
+        answer: "Não. TPA e autismo são condições diferentes, embora possam ocorrer juntas. TPA é especificamente dificuldade de processamento auditivo, enquanto autismo envolve aspectos sociais e comportamentais mais amplos."
+      },
+      {
+        question: "Como é feito o diagnóstico de TPA?",
+        answer: "Através de testes específicos de processamento auditivo que vão além do exame de audição comum. Inclui testes de discriminação, memória, integração e atenção auditiva."
+      },
+      {
+        question: "TPA afeta a escola?",
+        answer: "Sim. TPA pode causar dificuldades de aprendizagem, problemas de atenção aparentes e frustração escolar. Com tratamento e adaptações, a criança pode ter sucesso acadêmico."
       }
     ],
     
