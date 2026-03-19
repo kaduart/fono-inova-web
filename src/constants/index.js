@@ -79,9 +79,9 @@ export const LP_CATEGORIES = {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const CONTACT = {
-  WHATSAPP: '5562988880000',
-  WHATSAPP_LINK: 'https://wa.me/5562988880000',
-  PHONE: '(62) 98888-0000',
+  WHATSAPP: '5562993377726',
+  WHATSAPP_LINK: 'https://wa.me/5562993377726',
+  PHONE: '(62) 99337-7726',
   EMAIL: 'contato@clinicafonoinova.com.br',
   ADDRESS: 'Anápolis, GO'
 };

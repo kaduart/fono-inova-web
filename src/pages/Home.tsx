@@ -258,9 +258,8 @@ function Home() {
                     trackButtonClick?.("WhatsApp CTA Principal");
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                  message="Oi, vi no site e gostaria de agendar uma avaliação. Pode me explicar como funciona?"
+                  message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação.\n\nPode me explicar?"
                 >
-                  <MessageCircle className="w-5 h-5" />
                   Falar no WhatsApp
                 </ButtonWhatsApp>
                 
@@ -451,7 +450,7 @@ function Home() {
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - Prova Social")}
                 className="bg-white hover:bg-slate-100 text-primary px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 inline-flex items-center gap-2 shadow-xl"
-                message="Olá! Gostaria de agendar uma avaliação na Clínica Fono Inova."
+                message="Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
               >
                 Quero Agendar Minha Avaliação
               </ButtonWhatsApp>
@@ -507,7 +506,7 @@ function Home() {
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Como Funciona")}
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
-              message="Oi, vi no site e quero iniciar o atendimento. Pode me explicar como funciona?"
+              message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.\n\nPode me explicar?"
             >
               Falar com especialista no WhatsApp
             </ButtonWhatsApp>
@@ -829,7 +828,7 @@ function Home() {
                 trackButtonClick('WhatsApp CTA Final - Urgência');
               }}
               className="bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 group"
-              message="Oi, vi no site e gostaria de agendar uma avaliação. Pode me explicar como funciona?"
+              message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação.\n\nPode me explicar?"
             >
               Quero falar com um especialista agora
             </ButtonWhatsApp>

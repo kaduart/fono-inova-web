@@ -200,7 +200,7 @@ const TeaPage = () => {
                             {/* CTA Principal */}
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
-                                    message="Oi, vi no site sobre avaliação de autismo. Tenho suspeita sobre meu filho e gostaria de agendar. Pode me explicar como funciona?"
+                                    message="Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a) e queria entender melhor. Pode me explicar como funciona a avaliação?"
                                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 group"
                                 >
                                     <MessageCircle className="w-6 h-6" />
@@ -561,14 +561,14 @@ const TeaPage = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <ButtonWhatsApp
-                                    message="Oi, vi no site sobre avaliação de autismo. Quero agendar uma avaliação multidisciplinar."
+                                    message="Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a) e queria entender melhor. Pode me explicar como funciona?"
                                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
                                 >
                                     <Calendar className="w-5 h-5" />
                                     Agendar Avaliação Agora
                                 </ButtonWhatsApp>
                                 <ButtonWhatsApp
-                                    message="Oi, vi no site sobre avaliação de autismo. Tenho dúvidas antes de agendar. Pode me ajudar?"
+                                    message="Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a) e queria entender melhor. Pode me explicar como funciona?"
                                     className="border-2 border-purple-600 text-purple-600 hover:bg-purple-50 px-8 py-4 rounded-xl font-bold transition-all inline-flex items-center gap-2"
                                 >
                                     <MessageCircle className="w-5 h-5" />

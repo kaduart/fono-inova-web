@@ -101,7 +101,7 @@ const Equipe = () => {
                         <ButtonWhatsApp
                             onClick={() => { }}
                             className="bg-white text-primary px-10 py-5 rounded-xl font-bold text-lg hover:bg-slate-100 transition-all shadow-xl"
-                            message="Olá! Gostaria de tirar uma dúvida sobre atendimento na Clínica Fono Inova."
+                            message="Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
                         >
                             Falar pelo WhatsApp
                         </ButtonWhatsApp>

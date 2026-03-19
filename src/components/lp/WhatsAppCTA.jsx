@@ -11,7 +11,7 @@ const WhatsAppCTA = ({
   size = "large", // small, medium, large
   showIcon = true,
   className = "",
-  message = "Olá! Vim pelo site e gostaria de agendar uma avaliação para meu filho.",
+  message = "Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação.\n\nPode me explicar?",
   // Props para tracking de LP
   lpSlug = null,
   lpCategory = null,

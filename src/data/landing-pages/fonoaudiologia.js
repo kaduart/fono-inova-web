@@ -25,7 +25,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Tem 2 Anos e Ainda Não Fala?",
       subheadline: "Você não está sozinha. Muitas crianças precisam de um empurrãozinho para desenvolver a fala. Em Anápolis, podemos ajudar seu filho a se comunicar.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem 2 anos e ainda não fala. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem 2 anos e ainda não fala. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -245,7 +245,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Troca Letras ao Falar?",
       subheadline: "Trocar R por L, F por P ou outras letras pode ser normal em certa idade, mas em outros casos indica necessidade de acompanhamento fonoaudiológico.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho troca letras ao falar. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) troca letras ao falar. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -353,7 +353,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Fala Palavras Soltas Mas Não Forma Frases?",
       subheadline: "Falar 'água', 'mamãe', 'bola' isoladamente sem juntar palavras pode indicar necessidade de acompanhamento fonoaudiológico.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho fala palavras soltas mas não forma frases. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) fala palavras soltas mas não forma frases. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -457,7 +457,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Gagueja ou Bloqueia ao Falar?",
       subheadline: "A gagueira infantil tem tratamento. Quanto antes começar, melhores os resultados para a comunicação fluente do seu filho.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho gagueja/bloqueia ao falar. Pode me explicar como funciona o tratamento?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) gagueja/bloqueia ao falar. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -565,7 +565,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Fala 'Léio' em Vez de 'Réio'?",
       subheadline: "Trocar R por L é comum em crianças pequenas, mas se persistir além dos 5-6 anos, é indicado fazer fonoterapia.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho trocar R por L/não fala o R direito. Pode me explicar como funciona o tratamento?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) troca R por L. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -669,7 +669,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Fala Enrolado, Difícil de Entender?",
       subheadline: "Fala confusa, misturada ou incompreensível pode indicar dificuldades articulatórias que têm tratamento.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho fala enrolado/difícil de entender. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) fala enrolado/difícil de entender. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -773,7 +773,7 @@ export const fonoaudiologiaLPs = [
       headline: "Seu Filho Ouve Mas Não Entende Direito?",
       subheadline: "Pode ser Transtorno do Processamento Auditivo (TPA). A audição está normal, mas o cérebro tem dificuldade para interpretar os sons.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Suspeito que meu filho tem problema de processamento auditivo. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nSuspeito que meu filho(a) tem problema de processamento auditivo. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {

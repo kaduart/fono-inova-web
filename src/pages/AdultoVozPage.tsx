@@ -111,7 +111,7 @@ const AdultoVozPage = () => {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
                                     onClick={() => { }}
-                                    message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para adultos (voz/deglutição)."
+                                    message="Oi! Vi no site sobre atendimento para adultos.\n\nTenho interesse em avaliação de voz/deglutição. Pode me explicar como funciona?"
                                     icon={Calendar}
                                     className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
@@ -318,7 +318,7 @@ const AdultoVozPage = () => {
                                 onClick={() => { }}
                                 icon={Calendar}
                                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
-                                message="Olá! Gostaria de agendar uma avaliação fonoaudiológica para voz/disfagia."
+                                message="Oi! Vi no site sobre atendimento para adultos.\n\nPode me explicar como funciona a avaliação?"
                             >
                                 Agendar Agora
                             </ButtonWhatsApp>

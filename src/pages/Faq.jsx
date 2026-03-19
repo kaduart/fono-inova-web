@@ -88,13 +88,13 @@ const FaqPage = () => {
                     </p>
                     <div className="flex justify-center gap-4">
                         <ButtonWhatsApp
-                            message="Olá! Tenho algumas dúvidas sobre atendimento infantil."
+                            message="Oi! Vi o site de vocês e fiquei com algumas dúvidas.\n\nPode me explicar melhor como funciona o atendimento?"
                             className="bg-white text-primary px-8 py-4 rounded-full font-bold"
                         >
                             <MessageCircle className="w-5 h-5" /> Tirar Dúvidas
                         </ButtonWhatsApp>
                         <ButtonWhatsApp
-                            message="Olá! Gostaria de agendar uma avaliação para meu filho."
+                            message="Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
                             className="border-2 border-white px-8 py-4 rounded-full font-bold"
                         >
                             <Calendar className="w-5 h-5" /> Agendar Avaliação

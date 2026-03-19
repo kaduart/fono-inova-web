@@ -210,7 +210,7 @@ const FonoPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <ButtonWhatsApp
                   onClick={() => { }}
-                  message="Olá! Gostaria de agendar uma avaliação fonoaudiológica."
+                  message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação fonoaudiológica.\n\nÉ para meu filho(a). Pode me explicar?"
                   icon={Calendar}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
@@ -552,7 +552,7 @@ const FonoPage = () => {
                 sendConversion
                 icon={MessageCircle}
                 className="bg-white hover:bg-gray-100 text-blue-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
-                message="Olá! Vi a página e gostaria de agendar uma avaliação para meu filho(a)."
+                message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação fonoaudiológica.\n\nPode me explicar?"
                 aria-label="Agendar avaliação pelo WhatsApp"
               >
                 Agendar Avaliação Agora

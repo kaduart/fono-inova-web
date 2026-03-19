@@ -121,14 +121,14 @@ const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
     });
 
     // Monta a mensagem simplificada para o WhatsApp
-    const message = `Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.
+    const message = `Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.
 
 *Meus dados:*
 Nome: ${formData.name}
 Telefone: ${formData.phone}
 E-mail: ${formData.email}
 
-Aguardo contato para mais informações. Obrigado!`;
+Pode me explicar como funciona a avaliação?`;
 
     const whatsappUrl = `https://wa.me/5562993377726?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');

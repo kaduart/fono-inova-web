@@ -183,7 +183,7 @@ const FisioPage = () => {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
                                     onClick={() => { }}
-                                    message="Olá! Gostaria de agendar uma avaliação de fisioterapia pediátrica."
+                                    message="Oi! Vi no site sobre fisioterapia pediátrica.\n\nQueria entender melhor como funciona a avaliação. Pode me explicar?"
                                     icon={Calendar}
                                     className="bg-purple-600 hover:bg-purple-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
@@ -509,7 +509,7 @@ const FisioPage = () => {
                                 onClick={() => { }}
                                 icon={MessageCircle}
                                 className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
-                                message="Olá! Vi a página de Fisioterapia e gostaria de agendar uma avaliação para meu filho(a)."
+                                message="Oi! Vi no site sobre fisioterapia pediátrica.\n\nQueria entender melhor como funciona. Pode me explicar?"
                             >
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>

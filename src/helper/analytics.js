@@ -12,21 +12,19 @@ export function gaEvent(name, params = {}) {
 
 /** Conversão Google Ads: WhatsApp (clique) */
 export function reportWhatsappConversion(url) {
+    // SEMPRE abre o WhatsApp imediatamente - não depende do Google Ads
+    window.open(url, "_blank", "noopener,noreferrer");
+    
+    // Tenta enviar conversão em paralelo (não bloqueia)
     const gtag = getGtag();
     if (gtag) {
         try {
             gtag("event", "conversion", {
                 send_to: "AW-17010705949/PQinCJrDz70bEJ2Mq68_",
                 value: 1.0,
-                event_callback: () => {
-                    window.open(url, "_blank", "noopener,noreferrer");
-                },
             });
-            return;
         } catch { }
     }
-    // fallback se gtag indisponível
-    window.open(url, "_blank", "noopener,noreferrer");
 }
 
 /** Conversão Google Ads: Enviar formulário de leads (dispare no submit OK) */

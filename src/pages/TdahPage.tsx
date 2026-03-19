@@ -58,7 +58,7 @@ const TdahPage = () => {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
-                                <ButtonWhatsApp message="Oi, vi no site sobre TDAH. Meu filho é muito inquieto/tem dificuldade de atenção. Pode me explicar como funciona a avaliação?" className="bg-green-600 hover:bg-green-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-xl transition-all flex items-center justify-center gap-3">
+                                <ButtonWhatsApp message="Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nMeu filho(a) é muito inquieto(a) e tem dificuldade de focar. Pode me explicar como funciona a avaliação?" className="bg-green-600 hover:bg-green-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-xl transition-all flex items-center justify-center gap-3">
                                     <MessageCircle className="w-6 h-6" />
                                     Falar com Especialista
                                     <ArrowRight className="w-5 h-5" />
@@ -137,7 +137,7 @@ const TdahPage = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <ButtonWhatsApp message="Oi, vi no site sobre TDAH. Quero agendar uma avaliação para meu filho." className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold transition-all">
+                            <ButtonWhatsApp message="Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nMeu filho(a) é muito inquieto(a). Pode me explicar como funciona a avaliação?" className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl font-bold transition-all">
                                 Agendar Avaliação
                             </ButtonWhatsApp>
                         </div>
@@ -179,7 +179,7 @@ const TdahPage = () => {
                             O TDAH não precisa limitar o potencial do seu filho. 
                             Com o tratamento certo, ele pode alcançar grandes conquistas.
                         </p>
-                        <ButtonWhatsApp message="Oi, vi no site sobre TDAH. Quero agendar uma avaliação." className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl transition-all inline-flex items-center gap-3">
+                        <ButtonWhatsApp message="Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nPode me explicar como funciona a avaliação?" className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl transition-all inline-flex items-center gap-3">
                             <MessageCircle className="w-7 h-7" />
                             Agendar Avaliação Agora
                         </ButtonWhatsApp>

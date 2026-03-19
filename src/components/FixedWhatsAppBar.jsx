@@ -4,7 +4,7 @@
 import { trackEvent } from '../hooks/useAnalytics';
 
 const FixedWhatsAppBar = ({ 
-  message = "Olá! Vim pelo site e gostaria de informações sobre avaliação para meu filho.",
+  message = "Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?",
   phone = "5562993377726"
 }) => {
   const whatsappLink = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;

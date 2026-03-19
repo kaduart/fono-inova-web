@@ -136,7 +136,7 @@ const DislexiaPage = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
-                                    message="Oi, vi no site sobre dislexia. Meu filho tem dificuldade para ler/confunde letras. Pode me explicar como funciona a avaliação?"
+                                    message="Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nMeu filho(a) tem dificuldade com leitura e troca letras. Pode me explicar como funciona a avaliação?"
                                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 group"
                                 >
                                     <MessageCircle className="w-6 h-6" />
@@ -322,7 +322,7 @@ const DislexiaPage = () => {
                             seu filho pode ler e escrever com confiança.
                         </p>
 
-                        <ButtonWhatsApp message="Oi, vi no site sobre dislexia. Quero agendar uma avaliação para meu filho." className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl transition-all inline-flex items-center gap-3">
+                        <ButtonWhatsApp message="Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nPode me explicar como funciona a avaliação?" className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl transition-all inline-flex items-center gap-3">
                             <MessageCircle className="w-7 h-7" />
                             Agendar Avaliação Agora
                         </ButtonWhatsApp>

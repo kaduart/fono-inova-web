@@ -128,7 +128,7 @@ const Clinica = () => {
                                     <ButtonWhatsApp
                                         onClick={() => { }}
                                         className="w-full bg-primary text-white py-4 rounded-xl font-bold hover:bg-primary/90 transition-all"
-                                        message="Olá! Gostaria de saber como chegar na clínica."
+                                        message="Oi! Vi o endereço de vocês no site.\n\nPode me orientar como chegar na clínica?"
                                     >
                                         Ver no Google Maps
                                     </ButtonWhatsApp>

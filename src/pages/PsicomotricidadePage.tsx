@@ -196,7 +196,7 @@ const PsicomotricidadePage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <ButtonWhatsApp
                   onClick={() => { }}
-                  message="Olá! Gostaria de agendar uma avaliação de psicomotricidade para meu filho(a)."
+                  message="Oi! Vi no site sobre psicomotricidade e queria entender melhor.\n\nPode me explicar como funciona a avaliação?"
                   icon={Calendar}
                   className="bg-pink-600 hover:bg-pink-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
@@ -462,7 +462,7 @@ const PsicomotricidadePage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ButtonWhatsApp
               onClick={() => { }}
-              message="Olá! Gostaria de agendar uma avaliação de psicomotricidade para meu filho(a)."
+              message="Oi! Vi no site sobre psicomotricidade e queria entender melhor.\n\nPode me explicar como funciona a avaliação?"
               icon={Calendar}
               className="bg-white text-pink-700 hover:bg-pink-50 px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
             >
@@ -470,7 +470,7 @@ const PsicomotricidadePage = () => {
             </ButtonWhatsApp>
             <ButtonWhatsApp
               onClick={() => { }}
-              message="Olá! Quero saber mais sobre psicomotricidade na Fono Inova."
+              message="Oi! Vi no site sobre psicomotricidade e queria entender melhor.\n\nPode me explicar como funciona?"
               icon={MessageCircle}
               className="border-2 border-white/60 text-white hover:bg-white/10 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
             >

@@ -63,7 +63,7 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
   // Adicionar mensagem pronta se for link do WhatsApp
   const getWhatsAppLink = (originalLink) => {
     if (originalLink.includes('wa.me') && !originalLink.includes('text=')) {
-      const message = "Olá! Vim pelo site e gostaria de agendar uma avaliação para meu filho.";
+      const message = "Oi! Vi o site de vocês e fiquei com algumas dúvidas.\n\nPode me explicar melhor como funciona o atendimento?";
       return `${originalLink}&text=${encodeURIComponent(message)}`;
     }
     return originalLink;
@@ -97,7 +97,7 @@ export const articleInterlinks = {
       title: "Preocupado com o desenvolvimento da fala do seu filho?",
       text: "Na Clínica Fono Inova em Anápolis, realizamos avaliação fonoaudiológica completa. Agende uma consulta e descubra como podemos ajudar.",
       buttonText: "Agendar Avaliação no WhatsApp",
-      link: "https://wa.me/5562993377726?text=Oi! Li o artigo sobre atraso na fala e gostaria de agendar uma avaliação."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
     }
   },
   "entendendo-espectro-auta": {
@@ -110,7 +110,7 @@ export const articleInterlinks = {
       title: "Suspeita de autismo?",
       text: "A avaliação precoce faz toda a diferença. Na Clínica Fono Inova em Anápolis, temos equipe multidisciplinar especializada em TEA.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Tenho suspeita de autismo no meu filho e gostaria de agendar uma avaliação."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a). Pode me explicar como funciona a avaliação?"
     }
   },
   "fala-tardia-criancas-quando-preocupar": {
@@ -123,7 +123,7 @@ export const articleInterlinks = {
       title: "Fala tardia precisa de atenção",
       text: "Quanto mais cedo começar o tratamento, melhores os resultados. Agende uma avaliação fonoaudiológica na Clínica Fono Inova.",
       buttonText: "Falar com Especialista",
-      link: "https://wa.me/5562993377726?text=Oi! Gostaria de agendar uma avaliação para fala tardia."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
     }
   },
   "processamento-auditivo-central-pac": {
@@ -135,7 +135,7 @@ export const articleInterlinks = {
       title: "Suspeita de problema no processamento auditivo?",
       text: "Realizamos avaliação completa do PAC com equipamentos especializados em Anápolis.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Suspeito de processamento auditivo na minha criança."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nSuspeito de processamento auditivo na minha criança. Pode me explicar como funciona a avaliação?"
     }
   },
   "tdah-infantil-guia-completo-pais": {
@@ -147,7 +147,7 @@ export const articleInterlinks = {
       title: "Suspeita de TDAH?",
       text: "A avaliação neuropsicológica é essencial para diagnóstico correto. Agende na Clínica Fono Inova.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Suspeito de TDAH no meu filho e gostaria de avaliação."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nSuspeito de TDAH no meu filho(a). Pode me explicar como funciona a avaliação?"
     }
   },
   "seletividade-alimentar-infantil": {
@@ -158,7 +158,7 @@ export const articleInterlinks = {
       title: "Seletividade alimentar afetando sua rotina?",
       text: "A terapia ocupacional pode ajudar. Agende uma avaliação na Clínica Fono Inova.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Minha criança tem seletividade alimentar."
+      link: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor.\n\nMinha criança tem seletividade alimentar. Pode me explicar como vocês podem ajudar?"
     }
   }
 };

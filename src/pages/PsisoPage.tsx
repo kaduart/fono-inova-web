@@ -206,7 +206,7 @@ const PsicoPage = () => {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
                                     onClick={() => { }}
-                                    message="Olá! Gostaria de agendar uma avaliação psicológica infantil."
+                                    message="Oi! Vi no site sobre avaliação psicológica e queria entender melhor.\n\nÉ para meu filho(a). Pode me explicar como funciona?"
                                     icon={Calendar}
                                     className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
@@ -567,7 +567,7 @@ const PsicoPage = () => {
                                 onClick={() => { }}
                                 icon={Calendar}
                                 className="bg-white hover:bg-gray-100 text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
-                                message="Olá! Vi a página de Psicologia e gostaria de agendar uma avaliação."
+                                message="Oi! Vi no site sobre avaliação psicológica e queria entender melhor.\n\nPode me explicar como funciona?"
                             >
                                 Agendar Avaliação Agora
                             </ButtonWhatsApp>

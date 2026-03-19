@@ -25,7 +25,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho Confunde Letras na Leitura?",
       subheadline: "Se seu filho troca b/d, lê espelhado ou está com dificuldade na escola, pode ser dislexia. A boa notícia: com o acompanhamento certo, ele aprende a ler bem.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site que meu filho troca letras na leitura. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nMeu filho(a) troca letras na leitura. Pode me explicar como funciona a avaliação?"
     },
     
     // 🆕 NOVO: Bloco de identificação
@@ -147,7 +147,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho Tem 7 Anos e Ainda Não Aprendeu a Ler?",
       subheadline: "Você não está sozinha. Muitas crianças precisam de um apoio especializado para alfabetizar. Em Anápolis, podemos ajudar.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem dificuldade para aprender a ler. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nMeu filho(a) tem dificuldade para aprender a ler. Pode me explicar como funciona a avaliação?"
     },
     
     // 🆕 NOVO: Bloco de identificação
@@ -268,7 +268,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho é Muito Agitado e Não Consegue Prestar Atenção?",
       subheadline: "Criança que não para, interrompe tudo, perde coisas e tem dificuldade na escola pode ter TDAH. Com o apoio certo, ele consegue aprender e se organizar.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho é muito agitado e não consegue prestar atenção na escola. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nMeu filho(a) é muito agitado(a) e não consegue prestar atenção na escola. Pode me explicar como funciona a avaliação?"
     },
 
     identification: {
@@ -390,7 +390,7 @@ export const aprendizagemLPs = [
       headline: "A Letra do Seu Filho é Ilegível Mesmo Para Ele?",
       subheadline: "Letra muito feia, pressão excessiva no papel, cansaço ao escrever — pode ser disgrafia. Com acompanhamento certo, a escrita melhora muito.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem letra muito feia e dificuldade para escrever. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade escolar e me identifiquei.\n\nMeu filho(a) tem letra muito feia e dificuldade para escrever. Pode me explicar como funciona a avaliação?"
     },
 
     identification: {
@@ -507,7 +507,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho Tem Dificuldade Extrema com Números e Matemática?",
       subheadline: "Quando a dificuldade vai além do normal — não consegue contar, confunde operações básicas, não entende conceitos de quantidade — pode ser discalculia.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem muita dificuldade com matemática e números. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade escolar e me identifiquei.\n\nMeu filho(a) tem muita dificuldade com matemática. Pode me explicar como funciona a avaliação?"
     },
 
     identification: {
@@ -624,7 +624,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho se Distrai com Tudo e Não Consegue Estudar?",
       subheadline: "Criança que não consegue focar por mais de alguns minutos pode ter dificuldades de atenção que prejudicam o aprendizado — e têm solução.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem muita dificuldade para se concentrar e estudar. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nMeu filho(a) tem dificuldade para se concentrar e estudar. Pode me explicar como funciona a avaliação?"
     },
 
     identification: {
@@ -738,7 +738,7 @@ export const aprendizagemLPs = [
       headline: "Seu Filho Tem Dificuldade na Escola e Você Não Sabe Por Quê?",
       subheadline: "A psicopedagogia descobre a causa da dificuldade de aprendizagem e cria um plano personalizado para que seu filho se desenvolva e tenha confiança na escola.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Meu filho tem dificuldade na escola e gostaria de saber mais sobre psicopedagogia. Pode me explicar como funciona?"
+      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre psicopedagogia e me identifiquei.\n\nMeu filho(a) tem dificuldade na escola. Pode me explicar como funciona?"
     },
 
     identification: {

@@ -163,7 +163,7 @@ const ClinicaMultidisciplinar = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <ButtonWhatsApp
                   onClick={() => { }}
-                  message="Olá! Gostaria de agendar uma triagem multidisciplinar para meu filho(a)."
+                  message="Oi! Vi no site de vocês e queria entender melhor como funciona a avaliação completa.\n\nÉ para meu filho(a). Pode me explicar?"
                   icon={Calendar}
                   className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
@@ -428,7 +428,7 @@ const ClinicaMultidisciplinar = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <ButtonWhatsApp
               onClick={() => { }}
-              message="Olá! Gostaria de agendar uma avaliação multidisciplinar."
+              message="Oi! Vi no site de vocês e queria entender melhor como funciona a avaliação completa.\n\nPode me explicar?"
               icon={Calendar}
               className="bg-white text-rose-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             >

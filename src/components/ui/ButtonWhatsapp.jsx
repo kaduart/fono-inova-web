@@ -5,7 +5,7 @@ import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 const ButtonWhatsApp = ({
     className = '',
     phoneNumber = '5562993377726',
-    message = 'Olá! Gostaria de agendar uma consulta na Clínica Fono Inova.',
+    message = 'Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.\n\nPode me explicar?',
     children = 'Falar com Especialista',
     size = 'default',
     icon: IconComponent = Phone,
