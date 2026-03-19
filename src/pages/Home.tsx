@@ -832,7 +832,6 @@ function Home() {
               message="Oi, vi no site e gostaria de agendar uma avaliação. Pode me explicar como funciona?"
             >
               Quero falar com um especialista agora
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </ButtonWhatsApp>
 
             {/* Telefone alternativo */}
