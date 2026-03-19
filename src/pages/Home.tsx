@@ -831,7 +831,6 @@ function Home() {
               className="bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 group"
               message="Oi, vi no site e gostaria de agendar uma avaliação. Pode me explicar como funciona?"
             >
-              <MessageCircle className="w-7 h-7" />
               Quero falar com um especialista agora
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </ButtonWhatsApp>
