@@ -2,6 +2,7 @@
 import { trackEvent } from '../../hooks/useAnalytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 import { getLeadTracking, buildTrackingPayload } from '../../hooks/useLeadTracking';
+import { trackCTAClick } from '../../utils/journeyTracker';
 
 const WhatsAppCTA = ({ 
   text = "Fale Conosco no WhatsApp", 
@@ -42,6 +43,9 @@ const WhatsAppCTA = ({
       campaign: tracking.campaign,
       medium: tracking.medium
     });
+
+    // Journey tracking no CRM
+    trackCTAClick('whatsapp', { lpSlug, lpCategory, specialty, page: window.location.pathname });
 
     // Tracking LP no CRM (se for landing page)
     if (lpSlug && lpCategory) {
