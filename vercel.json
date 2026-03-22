@@ -7,6 +7,12 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "clinicafonoinova.com.br" }],
+      "destination": "https://www.clinicafonoinova.com.br/:path*",
+      "permanent": true
+    },
+    {
       "source": "/lp/crianca-2-anos-nao-fala",
       "destination": "/fala-tardia",
       "permanent": true

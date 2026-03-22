@@ -7,6 +7,13 @@ Disallow: /admin
 Disallow: /drafts
 Disallow: /private
 
+# Bloquear AdsBot das LPs (economizar crawl budget)
+User-agent: AdsBot-Google
+Disallow: /lp/
+
+User-agent: AdsBot-Google-Mobile
+Disallow: /lp/
+
 # Host
 Host: https://www.clinicafonoinova.com.br
 

@@ -75,6 +75,34 @@ export const LP_CATEGORIES = {
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// 🏥 PÁGINAS DE ESPECIALIDADE - PARA RASTREAMENTO NO DASHBOARD
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export const SERVICE_PAGES = [
+  // Páginas originais
+  { id: 'dificuldade-escolar', name: 'Dificuldade Escolar', path: '/avaliacao-neuropsicologica-dificuldade-escolar', icon: '📚', category: 'aprendizagem' },
+  { id: 'fonoaudiologia', name: 'Fonoaudiologia', path: '/fonoaudiologia', icon: '🗣️', category: 'fonoaudiologia' },
+  { id: 'psicologia', name: 'Psicologia', path: '/psicologia', icon: '🧠', category: 'psicologia' },
+  { id: 'teste-da-linguinha', name: 'Teste da Linguinha', path: '/freio-lingual', icon: '👶', category: 'fonoaudiologia' },
+  { id: 'psicopedagogia', name: 'Psicopedagogia', path: '/psicopedagogia', icon: '📖', category: 'aprendizagem' },
+  { id: 'neuropsicologia', name: 'Neuropsicologia', path: '/avaliacao-neuropsicologica', icon: '🧩', category: 'psicologia' },
+  { id: 'autismo-tea', name: 'Autismo (TEA)', path: '/avaliacao-autismo-infantil', icon: '🧩', category: 'autismo' },
+  { id: 'fisioterapia', name: 'Fisioterapia', path: '/fisioterapia', icon: '🦵', category: 'fisioterapia' },
+  { id: 'home', name: 'Home', path: '/', icon: '🏠', category: 'institucional' },
+  { id: 'terapia-ocupacional', name: 'Terapia Ocupacional', path: '/terapia-ocupacional', icon: '🤲', category: 'terapia_ocupacional' },
+  { id: 'fala-tardia', name: 'Fala Tardia', path: '/fala-tardia', icon: '💬', category: 'fonoaudiologia' },
+  
+  // 🆕 NOVAS PÁGINAS SEO LOCAL (Mar/2026)
+  { id: 'fonoaudiologia-anapolis', name: 'Fonoaudiologia Anápolis', path: '/fonoaudiologia-anapolis', icon: '🗣️', category: 'fonoaudiologia', isNew: true },
+  { id: 'psicologia-infantil-anapolis', name: 'Psicologia Infantil Anápolis', path: '/psicologia-infantil-anapolis', icon: '🧠', category: 'psicologia', isNew: true },
+  { id: 'terapia-ocupacional-anapolis', name: 'Terapia Ocupacional Anápolis', path: '/terapia-ocupacional-anapolis', icon: '🤲', category: 'terapia_ocupacional', isNew: true },
+  { id: 'psicomotricidade-anapolis', name: 'Psicomotricidade Anápolis', path: '/psicomotricidade-anapolis', icon: '🤸', category: 'psicomotricidade', isNew: true },
+  { id: 'teste-da-linguinha-anapolis', name: 'Teste da Linguinha Anápolis', path: '/teste-da-linguinha-anapolis', icon: '👶', category: 'fonoaudiologia', isNew: true },
+  { id: 'fisioterapia-infantil-anapolis', name: 'Fisioterapia Infantil Anápolis', path: '/fisioterapia-infantil-anapolis', icon: '🦵', category: 'fisioterapia', isNew: true },
+  { id: 'avaliacao-neuropsicologica-anapolis', name: 'Avaliação Neuropsicológica Anápolis', path: '/avaliacao-neuropsicologica-anapolis', icon: '🧩', category: 'psicologia', isNew: true },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // 📱 CONTATO
 // ═══════════════════════════════════════════════════════════════════════════════
 

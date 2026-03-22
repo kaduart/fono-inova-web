@@ -2,7 +2,7 @@
 // Dashboard de Analytics integrado com GA4 Data API
 
 import { useEffect, useState } from 'react';
-import { getDashboardData } from '../services/ga4DataApi';
+import { getDashboardData, GA4_PROPERTY_ID } from '../services/ga4DataApi';
 import { retryFailedLeads } from '../services/crmAnalyticsApi';
 import { 
   Users, 
@@ -34,7 +34,6 @@ const AnalyticsDashboard = () => {
     
     // Landing Pages metrics
     const [lpMetrics, setLpMetrics] = useState(null);
-    const [lpLoading, setLpLoading] = useState(false);
 
     const fetchData = async () => {
         setLoading(true);
@@ -397,30 +396,45 @@ const AnalyticsDashboard = () => {
                 <div className="max-w-7xl mx-auto">
                     <div className="bg-white rounded-xl shadow-sm border border-gray-100">
                         <div className="p-6 border-b border-gray-100">
-                            <h2 className="text-lg font-semibold text-gray-900">Performance por Página</h2>
-                            <p className="text-sm text-gray-500">Últimos 30 dias</p>
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h2 className="text-lg font-semibold text-gray-900">Performance por Página</h2>
+                                    <p className="text-sm text-gray-500">Todas as páginas • Últimos 30 dias</p>
+                                </div>
+                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                                    {data?.pages?.length || 0} páginas no total
+                                </span>
+                            </div>
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full">
                                 <thead className="bg-gray-50">
                                     <tr>
+                                        <th className="text-left text-xs font-medium text-gray-500 uppercase py-3 px-6">#</th>
                                         <th className="text-left text-xs font-medium text-gray-500 uppercase py-3 px-6">Página</th>
                                         <th className="text-right text-xs font-medium text-gray-500 uppercase py-3 px-6">Views</th>
                                         <th className="text-right text-xs font-medium text-gray-500 uppercase py-3 px-6">Usuários</th>
                                         <th className="text-right text-xs font-medium text-gray-500 uppercase py-3 px-6">Tempo Médio</th>
-                                        <th className="text-right text-xs font-medium text-gray-500 uppercase py-3 px-6">Bounce Rate</th>
+                                        <th className="text-right text-xs font-medium text-gray-500 uppercase py-3 px-6">Bounce</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
-                                    {data?.pages?.map((page, index) => (
+                                    {data?.pages
+                                        ?.sort((a, b) => (b.views || 0) - (a.views || 0))
+                                        ?.map((page, index) => (
                                         <tr key={index} className="hover:bg-gray-50">
                                             <td className="py-3 px-6">
+                                                <span className="text-sm text-gray-500">
+                                                    {index + 1}
+                                                </span>
+                                            </td>
+                                            <td className="py-3 px-6">
                                                 <div>
-                                                    <p className="text-sm font-medium text-gray-900">{page.title}</p>
+                                                    <p className="text-sm font-medium text-gray-900 truncate max-w-[200px]">{page.title}</p>
                                                     <p className="text-xs text-gray-500">{page.path}</p>
                                                 </div>
                                             </td>
-                                            <td className="py-3 px-6 text-right text-sm text-gray-900">
+                                            <td className="py-3 px-6 text-right text-sm font-bold text-gray-900">
                                                 {page.views?.toLocaleString()}
                                             </td>
                                             <td className="py-3 px-6 text-right text-sm text-gray-600">
@@ -435,7 +449,7 @@ const AnalyticsDashboard = () => {
                                                         ? 'bg-red-100 text-red-700' 
                                                         : 'bg-green-100 text-green-700'
                                                 }`}>
-                                                    {page.bounceRate?.toFixed(1)}%
+                                                    {page.bounceRate?.toFixed(0)}%
                                                 </span>
                                             </td>
                                         </tr>
@@ -443,6 +457,13 @@ const AnalyticsDashboard = () => {
                                 </tbody>
                             </table>
                         </div>
+                        {data?.pages?.length > 0 && (
+                            <div className="p-4 border-t border-gray-100 text-center">
+                                <p className="text-sm text-gray-500">
+                                    Total de {data.pages.length} páginas
+                                </p>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}

@@ -13,7 +13,7 @@
 
 // IMPORTANTE: O Property ID é diferente do Measurement ID (G-XXXXXXXX)
 // Para encontrar: GA4 > Admin > Property Settings > Property ID
-const GA4_PROPERTY_ID = import.meta.env.VITE_GA4_PROPERTY_ID || '';
+export const GA4_PROPERTY_ID = import.meta.env.VITE_GA4_PROPERTY_ID || '';
 
 // Chave da API ou token de acesso
 // Em produção, isso deve vir de um backend seguro, não do frontend
@@ -406,7 +406,15 @@ function getMockPagesData() {
         { title: 'Fonoaudiologia Infantil', path: '/fonoaudiologia', views: 567, users: 423, avgEngagementTime: 189.3, bounceRate: 28.1 },
         { title: 'Teste da Linguinha', path: '/freio-lingual', views: 456, users: 387, avgEngagementTime: 234.1, bounceRate: 22.4 },
         { title: 'Psicologia Infantil', path: '/psicologia', views: 342, users: 298, avgEngagementTime: 156.7, bounceRate: 31.5 },
-        { title: 'Fisioterapia Pediátrica', path: '/fisioterapia', views: 234, users: 201, avgEngagementTime: 145.2, bounceRate: 33.8 }
+        { title: 'Fisioterapia Pediátrica', path: '/fisioterapia', views: 234, users: 201, avgEngagementTime: 145.2, bounceRate: 33.8 },
+        // 🆕 NOVAS PÁGINAS SEO LOCAL (Mar/2026)
+        { title: 'Fonoaudiologia Infantil em Anápolis', path: '/fonoaudiologia-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Psicologia Infantil em Anápolis', path: '/psicologia-infantil-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Terapia Ocupacional em Anápolis', path: '/terapia-ocupacional-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Psicomotricidade Infantil em Anápolis', path: '/psicomotricidade-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Teste da Linguinha em Anápolis', path: '/teste-da-linguinha-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Fisioterapia Infantil em Anápolis', path: '/fisioterapia-infantil-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 },
+        { title: 'Avaliação Neuropsicológica em Anápolis', path: '/avaliacao-neuropsicologica-anapolis', views: 0, users: 0, avgEngagementTime: 0, bounceRate: 0 }
     ];
 }
 
