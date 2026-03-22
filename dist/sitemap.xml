@@ -13,6 +13,14 @@
   
   <!-- ==================== LANDING PAGES - ALTA CONVERSÃO ==================== -->
   
+  <!-- Avaliação Infantil (LP principal de entrada) -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/avaliacao-infantil</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
   <!-- Fala Tardia (consolidada) -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fala-tardia</loc>
@@ -51,6 +59,64 @@
     <lastmod>2026-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+  </url>
+  
+  <!-- ==================== PÁGINAS ESPECIALIDADE - SEO LOCAL ANÁPOLIS ==================== -->
+  
+  <!-- Fonoaudiologia Infantil Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  
+  <!-- Psicologia Infantil Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  
+  <!-- Terapia Ocupacional Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  
+  <!-- Psicomotricidade Infantil Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/psicomotricidade-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Teste da Linguinha Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Fisioterapia Infantil Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Avaliação Neuropsicológica Anápolis -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   
   <!-- ==================== NOVAS LPs - NICHO ESPECÍFICO ==================== -->

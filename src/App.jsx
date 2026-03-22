@@ -28,8 +28,18 @@ import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
 import DislexiaPage from './pages/DislexiaPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
 import FaqPage from './pages/Faq.jsx';
+import LPAvaliacaoInfantil from './pages/LPAvaliacaoInfantil';
 import TdahPage from './pages/TdahPage';
 import TeaPage from './pages/TeaPage';
+
+// Import das NOVAS páginas de especialidade SEO Local (dominar Anápolis)
+import FonoaudiologiaAnapolis from './pages/FonoaudiologiaAnapolis';
+import PsicologiaInfantilAnapolis from './pages/PsicologiaInfantilAnapolis';
+import TerapiaOcupacionalAnapolis from './pages/TerapiaOcupacionalAnapolis';
+import PsicomotricidadeAnapolis from './pages/PsicomotricidadeAnapolis';
+import TesteLinguinhaAnapolis from './pages/TesteLinguinhaAnapolis';
+import FisioterapiaInfantilAnapolis from './pages/FisioterapiaInfantilAnapolis';
+import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologicaAnapolis';
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
@@ -39,6 +49,9 @@ const useAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // Scroll para o topo ao mudar de página
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     if (typeof (window).gtag !== 'undefined') {
       (window).gtag('config', 'G-N59X7PNQZZ', {
         page_path: location.pathname,
@@ -86,6 +99,7 @@ function App() {
           <Route path="/freio-lingual" element={<FreioLingualPage />} />
 
           {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
+          <Route path="/avaliacao-infantil" element={<LPAvaliacaoInfantil />} />
           <Route path="/avaliacao-autismo-infantil" element={<TeaPage />} />
           <Route path="/fala-tardia" element={<FalaTardiaPage />} />
           <Route path="/dislexia-infantil" element={<DislexiaPage />} />
@@ -98,6 +112,15 @@ function App() {
           <Route path="/musicoterapia" element={<MusicoterapiaPage />} />
           <Route path="/equipe" element={<EquipePage />} />
           <Route path="/nossa-clinica" element={<ClinicaPage />} />
+          
+          {/* NOVAS ROTAS - Especialidades SEO Local (dominar Anápolis) */}
+          <Route path="/fonoaudiologia-anapolis" element={<FonoaudiologiaAnapolis />} />
+          <Route path="/psicologia-infantil-anapolis" element={<PsicologiaInfantilAnapolis />} />
+          <Route path="/terapia-ocupacional-anapolis" element={<TerapiaOcupacionalAnapolis />} />
+          <Route path="/psicomotricidade-anapolis" element={<PsicomotricidadeAnapolis />} />
+          <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />
+          <Route path="/fisioterapia-infantil-anapolis" element={<FisioterapiaInfantilAnapolis />} />
+          <Route path="/avaliacao-neuropsicologica-anapolis" element={<AvaliacaoNeuropsicologicaAnapolis />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
           <Route path="/lp/:slug" element={<LandingPage />} />
