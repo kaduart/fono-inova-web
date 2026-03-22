@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { articlesData } from '../data/articlesData';
-import { schemaArticle, schemaFAQArticle } from '../schemas/clinicaSchemas';
+import { schemaArticle, schemaFAQArticle, schemaBreadcrumbList } from '../schemas/clinicaSchemas';
 import { RelatedLandingPages, CTABox, articleInterlinks } from '../components/RelatedContent';
 
 const ArticlePage = () => {
@@ -130,7 +130,12 @@ const ArticlePage = () => {
                             article.authorCredentials,
                             article.dateModifiedISO || article.dateISO || article.date
                         ),
-                        ...(article.faq && article.faq.length > 0 ? [schemaFAQArticle(article.faq)] : [])
+                        ...(article.faq && article.faq.length > 0 ? [schemaFAQArticle(article.faq)] : []),
+                        schemaBreadcrumbList([
+                            { name: 'Home', url: 'https://www.clinicafonoinova.com.br/' },
+                            { name: 'Artigos', url: 'https://www.clinicafonoinova.com.br/artigos' },
+                            { name: article.title, url: `https://www.clinicafonoinova.com.br/artigos/${article.slug}` }
+                        ])
                     ]}
                 />
 

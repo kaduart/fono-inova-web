@@ -966,3 +966,15 @@ export const schemaLandingPageBreadcrumb = (data) => ({
         }
     ]
 });
+
+// Schema genérico para breadcrumbs (artigos e outras páginas)
+export const schemaBreadcrumbList = (items) => ({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.url
+    }))
+});

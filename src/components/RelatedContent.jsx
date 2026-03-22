@@ -152,13 +152,124 @@ export const articleInterlinks = {
   },
   "seletividade-alimentar-infantil": {
     landingPages: [
-      { title: "Terapia ocupacional em Anápolis", url: "/lp/terapia-ocupacional-anapolis" }
+      { title: "Terapia ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" },
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" }
     ],
     cta: {
       title: "Seletividade alimentar afetando sua rotina?",
-      text: "A terapia ocupacional pode ajudar. Agende uma avaliação na Clínica Fono Inova.",
+      text: "A terapia ocupacional pode ajudar. Agende uma avaliação na Clínica Fono Inova em Anápolis.",
       buttonText: "Agendar Avaliação",
       link: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor.\n\nMinha criança tem seletividade alimentar. Pode me explicar como vocês podem ajudar?"
+    }
+  },
+  "atividades-desenvolvimento-motor": {
+    landingPages: [
+      { title: "Fisioterapia infantil em Anápolis", url: "/fisioterapia-infantil-anapolis" },
+      { title: "Psicomotricidade em Anápolis", url: "/psicomotricidade-anapolis" },
+      { title: "Terapia Ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" }
+    ],
+    cta: {
+      title: "Preocupado com o desenvolvimento motor do seu filho?",
+      text: "Avaliação especializada em fisioterapia e psicomotricidade na Clínica Fono Inova em Anápolis.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre desenvolvimento motor e me identifiquei.\n\nGostaria de agendar uma avaliação para meu filho(a)."
+    }
+  },
+  "faq-desenvolvimento-infantil": {
+    landingPages: [
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Psicologia infantil em Anápolis", url: "/psicologia-infantil-anapolis" },
+      { title: "Avaliação neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" }
+    ],
+    cta: {
+      title: "Ainda tem dúvidas sobre desenvolvimento infantil?",
+      text: "Nossa equipe multidisciplinar em Anápolis pode ajudar. Entre em contato pelo WhatsApp.",
+      buttonText: "Falar com Especialista",
+      link: "https://wa.me/5562993377726?text=Oi! Li o FAQ de vocês e ainda tenho algumas dúvidas.\n\nPode me ajudar?"
+    }
+  },
+  "importancia-orientacao-parental": {
+    landingPages: [
+      { title: "Psicologia infantil em Anápolis", url: "/psicologia-infantil-anapolis" },
+      { title: "Avaliação neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" }
+    ],
+    cta: {
+      title: "Quer fortalecer sua relação com seu filho?",
+      text: "A orientação parental pode transformar a dinâmica familiar. Agende na Clínica Fono Inova.",
+      buttonText: "Agendar Orientação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre orientação parental e me interessei.\n\nGostaria de saber mais sobre como funciona."
+    }
+  },
+  "importancia-psicomotricidade-desenvolvimento-infantil": {
+    landingPages: [
+      { title: "Psicomotricidade em Anápolis", url: "/psicomotricidade-anapolis" },
+      { title: "Fisioterapia infantil em Anápolis", url: "/fisioterapia-infantil-anapolis" }
+    ],
+    cta: {
+      title: "Psicomotricidade fortalece o aprendizado",
+      text: "Avaliação psicomotora completa na Clínica Fono Inova em Anápolis. Agende agora.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre psicomotricidade e quero saber mais.\n\nComo funciona a avaliação?"
+    }
+  },
+  "psicopedagogia-alem-das-dificuldades-escolares": {
+    landingPages: [
+      { title: "Avaliação neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" },
+      { title: "Psicologia infantil em Anápolis", url: "/psicologia-infantil-anapolis" }
+    ],
+    cta: {
+      title: "Seu filho tem dificuldades na escola?",
+      text: "A psicopedagogia identifica como seu filho aprende melhor. Avaliação em Anápolis.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre psicopedagogia e me identifiquei.\n\nMeu filho tem dificuldades escolares."
+    }
+  },
+  "musicoterapia-e-tea-conexoes-atraves-do-som": {
+    landingPages: [
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Psicologia infantil em Anápolis", url: "/psicologia-infantil-anapolis" }
+    ],
+    cta: {
+      title: "Música pode ajudar seu filho autista",
+      text: "Conheça nossas terapias para crianças no espectro autista em Anápolis.",
+      buttonText: "Conhecer Terapias",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre musicoterapia e TEA.\n\nGostaria de saber mais sobre as terapias para autismo."
+    }
+  },
+  "bebe-nao-fala": {
+    landingPages: [
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Teste da Linguinha em Anápolis", url: "/teste-da-linguinha-anapolis" }
+    ],
+    cta: {
+      title: "Preocupada com a fala do seu bebê?",
+      text: "Avaliação fonoaudiológica especializada para bebês na Clínica Fono Inova.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre bebê que não fala.\n\nMeu bebê tem atraso na fala."
+    }
+  },
+  "como-estimular-fala-crianca": {
+    landingPages: [
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Criança de 2 anos não fala?", url: "/artigos/fala-tardia-criancas-quando-preocupar" }
+    ],
+    cta: {
+      title: "Dicas ajudam, mas às vezes precisa de mais",
+      text: "Se seu filho tem atraso na fala, a fonoaudiologia pode acelerar o desenvolvimento.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre estimular a fala.\n\nMeu filho tem atraso. Preciso de ajuda profissional."
+    }
+  },
+  "fala-tardia-causas": {
+    landingPages: [
+      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Teste da Linguinha em Anápolis", url: "/teste-da-linguinha-anapolis" }
+    ],
+    cta: {
+      title: "Descubra a causa do atraso na fala",
+      text: "Avaliação completa na Clínica Fono Inova para identificar e tratar a fala tardia.",
+      buttonText: "Agendar Avaliação",
+      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre causas da fala tardia.\n\nQuero agendar uma avaliação."
     }
   }
 };
