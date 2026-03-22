@@ -1,5 +1,5 @@
 // components/SEO.jsx
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, keywords = "", image, url, type = "website", schema }) => {
   const siteUrl = "https://www.clinicafonoinova.com.br";

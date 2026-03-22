@@ -38,7 +38,10 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaFisioterapiaAnapolis, schemaFAQFisio } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { fisioterapiaSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação de fisioterapia infantil.";
@@ -175,9 +178,9 @@ const FisioterapiaInfantilAnapolis = () => {
         description="Fisioterapia infantil em Anápolis. Tratamento especializado para reabilitação motora, postural e funcional. Atendimento para crianças com dificuldades de movimento, força e postura. Agende na Clínica Fono Inova."
         keywords="fisioterapia infantil anápolis, fisioterapia pediatrica anápolis, reabilitação infantil anápolis, fisioterapia motora anápolis, fisioterapeuta infantil anápolis"
         image="/images/og-image.jpg"
-        url="/fisioterapia-infantil-anapolis"
+        url="https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaFisioterapiaAnapolis, schemaFAQFisio]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -197,6 +200,14 @@ const FisioterapiaInfantilAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Fisioterapia', href: '/fisioterapia' },
+          { label: 'Fisioterapia Infantil em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -461,6 +472,13 @@ const FisioterapiaInfantilAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={fisioterapiaSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Fisioterapia Infantil"
+      />
 
       {/* ==================== INTERNAL LINKING ==================== */}
       <section className="py-16 bg-slate-50">

@@ -37,14 +37,6 @@
     <priority>0.95</priority>
   </url>
   
-  <!-- Dificuldade Escolar -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  
   <!-- Freio Lingual -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/freio-lingual</loc>
@@ -153,14 +145,6 @@
     <priority>0.85</priority>
   </url>
   
-  <!-- Seletividade Alimentar (NOVA) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/seletividade-alimentar</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
   <!-- ==================== PÁGINAS DE SERVIÇO (PILLAR) ==================== -->
   
   <url>
@@ -205,13 +189,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  
   <!-- ==================== PÁGINAS INSTITUCIONAIS ==================== -->
   
   <url>
@@ -253,13 +230,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/avaliacao-neuropsicologica-anapolis</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  
   <!-- ==================== LPs SECUNDÁRIAS (mantidas) ==================== -->
   
   <url>

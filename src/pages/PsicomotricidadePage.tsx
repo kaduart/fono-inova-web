@@ -22,6 +22,7 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import OptimizedImage from '../components/OptimizedImage';
+import { schemaPsicomotricidade, schemaFAQPsicomotricidade } from '../schemas/clinicaSchemas.js';
 
 const PsicomotricidadePage = () => {
   useEffect(() => {
@@ -175,7 +176,7 @@ const PsicomotricidadePage = () => {
         image="/images/psicomotricidade-hero.png"
         url="https://www.clinicafonoinova.com.br/psicomotricidade"
         type="article"
-        schema={[]}
+        schema={[schemaPsicomotricidade, schemaFAQPsicomotricidade]}
       />
 
       {/* Hero Section */}

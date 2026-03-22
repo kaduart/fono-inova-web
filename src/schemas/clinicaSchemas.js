@@ -692,6 +692,198 @@ export const schemaFAQFreioLingual = {
     ]
 };
 
+// 12. MUSICOTERAPIA (MusicoterapiaPage.tsx)
+export const schemaMusicoterapia = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Musicoterapia Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Musicoterapia para TEA, atrasos de linguagem e desenvolvimento infantil em Anápolis, bairro Jundiaí.",
+    "url": "https://www.clinicafonoinova.com.br/musicoterapia",
+    "about": {
+        "@type": "MedicalTherapy",
+        "name": "Musicoterapia Clínica",
+        "relevantSpecialty": "SpeechLanguagePathology"
+    },
+    "provider": {
+        "@type": "MedicalBusiness",
+        "name": "Clínica Fono Inova",
+        "address": ENDERECO_COMPLETO
+    }
+};
+
+export const schemaFAQMusicoterapia = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "O que é musicoterapia infantil?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Musicoterapia é uma terapia que usa elementos musicais (sons, ritmo, melodia) para estimular o desenvolvimento cognitivo, emocional e de linguagem em crianças, especialmente com TEA e atrasos de fala."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Musicoterapia ajuda crianças com autismo em Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. A Clínica Fono Inova no bairro Jundiaí em Anápolis oferece musicoterapia especializada para crianças com TEA, ajudando na comunicação, interação social e regulação emocional."
+            }
+        }
+    ]
+};
+
+// 13. PSICOMOTRICIDADE (PsicomotricidadePage.tsx)
+export const schemaPsicomotricidade = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Psicomotricidade Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Terapia de psicomotricidade para crianças com TEA, Síndrome de Down e atrasos motores em Anápolis, bairro Jundiaí.",
+    "url": "https://www.clinicafonoinova.com.br/psicomotricidade",
+    "about": {
+        "@type": "MedicalTherapy",
+        "name": "Psicomotricidade Infantil",
+        "relevantSpecialty": "PhysicalTherapy"
+    },
+    "provider": {
+        "@type": "MedicalBusiness",
+        "name": "Clínica Fono Inova",
+        "address": ENDERECO_COMPLETO
+    }
+};
+
+export const schemaFAQPsicomotricidade = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "O que é psicomotricidade infantil?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Psicomotricidade infantil é uma terapia que trabalha a relação entre o movimento do corpo e o desenvolvimento cognitivo e emocional da criança, ajudando no equilíbrio, coordenação e aprendizagem."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Psicomotricidade atende Síndrome de Down em Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim. A Clínica Fono Inova em Anápolis oferece terapia psicomotora especializada para crianças com Síndrome de Down, TEA e atrasos motores, com atendimento no bairro Jundiaí."
+            }
+        }
+    ]
+};
+
+// ==========================================
+// SCHEMAS PÁGINAS ANÁPOLIS (SEO LOCAL)
+// ==========================================
+
+export const schemaFonoaudiologiaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Fonoaudiologia Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Fonoaudiologia infantil especializada em fala tardia, autismo e TDAH no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Fonoaudiologia Infantil", "relevantSpecialty": "SpeechLanguagePathology" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaPsicologiaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Psicologia Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Psicologia infantil para comportamento, TDAH e aprendizagem no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Psicologia Infantil", "relevantSpecialty": "Psychology" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaTerapiaOcupacionalAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Terapia Ocupacional em Anápolis | Clínica Fono Inova",
+    "description": "Terapia ocupacional infantil para desenvolvimento motor e autonomia no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Terapia Ocupacional Infantil", "relevantSpecialty": "OccupationalTherapy" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaPsicomotricidadeAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Psicomotricidade Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Psicomotricidade para crianças com TEA, Síndrome de Down e atrasos motores no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/psicomotricidade-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Psicomotricidade Infantil", "relevantSpecialty": "PhysicalTherapy" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaTesteLinguinhaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Teste da Linguinha em Anápolis | Clínica Fono Inova",
+    "description": "Teste da linguinha (frênulo lingual) em bebês e crianças em Anápolis, bairro Jundiaí. Avaliação e procedimento por fonoaudiólogos especializados.",
+    "url": "https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis",
+    "about": { "@type": "MedicalProcedure", "name": "Teste da Linguinha", "procedureType": "Diagnostic" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaFAQTesteLinguinha = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "O que é o teste da linguinha?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O teste da linguinha avalia o frênulo lingual do bebê para identificar se há restrição (anquiloglossia) que possa prejudicar a amamentação, fala e deglutição. É realizado por fonoaudióloga especializada." }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde fazer o teste da linguinha em Anápolis?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O teste da linguinha é realizado na Clínica Fono Inova, no bairro Jundiaí, em Anápolis/GO. Atendemos bebês e crianças com suspeita de frênulo lingual curto." }
+        }
+    ]
+};
+
+export const schemaFisioterapiaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Fisioterapia Infantil em Anápolis | Clínica Fono Inova",
+    "description": "Fisioterapia pediátrica para atraso motor, torcicolo e paralisia cerebral no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Fisioterapia Pediátrica", "relevantSpecialty": "PhysicalTherapy" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaAvaliacaoNeuropsicologicaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Avaliação Neuropsicológica em Anápolis | Clínica Fono Inova",
+    "description": "Avaliação neuropsicológica para TDAH, dislexia e dificuldades de aprendizagem no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis",
+    "about": { "@type": "MedicalTest", "name": "Avaliação Neuropsicológica", "usedToDiagnose": ["TDAH", "Dislexia", "Transtornos de Aprendizagem"] },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaFAQAvaliacaoNeuropsicologicaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "O que é avaliação neuropsicológica infantil?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A avaliação neuropsicológica identifica dificuldades cognitivas, de atenção e aprendizagem em crianças, através de testes padronizados. Ajuda no diagnóstico de TDAH, dislexia e outros transtornos do neurodesenvolvimento." }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde fazer avaliação neuropsicológica em Anápolis?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A avaliação neuropsicológica é realizada na Clínica Fono Inova, no bairro Jundiaí em Anápolis/GO. Nossa equipe avalia TDAH, dislexia, autismo e dificuldades escolares." }
+        }
+    ]
+};
+
 // ==========================================
 // SCHEMAS PARA LANDING PAGES
 // ==========================================

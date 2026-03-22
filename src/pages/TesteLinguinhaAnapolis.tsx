@@ -36,7 +36,10 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLinguinha } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { testeLinguinhaSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar o teste da linguinha.";
@@ -173,9 +176,9 @@ const TesteLinguinhaAnapolis = () => {
         description="Teste da linguinha em Anápolis. Diagnóstico precoce de freio lingual (ankyloglossia) para bebês e crianças. Avaliação especializada de sucção, fala e mobilidade. Agende na Clínica Fono Inova."
         keywords="teste da linguinha anápolis, freio lingual anápolis, frenectomia anápolis, ankyloglossia anápolis, dificuldade para mamar anápolis, avaliação freio lingual anápolis"
         image="/images/og-image.jpg"
-        url="/teste-da-linguinha-anapolis"
+        url="https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLinguinha]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -195,6 +198,14 @@ const TesteLinguinhaAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Freio Lingual', href: '/freio-lingual' },
+          { label: 'Teste da Linguinha em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -461,6 +472,13 @@ const TesteLinguinhaAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={testeLinguinhaSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre o Teste da Linguinha"
+      />
 
       {/* ==================== INTERNAL LINKING ==================== */}
       <section className="py-16 bg-slate-50">

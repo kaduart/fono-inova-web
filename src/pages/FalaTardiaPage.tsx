@@ -146,7 +146,7 @@ const FalaTardiaPage = () => {
             <SEO
                 title="Meu Filho Não Fala Aos 2 Anos em Anápolis | Fonoaudiologia"
                 description="Seu filho tem 2-3 anos e ainda não fala? Fonoaudiologia infantil especializada no bairro Jundiaí, Anápolis. Avaliação do atraso de fala. Agende pelo WhatsApp."
-                keywords="atraso na fala anapolis, fonoaudiologia infantil jundiai, fonoaudilogo anapolis, crianca nao fala aos 2 anos, crianca 3 anos nao fala"
+                keywords="atraso na fala anapolis, fonoaudiologia infantil jundiai, fonoaudiólogo anápolis, crianca nao fala aos 2 anos, crianca 3 anos nao fala"
                 image="/images/servicos/fala-tardia.jpg"
                 url="https://www.clinicafonoinova.com.br/fala-tardia"
                 type="article"

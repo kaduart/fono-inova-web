@@ -27,7 +27,10 @@ import {
   trackPhoneCall,
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaFonoaudiologiaAnapolis, schemaFAQ } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { fonoaudiologiaSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
@@ -105,9 +108,9 @@ const FonoaudiologiaAnapolis = () => {
         description="Especialistas em atraso de fala, autismo e TDAH em Anápolis. Clínica Fono Inova — ajudamos crianças com atraso na fala, autismo e TDAH. Agende sua avaliação."
         keywords="fonoaudiologia infantil anápolis, fono anápolis, atraso de fala anápolis, autismo anápolis, tdah anápolis, fonoaudiólogo infantil jundiaí"
         image="/images/og-image.jpg"
-        url="/fonoaudiologia-anapolis"
+        url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaFonoaudiologiaAnapolis, schemaFAQ]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -127,6 +130,14 @@ const FonoaudiologiaAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Fonoaudiologia', href: '/fonoaudiologia' },
+          { label: 'Fonoaudiologia em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -318,6 +329,13 @@ const FonoaudiologiaAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={fonoaudiologiaSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Fonoaudiologia Infantil"
+      />
 
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">

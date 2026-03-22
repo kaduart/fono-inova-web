@@ -21,6 +21,7 @@ import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaMusicoterapia, schemaFAQMusicoterapia } from '../schemas/clinicaSchemas.js';
 
 const MusicoterapiaPage = () => {
   useEffect(() => {
@@ -169,7 +170,7 @@ const MusicoterapiaPage = () => {
         image="/images/musicoterapia-hero.png"
         url="https://www.clinicafonoinova.com.br/musicoterapia"
         type="article"
-        schema={[]}
+        schema={[schemaMusicoterapia, schemaFAQMusicoterapia]}
       />
 
       {/* Hero Section */}

@@ -31,7 +31,10 @@ import {
   trackPhoneCall,
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaTerapiaOcupacionalAnapolis, schemaFAQTO } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { terapiaOcupacionalSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
@@ -109,9 +112,9 @@ const TerapiaOcupacionalAnapolis = () => {
         description="Especialistas em desenvolvimento motor e cognitivo em Anápolis. Clínica Fono Inova — ajudamos crianças com dificuldade de coordenação, equilíbrio e aprendizado motor."
         keywords="terapia ocupacional anápolis, terapia ocupacional infantil anápolis, coordenação motora anápolis, integração sensorial anápolis, to anápolis, terapia ocupacional jundiaí"
         image="/images/og-image.jpg"
-        url="/terapia-ocupacional-anapolis"
+        url="https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaTerapiaOcupacionalAnapolis, schemaFAQTO]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -131,6 +134,14 @@ const TerapiaOcupacionalAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Terapia Ocupacional', href: '/terapia-ocupacional' },
+          { label: 'Terapia Ocupacional em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -322,6 +333,13 @@ const TerapiaOcupacionalAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={terapiaOcupacionalSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Terapia Ocupacional"
+      />
 
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">

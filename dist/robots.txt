@@ -2,13 +2,21 @@ User-agent: *
 Allow: /
 
 # Bloquear páginas de teste ou privadas
-Disallow: /teste
-Disallow: /admin
-Disallow: /drafts
-Disallow: /private
+Disallow: /teste/
+Disallow: /admin/
+Disallow: /drafts/
+Disallow: /private/
 
-# Host
+# Bloquear AdsBot das LPs (economizar crawl budget)
+User-agent: AdsBot-Google
+Disallow: /lp/
+Disallow: /obrigado/
+Disallow: /campanha/
+
+User-agent: AdsBot-Google-Mobile
+Disallow: /lp/
+Disallow: /obrigado/
+Disallow: /campanha/
+
 Host: https://www.clinicafonoinova.com.br
-
-# Sitemap
 Sitemap: https://www.clinicafonoinova.com.br/sitemap.xml

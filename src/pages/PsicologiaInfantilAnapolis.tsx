@@ -29,7 +29,10 @@ import {
   trackPhoneCall,
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaPsicologiaAnapolis, schemaFAQPsicologia } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { psicologiaSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
@@ -107,9 +110,9 @@ const PsicologiaInfantilAnapolis = () => {
         description="Especialistas em comportamento e aprendizagem em Anápolis. Clínica Fono Inova — ajudamos crianças com dificuldades emocionais, comportamentais e de aprendizagem."
         keywords="psicologia infantil anápolis, psicólogo infantil anápolis, tdah anápolis, autismo anápolis, comportamento infantil anápolis, psicólogo criança jundiaí"
         image="/images/og-image.jpg"
-        url="/psicologia-infantil-anapolis"
+        url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaPsicologiaAnapolis, schemaFAQPsicologia]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -129,6 +132,14 @@ const PsicologiaInfantilAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Psicologia', href: '/psicologia' },
+          { label: 'Psicologia Infantil em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -320,6 +331,13 @@ const PsicologiaInfantilAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={psicologiaSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Psicologia Infantil"
+      />
 
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">

@@ -24,6 +24,8 @@ import ClinicaPage from './pages/Clinica';
 
 // Import das NOVAS páginas de funil (landing pages de marketing)
 import AdultoVozPage from './pages/AdultoVozPage';
+import SindromeDeDownPage from './pages/SindromeDeDownPage';
+import PrematuridadePage from './pages/PrematuridadePage';
 import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
 import DislexiaPage from './pages/DislexiaPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
@@ -106,6 +108,8 @@ function App() {
           <Route path="/tdah-infantil" element={<TdahPage />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
           <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
+          <Route path="/sindrome-de-down" element={<SindromeDeDownPage />} />
+          <Route path="/prematuridade-desenvolvimento" element={<PrematuridadePage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/psicomotricidade" element={<PsicomotricidadePage />} />
           <Route path="/psicopedagogia-clinica" element={<PsicopedagogiaLPPage />} />

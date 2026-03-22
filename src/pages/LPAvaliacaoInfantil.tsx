@@ -178,7 +178,7 @@ const LPAvaliacaoInfantil = () => {
         description="Avaliação especializada em Anápolis para fala tardia, autismo, TDAH e dificuldades de aprendizagem. Agende pela primeira consulta. Atendimento humanizado e multidisciplinar."
         keywords="avaliação infantil anápolis, avaliação fala tardia anápolis, avaliação autismo anápolis, fonoaudiólogo infantil anápolis"
         image="/images/og-image.jpg"
-        url="/avaliacao-infantil"
+        url="https://www.clinicafonoinova.com.br/avaliacao-infantil"
         type="website"
         schema={schemaBaseLocalBusiness}
       />

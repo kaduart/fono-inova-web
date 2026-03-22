@@ -25,7 +25,10 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis, schemaFAQAvaliacaoNeuropsicologicaAnapolis } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { neuropsicologiaSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica.";
@@ -120,9 +123,9 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
         description="Avaliação neuropsicológica especializada em Anápolis para diagnóstico de TDAH, déficit de atenção e problemas de aprendizagem. Agende sua consulta. Atendimento humanizado e multidisciplinar."
         keywords="avaliação neuropsicológica anápolis, tdah anápolis, déficit de atenção anápolis, avaliação psicológica infantil anápolis, diagnóstico tdah anápolis"
         image="/images/og-image.jpg"
-        url="/avaliacao-neuropsicologica-anapolis"
+        url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis, schemaFAQAvaliacaoNeuropsicologicaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -142,6 +145,14 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Avaliação Neuropsicológica', href: '/avaliacao-neuropsicologica' },
+          { label: 'Avaliação Neuropsicológica em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -337,6 +348,13 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={neuropsicologiaSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Avaliação Neuropsicológica"
+      />
 
       {/* ==================== INTERNAL LINKING ==================== */}
       <section className="py-24 bg-gradient-to-br from-slate-50 to-white">

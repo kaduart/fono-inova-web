@@ -13,6 +13,11 @@
       "permanent": true
     },
     {
+      "source": "/psicopedagogia-clinica",
+      "destination": "/psicopedagogia",
+      "permanent": true
+    },
+    {
       "source": "/lp/crianca-2-anos-nao-fala",
       "destination": "/fala-tardia",
       "permanent": true
@@ -70,6 +75,16 @@
     {
       "source": "/lp/crianca-nao-aprende-ler",
       "destination": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "permanent": true
+    },
+    {
+      "source": "/avaliacao-neuropsicologica",
+      "destination": "/avaliacao-neuropsicologica-anapolis",
+      "permanent": true
+    },
+    {
+      "source": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "destination": "/avaliacao-neuropsicologica-anapolis",
       "permanent": true
     }
   ]

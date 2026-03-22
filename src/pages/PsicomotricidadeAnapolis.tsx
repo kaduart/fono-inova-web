@@ -39,7 +39,10 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness, schemaPsicomotricidadeAnapolis, schemaFAQPsicomotricidade } from '../schemas/clinicaSchemas.js';
+import Breadcrumb from '../components/Breadcrumb';
+import { psicomotricidadeSEO } from '../data/seoStructures.js';
+import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
   "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação de psicomotricidade.";
@@ -176,9 +179,9 @@ const PsicomotricidadeAnapolis = () => {
         description="Psicomotricidade infantil em Anápolis. Tratamento especializado para coordenação motora, equilíbrio, postura e desenvolvimento motor. Agende uma avaliação na Clínica Fono Inova."
         keywords="psicomotricidade anápolis, coordenação motora infantil anápolis, equilíbrio infantil anápolis, psicomotricidade infantil anápolis, desenvolvimento motor anápolis"
         image="/images/og-image.jpg"
-        url="/psicomotricidade-anapolis"
+        url="https://www.clinicafonoinova.com.br/psicomotricidade-anapolis"
         type="website"
-        schema={schemaBaseLocalBusiness}
+        schema={[schemaBaseLocalBusiness, schemaPsicomotricidadeAnapolis, schemaFAQPsicomotricidade]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -198,6 +201,14 @@ const PsicomotricidadeAnapolis = () => {
           trackButtonClick('Close Accessibility Wizard');
           setAccessibilityWizardOpen(false);
         }}
+      />
+
+      {/* ==================== BREADCRUMB ==================== */}
+      <Breadcrumb 
+        items={[
+          { label: 'Psicomotricidade', href: '/psicomotricidade' },
+          { label: 'Psicomotricidade em Anápolis' }
+        ]} 
       />
 
       {/* ==================== HERO SECTION ==================== */}
@@ -461,6 +472,13 @@ const PsicomotricidadeAnapolis = () => {
           </div>
         </div>
       </section>
+
+      {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      <SEOStructuredContent 
+        seoData={psicomotricidadeSEO} 
+        showFAQ={true}
+        customFAQTitle="Perguntas Frequentes sobre Psicomotricidade"
+      />
 
       {/* ==================== INTERNAL LINKING ==================== */}
       <section className="py-16 bg-slate-50">

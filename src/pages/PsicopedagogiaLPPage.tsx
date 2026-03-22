@@ -23,6 +23,7 @@ import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
+import { schemaPsicopedagogia, schemaFAQPsicopedagogia } from '../schemas/clinicaSchemas.js';
 
 const PsicopedagogiaLPPage = () => {
   useEffect(() => {
@@ -171,7 +172,7 @@ const PsicopedagogiaLPPage = () => {
         image="/images/psicopedagogia-hero.png"
         url="https://www.clinicafonoinova.com.br/psicopedagogia-clinica"
         type="article"
-        schema={[]}
+        schema={[schemaPsicopedagogia, schemaFAQPsicopedagogia]}
       />
 
       {/* Hero Section */}
