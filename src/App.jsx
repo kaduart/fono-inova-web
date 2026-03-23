@@ -30,6 +30,7 @@ import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
 import DislexiaPage from './pages/DislexiaPage';
 import FalaTardiaPage from './pages/FalaTardiaPage';
 import FaqPage from './pages/Faq.jsx';
+import PrivacidadePage from './pages/Privacidade.jsx';
 import LPAvaliacaoInfantil from './pages/LPAvaliacaoInfantil';
 import TdahPage from './pages/TdahPage';
 import TeaPage from './pages/TeaPage';
@@ -125,6 +126,9 @@ function App() {
           <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />
           <Route path="/fisioterapia-infantil-anapolis" element={<FisioterapiaInfantilAnapolis />} />
           <Route path="/avaliacao-neuropsicologica-anapolis" element={<AvaliacaoNeuropsicologicaAnapolis />} />
+          
+          {/* Páginas institucionais */}
+          <Route path="/privacidade" element={<PrivacidadePage />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
           <Route path="/lp/:slug" element={<LandingPage />} />
