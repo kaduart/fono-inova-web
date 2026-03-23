@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
+// Import do monitor de WhatsApp
+import WhatsAppStatusAlert from './components/WhatsAppStatusAlert';
+
 // Import das páginas existentes
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import AnalyticsTest from './components/AnalyticsTest';
@@ -84,6 +87,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background font-inter overflow-x-hidden">
+      {/* 🚨 Alerta de status do WhatsApp (só aparece para admins) */}
+      <WhatsAppStatusAlert />
       <LeadTracker>
         <Routes>
           {/* Rotas existentes */}
