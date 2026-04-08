@@ -19,10 +19,19 @@ const WhatsAppCTA = ({
   // Props para tracking de especialidade
   specialty = null
 }) => {
-  // Adicionar mensagem pronta ao link do WhatsApp
+  // Adicionar mensagem pronta ao link do WhatsApp (com tracking embutido)
   const getWhatsAppLink = () => {
     if (link.includes('wa.me') && !link.includes('text=')) {
-      return `${link}?text=${encodeURIComponent(message)}`;
+      // Captura tracking atual
+      const tracking = getLeadTracking();
+      
+      // Monta mensagem com tracking embutido (invisível para o usuário)
+      const trackingSignature = tracking?.source && tracking.source !== 'site_direto' 
+        ? `\n\n---ref:${tracking.source}|${tracking.campaign || 'none'}|${tracking.gclid || tracking.fbclid || 'none'}|utm_source=${tracking.utmSource || 'none'}`
+        : '';
+      
+      const fullMessage = message + trackingSignature;
+      return `${link}?text=${encodeURIComponent(fullMessage)}`;
     }
     return link;
   };

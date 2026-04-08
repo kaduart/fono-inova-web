@@ -177,7 +177,6 @@ const SindromeDeDownPage = () => {
                   onClick={() => trackPhoneCall('(62) 3706-3924')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all whitespace-nowrap"
                 >
-                  <PhoneCall className="w-5 h-5" />
                   Ligar (62) 3706-3924
                 </a>
               </div>
@@ -255,7 +254,6 @@ const SindromeDeDownPage = () => {
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre Síndrome de Down em Anápolis 💚 Quero agendar uma avaliação."
               >
-                <MessageCircle className="w-5 h-5" />
                 Agendar avaliação pelo WhatsApp
               </ButtonWhatsApp>
               
@@ -264,7 +262,6 @@ const SindromeDeDownPage = () => {
                 onClick={() => trackPhoneCall('(62) 3706-3924')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
               >
-                <PhoneCall className="w-5 h-5" />
                 Ligar Agora
               </a>
             </div>

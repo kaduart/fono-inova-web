@@ -1,4 +1,3 @@
-import { Phone } from 'lucide-react';
 import { reportWhatsappConversion } from '../../helper/analytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 
@@ -8,7 +7,6 @@ const ButtonWhatsApp = ({
     message = 'Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.\n\nPode me explicar?',
     children = 'Falar com Especialista',
     size = 'default',
-    icon: IconComponent = Phone,
     onClick,                 // permite tracking externo
     // Props para tracking de Landing Page
     lpSlug = null,
@@ -54,7 +52,6 @@ const ButtonWhatsApp = ({
             aria-label="Agendar via WhatsApp"
             {...props}
         >
-            <IconComponent className="w-4 h-4 shrink-0" />
             <span className="whitespace-nowrap">{children}</span>
         </button>
 

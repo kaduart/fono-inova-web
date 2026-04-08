@@ -28,7 +28,6 @@ const ButtonAgendamento = ({
         className={`${sizeClasses[size]} ${className}`}
         {...props}
       >
-        <Calendar className="w-4 h-4 mr-2" />
         {children}
       </button>
 

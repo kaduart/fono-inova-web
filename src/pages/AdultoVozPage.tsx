@@ -1,4 +1,4 @@
-import { AlertCircle, Calendar, CheckCircle, MessageCircle, Mic, Phone, Quote, Shield, Star, Users } from 'lucide-react';
+import { AlertCircle, CheckCircle, Mic, Phone, Quote, Shield, Star, Users } from 'lucide-react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
@@ -112,7 +112,7 @@ const AdultoVozPage = () => {
                                 <ButtonWhatsApp
                                     onClick={() => { }}
                                     message="Oi! Vi no site sobre atendimento para adultos.\n\nTenho interesse em avaliação de voz/deglutição. Pode me explicar como funciona?"
-                                    icon={Calendar}
+                                    
                                     className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
                                     Agendar Avaliação
@@ -316,7 +316,7 @@ const AdultoVozPage = () => {
                             </p>
                             <ButtonWhatsApp
                                 onClick={() => { }}
-                                icon={Calendar}
+                                
                                 className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Oi! Vi no site sobre atendimento para adultos.\n\nPode me explicar como funciona a avaliação?"
                             >

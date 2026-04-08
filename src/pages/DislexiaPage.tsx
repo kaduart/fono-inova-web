@@ -139,12 +139,9 @@ const DislexiaPage = () => {
                                     message="Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nMeu filho(a) tem dificuldade com leitura e troca letras. Pode me explicar como funciona a avaliação?"
                                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-5 rounded-xl text-lg font-bold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-3 group"
                                 >
-                                    <MessageCircle className="w-6 h-6" />
                                     Falar com Especialista
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                 </ButtonWhatsApp>
                                 <a href="tel:6237063924" className="inline-flex items-center justify-center gap-2 px-6 py-5 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all">
-                                    <Phone className="w-5 h-5" />
                                     (62) 3706-3924
                                 </a>
                             </div>
@@ -204,7 +201,6 @@ const DislexiaPage = () => {
 
                     <div className="text-center mt-8">
                         <ButtonWhatsApp message={selectedIdade ? sinaisPorSerie.find(s => s.serie === selectedIdade)?.mensagem : "Oi, vi no site sobre dislexia. Gostaria de agendar uma avaliação."} className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2">
-                            <MessageCircle className="w-5 h-5" />
                             Falar com Especialista
                         </ButtonWhatsApp>
                     </div>
@@ -323,7 +319,6 @@ const DislexiaPage = () => {
                         </p>
 
                         <ButtonWhatsApp message="Oi! Vi no site sobre dificuldade para ler e me identifiquei.\n\nPode me explicar como funciona a avaliação?" className="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl transition-all inline-flex items-center gap-3">
-                            <MessageCircle className="w-7 h-7" />
                             Agendar Avaliação Agora
                         </ButtonWhatsApp>
 

@@ -5,12 +5,10 @@ import {
     Award,
     Brain,
     BrainCircuit,
-    Calendar,
     CheckCircle,
     ChevronDown,
     Clock,
     HandHeart,
-    MessageCircle,
     Phone,
     Quote,
     Shield,
@@ -235,7 +233,7 @@ const TerapiaOcupacionalPage = () => {
                                 <ButtonWhatsApp
                                     onClick={() => { }}
                                     message="Oi! Vi no site sobre terapia ocupacional e fiquei com dúvida.\n\nÉ para meu filho(a). Pode me explicar como funciona a avaliação?"
-                                    icon={Calendar}
+                                    
                                     className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
                                     Agendar Avaliação
@@ -570,7 +568,7 @@ const TerapiaOcupacionalPage = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
                                 onClick={() => { }}
-                                icon={MessageCircle}
+                                
                                 className="bg-white hover:bg-gray-100 text-amber-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Oi! Vi no site sobre terapia ocupacional e fiquei com dúvida.\n\nPode me explicar como funciona a avaliação?"
                             >
@@ -580,7 +578,6 @@ const TerapiaOcupacionalPage = () => {
                             <a href="tel:6237063924"
                                 className="border-2 border-white text-white hover:bg-white hover:text-amber-700 px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
                             >
-                                <Phone className="w-6 h-6" />
                                 Ligar Agora
                             </a>
                         </div>

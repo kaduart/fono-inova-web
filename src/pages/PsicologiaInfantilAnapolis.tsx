@@ -15,7 +15,8 @@ import {
   PhoneCall,
   School,
   Smile,
-  Star
+  Star,
+  AlertTriangle
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -35,7 +36,7 @@ import { psicologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
+  "https://wa.me/5562993377726?text=Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação.";
 
 // Como funciona - 3 passos
 const steps = [
@@ -53,8 +54,8 @@ const steps = [
   },
   {
     number: "3",
-    title: "Agendamos a avaliação",
-    description: "Escolha o melhor horário e inicie o tratamento",
+    title: "Agendamos a conversa",
+    description: "Escolha o melhor horário para iniciar a orientação",
     icon: CheckCircle2,
   },
 ];
@@ -63,19 +64,28 @@ const steps = [
 const featuredTestimonials = [
   {
     stars: 5,
-    text: "A psicóloga conseguiu entender perfeitamente o que meu filho sentia",
+    text: "Finalmente entendemos o que estava por trás das birras do nosso filho. A orientação nos deu ferramentas práticas.",
     author: "Mãe da Julia, 6 anos",
   },
   {
     stars: 5,
-    text: "Melhorou muito o comportamento e a concentração na escola",
+    text: "A psicóloga nos explicou de forma clara o que estava acontecendo. Hoje temos uma relação muito melhor.",
     author: "Pai do Gabriel, 8 anos",
   },
   {
     stars: 5,
-    text: "Atendimento acolhedor que fez toda diferença para nossa família",
+    text: "Nos sentimos acolhidos desde o primeiro contato. A explicação clara fez toda diferença para nossa família.",
     author: "Mãe do Enzo, 5 anos",
   },
+];
+
+// Sinais de alerta
+const sinaisAlerta = [
+  "Birras frequentes e explosivas",
+  "Não obedece ou desafia limites",
+  "Agressividade com outras crianças",
+  "Dificuldade de atenção e concentração",
+  "Problemas na escola por comportamento"
 ];
 
 const PsicologiaInfantilAnapolis = () => {
@@ -106,9 +116,9 @@ const PsicologiaInfantilAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Psicologia Infantil em Anápolis | Comportamento e Aprendizagem"
-        description="Especialistas em comportamento e aprendizagem em Anápolis. Clínica Fono Inova — ajudamos crianças com dificuldades emocionais, comportamentais e de aprendizagem."
-        keywords="psicologia infantil anápolis, psicólogo infantil anápolis, tdah anápolis, autismo anápolis, comportamento infantil anápolis, psicólogo criança jundiaí"
+        title="Filho Não Obedece? Psicóloga Infantil Anápolis"
+        description="Seu filho tem dificuldades de comportamento ou não presta atenção? Psicologia infantil em Anápolis. Entenda o que está acontecendo com orientação inicial sem compromisso."
+        keywords="filho não obedece, psicologia infantil anápolis, birra infantil, dificuldade comportamento, psicólogo infantil"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"
         type="website"
@@ -154,47 +164,56 @@ const PsicologiaInfantilAnapolis = () => {
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
-                Clínica Multidisciplinar em Anápolis
+                Psicologia Infantil em Anápolis
               </Badge>
 
-              {/* H1 */}
+              {/* H1 - PAIN DRIVEN */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Psicologia Infantil em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis</span>
+                Seu Filho Tem Dificuldades de Comportamento ou Não Presta Atenção?
               </h1>
 
-              {/* H2 Especialidade */}
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
-                Especialistas em comportamento e aprendizagem
+              {/* H2 - REASSURANCE */}
+              <h2 className="text-xl md:text-2xl font-medium text-slate-600">
+                Entenda o que pode estar acontecendo com uma orientação inicial em Anápolis — sem compromisso
               </h2>
 
-              {/* H2 Dor */}
-              <h2 className="text-xl md:text-2xl font-medium text-orange-600">
-                Seu filho apresenta dificuldades emocionais, comportamentais ou de aprendizagem?
-              </h2>
+              {/* BLOCO DE SINAIS DE ALERTA */}
+              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4" />
+                  Sinais de alerta:
+                </p>
+                <ul className="text-sm text-yellow-700 space-y-1">
+                  {sinaisAlerta.map((sinal, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="text-yellow-600">•</span> {sinal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Parágrafo */}
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
-                <strong className="text-slate-900">Clínica Fono Inova</strong> — oferecemos atendimento psicológico especializado para crianças em Anápolis. Nossa equipe trabalha com dificuldades emocionais, comportamentais, TDAH, autismo e problemas de aprendizagem, sempre com um olhar acolhedor e individualizado.
+              <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, em <strong>Anápolis</strong>, ajudamos pais a entenderem o comportamento do filho. Oferecemos <strong>atendimento acolhedor</strong>, <strong>explicação clara</strong> do que está acontecendo e <strong>orientação prática</strong> para a família.
               </p>
 
-              {/* Benefícios rápidos */}
+              {/* Benefícios rápidos - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Avaliação em 48h</span>
+                  <span>Atendimento acolhedor</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>+500 famílias atendidas</span>
+                  <span>Explicação clara do que está acontecendo</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Equipe multidisciplinar</span>
+                  <span>Orientação prática para os pais</span>
                 </div>
               </div>
 
-              {/* CTAs */}
+              {/* CTAs - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <ButtonWhatsApp
                   onClick={() => {
@@ -202,9 +221,9 @@ const PsicologiaInfantilAnapolis = () => {
                     trackButtonClick?.("WhatsApp LP Psicologia");
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                  message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                  message="Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação."
                 >
-                  Quero agendar uma avaliação
+                  Quero tirar uma dúvida no WhatsApp
                 </ButtonWhatsApp>
                 
                 <a
@@ -261,10 +280,10 @@ const PsicologiaInfantilAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Como funciona a avaliação na Clínica Fono Inova
+              Como funciona na Clínica Fono Inova
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Em 3 passos simples, seu filho começa o tratamento especializado
+              Em 3 passos simples, você entende melhor o comportamento do seu filho
             </p>
           </div>
 
@@ -332,6 +351,72 @@ const PsicologiaInfantilAnapolis = () => {
         </div>
       </section>
 
+      {/* ==================== QUANDO PROCURAR AJUDA ==================== */}
+      <section className="py-16 bg-purple-50">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-purple-200">
+            <div className="text-center mb-6">
+              <Badge className="mb-3 bg-purple-100 text-purple-700 border-purple-300">
+                Quando Procurar Ajuda
+              </Badge>
+              <h2 className="text-2xl md:text-3xl font-bold font-poppins">
+                Se você percebe que:
+              </h2>
+            </div>
+            
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start gap-3 text-slate-700">
+                <CheckCircle2 className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                <span>Seu filho tem comportamento diferente de outras crianças da mesma idade</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-700">
+                <CheckCircle2 className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                <span>A dificuldade está persistindo há meses</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-700">
+                <CheckCircle2 className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                <span>A escola já sinalizou alguma preocupação</span>
+              </li>
+              <li className="flex items-start gap-3 text-slate-700">
+                <CheckCircle2 className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                <span>Você sente que "algo não está certo"</span>
+              </li>
+            </ul>
+            
+            <div className="bg-purple-50 p-4 rounded-xl mb-6">
+              <p className="text-purple-800 text-center font-medium">
+                O ideal é fazer uma avaliação. Quanto antes entender o que está acontecendo, 
+                mais fácil é ajudar no desenvolvimento.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <ButtonWhatsApp
+                message="Oi! Meu filho está com dificuldades de comportamento. Gostaria de agendar uma avaliação."
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
+              >
+                Quero agendar uma avaliação
+              </ButtonWhatsApp>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== CONEXÃO COM NEUROPEDIATRIA ==================== */}
+      <section className="py-12 bg-white border-t border-slate-100">
+        <div className="container mx-auto px-4 max-w-3xl text-center">
+          <p className="text-slate-600 mb-4">
+            Em alguns casos, pode ser indicada avaliação com <strong>neuropediatra</strong> para investigação mais detalhada do desenvolvimento.
+          </p>
+          <a 
+            href="/neuropediatra-anapolis" 
+            className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold hover:underline"
+          >
+            Conhecer neuropediatra em Anápolis
+          </a>
+        </div>
+      </section>
+
       {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
       <SEOStructuredContent 
         seoData={psicologiaSEO} 
@@ -344,21 +429,20 @@ const PsicologiaInfantilAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto text-center border-2 border-primary/10">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Não espere mais para ajudar seu filho
+              Tire sua dúvida agora
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Cada dia de espera é um dia de atraso no desenvolvimento. 
-              Agende uma avaliação na Clínica Fono Inova e descubra como podemos ajudar.
+              Entenda o que está acontecendo com o comportamento do seu filho.
+              Uma conversa pode te dar a direção que você precisa.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
-                message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                message="Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação."
               >
-                <MessageCircle className="w-5 h-5" />
-                Agendar avaliação pelo WhatsApp
+                Quero tirar uma dúvida no WhatsApp
               </ButtonWhatsApp>
               
               <a

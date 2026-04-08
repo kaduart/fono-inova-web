@@ -13,12 +13,12 @@ import {
   GraduationCap,
   Instagram,
   MapPin,
-  MessageCircle,
   PhoneCall,
   Scissors,
   Sparkles,
   Youtube,
-  Heart
+  Heart,
+  MessageCircle
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -273,7 +273,7 @@ const TesteLinguinhaAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Teste Linguinha");
                   }}
-                  icon={MessageCircle}
+                  
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site sobre o Teste da Linguinha em Anápolis 💚\nQuero agendar uma avaliação para meu filho."
                 >
@@ -285,7 +285,6 @@ const TesteLinguinhaAnapolis = () => {
                   onClick={() => trackPhoneCall('(62) 3706-3924')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all whitespace-nowrap"
                 >
-                  <PhoneCall className="w-5 h-5" />
                   Ligar (62) 3706-3924
                 </a>
               </div>
@@ -387,7 +386,7 @@ const TesteLinguinhaAnapolis = () => {
             </p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
-              icon={MessageCircle}
+              
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
               message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : "Oi! Vi o site sobre Teste da Linguinha 💚\nQuero saber se meu filho precisa fazer o teste."}
             >
@@ -496,14 +495,12 @@ const TesteLinguinhaAnapolis = () => {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
               >
                 Fonoaudiologia em Anápolis
-                <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/psicomotricidade-anapolis"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
               >
                 Psicomotricidade em Anápolis
-                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -525,7 +522,7 @@ const TesteLinguinhaAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                icon={MessageCircle}
+                
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre Teste da Linguinha 💚\nQuero agendar uma avaliação para meu filho."
               >
@@ -537,7 +534,6 @@ const TesteLinguinhaAnapolis = () => {
                 onClick={() => trackPhoneCall('(62) 3706-3924')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
               >
-                <PhoneCall className="w-5 h-5" />
                 Ligar Agora
               </a>
             </div>

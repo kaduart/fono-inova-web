@@ -211,7 +211,7 @@ const NeuropsicologicaPage = () => {
                                 <ButtonWhatsApp
                                     onClick={() => { }}
                                     message="Oi! Vi no site sobre avaliação neuropsicológica e queria entender melhor.\n\nÉ para meu filho(a). Pode me explicar como funciona?"
-                                    icon={Calendar}
+                                    
                                     className="bg-teal-600 hover:bg-teal-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
                                     Agendar Avaliação
@@ -506,7 +506,7 @@ const NeuropsicologicaPage = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
                                 onClick={() => { }}
-                                icon={MessageCircle}
+                                
                                 className="bg-white hover:bg-gray-100 text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Oi! Vi no site sobre avaliação neuropsicológica e queria entender melhor.\n\nPode me explicar como funciona?"
                             >
@@ -517,7 +517,6 @@ const NeuropsicologicaPage = () => {
                                 href="tel:6237063924"
                                 className="border-2 border-white text-white hover:bg-white hover:text-[#26977B] px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
                             >
-                                <Phone className="w-6 h-6" />
                                 Ligar Agora
                             </a>
                         </div>

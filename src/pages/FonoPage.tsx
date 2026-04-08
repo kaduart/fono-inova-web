@@ -211,7 +211,7 @@ const FonoPage = () => {
                 <ButtonWhatsApp
                   onClick={() => { }}
                   message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação fonoaudiológica.\n\nÉ para meu filho(a). Pode me explicar?"
-                  icon={Calendar}
+                  
                   className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Agendar Avaliação
@@ -550,7 +550,7 @@ const FonoPage = () => {
               <ButtonWhatsApp
                 onClick={() => { }}
                 sendConversion
-                icon={MessageCircle}
+                
                 className="bg-white hover:bg-gray-100 text-blue-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                 message="Oi! Vi no site de vocês e gostaria de entender melhor como funciona a avaliação fonoaudiológica.\n\nPode me explicar?"
                 aria-label="Agendar avaliação pelo WhatsApp"
@@ -562,7 +562,6 @@ const FonoPage = () => {
                 href="tel:6237063924"
                 className="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-10 py-5 rounded-xl font-bold text-lg transition-all inline-flex items-center gap-3"
               >
-                <Phone className="w-6 h-6" />
                 Ligar Agora
               </a>
             </div>

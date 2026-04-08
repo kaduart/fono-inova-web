@@ -8,7 +8,7 @@ export const autismoLPs = [
     slug: "sinais-autismo-bebe",
     
     title: "Meu Bebê Tem Sinais de Autismo? Guia para Pais | Anápolis",
-    description: "Preocupada com o desenvolvimento do seu bebê? Conheça os sinais precoces de autismo e quando buscar ajuda. Avaliação especializada em Anápolis.",
+    description: "Com dúvidas sobre o desenvolvimento do seu bebê? Conheça os sinais precoces de autismo e quando buscar ajuda. Avaliação especializada em Anápolis.",
     keywords: ["sinais autismo bebe", "autismo bebe 6 meses", "sinais precoces autismo", "avaliacao autismo anapolis"],
     
     author: "Dra. Ana Santos",
@@ -21,7 +21,7 @@ export const autismoLPs = [
     imageAlt: "Avaliação de sinais de autismo em bebê na Clínica Fono Inova em Anápolis",
     
     hero: {
-      headline: "Preocupada com o Desenvolvimento do Seu Bebê?",
+      headline: "Com Dúvidas sobre o Desenvolvimento do Seu Bebê?",
       subheadline: "Alguns sinais podem ser observados desde os primeiros meses. Uma avaliação precoce traz tranquilidade e direcionamento para sua família em Anápolis.",
       ctaText: "Falar com especialista no WhatsApp",
       ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu bebê e queria entender melhor. Pode me explicar como funciona a avaliação?"
@@ -163,7 +163,7 @@ export const autismoLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada com o desenvolvimento do seu filho aos 2 anos?",
+      text: "Querendo entender o desenvolvimento do seu filho aos 2 anos?",
       button: "Agendar avaliação especializada"
     },
     
@@ -377,7 +377,7 @@ export const autismoLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada com a falta de contato visual do seu filho?",
+      text: "Notou que seu filho evita contato visual?",
       button: "Agendar avaliação especializada"
     },
     

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import {
-  Calendar,
   Star,
   ArrowRight,
   Users,
@@ -164,7 +163,7 @@ const ClinicaMultidisciplinar = () => {
                 <ButtonWhatsApp
                   onClick={() => { }}
                   message="Oi! Vi no site de vocês e queria entender melhor como funciona a avaliação completa.\n\nÉ para meu filho(a). Pode me explicar?"
-                  icon={Calendar}
+                  
                   className="bg-rose-600 hover:bg-rose-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Agendar Triagem
@@ -429,13 +428,12 @@ const ClinicaMultidisciplinar = () => {
             <ButtonWhatsApp
               onClick={() => { }}
               message="Oi! Vi no site de vocês e queria entender melhor como funciona a avaliação completa.\n\nPode me explicar?"
-              icon={Calendar}
+              
               className="bg-white text-rose-600 px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:shadow-xl"
             >
               Agendar Avaliação
             </ButtonWhatsApp>
             <button className="border border-white text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center transition-all duration-300 hover:bg-white hover:text-pink-600">
-              <Phone className="w-5 h-5 mr-2" />
               Falar com Especialista
             </button>
           </div>

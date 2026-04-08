@@ -17,7 +17,8 @@ import {
   School,
   Smile,
   Star,
-  Target
+  Target,
+  AlertTriangle
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -37,7 +38,7 @@ import { terapiaOcupacionalSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
+  "https://wa.me/5562993377726?text=Oi! Meu filho é desastrado/tropeça muito, isso é normal?";
 
 // Como funciona - 3 passos
 const steps = [
@@ -55,8 +56,8 @@ const steps = [
   },
   {
     number: "3",
-    title: "Agendamos a avaliação",
-    description: "Escolha o melhor horário e inicie o tratamento",
+    title: "Agendamos a conversa",
+    description: "Escolha o melhor horário para iniciar a orientação",
     icon: CheckCircle2,
   },
 ];
@@ -65,19 +66,28 @@ const steps = [
 const featuredTestimonials = [
   {
     stars: 5,
-    text: "Minha filha melhorou muito a coordenação motora e autonomia",
+    text: "Minha filha melhorou muito a coordenação. A orientação nos deu exercícios práticos para fazer em casa.",
     author: "Mãe da Valentina, 5 anos",
   },
   {
     stars: 5,
-    text: "O tratamento ajudou bastante na concentração e integração sensorial",
+    text: "Finalmente entendemos por que nosso filho era tão desastrado. A explicação clara mudou nossa forma de ajudar.",
     author: "Pai do Matheus, 7 anos",
   },
   {
     stars: 5,
-    text: "Profissionais dedicados que fazem a diferença no dia a dia",
+    text: "Profissionais dedicados que nos orientaram passo a passo. Hoje nossa filha é mais independente.",
     author: "Mãe da Laura, 4 anos",
   },
+];
+
+// Sinais de alerta
+const sinaisAlerta = [
+  "Tropeça muito ou é desastrado",
+  "Dificuldade para se vestir sozinho",
+  "Não consegue segurar lápis corretamente",
+  "Evita brincadeiras motoras",
+  "Problemas de equilíbrio e coordenação"
 ];
 
 const TerapiaOcupacionalAnapolis = () => {
@@ -108,9 +118,9 @@ const TerapiaOcupacionalAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Terapia Ocupacional em Anápolis | Desenvolvimento Motor"
-        description="Especialistas em desenvolvimento motor e cognitivo em Anápolis. Clínica Fono Inova — ajudamos crianças com dificuldade de coordenação, equilíbrio e aprendizado motor."
-        keywords="terapia ocupacional anápolis, terapia ocupacional infantil anápolis, coordenação motora anápolis, integração sensorial anápolis, to anápolis, terapia ocupacional jundiaí"
+        title="Meu Filho é Desastrado? Terapia Ocupacional Anápolis"
+        description="Seu filho tropeça muito ou tem dificuldade de coordenação? Terapia ocupacional infantil em Anápolis. Entenda o que está acontecendo com orientação inicial."
+        keywords="meu filho é desastrado, terapia ocupacional anápolis, coordenação motora anápolis, integração sensorial anápolis, to infantil anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis"
         type="website"
@@ -156,47 +166,56 @@ const TerapiaOcupacionalAnapolis = () => {
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
-                Clínica Multidisciplinar em Anápolis
+                Terapia Ocupacional Infantil em Anápolis
               </Badge>
 
-              {/* H1 */}
+              {/* H1 - PAIN DRIVEN */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Terapia Ocupacional em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis</span>
+                Seu Filho é <span className="text-emerald-600">Desastrado</span>, Tropeça Muito ou Tem Dificuldade de Coordenação?
               </h1>
 
-              {/* H2 Especialidade */}
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
-                Desenvolvimento motor e cognitivo
+              {/* H2 - REASSURANCE */}
+              <h2 className="text-xl md:text-2xl font-medium text-slate-600">
+                Entenda o que pode estar acontecendo com uma orientação inicial em Anápolis — sem compromisso
               </h2>
 
-              {/* H2 Dor */}
-              <h2 className="text-xl md:text-2xl font-medium text-orange-600">
-                Seu filho tem dificuldade de coordenação, equilíbrio ou aprendizado motor?
-              </h2>
+              {/* BLOCO DE SINAIS DE ALERTA */}
+              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4" />
+                  Sinais de alerta:
+                </p>
+                <ul className="text-sm text-yellow-700 space-y-1">
+                  {sinaisAlerta.map((sinal, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="text-yellow-600">•</span> {sinal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Parágrafo */}
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
-                <strong className="text-slate-900">Clínica Fono Inova</strong> — oferecemos terapia ocupacional especializada para crianças em Anápolis. Trabalhamos coordenação motora, equilíbrio, integração sensorial e autonomia, ajudando seu filho a alcançar seu máximo potencial no desenvolvimento.
+              <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, em <strong>Anápolis</strong>, ajudamos pais a entenderem o desenvolvimento motor do filho. Oferecemos <strong>atendimento acolhedor</strong>, <strong>explicação clara</strong> do que está acontecendo e <strong>orientação prática</strong> para a família.
               </p>
 
-              {/* Benefícios rápidos */}
+              {/* Benefícios rápidos - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Avaliação em 48h</span>
+                  <span>Atendimento acolhedor</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>+500 famílias atendidas</span>
+                  <span>Explicação clara do que está acontecendo</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Equipe multidisciplinar</span>
+                  <span>Orientação prática para os pais</span>
                 </div>
               </div>
 
-              {/* CTAs */}
+              {/* CTAs - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <ButtonWhatsApp
                   onClick={() => {
@@ -204,9 +223,9 @@ const TerapiaOcupacionalAnapolis = () => {
                     trackButtonClick?.("WhatsApp LP Terapia Ocupacional");
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                  message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                  message="Oi! Meu filho é desastrado/tropeça muito, isso é normal?"
                 >
-                  Quero agendar uma avaliação
+                  Quero tirar uma dúvida no WhatsApp
                 </ButtonWhatsApp>
                 
                 <a
@@ -214,7 +233,6 @@ const TerapiaOcupacionalAnapolis = () => {
                   onClick={() => trackPhoneCall('(62) 3706-3924')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all whitespace-nowrap"
                 >
-                  <PhoneCall className="w-5 h-5" />
                   Ligar (62) 3706-3924
                 </a>
               </div>
@@ -263,10 +281,10 @@ const TerapiaOcupacionalAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Como funciona a avaliação na Clínica Fono Inova
+              Como funciona na Clínica Fono Inova
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Em 3 passos simples, seu filho começa o tratamento especializado
+              Em 3 passos simples, você entende melhor o desenvolvimento motor do seu filho
             </p>
           </div>
 
@@ -346,21 +364,20 @@ const TerapiaOcupacionalAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto text-center border-2 border-primary/10">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Não espere mais para ajudar seu filho
+              Tire sua dúvida agora
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Cada dia de espera é um dia de atraso no desenvolvimento. 
-              Agende uma avaliação na Clínica Fono Inova e descubra como podemos ajudar.
+              Entenda o que está acontecendo com o desenvolvimento motor do seu filho.
+              Uma conversa pode te dar a direção que você precisa.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
-                message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                message="Oi! Meu filho é desastrado/tropeça muito, isso é normal?"
               >
-                <MessageCircle className="w-5 h-5" />
-                Agendar avaliação pelo WhatsApp
+                Quero tirar uma dúvida no WhatsApp
               </ButtonWhatsApp>
               
               <a
@@ -368,7 +385,6 @@ const TerapiaOcupacionalAnapolis = () => {
                 onClick={() => trackPhoneCall('(62) 3706-3924')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
               >
-                <PhoneCall className="w-5 h-5" />
                 Ligar Agora
               </a>
             </div>

@@ -169,7 +169,7 @@ export const fonoaudiologiaLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada com o desenvolvimento da fala do seu filho?",
+      text: "Com dúvidas sobre o desenvolvimento da fala do seu filho?",
       button: "Agendar avaliação fonoaudiológica"
     },
     
@@ -385,7 +385,7 @@ export const fonoaudiologiaLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada porque seu filho não forma frases?",
+      text: "Querendo entender por que seu filho ainda não forma frases?",
       button: "Agendar avaliação fonoaudiológica"
     },
     
@@ -701,7 +701,7 @@ export const fonoaudiologiaLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada porque seu filho fala enrolado?",
+      text: "Gostaria de ajuda porque seu filho fala enrolado?",
       button: "Agendar avaliação fonoaudiológica"
     },
     

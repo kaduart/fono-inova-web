@@ -172,7 +172,7 @@ export const geograficasLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada com o comportamento do seu filho?",
+      text: "Com dúvidas sobre o comportamento do seu filho?",
       button: "Falar com psicóloga agora"
     },
     
@@ -391,7 +391,7 @@ export const geograficasLPs = [
     },
     
     ctaMid: {
-      text: "Preocupada com o desempenho escolar do seu filho?",
+      text: "Querendo entender o desempenho escolar do seu filho?",
       button: "Agendar avaliação neuropsicológica"
     },
     

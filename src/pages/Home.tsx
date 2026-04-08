@@ -299,7 +299,6 @@ function Home() {
                   onClick={() => trackPhoneCall('(62) 3706-3924')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all"
                 >
-                  <PhoneCall className="w-5 h-5" />
                   Ligar (62) 3706-3924
                 </a>
               </div>
@@ -734,6 +733,30 @@ function Home() {
                   <p className="text-xs text-slate-500 mt-1">Diagnóstico TDAH, TEA e aprendizagem</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Neuropediatria */}
+            <Link 
+              to="/neuropediatra-anapolis"
+              onClick={() => trackButtonClick('Especialidade Card - Neuropediatria')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img 
+                    src="/images/neuropsicologia/neuro.jpeg" 
+                    alt="Neuropediatra em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-blue-500 transition-colors text-sm">Neuropediatria</h3>
+                  <p className="text-xs text-slate-500 mt-1">Avaliação médica do desenvolvimento infantil</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar consulta 💚
                   </button>
                 </div>
               </div>

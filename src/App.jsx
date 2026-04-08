@@ -36,6 +36,9 @@ import FaqPage from './pages/Faq.jsx';
 import PrivacidadePage from './pages/Privacidade.jsx';
 import LPAvaliacaoInfantil from './pages/LPAvaliacaoInfantil';
 import TdahPage from './pages/TdahPage';
+import TdahAvaliacaoPage from './pages/TdahAvaliacaoPage';
+import ComportamentoInfantilPage from './pages/ComportamentoInfantilPage';
+import NeuropediatriaPage from './pages/NeuropediatriaPage';
 import TeaPage from './pages/TeaPage';
 
 // Import das NOVAS páginas de especialidade SEO Local (dominar Anápolis)
@@ -112,6 +115,9 @@ function App() {
           <Route path="/fala-tardia" element={<FalaTardiaPage />} />
           <Route path="/dislexia-infantil" element={<DislexiaPage />} />
           <Route path="/tdah-infantil" element={<TdahPage />} />
+          <Route path="/avaliacao-tdah-anapolis" element={<TdahAvaliacaoPage />} />
+          <Route path="/comportamento-infantil-anapolis" element={<ComportamentoInfantilPage />} />
+          <Route path="/neuropediatra-anapolis" element={<NeuropediatriaPage />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
           <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
           <Route path="/sindrome-de-down" element={<SindromeDeDownPage />} />

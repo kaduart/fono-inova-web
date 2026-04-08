@@ -13,7 +13,8 @@ import {
   Mic,
   PhoneCall,
   School,
-  Star
+  Star,
+  AlertTriangle
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -33,7 +34,7 @@ import { fonoaudiologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?";
+  "https://wa.me/5562993377726?text=Oi! Meu filho não fala muito, isso é normal?";
 
 // Como funciona - 3 passos
 const steps = [
@@ -52,7 +53,7 @@ const steps = [
   {
     number: "3",
     title: "Agendamos a avaliação",
-    description: "Escolha o melhor horário e inicie o tratamento",
+    description: "Escolha o melhor horário e inicie a orientação",
     icon: CheckCircle2,
   },
 ];
@@ -61,19 +62,28 @@ const steps = [
 const featuredTestimonials = [
   {
     stars: 5,
-    text: "Meu filho não falava quase nada... hoje já conversa!",
+    text: "Meu filho não falava quase nada... hoje já conversa! A orientação fez toda diferença.",
     author: "Mãe do Pedro, 4 anos",
   },
   {
     stars: 5,
-    text: "Depois de 3 meses já vimos muita evolução no desenvolvimento",
+    text: "Finalmente entendemos o que estava acontecendo. A explicação clara nos deu segurança.",
     author: "Pai da Sofia, 5 anos",
   },
   {
     stars: 5,
-    text: "Atendimento humano e acolhedor desde o primeiro contato",
+    text: "Atendimento acolhedor desde o primeiro contato. Nos sentimos compreendidos.",
     author: "Mãe do Lucas, 3 anos",
   },
+];
+
+// Sinais de alerta
+const sinaisAlerta = [
+  "Não fala ou fala pouco para a idade",
+  "Não responde quando é chamado",
+  "Troca letras ou fala difícil de entender",
+  "Usa mais gestos do que palavras",
+  "Frustração ao tentar se comunicar"
 ];
 
 const FonoaudiologiaAnapolis = () => {
@@ -104,9 +114,9 @@ const FonoaudiologiaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Fonoaudiologia Infantil em Anápolis | Fala Tardia, Autismo, TDAH"
-        description="Especialistas em atraso de fala, autismo e TDAH em Anápolis. Clínica Fono Inova — ajudamos crianças com atraso na fala, autismo e TDAH. Agende sua avaliação."
-        keywords="fonoaudiologia infantil anápolis, fono anápolis, atraso de fala anápolis, autismo anápolis, tdah anápolis, fonoaudiólogo infantil jundiaí"
+        title="Meu Filho Não Fala? Fonoaudiologia Infantil Anápolis"
+        description="Seu filho não fala ou fala pouco? Fonoaudiologia infantil especializada em Anápolis. Entenda o que está acontecendo com uma orientação inicial sem compromisso."
+        keywords="meu filho não fala, fonoaudiologia infantil anápolis, atraso de fala anápolis, fonoaudiólogo infantil jundiaí"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"
         type="website"
@@ -152,47 +162,56 @@ const FonoaudiologiaAnapolis = () => {
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
-                Clínica Multidisciplinar em Anápolis
+                Fonoaudiologia Infantil em Anápolis
               </Badge>
 
-              {/* H1 */}
+              {/* H1 - PAIN DRIVEN */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Fonoaudiologia Infantil em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis</span>
+                Seu Filho Não Fala ou Fala Pouco para a Idade?
               </h1>
 
-              {/* H2 Especialidade */}
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
-                Especialistas em atraso de fala, autismo e TDAH
+              {/* H2 - REASSURANCE */}
+              <h2 className="text-xl md:text-2xl font-medium text-slate-600">
+                Entenda o que pode estar acontecendo com uma orientação inicial em Anápolis — sem compromisso
               </h2>
 
-              {/* H2 Dor */}
-              <h2 className="text-xl md:text-2xl font-medium text-orange-600">
-                Seu filho tem dificuldade para falar, atraso na fala ou suspeita de autismo?
-              </h2>
+              {/* BLOCO DE SINAIS DE ALERTA */}
+              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4" />
+                  Sinais de alerta:
+                </p>
+                <ul className="text-sm text-yellow-700 space-y-1">
+                  {sinaisAlerta.map((sinal, idx) => (
+                    <li key={idx} className="flex items-center gap-2">
+                      <span className="text-yellow-600">•</span> {sinal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Parágrafo */}
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
-                <strong className="text-slate-900">Clínica Fono Inova</strong> — ajudamos crianças em Anápolis com atraso na fala, autismo e TDAH. Nossa equipe especializada oferece avaliação completa e tratamento personalizado para o desenvolvimento da comunicação do seu filho.
+              <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
+                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, em <strong>Anápolis</strong>, ajudamos pais a entenderem o desenvolvimento da fala do filho. Oferecemos <strong>atendimento acolhedor</strong>, <strong>explicação clara</strong> do que está acontecendo e <strong>orientação prática</strong> para a família.
               </p>
 
-              {/* Benefícios rápidos */}
+              {/* Benefícios rápidos - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Avaliação em 48h</span>
+                  <span>Atendimento acolhedor</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>+500 famílias atendidas</span>
+                  <span>Explicação clara do que está acontecendo</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Equipe multidisciplinar</span>
+                  <span>Orientação prática para os pais</span>
                 </div>
               </div>
 
-              {/* CTAs */}
+              {/* CTAs - ATUALIZADOS */}
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <ButtonWhatsApp
                   onClick={() => {
@@ -200,9 +219,9 @@ const FonoaudiologiaAnapolis = () => {
                     trackButtonClick?.("WhatsApp LP Fonoaudiologia");
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                  message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                  message="Oi! Meu filho não fala muito, isso é normal?"
                 >
-                  Quero agendar uma avaliação
+                  Quero tirar uma dúvida no WhatsApp
                 </ButtonWhatsApp>
                 
                 <a
@@ -259,10 +278,10 @@ const FonoaudiologiaAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Como funciona a avaliação na Clínica Fono Inova
+              Como funciona na Clínica Fono Inova
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Em 3 passos simples, seu filho começa o tratamento especializado
+              Em 3 passos simples, você entende melhor o desenvolvimento do seu filho
             </p>
           </div>
 
@@ -342,21 +361,20 @@ const FonoaudiologiaAnapolis = () => {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto text-center border-2 border-primary/10">
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Não espere mais para ajudar seu filho
+              Tire sua dúvida agora
             </h2>
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Cada dia de espera é um dia de atraso no desenvolvimento. 
-              Agende uma avaliação na Clínica Fono Inova e descubra como podemos ajudar.
+              Entenda o que está acontecendo com o desenvolvimento da fala do seu filho.
+              Uma conversa pode te dar a direção que você precisa.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
-                message="Oi! Vi o site da Clínica Fono Inova 💚 É para meu filho, pode me orientar?"
+                message="Oi! Meu filho não fala muito, isso é normal?"
               >
-                <MessageCircle className="w-5 h-5" />
-                Agendar avaliação pelo WhatsApp
+                Quero tirar uma dúvida no WhatsApp
               </ButtonWhatsApp>
               
               <a

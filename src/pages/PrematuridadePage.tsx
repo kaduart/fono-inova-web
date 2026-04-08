@@ -279,7 +279,6 @@ const PrematuridadePage = () => {
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre acompanhamento para prematuros em Anápolis 💚 Quero agendar uma avaliação."
               >
-                <MessageCircle className="w-5 h-5" />
                 Agendar avaliação pelo WhatsApp
               </ButtonWhatsApp>
               

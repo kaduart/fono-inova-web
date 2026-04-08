@@ -94,7 +94,7 @@ export const articleInterlinks = {
       { title: "Criança troca letras na fala? Entenda as causas", url: "/lp/troca-letras-crianca" }
     ],
     cta: {
-      title: "Preocupado com o desenvolvimento da fala do seu filho?",
+      title: "Com dúvidas sobre o desenvolvimento da fala do seu filho?",
       text: "Na Clínica Fono Inova em Anápolis, realizamos avaliação fonoaudiológica completa. Agende uma consulta e descubra como podemos ajudar.",
       buttonText: "Agendar Avaliação no WhatsApp",
       link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
@@ -169,7 +169,7 @@ export const articleInterlinks = {
       { title: "Terapia Ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" }
     ],
     cta: {
-      title: "Preocupado com o desenvolvimento motor do seu filho?",
+      title: "Querendo entender o desenvolvimento motor do seu filho?",
       text: "Avaliação especializada em fisioterapia e psicomotricidade na Clínica Fono Inova em Anápolis.",
       buttonText: "Agendar Avaliação",
       link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre desenvolvimento motor e me identifiquei.\n\nGostaria de agendar uma avaliação para meu filho(a)."
@@ -242,7 +242,7 @@ export const articleInterlinks = {
       { title: "Teste da Linguinha em Anápolis", url: "/teste-da-linguinha-anapolis" }
     ],
     cta: {
-      title: "Preocupada com a fala do seu bebê?",
+      title: "Gostaria de saber mais sobre a fala do seu bebê?",
       text: "Avaliação fonoaudiológica especializada para bebês na Clínica Fono Inova.",
       buttonText: "Agendar Avaliação",
       link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre bebê que não fala.\n\nMeu bebê tem atraso na fala."

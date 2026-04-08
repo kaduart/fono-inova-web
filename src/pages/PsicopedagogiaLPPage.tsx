@@ -3,8 +3,6 @@ import {
   BookOpen,
   Brain,
   PenTool,
-  Calendar,
-  MessageCircle,
   CheckCircle2,
   Sparkles,
   Users,
@@ -194,7 +192,7 @@ const PsicopedagogiaLPPage = () => {
                 <ButtonWhatsApp
                   onClick={() => { }}
                   message="Oi! Vi no site sobre psicopedagogia e me identifiquei.\n\nMeu filho(a) está com dificuldade de aprendizagem. Pode me explicar como funciona?"
-                  icon={Calendar}
+                  
                   className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                 >
                   Agendar Avaliação
@@ -428,7 +426,7 @@ const PsicopedagogiaLPPage = () => {
             <ButtonWhatsApp
               onClick={() => { }}
               message="Oi! Vi no site sobre psicopedagogia e me identifiquei.\n\nMeu filho(a) está com dificuldade de aprendizagem. Pode me explicar como funciona?"
-              icon={Calendar}
+              
               className="bg-white text-amber-700 hover:bg-amber-50 px-10 py-4 rounded-full text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
             >
               Agendar Avaliação
@@ -436,7 +434,7 @@ const PsicopedagogiaLPPage = () => {
             <ButtonWhatsApp
               onClick={() => { }}
               message="Oi! Vi no site sobre psicopedagogia e me identifiquei.\n\nQueria entender melhor como funciona. Pode me explicar?"
-              icon={MessageCircle}
+              
               className="border-2 border-white/60 text-white hover:bg-white/10 px-10 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2"
             >
               Falar com a Equipe

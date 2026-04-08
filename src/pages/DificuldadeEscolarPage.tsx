@@ -1,4 +1,4 @@
-import { AlertTriangle, BookOpen, Brain, Calendar, CheckCircle, ChevronDown, Clock, MessageCircle, Phone, Quote, Shield, Star, Target } from 'lucide-react';
+import { AlertTriangle, BookOpen, Brain, CheckCircle, ChevronDown, Clock, Phone, Quote, Shield, Star, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
@@ -98,7 +98,7 @@ const DificuldadeEscolarPage = () => {
                                 <ButtonWhatsApp
                                     onClick={() => { }}
                                     message="Oi! Vi no site sobre dificuldade escolar e me identifiquei.\n\nMeu filho(a) está com dificuldade na escola e queria entender melhor como vocês podem ajudar. Pode me explicar?"
-                                    icon={Calendar}
+                                    
                                     className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                     lpSlug="avaliacao-neuropsicologica-dificuldade-escolar"
                                     lpCategory="aprendizagem"
@@ -200,7 +200,7 @@ const DificuldadeEscolarPage = () => {
                     <ButtonWhatsApp
                         message="Meu filho tem muita dificuldade com lição de casa. Quero agendar avaliação neuropsicológica no Jundiaí."
                         onClick={() => { }}
-                        icon={Calendar}
+                        
                         className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-bold shadow-lg"
                     >
                         Quero Avaliação Expressa
@@ -312,7 +312,7 @@ const DificuldadeEscolarPage = () => {
                             </p>
                             <ButtonWhatsApp
                                 onClick={() => { }}
-                                icon={Calendar}
+                                
                                 className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
                                 message="Oi! Vi no site sobre dificuldade escolar e me identifiquei.\n\nMeu filho(a) está com dificuldade na escola e queria entender melhor como vocês podem ajudar. Pode me explicar?"
                             >
