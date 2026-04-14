@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
 import WhatsAppStatusAlert from './components/WhatsAppStatusAlert';
+import SpecialistPopup from './components/SpecialityPopup/SpecialityPopUp';
 
 // Import das páginas existentes
 import AnalyticsDashboard from './components/AnalyticsDashboard';
@@ -93,6 +94,7 @@ function App() {
       {/* 🚨 Alerta de status do WhatsApp (só aparece para admins) */}
       <WhatsAppStatusAlert />
       <LeadTracker>
+        <SpecialistPopup />
         <Routes>
           {/* Rotas existentes */}
           <Route path="/" element={<Home />} />

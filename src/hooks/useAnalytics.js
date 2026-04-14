@@ -80,6 +80,14 @@ export const trackPopupClosed = () => {
     trackEvent('popup_closed', 'Engagement', 'Popup Closed');
 };
 
+export const trackPopupCTA = (ctaType) => {
+    trackEvent('popup_cta_click', 'Conversion', `Popup CTA - ${ctaType}`);
+};
+
+export const trackPopupDismissed = (dismissMethod) => {
+    trackEvent('popup_dismissed', 'Engagement', `Popup Dismissed - ${dismissMethod}`);
+};
+
 export const trackBookingInitiated = (source) => {
     trackEvent('booking_initiated', 'Conversion', `Booking from ${source}`);
 };
