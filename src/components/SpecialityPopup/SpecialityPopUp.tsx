@@ -218,7 +218,7 @@ const SpecialistPopup = () => {
         const message = encodeURIComponent(
             'Oi! Estou no site e queria entender melhor sobre o desenvolvimento do meu filho. Pode me ajudar?'
         );
-        window.open(`https://wa.me/5562993377726?text=${message}`, '_blank');
+        window.open(`https://wa.me/5562992013573?text=${message}`, '_blank');
         handleClosePopup('overlay_click');
     };
 
