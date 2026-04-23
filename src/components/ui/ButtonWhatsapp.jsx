@@ -3,7 +3,7 @@ import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 
 const ButtonWhatsApp = ({
     className = '',
-    phoneNumber = '5562993377726',
+    phoneNumber = '5562992013573',
     message = 'Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.\n\nPode me explicar?',
     children = 'Falar com Especialista',
     size = 'default',

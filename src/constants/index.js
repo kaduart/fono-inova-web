@@ -107,8 +107,8 @@ export const SERVICE_PAGES = [
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const CONTACT = {
-  WHATSAPP: '5562993377726',
-  WHATSAPP_LINK: 'https://wa.me/5562993377726',
+  WHATSAPP: '5562992013573',
+  WHATSAPP_LINK: 'https://wa.me/5562992013573',
   PHONE: '(62) 99337-7726',
   EMAIL: 'contato@clinicafonoinova.com.br',
   ADDRESS: 'Anápolis, GO'

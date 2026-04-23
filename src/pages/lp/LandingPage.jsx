@@ -266,7 +266,7 @@ const LandingPage = () => {
                   onClick={() => {
                     trackLandingPageLead(lp.slug, lp.category, { source: 'identification_item', item });
                     const msg = `Oi! Vi no site e meu filho apresenta: "${item}". Pode me explicar como funciona a avaliação?`;
-                    window.open(`https://wa.me/5562993377726?text=${encodeURIComponent(msg)}`, '_blank');
+                    window.open(`https://wa.me/5562992013573?text=${encodeURIComponent(msg)}`, '_blank');
                   }}
                 >
                   <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">

@@ -6,7 +6,7 @@ import { trackCTAClick } from '../../utils/journeyTracker';
 
 const WhatsAppCTA = ({ 
   text = "Fale Conosco no WhatsApp", 
-  link = "https://wa.me/5562993377726",
+  link = "https://wa.me/5562992013573",
   trackingLabel = "whatsapp-cta",
   variant = "primary", // primary, secondary, outline
   size = "large", // small, medium, large

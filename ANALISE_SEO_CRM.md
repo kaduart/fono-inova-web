@@ -66,7 +66,7 @@ import { getAnalyticsData } from '../services/analyticsApi';
 Atualmente os dados do formulário são enviados apenas para WhatsApp:
 ```javascript
 // BookingModal.jsx - só abre WhatsApp
-const whatsappUrl = `https://wa.me/5562993377726?text=${encodeURIComponent(message)}`;
+const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`;
 window.open(whatsappUrl, '_blank');
 ```
 

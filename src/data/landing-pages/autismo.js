@@ -24,7 +24,7 @@ export const autismoLPs = [
       headline: "Com Dúvidas sobre o Desenvolvimento do Seu Bebê?",
       subheadline: "Alguns sinais podem ser observados desde os primeiros meses. Uma avaliação precoce traz tranquilidade e direcionamento para sua família em Anápolis.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu bebê e queria entender melhor. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu bebê e queria entender melhor. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -131,7 +131,7 @@ export const autismoLPs = [
       headline: "Seu Filho Tem 2 Anos e Você Nota Comportamentos Diferentes?",
       subheadline: "Aos 2 anos, alguns marcos de desenvolvimento são esperados. Saiba o que observar e quando uma avaliação pode trazer respostas para sua família.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a) de 2 anos e queria entender melhor. Pode me explicar como funciona a avaliação?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a) de 2 anos e queria entender melhor. Pode me explicar como funciona a avaliação?"
     },
     
     identification: {
@@ -238,7 +238,7 @@ export const autismoLPs = [
       headline: "Você Chama, Mas Seu Filho Não Responde?",
       subheadline: "Não responder ao próprio nome é um dos sinais de alerta mais importantes no desenvolvimento infantil. Entenda quando preocupar.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nMinha criança não responde ao nome quando chamo. Pode me explicar o que pode ser?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nMinha criança não responde ao nome quando chamo. Pode me explicar o que pode ser?"
     },
     
     identification: {
@@ -345,7 +345,7 @@ export const autismoLPs = [
       headline: "Seu Filho Evita Olhar nos Olhos?",
       subheadline: "O contato visual é uma forma importante de comunicação social. Quando a criança evita, pode haver diferentes causas que merecem atenção.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nMinha criança evita contato visual. Pode me explicar o que pode ser?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nMinha criança evita contato visual. Pode me explicar o que pode ser?"
     },
     
     identification: {
@@ -448,7 +448,7 @@ export const autismoLPs = [
       headline: "Procurando Avaliação de Autismo em Anápolis?",
       subheadline: "Diagnóstico completo e humanizado com equipe multidisciplinar especializada no bairro Jundiaí. Atendimento acolhedor para toda a família.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nQueria entender melhor como funciona. Pode me explicar?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nQueria entender melhor como funciona. Pode me explicar?"
     },
     
     identification: {

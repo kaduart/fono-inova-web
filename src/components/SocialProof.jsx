@@ -64,7 +64,7 @@ export const UrgencySection = ({ items }) => {
         ))}
       </ul>
       <a
-        href="https://wa.me/5562993377726?text=Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
+        href="https://wa.me/5562992013573?text=Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-block w-full sm:w-auto text-center bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-colors"

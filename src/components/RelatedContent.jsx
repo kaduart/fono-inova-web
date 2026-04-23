@@ -97,7 +97,7 @@ export const articleInterlinks = {
       title: "Com dúvidas sobre o desenvolvimento da fala do seu filho?",
       text: "Na Clínica Fono Inova em Anápolis, realizamos avaliação fonoaudiológica completa. Agende uma consulta e descubra como podemos ajudar.",
       buttonText: "Agendar Avaliação no WhatsApp",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
     }
   },
   "entendendo-espectro-auta": {
@@ -110,7 +110,7 @@ export const articleInterlinks = {
       title: "Suspeita de autismo?",
       text: "A avaliação precoce faz toda a diferença. Na Clínica Fono Inova em Anápolis, temos equipe multidisciplinar especializada em TEA.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a). Pode me explicar como funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação de autismo e fiquei com algumas dúvidas.\n\nTenho percebido alguns comportamentos no meu filho(a). Pode me explicar como funciona a avaliação?"
     }
   },
   "fala-tardia-criancas-quando-preocupar": {
@@ -123,7 +123,7 @@ export const articleInterlinks = {
       title: "Fala tardia precisa de atenção",
       text: "Quanto mais cedo começar o tratamento, melhores os resultados. Agende uma avaliação fonoaudiológica na Clínica Fono Inova.",
       buttonText: "Falar com Especialista",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
     }
   },
   "processamento-auditivo-central-pac": {
@@ -135,7 +135,7 @@ export const articleInterlinks = {
       title: "Suspeita de problema no processamento auditivo?",
       text: "Realizamos avaliação completa do PAC com equipamentos especializados em Anápolis.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nSuspeito de processamento auditivo na minha criança. Pode me explicar como funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nSuspeito de processamento auditivo na minha criança. Pode me explicar como funciona a avaliação?"
     }
   },
   "tdah-infantil-guia-completo-pais": {
@@ -147,7 +147,7 @@ export const articleInterlinks = {
       title: "Suspeita de TDAH?",
       text: "A avaliação neuropsicológica é essencial para diagnóstico correto. Agende na Clínica Fono Inova.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nSuspeito de TDAH no meu filho(a). Pode me explicar como funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre dificuldade de atenção e me chamou atenção.\n\nSuspeito de TDAH no meu filho(a). Pode me explicar como funciona a avaliação?"
     }
   },
   "seletividade-alimentar-infantil": {
@@ -159,7 +159,7 @@ export const articleInterlinks = {
       title: "Seletividade alimentar afetando sua rotina?",
       text: "A terapia ocupacional pode ajudar. Agende uma avaliação na Clínica Fono Inova em Anápolis.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor.\n\nMinha criança tem seletividade alimentar. Pode me explicar como vocês podem ajudar?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi no site de vocês e gostaria de entender melhor.\n\nMinha criança tem seletividade alimentar. Pode me explicar como vocês podem ajudar?"
     }
   },
   "atividades-desenvolvimento-motor": {
@@ -172,7 +172,7 @@ export const articleInterlinks = {
       title: "Querendo entender o desenvolvimento motor do seu filho?",
       text: "Avaliação especializada em fisioterapia e psicomotricidade na Clínica Fono Inova em Anápolis.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre desenvolvimento motor e me identifiquei.\n\nGostaria de agendar uma avaliação para meu filho(a)."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre desenvolvimento motor e me identifiquei.\n\nGostaria de agendar uma avaliação para meu filho(a)."
     }
   },
   "faq-desenvolvimento-infantil": {
@@ -185,7 +185,7 @@ export const articleInterlinks = {
       title: "Ainda tem dúvidas sobre desenvolvimento infantil?",
       text: "Nossa equipe multidisciplinar em Anápolis pode ajudar. Entre em contato pelo WhatsApp.",
       buttonText: "Falar com Especialista",
-      link: "https://wa.me/5562993377726?text=Oi! Li o FAQ de vocês e ainda tenho algumas dúvidas.\n\nPode me ajudar?"
+      link: "https://wa.me/5562992013573?text=Oi! Li o FAQ de vocês e ainda tenho algumas dúvidas.\n\nPode me ajudar?"
     }
   },
   "importancia-orientacao-parental": {
@@ -197,7 +197,7 @@ export const articleInterlinks = {
       title: "Quer fortalecer sua relação com seu filho?",
       text: "A orientação parental pode transformar a dinâmica familiar. Agende na Clínica Fono Inova.",
       buttonText: "Agendar Orientação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre orientação parental e me interessei.\n\nGostaria de saber mais sobre como funciona."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre orientação parental e me interessei.\n\nGostaria de saber mais sobre como funciona."
     }
   },
   "importancia-psicomotricidade-desenvolvimento-infantil": {
@@ -209,7 +209,7 @@ export const articleInterlinks = {
       title: "Psicomotricidade fortalece o aprendizado",
       text: "Avaliação psicomotora completa na Clínica Fono Inova em Anápolis. Agende agora.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre psicomotricidade e quero saber mais.\n\nComo funciona a avaliação?"
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre psicomotricidade e quero saber mais.\n\nComo funciona a avaliação?"
     }
   },
   "psicopedagogia-alem-das-dificuldades-escolares": {
@@ -221,7 +221,7 @@ export const articleInterlinks = {
       title: "Seu filho tem dificuldades na escola?",
       text: "A psicopedagogia identifica como seu filho aprende melhor. Avaliação em Anápolis.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre psicopedagogia e me identifiquei.\n\nMeu filho tem dificuldades escolares."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre psicopedagogia e me identifiquei.\n\nMeu filho tem dificuldades escolares."
     }
   },
   "musicoterapia-e-tea-conexoes-atraves-do-som": {
@@ -233,7 +233,7 @@ export const articleInterlinks = {
       title: "Música pode ajudar seu filho autista",
       text: "Conheça nossas terapias para crianças no espectro autista em Anápolis.",
       buttonText: "Conhecer Terapias",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre musicoterapia e TEA.\n\nGostaria de saber mais sobre as terapias para autismo."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre musicoterapia e TEA.\n\nGostaria de saber mais sobre as terapias para autismo."
     }
   },
   "bebe-nao-fala": {
@@ -245,7 +245,7 @@ export const articleInterlinks = {
       title: "Gostaria de saber mais sobre a fala do seu bebê?",
       text: "Avaliação fonoaudiológica especializada para bebês na Clínica Fono Inova.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre bebê que não fala.\n\nMeu bebê tem atraso na fala."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre bebê que não fala.\n\nMeu bebê tem atraso na fala."
     }
   },
   "como-estimular-fala-crianca": {
@@ -257,7 +257,7 @@ export const articleInterlinks = {
       title: "Dicas ajudam, mas às vezes precisa de mais",
       text: "Se seu filho tem atraso na fala, a fonoaudiologia pode acelerar o desenvolvimento.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre estimular a fala.\n\nMeu filho tem atraso. Preciso de ajuda profissional."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre estimular a fala.\n\nMeu filho tem atraso. Preciso de ajuda profissional."
     }
   },
   "fala-tardia-causas": {
@@ -269,7 +269,7 @@ export const articleInterlinks = {
       title: "Descubra a causa do atraso na fala",
       text: "Avaliação completa na Clínica Fono Inova para identificar e tratar a fala tardia.",
       buttonText: "Agendar Avaliação",
-      link: "https://wa.me/5562993377726?text=Oi! Vi o artigo sobre causas da fala tardia.\n\nQuero agendar uma avaliação."
+      link: "https://wa.me/5562992013573?text=Oi! Vi o artigo sobre causas da fala tardia.\n\nQuero agendar uma avaliação."
     }
   }
 };

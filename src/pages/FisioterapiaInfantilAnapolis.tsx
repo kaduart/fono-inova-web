@@ -44,7 +44,7 @@ import { fisioterapiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação de fisioterapia infantil.";
+  "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação de fisioterapia infantil.";
 
 // Dados das dores/situações para identificação
 const painPoints = [

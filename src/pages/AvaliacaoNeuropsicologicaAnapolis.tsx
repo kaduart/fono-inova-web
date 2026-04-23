@@ -31,7 +31,7 @@ import { neuropsicologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica.";
+  "https://wa.me/5562992013573?text=Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica.";
 
 // Como funciona - 3 passos
 const steps = [

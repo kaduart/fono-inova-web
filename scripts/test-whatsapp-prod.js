@@ -126,7 +126,7 @@ function testarWhatsAppButton() {
         if (match) {
             const numero = match[1];
             console.log('    Número:', numero);
-            console.log('    ✅ Correto:', numero === '5562993377726' ? 'SIM' : '❌ NÃO!');
+            console.log('    ✅ Correto:', numero === '5562992013573' ? 'SIM' : '❌ NÃO!');
         }
     });
     
@@ -140,4 +140,4 @@ console.log('\n📋 RESUMO DOS TESTES:');
 console.log('   1. Abra qualquer botão de WhatsApp');
 console.log('   2. Veja se aparece o alerta verde ✅');
 console.log('   3. Verifique se o WhatsApp abriu em nova aba');
-console.log('   4. Confirme o número: 5562993377726');
+console.log('   4. Confirme o número: 5562992013573');

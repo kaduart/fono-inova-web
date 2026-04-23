@@ -42,7 +42,7 @@ import { testeLinguinhaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar o teste da linguinha.";
+  "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar o teste da linguinha.";
 
 // Dados das dores/situações para identificação
 const painPoints = [

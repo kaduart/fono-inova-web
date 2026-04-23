@@ -36,7 +36,7 @@ import { psicologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação.";
+  "https://wa.me/5562992013573?text=Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação.";
 
 // Como funciona - 3 passos
 const steps = [

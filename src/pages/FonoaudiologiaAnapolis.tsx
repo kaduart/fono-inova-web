@@ -34,7 +34,7 @@ import { fonoaudiologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Oi! Meu filho não fala muito, isso é normal?";
+  "https://wa.me/5562992013573?text=Oi! Meu filho não fala muito, isso é normal?";
 
 // Como funciona - 3 passos
 const steps = [

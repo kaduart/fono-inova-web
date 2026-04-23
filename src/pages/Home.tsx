@@ -49,7 +49,7 @@ import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaHome } from '../schemas/clinicaSchemas.js';
 
 const WHATSAPP_URL =
-  "https://wa.me/5562993377726?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação.";
+  "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação.";
 
 // Dados das dores/situações para identificação - MAIS EMOCIONAL
 const painPoints = [

@@ -6,7 +6,7 @@ import { getLeadTracking } from '../hooks/useLeadTracking';
 
 const FixedWhatsAppBar = ({ 
   message = "Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?",
-  phone = "5562993377726"
+  phone = "5562992013573"
 }) => {
   // Monta link do WhatsApp com tracking
   const getWhatsAppLink = () => {

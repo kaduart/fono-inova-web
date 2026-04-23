@@ -24,7 +24,7 @@ export const psicologiaLPs = [
       headline: "Seu Filho Bate, Morde ou Destrói Objetos?",
       subheadline: "Agressividade infantil é sinal de sofrimento. Entenda o que está por trás do comportamento e como podemos ajudar sua família em Anápolis.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre psicologia infantil e me identifiquei.\n\nMinha criança tem apresentado comportamentos agressivos e queria entender melhor. Pode me explicar como vocês podem ajudar?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre psicologia infantil e me identifiquei.\n\nMinha criança tem apresentado comportamentos agressivos e queria entender melhor. Pode me explicar como vocês podem ajudar?"
     },
     
     identification: {

@@ -25,7 +25,7 @@ export const geograficasLPs = [
       headline: "Precisa de Fonoaudiólogo em Anápolis?",
       subheadline: "Atendimento infantil especializado no bairro Jundiaí. Atraso na fala, troca de letras, autismo, gagueira. Agende pelo WhatsApp.",
       ctaText: "Falar com fonoaudióloga no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento fonoaudiológico.\n\nÉ para meu filho(a). Pode me explicar?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento fonoaudiológico.\n\nÉ para meu filho(a). Pode me explicar?"
     },
     
     identification: {
@@ -140,7 +140,7 @@ export const geograficasLPs = [
       headline: "Procura Psicólogo Infantil em Anápolis?",
       subheadline: "Atendimento especializado para crianças no bairro Jundiaí. TDAH, autismo, ansiedade, comportamento. Agende pelo WhatsApp.",
       ctaText: "Falar com psicóloga no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento psicológico.\n\nÉ para meu filho(a). Pode me explicar?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento psicológico.\n\nÉ para meu filho(a). Pode me explicar?"
     },
     
     identification: {
@@ -250,7 +250,7 @@ export const geograficasLPs = [
       headline: "Procura Terapia Ocupacional em Anápolis?",
       subheadline: "Atendimento infantil especializado no bairro Jundiaí. Integração sensorial, coordenação motora, autismo, autonomia.",
       ctaText: "Falar com terapeuta no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona a terapia ocupacional.\n\nÉ para meu filho(a). Pode me explicar?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site de vocês e gostaria de entender melhor como funciona a terapia ocupacional.\n\nÉ para meu filho(a). Pode me explicar?"
     },
     
     identification: {
@@ -359,7 +359,7 @@ export const geograficasLPs = [
       headline: "Avaliação Neuropsicológica em Anápolis",
       subheadline: "Diagnóstico especializado para TDAH, dislexia, autismo e dificuldades de aprendizagem no bairro Jundiaí.",
       ctaText: "Falar com especialista no WhatsApp",
-      ctaLink: "https://wa.me/5562993377726?text=Oi! Vi no site sobre avaliação neuropsicológica e queria entender melhor.\n\nÉ para meu filho(a). Pode me explicar como funciona?"
+      ctaLink: "https://wa.me/5562992013573?text=Oi! Vi no site sobre avaliação neuropsicológica e queria entender melhor.\n\nÉ para meu filho(a). Pode me explicar como funciona?"
     },
     
     identification: {
