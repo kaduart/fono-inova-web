@@ -316,7 +316,8 @@ function Home() {
               {/* Endereço para SEO local */}
               <div className="flex items-center gap-2 text-sm text-slate-500">
                 <MapPin className="w-4 h-4" />
-                <span>Setor Central, Anápolis - GO</span>
+                <span>Bairro Jundiaí, Anápolis - GO</span>
+
               </div>
             </div>
 
