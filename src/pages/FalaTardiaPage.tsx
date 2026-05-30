@@ -187,7 +187,7 @@ const FalaTardiaPage = () => {
                                 Seu Filho Já Tem{" "}
                                 <span className="text-orange-600">2 ou 3 Anos</span>{" "}
                                 e Ainda Não Fala Frases?
-                            </h1>
+                            </h2>
 
                             {/* SUBHEADLINE COM URGÊNCIA */}
                             <p className="text-lg text-slate-700 mb-4 leading-relaxed max-w-xl">

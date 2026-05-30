@@ -103,7 +103,7 @@ export const articleInterlinks = {
   "entendendo-espectro-auta": {
     landingPages: [
       { title: "Suporte para Autismo em Anápolis", url: "/autismo-anapolis" },
-      { title: "Avaliação TEA — Como Funciona", url: "/avaliacao-autismo-infantil" },
+      { title: "Avaliação TEA — Como Funciona", url: "/autismo-anapolis" },
       { title: "Terapia Ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" }
     ],
     cta: {

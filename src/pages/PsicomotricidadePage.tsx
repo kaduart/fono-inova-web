@@ -188,7 +188,7 @@ const PsicomotricidadePage = () => {
               </h1>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                 Desenvolvimento <span className="text-pink-600">Motor e Cognitivo</span>
-              </h1>
+              </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                 Terapia integrada para crianças com TEA, Síndrome de Down e atrasos motores no bairro <strong>Jundiaí</strong>, Anápolis.
               </p>

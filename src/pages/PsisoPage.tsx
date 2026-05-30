@@ -512,8 +512,8 @@ const PsicoPage = () => {
                     <p className="text-gray-600 text-sm">Veja também:</p>
                     <div className="flex justify-center gap-4 mt-2 text-sm">
                         <a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-green-600 hover:underline">Dificuldade Escolar</a>
-                        <a href="/fala-tardia" className="text-green-600 hover:underline">Fala Tardia</a>
-                        <a href="/freio-lingual" className="text-green-600 hover:underline">Teste da Linguinha</a>
+                        <a href="/fala-tardia-anapolis" className="text-green-600 hover:underline">Fala Tardia</a>
+                        <a href="/teste-da-linguinha-anapolis" className="text-green-600 hover:underline">Teste da Linguinha</a>
                     </div>
                 </div>
             </section>

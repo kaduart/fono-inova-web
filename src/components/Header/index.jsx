@@ -21,13 +21,13 @@ const Header = () => {
     }, []);
 
     const services = [
-        { name: "Fonoaudiologia", path: "/fonoaudiologia", description: "Desenvolvimento da fala" },
-        { name: "Psicologia", path: "/psicologia", description: "Acompanhamento emocional" },
-        { name: "Terapia Ocupacional", path: "/terapia-ocupacional", description: "Independência" },
-        { name: "Fisioterapia", path: "/fisioterapia", description: "Reabilitação" },
+        { name: "Fonoaudiologia", path: "/fonoaudiologia-anapolis", description: "Desenvolvimento da fala" },
+        { name: "Psicologia", path: "/psicologia-infantil-anapolis", description: "Acompanhamento emocional" },
+        { name: "Terapia Ocupacional", path: "/terapia-ocupacional-anapolis", description: "Independência" },
+        { name: "Fisioterapia", path: "/fisioterapia-infantil-anapolis", description: "Reabilitação" },
         { name: "Psicopedagogia", path: "/psicopedagogia", description: "Aprendizagem" },
-        { name: "Avaliação Neuropsicológica", path: "/avaliacao-neuropsicologica", description: "Avaliação cognitiva" },
-        { name: "Freio Lingual", path: "/freio-lingual", description: "Avaliação" },
+        { name: "Avaliação Neuropsicológica", path: "/avaliacao-neuropsicologica-anapolis", description: "Avaliação cognitiva" },
+        { name: "Freio Lingual", path: "/teste-da-linguinha-anapolis", description: "Avaliação" },
     ];
 
     const scrollToSection = (sectionId) => {

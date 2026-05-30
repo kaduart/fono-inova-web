@@ -115,7 +115,7 @@ const DislexiaPage = () => {
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Seu Filho Confunde Letras ou Tem{" "}
                                 <span className="text-blue-600">Dificuldade para Ler</span>?
-                            </h1>
+                            </h2>
 
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed max-w-xl">
                                 Pode ser dislexia. Na <strong>Clínica Fono Inova</strong> em Anápolis, 

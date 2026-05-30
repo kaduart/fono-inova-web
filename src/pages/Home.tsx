@@ -229,13 +229,13 @@ function Home() {
               {/* 🔗 INTERNAL LINKING - SEO Boost (navegação semântica) */}
               <nav className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-slate-500">
                 <span>Tratamentos:</span>
-                <Link to="/fala-tardia" className="text-primary hover:underline">fala tardia</Link>
+                <Link to="/fala-tardia-anapolis" className="text-primary hover:underline">fala tardia</Link>
                 <span>•</span>
-                <Link to="/avaliacao-autismo-infantil" className="text-primary hover:underline">autismo infantil</Link>
+                <Link to="/autismo-anapolis" className="text-primary hover:underline">autismo infantil</Link>
                 <span>•</span>
-                <Link to="/psicopedagogia-clinica" className="text-primary hover:underline">dificuldades de aprendizagem</Link>
+                <Link to="/dislexia-anapolis" className="text-primary hover:underline">dificuldades de aprendizagem</Link>
                 <span>•</span>
-                <Link to="/terapia-ocupacional" className="text-primary hover:underline">terapia ocupacional</Link>
+                <Link to="/terapia-ocupacional-anapolis" className="text-primary hover:underline">terapia ocupacional</Link>
               </nav>
 
               {/* H1 INSTITUCIONAL - Natural e forte */}
@@ -841,7 +841,7 @@ function Home() {
             </Link>
 
             {/* TEA */}
-            <Link to="/avaliacao-autismo-infantil" className="group">
+            <Link to="/autismo-anapolis" className="group">
               <div className="bg-white border-2 border-purple-100 hover:border-purple-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
                 <div className="bg-purple-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Brain className="w-8 h-8 text-purple-600" />
@@ -857,7 +857,7 @@ function Home() {
             </Link>
 
             {/* Fala Tardia */}
-            <Link to="/fala-tardia" className="group">
+            <Link to="/fala-tardia-anapolis" className="group">
               <div className="bg-white border-2 border-orange-100 hover:border-orange-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
                 <div className="bg-orange-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <MessageCircle className="w-8 h-8 text-orange-600" />
@@ -905,7 +905,7 @@ function Home() {
             </Link>
 
             {/* Psicomotricidade */}
-            <Link to="/psicomotricidade" className="group">
+            <Link to="/psicomotricidade-anapolis" className="group">
               <div className="bg-white border-2 border-pink-100 hover:border-pink-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
                 <div className="bg-pink-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Baby className="w-8 h-8 text-pink-600" />
@@ -921,7 +921,7 @@ function Home() {
             </Link>
 
             {/* Psicopedagogia */}
-            <Link to="/psicopedagogia-clinica" className="group">
+            <Link to="/dislexia-anapolis" className="group">
               <div className="bg-white border-2 border-amber-100 hover:border-amber-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
                 <div className="bg-amber-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <GraduationCap className="w-8 h-8 text-amber-600" />

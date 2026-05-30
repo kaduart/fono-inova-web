@@ -53,7 +53,7 @@ const painPoints = [
     title: "Meu filho fala pouco ou troca letras",
     description: "Dificuldade para se expressar ou não forma frases completas",
     color: "orange",
-    link: "/fala-tardia",
+    link: "/fala-tardia-anapolis",
     whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nMeu filho fala pouco/troca letras. Pode me orientar?",
   },
   {
@@ -61,7 +61,7 @@ const painPoints = [
     title: "Tem 3+ anos e ainda não fala direito",
     description: "Atraso na fala que está preocupando a família e professores",
     color: "blue",
-    link: "/fala-tardia",
+    link: "/fala-tardia-anapolis",
     whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nMeu filho tem 3+ anos e ainda não fala bem. Pode me orientar?",
   },
   {
@@ -69,7 +69,7 @@ const painPoints = [
     title: "Suspeita ou diagnóstico de autismo",
     description: "Precisa de avaliação multidisciplinar ou encaminhamento para TEA",
     color: "purple",
-    link: "/avaliacao-autismo-infantil",
+    link: "/autismo-anapolis",
     whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nTemos suspeita de autismo. Pode me orientar?",
   },
   {
@@ -85,7 +85,7 @@ const painPoints = [
     title: "Problemas no aleitamento ou deglutição",
     description: "Freio lingual, dificuldade para mamar ou engolir alimentos",
     color: "pink",
-    link: "/freio-lingual",
+    link: "/teste-da-linguinha-anapolis",
     whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nMeu filho tem problema no aleitamento/engolir. Pode me orientar?",
   },
   {
@@ -230,7 +230,7 @@ const LPAvaliacaoInfantil = () => {
                 Seu filho está com{" "}
                 <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">dificuldade para falar</span>{" "}
                 ou se comunicar?
-              </h1>
+              </h2>
 
               {/* Subheadline com contexto */}
               <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">

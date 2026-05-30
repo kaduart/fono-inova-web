@@ -131,7 +131,7 @@ const PrematuridadePage = () => {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Acompanhamento para Bebês{" "}
                 <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Prematuros</span>
-              </h1>
+              </h2>
 
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
                 Estimulação precoce e desenvolvimento neuropsicomotor

@@ -187,7 +187,7 @@ const TdahAvaliacaoPage = () => {
                                 Seu Filho Tem{" "}
                                 <span className="text-purple-600">Dificuldade de Atenção</span>{" "}
                                 ou Não Acompanha a Escola?
-                            </h1>
+                            </h2>
 
                             {/* SUBHEADLINE COM URGÊNCIA */}
                             <p className="text-lg text-slate-700 mb-4 leading-relaxed max-w-xl">

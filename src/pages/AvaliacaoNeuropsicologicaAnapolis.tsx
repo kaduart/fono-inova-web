@@ -176,7 +176,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
                 Avaliação{" "}
                 <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Neuropsicológica</span>{" "}
                 em Anápolis
-              </h1>
+              </h2>
 
               {/* H2 - Especialidade */}
               <h2 className="text-xl md:text-2xl font-semibold text-slate-700">

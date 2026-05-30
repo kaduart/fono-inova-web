@@ -12,7 +12,7 @@ const ServiceCards = () => {
             title: "Fonoaudiologia",
             description: "Ajuda a criança a desenvolver a fala, a linguagem, a comunicação e a alimentação de forma segura e eficaz.",
             color: "bg-primary",
-            link: "/fonoaudiologia",
+            link: "/fonoaudiologia-anapolis",
             seo: {
                 title: "Fonoaudiologia Infantil - Clínica Fono Inova",
                 description: "Especialistas em fonoaudiologia infantil: tratamento para atraso de fala, distúrbios de linguagem e comunicação.",
@@ -26,7 +26,7 @@ const ServiceCards = () => {
             title: "Psicologia",
             description: "Acompanha o desenvolvimento emocional, social e comportamental, ajudando a criança a lidar com sentimentos, medos e mudanças.",
             color: "bg-secondary",
-            link: "/psicologia",
+            link: "/psicologia-infantil-anapolis",
             seo: {
                 title: "Psicologia Infantil - Clínica Fono Inova",
                 description: "Acompanhamento psicológico infantil para desenvolvimento emocional e comportamental.",
@@ -40,7 +40,7 @@ const ServiceCards = () => {
             title: "Terapia Ocupacional",
             description: "Ajuda a criança a conquistar sua independência nas atividades do dia a dia, garantindo autonomia e crescimento contínuo.",
             color: "bg-accent",
-            link: "/terapia-ocupacional",
+            link: "/terapia-ocupacional-anapolis",
             seo: {
                 title: "Terapia Ocupacional Infantil - Clínica Fono Inova",
                 description: "Terapia ocupacional para desenvolvimento de habilidades motoras e independência infantil.",
@@ -54,7 +54,7 @@ const ServiceCards = () => {
             title: "Fisioterapia",
             description: "Atua no fortalecimento muscular, coordenação motora, postura e reabilitação física desde os primeiros meses de vida.",
             color: "bg-primary",
-            link: "/fisioterapia",
+            link: "/fisioterapia-infantil-anapolis",
             seo: {
                 title: "Fisioterapia Infantil - Clínica Fono Inova",
                 description: "Fisioterapia pediátrica para desenvolvimento motor e reabilitação infantil.",
@@ -82,7 +82,7 @@ const ServiceCards = () => {
             title: "Avaliação Neuropsicológica",
             description: "Avaliação completa das funções cognitivas para identificar transtornos e potencialidades do desenvolvimento.",
             color: "bg-teal-500",
-            link: "/avaliacao-neuropsicologica",
+            link: "/avaliacao-neuropsicologica-anapolis",
             seo: {
                 title: "Avaliação Neuropsicológica - Clínica Fono Inova",
                 description: "Avaliação neuropsicológica completa para diagnóstico de TDAH, TEA, dislexia e outros transtornos do neurodesenvolvimento.",
@@ -96,7 +96,7 @@ const ServiceCards = () => {
             title: "Freio Lingual",
             description: "Avaliação e tratamento do freio lingual para melhorar amamentação, fala e desenvolvimento orofacial.",
             color: "bg-purple-500",
-            link: "/freio-lingual",
+            link: "/teste-da-linguinha-anapolis",
             seo: {
                 title: "Freio Lingual - Avaliação e Tratamento da Língua Presa",
                 description: "Especialistas em freio lingual: avaliação, frenotomia e tratamento para língua presa em bebês e crianças.",
@@ -110,7 +110,7 @@ const ServiceCards = () => {
             title: "Psicomotricidade",
             description: "Integra corpo, mente e emoção para desenvolver coordenação, equilíbrio e consciência corporal em crianças com TEA, Síndrome de Down e outras condições.",
             color: "bg-pink-600",
-            link: "/psicomotricidade",
+            link: "/psicomotricidade-anapolis",
             seo: {
                 title: "Psicomotricidade Infantil - TEA e Síndromes | Clínica Fono Inova",
                 description: "Psicomotricidade para crianças com TEA, Síndrome de Down e atrasos no desenvolvimento motor, cognitivo e emocional.",
@@ -124,7 +124,7 @@ const ServiceCards = () => {
             title: "Psicopedagogia Clínica",
             description: "Investiga e trata dificuldades de aprendizagem como dislexia, discalculia e TDAH, com estratégias personalizadas para cada criança.",
             color: "bg-amber-600",
-            link: "/psicopedagogia-clinica",
+            link: "/dislexia-anapolis",
             seo: {
                 title: "Psicopedagogia Clínica - Dificuldades de Aprendizagem | Clínica Fono Inova",
                 description: "Psicopedagogia clínica para dislexia, discalculia, TDAH e dificuldades escolares. Avaliação e intervenção personalizada.",

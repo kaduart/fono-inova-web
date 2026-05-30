@@ -90,7 +90,7 @@ const DificuldadeEscolarPage = () => {
                             </h1>
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Seu Filho se Esforça, mas as Notas <span className="text-blue-600">Não Melhoram</span>?
-                            </h1>
+                            </h2>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Avaliação neuropsicológica completa no bairro <strong>Jundiaí</strong> para identificar dislexia, TDAH e outras condições em Anápolis.
                             </p>
@@ -278,13 +278,13 @@ const DificuldadeEscolarPage = () => {
                 <div className="container mx-auto px-4 text-center">
                     <p className="text-gray-600 mb-4">Outros pais de Anápolis buscaram por:</p>
                     <div className="flex flex-wrap justify-center gap-3 text-sm">
-                        <a href="/fala-tardia" className="text-blue-600 hover:underline">Atraso na Fala</a>
+                        <a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">Atraso na Fala</a>
                         <span className="text-gray-300">|</span>
-                        <a href="/avaliacao-autismo-infantil" className="text-blue-600 hover:underline">Suspeita de Autismo</a>
+                        <a href="/autismo-anapolis" className="text-blue-600 hover:underline">Suspeita de Autismo</a>
                         <span className="text-gray-300">|</span>
                         <a href="/psicopedagogia" className="text-blue-600 hover:underline">Dislexia</a>
                         <span className="text-gray-300">|</span>
-                        <a href="/fonoaudiologia" className="text-blue-600 hover:underline">Fonoaudiologia</a>
+                        <a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">Fonoaudiologia</a>
                     </div>
                 </div>
             </section>

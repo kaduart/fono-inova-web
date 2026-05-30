@@ -175,7 +175,7 @@ const TeaPage = () => {
                             {/* H2 - PAIN DRIVEN */}
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Você Suspeita de <span className="text-purple-600">Autismo</span> no Seu Filho?
-                            </h1>
+                            </h2>
 
                             {/* H2 - REASSURANCE */}
                             <h2 className="text-xl md:text-2xl font-medium text-slate-600 mb-6">

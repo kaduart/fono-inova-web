@@ -196,7 +196,7 @@ const ComportamentoInfantilPage = () => {
                                 Seu Filho Tem{" "}
                                 <span className="text-red-600">Birras Explosivas</span>,{" "}
                                 Agressividade ou Não Obedece?
-                            </h1>
+                            </h2>
 
                             {/* H2 - SEM COMPROMISSO */}
                             <h2 className="text-lg md:text-xl text-slate-600 mb-4 leading-relaxed max-w-xl">

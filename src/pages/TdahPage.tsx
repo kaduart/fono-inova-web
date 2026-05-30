@@ -50,7 +50,7 @@ const TdahPage = () => {
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Seu Filho é Inquieto, Não Para e Tem{" "}
                                 <span className="text-amber-600">Dificuldade na Escola</span>?
-                            </h1>
+                            </h2>
 
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                                 Pode ser TDAH. Na <strong>Clínica Fono Inova</strong>, avaliamos e tratamos crianças 
