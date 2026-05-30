@@ -104,7 +104,7 @@ export const psicologiaLPs = [
       },
       {
         question: "Onde encontrar psicólogo infantil em Anápolis?",
-        answer: "A Clínica Fono Inova no bairro Jundiaí tem psicólogos especializados em comportamento infantil. Agendamento pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova no bairro Jundiaí tem psicólogos especializados em comportamento infantil. Agendamento pelo WhatsApp (62) 99201-3573."
       }
     ],
     

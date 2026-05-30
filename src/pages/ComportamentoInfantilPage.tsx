@@ -178,6 +178,11 @@ const ComportamentoInfantilPage = () => {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 items-center">
                         {/* Texto */}
                         <div className="order-2 lg:order-1">
+                            {/* H1 - GEO-SEMÂNTICO */}
+                            <h1 className="mb-4 inline-flex items-center bg-red-50 text-red-700 border border-red-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                                Psicologia Infantil em Anápolis
+                            </h1>
+
                             {/* Badge de urgência */}
                             <div className="inline-flex items-center gap-2 bg-red-100 border border-red-200 px-4 py-2 rounded-full mb-4 animate-pulse">
                                 <AlertTriangle className="w-4 h-4 text-red-600" />
@@ -186,8 +191,8 @@ const ComportamentoInfantilPage = () => {
                                 </span>
                             </div>
 
-                            {/* H1 - BATENDO NA DOR */}
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
+                            {/* H2 - BATENDO NA DOR */}
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
                                 Seu Filho Tem{" "}
                                 <span className="text-red-600">Birras Explosivas</span>,{" "}
                                 Agressividade ou Não Obedece?

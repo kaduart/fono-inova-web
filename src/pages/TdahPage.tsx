@@ -45,9 +45,9 @@ const TdahPage = () => {
                                 <span className="text-sm font-medium text-amber-700">Diagnóstico precoce muda tudo</span>
                             </div>
 
-                            <Badge className="mb-4 bg-amber-50 text-amber-700 border-amber-200">Avaliação Neuropsicológica</Badge>
+                            <h1 className="mb-4 inline-flex items-center bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">TDAH Infantil em Anápolis</h1>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Seu Filho é Inquieto, Não Para e Tem{" "}
                                 <span className="text-amber-600">Dificuldade na Escola</span>?
                             </h1>
@@ -69,7 +69,7 @@ const TdahPage = () => {
 
                         <div className="relative">
                             <div className="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl">
-                                <img src="/images/tdah-hero.jpg" alt="Avaliação TDAH" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800'; }} />
+                                <img loading="lazy" decoding="async" src="/images/tdah-hero.jpg" alt="Avaliação TDAH" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800'; }} />
                             </div>
                             <div className="absolute -bottom-4 -left-4 bg-white p-5 rounded-2xl shadow-xl">
                                 <div className="text-3xl font-bold text-slate-900">+200</div>

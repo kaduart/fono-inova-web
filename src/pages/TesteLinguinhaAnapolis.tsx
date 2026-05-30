@@ -304,7 +304,7 @@ const TesteLinguinhaAnapolis = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/freio-lingual/mae-bb.jpeg" 
                     alt="Teste da Linguinha em Anápolis - Diagnóstico precoce"
                     className="w-full h-full object-cover"

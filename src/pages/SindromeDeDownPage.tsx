@@ -194,7 +194,7 @@ const SindromeDeDownPage = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fono-inova-2.png" 
                     alt="Atendimento especializado Síndrome de Down em Anápolis"
                     className="w-full h-full object-cover"

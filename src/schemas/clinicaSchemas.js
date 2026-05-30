@@ -15,7 +15,7 @@ const ENDERECO_COMPLETO = {
 };
 
 const CONTATO = {
-    telephone: "+55-62-99337-7726",
+    telephone: "+55-62-99201-3573",
     email: "contato@clinicafonoinova.com.br",
     url: "https://www.clinicafonoinova.com.br"
 };

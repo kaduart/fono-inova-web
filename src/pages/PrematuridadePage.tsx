@@ -124,11 +124,11 @@ const PrematuridadePage = () => {
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1 space-y-6">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Estimulação Precoce em Anápolis
-              </Badge>
+              </h1>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Acompanhamento para Bebês{" "}
                 <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Prematuros</span>
               </h1>
@@ -195,7 +195,7 @@ const PrematuridadePage = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fono-inova-1.png" 
                     alt="Acompanhamento especializado para bebês prematuros em Anápolis"
                     className="w-full h-full object-cover"

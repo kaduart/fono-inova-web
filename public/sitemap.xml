@@ -111,6 +111,42 @@
     <priority>0.90</priority>
   </url>
   
+  <!-- Long-tail local — intenção emocional + geo -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/fala-tardia-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/autismo-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/seletividade-alimentar-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/tdah-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.92</priority>
+  </url>
+
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/dislexia-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
   <!-- ==================== NOVAS LPs - NICHO ESPECÍFICO ==================== -->
   
   <!-- Dislexia Infantil (NOVA) -->

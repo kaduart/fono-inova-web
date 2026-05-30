@@ -108,11 +108,11 @@ const DislexiaPage = () => {
                                 <span className="text-sm font-medium text-blue-700">Quanto antes identificar, melhor</span>
                             </div>
 
-                            <Badge className="mb-4 bg-blue-50 text-blue-700 border-blue-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                                Avaliação Multidisciplinar
-                            </Badge>
+                            <h1 className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                                Dislexia Infantil em Anápolis
+                            </h1>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Seu Filho Confunde Letras ou Tem{" "}
                                 <span className="text-blue-600">Dificuldade para Ler</span>?
                             </h1>
@@ -149,7 +149,7 @@ const DislexiaPage = () => {
 
                         <div className="relative order-1 lg:order-2">
                             <div className="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
-                                <img src="/images/dislexia-hero.jpg" alt="Avaliação de dislexia" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800'; }} />
+                                <img loading="lazy" decoding="async" src="/images/dislexia-hero.jpg" alt="Avaliação de dislexia" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800'; }} />
                             </div>
                             <div className="absolute -bottom-4 -left-4 bg-white p-5 rounded-2xl shadow-xl border border-slate-100">
                                 <div className="flex items-center gap-3">

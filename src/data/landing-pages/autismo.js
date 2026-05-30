@@ -99,7 +99,7 @@ export const autismoLPs = [
       },
       {
         question: "Onde fazer avaliação de autismo em Anápolis?",
-        answer: "A Clínica Fono Inova no bairro Jundiaí oferece avaliação multidisciplinar completa para TEA, com profissionais especializados em diagnóstico infantil. Agendamento pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova no bairro Jundiaí oferece avaliação multidisciplinar completa para TEA, com profissionais especializados em diagnóstico infantil. Agendamento pelo WhatsApp (62) 99201-3573."
       }
     ],
     
@@ -206,7 +206,7 @@ export const autismoLPs = [
       },
       {
         question: "Preciso de encaminhamento médico para avaliar?",
-        answer: "Não. Os pais podem agendar diretamente conosco pelo WhatsApp (62) 99337-7726."
+        answer: "Não. Os pais podem agendar diretamente conosco pelo WhatsApp (62) 99201-3573."
       }
     ],
     
@@ -313,7 +313,7 @@ export const autismoLPs = [
       },
       {
         question: "Onde avaliar criança que não responde ao nome em Anápolis?",
-        answer: "A Clínica Fono Inova no bairro Jundiaí oferece avaliação completa. Agende pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova no bairro Jundiaí oferece avaliação completa. Agende pelo WhatsApp (62) 99201-3573."
       }
     ],
     
@@ -516,7 +516,7 @@ export const autismoLPs = [
       },
       {
         question: "Precisa de encaminhamento médico?",
-        answer: "Não. Os pais podem agendar diretamente conosco pelo WhatsApp (62) 99337-7726."
+        answer: "Não. Os pais podem agendar diretamente conosco pelo WhatsApp (62) 99201-3573."
       },
       {
         question: "Quanto tempo demora o diagnóstico?",
@@ -528,7 +528,7 @@ export const autismoLPs = [
       },
       {
         question: "Quanto custa a avaliação?",
-        answer: "Entre em contato pelo WhatsApp (62) 99337-7726 para conversarmos sobre valores. Trabalhamos com preços justos e parcelamento."
+        answer: "Entre em contato pelo WhatsApp (62) 99201-3573 para conversarmos sobre valores. Trabalhamos com preços justos e parcelamento."
       }
     ],
     

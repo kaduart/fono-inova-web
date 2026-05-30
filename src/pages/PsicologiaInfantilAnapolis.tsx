@@ -162,13 +162,13 @@ const PsicologiaInfantilAnapolis = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
-              {/* Badge */}
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              {/* H1 - GEO-SEMÂNTICO */}
+              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Psicologia Infantil em Anápolis
-              </Badge>
+              </h1>
 
-              {/* H1 - PAIN DRIVEN */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              {/* H2 - PAIN DRIVEN */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Seu Filho Tem Dificuldades de Comportamento ou Não Presta Atenção?
               </h1>
 
@@ -251,7 +251,7 @@ const PsicologiaInfantilAnapolis = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/psicologia/psico2.jpg" 
                     alt="Psicologia Infantil em Anápolis - Atendimento especializado"
                     className="w-full h-full object-cover"

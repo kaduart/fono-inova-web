@@ -114,9 +114,9 @@ const FonoaudiologiaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Meu Filho Não Fala? Fonoaudiologia Infantil Anápolis"
-        description="Seu filho não fala ou fala pouco? Fonoaudiologia infantil especializada em Anápolis. Entenda o que está acontecendo com uma orientação inicial sem compromisso."
-        keywords="meu filho não fala, fonoaudiologia infantil anápolis, atraso de fala anápolis, fonoaudiólogo infantil jundiaí"
+        title="Fonoaudiologia em Anápolis | Fono Inova — Especialistas Infantil"
+        description="Fonoaudióloga infantil em Anápolis: atraso na fala, autismo, gagueira e dificuldades de comunicação. Clínica Fono Inova no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
+        keywords="fono em anapolis, fonoaudiologia anapolis, fonoaudiólogo anapolis, fonoaudióloga infantil anapolis, atraso fala anapolis, fono infantil anapolis, clínica fonoaudiologia anapolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"
         type="website"
@@ -160,15 +160,15 @@ const FonoaudiologiaAnapolis = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
-              {/* Badge */}
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              {/* H1 - GEO-SEMÂNTICO */}
+              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Fonoaudiologia Infantil em Anápolis
-              </Badge>
-
-              {/* H1 - PAIN DRIVEN */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Seu Filho Não Fala ou Fala Pouco para a Idade?
               </h1>
+
+              {/* H2 - PAIN DRIVEN */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+                Seu Filho Não Fala ou Fala Pouco para a Idade?
+              </h2>
 
               {/* H2 - REASSURANCE */}
               <h2 className="text-xl md:text-2xl font-medium text-slate-600">
@@ -249,7 +249,7 @@ const FonoaudiologiaAnapolis = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fonoaudiologia/fono1.jpg" 
                     alt="Fonoaudiologia Infantil em Anápolis - Atendimento especializado"
                     className="w-full h-full object-cover"

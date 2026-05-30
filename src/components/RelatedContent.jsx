@@ -102,9 +102,9 @@ export const articleInterlinks = {
   },
   "entendendo-espectro-auta": {
     landingPages: [
-      { title: "Sinais de autismo em bebês - O que observar", url: "/lp/sinais-autismo-bebe" },
-      { title: "Sinais de autismo aos 2 anos", url: "/lp/sinais-autismo-2-anos" },
-      { title: "Avaliação de autismo em Anápolis", url: "/lp/avaliacao-tea-anapolis" }
+      { title: "Suporte para Autismo em Anápolis", url: "/autismo-anapolis" },
+      { title: "Avaliação TEA — Como Funciona", url: "/avaliacao-autismo-infantil" },
+      { title: "Terapia Ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" }
     ],
     cta: {
       title: "Suspeita de autismo?",
@@ -115,9 +115,9 @@ export const articleInterlinks = {
   },
   "fala-tardia-criancas-quando-preocupar": {
     landingPages: [
-      { title: "Criança de 2 anos não fala?", url: "/lp/crianca-2-anos-nao-fala" },
-      { title: "Atraso na fala infantil - Tratamento", url: "/lp/atraso-na-fala-infantil" },
-      { title: "Criança não forma frases?", url: "/lp/crianca-nao-forma-frases" }
+      { title: "Fala Tardia em Anápolis", url: "/fala-tardia-anapolis" },
+      { title: "Fonoaudiologia Infantil em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Avaliação Neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" }
     ],
     cta: {
       title: "Fala tardia precisa de atenção",
@@ -140,8 +140,9 @@ export const articleInterlinks = {
   },
   "tdah-infantil-guia-completo-pais": {
     landingPages: [
-      { title: "Psicólogo infantil em Anápolis", url: "/lp/psicologo-infantil-anapolis" },
-      { title: "Avaliação neuropsicológica em Anápolis", url: "/lp/avaliacao-neuropsicologica-anapolis" }
+      { title: "TDAH Infantil em Anápolis", url: "/tdah-anapolis" },
+      { title: "Psicologia Infantil em Anápolis", url: "/psicologia-infantil-anapolis" },
+      { title: "Avaliação Neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" }
     ],
     cta: {
       title: "Suspeita de TDAH?",
@@ -152,8 +153,9 @@ export const articleInterlinks = {
   },
   "seletividade-alimentar-infantil": {
     landingPages: [
-      { title: "Terapia ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" },
-      { title: "Fonoaudiologia em Anápolis", url: "/fonoaudiologia-anapolis" }
+      { title: "Seletividade Alimentar em Anápolis", url: "/seletividade-alimentar-anapolis" },
+      { title: "Terapia Ocupacional em Anápolis", url: "/terapia-ocupacional-anapolis" },
+      { title: "Fonoaudiologia Infantil em Anápolis", url: "/fonoaudiologia-anapolis" }
     ],
     cta: {
       title: "Seletividade alimentar afetando sua rotina?",
@@ -214,8 +216,9 @@ export const articleInterlinks = {
   },
   "psicopedagogia-alem-das-dificuldades-escolares": {
     landingPages: [
-      { title: "Avaliação neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" },
-      { title: "Psicologia infantil em Anápolis", url: "/psicologia-infantil-anapolis" }
+      { title: "Dislexia Infantil em Anápolis", url: "/dislexia-anapolis" },
+      { title: "Avaliação Neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" },
+      { title: "Psicologia Infantil em Anápolis", url: "/psicologia-infantil-anapolis" }
     ],
     cta: {
       title: "Seu filho tem dificuldades na escola?",

@@ -579,7 +579,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fonoaudiologia/fono1.jpg" 
                     alt="Fonoaudiologia Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -603,7 +603,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-pink-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/psicologia/psico2.jpg" 
                     alt="Psicologia Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -627,7 +627,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-emerald-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/terapia-ocupacional/to1.jpg" 
                     alt="Terapia Ocupacional em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -651,7 +651,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-purple-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/psicomotricidade-hero.png" 
                     alt="Psicomotricidade Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -675,7 +675,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/freio-lingual/mae-bb.jpeg" 
                     alt="Teste da Linguinha em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -699,7 +699,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-cyan-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fisioterapia/fisio2.jpg" 
                     alt="Fisioterapia Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -723,7 +723,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-teal-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/neuropsicologia/neuro.jpeg" 
                     alt="Avaliação Neuropsicológica em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -747,7 +747,7 @@ function Home() {
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/neuropsicologia/neuro.jpeg" 
                     alt="Neuropediatra em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
@@ -776,7 +776,7 @@ function Home() {
               </div>
               <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden relative">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/clinica/fachada-clinica.jpg" 
                     alt="Avaliação Multidisciplinar em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"

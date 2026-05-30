@@ -110,7 +110,7 @@ export const aprendizagemLPs = [
       },
       {
         question: "Onde fazer avaliação de dislexia em Anápolis?",
-        answer: "A Clínica Fono Inova, no bairro Jundiaí em Anápolis, oferece avaliação completa para dislexia com psicopedagoga e fonoaudióloga especializadas. O agendamento pode ser feito pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova, no bairro Jundiaí em Anápolis, oferece avaliação completa para dislexia com psicopedagoga e fonoaudióloga especializadas. O agendamento pode ser feito pelo WhatsApp (62) 99201-3573."
       },
       {
         question: "Quanto tempo leva para ver resultado no tratamento?",
@@ -346,7 +346,7 @@ export const aprendizagemLPs = [
       },
       {
         question: "Onde fazer avaliação de TDAH em Anápolis?",
-        answer: "A Clínica Fono Inova em Anápolis oferece avaliação psicopedagógica para TDAH no bairro Jundiaí. Agende pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova em Anápolis oferece avaliação psicopedagógica para TDAH no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
       },
       {
         question: "TDAH tem tratamento?",
@@ -471,7 +471,7 @@ export const aprendizagemLPs = [
       },
       {
         question: "Onde tratar disgrafia em Anápolis?",
-        answer: "A Clínica Fono Inova no bairro Jundiaí, Anápolis, oferece acompanhamento psicopedagógico para disgrafia. Agende pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova no bairro Jundiaí, Anápolis, oferece acompanhamento psicopedagógico para disgrafia. Agende pelo WhatsApp (62) 99201-3573."
       }
     ],
 
@@ -588,7 +588,7 @@ export const aprendizagemLPs = [
       },
       {
         question: "Onde fazer avaliação de discalculia em Anápolis?",
-        answer: "A Clínica Fono Inova no bairro Jundiaí, Anápolis, realiza avaliação psicopedagógica para discalculia. Agende pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova no bairro Jundiaí, Anápolis, realiza avaliação psicopedagógica para discalculia. Agende pelo WhatsApp (62) 99201-3573."
       }
     ],
 
@@ -821,7 +821,7 @@ export const aprendizagemLPs = [
       },
       {
         question: "Onde encontrar psicopedagoga em Anápolis?",
-        answer: "A Clínica Fono Inova tem psicopedagoga especializada no bairro Jundiaí, em Anápolis. Agende uma avaliação pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova tem psicopedagoga especializada no bairro Jundiaí, em Anápolis. Agende uma avaliação pelo WhatsApp (62) 99201-3573."
       },
       {
         question: "Quanto tempo leva o acompanhamento psicopedagógico?",

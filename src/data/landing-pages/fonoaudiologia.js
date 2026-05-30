@@ -100,7 +100,7 @@ export const fonoaudiologiaLPs = [
       },
       {
         question: "Onde fazer avaliação fonoaudiológica em Anápolis?",
-        answer: "A Clínica Fono Inova, localizada no bairro Jundiaí em Anápolis, oferece avaliação fonoaudiológica especializada para crianças com atraso na fala. O agendamento pode ser feito pelo WhatsApp (62) 99337-7726."
+        answer: "A Clínica Fono Inova, localizada no bairro Jundiaí em Anápolis, oferece avaliação fonoaudiológica especializada para crianças com atraso na fala. O agendamento pode ser feito pelo WhatsApp (62) 99201-3573."
       },
       {
         question: "Quanto tempo leva para a criança começar a falar com fonoaudiologia?",

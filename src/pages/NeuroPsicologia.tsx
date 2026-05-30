@@ -198,12 +198,12 @@ const NeuropsicologicaPage = () => {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div className="animate-fade-in-up order-2 lg:order-1">
-                            <Badge variant="secondary" className="mb-4 bg-teal-50 text-teal-700 border-teal-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                                Neuropsicologia Clínica
-                            </Badge>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Avaliação <span className="text-teal-600">Neuropsicológica</span> Completa
+                            <h1 className="mb-4 inline-flex items-center bg-teal-50 text-teal-700 border border-teal-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                                Avaliação Neuropsicológica em Anápolis
                             </h1>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                Avaliação <span className="text-teal-600">Neuropsicológica</span> Completa
+                            </h2>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Investigação profunda das funções cognitivas, TDAH e TEA no bairro <strong>Jundiaí</strong>, Anápolis.
                             </p>

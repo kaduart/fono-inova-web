@@ -178,12 +178,12 @@ const TdahAvaliacaoPage = () => {
                                 </span>
                             </div>
 
-                            <Badge className="mb-4 bg-purple-50 text-purple-700 border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                            <h1 className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Avaliação Neuropsicológica em Anápolis
-                            </Badge>
+                            </h1>
 
                             {/* HEADLINE MAIS FORTE */}
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
                                 Seu Filho Tem{" "}
                                 <span className="text-purple-600">Dificuldade de Atenção</span>{" "}
                                 ou Não Acompanha a Escola?

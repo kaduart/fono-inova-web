@@ -191,12 +191,12 @@ const PsicoPage = () => {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div className="animate-fade-in-up order-2 lg:order-1">
-                            <Badge variant="secondary" className="mb-4 bg-green-50 text-green-700 border-green-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                                Neuropsicologia & Psicologia Infantil
-                            </Badge>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                TDAH em Crianças: <span className="text-green-600">Entenda</span> Sinais e Tratamentos
+                            <h1 className="mb-4 inline-flex items-center bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                                Psicologia Infantil em Anápolis
                             </h1>
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                TDAH em Crianças: <span className="text-green-600">Entenda</span> Sinais e Tratamentos
+                            </h2>
                             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                                 Um guia completo para identificar TDAH. Se você está em <strong>Anápolis</strong>
                                 e nota sinais de hiperatividade ou desatenção no seu filho, nossa equipe no bairro

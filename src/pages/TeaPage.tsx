@@ -168,12 +168,12 @@ const TeaPage = () => {
                                 </span>
                             </div>
 
-                            <Badge className="mb-4 bg-purple-50 text-purple-700 border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                                Avaliação Multidisciplinar em Anápolis
-                            </Badge>
+                            <h1 className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                                Avaliação de Autismo em Anápolis
+                            </h1>
 
-                            {/* H1 - PAIN DRIVEN */}
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                            {/* H2 - PAIN DRIVEN */}
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 Você Suspeita de <span className="text-purple-600">Autismo</span> no Seu Filho?
                             </h1>
 

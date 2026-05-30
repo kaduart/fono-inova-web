@@ -197,12 +197,12 @@ const FonoPage = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Texto */}
             <div className="animate-fade-in-up order-2 lg:order-1">
-              <Badge variant="secondary" className="mb-4 bg-blue-50 text-blue-700 border-blue-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                Fonoaudiologia Especializada
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                Desbloqueie o Potencial da <span className="text-blue-600">Comunicação</span> do Seu Filho
+              <h1 className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                Fonoaudiologia Infantil em Anápolis
               </h1>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                Desbloqueie o Potencial da <span className="text-blue-600">Comunicação</span> do Seu Filho
+              </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                 Referência em fonoaudiologia infantil no bairro <strong>Jundiaí, Anápolis</strong>. Unimos técnicas modernas e acolhimento para transformar o desenvolvimento da fala e linguagem.
               </p>

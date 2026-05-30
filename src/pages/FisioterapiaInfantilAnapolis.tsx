@@ -305,7 +305,7 @@ const FisioterapiaInfantilAnapolis = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/fisioterapia/fisio2.jpg" 
                     alt="Fisioterapia Infantil em Anápolis - Reabilitação pediátrica"
                     className="w-full h-full object-cover"

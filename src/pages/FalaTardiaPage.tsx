@@ -178,12 +178,12 @@ const FalaTardiaPage = () => {
                                 </span>
                             </div>
 
-                            <Badge className="mb-4 bg-orange-50 text-orange-700 border-orange-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+                            <h1 className="mb-4 inline-flex items-center bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Fonoaudiologia Infantil em Anápolis
-                            </Badge>
+                            </h1>
 
                             {/* HEADLINE MAIS FORTE */}
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
                                 Seu Filho Já Tem{" "}
                                 <span className="text-orange-600">2 ou 3 Anos</span>{" "}
                                 e Ainda Não Fala Frases?

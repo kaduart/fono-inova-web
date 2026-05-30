@@ -18,18 +18,23 @@
       "permanent": true
     },
     {
+      "source": "/fala-tardia",
+      "destination": "/fala-tardia-anapolis",
+      "permanent": true
+    },
+    {
       "source": "/lp/crianca-2-anos-nao-fala",
-      "destination": "/fala-tardia",
+      "destination": "/fala-tardia-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/atraso-na-fala-infantil",
-      "destination": "/fala-tardia",
+      "destination": "/fala-tardia-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/crianca-nao-forma-frases",
-      "destination": "/fala-tardia",
+      "destination": "/fala-tardia-anapolis",
       "permanent": true
     },
     {
@@ -44,46 +49,61 @@
     },
     {
       "source": "/lp/sinais-autismo-bebe",
-      "destination": "/avaliacao-autismo-infantil",
+      "destination": "/autismo-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/sinais-autismo-2-anos",
-      "destination": "/avaliacao-autismo-infantil",
+      "destination": "/autismo-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/crianca-nao-responde-nome",
-      "destination": "/avaliacao-autismo-infantil",
+      "destination": "/autismo-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/crianca-nao-olha-olhos",
-      "destination": "/avaliacao-autismo-infantil",
+      "destination": "/autismo-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/avaliacao-tea-anapolis",
-      "destination": "/avaliacao-autismo-infantil",
+      "destination": "/autismo-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/sinais-dislexia",
-      "destination": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "destination": "/dislexia-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/crianca-nao-aprende-ler",
-      "destination": "/avaliacao-neuropsicologica-dificuldade-escolar",
+      "destination": "/dislexia-anapolis",
+      "permanent": true
+    },
+    {
+      "source": "/lp/troca-letras-crianca",
+      "destination": "/dislexia-anapolis",
+      "permanent": true
+    },
+    {
+      "source": "/lp/terapia-ocupacional-anapolis",
+      "destination": "/terapia-ocupacional-anapolis",
+      "permanent": true
+    },
+    {
+      "source": "/lp/psicologo-infantil-anapolis",
+      "destination": "/psicologia-infantil-anapolis",
+      "permanent": true
+    },
+    {
+      "source": "/lp/fonoaudiologo-anapolis",
+      "destination": "/fonoaudiologia-anapolis",
       "permanent": true
     },
     {
       "source": "/avaliacao-neuropsicologica",
-      "destination": "/avaliacao-neuropsicologica-anapolis",
-      "permanent": true
-    },
-    {
-      "source": "/avaliacao-neuropsicologica-dificuldade-escolar",
       "destination": "/avaliacao-neuropsicologica-anapolis",
       "permanent": true
     }

@@ -150,10 +150,10 @@ const ClinicaMultidisciplinar = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Texto */}
             <div className="animate-fade-in-up order-2 lg:order-1">
-              <Badge variant="secondary" className="mb-4 bg-rose-50 text-rose-700 border-rose-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
-                Clínica Multidisciplinar
-              </Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+              <h1 className="mb-4 inline-flex items-center bg-rose-50 text-rose-700 border border-rose-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                Clínica Multidisciplinar em Anápolis
+              </h1>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                 Cuidado <span className="text-rose-600">Completo e Integrado</span>
               </h1>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">

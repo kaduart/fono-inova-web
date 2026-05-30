@@ -505,7 +505,7 @@ const LandingPage = () => {
             </div>
             <div className="lp-contact-item">
               <Phone className="w-5 h-5" />
-              <span>WhatsApp: (62) 99337-7726</span>
+              <span>WhatsApp: (62) 99201-3573</span>
             </div>
             <div className="lp-contact-item">
               <Clock className="w-5 h-5" />

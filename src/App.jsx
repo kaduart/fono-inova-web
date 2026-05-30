@@ -49,6 +49,12 @@ import TerapiaOcupacionalAnapolis from './pages/TerapiaOcupacionalAnapolis';
 import PsicomotricidadeAnapolis from './pages/PsicomotricidadeAnapolis';
 import TesteLinguinhaAnapolis from './pages/TesteLinguinhaAnapolis';
 import FisioterapiaInfantilAnapolis from './pages/FisioterapiaInfantilAnapolis';
+// Long-tail local — intenção emocional + geo
+import FalaTardiaAnapolis from './pages/FalaTardiaAnapolis';
+import AutismoAnapolis from './pages/AutismoAnapolis';
+import SeletividadeAlimentarAnapolis from './pages/SeletividadeAlimentarAnapolis';
+import TdahAnapolis from './pages/TdahAnapolis';
+import DislexiaAnapolis from './pages/DislexiaAnapolis';
 import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologicaAnapolis';
 
 // Hook de tracking
@@ -139,7 +145,13 @@ function App() {
           <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />
           <Route path="/fisioterapia-infantil-anapolis" element={<FisioterapiaInfantilAnapolis />} />
           <Route path="/avaliacao-neuropsicologica-anapolis" element={<AvaliacaoNeuropsicologicaAnapolis />} />
-          
+          {/* Long-tail local — intenção emocional + geo */}
+          <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />
+          <Route path="/autismo-anapolis" element={<AutismoAnapolis />} />
+          <Route path="/seletividade-alimentar-anapolis" element={<SeletividadeAlimentarAnapolis />} />
+          <Route path="/tdah-anapolis" element={<TdahAnapolis />} />
+          <Route path="/dislexia-anapolis" element={<DislexiaAnapolis />} />
+
           {/* Páginas institucionais */}
           <Route path="/privacidade" element={<PrivacidadePage />} />
           

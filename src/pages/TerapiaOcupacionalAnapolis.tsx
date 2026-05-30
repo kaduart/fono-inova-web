@@ -118,7 +118,7 @@ const TerapiaOcupacionalAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Meu Filho é Desastrado? Terapia Ocupacional Anápolis"
+        title="Terapia Ocupacional Infantil em Anápolis | Clínica Fono Inova"
         description="Seu filho tropeça muito ou tem dificuldade de coordenação? Terapia ocupacional infantil em Anápolis. Entenda o que está acontecendo com orientação inicial."
         keywords="meu filho é desastrado, terapia ocupacional anápolis, coordenação motora anápolis, integração sensorial anápolis, to infantil anápolis"
         image="/images/og-image.jpg"
@@ -165,14 +165,14 @@ const TerapiaOcupacionalAnapolis = () => {
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Terapia Ocupacional Infantil em Anápolis
-              </Badge>
-
-              {/* H1 - PAIN DRIVEN */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Seu Filho é <span className="text-emerald-600">Desastrado</span>, Tropeça Muito ou Tem Dificuldade de Coordenação?
               </h1>
+
+              {/* H2 - PAIN DRIVEN */}
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+                Seu Filho é <span className="text-emerald-600">Desastrado</span>, Tropeça Muito ou Tem Dificuldade de Coordenação?
+              </h2>
 
               {/* H2 - REASSURANCE */}
               <h2 className="text-xl md:text-2xl font-medium text-slate-600">
@@ -252,7 +252,7 @@ const TerapiaOcupacionalAnapolis = () => {
             <div className="order-1 lg:order-2 relative w-full">
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
-                  <img 
+                  <img loading="lazy" decoding="async" 
                     src="/images/terapia-ocupacional/to1.jpg" 
                     alt="Terapia Ocupacional em Anápolis - Atendimento especializado"
                     className="w-full h-full object-cover"

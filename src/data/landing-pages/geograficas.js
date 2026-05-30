@@ -99,7 +99,7 @@ export const geograficasLPs = [
       },
       {
         question: "Precisa de encaminhamento para consulta com fonoaudiólogo?",
-        answer: "Não. Você pode agendar diretamente pelo WhatsApp (62) 99337-7726. Não precisa de receita médica."
+        answer: "Não. Você pode agendar diretamente pelo WhatsApp (62) 99201-3573. Não precisa de receita médica."
       },
       {
         question: "Qual o valor da consulta com fonoaudiólogo em Anápolis?",

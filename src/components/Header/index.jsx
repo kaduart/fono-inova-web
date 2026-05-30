@@ -56,12 +56,12 @@ const Header = () => {
 
                     {/* Logo */}
                     <Link to="/" onClick={() => window.scrollTo({ top: 0 })} className="flex-shrink-0 flex items-center">
-                        <img 
+                        <img loading="lazy" decoding="async" 
                             src={logoIconMobile} 
                             alt="Fono Inova" 
                             className="block xl:hidden h-12 w-auto object-contain drop-shadow-md" 
                         />
-                        <img 
+                        <img loading="lazy" decoding="async" 
                             src={logoImgHeader} 
                             alt="Fono Inova" 
                             className="hidden xl:block h-14 lg:h-16 w-auto object-contain drop-shadow-md" 
