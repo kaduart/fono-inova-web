@@ -178,7 +178,7 @@ const TesteLinguinhaAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLinguinha]}
+        schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

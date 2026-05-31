@@ -122,7 +122,7 @@ const PsicologiaInfantilAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaPsicologiaAnapolis, schemaFAQPsicologia]}
+        schema={[schemaBaseLocalBusiness, schemaPsicologiaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

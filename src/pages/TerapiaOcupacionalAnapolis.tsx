@@ -124,7 +124,7 @@ const TerapiaOcupacionalAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaTerapiaOcupacionalAnapolis, schemaFAQTO]}
+        schema={[schemaBaseLocalBusiness, schemaTerapiaOcupacionalAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

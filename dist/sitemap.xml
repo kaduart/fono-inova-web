@@ -1,145 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <!-- ==================== PÁGINAS PRINCIPAIS ==================== -->
-  
-  <!-- Home -->
+
+  <!-- ==================== HOME ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- ==================== LANDING PAGES - ALTA CONVERSÃO ==================== -->
-  
-  <!-- Avaliação Infantil (LP principal de entrada) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/avaliacao-infantil</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  
-  <!-- Fala Tardia (consolidada) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/fala-tardia</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  
-  <!-- Autismo/TEA (consolidada) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/avaliacao-autismo-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  
-  <!-- Freio Lingual -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/freio-lingual</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  
-  <!-- Fonoaudiologia Adulto -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-adulto</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
-  <!-- ==================== PÁGINAS ESPECIALIDADE - SEO LOCAL ANÁPOLIS ==================== -->
-  
-  <!-- Fonoaudiologia Infantil Anápolis -->
+
+  <!-- ==================== GEO PAGES — CONSOLIDADAS (prioridade máxima) ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.92</priority>
+    <priority>0.95</priority>
   </url>
-  
-  <!-- Psicologia Infantil Anápolis -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.92</priority>
+    <priority>0.95</priority>
   </url>
-  
-  <!-- Terapia Ocupacional Anápolis -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
-  
-  <!-- Psicomotricidade Infantil Anápolis -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/psicomotricidade-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
-  
-  <!-- Teste da Linguinha Anápolis -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
-  
-  <!-- Fisioterapia Infantil Anápolis -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  
-  <!-- Avaliação Neuropsicológica Anápolis -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.92</priority>
   </url>
-  
-  <!-- Long-tail local — intenção emocional + geo -->
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/neuropediatra-anapolis</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- ==================== LONG-TAIL LOCAL — ALTA INTENÇÃO ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fala-tardia-anapolis</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
-
   <url>
     <loc>https://www.clinicafonoinova.com.br/autismo-anapolis</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
-
   <url>
     <loc>https://www.clinicafonoinova.com.br/seletividade-alimentar-anapolis</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
-
   <url>
     <loc>https://www.clinicafonoinova.com.br/tdah-anapolis</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.92</priority>
   </url>
-
   <url>
     <loc>https://www.clinicafonoinova.com.br/dislexia-anapolis</loc>
     <lastmod>2026-05-30</lastmod>
@@ -147,258 +91,158 @@
     <priority>0.90</priority>
   </url>
 
-  <!-- ==================== NOVAS LPs - NICHO ESPECÍFICO ==================== -->
-  
-  <!-- Dislexia Infantil (NOVA) -->
+  <!-- ==================== PÁGINAS SEM GEO (mantidas) ==================== -->
   <url>
-    <loc>https://www.clinicafonoinova.com.br/dislexia-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  
-  <!-- TDAH Infantil (NOVA) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/tdah-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  
-  <!-- Síndrome de Down (NOVA) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/sindrome-de-down</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-adulto</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-  </url>
-  
-  <!-- Prematuridade (NOVA) -->
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/prematuridade-desenvolvimento</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
-  <!-- ==================== PÁGINAS DE SERVIÇO (PILLAR) ==================== -->
-  
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/fonoaudiologia</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/psicologia</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/terapia-ocupacional</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/fisioterapia</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/psicopedagogia</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/psicomotricidade</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/musicoterapia</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-  <!-- ==================== PÁGINAS INSTITUCIONAIS ==================== -->
-  
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/sindrome-de-down</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/prematuridade-desenvolvimento</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- ==================== INSTITUCIONAIS ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/nossa-clinica</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/equipe</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/abordagem-multidisciplinar</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
-  
-  <!-- ==================== LPs GEOGRÁFICAS (SEO LOCAL) ==================== -->
-  
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/fonoaudiologo-anapolis</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/psicologo-infantil-anapolis</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/terapia-ocupacional-anapolis</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <!-- ==================== LPs SECUNDÁRIAS (mantidas) ==================== -->
-  
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/troca-letras-crianca</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/gagueira-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/processamento-auditivo</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.clinicafonoinova.com.br/lp/crianca-agressiva</loc>
-    <lastmod>2026-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  
-  <!-- ==================== FAQ E BLOG ==================== -->
-  
   <url>
     <loc>https://www.clinicafonoinova.com.br/faq</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
   </url>
 
   <!-- ==================== ARTIGOS DO BLOG ==================== -->
-  
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/atraso-na-fala-como-estimular-linguagem-crianca</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/entendendo-espectro-auta</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/atividades-desenvolvimento-motor</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/fala-tardia-criancas-quando-preocupar</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/faq-desenvolvimento-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/tdah-infantil-guia-completo-pais</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/seletividade-alimentar-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/processamento-auditivo-central-pac</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/importancia-orientacao-parental</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/importancia-psicomotricidade-desenvolvimento-infantil</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/psicopedagogia-alem-das-dificuldades-escolares</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/musicoterapia-e-tea-conexoes-atraves-do-som</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
-
-  <!-- Artigos Satélites -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/bebe-nao-fala</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/como-estimular-fala-crianca</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/fala-tardia-causas</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>

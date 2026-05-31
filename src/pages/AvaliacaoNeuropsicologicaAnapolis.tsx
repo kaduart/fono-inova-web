@@ -125,7 +125,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis, schemaFAQAvaliacaoNeuropsicologicaAnapolis]}
+        schema={[schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

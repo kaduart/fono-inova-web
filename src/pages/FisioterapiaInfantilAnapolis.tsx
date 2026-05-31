@@ -180,7 +180,7 @@ const FisioterapiaInfantilAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFisioterapiaAnapolis, schemaFAQFisio]}
+        schema={[schemaBaseLocalBusiness, schemaFisioterapiaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

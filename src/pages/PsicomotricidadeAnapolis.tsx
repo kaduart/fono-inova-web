@@ -181,7 +181,7 @@ const PsicomotricidadeAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/psicomotricidade-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaPsicomotricidadeAnapolis, schemaFAQPsicomotricidade]}
+        schema={[schemaBaseLocalBusiness, schemaPsicomotricidadeAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}

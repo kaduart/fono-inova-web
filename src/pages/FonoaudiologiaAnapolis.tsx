@@ -120,7 +120,7 @@ const FonoaudiologiaAnapolis = () => {
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFonoaudiologiaAnapolis, schemaFAQ]}
+        schema={[schemaBaseLocalBusiness, schemaFonoaudiologiaAnapolis]}
       />
 
       {/* Botão de Acessibilidade */}
