@@ -21,6 +21,7 @@ import {
     Users
 } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
@@ -28,6 +29,11 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
 import { schemaFAQFreioLingual, schemaFreioLingual } from '../schemas/clinicaSchemas';
+import { getPageById, getPageWhatsAppLink } from '../data/landingPageRegistry';
+
+const MONEY_PAGE_ID = 'teste_da_linguinha_anapolis';
+const MONEY_PAGE = getPageById(MONEY_PAGE_ID);
+const MONEY_PAGE_LINK = getPageWhatsAppLink(MONEY_PAGE_ID);
 
 const FreioLingualPage = () => {
     useServiceViewTime('Freio Lingual');
@@ -183,9 +189,9 @@ const FreioLingualPage = () => {
     return (
         <Layout>
             <SEO
-                title="Teste da Linguinha em Anápolis | Freio Lingual Jundiaí - Fono Inova"
-                description="Avaliação e tratamento do freio lingual (língua presa) no bairro Jundiaí, Anápolis. Atendimento para bebês com dificuldade na amamentação e crianças."
-                keywords="teste da linguinha anapolis, freio lingual jundiai, frenotomia anapolis, lingua presa bebe anapolis, fonoaudiologia jundiai"
+                title="Freio Lingual: O que é, Sintomas e quando fazer o Teste da Linguinha"
+                description="Entenda o que é freio lingual (língua presa), principais sintomas em bebês e crianças, e quando fazer o Teste da Linguinha em Anápolis na Clínica Fono Inova."
+                keywords="freio lingual, língua presa, sintomas freio lingual, teste da linguinha anapolis, anquiloglossia, bebê não mama"
                 image="/images/servicos/freio-lingual.jpg"
                 url="https://www.clinicafonoinova.com.br/freio-lingual"
                 type="article"
@@ -210,12 +216,19 @@ const FreioLingualPage = () => {
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
                                     onClick={() => { }}
-                                    message="Oi! Vi no site sobre freio lingual.\n\nQueria entender melhor como funciona o teste da linguinha. Pode me explicar?"
-                                    
+                                    message={MONEY_PAGE?.whatsappMessage}
+                                    lpSlug={MONEY_PAGE?.slug}
+                                    lpCategory={MONEY_PAGE?.categoria}
                                     className="bg-pink-600 hover:bg-pink-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
-                                    Agendar Avaliação
+                                    Agendar Teste da Linguinha
                                 </ButtonWhatsApp>
+                                <Link
+                                    to="/teste-da-linguinha-anapolis"
+                                    className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-pink-200 text-pink-700 rounded-xl font-semibold hover:bg-pink-50 transition-all"
+                                >
+                                    Conhecer a avaliação em Anápolis
+                                </Link>
                             </div>
                         </div>
                         <div className="relative">
@@ -302,6 +315,33 @@ const FreioLingualPage = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+
+                    {/* CTA para money page */}
+                    <div className="mt-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-8 md:p-12 text-white text-center shadow-xl">
+                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                            Seu bebê apresenta algum desses sinais?
+                        </h3>
+                        <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+                            O <strong>Teste da Linguinha em Anápolis</strong> identifica precocemente o freio lingual curto e orienta o melhor tratamento para seu filho.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <ButtonWhatsApp
+                                onClick={() => { }}
+                                message={MONEY_PAGE?.whatsappMessage}
+                                lpSlug={MONEY_PAGE?.slug}
+                                lpCategory={MONEY_PAGE?.categoria}
+                                className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-4 rounded-xl font-bold text-lg shadow-lg transition-all inline-flex items-center justify-center gap-2"
+                            >
+                                Agendar Teste da Linguinha
+                            </ButtonWhatsApp>
+                            <Link
+                                to="/teste-da-linguinha-anapolis"
+                                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all"
+                            >
+                                Ver página da avaliação
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -521,11 +561,12 @@ const FreioLingualPage = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <ButtonWhatsApp
                                 onClick={() => { }}
-                                
+                                lpSlug={MONEY_PAGE?.slug}
+                                lpCategory={MONEY_PAGE?.categoria}
                                 className="bg-white hover:bg-gray-100 text-purple-700 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all inline-flex items-center gap-3"
-                                message="Oi! Vi no site sobre freio lingual.\n\nQueria entender melhor como funciona. Pode me explicar?"
+                                message={MONEY_PAGE?.whatsappMessage}
                             >
-                                Agendar Avaliação Agora
+                                Agendar Teste da Linguinha
                             </ButtonWhatsApp>
 
                             <a

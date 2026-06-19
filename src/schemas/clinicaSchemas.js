@@ -823,11 +823,47 @@ export const schemaPsicomotricidadeAnapolis = {
 export const schemaTesteLinguinhaAnapolis = {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Teste da Linguinha em Anápolis | Clínica Fono Inova",
-    "description": "Teste da linguinha (frênulo lingual) em bebês e crianças em Anápolis, bairro Jundiaí. Avaliação e procedimento por fonoaudiólogos especializados.",
+    "name": "Teste da Linguinha em Anápolis GO | Bebê não mama? Avaliação de Freio Lingual",
+    "description": "Teste da linguinha em Anápolis GO para bebês e crianças. Avaliação de freio lingual curto (ankyloglossia) no bairro Jundiaí. Agende pelo WhatsApp na Clínica Fono Inova.",
     "url": "https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis",
-    "about": { "@type": "MedicalProcedure", "name": "Teste da Linguinha", "procedureType": "Diagnostic" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "about": [
+        {
+            "@type": "MedicalProcedure",
+            "name": "Teste da Linguinha",
+            "alternateName": ["Avaliação do Freio Lingual", "Teste do Frênulo Lingual"],
+            "procedureType": "Diagnostic",
+            "bodyLocation": "Freio lingual (língua)",
+            "indication": [
+                "Dificuldade na amamentação",
+                "Dor ao amamentar",
+                "Língua presa",
+                "Anquiloglossia",
+                "Troca de letras na fala",
+                "Bebê não mama direito"
+            ]
+        },
+        {
+            "@type": "MedicalCondition",
+            "name": "Anquiloglossia",
+            "alternateName": ["Freio Lingual Curto", "Língua Presa", "Ankyloglossia"],
+            "possibleTreatment": ["Fonoaudiologia", "Frenectomia", "Terapia Miofuncional Orofacial"]
+        }
+    ],
+    "provider": {
+        "@type": "MedicalBusiness",
+        "name": "Clínica Fono Inova",
+        "alternateName": "Fono Inova Anápolis",
+        "address": ENDERECO_COMPLETO,
+        "telephone": CONTATO.telephone,
+        "url": CONTATO.url,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5"
+        }
+    },
+    "image": "https://www.clinicafonoinova.com.br/images/freio-lingual/mae-bb.jpeg"
 };
 
 export const schemaFAQTesteLinguinha = {
@@ -836,8 +872,38 @@ export const schemaFAQTesteLinguinha = {
     "mainEntity": [
         {
             "@type": "Question",
-            "name": "O que é o teste da linguinha?",
-            "acceptedAnswer": { "@type": "Answer", "text": "O teste da linguinha avalia o frênulo lingual do bebê para identificar se há restrição (anquiloglossia) que possa prejudicar a amamentação, fala e deglutição. É realizado por fonoaudióloga especializada." }
+            "name": "O teste da linguinha é obrigatório para todo bebê?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Não é obrigatório por lei, mas é altamente recomendado nos primeiros dias de vida quando há dificuldade para mamar, dor ao amamentar ou suspeita de língua presa. O diagnóstico precoce evita complicações." }
+        },
+        {
+            "@type": "Question",
+            "name": "Com quantos dias de vida pode fazer o teste da linguinha?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O teste da linguinha pode ser feito nas primeiras 24 a 48 horas de vida. Quanto mais cedo for identificado o freio lingual curto, maiores as chances de resolver a amamentação sem grandes intervenções." }
+        },
+        {
+            "@type": "Question",
+            "name": "O teste da linguinha dói no bebê?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Não. A avaliação fonoaudiológica é indolor e não invasiva. O profissional observa a mobilidade da língua e a estrutura do freio sem causar desconforto ao recém-nascido, bebê ou criança." }
+        },
+        {
+            "@type": "Question",
+            "name": "Todo bebê com freio lingual precisa de cirurgia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Nem sempre. Muitos casos melhoram com fonoaudiologia miofuncional. A frenectomia é indicada apenas quando o freio curto causa impacto real na amamentação, alimentação ou fala." }
+        },
+        {
+            "@type": "Question",
+            "name": "O freio lingual pode voltar depois da cirurgia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pode haver re-adesão se não houver reabilitação fonoaudiológica adequada após a frenectomia. Por isso o acompanhamento pré e pós-operatório é fundamental para o resultado definitivo." }
+        },
+        {
+            "@type": "Question",
+            "name": "Quanto custa o teste da linguinha em Anápolis?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O valor do Teste da Linguinha varia conforme a complexidade da avaliação. Na Clínica Fono Inova você pode agendar pelo WhatsApp e receber informações sobre valores e planos de acompanhamento." }
+        },
+        {
+            "@type": "Question",
+            "name": "Qual especialista faz o teste da linguinha?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O teste da linguinha é realizado por fonoaudiólogos especializados em motricidade oral, amamentação e desenvolvimento infantil. Na Fono Inova, a avaliação é feita por profissionais com experiência em bebês." }
         },
         {
             "@type": "Question",

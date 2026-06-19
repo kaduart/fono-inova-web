@@ -40,9 +40,11 @@ import { schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLi
 import Breadcrumb from '../components/Breadcrumb';
 import { testeLinguinhaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
+import { getPageWhatsAppLink, getPageById } from '../data/landingPageRegistry.js';
 
-const WHATSAPP_URL =
-  "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar o teste da linguinha.";
+const PAGE_ID = 'teste_da_linguinha_anapolis';
+const PAGE_DATA = getPageById(PAGE_ID);
+const WHATSAPP_LINK = getPageWhatsAppLink(PAGE_ID);
 
 // Dados das dores/situações para identificação
 const painPoints = [
@@ -172,13 +174,13 @@ const TesteLinguinhaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Teste da Linguinha em Anápolis | Diagnóstico de Freio Lingual | Clínica Fono Inova"
-        description="Teste da linguinha em Anápolis. Diagnóstico precoce de freio lingual (ankyloglossia) para bebês e crianças. Avaliação especializada de sucção, fala e mobilidade. Agende na Clínica Fono Inova."
-        keywords="teste da linguinha anápolis, freio lingual anápolis, frenectomia anápolis, ankyloglossia anápolis, dificuldade para mamar anápolis, avaliação freio lingual anápolis"
-        image="/images/og-image.jpg"
+        title="Teste da Linguinha em Anápolis GO | Bebê não mama? Avaliação de Freio Lingual"
+        description="Teste da linguinha em Anápolis GO para bebês e crianças. Diagnóstico precoce de freio lingual curto (ankyloglossia), dificuldade para mamar e língua presa. Agende pelo WhatsApp na Clínica Fono Inova."
+        keywords="teste da linguinha anápolis, freio lingual anápolis, bebê não mama, língua presa bebê, frenectomia anápolis, ankyloglossia anápolis, dificuldade para mamar anápolis, avaliação freio lingual anápolis, fono para bebê anápolis, teste da linguinha preço"
+        image="/images/freio-lingual/mae-bb.jpeg"
         url="https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis]}
+        schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLinguinha]}
       />
 
       {/* Botão de Acessibilidade */}
@@ -229,25 +231,25 @@ const TesteLinguinhaAnapolis = () => {
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Teste da Linguinha em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis</span>
+                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis GO</span>
               </h1>
 
               {/* H2 Especialidade */}
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
-                Diagnóstico precoce de frenectomia
+                Bebê não mama direito? Pode ser freio lingual curto
               </h2>
 
               {/* H2 Dor */}
               <p className="text-xl md:text-2xl text-slate-700 leading-relaxed max-w-xl font-medium">
-                Seu filho apresenta dificuldade para sugar, mamar ou falar?
+                Seu bebê tem dificuldade para sugar, faz estalo na mamada ou você sente dor ao amamentar?
               </p>
 
               {/* Parágrafo */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
                 O <strong className="text-slate-900">Teste da Linguinha</strong> na{" "}
                 <strong className="text-slate-900">Clínica Fono Inova</strong> em Anápolis identifica precocemente
-                problemas no freio lingual (ankyloglossia) que podem prejudicar a amamentação, alimentação e fala.
-                Diagnóstico rápido e orientação especializada para bebês e crianças.
+                o freio lingual curto (ankyloglossia / língua presa) que pode prejudicar a amamentação, alimentação e fala.
+                Avaliação rápida, indolor e especializada para bebês e crianças em Anápolis GO.
               </p>
 
               {/* Benefícios rápidos */}
@@ -273,9 +275,10 @@ const TesteLinguinhaAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Teste Linguinha");
                   }}
-                  
+                  lpSlug={PAGE_DATA?.slug}
+                  lpCategory={PAGE_DATA?.categoria}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
-                  message="Oi! Vi o site sobre o Teste da Linguinha em Anápolis 💚\nQuero agendar uma avaliação para meu filho."
+                  message={PAGE_DATA?.whatsappMessage}
                 >
                   Agendar Teste da Linguinha
                 </ButtonWhatsApp>
@@ -386,12 +389,82 @@ const TesteLinguinhaAnapolis = () => {
             </p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
-              
+              lpSlug={PAGE_DATA?.slug}
+              lpCategory={PAGE_DATA?.categoria}
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
-              message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : "Oi! Vi o site sobre Teste da Linguinha 💚\nQuero saber se meu filho precisa fazer o teste."}
+              message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : PAGE_DATA?.whatsappMessage}
             >
               Falar com especialista no WhatsApp
             </ButtonWhatsApp>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SINTOMAS DO FREIO LINGUAL (SEO SNIPPET) ==================== */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-red-50 text-red-600 border-red-200 px-4 py-1.5 text-sm font-semibold">
+                Sinais de Alerta
+              </Badge>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
+                Será que seu bebê tem{" "}
+                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">língua presa?</span>
+              </h2>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                O freio lingual curto (ankyloglossia) pode passar despercebido. Veja os principais sinais que indicam a necessidade do Teste da Linguinha.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Bebê não consegue mamar direito",
+                  description: "Pega fraca, solta o peito com frequência ou faz mamadas muito longas e cansa."
+                },
+                {
+                  title: "Estalo ou clique durante a mamada",
+                  description: "Barulho de estalo ao sugar pode indicar que a língua não cria vácuo adequado."
+                },
+                {
+                  title: "Dor ao amamentar",
+                  description: "Mamilos doloridos, feridos ou sensação de sucção incorreta são sinais comuns."
+                },
+                {
+                  title: "Ganho de peso abaixo do esperado",
+                  description: "Bebê que não ingere leite suficiente pode ter crescimento lento."
+                },
+                {
+                  title: "Língua em formato de coração",
+                  description: "Quando a língua sai para fora, a ponta pode ficar com formato de coração."
+                },
+                {
+                  title: "Dificuldade para falar depois dos 2 anos",
+                  description: "Troca de R por L, fala enrolada ou língua que não sobe no céu da boca."
+                }
+              ].map((item, index) => (
+                <div key={index} className="flex items-start gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                  <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-1">{item.title}</h3>
+                    <p className="text-slate-600">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <ButtonWhatsApp
+                onClick={() => trackButtonClick("WhatsApp - Sintomas")}
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+                message="Oi! Vi o site sobre Teste da Linguinha 💚\nMeu bebê tem alguns desses sinais. Pode me orientar?"
+              >
+                Falar com especialista sobre os sinais
+              </ButtonWhatsApp>
+            </div>
           </div>
         </div>
       </section>
@@ -472,6 +545,86 @@ const TesteLinguinhaAnapolis = () => {
         </div>
       </section>
 
+      {/* ==================== AUTORIDADE CLÍNICA (E-E-A-T) ==================== */}
+      <section className="py-24 bg-gradient-to-br from-teal-50/50 to-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+                Avaliação Especializada
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
+                Por que fazer o Teste da Linguinha na Clínica Fono Inova?
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Award className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Profissionais especializados</h3>
+                <p className="text-slate-600">
+                  O Teste da Linguinha é realizado por fonoaudiólogos com experiência em motricidade oral, amamentação e desenvolvimento infantil.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Brain className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Protocolo clínico reconhecido</h3>
+                <p className="text-slate-600">
+                  Avaliação completa da mobilidade lingual, função na sucção e impacto na fala, com critérios técnicos para indicar o melhor tratamento.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <Baby className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Atendimento para recém-nascidos</h3>
+                <p className="text-slate-600">
+                  Avaliamos bebês desde os primeiros dias de vida, com ambiente acolhedor e técnicas que não causam desconforto.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-slate-100">
+                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                  <MapPin className="w-7 h-7 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">Estrutura em Anápolis GO</h3>
+                <p className="text-slate-600">
+                  Clínica localizada no bairro Jundiaí, em Anápolis/GO, com fácil acesso para famílias de Anápolis e região.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SEO LOCAL ==================== */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold font-poppins text-slate-900 mb-4">
+              Teste da Linguinha em Anápolis e região
+            </h2>
+            <p className="text-lg text-slate-600 mb-6">
+              Atendemos famílias de <strong>Anápolis</strong>, <strong>Jundiaí</strong>, <strong>Goiânia</strong>, <strong>Inhumas</strong>, <strong>Silvânia</strong> e cidades próximas. 
+              Agende o Teste da Linguinha para seu bebê e receba orientação especializada sobre freio lingual curto.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 text-sm">
+              {["teste da linguinha Anápolis GO", "freio lingual Anápolis", "língua presa bebê Anápolis", "fono para bebê Anápolis", "avaliação bebê Jundiaí"].map((tag, index) => (
+                <span key={index} className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
       <SEOStructuredContent 
         seoData={testeLinguinhaSEO} 
@@ -494,13 +647,31 @@ const TesteLinguinhaAnapolis = () => {
                 to="/fonoaudiologia-anapolis"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
               >
-                Fonoaudiologia em Anápolis
+                Fonoaudiologia Infantil em Anápolis
+              </Link>
+              <Link
+                to="/fala-tardia-anapolis"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
+              >
+                Atraso de Fala em Anápolis
               </Link>
               <Link
                 to="/psicomotricidade-anapolis"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
               >
                 Psicomotricidade em Anápolis
+              </Link>
+              <Link
+                to="/terapia-ocupacional-anapolis"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
+              >
+                Terapia Ocupacional em Anápolis
+              </Link>
+              <Link
+                to="/avaliacao-neuropsicologica-anapolis"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-primary/20 rounded-xl font-semibold text-primary hover:bg-primary hover:text-white transition-all"
+              >
+                Avaliação Neuropsicológica em Anápolis
               </Link>
             </div>
           </div>
@@ -522,9 +693,10 @@ const TesteLinguinhaAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                
+                lpSlug={PAGE_DATA?.slug}
+                lpCategory={PAGE_DATA?.categoria}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
-                message="Oi! Vi o site sobre Teste da Linguinha 💚\nQuero agendar uma avaliação para meu filho."
+                message={PAGE_DATA?.whatsappMessage}
               >
                 Agendar Teste pelo WhatsApp
               </ButtonWhatsApp>
