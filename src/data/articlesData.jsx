@@ -1238,6 +1238,135 @@ export const articlesData = [
         </ul>
       </>
     )
+  },
+  // ============================================================
+  // ARTIGO PILLAR - CLUSTER TESTE DA LINGUINHA / FREIO LINGUAL
+  // ============================================================
+  {
+    id: 18,
+    slug: "teste-da-linguinha-guia-completo",
+    title: "Teste da Linguinha: Guia Completo para Pais [2026]",
+    excerpt: "Tudo sobre teste da linguinha, freio lingual, língua presa, frenulotomia e quando procurar ajuda em Anápolis.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Avaliação de teste da linguinha em bebê na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é teste da linguinha?",
+        answer: "É uma avaliação clínica que investiga a mobilidade da língua e a presença de freio lingual curto (língua presa) em bebês e crianças."
+      },
+      {
+        question: "Quando fazer o teste da linguinha?",
+        answer: "Idealmente nos primeiros dias de vida se houver dificuldade na amamentação, ou sempre que os pais notarem sinais de língua presa."
+      },
+      {
+        question: "Quem faz o teste da linguinha?",
+        answer: "Fonoaudiólogos, pediatras, cirurgiões-dentistas ou otorrinos com experiência em motricidade orofacial e amamentação."
+      },
+      {
+        question: "Teste da linguinha dói?",
+        answer: "Não. É um exame clínico simples, indolor e rápido, que observa a mobilidade da língua e o formato do freio."
+      },
+      {
+        question: "Língua presa precisa de cirurgia?",
+        answer: "Nem sempre. Casos leves podem ser acompanhados. Casos graves ou com impacto funcional podem indicar frenulotomia."
+      },
+      {
+        question: "Onde fazer teste da linguinha em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí, com avaliação especializada de fonoaudiólogos experientes."
+      },
+      {
+        question: "Quanto custa o teste da linguinha?",
+        answer: "O valor varia conforme a clínica. Entre em contato com a Clínica Fono Inova para saber o investimento."
+      },
+      {
+        question: "Frenulotomia é segura?",
+        answer: "Sim, quando bem indicada e realizada por profissional experiente. O procedimento é rápido e a recuperação geralmente é tranquila."
+      },
+      {
+        question: "Precisa fazer fonoaudiologia após frenulotomia?",
+        answer: "Sim. A fonoaudiologia é essencial para reeducar os movimentos da língua, melhorar a sucção e prevenir recidiva."
+      },
+      {
+        question: "Como sei se meu bebê tem língua presa?",
+        answer: "Sinais incluem dificuldade para mamar, mamadas longas, bico de peito dolorido, clique ao sugar e ponta da língua em formato de coração."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Se você chegou aqui digitando <strong>"teste da linguinha"</strong>, <strong>"língua presa"</strong> ou <strong>"freio lingual"</strong>, 
+          este artigo é o ponto de partida. Aqui você encontra tudo sobre o tema e links para conteúdos específicos que respondem cada dúvida.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Teste da Linguinha"</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-e-freio-lingual" className="text-blue-600 hover:underline">→ O que é freio lingual?</a></li>
+            <li><a href="/artigos/sintomas-lingua-presca-bebe" className="text-blue-600 hover:underline">→ Sintomas de língua presa no bebê</a></li>
+            <li><a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">→ Como funciona o teste da linguinha</a></li>
+            <li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia</a></li>
+            <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
+            <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
+            <li><a href="/artigos/teste-da-linguinha-onde-fazer" className="text-blue-600 hover:underline">→ Onde fazer o teste da linguinha</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende o teste da linguinha em Anápolis</a></li>
+          </ul>
+        </div>
+
+        <h2>O que é o teste da linguinha?</h2>
+        <p>
+          O teste da linguinha é uma avaliação clínica realizada por profissionais especializados para investigar a presença de <strong>freio lingual curto</strong>, 
+          também conhecido como <strong>língua presa</strong> ou <strong>anquiloglossia</strong>. A avaliação observa a mobilidade da língua, o formato do freio 
+          e o impacto na amamentação, alimentação e fala.
+        </p>
+
+        <h2>Principais sinais de alerta</h2>
+        <ul>
+          <li>Dificuldade para prender no seio ou na mamadeira</li>
+          <li>Mamadas longas, cansativas e frequentes</li>
+          <li>Som de clique ao sugar</li>
+          <li>Bico de peito dolorido, rachaduras ou mastite na mãe</li>
+          <li>Ponta da língua em formato de coração ao levantar</li>
+          <li>Língua que não toca o céu da boca</li>
+          <li>Dificuldade para pronunciar alguns sons</li>
+        </ul>
+
+        <h2>Tratamento: quando é necessário?</h2>
+        <p>
+          O tratamento depende do grau do freio lingual e dos sintomas. Casos leves podem ser apenas acompanhados com exercícios. 
+          Casos com impacto funcional podem indicar a <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a>, 
+          seguida de <a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">acompanhamento fonoaudiológico</a>.
+        </p>
+
+        <h2>Por que fazer o teste na Clínica Fono Inova?</h2>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, o teste da linguinha é realizado por fonoaudiólogas especializadas em motricidade orofacial e amamentação. 
+          Oferecemos avaliação completa, orientação aos pais e encaminhamento multidisciplinar quando necessário.
+        </p>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
+          <h3 className="font-bold text-lg mb-2">💚 Quer agendar o teste da linguinha?</h3>
+          <p className="mb-4">
+            Entre em contato com a Clínica Fono Inova e agende uma avaliação especializada para o seu bebê.
+          </p>
+          <a 
+            href="https://wa.me/5562992013573?text=Oi!%20Vi%20o%20artigo%20sobre%20teste%20da%20linguinha%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." 
+            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Agendar pelo WhatsApp
+          </a>
+        </div>
+      </>
+    )
   }
 ];
 

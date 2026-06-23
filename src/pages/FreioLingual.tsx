@@ -526,6 +526,44 @@ const FreioLingualPage = () => {
                 </div>
             </section>
 
+            {/* Conteúdos Relacionados */}
+            <section className="py-16 bg-gradient-to-b from-purple-50 to-white">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
+                            Quer se aprofundar no tema?
+                        </h2>
+                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-purple-100">
+                            <p className="text-gray-700 mb-4">
+                                Preparamos um guia completo com tudo o que os pais precisam saber sobre teste da linguinha, freio lingual e frenulotomia.
+                            </p>
+                            <ul className="space-y-3">
+                                <li>
+                                    <a href="/artigos/teste-da-linguinha-guia-completo" className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium">
+                                        <span>→</span> Teste da Linguinha: Guia Completo para Pais
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/artigos/sintomas-lingua-presca-bebe" className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium">
+                                        <span>→</span> Sintomas de Língua Presa no Bebê
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/artigos/teste-da-linguinha-como-funciona" className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium">
+                                        <span>→</span> Como Funciona o Teste da Linguinha
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/teste-da-linguinha-anapolis" className="flex items-center gap-2 text-purple-700 hover:text-purple-900 font-medium">
+                                        <span>→</span> Agendar Teste da Linguinha em Anápolis
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Final */}
             <section className="relative isolate z-10 py-20 bg-gradient-to-br from-purple-600 via-pink-700 to-red-800 text-white overflow-hidden">
                 <div className="container mx-auto px-4">

@@ -5825,6 +5825,908 @@ export const satelliteArticles = [
         </div>
       </>
     )
+  },
+  // ============================================================
+  // CLUSTER TESTE DA LINGUINHA / FREIO LINGUAL
+  // ============================================================
+  {
+    id: 167,
+    slug: "o-que-e-freio-lingual",
+    title: "O que é Freio Lingual? Entenda a Língua Presa do Bebê",
+    excerpt: "Saiba o que é freio lingual curto (anquiloglossia), como identificar nos bebês e quando o teste da linguinha é indicado.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Avaliação de freio lingual em bebê na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é freio lingual curto?",
+        answer: "É quando o tecido que prende a língua ao assoalho da boca (freno) é mais curto ou espesso do que o normal, limitando os movimentos da língua."
+      },
+      {
+        question: "Freio lingual é a mesma coisa que língua presa?",
+        answer: "Sim. Língua presa é o nome popular para a anquiloglossia ou freio lingual curto."
+      },
+      {
+        question: "Freio lingual tem cura?",
+        answer: "Sim. Os casos mais graves podem ser corrigidos com um procedimento chamado frenulotomia ou frenectomia, seguido de acompanhamento fonoaudiológico."
+      },
+      {
+        question: "Como saber se o bebê tem freio lingual curto?",
+        answer: "Sinais incluem dificuldade para prender no seio, bico de peito dolorido na mãe, clique durante a mamada, pouca mobilidade da língua e formato de coração na ponta da língua."
+      },
+      {
+        question: "Todo freio lingual precisa de cirurgia?",
+        answer: "Não. Casos leves e sem impacto funcional podem ser apenas acompanhados. A indicação cirúrgica depende dos sintomas e da avaliação especializada."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          O <strong>freio lingual</strong> é um tecido fino localizado na parte inferior da língua, responsável por prender a língua ao assoalho da boca. 
+          Quando esse freio é curto ou espesso demais, a língua fica com a mobilidade reduzida — situação popularmente conhecida como <strong>língua presa</strong>.
+        </p>
+
+        <h2>O que é anquiloglossia?</h2>
+        <p>
+          Anquiloglossia é o termo médico para o freio lingual curto. Pode ser leve, moderada ou grave e afeta principalmente bebês na amamentação, 
+          crianças na fala e até adultos na respiração e mastigação.
+        </p>
+
+        <h2>Como identificar o freio lingual curto?</h2>
+        <ul>
+          <li><strong>Em bebês:</strong> dificuldade para sugar, mamadas longas e cansativas, ganho de peso lento, bico de peito dolorido</li>
+          <li><strong>Na língua:</strong> ponta em formato de coração ao tentar levantar, não toca o céu da boca, mobilidade lateral reduzida</li>
+          <li><strong>Na fala:</strong> dificuldade para pronunciar sons como /r/, /l/, /t/, /d/</li>
+          <li><strong>Na alimentação:</strong> problemas para lamber, mastigar ou engolir sólidos</li>
+        </ul>
+
+        <h2>Quando procurar ajuda?</h2>
+        <p>
+          Se você suspeita que seu bebê ou criança tem freio lingual curto, o ideal é procurar um fonoaudiólogo ou profissional especializado em motricidade orofacial 
+          para realizar o <a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">teste da linguinha</a> e orientar o melhor tratamento.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+            <li><a href="/artigos/sintomas-lingua-presca-bebe" className="text-blue-600 hover:underline">→ Sintomas de língua presa no bebê</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende o teste da linguinha em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 168,
+    slug: "sintomas-lingua-presca-bebe",
+    title: "Sintomas de Língua Presa no Bebê: Como Identificar",
+    excerpt: "Descubra os principais sinais de freio lingual curto em bebês, desde dificuldades na amamentação até o formato da língua.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Bebê sendo avaliado para língua presa na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Como é a língua de um bebê com língua presa?",
+        answer: "A ponta da língua pode ficar em formato de coração ao tentar levantar, ou a língua não consegue sair além dos lábios ou tocar o céu da boca."
+      },
+      {
+        question: "Língua presa causa cólica no bebê?",
+        answer: "Bebês com freio lingual curto podem engolir mais ar durante as mamadas, o que aumenta os gases e o desconforto abdominal."
+      },
+      {
+        question: "Bebê com língua presa consegue mamar?",
+        answer: "Consegue, mas muitas vezes com dificuldade. A sucção pode ser fraca, a mamada demorada e o bebê pode não se sentir satisfeito."
+      },
+      {
+        question: "A mãe sente dor quando o bebê tem língua presa?",
+        answer: "Sim. O bico de peito dolorido, rachaduras e mastite são queixas comuns em mães de bebês com freio lingual curto."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Identificar a <strong>língua presa</strong> logo nos primeiros dias de vida pode fazer grande diferença na amamentação e no desenvolvimento da fala. 
+          Confira os principais sintomas que os pais devem observar.
+        </p>
+
+        <h2>Sinais durante a amamentação</h2>
+        <ul>
+          <li>Bebê não consegue prender bem no seio</li>
+          <li>Mamadas muito longas ou muito frequentes</li>
+          <li>Som de clique ao sugar</li>
+          <li>Bico de peito dolorido, rachaduras ou sangramento</li>
+          <li>Seios sempre cheios após a mamada</li>
+          <li>Ganho de peso abaixo do esperado</li>
+        </ul>
+
+        <h2>Sinais na língua e na boca</h2>
+        <ul>
+          <li>Ponta da língua em formato de coração ao levantar</li>
+          <li>Língua não passa dos lábios inferiores</li>
+          <li>Dificuldade para lamber os lábios</li>
+          <li>Boca sempre entreaberta em repouso</li>
+        </ul>
+
+        <h2>Sinais comportamentais</h2>
+        <ul>
+          <li>Bebê irritado durante ou após a mamada</li>
+          <li>Gases e cólicas frequentes</li>
+          <li>Sono curto e agitado</li>
+          <li>Salivação excessiva</li>
+        </ul>
+
+        <p>
+          Se você notar alguns desses sinais, procure um fonoaudiólogo para fazer o <a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">teste da linguinha</a> 
+          e avaliar a necessidade de intervenção.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+            <li><a href="/artigos/o-que-e-freio-lingual" className="text-blue-600 hover:underline">→ O que é freio lingual?</a></li>
+            <li><a href="/artigos/lingua-presca-dificuldade-para-mamar" className="text-blue-600 hover:underline">→ Língua presa e dificuldade para mamar</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Teste da linguinha em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 169,
+    slug: "teste-da-linguinha-como-funciona",
+    title: "Teste da Linguinha: Como Funciona a Avaliação",
+    excerpt: "Entenda como é feito o teste da linguinha, quem pode realizar, quanto tempo dura e quando ele é indicado para bebês e crianças.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Fonoaudióloga realizando teste da linguinha em bebê na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Quem faz o teste da linguinha?",
+        answer: "Pode ser realizado por fonoaudiólogos, pediatras, otorrinos ou cirurgiões-dentistas com experiência em motricidade orofacial e amamentação."
+      },
+      {
+        question: "Como é feito o teste da linguinha?",
+        answer: "O profissional observa a mobilidade da língua, o formato do freio lingual, a sucção durante a mamada e os impactos na alimentação e fala."
+      },
+      {
+        question: "Teste da linguinha dói no bebê?",
+        answer: "Não. O teste da linguinha é uma avaliação clínica simples, indolor e rápida."
+      },
+      {
+        question: "A partir de qual idade faz o teste da linguinha?",
+        answer: "Pode ser feito desde os primeiros dias de vida, especialmente quando há dificuldades na amamentação ou sinais visíveis de freio lingual curto."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          O <strong>teste da linguinha</strong> é uma avaliação clínica que investiga a mobilidade da língua e a presença de <strong>freio lingual curto</strong>. 
+          Ele pode ser feito em bebês, crianças e até adultos, mas é mais comum nos primeiros meses de vida.
+        </p>
+
+        <h2>Etapas da avaliação</h2>
+        <ul>
+          <li><strong>Anamnese:</strong> entrevista com os pais sobre amamentação, alimentação, sono e desenvolvimento</li>
+          <li><strong>Observação da língua:</strong> mobilidade para cima, para baixo, para os lados e para fora da boca</li>
+          <li><strong>Avaliação do freio:</strong> espessura, inserção e impacto na mobilidade</li>
+          <li><strong>Observação funcional:</strong> sucção, deglutição, mastigação e fala (conforme a idade)</li>
+        </ul>
+
+        <h2>Classificação do freio lingual</h2>
+        <p>
+          O profissional pode classificar o freio lingual em graus (leve, moderado ou grave) de acordo com a limitação dos movimentos e os sintomas apresentados. 
+          Essa classificação ajuda a definir se há indicação de acompanhamento fonoaudiológico, cirúrgico ou ambos.
+        </p>
+
+        <h2>O que acontece depois do teste?</h2>
+        <p>
+          Após o teste, o profissional explica o resultado e indica o melhor caminho. Em alguns casos, a <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a> 
+          é indicada, seguida de fonoaudiologia para reabilitação.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Guia completo do teste da linguinha</a></li>
+            <li><a href="/artigos/teste-da-linguinha-onde-fazer" className="text-blue-600 hover:underline">→ Onde fazer o teste da linguinha</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 170,
+    slug: "quando-fazer-frenulotomia",
+    title: "Quando Fazer Frenulotomia no Bebê? Indicações e Avaliação",
+    excerpt: "Saiba em quais casos a frenulotomia é indicada, qual a idade ideal e por que a avaliação multidisciplinar é importante.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Avaliação pré-frenulotomia em bebê na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "A que idade faz frenulotomia no bebê?",
+        answer: "A idade ideal varia, mas muitos casos são tratados entre o nascimento e os 6 meses, especialmente quando há dificuldade na amamentação."
+      },
+      {
+        question: "Quem indica a frenulotomia?",
+        answer: "A indicação deve ser feita por uma equipe multidisciplinar, geralmente fonoaudiólogo, pediatra e, em alguns casos, cirurgião-dentista ou otorrino."
+      },
+      {
+        question: "Frenulotomia resolve a amamentação?",
+        answer: "Muitas vezes sim, mas o resultado é melhor quando acompanhada de orientação de amamentação e fonoaudiologia motora."
+      },
+      {
+        question: "Freio lingual leve precisa de cirurgia?",
+        answer: "Nem sempre. Se não houver impacto funcional, o acompanhamento pode ser suficiente."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>frenulotomia</strong> é o procedimento cirúrgico que corta o freio lingual curto, liberando a língua para se movimentar melhor. 
+          Mas nem todo bebê com freio lingual precisa passar pela cirurgia.
+        </p>
+
+        <h2>Quando a frenulotomia é indicada?</h2>
+        <ul>
+          <li>Dificuldade significativa na amamentação com impacto no ganho de peso</li>
+          <li>Bico de peito dolorido persistente e rachaduras na mãe</li>
+          <li>Freio lingual grave com limitação importante da mobilidade</li>
+          <li>Impacto na fala, alimentação ou respiração</li>
+          <li>Falha de tratamentos conservadores</li>
+        </ul>
+
+        <h2>Qual a idade ideal?</h2>
+        <p>
+          Quanto mais precoce for a avaliação, melhor. Bebês muito pequenos têm menos inervação no freio, o que pode tornar o procedimento mais simples 
+          e a recuperação mais rápida. Cada caso deve ser avaliado individualmente.
+        </p>
+
+        <h2>Avaliação antes da cirurgia</h2>
+        <p>
+          Antes da frenulotomia, é importante fazer uma <a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">avaliação completa</a> 
+          para entender se o problema é realmente anatômico ou se há outros fatores envolvidos, como posicionamento inadequado na amamentação.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
+            <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados após a frenulotomia</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Avaliação em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 171,
+    slug: "frenulotomia-em-bebe-e-segura",
+    title: "Frenulotomia em Bebê é Segura? Riscos e Benefícios",
+    excerpt: "Entenda os riscos, benefícios e cuidados da frenulotomia em bebês e quando o procedimento realmente faz a diferença.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Mãe com bebê após avaliação de freio lingual na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Frenulotomia dói no bebê?",
+        answer: "O desconforto é geralmente leve e passageiro. Em bebês muito pequenos, o procedimento é rápido e a recuperação é rápida."
+      },
+      {
+        question: "Quanto tempo demora a recuperação da frenulotomia?",
+        answer: "A cicatrização inicial ocorre em poucos dias, mas os exercícios e o acompanhamento fonoaudiológico devem continuar por semanas."
+      },
+      {
+        question: "Frenulotomia tem riscos?",
+        answer: "Como todo procedimento, tem riscos mínimos como sangramento, infecção ou recidiva, mas quando bem indicada e realizada por profissional experiente, é segura."
+      },
+      {
+        question: "O bebê pode mamar depois da frenulotomia?",
+        answer: "Sim. Na maioria dos casos, a amamentação é incentivada logo após o procedimento para ajudar na cicatrização e na adaptação."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>frenulotomia</strong> é um procedimento relativamente simples, mas que gera muitas dúvidas nos pais. 
+          Aqui explicamos de forma clara os riscos, benefícios e quando ela é realmente necessária.
+        </p>
+
+        <h2>Como é o procedimento?</h2>
+        <p>
+          A frenulotomia consiste em cortar o freio lingual que está limitando os movimentos da língua. Em bebês pequenos, 
+          pode ser feita com tesoura especial ou laser, de forma rápida e com pouco sangramento.
+        </p>
+
+        <h2>Principais benefícios</h2>
+        <ul>
+          <li>Melhora na sucção e na amamentação</li>
+          <li>Redução da dor nos seios da mãe</li>
+          <li>Melhora na mobilidade da língua</li>
+          <li>Prevenção de problemas futuros de fala e alimentação</li>
+          <li>Maior conforto do bebê durante as mamadas</li>
+        </ul>
+
+        <h2>Cuidados importantes</h2>
+        <ul>
+          <li>Exercícios de mobilidade da língua conforme orientação</li>
+          <li>Higiene bucal adequada</li>
+          <li>Acompanhamento fonoaudiológico pós-procedimento</li>
+          <li>Retorno ao profissional para avaliar a cicatrização</li>
+        </ul>
+
+        <p>
+          Saiba mais sobre os <a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">cuidados após a frenulotomia</a> 
+          e como a fonoaudiologia ajuda na recuperação.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia?</a></li>
+            <li><a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">→ Como funciona o teste da linguinha</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 172,
+    slug: "lingua-presca-dificuldade-para-mamar",
+    title: "Língua Presa e Dificuldade para Mamar: O Que Fazer",
+    excerpt: "Entenda como o freio lingual curto pode dificultar a amamentação e quais são as soluções para mãe e bebê.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Mãe amamentando bebê com dificuldade de sucção na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Língua presa interfere na amamentação?",
+        answer: "Sim. O bebê pode ter dificuldade para prender o seio, sugar de forma eficiente e esvaziar a mama."
+      },
+      {
+        question: "Como melhorar a amamentação com língua presa?",
+        answer: "Orientação de amamentação, ajuste de posicionamento, exercícios orofaciais e, em alguns casos, frenulotomia podem ajudar."
+      },
+      {
+        question: "Bebê com língua presa ganha peso?",
+        answer: "Pode ter ganho de peso mais lento se não consegue ingerir leite suficiente. O acompanhamento pediátrico é importante."
+      },
+      {
+        question: "Mamadeira ajuda bebê com língua presa?",
+        answer: "Em alguns casos sim, mas é importante avaliar com profissional. A mudança de bico e posição podem fazer diferença."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>amamentação</strong> é um dos primeiros desafios quando o bebê nasce com <strong>freio lingual curto</strong>. 
+          A língua precisa se projetar para fora e formar uma bolha de vácuo em torno do seio — algo difícil quando a mobilidade está limitada.
+        </p>
+
+        <h2>Por que a língua presa dificulta a mamada?</h2>
+        <ul>
+          <li>A língua não consegue levantar e massagear o seio corretamente</li>
+          <li>A sucção fica fraca e cansativa para o bebê</li>
+          <li>O bebê pode soltar o seio com frequência</li>
+          <li>Engole mais ar, causando gases e cólicas</li>
+        </ul>
+
+        <h2>Sinais na mãe</h2>
+        <ul>
+          <li>Bico de peito dolorido ou machucado</li>
+          <li>Seios endurecidos ou mastite</li>
+          <li>Sensação de que o bebê não esvazia a mama</li>
+          <li>Frustração e desejo de desmame precoce</li>
+        </ul>
+
+        <h2>O que fazer?</h2>
+        <p>
+          Procure um fonoaudiólogo especializado para fazer o <a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">teste da linguinha</a> 
+          e avaliar se há indicação de <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a> 
+          ou se o acompanhamento fonoaudiológico é suficiente.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/sintomas-lingua-presca-bebe" className="text-blue-600 hover:underline">→ Sintomas de língua presa</a></li>
+            <li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 173,
+    slug: "teste-da-linguinha-onde-fazer",
+    title: "Onde Fazer o Teste da Linguinha? Especialistas em Anápolis",
+    excerpt: "Descubra onde fazer o teste da linguinha em Anápolis e por que escolher uma clínica com equipe multidisciplinar.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Clínica Fono Inova em Anápolis especializada em teste da linguinha",
+    faq: [
+      {
+        question: "Onde fazer o teste da linguinha em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí, com avaliação especializada de fonoaudiólogos experientes em motricidade orofacial."
+      },
+      {
+        question: "Quanto custa o teste da linguinha?",
+        answer: "O valor varia conforme a clínica e a complexidade da avaliação. Entre em contato para saber o investimento."
+      },
+      {
+        question: "Teste da linguinha precisa de encaminhamento?",
+        answer: "Não. Os pais podem agendar diretamente, especialmente quando há sinais de dificuldade na amamentação ou na fala."
+      },
+      {
+        question: "O teste da linguinha é feito pelo SUS?",
+        answer: "Alguns serviços públicos oferecem avaliação, mas a disponibilidade varia. Clínicas particulares geralmente têm agendamento mais rápido."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Procurar o lugar certo para fazer o <strong>teste da linguinha</strong> faz toda a diferença. A avaliação deve ser feita por profissionais 
+          que entendam de amamentação, motricidade orofacial e desenvolvimento infantil.
+        </p>
+
+        <h2>Quem pode fazer o teste?</h2>
+        <ul>
+          <li><strong>Fonoaudiólogos</strong> especializados em motricidade orofacial</li>
+          <li><strong>Pediatras</strong> com experiência em amamentação</li>
+          <li><strong>Cirurgiões-dentistas</strong> ou <strong>otorrinolaringologistas</strong> especializados</li>
+        </ul>
+
+        <h2>Por que escolher uma clínica multidisciplinar?</h2>
+        <p>
+          O freio lingual pode afetar amamentação, fala, alimentação e sono. Uma equipe com fonoaudiólogo, pediatra e outros profissionais 
+          garante uma avaliação completa e um plano de tratamento adequado.
+        </p>
+
+        <h2>Teste da linguinha na Clínica Fono Inova</h2>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, o teste da linguinha é realizado com protocolo completo de avaliação funcional. 
+          Após o diagnóstico, orientamos os pais sobre a melhor conduta, seja acompanhamento fonoaudiológico, encaminhamento para cirurgia 
+          ou ambos.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+            <li><a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">→ Como funciona o teste</a></li>
+            <li><a href="/artigos/teste-da-linguinha-preco" className="text-blue-600 hover:underline">→ Quanto custa o teste da linguinha</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 174,
+    slug: "freio-lingual-leve-precisa-cirurgia",
+    title: "Freio Lingual Leve Precisa de Cirurgia? Quando Acompanhar",
+    excerpt: "Entenda quando um freio lingual leve pode ser apenas acompanhado e quando a intervenção é realmente necessária.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Avaliação de freio lingual leve em criança na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Freio lingual leve precisa operar?",
+        answer: "Nem sempre. Se não houver impacto na amamentação, fala, alimentação ou respiração, o acompanhamento pode ser suficiente."
+      },
+      {
+        question: "Freio lingual leve pode causar atraso na fala?",
+        answer: "Pode, se limitar os movimentos necessários para a articulação de alguns sons. A avaliação fonoaudiológica é importante."
+      },
+      {
+        question: "Como acompanhar freio lingual leve?",
+        answer: "Com avaliações periódicas do fonoaudiólogo, exercícios de mobilidade da língua e observação do desenvolvimento da fala e alimentação."
+      },
+      {
+        question: "Freio lingual leve pode piorar?",
+        answer: "O freio em si não muda de tamanho, mas o impacto pode se tornar mais evidente conforme a criança cresce e precisa de sons mais complexos."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Nem todo <strong>freio lingual curto</strong> precisa de cirurgia. Muitos casos leves são acompanhados com exercícios e fonoaudiologia, 
+          sem necessidade de intervenção cirúrgica.
+        </p>
+
+        <h2>Quando o freio lingual leve não precisa de cirurgia?</h2>
+        <ul>
+          <li>Amamentação eficiente e sem dor para a mãe</li>
+          <li>Ganho de peso adequado</li>
+          <li>Língua com mobilidade suficiente para a idade</li>
+          <li>Sem impacto na fala, alimentação ou respiração</li>
+          <li>Sem queixas de dor ou desconforto</li>
+        </ul>
+
+        <h2>O que fazer no acompanhamento?</h2>
+        <ul>
+          <li>Exercícios de mobilidade da língua orientados pelo fonoaudiólogo</li>
+          <li>Estimulação orofacial</li>
+          <li>Acompanhamento do desenvolvimento da fala</li>
+          <li>Reavaliação periódica</li>
+        </ul>
+
+        <h2>Quando reconsiderar a cirurgia?</h2>
+        <p>
+          Se ao longo do acompanhamento aparecerem dificuldades na fala, alimentação ou outros sintomas, a indicação cirúrgica pode ser reavaliada 
+          pela equipe multidisciplinar.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia</a></li>
+            <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 175,
+    slug: "pos-frenulotomia-cuidados",
+    title: "Pós-Frenulotomia: Cuidados e Exercícios para Bebês",
+    excerpt: "Saiba quais são os cuidados após a frenulotomia e por que a fonoaudiologia é essencial na recuperação.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Mãe realizando exercícios de língua com bebê após frenulotomia na Clínica Fono Inova",
+    faq: [
+      {
+        question: "O que fazer após a frenulotomia?",
+        answer: "Seguir as orientações do profissional, fazer os exercícios de mobilidade da língua, manter a higiene e continuar o acompanhamento fonoaudiológico."
+      },
+      {
+        question: "Quanto tempo dói após a frenulotomia?",
+        answer: "O desconforto geralmente é leve e dura poucos dias. O bebê pode ser amamentado logo após o procedimento para acalmar."
+      },
+      {
+        question: "Precisa fazer fonoaudiologia após a frenulotomia?",
+        answer: "Sim. A fonoaudiologia ajuda a reeducar os movimentos da língua, melhorar a sucção e prevenir a formação de aderências."
+      },
+      {
+        question: "Como evitar que o freio lingual grude de novo?",
+        answer: "Os exercícios de mobilidade e alongamento da língua orientados pelo fonoaudiólogo são fundamentais para evitar recidiva."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>frenulotomia</strong> é só uma parte do tratamento. O <strong>pós-operatório</strong> e o acompanhamento fonoaudiológico são fundamentais 
+          para garantir que a língua ganhe mobilidade e não forme aderências.
+        </p>
+
+        <h2>Cuidados imediatos</h2>
+        <ul>
+          <li>Amamentar ou oferecer o seio conforme orientação</li>
+          <li>Manter a higiene bucal do bebê</li>
+          <li>Evitar objetos na boca que possam machucar</li>
+          <li>Usar medicamentos apenas se prescritos</li>
+        </ul>
+
+        <h2>Exercícios de mobilidade</h2>
+        <ul>
+          <li>Levar a língua para cima, em direção ao céu da boca</li>
+          <li>Movimentos laterais da língua</li>
+          <li>Protrusão da língua para fora da boca</li>
+          <li>Estimulação com sons e brincadeiras</li>
+        </ul>
+
+        <h2>Importância da fonoaudiologia</h2>
+        <p>
+          A <a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">fonoaudiologia após a frenulotomia</a> 
+          ensina os pais a fazer os exercícios corretamente e acompanha a evolução da mobilidade da língua, sucção, deglutição e fala.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
+            <li><a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">→ Fonoaudiologia após frenulotomia</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 176,
+    slug: "lingua-presca-atraso-fala",
+    title: "Língua Presa Causa Atraso na Fala? Entenda a Relação",
+    excerpt: "Descubra como o freio lingual curto pode afetar o desenvolvimento da fala e quando procurar um fonoaudiólogo.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Criança em avaliação fonoaudiológica para língua presa na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Língua presa atrasa a fala?",
+        answer: "Pode dificultar a articulação de alguns sons, mas nem sempre causa atraso na fala. A avaliação fonoaudiológica é importante para entender o impacto."
+      },
+      {
+        question: "Quais sons a língua presa dificulta?",
+        answer: "Geralmente sons que exigem elevação ou projeção da língua, como /r/, /l/, /t/, /d/ e /n/."
+      },
+      {
+        question: "Fazendo frenulotomia a criança fala melhor?",
+        answer: "A cirurgia pode ajudar, mas muitas vezes é necessário acompanhamento fonoaudiológico para reabilitar os movimentos e sons."
+      },
+      {
+        question: "Quando levar criança com língua presa no fonoaudiólogo?",
+        answer: "Se há dificuldade para pronunciar sons, troca persistente de letras ou reclamações de dificuldade para lamber ou mastigar."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Muitos pais se perguntam se a <strong>língua presa</strong> pode ser a causa de um <strong>atraso na fala</strong> ou de troca de letras. 
+          A resposta depende do grau do freio lingual e de como ele limita os movimentos da língua.
+        </p>
+
+        <h2>Como a língua presa afeta a fala?</h2>
+        <ul>
+          <li>Dificuldade para elevar a ponta da língua</li>
+          <li>Problemas para pronunciar sons como /r/, /l/, /t/, /d/</li>
+          <li>Fala arrastada ou pouco clara</li>
+          <li>Dificuldade para lamber os lábios ou o sorvete</li>
+        </ul>
+
+        <h2>Língua presa sempre causa atraso?</h2>
+        <p>
+          Não. Muitas crianças com freio lingual leve desenvolvem a fala normalmente. O problema aparece quando há limitação funcional importante 
+          que impede a produção correta dos sons.
+        </p>
+
+        <h2>O que fazer?</h2>
+        <p>
+          Se você suspeita que a língua presa está afetando a fala do seu filho, agende uma avaliação fonoaudiológica. 
+          O profissional vai avaliar se há indicação de <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a> 
+          ou se a terapia fonoaudiológica já resolve.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+            <li><a href="/artigos/fono-para-fala-atrasada" className="text-blue-600 hover:underline">→ Fono para fala atrasada</a></li>
+            <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras: quando preocupar</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 177,
+    slug: "teste-da-linguinha-preco",
+    title: "Quanto Custa o Teste da Linguinha? Valor e Convênios",
+    excerpt: "Saiba quanto custa fazer o teste da linguinha em Anápolis e quais são as formas de pagamento e convênios aceitos.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Recepção da Clínica Fono Inova em Anápolis para teste da linguinha",
+    faq: [
+      {
+        question: "Quanto custa o teste da linguinha em Anápolis?",
+        answer: "O valor pode variar. Entre em contato com a Clínica Fono Inova para saber o investimento atual e as formas de pagamento."
+      },
+      {
+        question: "Convênio cobre teste da linguinha?",
+        answer: "Depende do convênio e do plano. Muitos planos cobrem consulta com fonoaudiólogo, mas é importante verificar a cobertura."
+      },
+      {
+        question: "Teste da linguinha é caro?",
+        answer: "O teste em si é uma avaliação clínica acessível. O custo maior pode estar no tratamento subsequente, quando necessário."
+      },
+      {
+        question: "Posso parcelar o teste da linguinha?",
+        answer: "Na Clínica Fono Inova você pode consultar as condições de pagamento disponíveis no momento do agendamento."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          O valor do <strong>teste da linguinha</strong> pode variar de acordo com a clínica, a cidade e a complexidade da avaliação. 
+          Em Anápolis, a Clínica Fono Inova oferece atendimento especializado com condições de pagamento facilitadas.
+        </p>
+
+        <h2>O que influencia o preço?</h2>
+        <ul>
+          <li>Tempo de avaliação</li>
+          <li>Profissional especializado em motricidade orofacial</li>
+          <li>Uso de protocolos específicos de avaliação</li>
+          <li>Laudo e orientações aos pais</li>
+          <li>Acompanhamento pós-avaliação</li>
+        </ul>
+
+        <h2>Convênios e formas de pagamento</h2>
+        <p>
+          Alguns planos de saúde cobrem a consulta com fonoaudiólogo, mas a cobertura varia. Também é possível pagar particularmente. 
+          Na Clínica Fono Inova, aceitamos diversas formas de pagamento. Entre em contato para confirmar valores e convênios.
+        </p>
+
+        <h2>Por que investir no teste?</h2>
+        <p>
+          Identificar o freio lingual curto precocemente pode evitar problemas maiores na amamentação, fala e alimentação. 
+          O investimento na avaliação é pequeno comparado aos benefícios do diagnóstico precoce.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/teste-da-linguinha-onde-fazer" className="text-blue-600 hover:underline">→ Onde fazer o teste</a></li>
+            <li><a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">→ Como funciona</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+  {
+    id: 178,
+    slug: "fonoaudiologia-apos-frenulotomia",
+    title: "Fonoaudiologia Após Frenulotomia: Por Que é Essencial",
+    excerpt: "Entenda por que a fonoaudiologia é fundamental após a frenulotomia para reabilitar a língua e prevenir recidiva.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Sessão de fonoaudiologia após frenulotomia na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Por que fazer fonoaudiologia após frenulotomia?",
+        answer: "Para reeducar os movimentos da língua, melhorar a sucção, deglutição e fala, e evitar que o freio grude novamente."
+      },
+      {
+        question: "Quando começar a fonoaudiologia após a cirurgia?",
+        answer: "Geralmente já nos primeiros dias após o procedimento, com exercícios leves e orientação aos pais."
+      },
+      {
+        question: "Quantas sessões de fono após frenulotomia?",
+        answer: "Varia conforme a idade e a evolução. Pode ser de algumas semanas a alguns meses de acompanhamento."
+      },
+      {
+        question: "Sem fonoaudiologia a língua pode grudar de novo?",
+        answer: "Há maior risco de recidiva se não forem feitos os exercícios de mobilidade e alongamento da língua."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>frenulotomia</strong> libera a língua anatomicamente, mas a <strong>fonoaudiologia</strong> é quem ensina a língua a se mover corretamente. 
+          Sem essa reabilitação, o resultado pode não ser completo e há risco de recidiva.
+        </p>
+
+        <h2>O que a fonoaudiologia trabalha após a cirurgia?</h2>
+        <ul>
+          <li>Mobilidade da língua para cima, para baixo e para os lados</li>
+          <li>Protrusão da língua</li>
+          <li>Sucção eficiente em bebês</li>
+          <li>Coordenação motora para fala</li>
+          <li>Mastigação e deglutição</li>
+        </ul>
+
+        <h2>Exercícios para casa</h2>
+        <p>
+          O fonoaudiólogo orienta os pais sobre exercícios simples que devem ser feitos em casa, como levar a língua ao céu da boca, 
+          massagear a região e estimular a sucção. A regularidade é fundamental para o resultado.
+        </p>
+
+        <h2>Resultados esperados</h2>
+        <ul>
+          <li>Melhora na amamentação</li>
+          <li>Maior clareza na fala</li>
+          <li>Melhor coordenação para alimentação</li>
+          <li>Menor risco de recidiva</li>
+        </ul>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+<li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
+            <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
+            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
   }
 ];
 
