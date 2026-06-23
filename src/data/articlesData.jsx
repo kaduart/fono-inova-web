@@ -3,6 +3,701 @@ import { satelliteArticles } from './articles-satellite.jsx';
 
 export const articlesData = [
   ...satelliteArticles,
+  
+  // ============================================================
+  // ARTIGO PILLAR - CLUSTER FONOAUDIOLOGIA INFANTIL
+  // ============================================================
+  {
+    id: 13,
+    slug: "fonoaudiologia-guia-completo",
+    title: "Fonoaudiologia: Guia Completo para Pais [2026]",
+    excerpt: "Descubra o que é fono, para que serve a fonoaudiologia, o que faz um fonoaudiólogo e quando levar seu filho na Fono Inova em Anápolis.",
+    category: "Fonoaudiologia",
+    categoryColor: "primary",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Fonoaudióloga",
+    authorCredentials: "CRFA 1234-GO",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fonoaudiologia/atendimento-premium.png",
+    imageAlt: "Fonoaudióloga infantil em atendimento na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é fonoaudiologia?",
+        answer: "Fonoaudiologia é a ciência que estuda, previne e trata os distúrbios da comunicação humana, incluindo fala, linguagem, voz, audição e motricidade orofacial."
+      },
+      {
+        question: "Para que serve a fonoaudiologia infantil?",
+        answer: "Serve para avaliar, diagnosticar e tratar dificuldades de fala, linguagem, audição, voz, motricidade orofacial e alimentação em crianças."
+      },
+      {
+        question: "O que faz um fonoaudiólogo infantil?",
+        answer: "Avalia o desenvolvimento da comunicação, diagnostica distúrbios, realiza terapia fonoaudiológica e orienta pais e escola."
+      },
+      {
+        question: "Com quantos anos levar o filho no fonoaudiólogo?",
+        answer: "A avaliação pode ser feita a partir dos 12 meses se houver suspeita. Aos 2 anos, se a criança não fala, é indicado procurar um fonoaudiólogo."
+      },
+      {
+        question: "Quais os sinais de que a criança precisa de fonoaudiologia?",
+        answer: "Atraso na fala, troca de letras persistente, dificuldade de ser compreendida, gagueira, problemas de audição, respiração oral e seletividade alimentar."
+      },
+      {
+        question: "Fonoaudiólogo precisa de encaminhamento médico?",
+        answer: "Não necessariamente. Os pais podem procurar um fonoaudiólogo diretamente quando percebem sinais de alerta."
+      },
+      {
+        question: "Como é a primeira avaliação fonoaudiológica?",
+        answer: "Inclui entrevista com os pais, observação da criança e avaliação específica da comunicação, duração em média 50 a 60 minutos."
+      },
+      {
+        question: "Quantas sessões de fonoaudiologia são necessárias?",
+        answer: "Geralmente 1 a 2 vezes por semana. A duração do tratamento varia conforme a criança e a demanda."
+      },
+      {
+        question: "Fonoaudiologia ajuda no autismo?",
+        answer: "Sim. A fonoaudiologia trabalha a comunicação verbal e não verbal, linguagem, interação social e alimentação de crianças com autismo."
+      },
+      {
+        question: "Onde fazer fonoaudiologia infantil em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com avaliação especializada e tratamento personalizado."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Se você chegou aqui digitando <strong>"fono"</strong>, <strong>"fono para que serve"</strong> ou 
+          <strong>"o que é fono"</strong>, este artigo é o ponto de partida. Aqui você encontra uma visão geral da fonoaudiologia 
+          e links para conteúdos específicos que respondem cada intenção de busca.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Fonoaudiologia Infantil"</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">→ O que é fonoaudiologia?</a></li>
+            <li><a href="/artigos/para-que-serve-a-fonoaudiologia" className="text-blue-600 hover:underline">→ Para que serve a fonoaudiologia?</a></li>
+            <li><a href="/artigos/o-que-faz-um-fonoaudiologo" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo?</a></li>
+            <li><a href="/artigos/fono-ou-fonoaudiologo-qual-diferenca" className="text-blue-600 hover:underline">→ Fono ou fonoaudiólogo: qual a diferença?</a></li>
+            <li><a href="/artigos/em-que-idade-levar-filho-fonoaudiologia" className="text-blue-600 hover:underline">→ Com que idade levar meu filho na fonoaudiologia?</a></li>
+            <li><a href="/artigos/sinais-crianca-precisa-fonoaudiologia" className="text-blue-600 hover:underline">→ Sinais de que a criança precisa de fonoaudiologia</a></li>
+            <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
+            <li><a href="/artigos/quando-levar-crianca-fonoaudiologo" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
+            <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
+            <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
+            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
+            <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras: quando preocupar?</a></li>
+            <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
+            <li><a href="/artigos/primeira-avaliacao-fonoaudiologica" className="text-blue-600 hover:underline">→ Primeira avaliação fonoaudiológica</a></li>
+            <li><a href="/artigos/quantas-sessoes-fonoaudiologia" className="text-blue-600 hover:underline">→ Quantas sessões de fonoaudiologia?</a></li>
+            <li><a href="/artigos/crianca-entende-mas-nao-fala" className="text-blue-600 hover:underline">→ Criança entende mas não fala</a></li>
+            <li><a href="/artigos/fonoaudiologia-e-seletividade-alimentar" className="text-blue-600 hover:underline">→ Fonoaudiologia e seletividade alimentar</a></li>
+            <li><a href="/artigos/fonoaudiologia-para-dificuldade-escolar" className="text-blue-600 hover:underline">→ Fonoaudiologia para dificuldade escolar</a></li>
+            <li><a href="/artigos/diferenca-fonoaudiologo-terapeuta-ocupacional" className="text-blue-600 hover:underline">→ Diferença entre fono e TO</a></li>
+          </ul>
+        </div>
+
+        <h2>O que é fono?</h2>
+        <p>
+          <strong>Fono</strong> é a abreviação popular de <strong>fonoaudiólogo</strong> ou <strong>fonoaudióloga</strong>, 
+          o profissional formado em <strong>fonoaudiologia</strong>. Essa ciência estuda e cuida da comunicação humana: 
+          fala, linguagem, voz, audição e motricidade orofacial.
+        </p>
+        <p>
+          Quer entender melhor a origem e as áreas de atuação? Leia o artigo completo sobre 
+          <a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline"> o que é fonoaudiologia</a>.
+        </p>
+
+        <h2>Para que serve a fonoaudiologia?</h2>
+        <p>
+          A fonoaudiologia serve para <strong>avaliar, diagnosticar e tratar</strong> dificuldades de comunicação. 
+          Atua em atraso na fala, troca de letras, gagueira, problemas de audição, voz, motricidade orofacial e dificuldades escolares.
+        </p>
+        <p>
+          Veja detalhadamente as situações em: 
+          <a href="/artigos/para-que-serve-a-fonoaudiologia" className="text-blue-600 hover:underline">para que serve a fonoaudiologia</a>.
+        </p>
+
+        <h2>O que faz um fonoaudiólogo?</h2>
+        <p>
+          O fonoaudiólogo realiza avaliação, diagnóstico, terapia e orientação parental. 
+          Saiba mais sobre a rotina e especialidades na página 
+          <a href="/artigos/o-que-faz-um-fonoaudiologo" className="text-blue-600 hover:underline">o que faz um fonoaudiólogo</a>.
+        </p>
+
+        <h2>Quando levar o filho na fonoaudiologia?</h2>
+        <p>
+          Cada criança tem seu ritmo, mas existem marcos por idade. Aos 2 anos, por exemplo, é esperado vocabulário de 50+ palavras e frases de 2 palavras. 
+          Confira os marcos completos em <a href="/artigos/em-que-idade-levar-filho-fonoaudiologia" className="text-blue-600 hover:underline">com que idade levar meu filho na fonoaudiologia</a>.
+        </p>
+
+        <h2>Sinais de alerta</h2>
+        <p>
+          Fique atento: atraso na fala, troca de letras persistente, gagueira, dificuldade auditiva, respiração oral e recusa alimentar extrema. 
+          Veja a lista completa em <a href="/artigos/sinais-crianca-precisa-fonoaudiologia" className="text-blue-600 hover:underline">sinais de que a criança precisa de fonoaudiologia</a>.
+        </p>
+
+        <h2>Fono em Anápolis</h2>
+        <p>
+          Se você busca atendimento fonoaudiológico infantil em Anápolis, a Clínica Fono Inova fica no bairro Jundiaí. 
+          Oferecemos avaliação especializada e tratamento personalizado para crianças de todas as idades.
+        </p>
+        <p>
+          <strong>💚 Agende uma avaliação fonoaudiológica na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+  
+  // ============================================================
+  // ARTIGO PILLAR — CLUSTER NEUROPEDIATRIA
+  // ============================================================
+  {
+    id: 14,
+    slug: "neuropediatria-guia-completo",
+    title: "Neuropediatria: Guia Completo para Pais [2026]",
+    excerpt: "Saiba o que faz o neuropediatra, quando procurar, quais sintomas ele avalia e como é a consulta de neuropediatria infantil em Anápolis.",
+    category: "Neuropediatria",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fono-inova-2.png",
+    imageAlt: "Neuropediatra em consulta infantil na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é neuropediatria?",
+        answer: "É a especialidade médica que avalia e acompanha distúrbios do desenvolvimento neurológico infantil, como TDAH, autismo, epilepsia e atrasos motores."
+      },
+      {
+        question: "O que faz um neuropediatra?",
+        answer: "Avalia o desenvolvimento neurológico, investiga sinais de alterações, solicita exames e orienta tratamentos e acompanhamentos multidisciplinares."
+      },
+      {
+        question: "Quando levar criança no neuropediatra?",
+        answer: "Quando há atraso no desenvolvimento, dificuldades de aprendizagem, comportamentos atípicos, convulsões ou sinais de TDAH e autismo."
+      },
+      {
+        question: "Qual a diferença entre neuropediatra e pediatra?",
+        answer: "O pediatra cuida da saúde geral. O neuropediatra é especialista no sistema nervoso e no desenvolvimento neurológico da criança."
+      },
+      {
+        question: "Neuropediatra diagnostica autismo?",
+        answer: "Sim. O neuropediatra faz parte da equipe que diagnostica o Transtorno do Espectro Autista, junto com psicólogo e outros especialistas."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>neuropediatria</strong> é a especialidade médica que cuida do desenvolvimento do sistema nervoso das crianças. 
+          Quando os pais percebem sinais como atraso na fala, hiperatividade, convulsões ou comportamentos atípicos, 
+          o neuropediatra é o profissional indicado para investigar e orientar o tratamento.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Neuropediatria"</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
+            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
+            <li><a href="/artigos/diferenca-neuropediatra-pediatra" className="text-blue-600 hover:underline">→ Neuropediatra e pediatra: qual a diferença?</a></li>
+            <li><a href="/artigos/neuropediatra-trata-tdah" className="text-blue-600 hover:underline">→ Neuropediatra trata TDAH?</a></li>
+            <li><a href="/artigos/neuropediatra-trata-autismo" className="text-blue-600 hover:underline">→ Neuropediatra trata autismo?</a></li>
+            <li><a href="/artigos/primeira-consulta-neuropediatra" className="text-blue-600 hover:underline">→ Primeira consulta com neuropediatra</a></li>
+            <li><a href="/artigos/quando-crianca-precisa-avaliacao-neurologica" className="text-blue-600 hover:underline">→ Quando a criança precisa de avaliação neurológica?</a></li>
+            <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
+            <li><a href="/artigos/convulsao-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Convulsão infantil: quando procurar?</a></li>
+          </ul>
+        </div>
+
+        <h2>O que é neuropediatria?</h2>
+        <p>
+          A neuropediatria estuda e trata as alterações do sistema nervoso em crianças e adolescentes. 
+          O neuropediatra avalia aspectos como desenvolvimento motor, linguagem, comportamento, aprendizagem, sono e convulsões.
+        </p>
+
+        <h2>O que faz um neuropediatra?</h2>
+        <p>
+          O neuropediatra realiza uma avaliação clínica detalhada, analisa o histórico de desenvolvimento, 
+          solicita exames quando necessário e orienta o tratamento multidisciplinar. 
+          Saiba mais em <a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">o que faz um neuropediatra</a>.
+        </p>
+
+        <h2>Quando procurar neuropediatra?</h2>
+        <p>
+          Sempre que houver preocupações com o desenvolvimento ou comportamento da criança. 
+          Veja quando buscar ajuda em <a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">quando procurar neuropediatra</a>.
+        </p>
+
+        <h2>Principais sinais avaliados</h2>
+        <ul>
+          <li>Atraso na fala ou na marcha</li>
+          <li>Hiperatividade e desatenção</li>
+          <li>Dificuldades de aprendizagem</li>
+          <li>Comportamentos repetitivos ou isolamento social</li>
+          <li>Convulsões</li>
+          <li>Dificuldades de sono ou alimentação</li>
+        </ul>
+
+        <h2>Neuropediatra e autismo</h2>
+        <p>
+          O neuropediatra é um dos profissionais que participam do diagnóstico do autismo. 
+          Entenda o papel dele em <a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">neuropediatra diagnostica autismo?</a>.
+        </p>
+
+        <h2>Neuropediatra em Anápolis</h2>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, oferecemos avaliação neuropediatra e acompanhamento multidisciplinar 
+          para crianças com TDAH, autismo, dificuldades de aprendizagem e outros transtornos do neurodesenvolvimento.
+        </p>
+
+        <p>
+          <strong>💚 Se você tem dúvidas sobre o desenvolvimento do seu filho, agende uma avaliação neuropediatra na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+  
+  // ============================================================
+  // ARTIGO PILLAR — CLUSTER PSICOLOGIA INFANTIL
+  // ============================================================
+  {
+    id: 15,
+    slug: "psicologia-infantil-guia-completo",
+    title: "Psicologia Infantil: Guia Completo para Pais [2026]",
+    excerpt: "Entenda o que é psicologia infantil, quando levar seu filho ao psicólogo, como funciona a terapia e como ela ajuda no desenvolvimento emocional.",
+    category: "Psicologia Infantil",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Psicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fono-inova-3.png",
+    imageAlt: "Psicóloga infantil em atendimento na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é psicologia infantil?",
+        answer: "É a área da psicologia que estuda e intervém no desenvolvimento emocional, comportamental e social de crianças e adolescentes."
+      },
+      {
+        question: "Quando levar a criança ao psicólogo?",
+        answer: "Quando há mudanças comportamentais, dificuldades emocionais, ansiedade, agressividade, isolamento ou problemas escolares persistentes."
+      },
+      {
+        question: "Como funciona a terapia infantil?",
+        answer: "A terapia infantil utiliza brincadeiras, desenhos e atividades lúdicas para ajudar a criança a expressar emoções e desenvolver habilidades."
+      },
+      {
+        question: "Qual a diferença entre psicólogo e psiquiatra infantil?",
+        answer: "O psicólogo faz avaliação e terapia. O psiquiatra é médico e pode prescrever medicamentos quando necessário."
+      },
+      {
+        question: "Psicólogo infantil trata autismo?",
+        answer: "Sim. O psicólogo infantil faz parte da equipe multidisciplinar que avalia e acompanha crianças no espectro autista."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>psicologia infantil</strong> é a área que cuida da saúde mental e do desenvolvimento emocional das crianças. 
+          Muitos pais têm dúvidas sobre quando procurar um psicólogo infantil e como a terapia pode ajudar. 
+          Este guia responde as principais perguntas.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Psicologia Infantil"</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">→ O que faz um psicólogo infantil?</a></li>
+            <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
+            <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
+            <li><a href="/artigos/crianca-muito-nervosa-precisa-psicologo" className="text-blue-600 hover:underline">→ Criança muito nervosa precisa de psicólogo?</a></li>
+            <li><a href="/artigos/como-funciona-terapia-infantil" className="text-blue-600 hover:underline">→ Como funciona a terapia infantil?</a></li>
+            <li><a href="/artigos/diferenca-psicologo-psiquiatra-infantil" className="text-blue-600 hover:underline">→ Psicólogo ou psiquiatra infantil?</a></li>
+            <li><a href="/artigos/birras-excessivas-quando-procurar-ajuda" className="text-blue-600 hover:underline">→ Birras excessivas: quando procurar ajuda?</a></li>
+            <li><a href="/artigos/dificuldades-emocionais-na-escola" className="text-blue-600 hover:underline">→ Dificuldades emocionais na escola</a></li>
+            <li><a href="/artigos/primeira-consulta-psicologo-infantil" className="text-blue-600 hover:underline">→ Primeira consulta com psicólogo infantil</a></li>
+            <li><a href="/artigos/psicologo-infantil-ajuda-autismo" className="text-blue-600 hover:underline">→ Psicólogo infantil ajuda no autismo?</a></li>
+            <li><a href="/artigos/psicologo-infantil-ajuda-tdah" className="text-blue-600 hover:underline">→ Psicólogo infantil ajuda no TDAH?</a></li>
+            <li><a href="/artigos/sinais-baixa-autoestima-infantil" className="text-blue-600 hover:underline">→ Sinais de baixa autoestima infantil</a></li>
+            <li><a href="/artigos/crianca-com-dificuldade-fazer-amigos" className="text-blue-600 hover:underline">→ Criança com dificuldade de fazer amigos</a></li>
+            <li><a href="/artigos/crianca-com-medo-excessivo" className="text-blue-600 hover:underline">→ Criança com medo excessivo</a></li>
+          </ul>
+        </div>
+
+        <h2>O que é psicologia infantil?</h2>
+        <p>
+          A psicologia infantil estuda o comportamento, as emoções e o desenvolvimento mental de crianças e adolescentes. 
+          O psicólogo infantil ajuda a identificar dificuldades emocionais e comportamentais e propõe intervenções adequadas.
+        </p>
+
+        <h2>O que faz um psicólogo infantil?</h2>
+        <p>
+          O psicólogo infantil avalia, diagnostica e realiza terapia com crianças. 
+          Ele também orienta os pais e a escola sobre como lidar com diferentes situações. 
+          Saiba mais em <a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">o que faz um psicólogo infantil</a>.
+        </p>
+
+        <h2>Quando levar a criança ao psicólogo?</h2>
+        <p>
+          Sempre que houver preocupações com o comportamento ou emocional da criança. 
+          Veja os sinais em <a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">quando levar criança ao psicólogo</a>.
+        </p>
+
+        <h2>Como funciona a terapia infantil?</h2>
+        <p>
+          A terapia infantil é feita por meio de brincadeiras, desenhos, histórias e jogos. 
+          Essas atividades ajudam a criança a expressar sentimentos e aprender novas formas de lidar com desafios. 
+          Entenda melhor em <a href="/artigos/como-funciona-terapia-infantil" className="text-blue-600 hover:underline">como funciona a terapia infantil</a>.
+        </p>
+
+        <h2>Psicologia infantil em Anápolis</h2>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, oferecemos atendimento psicológico infantil integrado à equipe multidisciplinar. 
+          Trabalhamos com ansiedade, TDAH, autismo, dificuldades escolares e questões comportamentais.
+        </p>
+
+        <p>
+          <strong>💚 Se você percebe sinais de dificuldades emocionais no seu filho, agende uma avaliação psicológica infantil na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+  
+  // ============================================================
+  // ARTIGO PILLAR — CLUSTER NEUROPSICOLOGIA / AVALIAÇÃO NEUROPSICOLÓGICA
+  // ============================================================
+  {
+    id: 16,
+    slug: "avaliacao-neuropsicologica-infantil-guia-completo",
+    title: "Avaliação Neuropsicológica Infantil: Guia Completo [2026]",
+    excerpt: "Entenda o que é avaliação neuropsicológica infantil, quando fazer, como funciona, quanto tempo dura e como o laudo pode ajudar seu filho.",
+    category: "Neuropsicologia",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fono-inova-2.png",
+    imageAlt: "Neuropsicóloga infantil em avaliação na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é avaliação neuropsicológica infantil?",
+        answer: "É um exame especializado que avalia as funções cognitivas da criança, como atenção, memória, linguagem, raciocínio e funções executivas."
+      },
+      {
+        question: "Para que serve a avaliação neuropsicológica?",
+        answer: "Serve para identificar pontos fortes e dificuldades cognitivas, auxiliar no diagnóstico de TDAH, autismo e dislexia, e orientar intervenções."
+      },
+      {
+        question: "Quando fazer avaliação neuropsicológica infantil?",
+        answer: "Quando há dificuldades escolares, atenção, memória, comportamento ou suspeita de condições do neurodesenvolvimento."
+      },
+      {
+        question: "Como funciona a avaliação neuropsicológica?",
+        answer: "Inclui entrevista com os pais, aplicação de testes cognitivos e elaboração de laudo com devolutiva e orientações."
+      },
+      {
+        question: "Quanto tempo dura a avaliação neuropsicológica infantil?",
+        answer: "Geralmente 2 a 4 sessões de 50 a 60 minutos, com laudo pronto em 10 a 20 dias úteis."
+      },
+      {
+        question: "Avaliação neuropsicológica diagnostica TDAH e autismo?",
+        answer: "Ela contribui para o diagnóstico, mas o diagnóstico final é clínico e multidisciplinar, envolvendo neuropediatra e psicólogo."
+      },
+      {
+        question: "Como entender o laudo neuropsicológico?",
+        answer: "O neuropsicólogo explica os resultados na devolutiva, destacando o perfil cognitivo, dificuldades e recomendações práticas."
+      },
+      {
+        question: "Qual a diferença entre avaliação neuropsicológica e psicopedagógica?",
+        answer: "A neuropsicológica avalia funções cognitivas e cérebro-comportamento. A psicopedagógica foca nos processos de aprendizagem escolar."
+      },
+      {
+        question: "Onde fazer avaliação neuropsicológica infantil em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com neuropsicóloga especializada em avaliação infantil."
+      },
+      {
+        question: "A avaliação neuropsicológica dói ou machuca?",
+        answer: "Não. É feita por meio de conversas, jogos, desenhos e atividades lúdicas, sem qualquer desconforto físico."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          A <strong>avaliação neuropsicológica infantil</strong> é uma ferramenta essencial para entender como o cérebro da criança 
+          processa informações. Ela serve como ponte diagnóstica entre a <strong>neuropediatria</strong>, a <strong>psicologia infantil</strong> e 
+          a <strong>fonoaudiologia</strong>, ajudando a esclarecer dificuldades de aprendizagem, atenção e comportamento.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Avaliação Neuropsicológica Infantil"</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-e-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ O que é avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/quando-fazer-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Quando fazer avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Como funciona a avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-para-autismo" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para autismo</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/artigos/quanto-tempo-dura-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Quanto tempo dura a avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/como-entender-laudo-neuropsicologico" className="text-blue-600 hover:underline">→ Como entender o laudo neuropsicológico</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-e-psicopedagogica" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica e psicopedagógica: qual a diferença?</a></li>
+            <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
+            <li><a href="/artigos/teste-de-memoria-infantil" className="text-blue-600 hover:underline">→ Teste de memória infantil</a></li>
+            <li><a href="/artigos/avaliacao-das-funcoes-executivas" className="text-blue-600 hover:underline">→ Avaliação das funções executivas</a></li>
+          </ul>
+        </div>
+
+        <h2>O que é avaliação neuropsicológica infantil?</h2>
+        <p>
+          É um exame clínico que investiga as funções cognitivas da criança. Por meio de testes padronizados e atividades lúdicas, 
+          o neuropsicólogo avalia atenção, memória, linguagem, raciocínio, funções executivas e outras habilidades.
+        </p>
+        <p>
+          Saiba mais sobre o que é avaliado em <a href="/artigos/o-que-e-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">o que é avaliação neuropsicológica</a>.
+        </p>
+
+        <h2>Quando fazer?</h2>
+        <p>
+          A avaliação é indicada quando há dificuldades escolares, problemas de atenção, suspeita de TDAH, autismo, dislexia 
+          ou qualquer alteração no desenvolvimento cognitivo. Veja os sinais em <a href="/artigos/quando-fazer-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">quando fazer avaliação neuropsicológica</a>.
+        </p>
+
+        <h2>Como funciona?</h2>
+        <p>
+          O processo envolve entrevista com os pais, aplicação de testes, análise dos resultados e devolutiva. 
+          Entenda cada etapa em <a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">como funciona a avaliação neuropsicológica</a>.
+        </p>
+
+        <h2>Avaliação para condições específicas</h2>
+        <ul>
+          <li><strong>TDAH:</strong> avalia atenção, impulsividade e funções executivas — <a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">saiba mais</a></li>
+          <li><strong>Autismo:</strong> avalia cognição social, comunicação e linguagem — <a href="/artigos/avaliacao-neuropsicologica-para-autismo" className="text-blue-600 hover:underline">saiba mais</a></li>
+          <li><strong>Dificuldade escolar:</strong> identifica causas cognitivas do baixo rendimento — <a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">saiba mais</a></li>
+        </ul>
+
+        <h2>Testes específicos</h2>
+        <p>
+          A avaliação pode incluir <a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">teste de atenção</a>, 
+          <a href="/artigos/teste-de-memoria-infantil" className="text-blue-600 hover:underline">teste de memória</a> e 
+          <a href="/artigos/avaliacao-das-funcoes-executivas" className="text-blue-600 hover:underline">avaliação das funções executivas</a>, 
+          conforme a demanda de cada criança.
+        </p>
+
+        <h2>Laudo e devolutiva</h2>
+        <p>
+          O laudo neuropsicológico descreve o perfil cognitivo da criança e orienta intervenções. 
+          Aprenda a interpretá-lo em <a href="/artigos/como-entender-laudo-neuropsicologico" className="text-blue-600 hover:underline">como entender o laudo neuropsicológico</a>.
+        </p>
+
+        <h2>Conexão com outros clusters</h2>
+        <p>
+          A neuropsicologia se conecta diretamente com os outros clusters da Clínica Fono Inova:
+        </p>
+        <ul>
+          <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">Neuropediatria</a> — diagnóstico médico e acompanhamento</li>
+          <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">Psicologia Infantil</a> — saúde emocional e comportamental</li>
+          <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">Fonoaudiologia</a> — linguagem, fala e comunicação</li>
+        </ul>
+
+        <h2>Avaliação neuropsicológica em Anápolis</h2>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, a avaliação neuropsicológica infantil é realizada por profissional especializada, 
+          integrada à equipe multidisciplinar de neuropediatria, psicologia, fonoaudiologia e psicopedagogia.
+        </p>
+
+        <p>
+          <strong>💚 Se você tem dúvidas sobre o desenvolvimento cognitivo do seu filho, agende uma avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+  
+  // ============================================================
+  // HUB MULTIDISCIPLINAR — CONECTA OS 4 CLUSTERS
+  // ============================================================
+  {
+    id: 17,
+    slug: "avaliacao-multidisciplinar-infantil",
+    title: "Avaliação Multidisciplinar Infantil: Como Funciona em Anápolis",
+    excerpt: "Entenda como funciona a avaliação multidisciplinar infantil, quando é indicada e como neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo trabalham juntos.",
+    category: "Multidisciplinar",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "23 de Junho, 2026",
+    dateISO: "2026-06-23",
+    dateModifiedISO: "2026-06-23",
+    image: "/images/fono-inova-3.png",
+    imageAlt: "Equipe multidisciplinar infantil em reunião na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é avaliação multidisciplinar infantil?",
+        answer: "É uma avaliação realizada por diferentes especialistas — neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo — para entender o desenvolvimento da criança de forma completa."
+      },
+      {
+        question: "Quando indicar avaliação multidisciplinar?",
+        answer: "Quando há atraso global no desenvolvimento, suspeita de autismo, TDAH, dificuldades escolares persistentes ou comportamentos atípicos."
+      },
+      {
+        question: "Quais profissionais participam da avaliação multidisciplinar?",
+        answer: "Geralmente neuropediatra, psicólogo infantil, fonoaudiólogo e neuropsicólogo. Outros profissionais como terapeuta ocupacional e psicopedagogo podem integrar a equipe."
+      },
+      {
+        question: "Como funciona a avaliação multidisciplinar na prática?",
+        answer: "Cada profissional avalia sua área de atuação. Os resultados são discutidos em equipe e reunidos em um plano de cuidado integrado para a criança."
+      },
+      {
+        question: "Avaliação multidisciplinar diagnostica autismo?",
+        answer: "Sim. O diagnóstico de autismo é clínico e multidisciplinar, envolvendo neuropediatra, psicólogo e, frequentemente, fonoaudiólogo e neuropsicólogo."
+      },
+      {
+        question: "Quanto tempo dura a avaliação multidisciplinar?",
+        answer: "Depende da demanda. Pode durar de algumas semanas a 2 meses, com sessões agendadas de acordo com cada especialidade."
+      },
+      {
+        question: "Qual a vantagem da avaliação multidisciplinar?",
+        answer: "Permite visão completa da criança, reduz erros de diagnóstico, evita exames repetidos e organiza um plano de tratamento integrado."
+      },
+      {
+        question: "Preciso de encaminhamento médico para fazer avaliação multidisciplinar?",
+        answer: "Não necessariamente. Os pais podem procurar a clínica diretamente, embora o encaminhamento médico ou escolar ajude."
+      },
+      {
+        question: "O laudo multidisciplinar serve para a escola?",
+        answer: "Sim. O laudo integrado pode orientar adaptações curriculares, estratégias pedagógicas e acompanhamento especializado na escola."
+      },
+      {
+        question: "Onde fazer avaliação multidisciplinar infantil em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com equipe integrada de neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Quando uma criança apresenta <strong>atraso no desenvolvimento</strong>, <strong>dificuldades de aprendizagem</strong> ou 
+          <strong>sinais de autismo</strong>, muitos pais se perguntam: <em>qual especialista procurar primeiro?</em> 
+          A resposta, muitas vezes, é não escolher apenas um. A <strong>avaliação multidisciplinar infantil</strong> reúne diferentes 
+          profissionais para cuidar da criança de forma completa.
+        </p>
+
+        <h2>O que é avaliação multidisciplinar infantil?</h2>
+        <p>
+          É um processo de avaliação em que mais de um especialista investiga aspectos diferentes do desenvolvimento da criança. 
+          Cada profissional olha para uma área específica, mas todos trabalham com um mesmo objetivo: entender o funcionamento 
+          global da criança e montar o melhor plano de cuidado.
+        </p>
+        <p>
+          Na Clínica Fono Inova, em Anápolis, a avaliação multidisciplinar envolve neuropediatra, psicólogo infantil, 
+          fonoaudiólogo e neuropsicólogo, além de outros profissionais quando necessário.
+        </p>
+
+        <h2>Os 4 papéis da equipe</h2>
+        <ul>
+          <li>
+            <strong>Neuropediatra:</strong> avalia o desenvolvimento neurológico, identifica sinais de TDAH, autismo, epilepsia e 
+            outras condições do neurodesenvolvimento. Veja mais no guia de 
+            <a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">neuropediatria</a>.
+          </li>
+          <li>
+            <strong>Psicólogo infantil:</strong> investiga o comportamento, as emoções, a socialização e o desenvolvimento mental. 
+            Saiba mais sobre <a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">psicologia infantil</a>.
+          </li>
+          <li>
+            <strong>Fonoaudiólogo:</strong> avalia fala, linguagem, comunicação, audição e motricidade orofacial. 
+            Confira o guia de <a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">fonoaudiologia infantil</a>.
+          </li>
+          <li>
+            <strong>Neuropsicólogo:</strong> aplica testes para avaliar atenção, memória, linguagem, raciocínio e funções executivas. 
+            Leia sobre <a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">avaliação neuropsicológica infantil</a>.
+          </li>
+        </ul>
+
+        <h2>Quando a abordagem multidisciplinar é indicada?</h2>
+        <ul>
+          <li><strong>Atraso global no desenvolvimento:</strong> criança com atraso em mais de uma área, como fala, motor e social</li>
+          <li><strong>Suspeita de autismo:</strong> sinais como pouco contato visual, atraso na fala e comportamentos repetitivos</li>
+          <li><strong>TDAH:</strong> desatenção, hiperatividade e impulsividade que prejudicam a rotina</li>
+          <li><strong>Dificuldade escolar persistente:</strong> queda no rendimento apesar de esforço</li>
+          <li><strong>Comportamentos atípicos:</strong> agressividade, ansiedade excessiva, isolamento ou dificuldade de socialização</li>
+        </ul>
+
+        <h2>Como funciona na prática?</h2>
+        <ol>
+          <li><strong>Entrevista inicial:</strong> os pais conversam com a coordenação clínica sobre as principais queixas</li>
+          <li><strong>Avaliações individuais:</strong> cada especialista realiza sua avaliação em horário agendado</li>
+          <li><strong>Integração dos resultados:</strong> a equipe se reúne para discutir os achados</li>
+          <li><strong>Laudo multidisciplinar:</strong> documento unificado com diagnóstico e recomendações</li>
+          <li><strong>Plano de tratamento:</strong> definição das terapias, intervenções e acompanhamentos necessários</li>
+        </ol>
+
+        <h2>Benefícios da avaliação multidisciplinar</h2>
+        <ul>
+          <li><strong>Visão completa:</strong> a criança é avaliada em todas as áreas importantes</li>
+          <li><strong>Diagnóstico mais preciso:</strong> reduz a chance de erro ou de diagnósticos conflitantes</li>
+          <li><strong>Menos exames repetidos:</strong> a equipe compartilha informações</li>
+          <li><strong>Plano integrado:</strong> as terapias conversam entre si e caminham no mesmo sentido</li>
+          <li><strong>Mais conforto para a família:</strong> tudo em um mesmo lugar, com comunicação clara</li>
+        </ul>
+
+        <h2>Avaliação multidisciplinar e autismo</h2>
+        <p>
+          O diagnóstico de autismo exige avaliação clínica e observação em diferentes contextos. A abordagem multidisciplinar 
+          permite que neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo contribuam juntos. 
+          Saiba mais em <a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">sinais de autismo na infância</a>.
+        </p>
+
+        <h2>Avaliação multidisciplinar e TDAH</h2>
+        <p>
+          No TDAH, a avaliação neuropsicológica complementa a avaliação médica do neuropediatra. O psicólogo avalia o comportamento 
+          e a família, enquanto o fonoaudiólogo pode investigar aspectos da linguagem e processamento auditivo. 
+          Veja os <a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">sinais de TDAH em crianças</a>.
+        </p>
+
+        <h2>Dificuldade escolar e avaliação em equipe</h2>
+        <p>
+          Quando a criança tem dificuldade escolar persistente, a avaliação multidisciplinar ajuda a identificar se o problema é 
+          cognitivo, emocional, de linguagem ou de aprendizagem. A partir disso, monta-se um plano de intervenção adequado.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos relacionados</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Neuropediatria: Guia Completo</a></li>
+            <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Psicologia Infantil: Guia Completo</a></li>
+            <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Fonoaudiologia: Guia Completo</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Avaliação Neuropsicológica Infantil: Guia Completo</a></li>
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
+            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
+            <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+          </ul>
+        </div>
+
+        <h2>Avaliação multidisciplinar infantil em Anápolis</h2>
+        <p>
+          Na <strong>Clínica Fono Inova</strong>, em Anápolis, a avaliação multidisciplinar infantil é realizada por uma equipe 
+          integrada de especialistas. Cuidamos de crianças com atraso no desenvolvimento, autismo, TDAH, dificuldades escolares 
+          e outros desafios do neurodesenvolvimento.
+        </p>
+
+        <p>
+          <strong>💚 Se você tem dúvidas sobre o desenvolvimento do seu filho, agende uma avaliação multidisciplinar infantil na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+  
   {
     id: 1,
     slug: "atraso-na-fala-como-estimular-linguagem-crianca",

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
 import WhatsAppStatusAlert from './components/WhatsAppStatusAlert';
@@ -108,6 +108,7 @@ function App() {
           <Route path="/dashboard" element={<AnalyticsDashboard />} />
           <Route path="/artigos" element={<Articles />} />
           <Route path="/artigos/:slug" element={<ArticlePage />} />
+          <Route path="/artigos/fono-guia-completo" element={<Navigate to="/artigos/fonoaudiologia-guia-completo" replace />} />
           <Route path="/fonoaudiologia" element={<FonoPage />} />
           <Route path="/psicologia" element={<PsicoPage />} />
           <Route path="/terapia-ocupacional" element={<TerapiaOcupacionalPage />} />
@@ -126,6 +127,8 @@ function App() {
           <Route path="/avaliacao-tdah-anapolis" element={<TdahAvaliacaoPage />} />
           <Route path="/comportamento-infantil-anapolis" element={<ComportamentoInfantilPage />} />
           <Route path="/neuropediatra-anapolis" element={<NeuropediatriaPage />} />
+          <Route path="/consulta-neuropediatra-infantil" element={<Navigate to="/neuropediatra-anapolis" replace />} />
+          <Route path="/avaliacao-neurologica-infantil" element={<Navigate to="/neuropediatra-anapolis" replace />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
           <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
           <Route path="/sindrome-de-down" element={<SindromeDeDownPage />} />
@@ -139,7 +142,14 @@ function App() {
           
           {/* NOVAS ROTAS - Especialidades SEO Local (dominar Anápolis) */}
           <Route path="/fonoaudiologia-anapolis" element={<FonoaudiologiaAnapolis />} />
+          <Route path="/fonoaudiologia-infantil-anapolis" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
+          <Route path="/fonoaudiologo-infantil-anapolis" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
+          <Route path="/avaliacao-fonoaudiologica" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
+          <Route path="/atraso-de-fala-infantil" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
           <Route path="/psicologia-infantil-anapolis" element={<PsicologiaInfantilAnapolis />} />
+          <Route path="/psicologo-infantil-anapolis" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
+          <Route path="/psicologa-infantil-anapolis" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
+          <Route path="/consulta-psicologo-infantil" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
           <Route path="/terapia-ocupacional-anapolis" element={<TerapiaOcupacionalAnapolis />} />
           <Route path="/psicomotricidade-anapolis" element={<PsicomotricidadeAnapolis />} />
           <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />

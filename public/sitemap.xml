@@ -1,15 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- ==================== HOME ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- ==================== GEO PAGES — CONSOLIDADAS (prioridade máxima) ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis</loc>
     <lastmod>2026-06-19</lastmod>
@@ -58,8 +54,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
-
-  <!-- ==================== LONG-TAIL LOCAL — ALTA INTENÇÃO ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fala-tardia-anapolis</loc>
     <lastmod>2026-06-19</lastmod>
@@ -90,8 +84,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
-
-  <!-- ==================== PÁGINAS SEM GEO (mantidas) ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/fonoaudiologia-adulto</loc>
     <lastmod>2026-06-19</lastmod>
@@ -122,8 +114,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
-
-  <!-- ==================== INSTITUCIONAIS ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/nossa-clinica</loc>
     <lastmod>2026-06-19</lastmod>
@@ -154,8 +144,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.60</priority>
   </url>
-
-  <!-- ==================== ARTIGOS DO BLOG ==================== -->
   <url>
     <loc>https://www.clinicafonoinova.com.br/artigos/atraso-na-fala-como-estimular-linguagem-crianca</loc>
     <lastmod>2026-06-19</lastmod>
@@ -246,5 +234,412 @@
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
-
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-guia-completo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-e-fonoaudiologia</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/para-que-serve-a-fonoaudiologia</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-faz-um-fonoaudiologo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fono-ou-fonoaudiologo-qual-diferenca</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/em-que-idade-levar-filho-fonoaudiologia</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-crianca-precisa-fonoaudiologia</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fono-para-fala-atrasada</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fono-para-autismo-funciona</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quantas-sessoes-de-fono-por-semana</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fono-cobre-plano-de-saude</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fono-infantil-quando-procurar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/neuropediatria-guia-completo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-faz-neuropediatra</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quando-procurar-neuropediatra</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-tdah-crianca</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-autismo-crianca</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/neuropediatra-diagnostica-autismo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/diferenca-neuropediatra-pediatra</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/neuropediatra-trata-tdah</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/neuropediatra-trata-autismo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/primeira-consulta-neuropediatra</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quando-crianca-precisa-avaliacao-neurologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/atraso-desenvolvimento-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/convulsao-infantil-quando-procurar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/psicologia-infantil-guia-completo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-faz-psicologo-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quando-levar-crianca-psicologo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-ansiedade-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/crianca-muito-nervosa-precisa-psicologo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/como-funciona-terapia-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/diferenca-psicologo-psiquiatra-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/birras-excessivas-quando-procurar-ajuda</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/dificuldades-emocionais-na-escola</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/primeira-consulta-psicologo-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/psicologo-infantil-ajuda-autismo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/psicologo-infantil-ajuda-tdah</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-baixa-autoestima-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/crianca-com-dificuldade-fazer-amigos</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/crianca-com-medo-excessivo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-faz-fonoaudiologo-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quando-levar-crianca-fonoaudiologo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/sinais-atraso-fala-crianca</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/crianca-nao-fala-idade-esperada</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-para-autismo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-ajuda-atraso-linguagem</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/troca-de-letras-quando-preocupar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/desenvolvimento-da-fala-por-idade</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/primeira-avaliacao-fonoaudiologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quantas-sessoes-fonoaudiologia</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/crianca-entende-mas-nao-fala</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-e-seletividade-alimentar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-para-dificuldade-escolar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/diferenca-fonoaudiologo-terapeuta-ocupacional</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-neuropsicologica-infantil-guia-completo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/o-que-e-avaliacao-neuropsicologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quando-fazer-avaliacao-neuropsicologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/como-funciona-avaliacao-neuropsicologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-neuropsicologica-para-tdah</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-neuropsicologica-para-autismo</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-neuropsicologica-dificuldade-escolar</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/quanto-tempo-dura-avaliacao-neuropsicologica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/como-entender-laudo-neuropsicologico</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-neuropsicologica-e-psicopedagogica</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/teste-de-atencao-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/teste-de-memoria-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-das-funcoes-executivas</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://www.clinicafonoinova.com.br/artigos/avaliacao-multidisciplinar-infantil</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
 </urlset>
