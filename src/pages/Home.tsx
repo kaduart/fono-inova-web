@@ -1289,7 +1289,7 @@ function Home() {
       {/* ==================== SEO ==================== -->
       <SEO
         title="Clínica Fono Inova em Anápolis | Fonoaudiologia e Psicologia Infantil"
-        description="Clínica Fono Inova em Anápolis: especialistas em fonoaudiologia, psicologia e terapia ocupacional infantil. Atendemos fala tardia, autismo, TDAH. Agende pelo WhatsApp."
+        description="Clínica Fono Inova em Anápolis. Fonoaudiologia, psicologia infantil e neurodesenvolvimento. Atendimento para fala, autismo, TDAH e dificuldades escolares."
         keywords="clínica fonoaudiologia anápolis, fonoaudiólogo infantil, psicologia infantil, terapia ocupacional, fala tardia, autismo"
         image="/images/og-image.jpg"
         url="/"
