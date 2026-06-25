@@ -165,14 +165,14 @@ const TerapiaOcupacionalAnapolis = () => {
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
-              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
+              <span className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Terapia Ocupacional Infantil em Anápolis
-              </h1>
+              </span>
 
-              {/* H2 - PAIN DRIVEN */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              {/* H1 - PAIN DRIVEN */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Seu Filho é <span className="text-emerald-600">Desastrado</span>, Tropeça Muito ou Tem Dificuldade de Coordenação?
-              </h2>
+              </h1>
 
               {/* H2 - REASSURANCE */}
               <h2 className="text-xl md:text-2xl font-medium text-slate-600">
@@ -348,6 +348,46 @@ const TerapiaOcupacionalAnapolis = () => {
                 <p className="text-sm text-slate-500 font-medium">— {testimonial.author}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== CONTEÚDO SEO EXPANDIDO ==================== */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-8 text-center">
+            Terapia Ocupacional Infantil em Anápolis
+          </h2>
+          <div className="prose prose-lg max-w-none text-slate-600 space-y-6">
+            <p>
+              A <strong>terapia ocupacional infantil</strong> ajuda crianças a desenvolverem habilidades do dia a dia, como 
+              coordenação motora, equilíbrio, organização e integração sensorial. Na Clínica Fono Inova, em Anápolis, 
+              o atendimento é individualizado e lúdico, respeitando o ritmo de cada criança.
+            </p>
+            <p>
+              Muitos pais procuram a terapia ocupacional quando o filho tropeça muito, tem dificuldade para se vestir, 
+              apresenta hipersensibilidade a texturas ou sons, ou enfrenta desafios na escola relacionados à motricidade 
+              e atenção. Esses sinais podem indicar atrasos no desenvolvimento neuropsicomotor que, quando tratados cedo, 
+              têm resultados muito melhores.
+            </p>
+            <p>
+              Nossa equipe, localizada no bairro Jundiaí em Anápolis, avalia cada caso de forma multidisciplinar. 
+              Quando necessário, a terapia ocupacional atua junto com a fonoaudiologia, psicologia e neuropediatria 
+              para garantir um cuidado completo ao desenvolvimento infantil.
+            </p>
+            <h3 className="text-xl font-bold text-slate-900 mt-8 mb-4">Quando procurar terapia ocupacional?</h3>
+            <ul className="space-y-3 list-disc pl-6">
+              <li>Criança muito desastrada ou que tropeça frequentemente</li>
+              <li>Dificuldade para segurar lápis, tesoura ou objetos pequenos</li>
+              <li>Rejeição intensa a texturas, cheiros ou sons</li>
+              <li>Atraso na coordenação motora grossa ou fina</li>
+              <li>Dificuldades de organização e planejamento de tarefas</li>
+              <li>Problemas de autonomia nas atividades diárias</li>
+            </ul>
+            <p>
+              Agende uma avaliação de terapia ocupacional infantil em Anápolis e descubra como podemos ajudar 
+              seu filho a desenvolver todo o seu potencial.
+            </p>
           </div>
         </div>
       </section>

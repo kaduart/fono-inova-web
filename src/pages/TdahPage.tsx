@@ -28,7 +28,7 @@ const TdahPage = () => {
     return (
         <Layout>
             <SEO
-                title="TDAH Infantil em Anápolis | Avaliação Neuropsicológica"
+                title="TDAH Infantil: O que é, Sintomas e Tratamento | Clínica Fono Inova"
                 description="Seu filho é inquieto, não presta atenção ou tem dificuldade na escola? Avaliação para TDAH em Anápolis. Diagnóstico e tratamento especializado."
                 keywords="tdah infantil anapolis, crianca hiperativa, deficit atencao, avaliacao neuropsicologica anapolis"
                 url="https://www.clinicafonoinova.com.br/tdah-infantil"

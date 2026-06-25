@@ -135,7 +135,7 @@ const ComportamentoInfantilPage = () => {
     return (
         <Layout>
             <SEO
-                title="Filho Não Obedece? Birras? Psicóloga Infantil Anápolis"
+                title="Comportamento Infantil: Birras, Desobediência e Autismo | Clínica Fono Inova"
                 description="Seu filho tem birras explosivas, agressividade ou não obedece? Psicóloga infantil especializada em comportamento em Anápolis. Primeira orientação pelo WhatsApp."
                 keywords="birra infantil anapolis, filho não obedece, agressividade infantil, psicologa infantil anapolis, comportamento infantil"
                 image="/images/psicologia/psico2.jpg"

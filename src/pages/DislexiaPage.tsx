@@ -90,7 +90,7 @@ const DislexiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Dislexia Infantil em Anápolis | Avaliação e Tratamento"
+                title="Dislexia Infantil: Sinais, Diagnóstico e Tratamento | Clínica Fono Inova"
                 description="Seu filho confunde letras, lê espelhado ou tem dificuldade para aprender? Avaliação psicopedagógica e fonoaudiológica em Anápolis. Agende pelo WhatsApp."
                 keywords="dislexia infantil anapolis, crianca troca letras, dificuldade para ler, psicopedagogia anapolis, dislexia tratamento"
                 image="/images/servicos/dislexia.jpg"

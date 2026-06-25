@@ -104,13 +104,13 @@ export default function TdahAnapolis() {
         <div className="relative container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="space-y-6 text-center pt-8">
 
-            <h1 className="inline-flex items-center bg-amber-50 text-amber-700 border border-amber-200 px-4 py-1.5 text-sm font-semibold rounded-full">
+            <span className="inline-flex items-center bg-amber-50 text-amber-700 border border-amber-200 px-4 py-1.5 text-sm font-semibold rounded-full">
               TDAH Infantil em Anápolis
-            </h1>
+            </span>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
               Seu Filho É Inquieto, Desatento ou Age Sem Pensar?
-            </h2>
+            </h1>
 
             <p className="text-xl text-slate-600 leading-relaxed">
               O TDAH é mais comum do que se imagina e tem tratamento eficaz. Nossa equipe
@@ -183,6 +183,81 @@ export default function TdahAnapolis() {
           >
             Agendar Avaliação em Anápolis
           </ButtonWhatsApp>
+        </div>
+      </section>
+
+      {/* ========== CONTEÚDO SEO EXPANDIDO ========== */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-8 text-center">
+            Entendendo o TDAH Infantil
+          </h2>
+          <div className="space-y-6 text-slate-600 leading-relaxed">
+            <p>
+              O <strong>TDAH (Transtorno do Déficit de Atenção com Hiperatividade)</strong> é uma condição neurobiológica 
+              que afeta a atenção, o controle de impulsos e, em muitos casos, o nível de atividade da criança. Em Anápolis, 
+              a Clínica Fono Inova oferece avaliação neuropsicológica especializada para identificar TDAH e orientar 
+              o melhor tratamento para cada caso.
+            </p>
+            <p>
+              Os sinais do TDAH podem variar muito. Algumas crianças são predominantemente desatentas, outras hiperativas 
+              e impulsivas, e muitas apresentam uma combinação dos dois tipos. Por isso, o diagnóstico nunca deve ser feito 
+              apenas com base na observação dos pais ou professores — é necessária uma avaliação profissional completa.
+            </p>
+            <h3 className="text-xl font-bold text-slate-900 mt-6">Principais sinais de TDAH em crianças</h3>
+            <ul className="space-y-2 list-disc pl-6">
+              <li>Dificuldade para manter a atenção em tarefas ou brincadeiras</li>
+              <li>Impulsividade — age antes de pensar nas consequências</li>
+              <li>Agitação excessiva ou dificuldade para ficar parado</li>
+              <li>Esquecimento frequente de compromissos e materiais</li>
+              <li>Dificuldade para seguir instruções e completar tarefas</li>
+              <li>Problemas de organização e planejamento</li>
+            </ul>
+            <p>
+              O tratamento do TDAH na Fono Inova é multidisciplinar. A avaliação neuropsicológica investiga as funções 
+              executivas, atenção, memória e processamento. Depois, montamos um plano que pode incluir acompanhamento 
+              psicológico, fonoaudiologia, orientação escolar e parceria com o pediatra.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FAQ VISÍVEL ========== */}
+      <section className="py-16 bg-amber-50/50">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-10 text-center">
+            Perguntas Frequentes sobre TDAH
+          </h2>
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Como identificar TDAH em crianças?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Os principais sinais incluem dificuldade de concentração, impulsividade, agitação excessiva e dificuldade 
+                para seguir instruções. A avaliação neuropsicológica é essencial para um diagnóstico correto.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Qual profissional avalia TDAH em Anápolis?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                A avaliação neuropsicológica para TDAH é realizada por neuropsicólogo. A Clínica Fono Inova, no bairro 
+                Jundiaí em Anápolis, oferece avaliação completa para crianças com suspeita de TDAH.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">TDAH tem tratamento?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Sim. O TDAH tem tratamento eficaz que combina acompanhamento psicológico, orientação escolar, suporte aos 
+                pais e, quando indicado, tratamento médico. Quanto mais cedo iniciado, melhores os resultados.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Com que idade fazer avaliação de TDAH?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                A avaliação pode ser feita a partir dos 6 anos, quando os comportamentos escolares ficam mais evidentes. 
+                Mas sinais em crianças mais novas também merecem atenção e acompanhamento especializado.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

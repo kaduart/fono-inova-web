@@ -160,15 +160,15 @@ const FonoaudiologiaAnapolis = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
-              {/* H1 - GEO-SEMÂNTICO */}
-              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
+              {/* Badge GEO */}
+              <span className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Fonoaudiologia Infantil em Anápolis
-              </h1>
+              </span>
 
-              {/* H2 - PAIN DRIVEN */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              {/* H1 - PAIN DRIVEN */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Seu Filho Não Fala ou Fala Pouco para a Idade?
-              </h2>
+              </h1>
 
               {/* H2 - REASSURANCE */}
               <h2 className="text-xl md:text-2xl font-medium text-slate-600">

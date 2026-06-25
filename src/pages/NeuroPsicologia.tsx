@@ -183,7 +183,7 @@ const NeuropsicologicaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Avaliação Neuropsicológica em Anápolis | TDAH, TEA e Dislexia"
+                title="Avaliação Neuropsicológica Infantil: O que é e Para Que Serve | Fono Inova"
                 description="Avaliação neuropsicológica completa para diagnóstico de TDAH, TEA, dislexia e dificuldades cognitivas em Anápolis-GO."
                 keywords="avaliação neuropsicológica, TDAH, TEA, dislexia, funções cognitivas, neuropsicologia, Anápolis"
                 image="/images/servicos/neuropsicologica.jpg"

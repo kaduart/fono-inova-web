@@ -165,18 +165,18 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
-              {/* H1 - GEO-SEMÂNTICO */}
-              <h1 className="mb-4 inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full shadow-sm text-sm font-medium text-primary">
+              {/* Badge GEO */}
+              <span className="mb-4 inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full shadow-sm text-sm font-medium text-primary">
                 <Sparkles className="w-4 h-4 text-primary" />
                 Avaliação Neuropsicológica em Anápolis
-              </h1>
+              </span>
 
-              {/* H2 */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              {/* H1 */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 Avaliação{" "}
                 <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Neuropsicológica</span>{" "}
                 em Anápolis
-              </h2>
+              </h1>
 
               {/* H2 - Especialidade */}
               <h2 className="text-xl md:text-2xl font-semibold text-slate-700">

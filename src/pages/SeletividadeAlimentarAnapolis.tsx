@@ -96,13 +96,13 @@ export default function SeletividadeAlimentarAnapolis() {
         <div className="relative container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="space-y-6 text-center pt-8">
 
-            <h1 className="inline-flex items-center bg-green-50 text-green-700 border border-green-200 px-4 py-1.5 text-sm font-semibold rounded-full">
+            <span className="inline-flex items-center bg-green-50 text-green-700 border border-green-200 px-4 py-1.5 text-sm font-semibold rounded-full">
               Seletividade Alimentar Infantil em Anápolis
-            </h1>
+            </span>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
               Seu Filho Rejeita a Maioria dos Alimentos?
-            </h2>
+            </h1>
 
             <p className="text-xl text-slate-600 leading-relaxed">
               Seletividade alimentar não é frescura — é uma condição real que pode ser
@@ -175,6 +175,85 @@ export default function SeletividadeAlimentarAnapolis() {
           >
             Agendar Avaliação em Anápolis
           </ButtonWhatsApp>
+        </div>
+      </section>
+
+      {/* ========== CONTEÚDO SEO EXPANDIDO ========== */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-8 text-center">
+            Entendendo a Seletividade Alimentar Infantil
+          </h2>
+          <div className="space-y-6 text-slate-600 leading-relaxed">
+            <p>
+              A <strong>seletividade alimentar infantil</strong> vai muito além de uma criança que "não gosta de comer". 
+              Trata-se de uma dificuldade persistente para aceitar novos alimentos, que pode afetar o crescimento, 
+              o desenvolvimento e a qualidade de vida da família inteira. Em Anápolis, a Clínica Fono Inova oferece 
+              atendimento especializado para identificar e tratar as causas da seletividade.
+            </p>
+            <p>
+              As causas são multifatoriais. Pode haver componentes sensoriais (textura, cheiro, cor, temperatura), 
+              orais (dificuldade para mastigar ou engolir), comportamentais (rotina rígida, negativismo) ou até 
+              médicas (refluxo, constipação, alergias). Por isso, a avaliação deve ser feita por profissionais 
+              capacitados em motricidade orofacial e integração sensorial.
+            </p>
+            <h3 className="text-xl font-bold text-slate-900 mt-6">Sinais de alerta que indicam necessidade de avaliação</h3>
+            <ul className="space-y-2 list-disc pl-6">
+              <li>Aceita menos de 20 alimentos diferentes</li>
+              <li>Rejeita alimentos por textura, cor, cheiro ou temperatura</li>
+              <li>Chora, grita ou vomita na hora das refeições</li>
+              <li>Só come em casa ou em pratos específicos</li>
+              <li>Perdeu peso ou apresenta dificuldade para ganhar peso</li>
+              <li>Refeições são fonte constante de estresse familiar</li>
+            </ul>
+            <p>
+              O tratamento na Fono Inova é gradual, lúdico e respeita o ritmo da criança. Trabalhamos em parceria 
+              com os pais para transformar as refeições em momentos mais tranquilos e saudáveis. Agende uma avaliação 
+              no bairro Jundiaí em Anápolis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FAQ VISÍVEL ========== */}
+      <section className="py-16 bg-green-50/50">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-10 text-center">
+            Perguntas Frequentes sobre Seletividade Alimentar
+          </h2>
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">O que é seletividade alimentar infantil?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                Seletividade alimentar é quando a criança rejeita a maioria dos alimentos, geralmente por questões sensoriais, 
+                orais ou comportamentais. É diferente de "frescura" — é uma condição que pode ser tratada com acompanhamento 
+                especializado em Anápolis.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Seletividade alimentar pode ser autismo?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                A seletividade alimentar é comum em crianças com TEA (autismo), mas também ocorre em crianças sem diagnóstico. 
+                Nossa equipe avalia a criança de forma completa para identificar a causa específica e indicar o melhor tratamento.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Qual profissional trata seletividade alimentar em Anápolis?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                O tratamento ideal envolve fonoaudióloga (que avalia a função oral e deglutição) e terapeuta ocupacional 
+                (que trabalha a integração sensorial). A Clínica Fono Inova, no bairro Jundiaí em Anápolis, tem equipe 
+                especializada para esse atendimento.
+              </p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-green-100">
+              <h3 className="text-lg font-bold text-slate-900 mb-3">Como é o tratamento na Fono Inova?</h3>
+              <p className="text-slate-600 leading-relaxed">
+                O tratamento é gradual e respeita o ritmo da criança. Começamos com uma avaliação detalhada, identificamos 
+                as causas da seletividade e montamos um plano personalizado com estratégias sensoriais, orais e comportamentais 
+                para expandir a alimentação sem trauma.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

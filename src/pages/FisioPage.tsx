@@ -155,7 +155,7 @@ const FisioPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fisioterapia Infantil em Anápolis | Desenvolvimento Motor - Clínica Fono Inova"
+                title="Fisioterapia Infantil: Desenvolvimento Motor e Reabilitação | Clínica Fono Inova"
                 description="Fisioterapia pediátrica para bebês e crianças: desenvolvimento motor, reabilitação e coordenação motora em Anápolis-GO."
                 keywords="fisioterapia infantil, desenvolvimento motor, coordenação motora, reabilitação infantil, fisioterapia pediátrica, Anápolis"
                 image="/images/servicos/fisioterapia.jpg"

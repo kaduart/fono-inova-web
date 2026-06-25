@@ -168,7 +168,7 @@ const PsicomotricidadePage = () => {
   return (
     <Layout>
       <SEO
-        title="Psicomotricidade Infantil em Anápolis | Clínica Fono Inova"
+        title="Psicomotricidade Infantil: Benefícios e Quando Fazer | Clínica Fono Inova"
         description="Terapia de psicomotricidade para crianças com TEA, Síndrome de Down e atrasos motores em Anápolis. Agende uma avaliação no bairro Jundiaí."
         keywords="psicomotricidade infantil anapolis, tea anapolis, sindrome de down anapolis, atraso motor infantil"
         image="/images/psicomotricidade-hero.png"

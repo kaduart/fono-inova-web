@@ -9,9 +9,9 @@ const Clinica = () => {
     return (
         <Layout>
             <SEO
-                title="Nossa Clínica | Clínica Fono Inova"
-                description="Conheça a infraestrutura moderna e acolhedora da Clínica Fono Inova em Anápolis."
-                keywords="infraestrutura clínica, ambiente acessível, clínica infantil anápolis, salas temáticas"
+                title="Nossa Clínica em Anápolis | Estrutura e Equipe Fono Inova"
+                description="Conheça a Clínica Fono Inova em Anápolis. Infraestrutura moderna, equipe especializada em fonoaudiologia, psicologia, terapia ocupacional e neuropsicologia infantil. Bairro Jundiaí."
+                keywords="clínica infantil anápolis, clínica fonoaudiologia anápolis, neuropsicologia infantil anápolis, terapia ocupacional anápolis, psicologia infantil anápolis, bairro jundiaí"
                 image="/images/clinica/fachada-premium.png"
                 url="/nossa-clinica"
                 schema={{
@@ -33,7 +33,7 @@ const Clinica = () => {
                                 Ambiente Acolhedor
                             </Badge>
                             <h1 className="text-4xl md:text-5xl font-bold font-poppins text-slate-900 mb-6">
-                                Infraestrutura feita para o <span className="text-primary">Desenvolvimento</span>
+                                Clínica Fono Inova em Anápolis — Infraestrutura para o <span className="text-primary">Desenvolvimento Infantil</span>
                             </h1>
                             <p className="text-lg text-slate-600 leading-relaxed mb-8">
                                 Nossa clínica foi projetada para oferecer um ambiente seguro, lúdico e altamente funcional. Cada sala é equipada com recursos específicos para potencializar os resultados das terapias.
@@ -88,6 +88,63 @@ const Clinica = () => {
                                 <p className="text-slate-500 text-sm">Bairro Jundiaí</p>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Seção Equipe e Especialidades */}
+            <section className="py-20 bg-slate-50">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                            Equipe Multidisciplinar Especializada
+                        </h2>
+                        <p className="text-lg text-slate-600 leading-relaxed">
+                            A Clínica Fono Inova reúne profissionais experientes em diferentes áreas do desenvolvimento infantil, 
+                            trabalhando de forma integrada para oferecer o melhor cuidado às crianças e famílias de Anápolis.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                        {[
+                            { title: "Fonoaudiologia", desc: "Avaliação e tratamento de fala, linguagem, motricidade orofacial e alimentação." },
+                            { title: "Psicologia Infantil", desc: "Acompanhamento emocional, comportamental e avaliação de TDAH, autismo e ansiedade." },
+                            { title: "Terapia Ocupacional", desc: "Desenvolvimento motor, integração sensorial e autonomia nas atividades diárias." },
+                            { title: "Neuropsicologia", desc: "Avaliação das funções cognitivas, atenção, memória e aprendizagem." },
+                        ].map((item, index) => (
+                            <div key={index} className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                                <p className="text-slate-600">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Seção Diferenciais */}
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                            Por que escolher a Fono Inova?
+                        </h2>
+                        <p className="text-lg text-slate-600 leading-relaxed">
+                            Mais de uma clínica de terapias, somos um espaço de acolhimento e desenvolvimento infantil 
+                            no coração de Anápolis.
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {[
+                            { title: "Atendimento Integrado", desc: "Diferentes especialidades trabalhando juntas, com troca de informações entre os profissionais." },
+                            { title: "Ambiente Acolhedor", desc: "Salas temáticas e lúdicas que reduzem a ansiedade e aumentam o engajamento das crianças." },
+                            { title: "Localização Privilegiada", desc: "Fácil acesso no bairro Jundiaí, com estacionamento próximo e estrutura acessível." },
+                        ].map((item, index) => (
+                            <div key={index} className="text-center p-8 bg-slate-50 rounded-2xl">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
+                                <p className="text-slate-600">{item.desc}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
