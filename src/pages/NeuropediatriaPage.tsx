@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
+import { schemaBaseLocalBusiness, schemaFAQNeuropediatria } from '../schemas/clinicaSchemas';
 
 const NeuropediatriaPage = () => {
     const [selectedSintoma, setSelectedSintoma] = useState<string | null>(null);
@@ -130,13 +130,13 @@ const NeuropediatriaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Neuropediatra em Anápolis | Avaliação Desenvolvimento Infantil"
-                description="Neuropediatra em Anápolis. Avaliação especializada de atraso no desenvolvimento, autismo, TDAH e dificuldades neurológicas. Agende consulta."
+                title="Neuropediatra em Anápolis | TDAH, Autismo e Atraso no Desenvolvimento"
+                description="Neuropediatra em Anápolis no bairro Jundiaí. Avaliação especializada de TDAH, autismo, atraso na fala, convulsões e dificuldades neurológicas. Atendimento particular e convênios. Agende pelo WhatsApp."
                 keywords="neuropediatra anapolis, neurologista infantil anapolis, atraso desenvolvimento infantil, autismo infantil anapolis, tdah infantil anapolis"
                 image="/images/servicos/neuropediatria.jpg"
                 url="https://www.clinicafonoinova.com.br/neuropediatra-anapolis"
                 type="article"
-                schema={[schemaBaseLocalBusiness]}
+                schema={[schemaBaseLocalBusiness, schemaFAQNeuropediatria]}
             />
 
             {/* ==================== BOTÃO WHATSAPP FLUTUANTE FIXO ==================== */}

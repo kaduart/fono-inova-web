@@ -192,7 +192,7 @@ const FonoaudiologiaAnapolis = () => {
 
               {/* Parágrafo */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
-                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, em <strong>Anápolis</strong>, ajudamos pais a entenderem o desenvolvimento da fala do filho. Oferecemos <strong>atendimento acolhedor</strong>, <strong>explicação clara</strong> do que está acontecendo e <strong>orientação prática</strong> para a família.
+                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, em <strong>Anápolis</strong>, ajudamos pais a entenderem o desenvolvimento da fala do filho. Oferecemos <strong>atendimento acolhedor</strong>, <strong>explicação clara</strong> do que está acontecendo e <strong>orientação prática</strong> para a família. Quando há sinais de envolvimento neurológico, indicamos também a avaliação com <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline">neuropediatra em Anápolis</Link>.
               </p>
 
               {/* Benefícios rápidos - ATUALIZADOS */}

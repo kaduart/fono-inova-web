@@ -9,6 +9,8 @@
  *   node scripts/indexnow.js --bulk scripts/urls-para-indexnow.txt
  */
 
+import fs from 'fs';
+
 const INDEXNOW_KEY = 'fc27b457-c887-4f8a-b534-952bfd2d147f';
 const HOST = 'www.clinicafonoinova.com.br';
 const INDEXNOW_ENDPOINT = 'https://www.bing.com/indexnow';
@@ -40,7 +42,6 @@ async function submitUrl(url) {
 }
 
 async function submitBulk(filePath) {
-  const fs = require('fs');
   const urls = fs.readFileSync(filePath, 'utf-8')
     .split('\n')
     .map(line => line.trim())

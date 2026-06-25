@@ -76,7 +76,8 @@ export default function AutismoAnapolis() {
             <p className="text-xl text-slate-600 leading-relaxed">
               A identificação precoce faz toda a diferença. Nossa equipe multidisciplinar
               em <strong>Anápolis</strong> oferece avaliação acolhedora, sem julgamentos,
-              para entender o desenvolvimento único do seu filho.
+              para entender o desenvolvimento único do seu filho. Contamos com
+              <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link> para avaliação médica especializada no diagnóstico e acompanhamento.
             </p>
 
             <div className="bg-purple-50 border border-purple-200 p-5 rounded-xl text-left">

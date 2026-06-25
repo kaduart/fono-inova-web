@@ -408,12 +408,12 @@ const PsicologiaInfantilAnapolis = () => {
           <p className="text-slate-600 mb-4">
             Em alguns casos, pode ser indicada avaliação com <strong>neuropediatra</strong> para investigação mais detalhada do desenvolvimento.
           </p>
-          <a 
-            href="/neuropediatra-anapolis" 
+          <Link 
+            to="/neuropediatra-anapolis" 
             className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold hover:underline"
           >
             Conhecer neuropediatra em Anápolis
-          </a>
+          </Link>
         </div>
       </section>
 

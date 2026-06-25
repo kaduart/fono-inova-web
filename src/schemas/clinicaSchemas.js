@@ -950,6 +950,33 @@ export const schemaFAQAvaliacaoNeuropsicologicaAnapolis = {
     ]
 };
 
+export const schemaFAQNeuropediatria = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "O que faz um neuropediatra?",
+            "acceptedAnswer": { "@type": "Answer", "text": "O neuropediatra é um médico especialista no desenvolvimento neurológico da criança. Avalia atrasos no desenvolvimento, autismo, TDAH, convulsões, dificuldades de aprendizagem e outros problemas neurológicos infantis." }
+        },
+        {
+            "@type": "Question",
+            "name": "Com que idade posso levar meu filho ao neuropediatra?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Dependendo da suspeita, a avaliação pode ser feita desde os primeiros meses de vida. Sinais de alerta como atraso para sentar, andar ou falar, ou comportamentos atípicos devem ser avaliados o quanto antes." }
+        },
+        {
+            "@type": "Question",
+            "name": "Preciso de encaminhamento para consultar o neuropediatra?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos particular e diversos convênios." }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde encontrar neuropediatra em Anápolis?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A Clínica Fono Inova oferece atendimento com neuropediatra no bairro Jundiaí, em Anápolis/GO. Agende sua consulta pelo WhatsApp (62) 99201-3573." }
+        }
+    ]
+};
+
 // ==========================================
 // SCHEMAS PARA LANDING PAGES
 // ==========================================

@@ -1,4 +1,5 @@
 import { MapPin, Clock, Shield, CheckCircle, Camera, Heart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Badge } from '../components/ui/badge';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
@@ -101,16 +102,18 @@ const Clinica = () => {
                         </h2>
                         <p className="text-lg text-slate-600 leading-relaxed">
                             A Clínica Fono Inova reúne profissionais experientes em diferentes áreas do desenvolvimento infantil, 
+                            incluindo <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline">neuropediatra em Anápolis</Link>, 
                             trabalhando de forma integrada para oferecer o melhor cuidado às crianças e famílias de Anápolis.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
                         {[
                             { title: "Fonoaudiologia", desc: "Avaliação e tratamento de fala, linguagem, motricidade orofacial e alimentação." },
                             { title: "Psicologia Infantil", desc: "Acompanhamento emocional, comportamental e avaliação de TDAH, autismo e ansiedade." },
                             { title: "Terapia Ocupacional", desc: "Desenvolvimento motor, integração sensorial e autonomia nas atividades diárias." },
                             { title: "Neuropsicologia", desc: "Avaliação das funções cognitivas, atenção, memória e aprendizagem." },
+                            { title: "Neuropediatria", desc: "Avaliação médica especializada do desenvolvimento infantil e neurológico." },
                         ].map((item, index) => (
                             <div key={index} className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
                                 <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>

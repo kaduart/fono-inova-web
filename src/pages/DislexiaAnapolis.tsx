@@ -173,8 +173,9 @@ export default function DislexiaAnapolis() {
           <p className="text-lg text-slate-600 leading-relaxed">
             No bairro <strong>Jundiaí</strong>, Anápolis, a Clínica Fono Inova tem
             psicopedagoga especializada em dificuldades de aprendizagem, incluindo
-            dislexia, disgrafia e discalculia. Avaliação completa e intervenção
-            multissensorial para que seu filho aprenda com mais facilidade e confiança.
+            dislexia, disgrafia e discalculia. Quando indicado, realizamos encaminhamento
+            para <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline">neuropediatra em Anápolis</Link> para investigação médica do neurodesenvolvimento.
+            Avaliação completa e intervenção multissensorial para que seu filho aprenda com mais facilidade e confiança.
           </p>
           <ButtonWhatsApp
             onClick={() => trackButtonClick('WA_Dislexia_Sobre')}

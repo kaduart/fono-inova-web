@@ -190,7 +190,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
 
               {/* Parágrafo */}
               <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
-                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, realizamos avaliação neuropsicológica em Anápolis para diagnóstico precoce de TDAH, déficit de atenção, dislexia e outros transtornos do neurodesenvolvimento. Nossa equipe multidisciplinar oferece atendimento humanizado e especializado para ajudar seu filho a alcançar seu pleno potencial.
+                Na <strong className="text-slate-900">Clínica Fono Inova</strong>, realizamos avaliação neuropsicológica em Anápolis para diagnóstico precoce de TDAH, déficit de atenção, dislexia e outros transtornos do neurodesenvolvimento. Quando necessário, contamos com <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline">neuropediatra em Anápolis</Link> para avaliação médica especializada. Nossa equipe multidisciplinar oferece atendimento humanizado e especializado para ajudar seu filho a alcançar seu pleno potencial.
               </p>
 
               {/* Benefícios rápidos */}

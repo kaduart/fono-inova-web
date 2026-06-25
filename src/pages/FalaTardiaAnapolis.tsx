@@ -135,7 +135,9 @@ export default function FalaTardiaAnapolis() {
           <p className="text-lg text-slate-600 leading-relaxed">
             Localizada no bairro <strong>Jundiaí</strong>, Anápolis, a Clínica Fono Inova
             tem fonoaudióloga especializada em atraso de fala, autismo, gagueira e
-            dificuldades de linguagem. Atendemos famílias de toda a região de Anápolis
+            dificuldades de linguagem. Quando há sinais de envolvimento neurológico,
+            indicamos avaliação com <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline">neuropediatra em Anápolis</Link>.
+            Atendemos famílias de toda a região de Anápolis
             e cidades próximas com equipe multidisciplinar e atendimento humanizado.
           </p>
           <ButtonWhatsApp

@@ -115,7 +115,8 @@ export default function TdahAnapolis() {
             <p className="text-xl text-slate-600 leading-relaxed">
               O TDAH é mais comum do que se imagina e tem tratamento eficaz. Nossa equipe
               em <strong>Anápolis</strong> realiza avaliação completa e acompanhamento
-              para que seu filho possa desenvolver todo o seu potencial.
+              para que seu filho possa desenvolver todo o seu potencial. Contamos com
+              <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link> para avaliação médica especializada quando necessário.
             </p>
 
             <div className="bg-amber-50 border border-amber-200 p-5 rounded-xl text-left">
@@ -173,7 +174,8 @@ export default function TdahAnapolis() {
           <p className="text-lg text-slate-600 leading-relaxed">
             No bairro <strong>Jundiaí</strong>, Anápolis, nossa equipe realiza avaliação
             neuropsicológica completa para identificar TDAH, dificuldades de aprendizagem
-            e outros desafios cognitivos. Atendemos com acolhimento, sem rótulos —
+            e outros desafios cognitivos. Quando indicado, encaminhamos para avaliação com
+            <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link>. Atendemos com acolhimento, sem rótulos —
             para que cada criança seja compreendida em sua singularidade.
           </p>
           <ButtonWhatsApp

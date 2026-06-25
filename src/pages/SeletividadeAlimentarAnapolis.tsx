@@ -107,7 +107,9 @@ export default function SeletividadeAlimentarAnapolis() {
             <p className="text-xl text-slate-600 leading-relaxed">
               Seletividade alimentar não é frescura — é uma condição real que pode ser
               tratada. Nossa equipe em <strong>Anápolis</strong> avalia a causa
-              e trabalha a expansão alimentar de forma gradual e acolhedora.
+              e trabalha a expansão alimentar de forma gradual e acolhedora. Em casos
+              associados a condições do neurodesenvolvimento, indicamos avaliação com
+              <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link>.
             </p>
 
             <div className="bg-green-50 border border-green-200 p-5 rounded-xl text-left">

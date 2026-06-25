@@ -86,8 +86,9 @@ export const satelliteArticles = [
         <h2>Quando Procurar um Fonoaudiólogo?</h2>
         <p>
           Se seu bebê apresenta atrasos significativos nos marcos da fala, é importante buscar avaliação profissional. 
-          Na Clínica Fono Inova em Anápolis, avaliamos bebês e crianças de todas as idades. Quanto mais cedo 
-          identificarmos uma dificuldade, melhores são os resultados do tratamento.
+          Na Clínica Fono Inova em Anápolis, avaliamos bebês e crianças de todas as idades. Quando há sinais de envolvimento 
+          neurológico, indicamos também avaliação com <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a>. 
+          Quanto mais cedo identificarmos uma dificuldade, melhores são os resultados do tratamento.
         </p>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
@@ -288,7 +289,7 @@ export const satelliteArticles = [
         <ul>
           <li><strong>Fatores ambientais:</strong> Pouca estimulação linguística, excesso de telas</li>
           <li><strong>Problemas auditivos:</strong> Perda auditiva ou infecções recorrentes de ouvido</li>
-          <li><strong>Desenvolvimento neurológico:</strong> Atraso no desenvolvimento global</li>
+          <li><strong>Desenvolvimento neurológico:</strong> Atraso no desenvolvimento global — avaliado por <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a></li>
           <li><strong>Transtornos do neurodesenvolvimento:</strong> Autismo, TDAH</li>
           <li><strong>Questões estruturais:</strong> Freio lingual curto (língua presa)</li>
           <li><strong>História familiar:</strong> Genética pode influenciar</li>
@@ -1095,7 +1096,8 @@ export const satelliteArticles = [
         <h2>Quando começar?</h2>
         <p>
           O ideal é iniciar o quanto antes, ainda na primeira infância. Na Clínica Fono Inova em Anápolis, 
-          trabalhamos com crianças no espectro autista em conjunto com psicologia e terapia ocupacional, 
+          trabalhamos com crianças no espectro autista em conjunto com psicologia, terapia ocupacional e, quando indicado, 
+          <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a>, 
           formando uma equipe multidisciplinar integrada.
         </p>
 
@@ -6723,6 +6725,162 @@ export const satelliteArticles = [
 <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
             <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+
+  {
+    id: 201,
+    slug: "quando-procurar-neuropediatra-anapolis",
+    title: "Quando Procurar um Neuropediatra em Anápolis? 7 Sinais de Alerta",
+    excerpt: "Descubra os principais sinais de que seu filho precisa de uma avaliação com neuropediatra em Anápolis e quando agendar a consulta.",
+    category: "Neuropediatria",
+    categoryColor: "blue",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Coordenadora Clínica",
+    authorCredentials: "Fonoaudióloga - CRFA 1234-GO",
+    date: "25 de Junho, 2026",
+    dateISO: "2026-06-25",
+    dateModifiedISO: "2026-06-25",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+    imageAlt: "Médico neuropediatra avaliando criança em Anápolis na Clínica Fono Inova",
+    faq: [
+      {
+        question: "Com que idade levar criança ao neuropediatra?",
+        answer: "Dependendo dos sinais, a avaliação pode ser feita desde os primeiros meses. Sinais como atraso para sentar, andar, falar ou contato visual reduzido merecem atenção precoce."
+      },
+      {
+        question: "O neuropediatra trata TDAH?",
+        answer: "Sim. O neuropediatra é o médico responsável pelo diagnóstico e acompanhamento médico do TDAH, incluindo prescrição de medicamentos quando necessário."
+      },
+      {
+        question: "Preciso de encaminhamento para neuropediatra em Anápolis?",
+        answer: "Não. Na Clínica Fono Inova você pode agendar diretamente a consulta com neuropediatra, com atendimento particular e convênios."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Muitos pais têm dúvidas sobre o desenvolvimento do filho e não sabem quando procurar um especialista. 
+          O <strong>neuropediatra</strong> é o médico que avalia o sistema nervoso da criança e pode identificar 
+          precocemente condições como atraso no desenvolvimento, autismo, TDAH e convulsões. Neste artigo, 
+          listamos os 7 principais sinais de alerta para buscar um <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a>.
+        </p>
+
+        <h2>7 Sinais de Alerta no Desenvolvimento Infantil</h2>
+        <ul>
+          <li><strong>Atraso para falar ou andar:</strong> Não atinge os marcos esperados para a idade</li>
+          <li><strong>Dificuldade de atenção e hiperatividade:</strong> Sinais persistentes de TDAH</li>
+          <li><strong>Suspeita de autismo:</strong> Pouco contato visual, comunicação limitada, comportamentos repetitivos</li>
+          <li><strong>Convulsões:</strong> Episódios de perda de consciência ou movimentos involuntários</li>
+          <li><strong>Dificuldades escolares:</strong> Aprendizagem abaixo do esperado apesar de estimulação</li>
+          <li><strong>Alterações de comportamento:</strong> Mudanças bruscas de humor, agressividade ou isolamento</li>
+          <li><strong>Regressão:</strong> Perda de habilidades que a criança já tinha conquistado</li>
+        </ul>
+
+        <h2>Por que a Avaliação Precoce Importa?</h2>
+        <p>
+          Quanto mais cedo o diagnóstico, maiores as chances de intervenção eficaz. O neuropediatra pode indicar 
+          terapias complementares, como fonoaudiologia, psicologia e terapia ocupacional, de forma integrada.
+        </p>
+
+        <h2>Neuropediatra em Anápolis</h2>
+        <p>
+          Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, contamos com atendimento multidisciplinar. 
+          Agende sua consulta com <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a> pelo WhatsApp e entenda melhor o desenvolvimento do seu filho.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Agendar consulta com neuropediatra</a></li>
+            <li><a href="/artigos/neuropediatra-ou-neurologista-infantil-qual-diferenca" className="text-blue-600 hover:underline">→ Diferença entre neuropediatra e neurologista infantil</a></li>
+            <li><a href="/tdah-anapolis" className="text-blue-600 hover:underline">→ Avaliação de TDAH em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+
+  {
+    id: 202,
+    slug: "neuropediatra-ou-neurologista-infantil-qual-diferenca",
+    title: "Neuropediatra ou Neurologista Infantil: Qual a Diferença?",
+    excerpt: "Entenda a diferença entre neuropediatra e neurologista infantil e qual especialista procurar para seu filho em Anápolis.",
+    category: "Neuropediatria",
+    categoryColor: "blue",
+    author: "Dra. Lorrany Siqueira",
+    authorRole: "Coordenadora Clínica",
+    authorCredentials: "Fonoaudióloga - CRFA 1234-GO",
+    date: "25 de Junho, 2026",
+    dateISO: "2026-06-25",
+    dateModifiedISO: "2026-06-25",
+    image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80",
+    imageAlt: "Neuropediatra explicando diagnóstico para pais em Anápolis",
+    faq: [
+      {
+        question: "Neuropediatra e neurologista infantil são a mesma coisa?",
+        answer: "Na prática sim. Ambos são médicos neurologistas com formação específica para atender crianças, com foco no desenvolvimento neurológico infantil."
+      },
+      {
+        question: "O que o neuropediatra trata?",
+        answer: "TDAH, autismo, atraso no desenvolvimento, convulsões, dificuldades de aprendizagem, paralisia cerebral, entre outras condições neurológicas infantis."
+      },
+      {
+        question: "Onde encontrar neuropediatra em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis/GO. Oferecemos atendimento multidisciplinar com neuropediatra, fonoaudiologia, psicologia e terapia ocupacional."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Ao buscar ajuda para o desenvolvimento do filho, muitos pais se deparam com os termos 
+          <strong>neuropediatra</strong> e <strong>neurologista infantil</strong>. Será que são especialistas diferentes? 
+          Neste artigo explicamos de forma simples qual a diferença e quando procurar cada um em Anápolis.
+        </p>
+
+        <h2>Neuropediatra: O Especialista no Desenvolvimento Infantil</h2>
+        <p>
+          O neuropediatra é um médico neurologista que se especializou no desenvolvimento do sistema nervoso das crianças. 
+          Ele avalia e acompanha condições como:
+        </p>
+        <ul>
+          <li>TDAH (Déficit de Atenção e Hiperatividade)</li>
+          <li>Autismo e TEA</li>
+          <li>Atraso no desenvolvimento neuropsicomotor</li>
+          <li>Atraso na fala e linguagem</li>
+          <li>Convulsões e epilepsia</li>
+          <li>Dificuldades de aprendizagem</li>
+          <li>Paralisia cerebral</li>
+        </ul>
+
+        <h2>Neurologista Infantil: O Mesmo Perfil</h2>
+        <p>
+          O neurologista infantil também é um neurologista com formação em pediatria. Na prática clínica, 
+          neuropediatra e neurologista infantil atuam de forma muito semelhante, ambos focados no cuidado neurológico da criança.
+        </p>
+
+        <h2>Qual Procurar para Meu Filho?</h2>
+        <p>
+          Para a maioria das queixas de desenvolvimento infantil — como suspeita de TDAH, autismo, atraso na fala 
+          ou convulsões — o neuropediatra é o profissional indicado. Na Clínica Fono Inova, você encontra 
+          <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a> com atendimento integrado à equipe multidisciplinar.
+        </p>
+
+        <h2>Agende uma Avaliação em Anápolis</h2>
+        <p>
+          Se você observa sinais de alerta no desenvolvimento do seu filho, não espere. A avaliação precoce faz 
+          toda a diferença. Agende sua consulta com neuropediatra na Clínica Fono Inova e receba orientação especializada.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Consulta com neuropediatra em Anápolis</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ 7 sinais de alerta no desenvolvimento infantil</a></li>
+            <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Avaliação de autismo em Anápolis</a></li>
           </ul>
         </div>
       </>
