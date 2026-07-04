@@ -282,7 +282,7 @@ const DificuldadeEscolarPage = () => {
                         <span className="text-gray-300">|</span>
                         <a href="/autismo-anapolis" className="text-blue-600 hover:underline">Suspeita de Autismo</a>
                         <span className="text-gray-300">|</span>
-                        <a href="/psicopedagogia" className="text-blue-600 hover:underline">Dislexia</a>
+                        <a href="/dislexia-anapolis" className="text-blue-600 hover:underline">Dislexia</a>
                         <span className="text-gray-300">|</span>
                         <a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">Fonoaudiologia</a>
                     </div>

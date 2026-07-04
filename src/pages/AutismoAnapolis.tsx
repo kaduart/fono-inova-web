@@ -53,7 +53,7 @@ export default function AutismoAnapolis() {
       />
 
       <Breadcrumb items={[
-        { label: 'Avaliação TEA', href: '/avaliacao-autismo-infantil' },
+        { label: 'Avaliação TEA' },
         { label: 'Autismo em Anápolis' },
       ]} />
 

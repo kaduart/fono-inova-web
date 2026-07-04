@@ -21,22 +21,21 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
     };
 
     const imagesClinica = [
-        "/images/clinica/fachada-premium.png",
-        "/images/clinica/recepcao.png",
-        "/images/clinica/sala-espera.png",
-        "/images/clinica/sala-ludica.png",
+        { src: "/images/clinica/fachada-premium.png", alt: "Fachada da Clínica Fono Inova em Anápolis" },
+        { src: "/images/clinica/recepcao.png", alt: "Recepção da Clínica Fono Inova em Anápolis" },
+        { src: "/images/clinica/sala-espera.png", alt: "Sala de espera da Clínica Fono Inova em Anápolis" },
+        { src: "/images/clinica/sala-ludica.png", alt: "Sala lúdica de atendimento infantil da Clínica Fono Inova" },
     ];
 
     const imagesNichos = [
-        "/images/fono-inova-1.png",
-        "/images/fono-inova-2.png",
-
-        "/images/fono-inova-4.png",
-        "/images/fonoaudiologia/atendimento-premium.png",
-        "/images/fonoaudiologia/img-fono-atendimento-01.png",
-        "/images/psicomotricidade-hero.png",
-        "/images/psicopedagogia-hero.png",
-        "/images/musicoterapia-hero.png",
+        { src: "/images/fono-inova-1.png", alt: "Atendimento infantil na Clínica Fono Inova em Anápolis" },
+        { src: "/images/fono-inova-2.png", alt: "Terapeuta atendendo criança na Clínica Fono Inova" },
+        { src: "/images/fono-inova-4.png", alt: "Atendimento multidisciplinar infantil na Clínica Fono Inova" },
+        { src: "/images/fonoaudiologia/atendimento-premium.png", alt: "Atendimento de fonoaudiologia infantil em Anápolis" },
+        { src: "/images/fonoaudiologia/img-fono-atendimento-01.png", alt: "Sessão de fonoaudiologia com criança em Anápolis" },
+        { src: "/images/psicomotricidade-hero.png", alt: "Atendimento de psicomotricidade infantil em Anápolis" },
+        { src: "/images/psicopedagogia-hero.png", alt: "Atendimento de psicopedagogia infantil em Anápolis" },
+        { src: "/images/musicoterapia-hero.png", alt: "Atendimento de musicoterapia infantil em Anápolis" },
     ];
 
     const images = typeImages === "clinica" ? imagesClinica : imagesNichos;
@@ -47,8 +46,8 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
                 {images.map((image, index) => (
                     <div key={index} className="h-96">
                         <img
-                            src={image}
-                            alt={`Atendimento de Psicologia ${index + 1}`}
+                            src={image.src}
+                            alt={image.alt}
                             className="w-full h-full object-cover"
                         />
                     </div>

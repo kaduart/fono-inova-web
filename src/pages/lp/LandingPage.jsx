@@ -210,7 +210,7 @@ const LandingPage = () => {
               <div className="relative">
                 <img
                   src={lp.image}
-                  alt={lp.imageAlt}
+                  alt={lp.imageAlt || lp.title}
                   className="lp-hero-image w-full object-cover"
                   style={{ maxHeight: '500px' }}
                   loading="eager"

@@ -507,6 +507,38 @@ const PsicologiaInfantilAnapolis = () => {
                 </div>
                 <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
               </Link>
+
+              <Link
+                to="/tdah-anapolis"
+                className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                    <Brain className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900">TDAH</h4>
+                    <p className="text-sm text-slate-500">Diagnóstico e acompanhamento</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
+
+              <Link
+                to="/autismo-anapolis"
+                className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-sky-100 rounded-xl flex items-center justify-center">
+                    <Smile className="w-6 h-6 text-sky-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900">Autismo (TEA)</h4>
+                    <p className="text-sm text-slate-500">Avaliação e suporte especializado</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
             </div>
           </div>
         </div>

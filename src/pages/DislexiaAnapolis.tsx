@@ -92,7 +92,7 @@ export default function DislexiaAnapolis() {
       />
 
       <Breadcrumb items={[
-        { label: 'Avaliação Escolar', href: '/avaliacao-neuropsicologica-dificuldade-escolar' },
+        { label: 'Avaliação Escolar', href: '/avaliacao-neuropsicologica-anapolis' },
         { label: 'Dislexia em Anápolis' },
       ]} />
 

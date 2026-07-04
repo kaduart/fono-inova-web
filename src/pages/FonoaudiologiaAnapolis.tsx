@@ -145,7 +145,7 @@ const FonoaudiologiaAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Fonoaudiologia', href: '/fonoaudiologia' },
+          { label: 'Fonoaudiologia' },
           { label: 'Fonoaudiologia em Anápolis' }
         ]} 
       />

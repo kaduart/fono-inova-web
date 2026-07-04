@@ -205,7 +205,7 @@ const FisioterapiaInfantilAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Fisioterapia', href: '/fisioterapia' },
+          { label: 'Fisioterapia' },
           { label: 'Fisioterapia Infantil em Anápolis' }
         ]} 
       />
