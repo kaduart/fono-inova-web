@@ -28,7 +28,7 @@ const steps = [
 const relacionados = [
   { href: '/fonoaudiologia-anapolis', label: 'Fonoaudiologia Infantil em Anápolis' },
   { href: '/terapia-ocupacional-anapolis', label: 'Terapia Ocupacional em Anápolis' },
-  { href: '/avaliacao-autismo-infantil', label: 'Avaliação TEA — Seletividade e Autismo' },
+  { href: '/autismo-anapolis', label: 'Avaliação TEA — Seletividade e Autismo' },
 ];
 
 const schemaFAQSeletividade = {

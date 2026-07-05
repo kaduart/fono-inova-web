@@ -114,7 +114,6 @@
     { "source": "/psicomotricidade", "destination": "/psicomotricidade-anapolis", "permanent": true },
     { "source": "/tdah-infantil", "destination": "/tdah-anapolis", "permanent": true },
     { "source": "/dislexia-infantil", "destination": "/dislexia-anapolis", "permanent": true },
-    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
-    { "source": "/avaliacao-neuropsicologica-dificuldade-escolar", "destination": "/avaliacao-neuropsicologica-anapolis", "permanent": true }
+    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true }
   ]
 }

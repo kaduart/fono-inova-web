@@ -26,7 +26,7 @@ const steps = [
 
 const relacionados = [
   { href: '/fonoaudiologia-anapolis', label: 'Fonoaudiologia Infantil em Anápolis' },
-  { href: '/avaliacao-autismo-infantil', label: 'Avaliação de Autismo' },
+  { href: '/autismo-anapolis', label: 'Avaliação de Autismo' },
   { href: '/avaliacao-neuropsicologica-anapolis', label: 'Avaliação Neuropsicológica em Anápolis' },
 ];
 

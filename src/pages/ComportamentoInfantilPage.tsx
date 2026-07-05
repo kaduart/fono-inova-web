@@ -2,6 +2,7 @@ import { AlertCircle, ArrowRight, Angry, Frown, Heart, MapPin, MessageCircle, Ph
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import Breadcrumb from '../components/Breadcrumb';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
@@ -144,6 +145,11 @@ const ComportamentoInfantilPage = () => {
                 schema={[schemaBaseLocalBusiness]}
             />
 
+            <Breadcrumb items={[
+                { label: 'Psicologia Infantil', href: '/psicologia-infantil-anapolis' },
+                { label: 'Comportamento Infantil em Anápolis' },
+            ]} />
+
             {/* ==================== BOTÃO WHATSAPP FLUTUANTE FIXO ==================== */}
             {showFixedButton && (
                 <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 shadow-2xl p-4 md:hidden">
@@ -180,7 +186,7 @@ const ComportamentoInfantilPage = () => {
                         <div className="order-2 lg:order-1">
                             {/* H1 - GEO-SEMÂNTICO */}
                             <h1 className="mb-4 inline-flex items-center bg-red-50 text-red-700 border border-red-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
-                                Psicologia Infantil em Anápolis
+                                Comportamento Infantil em Anápolis
                             </h1>
 
                             {/* Badge de urgência */}

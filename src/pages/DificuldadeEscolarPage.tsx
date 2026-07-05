@@ -285,6 +285,14 @@ const DificuldadeEscolarPage = () => {
                         <a href="/dislexia-anapolis" className="text-blue-600 hover:underline">Dislexia</a>
                         <span className="text-gray-300">|</span>
                         <a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">Fonoaudiologia</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/comportamento-infantil-anapolis" className="text-blue-600 hover:underline">Comportamento Infantil</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">Avaliação Neuropsicológica</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/tdah-anapolis" className="text-blue-600 hover:underline">TDAH</a>
+                        <span className="text-gray-300">|</span>
+                        <a href="/psicopedagogia" className="text-blue-600 hover:underline">Psicopedagogia</a>
                     </div>
                 </div>
             </section>

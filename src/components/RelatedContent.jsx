@@ -128,8 +128,8 @@ export const articleInterlinks = {
   },
   "processamento-auditivo-central-pac": {
     landingPages: [
-      { title: "Processamento auditivo central em crianças", url: "/lp/processamento-auditivo" },
-      { title: "Criança ouve mas não entende?", url: "/lp/processamento-auditivo" }
+      { title: "Fonoaudiologia Infantil em Anápolis", url: "/fonoaudiologia-anapolis" },
+      { title: "Avaliação Neuropsicológica em Anápolis", url: "/avaliacao-neuropsicologica-anapolis" }
     ],
     cta: {
       title: "Suspeita de problema no processamento auditivo?",

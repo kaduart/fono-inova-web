@@ -26,7 +26,7 @@ const steps = [
 ];
 
 const relacionados = [
-  { href: '/avaliacao-autismo-infantil', label: 'Avaliação TEA — Como Funciona' },
+  { href: '/comportamento-infantil-anapolis', label: 'Comportamento Infantil em Anápolis' },
   { href: '/terapia-ocupacional-anapolis', label: 'Terapia Ocupacional em Anápolis' },
   { href: '/fonoaudiologia-anapolis', label: 'Fonoaudiologia Infantil em Anápolis' },
 ];

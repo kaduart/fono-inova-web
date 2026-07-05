@@ -147,7 +147,7 @@ const PsicologiaInfantilAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Psicologia', href: '/psicologia' },
+          { label: 'Psicologia' },
           { label: 'Psicologia Infantil em Anápolis' }
         ]} 
       />

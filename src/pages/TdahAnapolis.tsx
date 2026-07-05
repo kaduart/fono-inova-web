@@ -29,6 +29,8 @@ const relacionados = [
   { href: '/avaliacao-tdah-anapolis', label: 'Avaliação TDAH em Anápolis' },
   { href: '/avaliacao-neuropsicologica-anapolis', label: 'Avaliação Neuropsicológica em Anápolis' },
   { href: '/psicologia-infantil-anapolis', label: 'Psicologia Infantil em Anápolis' },
+  { href: '/comportamento-infantil-anapolis', label: 'Comportamento Infantil em Anápolis' },
+  { href: '/avaliacao-neuropsicologica-dificuldade-escolar', label: 'Dificuldade Escolar em Anápolis' },
 ];
 
 const schemaFAQTdah = {
@@ -269,7 +271,7 @@ export default function TdahAnapolis() {
           <h2 className="text-2xl font-bold font-poppins text-slate-900 mb-8 text-center">
             Outros Atendimentos na Fono Inova
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {relacionados.map(link => (
               <Link key={link.href} to={link.href}
                 className="block p-4 border border-slate-200 rounded-xl hover:border-primary hover:bg-primary/5 transition-colors text-center text-sm font-medium text-slate-700 hover:text-primary">
