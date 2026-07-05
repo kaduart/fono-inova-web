@@ -95,6 +95,19 @@ export const articlesData = [
             <li><a href="/artigos/fonoaudiologia-e-seletividade-alimentar" className="text-blue-600 hover:underline">→ Fonoaudiologia e seletividade alimentar</a></li>
             <li><a href="/artigos/fonoaudiologia-para-dificuldade-escolar" className="text-blue-600 hover:underline">→ Fonoaudiologia para dificuldade escolar</a></li>
             <li><a href="/artigos/diferenca-fonoaudiologo-terapeuta-ocupacional" className="text-blue-600 hover:underline">→ Diferença entre fono e TO</a></li>
+            <li><a href="/artigos/bebe-nao-fala" className="text-blue-600 hover:underline">→ Bebê não fala</a></li>
+            <li><a href="/artigos/como-estimular-fala-crianca" className="text-blue-600 hover:underline">→ Como estimular a fala da criança</a></li>
+            <li><a href="/artigos/fala-tardia-causas" className="text-blue-600 hover:underline">→ Fala tardia: causas e tratamento</a></li>
+            <li><a href="/artigos/fono-para-fala-atrasada" className="text-blue-600 hover:underline">→ Fono para fala atrasada</a></li>
+            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fono para autismo funciona?</a></li>
+            <li><a href="/artigos/quantas-sessoes-de-fono-por-semana" className="text-blue-600 hover:underline">→ Quantas sessões de fono por semana</a></li>
+            <li><a href="/artigos/fono-cobre-plano-de-saude" className="text-blue-600 hover:underline">→ Fono cobre plano de saúde?</a></li>
+            <li><a href="/artigos/fono-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Fono infantil: quando procurar?</a></li>
+            <li><a href="/artigos/freio-lingual-leve-precisa-cirurgia" className="text-blue-600 hover:underline">→ Freio lingual leve precisa de cirurgia?</a></li>
+            <li><a href="/artigos/lingua-presca-atraso-fala" className="text-blue-600 hover:underline">→ Língua presa causa atraso na fala?</a></li>
+            <li><a href="/artigos/processamento-auditivo-central-pac" className="text-blue-600 hover:underline">→ Processamento auditivo central (PAC)</a></li>
+            <li><a href="/artigos/seletividade-alimentar-infantil" className="text-blue-600 hover:underline">→ Seletividade alimentar infantil</a></li>
+            <li><a href="/artigos/atraso-na-fala-como-estimular-linguagem-crianca" className="text-blue-600 hover:underline">→ Atraso na fala: como estimular a linguagem em casa</a></li>
           </ul>
         </div>
 
@@ -213,6 +226,8 @@ export const articlesData = [
             <li><a href="/artigos/quando-crianca-precisa-avaliacao-neurologica" className="text-blue-600 hover:underline">→ Quando a criança precisa de avaliação neurológica?</a></li>
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
             <li><a href="/artigos/convulsao-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Convulsão infantil: quando procurar?</a></li>
+            <li><a href="/artigos/tdah-infantil-guia-completo-pais" className="text-blue-600 hover:underline">→ TDAH infantil: guia completo para pais</a></li>
+            <li><a href="/artigos/entendendo-espectro-autista" className="text-blue-600 hover:underline">→ Entendendo o espectro autista: guia para pais</a></li>
           </ul>
         </div>
 
@@ -329,6 +344,8 @@ export const articlesData = [
             <li><a href="/artigos/sinais-baixa-autoestima-infantil" className="text-blue-600 hover:underline">→ Sinais de baixa autoestima infantil</a></li>
             <li><a href="/artigos/crianca-com-dificuldade-fazer-amigos" className="text-blue-600 hover:underline">→ Criança com dificuldade de fazer amigos</a></li>
             <li><a href="/artigos/crianca-com-medo-excessivo" className="text-blue-600 hover:underline">→ Criança com medo excessivo</a></li>
+            <li><a href="/artigos/importancia-orientacao-parental" className="text-blue-600 hover:underline">→ A importância da orientação parental</a></li>
+            <li><a href="/artigos/musicoterapia-e-tea-conexoes-atraves-do-som" className="text-blue-600 hover:underline">→ Musicoterapia e TEA: conexões através do som</a></li>
           </ul>
         </div>
 
@@ -454,6 +471,7 @@ export const articlesData = [
             <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
             <li><a href="/artigos/teste-de-memoria-infantil" className="text-blue-600 hover:underline">→ Teste de memória infantil</a></li>
             <li><a href="/artigos/avaliacao-das-funcoes-executivas" className="text-blue-600 hover:underline">→ Avaliação das funções executivas</a></li>
+            <li><a href="/artigos/psicopedagogia-alem-das-dificuldades-escolares" className="text-blue-600 hover:underline">→ Psicopedagogia além das dificuldades escolares</a></li>
           </ul>
         </div>
 
@@ -780,6 +798,9 @@ export const articlesData = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Psicologia Infantil: Guia Completo</a></li>
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Fonoaudiologia: Guia Completo</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Avaliação Neuropsicológica Infantil: Guia Completo</a></li>
+            <li><a href="/artigos/atividades-desenvolvimento-motor" className="text-blue-600 hover:underline">→ Atividades para estimular o desenvolvimento motor</a></li>
+            <li><a href="/artigos/importancia-psicomotricidade-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ A importância da psicomotricidade no desenvolvimento</a></li>
+            <li><a href="/artigos/faq-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Perguntas frequentes sobre desenvolvimento infantil</a></li>
           </ul>
         </div>
 
@@ -1141,7 +1162,7 @@ export const articlesData = [
   },
   {
     id: 2,
-    slug: "entendendo-espectro-auta",
+    slug: "entendendo-espectro-autista",
     title: "Entendendo o Espectro Autista: Guia para Pais",
     excerpt: "Guia completo para compreender os sinais e intervenções precoces.",
     category: "Psicologia",
