@@ -439,7 +439,62 @@ const FonoaudiologiaAnapolis = () => {
                 </div>
                 <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
               </Link>
+
+              <Link
+                to="/avaliacao-neuropsicologica-anapolis"
+                className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                    <School className="w-6 h-6 text-indigo-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900">Avaliação Neuropsicológica</h4>
+                    <p className="text-sm text-slate-500">Atenção, memória e aprendizagem</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
+
+              <Link
+                to="/freio-lingual"
+                className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center">
+                    <Mic className="w-6 h-6 text-teal-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900">Freio Lingual (Teste da Linguinha)</h4>
+                    <p className="text-sm text-slate-500">Língua presa em bebês</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
+
+              <Link
+                to="/fonoaudiologia-adulto"
+                className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
+                    <Accessibility className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-slate-900">Fonoaudiologia para Adultos</h4>
+                    <p className="text-sm text-slate-500">Voz, rouquidão e disfagia</p>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+              </Link>
             </div>
+
+            <p className="text-center text-slate-600 mt-8">
+              Quer entender melhor o assunto antes de agendar? Veja nosso{" "}
+              <Link to="/artigos/fonoaudiologia-guia-completo" className="text-primary font-semibold hover:underline">
+                guia completo de fonoaudiologia infantil
+              </Link>.
+            </p>
           </div>
         </div>
       </section>

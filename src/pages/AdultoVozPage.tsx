@@ -1,4 +1,5 @@
 import { AlertCircle, CheckCircle, Mic, Phone, Quote, Shield, Star, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
@@ -303,6 +304,9 @@ const AdultoVozPage = () => {
                         <p className="text-lg mb-8 opacity-90">
                             Não deixe problemas vocais ou de deglutição comprometerem sua qualidade de vida
                             e trabalho. Agende uma avaliação com nossa fonoaudióloga especializada.
+                        </p>
+                        <p className="text-sm mb-8 opacity-80">
+                            Atendemos também crianças — conheça a <Link to="/fonoaudiologia-anapolis" className="underline font-semibold">fonoaudiologia infantil em Anápolis</Link>.
                         </p>
                         <div className="bg-white p-8 rounded-2xl shadow-2xl text-gray-900">
                             <h3 className="text-2xl font-bold mb-3 text-emerald-600">

@@ -323,7 +323,7 @@ const FreioLingualPage = () => {
                             Seu bebê apresenta algum desses sinais?
                         </h3>
                         <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-                            O <strong>Teste da Linguinha em Anápolis</strong> identifica precocemente o freio lingual curto e orienta o melhor tratamento para seu filho.
+                            O <strong>Teste da Linguinha em Anápolis</strong> identifica precocemente o freio lingual curto e orienta o melhor tratamento para seu filho. Conheça também o atendimento completo de <Link to="/fonoaudiologia-anapolis" className="underline font-semibold">fonoaudiologia infantil em Anápolis</Link>.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <ButtonWhatsApp
