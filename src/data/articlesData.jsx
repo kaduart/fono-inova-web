@@ -681,6 +681,7 @@ export const articlesData = [
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
             <li><a href="/artigos/sinais-de-alerta-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Sinais de alerta no desenvolvimento infantil por idade</a></li>
+            <li><a href="/artigos/suspeita-autismo-avaliacao-completa" className="text-blue-600 hover:underline">→ Suspeita de autismo: guia completo de avaliação</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
           </ul>
         </div>
@@ -887,6 +888,163 @@ export const articlesData = [
         </p>
         <p>
           <strong>💚 Se você notou algum desses sinais no seu filho, agende uma avaliação especializada na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+
+  // ============================================================
+  // HUB — SUSPEITA DE AUTISMO: AVALIAÇÃO COMPLETA
+  // ============================================================
+  {
+    id: 204,
+    slug: "suspeita-autismo-avaliacao-completa",
+    title: "Suspeita de Autismo: Guia Completo de Avaliação e Quem Procurar",
+    excerpt: "Suspeita de autismo, quem procurar? Entenda como funciona a avaliação completa do TEA e agende o diagnóstico multidisciplinar na Clínica Fono Inova em Anápolis.",
+    category: "Autismo",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "5 de Julho, 2026",
+    dateISO: "2026-07-05",
+    dateModifiedISO: "2026-07-05",
+    image: "/images/fono-inova-2.png",
+    imageAlt: "Avaliação multidisciplinar para suspeita de autismo na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Só um médico pode confirmar o diagnóstico de autismo?",
+        answer: "O diagnóstico costuma ser fechado por um médico (neuropediatra ou psiquiatra infantil), mas é construído com a contribuição de psicólogo, fonoaudiólogo e neuropsicólogo, que trazem informações complementares sobre comportamento, comunicação e cognição."
+      },
+      {
+        question: "Existe exame de sangue ou de imagem para autismo?",
+        answer: "Não. O diagnóstico de autismo é clínico e comportamental, baseado em observação e instrumentos padronizados — não existe exame laboratorial ou de imagem que confirme ou descarte o TEA."
+      },
+      {
+        question: "Quanto tempo demora até fechar o diagnóstico?",
+        answer: "Varia por caso, mas o processo completo costuma levar de algumas semanas a poucos meses, considerando entrevistas, observações e aplicação de instrumentos com os diferentes profissionais envolvidos."
+      },
+      {
+        question: "Posso pular direto para o especialista sem passar por avaliação multidisciplinar?",
+        answer: "É possível, mas a avaliação multidisciplinar tende a ser mais completa e assertiva, já que autismo costuma envolver mais de uma área do desenvolvimento ao mesmo tempo."
+      },
+      {
+        question: "Meu filho pode ter só alguns traços e não ser autismo?",
+        answer: "Sim. Algumas crianças apresentam traços isolados sem preencher critérios para o diagnóstico. Por isso a avaliação completa é importante — evita tanto o diagnóstico precipitado quanto a demora desnecessária."
+      },
+      {
+        question: "O plano de saúde cobre a avaliação para autismo?",
+        answer: "Depende do plano e da cobertura contratada. Vale consultar diretamente a operadora ou perguntar à clínica sobre as opções disponíveis."
+      },
+      {
+        question: "Suspeita de autismo em bebê já pode ser avaliada?",
+        answer: "Sim. Alguns sinais podem aparecer já no primeiro ano de vida, e uma avaliação precoce ajuda a iniciar a intervenção o quanto antes, mesmo antes do diagnóstico estar totalmente fechado."
+      },
+      {
+        question: "O que acontece se eu esperar para procurar ajuda?",
+        answer: "Adiar a avaliação atrasa também o início da intervenção. Como a primeira infância é a fase de maior plasticidade cerebral, começar cedo tende a trazer resultados melhores."
+      },
+      {
+        question: "Depois do diagnóstico, o tratamento é padrão para todas as crianças?",
+        answer: "Não. O plano terapêutico é individualizado, considerando as necessidades específicas de cada criança nas áreas de comunicação, comportamento, sensorialidade e aprendizagem."
+      },
+      {
+        question: "Onde fazer avaliação completa para suspeita de autismo em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com equipe integrada de neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo para o diagnóstico e acompanhamento do TEA."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          <strong>Suspeita de autismo, quem procurar?</strong> É a dúvida que trava muitos pais logo após perceberem os primeiros
+          sinais. A boa notícia é que você não precisa acertar o especialista "certo" de primeira — este guia explica como
+          funciona a <strong>avaliação completa para suspeita de autismo</strong> e quem faz parte desse processo.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos relacionados</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
+            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
+            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/psicologo-infantil-ajuda-autismo" className="text-blue-600 hover:underline">→ Psicólogo infantil ajuda no autismo?</a></li>
+            <li><a href="/artigos/avaliacao-multidisciplinar-infantil" className="text-blue-600 hover:underline">→ Avaliação multidisciplinar infantil: como funciona</a></li>
+            <li><a href="/artigos/sinais-de-alerta-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Sinais de alerta no desenvolvimento infantil por idade</a></li>
+          </ul>
+        </div>
+
+        <h2>Por que a suspeita de autismo gera tanta dúvida sobre quem procurar</h2>
+        <p>
+          O autismo (TEA) envolve comunicação, comportamento e interação social ao mesmo tempo — por isso não existe um único
+          especialista "dono" do diagnóstico. Neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo costumam atuar juntos,
+          cada um observando uma parte diferente do desenvolvimento da criança.
+        </p>
+
+        <h2>Sinais que costumam levantar a suspeita</h2>
+        <p>
+          Pouco contato visual, não responder ao nome, atraso de fala, dificuldade de interação com outras crianças e
+          comportamentos repetitivos estão entre os sinais mais observados por pais e professores. Para uma lista completa por
+          idade, veja o artigo sobre <a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">sinais de autismo na infância</a>.
+        </p>
+
+        <h2>Quem procurar primeiro</h2>
+        <ul>
+          <li>
+            <strong>Neuropediatra:</strong> costuma ser a porta de entrada médica, avaliando o desenvolvimento neurológico e
+            conduzindo o processo diagnóstico. Veja o <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">atendimento de neuropediatra em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Psicólogo infantil:</strong> avalia comportamento, interação social e regulação emocional, contribuindo com
+            observações importantes para o diagnóstico. Conheça a <a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">psicologia infantil em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Fonoaudiólogo:</strong> avalia comunicação verbal e não verbal, com forte impacto no diagnóstico e na
+            intervenção. Veja a <a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">fonoaudiologia infantil em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Neuropsicólogo:</strong> aplica testes padronizados de atenção, cognição e funcionamento adaptativo. Conheça a
+            <a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline"> avaliação neuropsicológica em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Terapeuta ocupacional:</strong> avalia questões sensoriais e motoras comuns no TEA. Veja a
+            <a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline"> terapia ocupacional em Anápolis</a>.
+          </li>
+        </ul>
+        <p>
+          Se você não sabe por onde começar, uma <a href="/artigos/avaliacao-multidisciplinar-infantil" className="text-blue-600 hover:underline">avaliação multidisciplinar</a> reúne
+          esses profissionais em um só processo e organiza os próximos passos por você.
+        </p>
+
+        <h2>Como funciona a avaliação completa, na prática</h2>
+        <ol>
+          <li><strong>Entrevista inicial:</strong> levantamento da história do desenvolvimento e das principais queixas dos pais</li>
+          <li><strong>Observação clínica:</strong> cada especialista observa a criança em situações estruturadas e livres</li>
+          <li><strong>Instrumentos padronizados:</strong> aplicação de escalas e testes específicos para TEA</li>
+          <li><strong>Integração da equipe:</strong> os profissionais discutem os achados em conjunto</li>
+          <li><strong>Devolutiva e laudo:</strong> os pais recebem o resultado explicado com clareza, com orientações práticas</li>
+        </ol>
+
+        <h2>E se o resultado confirmar o diagnóstico?</h2>
+        <p>
+          Um diagnóstico de TEA não define um único caminho — o plano terapêutico é montado de acordo com as necessidades
+          específicas da criança, podendo envolver fonoaudiologia, terapia ocupacional, psicologia e acompanhamento
+          neuropediátrico, entre outros.
+        </p>
+
+        <h2>E se não for autismo?</h2>
+        <p>
+          Também é um resultado possível. Alguns sinais que geram suspeita têm outras causas — atraso de linguagem isolado,
+          timidez acentuada ou questões sensoriais, por exemplo. A avaliação completa ajuda a esclarecer isso e a direcionar o
+          cuidado adequado, seja qual for a conclusão.
+        </p>
+
+        <h2>Avaliação completa para suspeita de autismo em Anápolis</h2>
+        <p>
+          Na <strong>Clínica Fono Inova</strong>, em Anápolis, oferecemos <a href="/autismo-anapolis" className="text-blue-600 hover:underline">avaliação completa para suspeita de autismo</a>, com
+          equipe integrada de neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo trabalhando juntos do início ao fim do processo.
+        </p>
+        <p>
+          <strong>💚 Se você suspeita de autismo no seu filho, agende uma avaliação completa na Clínica Fono Inova em Anápolis.</strong>
         </p>
       </>
     )
