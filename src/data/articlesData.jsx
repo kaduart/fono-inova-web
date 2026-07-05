@@ -680,6 +680,7 @@ export const articlesData = [
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
+            <li><a href="/artigos/sinais-de-alerta-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Sinais de alerta no desenvolvimento infantil por idade</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
           </ul>
         </div>
@@ -697,7 +698,200 @@ export const articlesData = [
       </>
     )
   },
-  
+
+  // ============================================================
+  // HUB — SINAIS DE ALERTA NO DESENVOLVIMENTO INFANTIL
+  // ============================================================
+  {
+    id: 203,
+    slug: "sinais-de-alerta-desenvolvimento-infantil",
+    title: "Sinais de Alerta no Desenvolvimento Infantil: Guia Completo por Idade",
+    excerpt: "Meu filho tem atraso, o que fazer? Veja os sinais de alerta no desenvolvimento infantil por faixa etária e agende uma avaliação especializada na Clínica Fono Inova em Anápolis.",
+    category: "Desenvolvimento Infantil",
+    categoryColor: "accent",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "5 de Julho, 2026",
+    dateISO: "2026-07-05",
+    dateModifiedISO: "2026-07-05",
+    image: "/images/fono-inova-1.png",
+    imageAlt: "Criança em avaliação de desenvolvimento infantil na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Sinal de alerta é a mesma coisa que diagnóstico?",
+        answer: "Não. Um sinal de alerta indica apenas que vale a pena investigar — não confirma nenhum diagnóstico por si só. Só uma avaliação especializada pode dizer se há realmente um transtorno ou condição."
+      },
+      {
+        question: "Meu filho tem atraso, o que eu faço primeiro?",
+        answer: "Procure uma avaliação especializada o quanto antes. Não é preciso saber qual especialista escolher primeiro — uma avaliação multidisciplinar ou com neuropediatra costuma direcionar os próximos passos."
+      },
+      {
+        question: "Todo atraso é sinal de autismo ou TDAH?",
+        answer: "Não. O atraso pode ter diversas causas, incluindo variações normais do desenvolvimento. Só uma avaliação profissional pode diferenciar isso."
+      },
+      {
+        question: "Com que idade dá para identificar sinais de alerta?",
+        answer: "Alguns sinais podem aparecer já nos primeiros meses de vida, mas a maioria fica mais evidente entre 1 e 3 anos, quando marcos de fala e interação social costumam se consolidar."
+      },
+      {
+        question: "Preciso levar ao pronto-socorro se perceber um sinal de alerta?",
+        answer: "Na maioria dos casos não é uma emergência médica, e sim um motivo para agendar uma avaliação especializada. A exceção são convulsões ou perda súbita de habilidades já adquiridas, que merecem avaliação médica urgente."
+      },
+      {
+        question: "Identificar cedo faz diferença no tratamento?",
+        answer: "Sim. Quanto mais cedo a intervenção começa, melhores tendem a ser os resultados, aproveitando a maior plasticidade cerebral da primeira infância."
+      },
+      {
+        question: "Qual especialista procurar primeiro?",
+        answer: "Depende do sinal predominante: neuropediatra para questões neurológicas, fonoaudiólogo para fala e linguagem, psicólogo infantil para comportamento e emoções. Na dúvida, uma avaliação multidisciplinar orienta o caminho."
+      },
+      {
+        question: "Atraso no desenvolvimento sempre precisa de terapia?",
+        answer: "Nem sempre, mas o acompanhamento especializado ajuda a confirmar se é uma variação normal ou algo que precisa de intervenção, evitando que um problema real passe despercebido."
+      },
+      {
+        question: "Como diferenciar sinal de alerta de comportamento normal da idade?",
+        answer: "Sinais de alerta costumam ser persistentes, se repetem em diferentes ambientes e vêm acompanhados de outras dificuldades — diferente de fases passageiras típicas do desenvolvimento."
+      },
+      {
+        question: "Onde fazer avaliação de desenvolvimento infantil em Anápolis?",
+        answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com equipe especializada em neuropediatria, psicologia infantil, fonoaudiologia e avaliação neuropsicológica."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          <strong>"Meu filho tem atraso, o que eu faço?"</strong> é uma das perguntas mais comuns entre pais e mães que percebem que
+          algo no desenvolvimento do filho não segue o esperado. Este guia reúne os principais <strong>sinais de alerta no
+          desenvolvimento infantil</strong> organizados por faixa etária, para ajudar você a identificar quando é hora de buscar
+          uma avaliação especializada.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-3">📚 Conteúdos relacionados</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil: quando se preocupar?</a></li>
+            <li><a href="/artigos/avaliacao-multidisciplinar-infantil" className="text-blue-600 hover:underline">→ Avaliação multidisciplinar infantil: como funciona</a></li>
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
+            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
+            <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Neuropediatria: Guia Completo</a></li>
+            <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Psicologia Infantil: Guia Completo</a></li>
+            <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Fonoaudiologia: Guia Completo</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Avaliação Neuropsicológica Infantil: Guia Completo</a></li>
+          </ul>
+        </div>
+
+        <h2>O que são sinais de alerta no desenvolvimento infantil?</h2>
+        <p>
+          São comportamentos, atrasos ou ausências de marcos esperados para a idade da criança. Podem envolver fala e linguagem,
+          motricidade, cognição, comportamento social ou emocional. Nem todo sinal indica um diagnóstico — muitos são variações
+          normais — mas todos merecem atenção e, quando persistem, avaliação profissional.
+        </p>
+
+        <h2>Sinais de alerta por faixa etária</h2>
+
+        <h3>0 a 12 meses</h3>
+        <ul>
+          <li>Não sorri socialmente até os 3 meses</li>
+          <li>Não sustenta a cabeça até os 4 meses</li>
+          <li>Não balbucia ou emite sons até os 9 meses</li>
+          <li>Não responde a sons ou à voz dos pais</li>
+          <li>Não senta sem apoio até os 9 meses</li>
+        </ul>
+
+        <h3>1 a 2 anos</h3>
+        <ul>
+          <li>Não fala nenhuma palavra com sentido até os 16 meses</li>
+          <li>Não aponta para objetos ou não compartilha atenção</li>
+          <li>Não anda sozinho até os 18 meses</li>
+          <li>Perda de habilidades já adquiridas (regressão)</li>
+          <li>Pouco contato visual ou pouco interesse em interagir</li>
+        </ul>
+
+        <h3>2 a 3 anos</h3>
+        <ul>
+          <li>Vocabulário muito reduzido (menos de 50 palavras)</li>
+          <li>Não forma frases curtas de 2 palavras</li>
+          <li>Comportamentos repetitivos intensos</li>
+          <li>Dificuldade extrema com mudanças de rotina</li>
+          <li>Seletividade alimentar severa</li>
+        </ul>
+
+        <h3>3 a 5 anos</h3>
+        <ul>
+          <li>Fala pouco compreensível para pessoas de fora da família</li>
+          <li>Dificuldade importante de interagir com outras crianças</li>
+          <li>Agitação e impulsividade muito acima do esperado para a idade</li>
+          <li>Birras extremas e frequentes, desproporcionais à situação</li>
+          <li>Dificuldade motora perceptível (quedas frequentes, dificuldade para pular, segurar objetos)</li>
+        </ul>
+
+        <h3>A partir dos 5 anos (idade escolar)</h3>
+        <ul>
+          <li>Dificuldade importante para aprender a ler e escrever</li>
+          <li>Desatenção e desorganização que atrapalham o desempenho escolar</li>
+          <li>Isolamento social ou dificuldade de fazer amigos</li>
+          <li>Queixas frequentes da escola sobre comportamento ou aprendizagem</li>
+          <li>Ansiedade ou mudanças bruscas de humor</li>
+        </ul>
+
+        <h2>Sinais que merecem atenção imediata</h2>
+        <p>
+          Alguns sinais pedem avaliação mais urgente: perda de habilidades já adquiridas, ausência total de fala após os 2 anos,
+          não responder ao próprio nome, convulsões, ou uma regressão evidente no comportamento. Nesses casos, não vale esperar
+          "passar com o tempo" — o ideal é procurar avaliação especializada o quanto antes.
+        </p>
+
+        <h2>O que fazer se notar sinais de alerta</h2>
+        <p>
+          O primeiro passo é procurar uma avaliação especializada. Não é necessário saber exatamente qual especialista escolher:
+          um <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">neuropediatra</a> ou uma
+          <a href="/artigos/avaliacao-multidisciplinar-infantil" className="text-blue-600 hover:underline"> avaliação multidisciplinar</a> costumam
+          ser um bom ponto de partida, direcionando para os demais especialistas conforme a necessidade.
+        </p>
+
+        <h2>Quem pode ajudar, por área</h2>
+        <ul>
+          <li>
+            <strong>Neuropediatra:</strong> avalia sinais neurológicos, TDAH, autismo e outras condições do neurodesenvolvimento.
+            Conheça o atendimento de <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">neuropediatra em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Fonoaudiólogo:</strong> avalia atraso de fala, linguagem e comunicação.
+            Veja a <a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">fonoaudiologia infantil em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Psicólogo infantil:</strong> avalia comportamento, emoções e socialização.
+            Conheça a <a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">psicologia infantil em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Neuropsicólogo:</strong> avalia atenção, memória e funções executivas com testes específicos.
+            Veja a <a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">avaliação neuropsicológica em Anápolis</a>.
+          </li>
+          <li>
+            <strong>Terapeuta ocupacional / Fisioterapeuta infantil:</strong> avalia questões motoras e sensoriais.
+            Conheça a <a href="/fisioterapia-infantil-anapolis" className="text-blue-600 hover:underline">fisioterapia infantil em Anápolis</a>.
+          </li>
+          <li>
+            Se os sinais envolverem principalmente comportamento ou suspeita de autismo, veja também
+            <a href="/autismo-anapolis" className="text-blue-600 hover:underline"> avaliação de autismo em Anápolis</a> e
+            <a href="/tdah-anapolis" className="text-blue-600 hover:underline"> avaliação de TDAH em Anápolis</a>.
+          </li>
+        </ul>
+
+        <h2>Sinais de alerta no desenvolvimento infantil em Anápolis</h2>
+        <p>
+          Na <strong>Clínica Fono Inova</strong>, em Anápolis, contamos com equipe especializada para avaliar sinais de alerta no
+          desenvolvimento infantil em todas as áreas: fala, motricidade, comportamento, cognição e socialização.
+        </p>
+        <p>
+          <strong>💚 Se você notou algum desses sinais no seu filho, agende uma avaliação especializada na Clínica Fono Inova em Anápolis.</strong>
+        </p>
+      </>
+    )
+  },
+
   {
     id: 1,
     slug: "atraso-na-fala-como-estimular-linguagem-crianca",
