@@ -3762,8 +3762,8 @@ export const satelliteArticles = [
   {
     id: 142,
     slug: "quando-levar-crianca-fonoaudiologo",
-    title: "Quando Levar Criança ao Fonoaudiólogo? Sinais de Alerta",
-    excerpt: "Descubra quando levar seu filho ao fonoaudiólogo e quais sinais indicam necessidade de avaliação fonoaudiológica infantil.",
+    title: "Quando Levar a Criança ao Fonoaudiólogo? 7 Sinais de Alerta",
+    excerpt: "Não sabe se é hora de procurar ajuda? Veja os sinais que indicam que seu filho precisa de avaliação fonoaudiológica agora, em Anápolis.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
@@ -4432,8 +4432,8 @@ export const satelliteArticles = [
   {
     id: 150,
     slug: "quantas-sessoes-fonoaudiologia",
-    title: "Quantas Sessões de Fonoaudiologia a Criança Precisa?",
-    excerpt: "Entenda quantas sessões de fonoaudiologia são necessárias, com que frequência e por quanto tempo dura o tratamento infantil.",
+    title: "Quantas Sessões de Fono a Criança Precisa? Veja a Resposta",
+    excerpt: "Quantas sessões de fonoaudiologia são realmente necessárias? Descubra a frequência ideal e o tempo médio de tratamento infantil em Anápolis.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Dra. Lorrany Siqueira",
@@ -5491,8 +5491,8 @@ export const satelliteArticles = [
   {
     id: 163,
     slug: "avaliacao-neuropsicologica-e-psicopedagogica",
-    title: "Avaliação Neuropsicológica e Psicopedagógica: Qual a Diferença?",
-    excerpt: "Entenda a diferença entre avaliação neuropsicológica e psicopedagógica e quando indicar cada uma para a criança.",
+    title: "Avaliação Neuropsicológica ou Psicopedagógica? Veja a Diferença",
+    excerpt: "Não sabe qual avaliação seu filho precisa? Entenda a diferença entre neuropsicológica e psicopedagógica e qual escolher primeiro. Agende em Anápolis.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Dra. Ana Santos",

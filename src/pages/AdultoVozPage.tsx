@@ -82,8 +82,8 @@ const AdultoVozPage = () => {
     return (
         <Layout>
             <SEO
-                title="Fonoaudiologia para Adultos em Anápolis | Voz e Disfagia Jundiaí"
-                description="Tratamento para rouquidão, voz profissional e disfagia no bairro Jundiaí, Anápolis. Fonoaudiologia adulta especializada."
+                title="Fonoaudiologia para Adultos em Anápolis | Voz, Rouquidão e Disfagia"
+                description="Rouquidão persistente, voz cansada ou dificuldade para engolir? Fonoaudiologia adulta especializada em Anápolis, bairro Jundiaí. Agende avaliação pelo WhatsApp."
                 keywords="fonoaudiologia adulta anapolis, rouquidao tratamento jundiai, disfagia anapolis, voz profissional"
                 image="/images/servicos/fonoaudiologia-adulto.jpg"
                 url="https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"

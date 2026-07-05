@@ -118,8 +118,8 @@ const TerapiaOcupacionalAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Terapia Ocupacional Infantil em Anápolis | Clínica Fono Inova"
-        description="Seu filho tropeça muito ou tem dificuldade de coordenação? Terapia ocupacional infantil em Anápolis. Entenda o que está acontecendo com orientação inicial."
+        title="Terapia Ocupacional em Anápolis para Crianças | Avaliação em 48h"
+        description="Seu filho tem dificuldade de coordenação, atenção ou rotina? Terapia ocupacional infantil especializada em Anápolis. Agende avaliação pelo WhatsApp e receba plano personalizado em até 48h."
         keywords="meu filho é desastrado, terapia ocupacional anápolis, coordenação motora anápolis, integração sensorial anápolis, to infantil anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis"

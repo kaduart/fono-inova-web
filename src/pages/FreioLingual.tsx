@@ -189,8 +189,8 @@ const FreioLingualPage = () => {
     return (
         <Layout>
             <SEO
-                title="Freio Lingual: O que é, Sintomas e quando fazer o Teste da Linguinha"
-                description="Entenda o que é freio lingual (língua presa), principais sintomas em bebês e crianças, e quando fazer o Teste da Linguinha em Anápolis na Clínica Fono Inova."
+                title="Língua Presa (Freio Lingual) em Bebês | Teste da Linguinha Anápolis"
+                description="Seu bebê tem dificuldade para mamar ou pode ter língua presa? Faça o Teste da Linguinha em Anápolis e saiba na hora se precisa de avaliação. Agende pelo WhatsApp."
                 keywords="freio lingual, língua presa, sintomas freio lingual, teste da linguinha anapolis, anquiloglossia, bebê não mama"
                 image="/images/servicos/freio-lingual.jpg"
                 url="https://www.clinicafonoinova.com.br/freio-lingual"

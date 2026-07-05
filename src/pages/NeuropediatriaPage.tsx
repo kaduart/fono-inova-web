@@ -130,8 +130,8 @@ const NeuropediatriaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Neuropediatra em Anápolis | TDAH, Autismo e Atraso no Desenvolvimento"
-                description="Neuropediatra em Anápolis no bairro Jundiaí. Avaliação especializada de TDAH, autismo, atraso na fala, convulsões e dificuldades neurológicas. Atendimento particular e convênios. Agende pelo WhatsApp."
+                title="Neuropediatra em Anápolis | Avaliação de TDAH e Autismo em 48h"
+                description="Seu filho tem atraso no desenvolvimento, hiperatividade ou sinais de autismo? Neuropediatra especializado em Anápolis, bairro Jundiaí. Agende pelo WhatsApp e receba orientação rápida."
                 keywords="neuropediatra anapolis, neurologista infantil anapolis, atraso desenvolvimento infantil, autismo infantil anapolis, tdah infantil anapolis"
                 image="/images/servicos/neuropediatria.jpg"
                 url="https://www.clinicafonoinova.com.br/neuropediatra-anapolis"
