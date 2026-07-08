@@ -149,7 +149,6 @@ const TerapiaOcupacionalAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Terapia Ocupacional' },
           { label: 'Terapia Ocupacional em Anápolis' }
         ]} 
       />

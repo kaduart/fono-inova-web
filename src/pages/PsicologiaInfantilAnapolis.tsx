@@ -147,7 +147,7 @@ const PsicologiaInfantilAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Psicologia' },
+          { label: 'Psicologia', href: '/artigos/psicologia-infantil-guia-completo' },
           { label: 'Psicologia Infantil em Anápolis' }
         ]} 
       />

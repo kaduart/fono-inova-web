@@ -205,7 +205,6 @@ const FisioterapiaInfantilAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Fisioterapia' },
           { label: 'Fisioterapia Infantil em Anápolis' }
         ]} 
       />

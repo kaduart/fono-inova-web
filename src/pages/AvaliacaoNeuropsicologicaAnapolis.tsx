@@ -150,7 +150,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Avaliação Neuropsicológica' },
+          { label: 'Avaliação Neuropsicológica', href: '/artigos/avaliacao-neuropsicologica-infantil-guia-completo' },
           { label: 'Avaliação Neuropsicológica em Anápolis' }
         ]} 
       />

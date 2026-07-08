@@ -145,7 +145,7 @@ const FonoaudiologiaAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Fonoaudiologia' },
+          { label: 'Fonoaudiologia', href: '/artigos/fonoaudiologia-guia-completo' },
           { label: 'Fonoaudiologia em Anápolis' }
         ]} 
       />

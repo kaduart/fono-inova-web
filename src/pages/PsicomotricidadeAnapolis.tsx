@@ -206,7 +206,6 @@ const PsicomotricidadeAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Psicomotricidade' },
           { label: 'Psicomotricidade em Anápolis' }
         ]} 
       />
