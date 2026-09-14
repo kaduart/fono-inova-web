@@ -458,7 +458,7 @@ const FonoaudiologiaAnapolis = () => {
               </Link>
 
               <Link
-                to="/freio-lingual"
+                to="/teste-da-linguinha-anapolis"
                 className="flex items-center justify-between p-6 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md hover:border-primary/30 transition-all group"
               >
                 <div className="flex items-center gap-4">

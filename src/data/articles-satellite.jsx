@@ -536,13 +536,20 @@ export const satelliteArticles = [
 
         <h2>Conclusão</h2>
         <p>
-          A fonoaudiologia serve para garantir que crianças e adultos se comuniquem de forma eficaz. 
+          A fonoaudiologia serve para garantir que crianças e adultos se comuniquem de forma eficaz.
           Se você percebe alguma dessas dificuldades no seu filho, agende uma avaliação na Clínica Fono Inova em Anápolis.
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">→ O que é fonoaudiologia?</a></li>
+          </ul>
+        </div>
       </>
     )
   },
-  
+
   {
     id: 106,
     slug: "o-que-faz-um-fonoaudiologo",
@@ -1014,7 +1021,7 @@ export const satelliteArticles = [
 
         <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
           <h3 className="font-bold text-lg mb-2">Tratamento para fala atrasada em Anápolis</h3>
-          <a href="/fala-tardia" className="text-green-600 hover:underline font-semibold">
+          <a href="/fala-tardia-anapolis" className="text-green-600 hover:underline font-semibold">
             → Saiba mais sobre tratamento de fala tardia
           </a>
         </div>
@@ -1650,13 +1657,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 118,
     slug: "sinais-autismo-crianca",
@@ -1739,13 +1747,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
+            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo: como funciona</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 119,
     slug: "neuropediatra-diagnostica-autismo",
@@ -1845,7 +1854,85 @@ export const satelliteArticles = [
       </>
     )
   },
-  
+
+  {
+    id: 204,
+    slug: "crianca-nao-responde-nome",
+    title: "Criança Não Responde Quando Chamada pelo Nome: O Que Pode Ser?",
+    excerpt: "Entenda as possíveis causas de a criança não responder ao ser chamada pelo nome, o que é esperado por idade e quando buscar avaliação.",
+    category: "Neuropediatria",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "14 de Setembro, 2026",
+    dateISO: "2026-09-14",
+    dateModifiedISO: "2026-09-14",
+    image: "/images/tea/ava-neuropsico.jpeg",
+    imageAlt: "Avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Por que meu filho não responde quando eu chamo pelo nome?",
+        answer: "Pode ser falta de atenção pontual, mas quando é frequente pode estar ligado a questões auditivas, de linguagem ou do espectro autista — vale avaliar."
+      },
+      {
+        question: "Não responder ao nome é sinal de autismo?",
+        answer: "É um dos sinais precoces mais observados, mas isoladamente não fecha diagnóstico. A avaliação multidisciplinar considera o conjunto de sinais."
+      },
+      {
+        question: "Com que idade a criança deve responder quando chamada?",
+        answer: "Por volta dos 9 a 12 meses, a maioria dos bebês já vira a cabeça ou reage de alguma forma ao ouvir o próprio nome."
+      },
+      {
+        question: "Pode ser problema de audição?",
+        answer: "Sim, é uma das primeiras causas a descartar. Um teste auditivo simples já ajuda a esclarecer se a criança está ouvindo bem."
+      },
+      {
+        question: "O que fazer se meu filho não responde ao nome?",
+        answer: "Observe outros sinais (contato visual, gestos, brincadeiras) e procure uma avaliação com neuropediatra ou neuropsicólogo para orientação."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Chamar o filho pelo nome e não receber resposta — nem um olhar, nem um vira-se — é algo que costuma acender um
+          alerta nos pais. Na maioria das vezes tem explicação simples, mas vale entender o que observar.
+        </p>
+
+        <h2>O que é esperado por idade</h2>
+        <p>
+          Por volta dos <strong>9 a 12 meses</strong>, a maioria dos bebês já reage ao próprio nome — vira a cabeça, para o
+          que está fazendo ou procura quem chamou. É um marco importante de atenção compartilhada.
+        </p>
+
+        <h2>Possíveis causas</h2>
+        <ul>
+          <li><strong>Audição:</strong> a primeira causa a descartar, com um teste auditivo simples</li>
+          <li><strong>Atenção pontual:</strong> criança muito concentrada em uma atividade pode simplesmente não notar</li>
+          <li><strong>Atraso de linguagem:</strong> dificuldade para processar e reconhecer a própria referência verbal</li>
+          <li><strong>Sinais do espectro autista (TEA):</strong> quando associado a outros sinais, como pouco contato visual e interesses restritos</li>
+        </ul>
+
+        <h2>Quando buscar avaliação</h2>
+        <p>
+          Se o padrão se repete com frequência, independentemente da atividade, e vem acompanhado de outros sinais —
+          pouco contato visual, poucos gestos, atraso na fala — o ideal é buscar uma <strong>avaliação multidisciplinar</strong>.
+          Quanto antes a família entende o que está acontecendo, antes a criança recebe o suporte certo.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
+            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
+            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Suporte para autismo em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+
   // ============================================================
   // CLUSTER NEUROPEDIATRIA — SEGUNDO LOTE (INTENÇÃO DE DECISÃO)
   // ============================================================
@@ -3092,13 +3179,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/crianca-muito-nervosa-precisa-psicologo" className="text-blue-600 hover:underline">→ Criança muito nervosa precisa de psicólogo?</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
+            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 134,
     slug: "dificuldades-emocionais-na-escola",
@@ -3590,13 +3678,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-baixa-autoestima-infantil" className="text-blue-600 hover:underline">→ Sinais de baixa autoestima infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 140,
     slug: "crianca-com-medo-excessivo",
@@ -4073,13 +4162,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
+            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Como o neuropediatra diagnostica o autismo</a></li>
             <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 146,
     slug: "fonoaudiologia-ajuda-atraso-linguagem",
@@ -4232,13 +4322,94 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
+            <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil: como identificar cedo</a></li>
             <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
+  {
+    id: 203,
+    slug: "sinais-dislexia-infantil",
+    title: "Sinais de Dislexia Infantil: Como Identificar Cedo",
+    excerpt: "Conheça os principais sinais de dislexia infantil, a diferença entre dificuldade pontual e dislexia, e como é feito o diagnóstico.",
+    category: "Neuropsicologia",
+    categoryColor: "secondary",
+    author: "Dra. Ana Santos",
+    authorRole: "Neuropsicóloga",
+    authorCredentials: "CRP 06/12345",
+    date: "14 de Setembro, 2026",
+    dateISO: "2026-09-14",
+    dateModifiedISO: "2026-09-14",
+    image: "/images/psicopedagoga/psicopedagoga.jpeg",
+    imageAlt: "Criança em avaliação de dificuldades de leitura na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "Quais são os principais sinais de dislexia infantil?",
+        answer: "Troca de letras persistente após os 7-8 anos, dificuldade para associar letra e som, leitura lenta e com esforço, e confusão entre letras parecidas como 'b' e 'd'."
+      },
+      {
+        question: "Com que idade a dislexia pode ser identificada?",
+        answer: "Sinais consistentes costumam aparecer a partir da alfabetização, entre 6 e 8 anos, quando a exigência de leitura e escrita aumenta."
+      },
+      {
+        question: "Dislexia tem cura?",
+        answer: "Não é uma doença, então não há 'cura', mas com intervenção adequada a criança desenvolve estratégias e lê com muito mais autonomia e confiança."
+      },
+      {
+        question: "Só um neuropsicólogo diagnostica dislexia?",
+        answer: "O diagnóstico é feito por avaliação neuropsicológica, geralmente com apoio de fonoaudiólogo e psicopedagogo para montar o plano de intervenção."
+      },
+      {
+        question: "Trocar letras significa que a criança tem dislexia?",
+        answer: "Não necessariamente — muitas trocas fazem parte do desenvolvimento normal. É a persistência e o impacto na leitura que indicam a necessidade de avaliação."
+      }
+    ],
+    content: (
+      <>
+        <p>
+          Perceber que um filho troca letras, lê devagar ou evita livros pode gerar dúvida: é só uma fase, ou pode ser{" "}
+          <strong>dislexia</strong>? Entender os sinais reais ajuda a família a agir na hora certa, sem alarme e sem demora.
+        </p>
+
+        <h2>Sinais que merecem atenção</h2>
+        <ul>
+          <li>Troca de letras parecidas (b/d, p/q) que persiste depois dos 7-8 anos</li>
+          <li>Dificuldade para juntar letras e formar o som das palavras</li>
+          <li>Leitura lenta, com esforço visível e perda de linha com frequência</li>
+          <li>Escrita com muitos erros de ortografia, mesmo em palavras já estudadas</li>
+          <li>Evita ler em voz alta ou ler por prazer</li>
+        </ul>
+
+        <h2>Diferença entre dificuldade pontual e dislexia</h2>
+        <p>
+          Toda criança erra enquanto aprende a ler — isso é esperado. O que diferencia a dislexia é a{" "}
+          <strong>persistência</strong> desses sinais mesmo com prática e apoio adequados, e o quanto eles atrapalham o
+          desempenho escolar e a autoestima da criança.
+        </p>
+
+        <h2>Como é feito o diagnóstico</h2>
+        <p>
+          O diagnóstico é feito por meio de <strong>avaliação neuropsicológica</strong>, que investiga leitura, escrita,
+          memória e processamento fonológico. A partir do resultado, fonoaudiólogo e psicopedagogo montam juntos o plano de
+          intervenção mais adequado para o seu filho.
+        </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras na criança: quando preocupar</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/artigos/psicopedagogia-alem-das-dificuldades-escolares" className="text-blue-600 hover:underline">→ Psicopedagogia além das dificuldades escolares</a></li>
+            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+          </ul>
+        </div>
+      </>
+    )
+  },
+
   {
     id: 148,
     slug: "desenvolvimento-da-fala-por-idade",
@@ -4844,7 +5015,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
-            <li><a href="/terapia-ocupacional" className="text-blue-600 hover:underline">→ Terapia Ocupacional</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia Ocupacional</a></li>
             <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -5324,13 +5495,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
             <li><a href="/artigos/fonoaudiologia-para-dificuldade-escolar" className="text-blue-600 hover:underline">→ Fonoaudiologia para dificuldade escolar</a></li>
             <li><a href="/artigos/dificuldades-emocionais-na-escola" className="text-blue-600 hover:underline">→ Dificuldades emocionais na escola</a></li>
+            <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil: como identificar cedo</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
           </ul>
         </div>
       </>
     )
   },
-  
+
   {
     id: 161,
     slug: "quanto-tempo-dura-avaliacao-neuropsicologica",
@@ -6124,9 +6296,10 @@ export const satelliteArticles = [
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
-                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
-<li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
+            <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
+            <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
             <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados após a frenulotomia</a></li>
+            <li><a href="/artigos/o-que-faz-um-fonoaudiologo" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo?</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Avaliação em Anápolis</a></li>
           </ul>
         </div>

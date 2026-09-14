@@ -60,6 +60,10 @@ const ImageCarousel = ({ typeImages, onImageClick }: ImageCarouselProps) => {
         { src: "/images/psicomotricidade-hero.png", alt: "Atendimento de psicomotricidade infantil em Anápolis", width: 640, height: 640 },
         { src: "/images/psicopedagogia-hero.png", alt: "Atendimento de psicopedagogia infantil em Anápolis", width: 640, height: 640 },
         { src: "/images/musicoterapia-hero.png", alt: "Atendimento de musicoterapia infantil em Anápolis", width: 640, height: 640 },
+        { src: "/images/terapia-ocupacional/sessao-sensorial.png", alt: "Sala de integração sensorial da Clínica Fono Inova em Anápolis", width: 640, height: 640 },
+        { src: "/images/fonoaudiologia/fono2.jpg", alt: "Sessão de fonoaudiologia infantil com jogo de articulação em Anápolis", width: 640, height: 720 },
+        { src: "/images/psicologia/psico3.jpg", alt: "Atendimento de psicologia infantil na Clínica Fono Inova em Anápolis", width: 2121, height: 1414 },
+        { src: "/images/clinica/real/espaco-infantil-real.jpg", alt: "Espaço lúdico real da Clínica Fono Inova em Anápolis", width: 900, height: 1600, objectPosition: "center 30%" },
     ];
 
     const images = typeImages === "clinica" ? imagesClinica : imagesNichos;

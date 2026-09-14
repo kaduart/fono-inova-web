@@ -6,6 +6,8 @@ Disallow: /teste/
 Disallow: /admin/
 Disallow: /drafts/
 Disallow: /private/
+Disallow: /dashboard
+Disallow: /analytics
 
 # Bloquear AdsBot das LPs (economizar crawl budget)
 User-agent: AdsBot-Google

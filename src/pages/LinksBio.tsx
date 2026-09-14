@@ -5,10 +5,12 @@ import {
   Award,
   Calendar,
   Facebook,
+  Globe,
   Instagram,
   MapPin,
   MessageCircle,
   ShieldCheck,
+  Sparkles,
   Star,
   Youtube,
 } from 'lucide-react';
@@ -30,6 +32,13 @@ const MAPS_QUERY = encodeURIComponent('Av. Minas Gerais, 405, Jundiaí, Anápoli
 
 const LINKS = [
   {
+    label: 'Visitar nosso site',
+    href: '/',
+    icon: Globe,
+    external: false,
+    source: 'links_bio_website',
+  },
+  {
     label: 'Convênio Base Aérea de Anápolis (BAAN)',
     href: '/convenio-base-aerea-anapolis',
     icon: ShieldCheck,
@@ -38,7 +47,7 @@ const LINKS = [
   },
   {
     label: 'Conheça nossas especialidades',
-    href: '/',
+    href: '/#services',
     icon: Award,
     external: false,
     source: 'links_bio_home',
@@ -154,10 +163,68 @@ const LinksBio = () => {
             <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </motion.a>
 
+          {/* Fonoaudiologia é a especialidade de maior procura — recebe destaque próprio, acima dos demais links */}
+          <motion.a
+            {...fadeUp(0.22)}
+            href="/fonoaudiologia-anapolis"
+            onClick={() => trackButtonClick('links_bio_fono_destaque')}
+            className="group flex w-full items-center gap-4 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-white to-white p-1 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md active:scale-[0.98]"
+          >
+            <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
+              <img
+                src="/images/fonoaudiologia/fono1.jpg"
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex-1 py-2 pr-3 text-left">
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide text-primary">
+                <Sparkles className="h-3 w-3" />
+                Fonoaudiologia Infantil
+              </span>
+              <p className="mt-0.5 text-xs leading-snug text-slate-600">
+                Atraso na fala, troca de sons, comunicação, linguagem e desenvolvimento.
+              </p>
+              <span className="mt-1 inline-block text-xs font-semibold text-primary">
+                → Agendar avaliação de Fono
+              </span>
+            </div>
+          </motion.a>
+
+          {/* Neuropediatria é o outro pilar de alta procura (autismo, TDAH, atraso no desenvolvimento) */}
+          <motion.a
+            {...fadeUp(0.27)}
+            href="/neuropediatra-anapolis"
+            onClick={() => trackButtonClick('links_bio_neuropediatria_destaque')}
+            className="group flex w-full items-center gap-4 overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-white to-white p-1 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md active:scale-[0.98]"
+          >
+            <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
+              <img
+                src="/images/neuropsicologia/neuro.jpeg"
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex-1 py-2 pr-3 text-left">
+              <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wide text-primary">
+                <Sparkles className="h-3 w-3" />
+                Neuropediatria
+              </span>
+              <p className="mt-0.5 text-xs leading-snug text-slate-600">
+                Autismo, TDAH, atraso no desenvolvimento e avaliação neurológica infantil.
+              </p>
+              <span className="mt-1 inline-block text-xs font-semibold text-primary">
+                → Agendar avaliação com Neuropediatra
+              </span>
+            </div>
+          </motion.a>
+
           {LINKS.map((link, i) => (
             <motion.a
               key={link.href}
-              {...fadeUp(0.25 + i * 0.08)}
+              {...fadeUp(0.38 + i * 0.08)}
               href={link.href}
               target={link.external ? '_blank' : undefined}
               rel={link.external ? 'noopener noreferrer' : undefined}
@@ -170,7 +237,7 @@ const LinksBio = () => {
             </motion.a>
           ))}
 
-          <motion.div {...fadeUp(0.25 + LINKS.length * 0.08)} className="mt-2 flex justify-center gap-4">
+          <motion.div {...fadeUp(0.33 + LINKS.length * 0.08)} className="mt-2 flex justify-center gap-4">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.href}

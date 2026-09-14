@@ -12,14 +12,8 @@ import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
 import LandingPage from './pages/lp/LandingPage';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
-import FisioPage from './pages/FisioPage';
-import FonoPage from './pages/FonoPage';
-import FreioLingualPage from './pages/FreioLingual';
 import Home from './pages/Home';
-import NeuropsicologicaPage from './pages/NeuroPsicologia';
 import PsicopedagogiaPage from './pages/PsicopedagogiaPage';
-import PsicoPage from './pages/PsisoPage';
-import TerapiaOcupacionalPage from './pages/TerapiaOcupacionaPage';
 import PsicomotricidadePage from './pages/PsicomotricidadePage';
 import PsicopedagogiaLPPage from './pages/PsicopedagogiaLPPage';
 import MusicoterapiaPage from './pages/MusicoterapiaPage';
@@ -31,16 +25,12 @@ import AdultoVozPage from './pages/AdultoVozPage';
 import SindromeDeDownPage from './pages/SindromeDeDownPage';
 import PrematuridadePage from './pages/PrematuridadePage';
 import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
-import DislexiaPage from './pages/DislexiaPage';
-import FalaTardiaPage from './pages/FalaTardiaPage';
 import FaqPage from './pages/Faq.jsx';
 import PrivacidadePage from './pages/Privacidade.jsx';
 import LPAvaliacaoInfantil from './pages/LPAvaliacaoInfantil';
-import TdahPage from './pages/TdahPage';
 import TdahAvaliacaoPage from './pages/TdahAvaliacaoPage';
 import ComportamentoInfantilPage from './pages/ComportamentoInfantilPage';
 import NeuropediatriaPage from './pages/NeuropediatriaPage';
-import TeaPage from './pages/TeaPage';
 
 // Import das NOVAS páginas de especialidade SEO Local (dominar Anápolis)
 import FonoaudiologiaAnapolis from './pages/FonoaudiologiaAnapolis';
@@ -113,21 +103,21 @@ function App() {
           <Route path="/artigos" element={<Articles />} />
           <Route path="/artigos/:slug" element={<ArticlePage />} />
           <Route path="/artigos/fono-guia-completo" element={<Navigate to="/artigos/fonoaudiologia-guia-completo" replace />} />
-          <Route path="/fonoaudiologia" element={<FonoPage />} />
-          <Route path="/psicologia" element={<PsicoPage />} />
-          <Route path="/terapia-ocupacional" element={<TerapiaOcupacionalPage />} />
-          <Route path="/fisioterapia" element={<FisioPage />} />
+          <Route path="/fonoaudiologia" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
+          <Route path="/psicologia" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
+          <Route path="/terapia-ocupacional" element={<Navigate to="/terapia-ocupacional-anapolis" replace />} />
+          <Route path="/fisioterapia" element={<Navigate to="/fisioterapia-infantil-anapolis" replace />} />
           <Route path="/abordagem-multidisciplinar" element={<ClinicaMultidisciplinar />} />
           <Route path="/psicopedagogia" element={<PsicopedagogiaPage />} />
-          <Route path="/avaliacao-neuropsicologica" element={<NeuropsicologicaPage />} />
-          <Route path="/freio-lingual" element={<FreioLingualPage />} />
+          <Route path="/avaliacao-neuropsicologica" element={<Navigate to="/avaliacao-neuropsicologica-anapolis" replace />} />
+          <Route path="/freio-lingual" element={<Navigate to="/teste-da-linguinha-anapolis" replace />} />
 
           {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
           <Route path="/avaliacao-infantil" element={<LPAvaliacaoInfantil />} />
-          <Route path="/avaliacao-autismo-infantil" element={<TeaPage />} />
-          <Route path="/fala-tardia" element={<FalaTardiaPage />} />
-          <Route path="/dislexia-infantil" element={<DislexiaPage />} />
-          <Route path="/tdah-infantil" element={<TdahPage />} />
+          <Route path="/avaliacao-autismo-infantil" element={<Navigate to="/autismo-anapolis" replace />} />
+          <Route path="/fala-tardia" element={<Navigate to="/fala-tardia-anapolis" replace />} />
+          <Route path="/dislexia-infantil" element={<Navigate to="/dislexia-anapolis" replace />} />
+          <Route path="/tdah-infantil" element={<Navigate to="/tdah-anapolis" replace />} />
           <Route path="/avaliacao-tdah-anapolis" element={<TdahAvaliacaoPage />} />
           <Route path="/comportamento-infantil-anapolis" element={<ComportamentoInfantilPage />} />
           <Route path="/neuropediatra-anapolis" element={<NeuropediatriaPage />} />
