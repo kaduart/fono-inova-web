@@ -266,10 +266,31 @@ export const articlesData = [
           Entenda o papel dele em <a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">neuropediatra diagnostica autismo?</a>.
         </p>
 
+        <h2>Como é a primeira consulta com o neuropediatra?</h2>
+        <p>
+          A primeira consulta costuma durar entre 40 e 60 minutos. O médico começa ouvindo os pais sobre a gestação,
+          o parto, os marcos de desenvolvimento (quando a criança sentou, andou, falou as primeiras palavras) e o
+          histórico familiar. Em seguida, faz um exame neurológico direcionado à idade da criança, observando tônus
+          muscular, reflexos, coordenação motora e comportamento durante a consulta. Vale levar a caderneta de saúde,
+          relatórios escolares (se houver) e uma lista com as situações que mais preocupam a família — isso ajuda o
+          médico a direcionar melhor a investigação.
+        </p>
+
+        <h2>O neuropediatra pede exames?</h2>
+        <p>
+          Nem sempre. Muitos casos são conduzidos apenas com avaliação clínica e acompanhamento do desenvolvimento
+          ao longo do tempo. Quando há suspeita de causas específicas — como convulsões, alterações genéticas ou
+          atrasos motores mais marcantes — o neuropediatra pode solicitar exames complementares (eletroencefalograma,
+          ressonância magnética, exames laboratoriais) para confirmar ou descartar hipóteses. A decisão é sempre
+          individualizada, de acordo com o que a consulta revela.
+        </p>
+
         <h2>Neuropediatra em Anápolis</h2>
         <p>
-          Na Clínica Fono Inova, em Anápolis, oferecemos avaliação neuropediatra e acompanhamento multidisciplinar 
+          Na Clínica Fono Inova, em Anápolis, oferecemos avaliação neuropediatra e acompanhamento multidisciplinar
           para crianças com TDAH, autismo, dificuldades de aprendizagem e outros transtornos do neurodesenvolvimento.
+          O acompanhamento acontece em conjunto com psicólogo, fonoaudiólogo e terapeuta ocupacional quando o caso
+          exige, evitando que a família precise correr atrás de vários profissionais separados pela cidade.
         </p>
 
         <p>
@@ -278,7 +299,7 @@ export const articlesData = [
       </>
     )
   },
-  
+
   // ============================================================
   // ARTIGO PILLAR — CLUSTER PSICOLOGIA INFANTIL
   // ============================================================

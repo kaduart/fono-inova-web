@@ -1824,14 +1824,32 @@ export const satelliteArticles = [
 
         <h2>Como é feito o diagnóstico?</h2>
         <p>
-          O processo inclui entrevistas com os pais, observação da criança em diferentes situações, 
-          aplicação de testes padronizados e análise do histórico de desenvolvimento. 
+          O processo inclui entrevistas com os pais, observação da criança em diferentes situações,
+          aplicação de testes padronizados e análise do histórico de desenvolvimento.
           Não existe um exame único: o diagnóstico é clínico.
+        </p>
+
+        <h2>Qual a idade ideal para investigar autismo?</h2>
+        <p>
+          Sinais podem aparecer já entre os 12 e 18 meses, mas muitas famílias só procuram avaliação depois dos 2
+          ou 3 anos, quando as diferenças ficam mais evidentes na comparação com outras crianças da mesma idade.
+          Quanto antes a investigação começar, mais cedo a criança pode iniciar terapias que fazem diferença real
+          no desenvolvimento da comunicação e da autonomia. Não é preciso esperar "ter certeza" em casa antes de
+          procurar ajuda — a própria avaliação existe para esclarecer a dúvida.
+        </p>
+
+        <h2>O que acontece depois do diagnóstico?</h2>
+        <p>
+          Recebido o diagnóstico, a equipe monta um plano de acompanhamento individualizado, que costuma incluir
+          fonoaudiologia (comunicação e linguagem), terapia ocupacional (integração sensorial e autonomia) e
+          psicologia (comportamento e desenvolvimento social), com o neuropediatra acompanhando a evolução clínica
+          ao longo do tempo. O plano é revisado periodicamente, ajustando a frequência e o foco das terapias
+          conforme a criança progride.
         </p>
 
         <h2>Onde fazer avaliação de autismo em Anápolis?</h2>
         <p>
-          Na Clínica Fono Inova, em Anápolis, oferecemos avaliação multidisciplinar para autismo, 
+          Na Clínica Fono Inova, em Anápolis, oferecemos avaliação multidisciplinar para autismo,
           com equipe de neuropediatra, psicólogo, fonoaudiólogo e terapeuta ocupacional.
         </p>
 
@@ -1843,13 +1861,6 @@ export const satelliteArticles = [
             <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
-        </div>
-
-        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Avaliação de autismo em Anápolis</h3>
-          <a href="/artigos/sinais-autismo-crianca" className="text-green-600 hover:underline font-semibold">
-            → Sinais de autismo na infância
-          </a>
         </div>
       </>
     )
@@ -2741,9 +2752,27 @@ export const satelliteArticles = [
           <li>Reclamações frequentes de dores sem causa médica</li>
         </ul>
 
+        <h2>Um sinal isolado é motivo de preocupação?</h2>
+        <p>
+          Não necessariamente. Toda criança tem dias difíceis, birras ocasionais ou uma fase de mais manha —
+          isso faz parte do desenvolvimento normal. O que indica necessidade de avaliação é o padrão: sinais que
+          se repetem por semanas, que pioram em vez de melhorar, ou que aparecem em mais de um ambiente (casa e
+          escola, por exemplo) ao mesmo tempo. Se você está em dúvida se é "só uma fase" ou algo que merece
+          atenção, essa própria dúvida já é motivo suficiente para conversar com um psicólogo infantil.
+        </p>
+
+        <h2>Como funciona a primeira consulta?</h2>
+        <p>
+          A primeira consulta costuma ser só com os pais ou responsáveis, para entender o histórico da criança,
+          a rotina familiar e o que motivou a busca por ajuda. Nas sessões seguintes, a criança participa
+          ativamente, mas por meio de brincadeiras, desenhos e jogos — não é uma "conversa" no formato adulto.
+          É assim que o psicólogo infantil consegue observar e trabalhar as emoções da criança de um jeito que
+          faz sentido para a idade dela.
+        </p>
+
         <h2>Por que procurar ajuda precoce?</h2>
         <p>
-          A intervenção precoce ajuda a criança a desenvolver habilidades emocionais saudáveis antes que os problemas se consolidem. 
+          A intervenção precoce ajuda a criança a desenvolver habilidades emocionais saudáveis antes que os problemas se consolidem.
           Na Clínica Fono Inova em Anápolis, avaliamos e acompanhamos crianças com diferentes demandas emocionais.
         </p>
 
@@ -2759,7 +2788,7 @@ export const satelliteArticles = [
       </>
     )
   },
-  
+
   {
     id: 129,
     slug: "sinais-ansiedade-infantil",
