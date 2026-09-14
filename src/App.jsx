@@ -56,6 +56,10 @@ import SeletividadeAlimentarAnapolis from './pages/SeletividadeAlimentarAnapolis
 import TdahAnapolis from './pages/TdahAnapolis';
 import DislexiaAnapolis from './pages/DislexiaAnapolis';
 import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologicaAnapolis';
+// Convênios
+import BaseAereaAnapolis from './pages/BaseAereaAnapolis';
+// Link-in-bio (Instagram/redes sociais)
+import LinksBio from './pages/LinksBio';
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
@@ -155,6 +159,8 @@ function App() {
           <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />
           <Route path="/fisioterapia-infantil-anapolis" element={<FisioterapiaInfantilAnapolis />} />
           <Route path="/avaliacao-neuropsicologica-anapolis" element={<AvaliacaoNeuropsicologicaAnapolis />} />
+          <Route path="/convenio-base-aerea-anapolis" element={<BaseAereaAnapolis />} />
+          <Route path="/links" element={<LinksBio />} />
           {/* Long-tail local — intenção emocional + geo */}
           <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />
           <Route path="/autismo-anapolis" element={<AutismoAnapolis />} />

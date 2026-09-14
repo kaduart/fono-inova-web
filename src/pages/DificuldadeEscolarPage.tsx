@@ -1,6 +1,7 @@
 import { AlertTriangle, BookOpen, Brain, CheckCircle, ChevronDown, Clock, Phone, Quote, Shield, Star, Target } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
@@ -85,12 +86,16 @@ const DificuldadeEscolarPage = () => {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div className="animate-fade-in-up order-2 lg:order-1">
-                            <h1 className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Dificuldade de Aprendizagem em Anápolis
+                            </span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                <TypewriterText segments={[
+                                    { text: 'Seu Filho se Esforça, mas as Notas ' },
+                                    { text: 'Não Melhoram', className: 'text-blue-600' },
+                                    { text: '?' },
+                                ]} />
                             </h1>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Seu Filho se Esforça, mas as Notas <span className="text-blue-600">Não Melhoram</span>?
-                            </h2>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Avaliação neuropsicológica completa no bairro <strong>Jundiaí</strong> para identificar dislexia, TDAH e outras condições em Anápolis.
                             </p>

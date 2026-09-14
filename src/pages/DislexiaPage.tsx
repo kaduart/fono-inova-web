@@ -1,6 +1,7 @@
 import { ArrowRight, BookOpen, Brain, Calendar, CheckCircle2, Clock, Eye, GraduationCap, Lightbulb, MapPin, MessageCircle, Phone, School, Star, Target, Users } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -108,14 +109,17 @@ const DislexiaPage = () => {
                                 <span className="text-sm font-medium text-blue-700">Quanto antes identificar, melhor</span>
                             </div>
 
-                            <h1 className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Dislexia Infantil em Anápolis
-                            </h1>
+                            </span>
 
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Seu Filho Confunde Letras ou Tem{" "}
-                                <span className="text-blue-600">Dificuldade para Ler</span>?
-                            </h2>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                <TypewriterText segments={[
+                                    { text: 'Seu Filho Confunde Letras ou Tem ' },
+                                    { text: 'Dificuldade para Ler', className: 'text-blue-600' },
+                                    { text: '?' },
+                                ]} />
+                            </h1>
 
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed max-w-xl">
                                 Pode ser dislexia. Na <strong>Clínica Fono Inova</strong> em Anápolis, 

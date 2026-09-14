@@ -28,6 +28,7 @@ import ArticleCard from '../components/ArticleCard.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
 import Layout from '../components/Layout/index.jsx';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
 import ServiceCards from '../components/ServiceCards.jsx';
 import TestimonialCards from '../components/TestimonialCards.jsx';
@@ -213,9 +214,9 @@ const LPAvaliacaoInfantil = () => {
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
               {/* H1 - GEO-SEMÂNTICO */}
-              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
+              <span className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Avaliação Infantil em Anápolis
-              </h1>
+              </span>
 
               {/* Badge de urgência social */}
               <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200 px-4 py-2 rounded-full shadow-sm">
@@ -225,12 +226,14 @@ const LPAvaliacaoInfantil = () => {
                 </span>
               </div>
 
-              {/* H2 FOCADO EM DOR (LP de conversão) */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Seu filho está com{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">dificuldade para falar</span>{" "}
-                ou se comunicar?
-              </h2>
+              {/* H1 FOCADO EM DOR (LP de conversão) */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+                <TypewriterText segments={[
+                    { text: 'Seu filho está com ' },
+                    { text: 'dificuldade para falar', className: "text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full" },
+                    { text: ' ou se comunicar?' },
+                ]} />
+              </h1>
 
               {/* Subheadline com contexto */}
               <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">

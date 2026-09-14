@@ -4,9 +4,19 @@ import "slick-carousel/slick/slick.css";
 
 type ImageCarouselProps = {
     typeImages: "clinica" | "nichos";
+    onImageClick?: () => void;
 };
 
-const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
+type CarouselImage = {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    objectPosition?: string;
+    filter?: string;
+};
+
+const ImageCarousel = ({ typeImages, onImageClick }: ImageCarouselProps) => {
     const settings = {
         dots: true,
         infinite: true,
@@ -14,41 +24,61 @@ const ImageCarousel = ({ typeImages }: ImageCarouselProps) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 4500,
         arrows: true,
         fade: true,
-        cssEase: 'linear'
+        cssEase: 'ease-out',
+        lazyLoad: 'ondemand' as const,
+        pauseOnFocus: true,
+        pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    autoplay: false,
+                    arrows: false
+                }
+            }
+        ]
     };
 
-    const imagesClinica = [
-        { src: "/images/clinica/fachada-premium.png", alt: "Fachada da Clínica Fono Inova em Anápolis" },
-        { src: "/images/clinica/recepcao.png", alt: "Recepção da Clínica Fono Inova em Anápolis" },
-        { src: "/images/clinica/sala-espera.png", alt: "Sala de espera da Clínica Fono Inova em Anápolis" },
-        { src: "/images/clinica/sala-ludica.png", alt: "Sala lúdica de atendimento infantil da Clínica Fono Inova" },
+    const imagesClinica: CarouselImage[] = [
+        { src: "/images/clinica/real/entrada-real.jpg", alt: "Entrada real da Clínica Fono Inova em Anápolis", width: 1600, height: 900 },
+        { src: "/images/clinica/real/sala-espera-real.jpg", alt: "Sala de espera real da Clínica Fono Inova em Anápolis", width: 1600, height: 900, filter: "brightness(1.08) contrast(0.98)" },
+        { src: "/images/clinica/real/consultorio-infantil-real.jpg", alt: "Consultório infantil real da Clínica Fono Inova", width: 1600, height: 900 },
+        { src: "/images/clinica/real/terapia-ocupacional-real.jpg", alt: "Sala real de terapia ocupacional da Clínica Fono Inova", width: 900, height: 1600, objectPosition: "center 42%", filter: "brightness(1.04)" },
+        { src: "/images/clinica/real/espaco-infantil-real.jpg", alt: "Espaço infantil real da Clínica Fono Inova", width: 900, height: 1600, objectPosition: "center 38%", filter: "brightness(1.03)" },
+        { src: "/images/clinica/real/recursos-terapeuticos-real.jpg", alt: "Recursos terapêuticos reais da Clínica Fono Inova", width: 1600, height: 900 },
     ];
 
-    const imagesNichos = [
-        { src: "/images/fono-inova-1.png", alt: "Atendimento infantil na Clínica Fono Inova em Anápolis" },
-        { src: "/images/fono-inova-2.png", alt: "Terapeuta atendendo criança na Clínica Fono Inova" },
-        { src: "/images/fono-inova-4.png", alt: "Atendimento multidisciplinar infantil na Clínica Fono Inova" },
-        { src: "/images/fonoaudiologia/atendimento-premium.png", alt: "Atendimento de fonoaudiologia infantil em Anápolis" },
-        { src: "/images/fonoaudiologia/img-fono-atendimento-01.png", alt: "Sessão de fonoaudiologia com criança em Anápolis" },
-        { src: "/images/psicomotricidade-hero.png", alt: "Atendimento de psicomotricidade infantil em Anápolis" },
-        { src: "/images/psicopedagogia-hero.png", alt: "Atendimento de psicopedagogia infantil em Anápolis" },
-        { src: "/images/musicoterapia-hero.png", alt: "Atendimento de musicoterapia infantil em Anápolis" },
+    const imagesNichos: CarouselImage[] = [
+        { src: "/images/fono-inova-1.png", alt: "Atendimento infantil na Clínica Fono Inova em Anápolis", width: 1024, height: 1024 },
+        { src: "/images/fono-inova-2.png", alt: "Terapeuta atendendo criança na Clínica Fono Inova", width: 1024, height: 1024 },
+        { src: "/images/fono-inova-4.png", alt: "Atendimento multidisciplinar infantil na Clínica Fono Inova", width: 1024, height: 1024 },
+        { src: "/images/fonoaudiologia/atendimento-premium.png", alt: "Atendimento de fonoaudiologia infantil em Anápolis", width: 640, height: 640 },
+        { src: "/images/fonoaudiologia/img-fono-atendimento-01.png", alt: "Sessão de fonoaudiologia com criança em Anápolis", width: 4495, height: 7995, objectPosition: "center 32%" },
+        { src: "/images/psicomotricidade-hero.png", alt: "Atendimento de psicomotricidade infantil em Anápolis", width: 640, height: 640 },
+        { src: "/images/psicopedagogia-hero.png", alt: "Atendimento de psicopedagogia infantil em Anápolis", width: 640, height: 640 },
+        { src: "/images/musicoterapia-hero.png", alt: "Atendimento de musicoterapia infantil em Anápolis", width: 640, height: 640 },
     ];
 
     const images = typeImages === "clinica" ? imagesClinica : imagesNichos;
 
     return (
-        <div className="w-full h-96 rounded-3xl overflow-hidden">
+        <div className="w-full h-full min-h-0 min-w-0 overflow-hidden [&_.slick-slider]:h-full [&_.slick-list]:h-full [&_.slick-track]:h-full [&_.slick-slide]:h-full [&_.slick-slide>div]:h-full [&_.slick-dots]:bottom-4 [&_.slick-dots_button:before]:text-white [&_.slick-dots_button:before]:opacity-70 [&_.slick-dots_.slick-active_button:before]:text-white [&_.slick-dots_.slick-active_button:before]:opacity-100">
             <Slider {...settings}>
                 {images.map((image, index) => (
-                    <div key={index} className="h-96">
+                    <div key={index} className="h-full min-h-0">
                         <img
                             src={image.src}
                             alt={image.alt}
-                            className="w-full h-full object-cover"
+                            width={image.width}
+                            height={image.height}
+                            loading={index === 0 && typeImages === "nichos" ? "eager" : "lazy"}
+                            decoding="async"
+                            onClick={onImageClick}
+                            className="w-full h-full object-cover select-none"
+                            style={{ objectPosition: image.objectPosition, filter: image.filter }}
                         />
                     </div>
                 ))}

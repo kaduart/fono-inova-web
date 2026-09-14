@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import AccessibilityWizard from '../components/AccessibilityWizard.js';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
@@ -124,14 +125,16 @@ const PrematuridadePage = () => {
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1 space-y-6">
-              <h1 className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
+              <span className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Estimulação Precoce em Anápolis
-              </h1>
+              </span>
 
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Acompanhamento para Bebês{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Prematuros</span>
-              </h2>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+                <TypewriterText segments={[
+                    { text: 'Acompanhamento para Bebês ' },
+                    { text: 'Prematuros', className: "text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full" },
+                ]} />
+              </h1>
 
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">
                 Estimulação precoce e desenvolvimento neuropsicomotor

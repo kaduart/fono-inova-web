@@ -66,11 +66,11 @@ export const CONFIG = {
 // ═══════════════════════════════════════════════════════════════════════════════
 
 export const LP_CATEGORIES = {
-  fonoaudiologia: { label: 'Fonoaudiologia', color: '#8B5CF6' },
-  autismo: { label: 'Autismo', color: '#3B82F6' },
-  psicologia: { label: 'Psicologia', color: '#EC4899' },
+  fonoaudiologia: { label: 'Fonoaudiologia', color: '#14B8A6' },
+  autismo: { label: 'Autismo', color: '#8B5CF6' },
+  psicologia: { label: 'Psicologia', color: '#3B82F6' },
   aprendizagem: { label: 'Aprendizagem', color: '#F59E0B' },
-  terapia_ocupacional: { label: 'Terapia Ocupacional', color: '#10B981' },
+  terapia_ocupacional: { label: 'Terapia Ocupacional', color: '#F97316' },
   geografica: { label: 'Geográfica', color: '#6B7280' }
 };
 

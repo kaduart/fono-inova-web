@@ -1,5 +1,5 @@
 import { Mail, MessageCircle, Phone } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logoImgFooter from '../../assets/LOGO_CLÍNICA_FONO_INOVA_WHITE.png'
 
 const especialidades = [
@@ -13,7 +13,19 @@ const especialidades = [
     { label: 'Seletividade Alimentar', href: '/seletividade-alimentar-anapolis' },
 ];
 
-const Footer = ({ scrollToSection }) => {
+const Footer = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const scrollToSection = (sectionId) => {
+        if (location.pathname !== '/') {
+            navigate(`/#${sectionId}`);
+            return;
+        }
+        const element = document.getElementById(sectionId);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <footer style={{ backgroundColor: 'oklch(0.55 0.13 174.92)' }} className="text-white py-12">
             <div className="container mx-auto px-4">
@@ -66,7 +78,7 @@ const Footer = ({ scrollToSection }) => {
                             </div>
                             <div className="flex gap-2">
                                 <Mail className="w-4 h-6 text-green-500" />
-                                <span>contato@fonoinova.com.br</span>
+                                <span>contato@clinicafonoinova.com.br</span>
                             </div>
                         </div>
                     </div>

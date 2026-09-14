@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
@@ -65,13 +66,13 @@ export default function AutismoAnapolis() {
         <div className="relative container mx-auto px-4 lg:px-8 max-w-3xl">
           <div className="space-y-6 text-center pt-8">
 
-            <h1 className="inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-4 py-1.5 text-sm font-semibold rounded-full">
+            <span className="inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-4 py-1.5 text-sm font-semibold rounded-full">
               Suporte para Autismo (TEA) em Anápolis
-            </h1>
+            </span>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-              Você Suspeita que Seu Filho Pode Ter Autismo?
-            </h2>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
+              <TypewriterText text="Você Suspeita que Seu Filho Pode Ter Autismo?" />
+            </h1>
 
             <p className="text-xl text-slate-600 leading-relaxed">
               A identificação precoce faz toda a diferença. Nossa equipe multidisciplinar

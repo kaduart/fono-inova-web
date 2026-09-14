@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowRight, Angry, Frown, Heart, MapPin, MessageCircle, Phone, Star, Clock, CheckCircle2, AlertTriangle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import Breadcrumb from '../components/Breadcrumb';
 import { Badge } from '../components/ui/badge';
@@ -185,9 +186,9 @@ const ComportamentoInfantilPage = () => {
                         {/* Texto */}
                         <div className="order-2 lg:order-1">
                             {/* H1 - GEO-SEMÂNTICO */}
-                            <h1 className="mb-4 inline-flex items-center bg-red-50 text-red-700 border border-red-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-red-50 text-red-700 border border-red-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Comportamento Infantil em Anápolis
-                            </h1>
+                            </span>
 
                             {/* Badge de urgência */}
                             <div className="inline-flex items-center gap-2 bg-red-100 border border-red-200 px-4 py-2 rounded-full mb-4 animate-pulse">
@@ -197,12 +198,14 @@ const ComportamentoInfantilPage = () => {
                                 </span>
                             </div>
 
-                            {/* H2 - BATENDO NA DOR */}
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
-                                Seu Filho Tem{" "}
-                                <span className="text-red-600">Birras Explosivas</span>,{" "}
-                                Agressividade ou Não Obedece?
-                            </h2>
+                            {/* H1 - BATENDO NA DOR */}
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
+                                <TypewriterText segments={[
+                                    { text: 'Seu Filho Tem ' },
+                                    { text: 'Birras Explosivas', className: 'text-red-600' },
+                                    { text: ', Agressividade ou Não Obedece?' },
+                                ]} />
+                            </h1>
 
                             {/* H2 - SEM COMPROMISSO */}
                             <h2 className="text-lg md:text-xl text-slate-600 mb-4 leading-relaxed max-w-xl">

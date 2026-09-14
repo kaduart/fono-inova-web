@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
@@ -173,7 +174,11 @@ const FisioPage = () => {
                                 Fisioterapia Pediátrica
                             </Badge>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Fisioterapia <span className="text-purple-600">Pediátrica</span> em Anápolis
+                                <TypewriterText segments={[
+                                    { text: 'Fisioterapia ' },
+                                    { text: 'Pediátrica', className: 'text-purple-600' },
+                                    { text: ' em Anápolis' },
+                                ]} />
                             </h1>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Desenvolvimento motor, reabilitação e acompanhamento especializado para seu filho no bairro <strong>Jundiaí</strong>.

@@ -436,7 +436,7 @@ export const schemaFAQ = {
             "name": "Atende por convênio?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sim, a Fono Inova atende diversos convênios de saúde. Consulte disponibilidade para fonoaudiologia, fisioterapia, psicologia e terapia ocupacional."
+                "text": "Sim, a Fono Inova atende diversos convênios de saúde, incluindo o convênio da Base Aérea de Anápolis (BAAN). Consulte disponibilidade para fonoaudiologia, fisioterapia, psicologia e terapia ocupacional."
             }
         },
         {
@@ -1071,3 +1071,55 @@ export const schemaBreadcrumbList = (items) => ({
         "item": item.url
     }))
 });
+
+// ==========================================
+// CONVÊNIO BASE AÉREA DE ANÁPOLIS (BAAN)
+// ==========================================
+export const schemaBaseAereaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Convênio Base Aérea de Anápolis (BAAN) | Clínica Fono Inova",
+    "description": "Clínica credenciada ao convênio da Base Aérea de Anápolis (BAAN), atendendo militares e dependentes com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/convenio-base-aerea-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio BAAN" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaFAQBaseAereaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "A Fono Inova atende o convênio da Base Aérea de Anápolis (BAAN)?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim, somos credenciados ao convênio da Base Aérea de Anápolis (BAAN) e atendemos militares e dependentes nas especialidades de fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. Consulte cobertura específica pelo WhatsApp."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde fica a Fono Inova em relação à Base Aérea de Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ficamos no bairro Jundiaí, na Av. Minas Gerais, 405, em Anápolis/GO — a poucos minutos da Base Aérea de Anápolis (BAAN)."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Preciso de encaminhamento para usar o convênio BAAN na Fono Inova?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Entre em contato pelo WhatsApp com seus dados e o convênio BAAN; nossa equipe confirma a documentação necessária antes do agendamento."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quais especialidades são atendidas pelo convênio da Base Aérea em Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fonoaudiologia infantil, psicologia, terapia ocupacional e fisioterapia. Consulte disponibilidade para a necessidade específica do seu filho pelo WhatsApp."
+            }
+        }
+    ]
+};

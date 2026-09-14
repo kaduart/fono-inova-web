@@ -1,11 +1,14 @@
 import { Button } from '@/components/ui/button.jsx'
 import {
+  AlertCircle,
   CheckCircle,
+  LoaderCircle,
+  Mail,
   MessageCircle,
   User,
   X
 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useFormTracking } from '../hooks/useFormTracking'
 import { useCRMIntegration } from '../hooks/useCRMIntegration'
 
@@ -32,7 +35,7 @@ const gaEvent = (name, params = {}) => {
   gtag('event', name, params);
 };
 
-const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
+const BookingModal = ({ isOpen, onClose, onBookingSuccess, serviceInterest = '' }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -40,8 +43,62 @@ const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
   })
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submissionStatus, setSubmissionStatus] = useState('idle')
+  const [statusMessage, setStatusMessage] = useState('')
+  const [fallbackUrl, setFallbackUrl] = useState('')
+  const dialogRef = useRef(null)
+  const nameInputRef = useRef(null)
+  const phoneInputRef = useRef(null)
+  const emailInputRef = useRef(null)
+  const previouslyFocusedRef = useRef(null)
+  const closeTimerRef = useRef(null)
+  const isSubmittingRef = useRef(false)
   const { trackFieldInteraction, trackFormSubmission } = useFormTracking('Formulário_Agendamento_Modal');
   const { submitLead } = useCRMIntegration();
+
+  useEffect(() => {
+    isSubmittingRef.current = isSubmitting
+  }, [isSubmitting])
+
+  useEffect(() => {
+    if (!isOpen) return undefined
+
+    previouslyFocusedRef.current = document.activeElement
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const focusTimer = window.setTimeout(() => nameInputRef.current?.focus(), 0)
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && !isSubmittingRef.current) onClose?.()
+
+      if (event.key === 'Tab' && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll(
+          'button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        if (!focusable.length) return
+
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last.focus()
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.clearTimeout(focusTimer)
+      if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousOverflow
+      previouslyFocusedRef.current?.focus?.()
+    }
+  }, [isOpen, onClose])
 
   const validateForm = () => {
     const newErrors = {}
@@ -70,6 +127,11 @@ const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+    if (submissionStatus === 'error') {
+      setSubmissionStatus('idle')
+      setStatusMessage('')
+      setFallbackUrl('')
+    }
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }))
     }
@@ -91,36 +153,20 @@ const BookingModal = ({ isOpen, onClose, serviceInterest = '' }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (!validateForm()) return
+    if (isSubmitting) return
+
+    if (!validateForm()) {
+      if (!formData.name.trim() || formData.name.trim().length < 3) nameInputRef.current?.focus()
+      else if (!formData.phone.trim() || formData.phone.replace(/\D/g, '').length < 10) phoneInputRef.current?.focus()
+      else emailInputRef.current?.focus()
+      return
+    }
 
     setIsSubmitting(true)
-    setCrmStatus('sending')
+    setSubmissionStatus('sending')
+    setStatusMessage('Enviando seus dados com segurança…')
+    setFallbackUrl('')
 
-    // Tracking interno do seu hook
-    try {
-      trackFormSubmission(true);
-      trackFieldInteraction('confirmacao_modal', 'confirmar_via_whatsapp');
-    } catch { }
-
-    // GA4: marcamos a intenção de envio (lead via modal)
-    gaEvent('generate_lead', {
-      source: 'booking_modal_simplified',
-      form_type: '3_fields'
-    });
-
-    // Google Ads: conversão de lead
-    reportLeadConversion();
-
-    // 🔄 ENVIAR LEAD PARA O CRM
-    await submitLead({
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      serviceInterest: serviceInterest,
-      formSource: 'booking_modal'
-    });
-
-    // Monta a mensagem simplificada para o WhatsApp
     const message = `Oi! Vi no site de vocês e gostaria de entender melhor como funciona o atendimento.
 
 *Meus dados:*
@@ -131,31 +177,92 @@ E-mail: ${formData.email}
 Pode me explicar como funciona a avaliação?`;
 
     const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-    // Pequeno delay para garantir que o WhatsApp abriu
-    setTimeout(() => {
-      setIsSubmitting(false)
-      onClose?.();
-      setFormData({
-        name: '',
-        phone: '',
-        email: ''
+    // Tracking interno do seu hook
+    try {
+      trackFieldInteraction('confirmacao_modal', 'confirmar_via_whatsapp');
+    } catch (trackingError) {
+      console.warn('[BookingModal] Falha ao registrar interação:', trackingError)
+    }
+
+    // GA4: marcamos a intenção de envio (lead via modal)
+    gaEvent('generate_lead', {
+      source: 'booking_modal_simplified',
+      form_type: '3_fields'
+    });
+
+    try {
+      const crmResult = await submitLead({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        serviceInterest: serviceInterest,
+        formSource: 'booking_modal'
       });
-      setErrors({})
-    }, 1000)
+
+      if (!crmResult?.success) {
+        console.warn('[BookingModal] Lead salvo para nova tentativa:', crmResult?.error)
+      }
+
+      const whatsappWindow = window.open(whatsappUrl, '_blank')
+      if (whatsappWindow) whatsappWindow.opener = null
+
+      if (!whatsappWindow) {
+        setFallbackUrl(whatsappUrl)
+        setSubmissionStatus('error')
+        setStatusMessage('O navegador bloqueou a abertura do WhatsApp. Use o link abaixo para continuar sem preencher novamente.')
+        setIsSubmitting(false)
+        trackFormSubmission(false)
+        return
+      }
+
+      trackFormSubmission(true)
+      reportLeadConversion()
+      onBookingSuccess?.({ crmSuccess: Boolean(crmResult?.success) })
+      setSubmissionStatus('success')
+      setStatusMessage('WhatsApp aberto. Finalize o envio da mensagem para falar com a equipe.')
+
+      closeTimerRef.current = window.setTimeout(() => {
+        setIsSubmitting(false)
+        setSubmissionStatus('idle')
+        setStatusMessage('')
+        onClose?.()
+        setFormData({ name: '', phone: '', email: '' })
+        setErrors({})
+      }, 1000)
+    } catch (error) {
+      console.error('[BookingModal] Falha inesperada no agendamento:', error)
+      trackFormSubmission(false)
+      setFallbackUrl(whatsappUrl)
+      setSubmissionStatus('error')
+      setStatusMessage('Não foi possível concluir o envio agora. Seus dados foram preservados; continue diretamente pelo WhatsApp ou tente novamente.')
+      setIsSubmitting(false)
+    }
   }
 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl animate-in zoom-in duration-300">
+    <div
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget && !isSubmitting) onClose?.()
+      }}
+    >
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-modal-title"
+        aria-describedby="booking-modal-description"
+        className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-300"
+      >
         {/* Header com gradiente */}
         <div className="bg-gradient-to-r from-green-600 to-cyan-500 p-6 rounded-t-2xl relative">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors"
+            disabled={isSubmitting}
+            className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors disabled:cursor-not-allowed disabled:opacity-40"
             aria-label="Fechar"
           >
             <X className="w-6 h-6" />
@@ -165,8 +272,8 @@ Pode me explicar como funciona a avaliação?`;
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-3 backdrop-blur-sm">
               <MessageCircle className="w-8 h-8" />
             </div>
-            <h2 className="text-2xl font-bold mb-2">Agende sua Consulta</h2>
-            <p className="text-green-100 text-sm">
+            <h2 id="booking-modal-title" className="text-2xl font-bold mb-2">Agende sua Consulta</h2>
+            <p id="booking-modal-description" className="text-green-100 text-sm">
               Preencha os dados abaixo e fale conosco via WhatsApp
             </p>
           </div>
@@ -176,12 +283,15 @@ Pode me explicar como funciona a avaliação?`;
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Nome */}
           <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-800">
+            <label htmlFor="booking-name" className="block text-sm font-semibold mb-2 text-gray-800">
               Nome Completo *
             </label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
+                ref={nameInputRef}
+                id="booking-name"
+                name="name"
                 type="text"
                 value={formData.name}
                 onChange={(e) => handleInputChange('name', e.target.value)}
@@ -191,24 +301,32 @@ Pode me explicar como funciona a avaliação?`;
                     : 'border-gray-200 hover:border-gray-300 focus:border-green-500'
                   }`}
                 placeholder="Digite seu nome completo"
+                autoComplete="name"
+                maxLength={100}
+                aria-invalid={Boolean(errors.name)}
+                aria-describedby={errors.name ? 'booking-name-error' : undefined}
+                required
                 disabled={isSubmitting}
               />
             </div>
             {errors.name && (
-              <p className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {errors.name}
+              <p id="booking-name-error" role="alert" className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" /> {errors.name}
               </p>
             )}
           </div>
 
           {/* Telefone */}
           <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-800">
+            <label htmlFor="booking-phone" className="block text-sm font-semibold mb-2 text-gray-800">
               Telefone/WhatsApp *
             </label>
             <div className="relative">
               <MessageCircle className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
+                ref={phoneInputRef}
+                id="booking-phone"
+                name="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={handlePhoneChange}
@@ -218,27 +336,33 @@ Pode me explicar como funciona a avaliação?`;
                     : 'border-gray-200 hover:border-gray-300 focus:border-green-500'
                   }`}
                 placeholder="(62) 99999-9999"
+                autoComplete="tel"
+                inputMode="tel"
                 maxLength={15}
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? 'booking-phone-error' : undefined}
+                required
                 disabled={isSubmitting}
               />
             </div>
             {errors.phone && (
-              <p className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {errors.phone}
+              <p id="booking-phone-error" role="alert" className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" /> {errors.phone}
               </p>
             )}
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold mb-2 text-gray-800">
+            <label htmlFor="booking-email" className="block text-sm font-semibold mb-2 text-gray-800">
               E-mail *
             </label>
             <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl">
-                📧
-              </span>
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" aria-hidden="true" />
               <input
+                ref={emailInputRef}
+                id="booking-email"
+                name="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange('email', e.target.value)}
@@ -248,13 +372,49 @@ Pode me explicar como funciona a avaliação?`;
                     : 'border-gray-200 hover:border-gray-300 focus:border-green-500'
                   }`}
                 placeholder="seu@email.com"
+                autoComplete="email"
+                maxLength={254}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? 'booking-email-error' : undefined}
+                required
                 disabled={isSubmitting}
               />
             </div>
             {errors.email && (
-              <p className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
-                <span>⚠️</span> {errors.email}
+              <p id="booking-email-error" role="alert" className="text-red-600 text-sm mt-1.5 flex items-center gap-1">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" /> {errors.email}
               </p>
+            )}
+          </div>
+
+          <div aria-live="polite" aria-atomic="true">
+            {submissionStatus !== 'idle' && (
+              <div
+                role={submissionStatus === 'error' ? 'alert' : 'status'}
+                className={`rounded-xl border p-4 text-sm ${submissionStatus === 'error'
+                    ? 'border-red-200 bg-red-50 text-red-800'
+                    : 'border-green-200 bg-green-50 text-green-800'
+                  }`}
+              >
+                <div className="flex items-start gap-2">
+                  {submissionStatus === 'error' && <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" aria-hidden="true" />}
+                  {submissionStatus === 'sending' && <LoaderCircle className="w-5 h-5 flex-shrink-0 mt-0.5 animate-spin" aria-hidden="true" />}
+                  {submissionStatus === 'success' && <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" aria-hidden="true" />}
+                  <div>
+                    <p>{statusMessage}</p>
+                    {fallbackUrl && (
+                      <a
+                        href={fallbackUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex mt-3 font-bold underline underline-offset-4"
+                      >
+                        Continuar no WhatsApp
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 
@@ -292,7 +452,7 @@ Pode me explicar como funciona a avaliação?`;
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
-                  <span className="animate-spin">⏳</span>
+                  <LoaderCircle className="w-4 h-4 animate-spin" aria-hidden="true" />
                   Enviando...
                 </span>
               ) : (

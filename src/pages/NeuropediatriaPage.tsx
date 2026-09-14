@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowRight, Award, Baby, Brain, Calendar, CheckCircle2, Clock, Heart, MapPin, MessageCircle, Phone, Shield, Star, Stethoscope, Users } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -180,7 +181,7 @@ const NeuropediatriaPage = () => {
 
                             {/* H1 - Autoridade */}
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-4">
-                                Neuropediatra em Anápolis
+                                <TypewriterText text="Neuropediatra em Anápolis" />
                             </h1>
 
                             {/* H2 - Especialidade */}

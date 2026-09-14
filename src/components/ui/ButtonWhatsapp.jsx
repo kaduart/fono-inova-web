@@ -52,7 +52,7 @@ const ButtonWhatsApp = ({
             aria-label="Agendar via WhatsApp"
             {...props}
         >
-            <span className="whitespace-nowrap">{children}</span>
+            <span className="inline-flex items-center gap-2 whitespace-nowrap">{children}</span>
         </button>
 
     );

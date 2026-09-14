@@ -1,4 +1,5 @@
 import { Mail, Phone, Star } from '@mui/icons-material';
+import TypewriterText from '../components/TypewriterText';
 import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
@@ -230,8 +231,7 @@ const TesteLinguinhaAnapolis = () => {
 
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Teste da Linguinha em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis GO</span>
+                <TypewriterText text="Teste da Linguinha em Anápolis GO" />
               </h1>
 
               {/* H2 Especialidade */}

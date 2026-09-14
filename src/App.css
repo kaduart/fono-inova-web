@@ -41,6 +41,12 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-dark: var(--brand-primary-dark);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-hover: var(--whatsapp-hover);
+  --color-surface-ivory: var(--surface-ivory);
+  --color-surface-mist: var(--surface-mist);
 }
 
 :root {
@@ -76,12 +82,83 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* Fono Inova — tokens fundamentais do piloto visual */
+  --brand-primary: oklch(0.7 0.15 180);
+  --brand-primary-dark: oklch(0.43 0.105 180);
+  --whatsapp: #25d366;
+  --whatsapp-hover: #1ebe5d;
+  --surface-ivory: #fffdf8;
+  --surface-mist: #f4faf9;
   
 }
 
+@layer components {
+  .pilot-action {
+    min-height: 48px;
+    border-radius: 0.875rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+
+  .pilot-action:hover {
+    transform: translateY(-1px);
+  }
+
+  .pilot-action:active {
+    transform: translateY(0);
+  }
+
+  .pilot-hero {
+    background: var(--surface-ivory);
+    isolation: isolate;
+  }
+
+  .pilot-hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: min(30vw, 22rem);
+    aspect-ratio: 1;
+    right: -5rem;
+    top: 6rem;
+    border: 1px solid color-mix(in oklab, var(--brand-primary) 20%, transparent);
+    border-radius: 58% 42% 66% 34% / 42% 55% 45% 58%;
+    transform: rotate(-12deg);
+  }
+
+  .pilot-hero::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 18rem;
+    height: 8rem;
+    left: -7rem;
+    bottom: 2.5rem;
+    background: var(--surface-mist);
+    border-radius: 55% 45% 48% 52% / 62% 42% 58% 38%;
+    transform: rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 #root {
-  max-width: 1364px;
-  margin: auto auto;
+  width: 100%;
+  min-height: 100%;
 }
 
 .dark {
@@ -443,4 +520,113 @@ textarea:focus {
 
 .shadow-glow-green {
   box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+}
+
+/* A marca se integra: símbolo primeiro, assinatura depois. */
+@keyframes brand-lockup-arrive {
+  0% {
+    clip-path: inset(0 78% 0 0 round 12px);
+    filter: contrast(1.16) saturate(1.08) drop-shadow(0 5px 8px rgba(15, 23, 42, 0.22));
+    opacity: 0.82;
+    transform: perspective(480px) rotateY(-7deg) translateX(-5px) scale(0.98);
+  }
+  42% {
+    clip-path: inset(0 62% 0 0 round 8px);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0);
+    filter: contrast(1.08) saturate(1.04) drop-shadow(0 2px 3px rgba(15, 23, 42, 0.16));
+    opacity: 1;
+    transform: perspective(480px) rotateY(0) translateX(0) scale(1);
+  }
+}
+
+.brand-logo-motion {
+  animation: brand-lockup-arrive 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  filter: contrast(1.08) saturate(1.04) drop-shadow(0 2px 3px rgba(15, 23, 42, 0.16));
+  transform-origin: left center;
+  transition: filter 220ms ease-out, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-logo-link:hover .brand-logo-motion,
+.brand-logo-link:focus-visible .brand-logo-motion {
+  filter: contrast(1.1) saturate(1.06) drop-shadow(0 4px 6px rgba(15, 23, 42, 0.2));
+  transform: translateY(-1px) scale(1.01);
+}
+
+.brand-symbol-signal {
+  position: absolute;
+  left: 80%;
+  top: 57%;
+  width: 21%;
+  height: 29%;
+  overflow: hidden;
+  color: #008f70;
+  background: #ffffff;
+  pointer-events: none;
+}
+
+.brand-symbol-wave {
+  position: absolute;
+  top: 50%;
+  left: -24%;
+  border: 1.5px solid currentColor;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+.brand-symbol-wave-1 {
+  width: 48%;
+  height: 44%;
+  animation: brand-wave-one 2.4s linear infinite;
+}
+
+.brand-symbol-wave-2 {
+  width: 76%;
+  height: 72%;
+  animation: brand-wave-two 2.4s linear infinite;
+}
+
+.brand-symbol-wave-3 {
+  width: 104%;
+  height: 100%;
+  animation: brand-wave-three 2.4s linear infinite;
+}
+
+@keyframes brand-wave-one {
+  0%, 8%, 84%, 100% { opacity: 0; }
+  13%, 78% { opacity: 1; }
+}
+
+@keyframes brand-wave-two {
+  0%, 20%, 84%, 100% { opacity: 0; }
+  25%, 78% { opacity: 1; }
+}
+
+@keyframes brand-wave-three {
+  0%, 32%, 84%, 100% { opacity: 0; }
+  37%, 78% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo-motion {
+    animation: none;
+    transition: filter 150ms ease-out;
+  }
+
+  .brand-logo-link:hover .brand-logo-motion,
+  .brand-logo-link:focus-visible .brand-logo-motion {
+    transform: none;
+  }
+
+  .brand-symbol-wave {
+    animation: none;
+    opacity: 1;
+  }
+
 }

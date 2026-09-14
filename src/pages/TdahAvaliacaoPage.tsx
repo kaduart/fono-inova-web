@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowRight, Brain, Calendar, CheckCircle2, Clock, Heart, MapPin, MessageCircle, Phone, Star, Target, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -178,16 +179,18 @@ const TdahAvaliacaoPage = () => {
                                 </span>
                             </div>
 
-                            <h1 className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Avaliação Neuropsicológica em Anápolis
-                            </h1>
+                            </span>
 
                             {/* HEADLINE MAIS FORTE */}
-                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
-                                Seu Filho Tem{" "}
-                                <span className="text-purple-600">Dificuldade de Atenção</span>{" "}
-                                ou Não Acompanha a Escola?
-                            </h2>
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
+                                <TypewriterText segments={[
+                                    { text: 'Seu Filho Tem ' },
+                                    { text: 'Dificuldade de Atenção', className: 'text-purple-600' },
+                                    { text: ' ou Não Acompanha a Escola?' },
+                                ]} />
+                            </h1>
 
                             {/* SUBHEADLINE COM URGÊNCIA */}
                             <p className="text-lg text-slate-700 mb-4 leading-relaxed max-w-xl">

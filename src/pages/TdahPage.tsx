@@ -1,5 +1,6 @@
 import { ArrowRight, Brain, Calendar, CheckCircle2, Clock, Focus, MapPin, MessageCircle, Phone, Sparkles, Star, Target, Zap } from 'lucide-react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -45,12 +46,15 @@ const TdahPage = () => {
                                 <span className="text-sm font-medium text-amber-700">Diagnóstico precoce muda tudo</span>
                             </div>
 
-                            <h1 className="mb-4 inline-flex items-center bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">TDAH Infantil em Anápolis</h1>
+                            <span className="mb-4 inline-flex items-center bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">TDAH Infantil em Anápolis</span>
 
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Seu Filho é Inquieto, Não Para e Tem{" "}
-                                <span className="text-amber-600">Dificuldade na Escola</span>?
-                            </h2>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                <TypewriterText segments={[
+                                    { text: 'Seu Filho é Inquieto, Não Para e Tem ' },
+                                    { text: 'Dificuldade na Escola', className: 'text-amber-600' },
+                                    { text: '?' },
+                                ]} />
+                            </h1>
 
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                                 Pode ser TDAH. Na <strong>Clínica Fono Inova</strong>, avaliamos e tratamos crianças 

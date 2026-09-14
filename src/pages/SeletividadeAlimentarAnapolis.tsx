@@ -2,6 +2,7 @@ import { AlertTriangle, Brain, CheckCircle2, MessageCircle } from 'lucide-react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
+import TypewriterText from '../components/TypewriterText';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
@@ -101,7 +102,7 @@ export default function SeletividadeAlimentarAnapolis() {
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-              Seu Filho Rejeita a Maioria dos Alimentos?
+              <TypewriterText text="Seu Filho Rejeita a Maioria dos Alimentos?" />
             </h1>
 
             <p className="text-xl text-slate-600 leading-relaxed">

@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
@@ -198,12 +199,16 @@ const NeuropsicologicaPage = () => {
                     <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
                         {/* Texto */}
                         <div className="animate-fade-in-up order-2 lg:order-1">
-                            <h1 className="mb-4 inline-flex items-center bg-teal-50 text-teal-700 border border-teal-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-teal-50 text-teal-700 border border-teal-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Avaliação Neuropsicológica em Anápolis
+                            </span>
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                <TypewriterText segments={[
+                                    { text: 'Avaliação ' },
+                                    { text: 'Neuropsicológica', className: 'text-teal-600' },
+                                    { text: ' Completa' },
+                                ]} />
                             </h1>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Avaliação <span className="text-teal-600">Neuropsicológica</span> Completa
-                            </h2>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Investigação profunda das funções cognitivas, TDAH e TEA no bairro <strong>Jundiaí</strong>, Anápolis.
                             </p>

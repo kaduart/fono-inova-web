@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowRight, Baby, Brain, Calendar, CheckCircle2, Clock, Heart, Lightbulb, MapPin, MessageCircle, Phone, Sparkles, Star, Users } from 'lucide-react';
 import { useState } from 'react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -168,14 +169,18 @@ const TeaPage = () => {
                                 </span>
                             </div>
 
-                            <h1 className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+                            <span className="mb-4 inline-flex items-center bg-purple-50 text-purple-700 border border-purple-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Avaliação de Autismo em Anápolis
-                            </h1>
+                            </span>
 
-                            {/* H2 - PAIN DRIVEN */}
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Você Suspeita de <span className="text-purple-600">Autismo</span> no Seu Filho?
-                            </h2>
+                            {/* H1 - PAIN DRIVEN */}
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                                <TypewriterText segments={[
+                                    { text: 'Você Suspeita de ' },
+                                    { text: 'Autismo', className: 'text-purple-600' },
+                                    { text: ' no Seu Filho?' },
+                                ]} />
+                            </h1>
 
                             {/* H2 - REASSURANCE */}
                             <h2 className="text-xl md:text-2xl font-medium text-slate-600 mb-6">

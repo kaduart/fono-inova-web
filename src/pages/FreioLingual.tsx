@@ -23,6 +23,7 @@ import {
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
@@ -208,7 +209,11 @@ const FreioLingualPage = () => {
                                 Teste da Linguinha & Freio
                             </Badge>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                                Avaliação de <span className="text-pink-600">Freio Lingual</span> em Anápolis
+                                <TypewriterText segments={[
+                                    { text: 'Avaliação de ' },
+                                    { text: 'Freio Lingual', className: 'text-pink-600' },
+                                    { text: ' em Anápolis' },
+                                ]} />
                             </h1>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                                 Teste da linguinha, avaliação funcional e suporte especializado para bebês e crianças no bairro <strong>Jundiaí</strong>.

@@ -3,6 +3,7 @@ import { Accessibility, ArrowRight, Award, Baby, Brain, CheckCircle2, Clock, Gra
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import TypewriterText from '../components/TypewriterText';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
@@ -129,8 +130,7 @@ const SindromeDeDownPage = () => {
               </Badge>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Síndrome de Down em{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Anápolis</span>
+                <TypewriterText text="Síndrome de Down em Anápolis" />
               </h1>
 
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-700">

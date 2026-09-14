@@ -3,12 +3,10 @@ import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
   Activity,
-  ArrowRight,
   Award,
   Baby,
   Brain,
   CheckCircle2,
-  ChevronRight,
   Clock,
   Facebook,
   Footprints,
@@ -17,9 +15,9 @@ import {
   MapPin,
   MessageCircle,
   Mic,
-  Music,
   PhoneCall,
   School,
+  ShieldCheck,
   Sparkles,
   Star,
   Stethoscope,
@@ -32,9 +30,9 @@ import AccessibilityWizard from '../components/AccessibilityWizard.js';
 import ArticleCard from '../components/ArticleCard.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
+import TypewriterText from '../components/TypewriterText';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
-import ServiceCards from '../components/ServiceCards.jsx';
 import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
@@ -183,6 +181,16 @@ function Home() {
     trackButtonClick('Home Page Loaded');
   }, []);
 
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const id = window.location.hash.slice(1);
+    const element = document.getElementById(id);
+    if (element) {
+      const timer = window.setTimeout(() => element.scrollIntoView({ behavior: 'smooth' }), 100);
+      return () => window.clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Layout>
       {/* Botão de Acessibilidade */}
@@ -205,90 +213,82 @@ function Home() {
       />
 
       {/* ==================== HERO SECTION - FOCADA EM DOR ==================== */}
-      <section className="relative min-h-screen pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
-        {/* Background com gradiente suave e elegante */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30" />
-        
-        {/* Elementos decorativos - bolhas gradientes coloridas */}
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-40 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/30 to-orange-200/20 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-gradient-to-bl from-primary/20 to-secondary/10 rounded-full blur-3xl opacity-50" />
-
-        <div className="relative container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+      <section className="pilot-hero relative pt-24 pb-14 md:pt-28 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
+        <div className="relative w-full max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)] gap-10 md:gap-12 lg:gap-14 xl:gap-16 items-start">
             {/* Text Content */}
-            <div className="order-2 lg:order-1 space-y-8">
+            <div className="order-1 min-w-0 space-y-5 lg:space-y-6 max-w-[42rem] lg:pt-3">
               {/* Badge institucional */}
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full shadow-sm">
-                <Award className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
+              <div className="inline-flex items-center gap-2 border-l border-brand-primary pl-3 py-1">
+                <Award className="w-4 h-4 text-brand-primary-dark" />
+                <span className="text-sm font-semibold tracking-wide text-brand-primary-dark">
                   Clínica Multidisciplinar em Anápolis
                 </span>
               </div>
 
               {/* 🔗 INTERNAL LINKING - SEO Boost (navegação semântica) */}
-              <nav className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs text-slate-500">
+              <nav className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-slate-500">
                 <span>Tratamentos:</span>
-                <Link to="/fala-tardia-anapolis" className="text-primary hover:underline">fala tardia</Link>
+                <Link to="/fala-tardia-anapolis" className="text-brand-primary-dark hover:underline">fala tardia</Link>
                 <span>•</span>
-                <Link to="/autismo-anapolis" className="text-primary hover:underline">autismo infantil</Link>
+                <Link to="/autismo-anapolis" className="text-brand-primary-dark hover:underline">autismo infantil</Link>
                 <span>•</span>
-                <Link to="/dislexia-anapolis" className="text-primary hover:underline">dificuldades de aprendizagem</Link>
+                <Link to="/dislexia-anapolis" className="text-brand-primary-dark hover:underline">dificuldades de aprendizagem</Link>
                 <span>•</span>
-                <Link to="/terapia-ocupacional-anapolis" className="text-primary hover:underline">terapia ocupacional</Link>
+                <Link to="/terapia-ocupacional-anapolis" className="text-brand-primary-dark hover:underline">terapia ocupacional</Link>
               </nav>
 
               {/* H1 INSTITUCIONAL - Natural e forte */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                <span className="text-primary">Clínica Fono Inova</span>
-                <span className="block text-2xl md:text-3xl lg:text-4xl text-slate-700 font-medium mt-2">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-poppins text-slate-950 leading-[1.05] tracking-[-0.03em] max-w-[13ch] xl:max-w-none">
+                <span className="text-brand-primary-dark xl:whitespace-nowrap">Clínica Fono Inova</span>
+                <span className="block text-2xl md:text-3xl lg:text-4xl text-slate-700 font-medium tracking-[-0.02em] mt-2">
                   em Anápolis
                 </span>
               </h1>
 
               {/* H2 - Especialidades (SEO) */}
-              <h2 className="text-xl md:text-2xl text-slate-600 font-medium">
-                Especialistas em fonoaudiologia, psicologia infantil e desenvolvimento infantil
+              <h2 className="text-lg md:text-xl lg:text-2xl text-slate-700 font-semibold leading-snug max-w-[38ch]">
+                <TypewriterText text="Especialistas em fonoaudiologia, psicologia infantil e desenvolvimento infantil" />
               </h2>
 
               {/* H2 de DOR - Conversão + SEO weight */}
-              <h2 className="text-lg md:text-xl text-slate-700 font-semibold">
-                Seu filho tem <span className="text-primary">dificuldade para falar</span>,{" "}
-                <span className="text-primary">atraso na fala</span> ou{" "}
-                <span className="text-primary">suspeita de autismo</span>?
+              <h2 className="text-base md:text-lg text-slate-700 font-semibold leading-relaxed max-w-[52ch]">
+                Seu filho tem <span className="text-brand-primary-dark">dificuldade para falar</span>,{" "}
+                <span className="text-brand-primary-dark">atraso na fala</span> ou{" "}
+                <span className="text-brand-primary-dark">suspeita de autismo</span>?
               </h2>
 
               {/* Descrição institucional - marca primeiro (entity reinforcement) */}
-              <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-[58ch]">
                 <strong className="text-slate-900">Clínica Fono Inova</strong> — ajudamos crianças em{" "}
                 Anápolis com <strong>atraso na fala</strong>, <strong>autismo</strong> e{" "}
                 <strong>dificuldades de aprendizagem</strong> através de acompanhamento especializado.
               </p>
 
               {/* Benefícios */}
-              <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
+              <div className="flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-slate-700 border-y border-slate-200 py-3.5" aria-label="Informações de confiança">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <CheckCircle2 className="w-4 h-4 text-brand-primary-dark" />
                   <span>Atendimento rápido</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <CheckCircle2 className="w-4 h-4 text-brand-primary-dark" />
                   <span>+500 famílias atendidas</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  <Star className="w-4 h-4 text-brand-primary-dark" />
                   <span>Nota 4.9 no Google</span>
                 </div>
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
                 <ButtonWhatsApp
                   onClick={() => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp CTA Principal");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="pilot-action bg-whatsapp hover:bg-whatsapp-hover text-slate-950 px-7 py-3.5 text-base shadow-sm hover:shadow-md justify-center"
                   message="Oi! Vi o site da Clínica Fono Inova 💚\nÉ para meu filho, pode me orientar?"
                 >
                   Falar no WhatsApp
@@ -297,51 +297,55 @@ function Home() {
                 <a
                   href="tel:6237063924"
                   onClick={() => trackPhoneCall('(62) 3706-3924')}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all"
+                  className="pilot-action inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-brand-primary-dark/35 text-brand-primary-dark hover:bg-surface-mist hover:border-brand-primary-dark"
                 >
                   Ligar (62) 3706-3924
                 </a>
               </div>
 
               {/* Prova social */}
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
-                <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+              <div className="flex items-center gap-2 text-sm text-slate-600">
+                <Star className="w-4 h-4 text-brand-primary-dark" />
+                <span>4.9 no Google • +500 famílias atendidas</span>
               </div>
 
               {/* Endereço para SEO local */}
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <MapPin className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <MapPin className="w-4 h-4 text-brand-primary-dark" />
                 <span>Bairro Jundiaí, Anápolis - GO</span>
 
               </div>
+
+              {/* Convênio Base Aérea */}
+              <Link
+                to="/convenio-base-aerea-anapolis"
+                onClick={() => trackButtonClick('Badge Convênio Base Aérea - Hero')}
+                className="inline-flex items-center gap-2 text-sm font-medium text-brand-primary-dark hover:underline"
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>Credenciados ao convênio da Base Aérea de Anápolis (BAAN)</span>
+              </Link>
             </div>
 
             {/* Image Section */}
-            <div className="order-1 lg:order-2 relative w-full">
-              <div className="relative">
+            <div className="order-2 min-w-0 relative w-full max-w-[38rem] mx-auto lg:max-w-none lg:pt-10">
+              <div className="relative pr-3 pb-3 md:pr-4 md:pb-4">
                 {/* Imagem principal */}
-                <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative z-10 w-full h-72 sm:h-96 md:h-[460px] lg:h-[500px] rounded-3xl overflow-hidden shadow-[0_24px_70px_rgba(15,23,42,0.14)]">
                   <ImageCarousel
                     typeImages="nichos"
                     onImageClick={() => trackButtonClick('Hero Image Click')}
                   />
                 </div>
 
+                <div className="absolute right-0 bottom-0 w-[58%] h-[42%] bg-brand-primary rounded-3xl opacity-20" aria-hidden="true" />
+
                 {/* Card flutuante - apenas um */}
-                <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl z-10">
+                <div className="absolute z-20 bottom-8 -left-3 md:-left-6 bg-brand-primary-dark text-white rounded-2xl px-4 py-3 shadow-lg">
                   <div className="flex items-center gap-2">
-                    <div className="flex text-yellow-400">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                    <span className="font-bold text-slate-900">4.9</span>
-                    <span className="text-xs text-slate-500">Google</span>
+                    <Star className="w-4 h-4" />
+                    <span className="font-bold">4.9</span>
+                    <span className="text-xs text-white/75">Google</span>
                   </div>
                 </div>
               </div>
@@ -489,7 +493,7 @@ function Home() {
                 className="bg-white hover:bg-slate-100 text-primary px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 inline-flex items-center gap-2 shadow-xl"
                 message="Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
               >
-                Quero Agendar Minha Avaliação
+                Quero Agendar Uma Avaliação
               </ButtonWhatsApp>
             </div>
           </div>
@@ -556,7 +560,7 @@ function Home() {
       </section>
 
       {/* ==================== ESPECIALIDADES EM ANÁPOLIS - SEO LOCAL ==================== */}
-      <section className="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-teal-50/30">
+      <section id="services" className="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-teal-50/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-8 md:mb-10">
             <Badge className="mb-4 bg-teal-50 text-teal-600 border-teal-200 px-4 py-1.5">
@@ -601,16 +605,16 @@ function Home() {
               onClick={() => trackButtonClick('Especialidade Card - Psicologia')}
               className="group"
             >
-              <div className="bg-white rounded-xl border border-slate-200 hover:border-pink-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-secondary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img loading="lazy" decoding="async" 
-                    src="/images/psicologia/psico2.jpg" 
+                  <img loading="lazy" decoding="async"
+                    src="/images/psicologia/psico2.jpg"
                     alt="Psicologia Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
-                  <h3 className="font-semibold text-slate-800 group-hover:text-pink-500 transition-colors text-sm">Psicologia Infantil</h3>
+                  <h3 className="font-semibold text-slate-800 group-hover:text-secondary transition-colors text-sm">Psicologia Infantil</h3>
                   <p className="text-xs text-slate-500 mt-1">Apoio emocional e desenvolvimento cognitivo</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
@@ -625,16 +629,16 @@ function Home() {
               onClick={() => trackButtonClick('Especialidade Card - TO')}
               className="group"
             >
-              <div className="bg-white rounded-xl border border-slate-200 hover:border-emerald-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-accent/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img loading="lazy" decoding="async" 
-                    src="/images/terapia-ocupacional/to1.jpg" 
+                  <img loading="lazy" decoding="async"
+                    src="/images/terapia-ocupacional/to1.jpg"
                     alt="Terapia Ocupacional em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
-                  <h3 className="font-semibold text-slate-800 group-hover:text-emerald-500 transition-colors text-sm">Terapia Ocupacional</h3>
+                  <h3 className="font-semibold text-slate-800 group-hover:text-accent transition-colors text-sm">Terapia Ocupacional</h3>
                   <p className="text-xs text-slate-500 mt-1">Autonomia e coordenação motora</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
@@ -649,16 +653,16 @@ function Home() {
               onClick={() => trackButtonClick('Especialidade Card - Psicomotricidade')}
               className="group"
             >
-              <div className="bg-white rounded-xl border border-slate-200 hover:border-purple-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-pink-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img loading="lazy" decoding="async" 
-                    src="/images/psicomotricidade-hero.png" 
+                  <img loading="lazy" decoding="async"
+                    src="/images/psicomotricidade-hero.png"
                     alt="Psicomotricidade Infantil em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
-                  <h3 className="font-semibold text-slate-800 group-hover:text-purple-500 transition-colors text-sm">Psicomotricidade</h3>
+                  <h3 className="font-semibold text-slate-800 group-hover:text-pink-500 transition-colors text-sm">Psicomotricidade</h3>
                   <p className="text-xs text-slate-500 mt-1">Equilíbrio e consciência corporal</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
@@ -673,16 +677,16 @@ function Home() {
               onClick={() => trackButtonClick('Especialidade Card - Teste Linguinha')}
               className="group"
             >
-              <div className="bg-white rounded-xl border border-slate-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-purple-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
-                  <img loading="lazy" decoding="async" 
-                    src="/images/freio-lingual/mae-bb.jpeg" 
+                  <img loading="lazy" decoding="async"
+                    src="/images/freio-lingual/mae-bb.jpeg"
                     alt="Teste da Linguinha em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
-                  <h3 className="font-semibold text-slate-800 group-hover:text-amber-500 transition-colors text-sm">Teste da Linguinha</h3>
+                  <h3 className="font-semibold text-slate-800 group-hover:text-purple-500 transition-colors text-sm">Teste da Linguinha</h3>
                   <p className="text-xs text-slate-500 mt-1">Diagnóstico precoce do freio lingual</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
@@ -724,7 +728,7 @@ function Home() {
               <div className="bg-white rounded-xl border border-slate-200 hover:border-teal-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
                   <img loading="lazy" decoding="async" 
-                    src="/images/neuropsicologia/neuro.jpeg" 
+                    src="/images/neuropsicologia/aval-neuro-2.jpeg" 
                     alt="Avaliação Neuropsicológica em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -763,8 +767,176 @@ function Home() {
               </div>
             </Link>
 
+            {/* Fala Tardia */}
+            <Link
+              to="/fala-tardia-anapolis"
+              onClick={() => trackButtonClick('Especialidade Card - Fala Tardia')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/fala-tardia/fala-tardia-1.jpeg"
+                    alt="Fala Tardia Infantil em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-primary transition-colors text-sm">Fala Tardia</h3>
+                  <p className="text-xs text-slate-500 mt-1">Fonoterapia para atraso na fala de 2 a 5 anos</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Suspeita de Autismo (TEA) */}
+            <Link
+              to="/autismo-anapolis"
+              onClick={() => trackButtonClick('Especialidade Card - Autismo')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-purple-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/tea/tea-fantochy.jpeg"
+                    alt="Avaliação de Autismo (TEA) em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-purple-500 transition-colors text-sm">Suspeita de Autismo</h3>
+                  <p className="text-xs text-slate-500 mt-1">Avaliação multidisciplinar completa para TEA</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Dificuldade na Escola */}
+            <Link
+              to="/avaliacao-neuropsicologica-dificuldade-escolar"
+              onClick={() => trackButtonClick('Especialidade Card - Dificuldade Escolar')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/dificuldade-escolar/dificuldade-escolar-2.jpeg"
+                    alt="Avaliação de Dificuldade Escolar em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-blue-500 transition-colors text-sm">Dificuldade na Escola</h3>
+                  <p className="text-xs text-slate-500 mt-1">Avaliação neuropsicológica para TDAH e aprendizagem</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Aprendizagem / Dislexia */}
+            <Link
+              to="/dislexia-anapolis"
+              onClick={() => trackButtonClick('Especialidade Card - Dislexia')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/dificuldade-escolar/dificuldade-escolar-1.jpeg"
+                    alt="Dislexia e Dificuldades de Aprendizagem em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-amber-500 transition-colors text-sm">Aprendizagem</h3>
+                  <p className="text-xs text-slate-500 mt-1">Dislexia, discalculia e intervenção personalizada</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Psicopedagogia */}
+            <Link
+              to="/psicopedagogia"
+              onClick={() => trackButtonClick('Especialidade Card - Psicopedagogia')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/psicopedagoga/psicopedagoga.jpeg"
+                    alt="Psicopedagogia em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-amber-500 transition-colors text-sm">Psicopedagogia</h3>
+                  <p className="text-xs text-slate-500 mt-1">Estratégias para o sucesso escolar e emocional</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Musicoterapia */}
+            <Link
+              to="/musicoterapia"
+              onClick={() => trackButtonClick('Especialidade Card - Musicoterapia')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-indigo-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/musicoterapia-hero.png"
+                    alt="Musicoterapia Infantil em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-indigo-500 transition-colors text-sm">Musicoterapia</h3>
+                  <p className="text-xs text-slate-500 mt-1">Comunicação e regulação emocional através da música</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
+            {/* Voz Profissional (Fonoaudiologia Adulto) */}
+            <Link
+              to="/fonoaudiologia-adulto"
+              onClick={() => trackButtonClick('Especialidade Card - Voz Adulto')}
+              className="group"
+            >
+              <div className="bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+                <div className="h-24 overflow-hidden">
+                  <img loading="lazy" decoding="async"
+                    src="/images/adulto-voz/adulto-voz-1.jpeg"
+                    alt="Fonoaudiologia para Adultos em Anápolis"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-3 text-center flex flex-col flex-grow">
+                  <h3 className="font-semibold text-slate-800 group-hover:text-primary transition-colors text-sm">Voz Profissional</h3>
+                  <p className="text-xs text-slate-500 mt-1">Disfonia e fadiga vocal para professores e profissionais</p>
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
+                    Agendar avaliação 💚
+                  </button>
+                </div>
+              </div>
+            </Link>
+
             {/* Avaliação Infantil - Principal */}
-            <Link 
+            <Link
               to="/avaliacao-infantil"
               onClick={() => trackButtonClick('Especialidade Card - Avaliacao Principal')}
               className="group relative"
@@ -777,7 +949,7 @@ function Home() {
               <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden relative">
                   <img loading="lazy" decoding="async" 
-                    src="/images/clinica/fachada-clinica.jpg" 
+                    src="/images/fono-inova-4.png" 
                     alt="Avaliação Multidisciplinar em Anápolis"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -804,185 +976,13 @@ function Home() {
         </div>
       </section>
 
-      {/* ==================== SERVIÇOS - LINGUAGEM DO PACIENTE ==================== */}
-      <section id="services" className="py-24 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-              Nossas Especialidades
-            </Badge>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
-              Atendimento <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">especializado</span> para cada necessidade
-            </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Oferecemos terapias personalizadas focadas nos resultados do seu filho
-            </p>
-          </div>
-
-          {/* Cards de atendimentos populares */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
-            {/* Avaliação Infantil - LP Principal */}
-            <Link to="/avaliacao-infantil" className="group">
-              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary/20 hover:border-primary rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                  Principal
-                </div>
-                <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Award className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Avaliação Infantil</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Avaliação completa para identificar dificuldades de fala, aprendizagem e desenvolvimento
-                </p>
-                <div className="flex items-center text-primary font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* TEA */}
-            <Link to="/autismo-anapolis" className="group">
-              <div className="bg-white border-2 border-purple-100 hover:border-purple-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-purple-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Brain className="w-8 h-8 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Suspeita de Autismo</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Avaliação multidisciplinar completa para crianças com sinais de TEA
-                </p>
-                <div className="flex items-center text-purple-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Fala Tardia */}
-            <Link to="/fala-tardia-anapolis" className="group">
-              <div className="bg-white border-2 border-orange-100 hover:border-orange-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-orange-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <MessageCircle className="w-8 h-8 text-orange-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Fala Tardia</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Fonoterapia especializada para crianças de 2-5 anos com atraso na fala
-                </p>
-                <div className="flex items-center text-orange-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Dificuldade Escolar */}
-            <Link to="/avaliacao-neuropsicologica-dificuldade-escolar" className="group">
-              <div className="bg-white border-2 border-blue-100 hover:border-blue-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <School className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Dificuldade na Escola</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Avaliação neuropsicológica para TDAH, dislexia e problemas de aprendizagem
-                </p>
-                <div className="flex items-center text-blue-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Fonoaudiologia Adulto */}
-            <Link to="/fonoaudiologia-adulto" className="group">
-              <div className="bg-white border-2 border-emerald-100 hover:border-emerald-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-emerald-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Mic className="w-8 h-8 text-emerald-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Voz Profissional</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Tratamento de disfonia e fadiga vocal para professores e profissionais
-                </p>
-                <div className="flex items-center text-emerald-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Psicomotricidade */}
-            <Link to="/psicomotricidade-anapolis" className="group">
-              <div className="bg-white border-2 border-pink-100 hover:border-pink-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-pink-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Baby className="w-8 h-8 text-pink-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Psicomotricidade</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Desenvolvimento motor e sensorial para TEA, Síndrome de Down e outras condições
-                </p>
-                <div className="flex items-center text-pink-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Psicopedagogia */}
-            <Link to="/dislexia-anapolis" className="group">
-              <div className="bg-white border-2 border-amber-100 hover:border-amber-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-amber-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <GraduationCap className="w-8 h-8 text-amber-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Aprendizagem</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  Dislexia, discalculia e dificuldades de aprendizagem com intervenção personalizada
-                </p>
-                <div className="flex items-center text-amber-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Musicoterapia */}
-            <Link to="/musicoterapia" className="group">
-              <div className="bg-white border-2 border-indigo-100 hover:border-indigo-500 rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 h-full flex flex-col">
-                <div className="bg-indigo-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Music className="w-8 h-8 text-indigo-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-slate-900">Musicoterapia</h3>
-                <p className="text-slate-600 text-sm mb-4 flex-grow">
-                  A música como terapia para comunicação, socialização e desenvolvimento infantil
-                </p>
-                <div className="flex items-center text-indigo-600 font-semibold text-sm">
-                  Saiba mais <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
-
-            {/* Ver todos */}
-            <button
-              onClick={() => scrollToSection('all-services')}
-              className="group bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-dashed border-primary/30 hover:border-primary rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full flex flex-col items-center justify-center text-center"
-            >
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <ArrowRight className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Ver todos os serviços</h3>
-              <p className="text-slate-600 text-sm">
-                Conheça nossa equipe multidisciplinar completa
-              </p>
-            </button>
-          </div>
-
-          {/* Serviços completos - Componente existente */}
-          <div id="all-services">
-            <ServiceCards
-              onServiceClick={(serviceName: string) => trackButtonClick(`Service Click - ${serviceName}`)}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* ==================== SOBRE A CLÍNICA ==================== */}
       <section id="about" className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
             {/* Imagem */}
             <div className="relative">
-              <div className="w-full h-80 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5">
+              <div className="w-full h-[22rem] sm:h-[26rem] md:h-[460px] rounded-3xl overflow-hidden shadow-[0_24px_60px_rgba(15,23,42,0.16)]">
                 <ImageCarousel
                   typeImages="clinica"
                   onImageClick={() => trackButtonClick('Clinic Image Click')}
@@ -1286,7 +1286,7 @@ function Home() {
         }}
       />
 
-      {/* ==================== SEO ==================== -->
+      {/* ==================== SEO ==================== */}
       <SEO
         title="Clínica Fono Inova em Anápolis | Fonoaudiologia e Psicologia Infantil"
         description="Clínica Fono Inova em Anápolis. Fonoaudiologia, psicologia infantil e neurodesenvolvimento. Atendimento para fala, autismo, TDAH e dificuldades escolares."

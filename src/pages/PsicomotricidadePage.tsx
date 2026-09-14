@@ -16,6 +16,7 @@ import {
   Footprints,
 } from 'lucide-react';
 import Layout from '../components/Layout';
+import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
@@ -183,12 +184,15 @@ const PsicomotricidadePage = () => {
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-center">
             {/* Texto */}
             <div className="animate-fade-in-up order-2 lg:order-1">
-              <h1 className="mb-4 inline-flex items-center bg-pink-50 text-pink-700 border border-pink-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
+              <span className="mb-4 inline-flex items-center bg-pink-50 text-pink-700 border border-pink-100 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                 Psicomotricidade Infantil em Anápolis
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
+                <TypewriterText segments={[
+                    { text: 'Desenvolvimento ' },
+                    { text: 'Motor e Cognitivo', className: 'text-pink-600' },
+                ]} />
               </h1>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
-                Desenvolvimento <span className="text-pink-600">Motor e Cognitivo</span>
-              </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
                 Terapia integrada para crianças com TEA, Síndrome de Down e atrasos motores no bairro <strong>Jundiaí</strong>, Anápolis.
               </p>

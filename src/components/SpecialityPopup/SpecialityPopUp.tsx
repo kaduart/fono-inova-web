@@ -227,7 +227,7 @@ const SpecialistPopup = () => {
             {/* Botão flutuante */}
             <div
                 className={`
-                    fixed bottom-6 right-1 z-40
+                    fixed bottom-6 right-1 z-[60]
                     w-16 h-16 bg-gradient-to-br from-primary to-primary-dark
                     rounded-full shadow-2xl cursor-pointer
                     flex items-center justify-center
@@ -235,6 +235,7 @@ const SpecialistPopup = () => {
                     hover:scale-110 hover:shadow-3xl
                     animate-pulse
                     border-2 border-white
+                    ${showPopup ? 'opacity-0 scale-0 pointer-events-none' : 'opacity-100 scale-100'}
                 `}
                 onClick={handleOpenPopup}
                 aria-label="Abrir conversa"
@@ -260,8 +261,9 @@ const SpecialistPopup = () => {
                     <div
                         className={`
                             bg-white rounded-2xl shadow-2xl w-full max-w-sm
+                            max-h-[90vh]
                             transform transition-all duration-300
-                            overflow-hidden
+                            overflow-y-auto
                             ${isVisible ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-4'}
                             ${isExiting ? 'scale-95 opacity-0 translate-y-4' : ''}
                         `}
@@ -298,7 +300,7 @@ const SpecialistPopup = () => {
                         {/* Área de mensagens */}
                         <div
                             ref={chatContainerRef}
-                            className="bg-[#E5DDD5] p-4 h-80 overflow-y-auto space-y-3"
+                            className="bg-[#E5DDD5] p-4 h-80 max-h-[45vh] overflow-y-auto space-y-3"
                             style={{
                                 backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23d1c7bb\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
                             }}

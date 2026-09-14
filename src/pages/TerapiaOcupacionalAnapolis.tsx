@@ -1,4 +1,5 @@
 import { Badge } from '@mui/material';
+import TypewriterText from '../components/TypewriterText';
 import {
   Accessibility,
   ArrowRight,
@@ -170,7 +171,7 @@ const TerapiaOcupacionalAnapolis = () => {
 
               {/* H1 - PAIN DRIVEN */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Seu Filho é <span className="text-emerald-600">Desastrado</span>, Tropeça Muito ou Tem Dificuldade de Coordenação?
+                <TypewriterText text="Seu Filho é Desastrado, Tropeça Muito ou Tem Dificuldade de Coordenação?" />
               </h1>
 
               {/* H2 - REASSURANCE */}

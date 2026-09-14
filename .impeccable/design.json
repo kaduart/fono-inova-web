@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T19:30:00.000Z",
+  "title": "Design System: Clínica Fono Inova",
+  "extensions": {
+    "colorMeta": {
+      "primary-teal-esmeralda": {
+        "role": "primary",
+        "displayName": "Teal Esmeralda",
+        "canonical": "oklch(0.7 0.15 180)",
+        "tonalRamp": [
+          "oklch(0.15 0.06 180)",
+          "oklch(0.25 0.09 180)",
+          "oklch(0.35 0.12 180)",
+          "oklch(0.5 0.14 180)",
+          "oklch(0.7 0.15 180)",
+          "oklch(0.8 0.11 180)",
+          "oklch(0.9 0.06 180)",
+          "oklch(0.97 0.02 180)"
+        ]
+      },
+      "secondary-azul-suave": {
+        "role": "secondary",
+        "displayName": "Azul Suave",
+        "canonical": "oklch(0.7 0.12 250)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 250)",
+          "oklch(0.25 0.08 250)",
+          "oklch(0.35 0.1 250)",
+          "oklch(0.5 0.12 250)",
+          "oklch(0.7 0.12 250)",
+          "oklch(0.8 0.09 250)",
+          "oklch(0.9 0.05 250)",
+          "oklch(0.97 0.02 250)"
+        ]
+      },
+      "accent-laranja-vibrante": {
+        "role": "tertiary",
+        "displayName": "Laranja Vibrante",
+        "canonical": "oklch(0.7 0.2 25)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 25)",
+          "oklch(0.25 0.12 25)",
+          "oklch(0.35 0.16 25)",
+          "oklch(0.5 0.19 25)",
+          "oklch(0.7 0.2 25)",
+          "oklch(0.8 0.14 25)",
+          "oklch(0.9 0.08 25)",
+          "oklch(0.97 0.03 25)"
+        ]
+      },
+      "whatsapp-green": {
+        "role": "functional-conversion",
+        "displayName": "WhatsApp Green",
+        "canonical": "#16A34A",
+        "tonalRamp": ["#052e16", "#14532d", "#166534", "#15803d", "#16a34a", "#22c55e", "#86efac", "#dcfce7"]
+      },
+      "footer-teal-deep": {
+        "role": "surface-brand",
+        "displayName": "Footer Teal Deep",
+        "canonical": "oklch(0.55 0.13 174.92)",
+        "tonalRamp": [
+          "oklch(0.15 0.05 175)",
+          "oklch(0.25 0.08 175)",
+          "oklch(0.35 0.1 175)",
+          "oklch(0.45 0.12 175)",
+          "oklch(0.55 0.13 175)",
+          "oklch(0.68 0.11 175)",
+          "oklch(0.82 0.07 175)",
+          "oklch(0.95 0.02 175)"
+        ]
+      },
+      "slate-ink": {
+        "role": "neutral-text",
+        "displayName": "Slate Ink",
+        "canonical": "#0F172A",
+        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#64748b", "#cbd5e1", "#f1f5f9", "#f8fafc"]
+      },
+      "slate-body": {
+        "role": "neutral-text-secondary",
+        "displayName": "Slate Body",
+        "canonical": "#475569",
+        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#64748b", "#cbd5e1", "#f1f5f9", "#f8fafc"]
+      },
+      "slate-mist": {
+        "role": "neutral-surface",
+        "displayName": "Slate Mist",
+        "canonical": "#F8FAFC",
+        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#64748b", "#cbd5e1", "#f1f5f9", "#f8fafc"]
+      },
+      "slate-border": {
+        "role": "neutral-border",
+        "displayName": "Slate Border",
+        "canonical": "#E2E8F0",
+        "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#64748b", "#cbd5e1", "#f1f5f9", "#f8fafc"]
+      },
+      "alert-amber": {
+        "role": "warning",
+        "displayName": "Alert Amber",
+        "canonical": "#854D0E",
+        "tonalRamp": ["#422006", "#713f12", "#854d0e", "#a16207", "#eab308", "#fde047", "#fef9c3", "#fefce8"]
+      },
+      "star-gold": {
+        "role": "rating",
+        "displayName": "Star Gold",
+        "canonical": "#FACC15",
+        "tonalRamp": ["#422006", "#713f12", "#854d0e", "#a16207", "#eab308", "#facc15", "#fef08a", "#fefce8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero H1 on Home and every -Anapolis landing page; always Poppins with an inline primary-colored emphasis span." },
+      "headline": { "displayName": "Headline", "purpose": "Section H2s (Como funciona, depoimentos, etc.); always Poppins." },
+      "title": { "displayName": "Title", "purpose": "Card and step titles; inconsistently Poppins vs Inter bold across components — Inter is the safer default." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, almost always slate-600 on light backgrounds." },
+      "label": { "displayName": "Label", "purpose": "Badge/pill text, benefit-list microcopy, footer column headers." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)", "purpose": "Default resting shadow for cards and stat tiles (Tailwind shadow-md)." },
+      { "name": "card-hover", "value": "0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1)", "purpose": "Hover-state lift on interactive cards, paired with -translate-y-1 and a border-color shift to primary/20 (Tailwind shadow-xl)." },
+      { "name": "anchor-shadow", "value": "0 25px 50px -12px rgba(0,0,0,0.25)", "purpose": "Hero imagery and the final-CTA white card — the page's heaviest, least-interactive shadow (Tailwind shadow-2xl)." },
+      { "name": "chrome-shadow", "value": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)", "purpose": "Sticky header, dropdown menus, and modals (Tailwind shadow-lg)." }
+    ],
+    "motion": [
+      { "name": "hover-lift", "value": "transform: translateY(-4px), transition 300ms ease", "purpose": "Interactive card hover, paired with the card-hover shadow step." },
+      { "name": "cta-scale-pop", "value": "hover:scale-105 to scale-110, transition 300ms ease", "purpose": "Primary WhatsApp CTAs and the pain-point selector's selected-state scale." },
+      { "name": "fade-in-up", "value": "opacity 0→1, translateY(30px→0), 0.6s ease-out", "purpose": "General scroll-reveal utility (.animate-fade-in-up) used across page sections." },
+      { "name": "launcher-pulse", "value": "box-shadow pulse ring, 2s infinite (custom @keyframes pulse)", "purpose": "The floating WhatsApp chat-launcher button's continuous 'alive' signal." },
+      { "name": "chat-typing-sequence", "value": "staggered setTimeout reveal, ~400-1500ms per message with a typing-indicator pause before each", "purpose": "The chat-replica popup's scripted message sequence — never instant, always paced to feel like a real conversation." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary WhatsApp Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Green pill/rounded-xl CTA that opens a pre-filled WhatsApp conversation; the site's dominant conversion action, used in every hero and CTA band.",
+      "html": "<button class=\"ds-btn-primary\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z\"/></svg>Falar no WhatsApp</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; background: #16A34A; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 16px 32px; border: none; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transition: background 0.3s, box-shadow 0.3s, transform 0.3s; } .ds-btn-primary .ds-icon { width: 20px; height: 20px; } .ds-btn-primary:hover { background: #15803D; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: scale(1.05); } .ds-btn-primary:focus-visible { outline: 2px solid #16A34A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Outline Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Phone-call CTA paired next to the primary WhatsApp button in every hero and final CTA band.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"tel:6237063924\"><svg class=\"ds-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z\"/></svg>Ligar (62) 3706-3924</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; border: 2px solid #CBD5E1; background: transparent; color: #334155; font-weight: 600; font-size: 16px; padding: 16px 32px; text-decoration: none; cursor: pointer; transition: background 0.3s, border-color 0.3s; } .ds-btn-secondary .ds-icon { width: 20px; height: 20px; } .ds-btn-secondary:hover { background: #F8FAFC; border-color: #94A3B8; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Icon-badge card used in the 10-item service grid; badge color is drawn from the Specialty Rainbow (teal shown here for Fonoaudiologia).",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-badge\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z\"/></svg></div><h3 class=\"ds-card-title\">Fonoaudiologia</h3><p class=\"ds-card-desc\">Ajuda a criança a desenvolver a fala, a linguagem e a comunicação.</p><a class=\"ds-card-link\" href=\"#\">Saiba mais →</a></div>",
+      "css": ".ds-card { display: flex; flex-direction: column; border-radius: 16px; background: #FFFFFF; border: 1px solid #F1F5F9; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s; } .ds-card:hover { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(78,205,196,0.3); transform: translateY(-4px); } .ds-card-badge { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: oklch(0.7 0.15 180); color: #FFFFFF; margin: 0 auto 16px; } .ds-card-badge svg { width: 28px; height: 28px; } .ds-card-title { text-align: center; font-family: Poppins, sans-serif; font-weight: 600; font-size: 20px; color: #0F172A; margin-bottom: 8px; } .ds-card-desc { text-align: center; font-family: Inter, sans-serif; font-size: 14px; line-height: 1.6; color: #475569; margin-bottom: 16px; } .ds-card-link { text-align: center; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; color: oklch(0.7 0.15 180); text-decoration: none; }"
+    },
+    {
+      "name": "Pain-Point Selector Card",
+      "kind": "custom",
+      "description": "Selectable card grid on Home ('Você se identifica com alguma dessas situações?'); selecting a card promotes it visually and personalizes the WhatsApp CTA message.",
+      "html": "<button class=\"ds-pain-card\"><div class=\"ds-pain-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z\"/></svg></div><h3 class=\"ds-pain-title\">Meu filho fala pouco ou quase não fala</h3><p class=\"ds-pain-desc\">Troca letras, tem dificuldade para se expressar ou não forma frases completas</p></button>",
+      "css": ".ds-pain-card { text-align: left; padding: 24px; border-radius: 16px; border: 2px solid #F1F5F9; background: #FFFFFF; cursor: pointer; transition: all 0.3s; } .ds-pain-card:hover { border-color: #FDBA74; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); transform: translateY(-4px); } .ds-pain-card.selected { border-color: #FDBA74; background: #FFF7ED; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); transform: scale(1.02); } .ds-pain-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 12px; background: #FFF7ED; color: #EA580C; margin-bottom: 16px; } .ds-pain-icon svg { width: 28px; height: 28px; } .ds-pain-title { font-family: Inter, sans-serif; font-weight: 700; font-size: 18px; color: #0F172A; margin-bottom: 8px; } .ds-pain-desc { font-family: Inter, sans-serif; font-size: 14px; color: #475569; }"
+    },
+    {
+      "name": "Sinais de Alerta Callout",
+      "kind": "custom",
+      "description": "Amber warning box listing symptom red-flags, repeated near the top of every symptom-driven landing page hero.",
+      "html": "<div class=\"ds-alert\"><p class=\"ds-alert-title\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z\"/></svg>Sinais de alerta:</p><ul class=\"ds-alert-list\"><li>Não fala ou fala pouco para a idade</li><li>Não responde quando é chamado</li></ul></div>",
+      "css": ".ds-alert { background: #FEFCE8; border: 1px solid #FEF08A; border-radius: 12px; padding: 16px; } .ds-alert-title { display: flex; align-items: center; gap: 8px; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; color: #854D0E; margin-bottom: 8px; } .ds-alert-title svg { width: 16px; height: 16px; } .ds-alert-list { font-family: Inter, sans-serif; font-size: 14px; color: #A16207; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; } .ds-alert-list li::before { content: '•'; color: #CA8A04; margin-right: 8px; }"
+    },
+    {
+      "name": "WhatsApp Chat-Replica Launcher",
+      "kind": "custom",
+      "description": "Signature floating button that opens the WhatsApp chat-replica popup (SpecialistPopup); pulsing ring signals it is 'alive', red dot signals an unread message.",
+      "html": "<button class=\"ds-wa-launcher\" aria-label=\"Abrir conversa\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z\"/></svg><span class=\"ds-wa-dot\">1</span></button>",
+      "css": ".ds-wa-launcher { position: fixed; bottom: 24px; right: 4px; width: 64px; height: 64px; border-radius: 9999px; background: linear-gradient(135deg, oklch(0.7 0.15 180), oklch(0.5 0.14 180)); border: 2px solid #FFFFFF; color: #FFFFFF; display: grid; place-items: center; cursor: pointer; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); animation: ds-launcher-pulse 2s infinite; transition: transform 0.3s; } .ds-wa-launcher:hover { transform: scale(1.1); } .ds-wa-launcher svg { width: 28px; height: 28px; } .ds-wa-dot { position: absolute; top: -4px; right: -4px; width: 20px; height: 20px; border-radius: 9999px; background: oklch(0.7 0.2 25); color: #FFFFFF; font-size: 12px; font-weight: 700; display: grid; place-items: center; } @keyframes ds-launcher-pulse { 0% { box-shadow: 0 0 0 0 rgba(66,153,225,0.5); } 70% { box-shadow: 0 0 0 10px rgba(66,153,225,0); } 100% { box-shadow: 0 0 0 0 rgba(66,153,225,0); } }"
+    },
+    {
+      "name": "Booking Modal Input Field",
+      "kind": "input",
+      "description": "Lead-capture form field used in BookingModal; icon-left, WhatsApp-green focus ring (not brand teal), red error state.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-name\">Nome Completo *</label><div class=\"ds-field-wrap\"><svg class=\"ds-field-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21v-1a7 7 0 0 1 14 0v1\"/></svg><input class=\"ds-field-input\" id=\"ds-name\" type=\"text\" placeholder=\"Digite seu nome completo\" /></div></div>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 8px; } .ds-field-label { font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; color: #1F2937; } .ds-field-wrap { position: relative; } .ds-field-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: #9CA3AF; } .ds-field-input { width: 100%; padding: 12px 16px 12px 44px; border: 2px solid #E5E7EB; border-radius: 12px; font-family: Inter, sans-serif; font-size: 14px; transition: border-color 0.2s, box-shadow 0.2s; } .ds-field-input:hover { border-color: #D1D5DB; } .ds-field-input:focus { outline: none; border-color: #22C55E; box-shadow: 0 0 0 4px #DCFCE7; } .ds-field-input.error { border-color: #F87171; background: #FEF2F2; }"
+    },
+    {
+      "name": "Header Nav Bar",
+      "kind": "nav",
+      "description": "Fixed white header shared by every page; services dropdown, gray link scale (not slate), green Agendar CTA at rounded-lg instead of the site-wide rounded-xl.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header-inner\"><div class=\"ds-header-logo\">Fono Inova</div><nav class=\"ds-header-nav\"><button class=\"ds-header-link\">Serviços ▾</button><button class=\"ds-header-link\">Sobre</button><a class=\"ds-header-link\" href=\"#\">FAQ</a><button class=\"ds-header-cta\">Agendar</button></nav></div></header>",
+      "css": ".ds-header { position: fixed; top: 0; left: 0; width: 100%; background: #FFFFFF; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); border-bottom: 1px solid #F3F4F6; z-index: 50; } .ds-header-inner { max-width: 1355px; margin: 0 auto; padding: 0 16px; height: 80px; display: flex; align-items: center; justify-content: space-between; } .ds-header-logo { font-family: Poppins, sans-serif; font-weight: 700; color: #0F172A; } .ds-header-nav { display: flex; align-items: center; gap: 24px; } .ds-header-link { background: none; border: none; font-family: Inter, sans-serif; font-weight: 600; font-size: 14px; color: #1F2937; cursor: pointer; transition: color 0.2s; text-decoration: none; } .ds-header-link:hover { color: #0D9488; } .ds-header-cta { background: #16A34A; color: #FFFFFF; font-weight: 700; font-size: 14px; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: background 0.2s, box-shadow 0.2s; } .ds-header-cta:hover { background: #15803D; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A Primeira Mensagem",
+    "overview": "Fono Inova sells reassurance to a worried parent, and the whole site is built to feel like the moment right after you send the first WhatsApp message to someone who actually gets it — before the appointment, before the paperwork, just a warm \"oi, tudo bem?\" from someone who can help. That moment is made literal in the system's single most distinctive piece: a floating popup that reproduces a real WhatsApp conversation pixel-for-pixel (the actual #075E54→#128C7E header gradient, the #E5DDD5 chat wallpaper, #DCF8C6 sent-message bubbles), where \"Amanda\" types a scripted, UTM-aware greeting before revealing the CTA. Every other conversion action on the site — every button, the header's \"Agendar,\" the floating accessibility button — funnels toward that same channel, and every primary CTA is WhatsApp's own green (#16A34A/#15803D), deliberately kept separate from the brand's Teal Esmeralda so the \"talk to us now\" action never gets lost among decorative color.\n\nAround that core, the system reads as calm and approachable rather than clinical: soft slate-to-teal-to-cyan gradients wash every hero, with blurred color \"blooms\" (teal/cyan top-right, amber/orange left, primary/secondary bottom) doing the work a hard-edged illustration would do elsewhere. Headings are set in Poppins at a confident weight; body copy stays in plain, legible Inter. Each specialty — fonoaudiologia, psicologia, terapia ocupacional, psicopedagogia, freio lingual, psicomotricidade — gets its own accent color drawn from Tailwind's stock palette (teal, purple, emerald, pink, amber, indigo), so a parent scanning the service grid or the pain-point selector on the homepage can visually sort by what they're worried about before they've read a word.\n\nConfirmed anti-reference: an earlier generation of roughly two dozen pages (the original /fonoaudiologia, /psicologia, /fisioterapia service pages and the first wave of funnel pages — FalaTardiaPage, TdahPage, DislexiaPage, TeaPage, and others) still builds on the untouched shadcn scaffold: neutral gray, rounded-xl (12px) cards, flat shadow-sm. That generic look predates the current pastel/teal/rainbow system and is not the target.",
+    "keyCharacteristics": [
+      "Teal Esmeralda (--primary) as the through-line brand color — badges, links, icon fills, section accents — with Azul Suave and Laranja Vibrante as its supporting pair in gradients and secondary accents.",
+      "WhatsApp Green kept strictly separate from brand color: every conversion CTA is green, every decorative/brand moment is teal, and the two never swap roles.",
+      "A specialty-to-color mapping (Tailwind stock hues) that lets parents visually sort services and pain points without reading.",
+      "Soft pastel gradient hero backgrounds with blurred color-blob accents, rather than photography-led or flat-color heroes.",
+      "The WhatsApp chat-replica popup: the system's signature component, and the clearest expression of the North Star."
+    ],
+    "rules": [
+      { "name": "The Green-Is-Action Rule", "body": "WhatsApp Green is reserved for conversion CTAs only. Brand teal, blue, and orange never appear on a button whose job is 'talk to us now' — that role belongs to green alone, everywhere on the site.", "section": "colors" },
+      { "name": "The Specialty Rainbow Rule", "body": "Each clinical specialty owns one Tailwind stock hue: fonoaudiologia → teal, psicologia → secondary/blue, terapia ocupacional → accent/orange, autismo → purple, aprendizagem/psicopedagogia → amber, psicomotricidade → pink, musicoterapia → indigo. Corrected 2026-08-25: autismo is purple (not blue) and fonoaudiologia is teal (not purple) — LP_CATEGORIES, Home's pain-point selector, and AutismoAnapolis.tsx now agree. ServiceCards.jsx's purple-500 (Freio Lingual) and teal-500 (Avaliação Neuropsicológica) are accepted overlaps, not contradictions.", "section": "colors" },
+      { "name": "The Poppins-for-Structure Rule", "body": "Only true H1/H2 section headings get Poppins. Everything smaller — including bold card titles — defaults to Inter unless a component (like ServiceCards) explicitly opts in.", "section": "typography" },
+      { "name": "The Untinted Shadow Rule", "body": "Unlike the brand color system, shadows in this codebase are never colored or glowing — they are Tailwind's default neutral-gray scale throughout. Do not introduce a tinted/branded shadow without an explicit decision to change this.", "section": "elevation" },
+      { "name": "The Escalating Radius Rule", "body": "Radius roughly tracks visual weight: xl for everyday buttons/inputs, 2xl for cards, 3xl reserved for a page's single largest showcase element. Don't apply 3xl to a routine card or xl to a hero image.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep every conversion CTA WhatsApp Green (#16A34A/#15803D) — never brand teal, blue, or orange — so the 'talk to us' action stays visually singular.",
+      "Do give each specialty its own fixed color from the Specialty Rainbow and reuse it identically across icon badges, cross-link cards, and category tags.",
+      "Do build new hero sections on the slate→teal→cyan gradient wash with blur-3xl color-blob accents, matching Home and every -Anapolis page.",
+      "Do set true section headings (H1/H2) in Poppins bold; leave body copy, labels, and (by default) card titles in Inter.",
+      "Do keep shadows neutral gray and escalating on hover (shadow-md/lg → shadow-xl) rather than tinted or glowing.",
+      "Do route every 'talk to us' moment through the same WhatsApp channel the chat-replica popup establishes, keeping message copy warm and first-person."
+    ],
+    "donts": [
+      "Don't build new landing pages on the plain shadcn ui/button.jsx/card.jsx defaults (neutral gray, rounded-xl at 12px, flat shadow-sm) — that's the legacy pattern, not the current system.",
+      "Don't extend the /lp/:slug template's indigo/violet/rose 'Paleta Infantil Acolhedora' (landing-page-premium.css) to any other page — it's isolated to that one dynamic route.",
+      "Don't assign an already-claimed specialty color to a different specialty, or let a decorative brand color leak onto a conversion CTA.",
+      "Don't use rounded-3xl outside the hero-image/final-CTA-card role, or rounded-full pills for routine secondary buttons.",
+      "Don't treat the Header's gray neutral scale and the page content's slate neutral scale as interchangeable on purpose — they're a known, minor drift."
+    ]
+  }
+}

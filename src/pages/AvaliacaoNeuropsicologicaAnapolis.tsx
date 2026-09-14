@@ -1,4 +1,5 @@
 import { Phone, Star } from '@mui/icons-material';
+import TypewriterText from '../components/TypewriterText';
 import { Badge } from '@mui/material';
 import {
   Accessibility,
@@ -173,9 +174,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
 
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Avaliação{" "}
-                <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Neuropsicológica</span>{" "}
-                em Anápolis
+                <TypewriterText text="Avaliação Neuropsicológica em Anápolis" />
               </h1>
 
               {/* H2 - Especialidade */}
