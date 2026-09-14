@@ -252,7 +252,7 @@ const ArticlePage = () => {
                             <Instagram className="w-6 h-6" />
                         </a>
                         <a
-                            href="https://www.facebook.com/clinicafonoinova"
+                            href="https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-12 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-110"

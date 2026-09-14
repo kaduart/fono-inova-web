@@ -1210,7 +1210,7 @@ function Home() {
                     {[
                       { icon: Instagram, href: "https://www.instagram.com/clinicafonoinova", color: "from-pink-500 to-pink-600", label: "Instagram" },
                       { icon: Youtube, href: "https://www.youtube.com/clinicafonoinova", color: "from-red-600 to-red-700", label: "YouTube" },
-                      { icon: Facebook, href: "https://www.facebook.com/clinicafonoinova", color: "from-blue-600 to-blue-700", label: "Facebook" },
+                      { icon: Facebook, href: "https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/", color: "from-blue-600 to-blue-700", label: "Facebook" },
                     ].map((social, index) => {
                       const Icon = social.icon;
                       return (

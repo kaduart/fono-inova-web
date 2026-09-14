@@ -64,7 +64,7 @@ const LINKS = [
 const SOCIAL_LINKS = [
   { label: 'Instagram', href: 'https://www.instagram.com/clinicafonoinova', icon: Instagram, platform: 'Instagram' },
   { label: 'TikTok', href: 'https://www.tiktok.com/@clinica.fono.inova', icon: TikTokIcon, platform: 'TikTok' },
-  { label: 'Facebook', href: 'https://www.facebook.com/clinicafonoinova', icon: Facebook, platform: 'Facebook' },
+  { label: 'Facebook', href: 'https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/', icon: Facebook, platform: 'Facebook' },
   { label: 'YouTube', href: 'https://www.youtube.com/clinicafonoinova', icon: Youtube, platform: 'YouTube' },
 ];
 
