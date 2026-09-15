@@ -1123,3 +1123,101 @@ export const schemaFAQBaseAereaAnapolis = {
         }
     ]
 };
+
+export const schemaGeapAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Convênio GEAP em Anápolis | Clínica Fono Inova",
+    "description": "Clínica credenciada ao convênio GEAP, atendendo com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/convenio-geap-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio GEAP" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaIpasgoAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Convênio IPASGO em Anápolis | Clínica Fono Inova",
+    "description": "Clínica credenciada ao convênio IPASGO, atendendo com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
+    "url": "https://www.clinicafonoinova.com.br/convenio-ipasgo-anapolis",
+    "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio IPASGO" },
+    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+};
+
+export const schemaFAQIpasgoAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "A Fono Inova atende o convênio IPASGO?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim, somos credenciados ao convênio IPASGO e atendemos nas especialidades de fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. Consulte cobertura específica pelo WhatsApp."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde fica a Fono Inova para atendimento pelo IPASGO?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ficamos no bairro Jundiaí, na Av. Minas Gerais, 405, em Anápolis/GO."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Preciso de encaminhamento para usar o convênio IPASGO na Fono Inova?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Entre em contato pelo WhatsApp com seus dados e o convênio IPASGO; nossa equipe confirma a documentação necessária antes do agendamento."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quais especialidades são atendidas pelo convênio IPASGO em Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fonoaudiologia infantil, psicologia, terapia ocupacional e fisioterapia. Consulte disponibilidade para a necessidade específica do seu filho pelo WhatsApp."
+            }
+        }
+    ]
+};
+
+export const schemaFAQGeapAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "A Fono Inova atende o convênio GEAP?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sim, somos credenciados ao convênio GEAP e atendemos nas especialidades de fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. Consulte cobertura específica pelo WhatsApp."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Onde fica a Fono Inova para atendimento pelo GEAP?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ficamos no bairro Jundiaí, na Av. Minas Gerais, 405, em Anápolis/GO."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Preciso de encaminhamento para usar o convênio GEAP na Fono Inova?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Entre em contato pelo WhatsApp com seus dados e o convênio GEAP; nossa equipe confirma a documentação necessária antes do agendamento."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Quais especialidades são atendidas pelo convênio GEAP em Anápolis?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fonoaudiologia infantil, psicologia, terapia ocupacional e fisioterapia. Consulte disponibilidade para a necessidade específica do seu filho pelo WhatsApp."
+            }
+        }
+    ]
+};

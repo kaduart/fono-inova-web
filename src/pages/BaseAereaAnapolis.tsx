@@ -215,10 +215,17 @@ const BaseAereaAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async"
-                    src="/images/clinica/real/entrada-real.jpg"
-                    alt="Entrada real da Clínica Fono Inova - Bairro Jundiaí, próxima à Base Aérea de Anápolis"
+                    src="/images/fonoaudiologia/atendimento-premium.png"
+                    alt="Atendimento lúdico infantil na Clínica Fono Inova - próxima à Base Aérea de Anápolis"
                     className="w-full h-full object-cover"
                   />
+                </div>
+
+                <div className="absolute -top-4 -left-4 bg-white rounded-xl p-4 shadow-xl z-10">
+                  <div className="flex items-center gap-2">
+                    <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                    <span className="font-bold text-slate-900 text-sm">4.9 no Google</span>
+                  </div>
                 </div>
 
                 <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl z-10">

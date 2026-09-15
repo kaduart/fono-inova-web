@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowUpRight,
   Award,
   Calendar,
+  Clock,
   Facebook,
   Globe,
   Instagram,
@@ -12,6 +14,7 @@ import {
   ShieldCheck,
   Sparkles,
   Star,
+  X,
   Youtube,
 } from 'lucide-react';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
@@ -30,6 +33,27 @@ const WHATSAPP_MESSAGE =
 
 const MAPS_QUERY = encodeURIComponent('Av. Minas Gerais, 405, Jundiaí, Anápolis - GO');
 
+const CONVENIOS = [
+  {
+    label: 'Base Aérea de Anápolis (BAAN)',
+    href: '/convenio-base-aerea-anapolis',
+    source: 'links_bio_convenios_baan',
+    available: true,
+  },
+  {
+    label: 'GEAP',
+    href: '/convenio-geap-anapolis',
+    source: 'links_bio_convenios_geap',
+    available: true,
+  },
+  {
+    label: 'IPASGO',
+    href: null,
+    source: 'links_bio_convenios_ipasgo',
+    available: false,
+  },
+];
+
 const LINKS = [
   {
     label: 'Visitar nosso site',
@@ -37,13 +61,6 @@ const LINKS = [
     icon: Globe,
     external: false,
     source: 'links_bio_website',
-  },
-  {
-    label: 'Convênio Base Aérea de Anápolis (BAAN)',
-    href: '/convenio-base-aerea-anapolis',
-    icon: ShieldCheck,
-    external: false,
-    source: 'links_bio_baan',
   },
   {
     label: 'Conheça nossas especialidades',
@@ -75,6 +92,17 @@ const fadeUp = (delay = 0) => ({
 });
 
 const LinksBio = () => {
+  const [conveniosOpen, setConveniosOpen] = useState(false);
+
+  useEffect(() => {
+    if (!conveniosOpen) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setConveniosOpen(false);
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [conveniosOpen]);
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30 px-4 py-16">
       <Helmet>
@@ -221,6 +249,21 @@ const LinksBio = () => {
             </div>
           </motion.a>
 
+          {/* Convênios: um único botão que abre modal, em vez de um link por convênio (evita poluir a página) */}
+          <motion.button
+            {...fadeUp(0.32)}
+            type="button"
+            onClick={() => {
+              trackButtonClick('links_bio_convenios_abrir');
+              setConveniosOpen(true);
+            }}
+            className="group flex w-full items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98]"
+          >
+            <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
+            <span className="flex-1 text-left">Convênios (BAAN, GEAP e mais)</span>
+            <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </motion.button>
+
           {LINKS.map((link, i) => (
             <motion.a
               key={link.href}
@@ -237,7 +280,7 @@ const LinksBio = () => {
             </motion.a>
           ))}
 
-          <motion.div {...fadeUp(0.33 + LINKS.length * 0.08)} className="mt-2 flex justify-center gap-4">
+          <motion.div {...fadeUp(0.38 + LINKS.length * 0.08)} className="mt-2 flex justify-center gap-4">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.href}
@@ -264,6 +307,74 @@ const LinksBio = () => {
           Clínica Fono Inova © {new Date().getFullYear()}
         </p>
       </div>
+
+      <AnimatePresence>
+        {conveniosOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 backdrop-blur-sm sm:items-center"
+            onClick={() => setConveniosOpen(false)}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="convenios-modal-title"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.25 }}
+              onClick={(event) => event.stopPropagation()}
+              className="w-full max-w-sm rounded-t-3xl bg-white p-6 shadow-2xl sm:rounded-3xl"
+            >
+              <div className="mb-4 flex items-center justify-between">
+                <h2 id="convenios-modal-title" className="text-lg font-bold text-slate-900">
+                  Convênios atendidos
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setConveniosOpen(false)}
+                  aria-label="Fechar"
+                  className="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {CONVENIOS.map((convenio) =>
+                  convenio.available ? (
+                    <a
+                      key={convenio.label}
+                      href={convenio.href}
+                      onClick={() => trackButtonClick(convenio.source)}
+                      className="group flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-primary/30 hover:bg-primary/5"
+                    >
+                      <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
+                      <span className="flex-1 text-left">{convenio.label}</span>
+                      <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </a>
+                  ) : (
+                    <div
+                      key={convenio.label}
+                      className="flex items-center gap-3 rounded-2xl border border-dashed border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-400"
+                    >
+                      <Clock className="h-4 w-4 shrink-0" />
+                      <span className="flex-1 text-left">{convenio.label}</span>
+                      <span className="text-xs font-medium uppercase tracking-wide">Em breve</span>
+                    </div>
+                  )
+                )}
+              </div>
+
+              <p className="mt-4 text-center text-xs text-slate-400">
+                Não encontrou seu convênio? Fale com a gente pelo WhatsApp e confirmamos a cobertura.
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

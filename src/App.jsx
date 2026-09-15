@@ -48,6 +48,8 @@ import DislexiaAnapolis from './pages/DislexiaAnapolis';
 import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologicaAnapolis';
 // Convênios
 import BaseAereaAnapolis from './pages/BaseAereaAnapolis';
+import GeapAnapolis from './pages/GeapAnapolis';
+import IpasgoAnapolis from './pages/IpasgoAnapolis';
 // Link-in-bio (Instagram/redes sociais)
 import LinksBio from './pages/LinksBio';
 
@@ -150,6 +152,10 @@ function App() {
           <Route path="/fisioterapia-infantil-anapolis" element={<FisioterapiaInfantilAnapolis />} />
           <Route path="/avaliacao-neuropsicologica-anapolis" element={<AvaliacaoNeuropsicologicaAnapolis />} />
           <Route path="/convenio-base-aerea-anapolis" element={<BaseAereaAnapolis />} />
+          <Route path="/convenio-geap-anapolis" element={<GeapAnapolis />} />
+          {/* IPASGO: credenciamento ainda não confirmado (previsão ~20 dias, checado em 2026-09-14).
+              Rota existe mas fica fora do sitemap e sem link no /links até a confirmação. */}
+          <Route path="/convenio-ipasgo-anapolis" element={<IpasgoAnapolis />} />
           <Route path="/links" element={<LinksBio />} />
           {/* Long-tail local — intenção emocional + geo */}
           <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />
