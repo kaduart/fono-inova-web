@@ -105,6 +105,8 @@ function App() {
           <Route path="/artigos" element={<Articles />} />
           <Route path="/artigos/:slug" element={<ArticlePage />} />
           <Route path="/artigos/fono-guia-completo" element={<Navigate to="/artigos/fonoaudiologia-guia-completo" replace />} />
+          {/* GSC (2026-09-15) sinalizou como conteúdo duplicado do sinais-autismo-crianca (mais novo e completo); artigo antigo removido, rota redireciona */}
+          <Route path="/artigos/entendendo-espectro-autista" element={<Navigate to="/artigos/sinais-autismo-crianca" replace />} />
           <Route path="/fonoaudiologia" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
           <Route path="/psicologia" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
           <Route path="/terapia-ocupacional" element={<Navigate to="/terapia-ocupacional-anapolis" replace />} />

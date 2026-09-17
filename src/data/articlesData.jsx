@@ -227,7 +227,7 @@ export const articlesData = [
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
             <li><a href="/artigos/convulsao-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Convulsão infantil: quando procurar?</a></li>
             <li><a href="/artigos/tdah-infantil-guia-completo-pais" className="text-blue-600 hover:underline">→ TDAH infantil: guia completo para pais</a></li>
-            <li><a href="/artigos/entendendo-espectro-autista" className="text-blue-600 hover:underline">→ Entendendo o espectro autista: guia para pais</a></li>
+            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
           </ul>
         </div>
 
@@ -1178,51 +1178,6 @@ export const articlesData = [
           Se você percebe sinais de atraso na fala no seu filho, agende uma avaliação com nossa equipe especializada.
           Atendimento em Anápolis com profissionais qualificados em desenvolvimento infantil.
         </p>
-      </>
-    )
-  },
-  {
-    id: 2,
-    slug: "entendendo-espectro-autista",
-    title: "Entendendo o Espectro Autista: Guia para Pais",
-    excerpt: "Guia completo para compreender os sinais e intervenções precoces.",
-    category: "Psicologia",
-    categoryColor: "secondary",
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
-    date: "22 de Agosto, 2025",
-    dateISO: "2025-08-22",
-    dateModifiedISO: "2025-08-22",
-    image: "/images/fono-inova-2.png",
-    imageAlt: "Criança em atividade terapêutica para autismo - Clínica Fono Inova em Anápolis",
-    content: (
-      <>
-        <p>O Transtorno do Espectro Autista (TEA) é uma condição do neurodesenvolvimento caracterizada por desafios na comunicação social e por comportamentos restritivos e repetitivos.</p>
-
-        <h2>Sinais precoces do autismo</h2>
-        <p>Alguns sinais podem ser observados já nos primeiros meses de vida:</p>
-        <ul>
-          <li>Pouco contato visual</li>
-          <li>Não responder ao próprio nome</li>
-          <li>Atraso no desenvolvimento da fala</li>
-          <li>Movimentos repetitivos (balançar, bater palmas)</li>
-          <li>Interesses restritos e intensos</li>
-        </ul>
-
-        <h2>Importância da intervenção precoce</h2>
-        <p>A intervenção terapêutica precoce é crucial para o desenvolvimento de crianças no espectro autista. Quanto antes for iniciado o tratamento, melhores serão os resultados em termos de desenvolvimento de habilidades sociais, comunicativas e adaptativas.</p>
-
-        <h2>Abordagens terapêuticas</h2>
-        <p>O tratamento do TEA geralmente envolve uma equipe multidisciplinar, incluindo:</p>
-        <ul>
-          <li>Terapia comportamental</li>
-          <li>Fonoaudiologia</li>
-          <li>Terapia ocupacional</li>
-          <li>Intervenções educacionais especializadas</li>
-        </ul>
-
-        <p>É importante ressaltar que o autismo não é uma doença, mas sim uma forma diferente de processar informações e experienciar o mundo. Com o suporte adequado, pessoas no espectro autista podem desenvolver todo o seu potencial.</p>
       </>
     )
   },
