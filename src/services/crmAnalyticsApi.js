@@ -27,7 +27,13 @@ export const sendLeadToCRM = async (leadData) => {
             nome: leadData.name,
             telefone: formatPhone(leadData.phone),
             email: leadData.email,
-            
+            // O endpoint /from-website do CRM lê `dadosPessoais`; sem isso respondia 400 "nome e telefone obrigatórios"
+            dadosPessoais: {
+                nome: leadData.name,
+                telefone: leadData.phone,
+                email: leadData.email,
+            },
+
             // Contexto da conversão (do GA4/dataLayer)
             ga4: {
                 clientId: getGA4ClientId(),
@@ -112,6 +118,78 @@ export const sendLeadToCRM = async (leadData) => {
             success: false,
             error: error.message
         };
+    }
+};
+
+/**
+ * Registra interesse na lista de interesse de um convênio com credenciamento em andamento (GEAP, IPASGO, Bradesco...).
+ * Grava na coleção própria do CRM (/api/convenio-waitlist — nome técnico da API), sem criar lead nem disparar Meta CAPI.
+ * O consentimento (aceite + versão do texto) é obrigatório; o backend registra a data.
+ *
+ * @param {{name: string, phone: string, email?: string, convenio: string, especialidade?: string, idadeCrianca?: number|string, periodo?: string, consent: {accepted: boolean, version: string}}} data
+ * @returns {Promise<{success: boolean, duplicate?: boolean, error?: string, message?: string|null}>} `message` = texto do
+ * backend para exibir ao usuário (só em respostas 4xx, ex.: "Telefone inválido")
+ */
+export const sendWaitlistToCRM = async (data) => {
+    if (!isCRMConfigured()) {
+        console.log('[CRM] Modo desenvolvimento - lista de espera não enviada (configure VITE_CRM_API_URL)');
+        return { success: true, mode: 'dev' };
+    }
+
+    // O CRM pode estar "dormindo" (cold start): limite de tempo para o usuário não ficar preso no formulário
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 25000);
+
+    try {
+        const response = await fetch(`${getCRMApiUrl()}${ENDPOINTS.CONVENIO_WAITLIST}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                nome: data.name,
+                telefone: data.phone,
+                email: data.email,
+                convenio: data.convenio,
+                especialidade: data.especialidade,
+                idadeCrianca: data.idadeCrianca,
+                periodo: data.periodo,
+                consentimento: { aceito: data.consent?.accepted === true, versao: data.consent?.version },
+                ga4: { clientId: getGA4ClientId() },
+                origem: {
+                    source: getUTMParam('utm_source') || getReferrerSource() || 'direct',
+                    medium: getUTMParam('utm_medium') || 'none',
+                    campaign: getUTMParam('utm_campaign') || 'none',
+                    referrer: document.referrer || 'direct',
+                },
+                contexto: { pagePath: window.location.pathname },
+                device: { type: getDeviceType() },
+            }),
+            signal: controller.signal,
+        });
+
+        if (!response.ok) {
+            // 4xx (validação, limite de tentativas) traz uma mensagem própria para o usuário; 5xx fica genérico
+            let serverMessage = null;
+            try {
+                const body = await response.json();
+                if (typeof body?.message === 'string') serverMessage = body.message;
+            } catch {
+                // corpo não-JSON (ex.: página de erro do proxy): sem mensagem específica
+            }
+            console.warn(`[CRM] Lista de interesse recusada: HTTP ${response.status}`, serverMessage || '');
+            return {
+                success: false,
+                error: `HTTP ${response.status}`,
+                message: response.status < 500 ? serverMessage : null,
+            };
+        }
+
+        const result = await response.json();
+        return { success: true, duplicate: Boolean(result.duplicate) };
+    } catch (error) {
+        console.error('[CRM] Erro ao enviar lista de espera:', error);
+        return { success: false, error: error.message };
+    } finally {
+        clearTimeout(timeout);
     }
 };
 

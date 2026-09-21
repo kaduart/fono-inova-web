@@ -1,7 +1,7 @@
 // components/SEO.jsx
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, keywords = "", image, url, type = "website", schema }) => {
+const SEO = ({ title, description, keywords = "", image, url, type = "website", schema, noindex = false }) => {
   const siteUrl = "https://www.clinicafonoinova.com.br";
   const absoluteUrl = url ? (url.startsWith('http') ? url : `${siteUrl}${url}`) : siteUrl;
   const absoluteImage = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/logo-unica.png`;
@@ -12,6 +12,7 @@ const SEO = ({ title, description, keywords = "", image, url, type = "website", 
       <title>{title.includes("Clínica Fono Inova") ? title : `${title} | Clínica Fono Inova em Anápolis`}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
       <link rel="canonical" href={absoluteUrl} />
 
       <meta property="og:title" content={title} />

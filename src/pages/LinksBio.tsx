@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { CONTACT } from '../constants/index.js';
+import { CONVENIOS_STATUS } from '../data/conveniosStatus';
 import { trackButtonClick, trackSocialMediaClick } from '../hooks/useAnalytics';
 
 // Lucide não tem o glifo da marca do TikTok — SVG inline, mesmo padrão usado pro ícone do WhatsApp no site
@@ -33,24 +34,31 @@ const WHATSAPP_MESSAGE =
 
 const MAPS_QUERY = encodeURIComponent('Av. Minas Gerais, 405, Jundiaí, Anápolis - GO');
 
+// O status vem de src/data/conveniosStatus.ts (chave única, a mesma que decide LP completa x página de interesse).
 const CONVENIOS = [
   {
     label: 'Base Aérea de Anápolis (BAAN)',
     href: '/convenio-base-aerea-anapolis',
     source: 'links_bio_convenios_baan',
-    available: true,
+    status: CONVENIOS_STATUS.baan,
   },
   {
     label: 'GEAP',
     href: '/convenio-geap-anapolis',
     source: 'links_bio_convenios_geap',
-    available: true,
+    status: CONVENIOS_STATUS.geap,
   },
   {
     label: 'IPASGO',
-    href: null,
+    href: '/convenio-ipasgo-anapolis',
     source: 'links_bio_convenios_ipasgo',
-    available: false,
+    status: CONVENIOS_STATUS.ipasgo,
+  },
+  {
+    label: 'Bradesco Saúde',
+    href: '/convenio-bradesco-saude-anapolis',
+    source: 'links_bio_convenios_bradesco',
+    status: CONVENIOS_STATUS.bradesco,
   },
 ];
 
@@ -260,7 +268,7 @@ const LinksBio = () => {
             className="group flex w-full items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98]"
           >
             <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
-            <span className="flex-1 text-left">Convênios (BAAN, GEAP e mais)</span>
+            <span className="flex-1 text-left">Nossos convênios</span>
             <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </motion.button>
 
@@ -314,7 +322,7 @@ const LinksBio = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/50 backdrop-blur-sm sm:items-center"
+            className="fixed inset-0 z-[70] flex items-end justify-center bg-slate-900/50 backdrop-blur-sm sm:items-center"
             onClick={() => setConveniosOpen(false)}
             role="dialog"
             aria-modal="true"
@@ -330,7 +338,7 @@ const LinksBio = () => {
             >
               <div className="mb-4 flex items-center justify-between">
                 <h2 id="convenios-modal-title" className="text-lg font-bold text-slate-900">
-                  Convênios atendidos
+                  Convênios
                 </h2>
                 <button
                   type="button"
@@ -343,29 +351,36 @@ const LinksBio = () => {
               </div>
 
               <div className="flex flex-col gap-3">
-                {CONVENIOS.map((convenio) =>
-                  convenio.available ? (
+                {CONVENIOS.map((convenio) => {
+                  const ativo = convenio.status === 'ativo';
+                  return (
                     <a
                       key={convenio.label}
                       href={convenio.href}
                       onClick={() => trackButtonClick(convenio.source)}
-                      className="group flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-primary/30 hover:bg-primary/5"
+                      className={
+                        ativo
+                          ? 'group flex items-center gap-3 rounded-2xl border border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-primary/30 hover:bg-primary/5'
+                          : 'group flex items-center gap-3 rounded-2xl border border-dashed border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-500 transition-all hover:border-primary/30 hover:bg-primary/5'
+                      }
                     >
-                      <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
-                      <span className="flex-1 text-left">{convenio.label}</span>
+                      {ativo ? (
+                        <ShieldCheck className="h-4 w-4 shrink-0 text-primary" />
+                      ) : (
+                        <Clock className="h-4 w-4 shrink-0" />
+                      )}
+                      <span className="flex-1 text-left">
+                        {convenio.label}
+                        {!ativo && (
+                          <span className="block text-xs font-medium normal-case tracking-normal text-slate-400">
+                            Credenciamento em andamento
+                          </span>
+                        )}
+                      </span>
                       <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
-                  ) : (
-                    <div
-                      key={convenio.label}
-                      className="flex items-center gap-3 rounded-2xl border border-dashed border-slate-200 px-4 py-3.5 text-sm font-semibold text-slate-400"
-                    >
-                      <Clock className="h-4 w-4 shrink-0" />
-                      <span className="flex-1 text-left">{convenio.label}</span>
-                      <span className="text-xs font-medium uppercase tracking-wide">Em breve</span>
-                    </div>
-                  )
-                )}
+                  );
+                })}
               </div>
 
               <p className="mt-4 text-center text-xs text-slate-400">

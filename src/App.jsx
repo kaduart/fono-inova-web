@@ -50,6 +50,8 @@ import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologica
 import BaseAereaAnapolis from './pages/BaseAereaAnapolis';
 import GeapAnapolis from './pages/GeapAnapolis';
 import IpasgoAnapolis from './pages/IpasgoAnapolis';
+import BradescoSaudeAnapolis from './pages/BradescoSaudeAnapolis';
+import InteresseConfirmado from './pages/InteresseConfirmado';
 // Link-in-bio (Instagram/redes sociais)
 import LinksBio from './pages/LinksBio';
 
@@ -158,6 +160,9 @@ function App() {
           {/* IPASGO: credenciamento ainda não confirmado (previsão ~20 dias, checado em 2026-09-14).
               Rota existe mas fica fora do sitemap e sem link no /links até a confirmação. */}
           <Route path="/convenio-ipasgo-anapolis" element={<IpasgoAnapolis />} />
+          <Route path="/convenio-bradesco-saude-anapolis" element={<BradescoSaudeAnapolis />} />
+          <Route path="/convenio-bradesco-anapolis" element={<Navigate to="/convenio-bradesco-saude-anapolis" replace />} />
+          <Route path="/lista-de-interesse-confirmada" element={<InteresseConfirmado />} />
           <Route path="/links" element={<LinksBio />} />
           {/* Long-tail local — intenção emocional + geo */}
           <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />

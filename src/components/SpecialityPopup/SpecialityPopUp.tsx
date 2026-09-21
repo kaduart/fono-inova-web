@@ -7,6 +7,7 @@ import {
     X
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
     trackBookingInitiated,
     trackPopupClosed,
@@ -24,7 +25,19 @@ type MessageType = {
     delayAfter?: number;
 };
 
+// Páginas com formulário de interesse em convênio (e a confirmação): o pop-up NÃO abre sozinho aqui
+// (rolagem/tempo/saída do mouse), porque cobria o botão de enviar enquanto a pessoa preenchia.
+// O botão flutuante do WhatsApp continua disponível.
+const AUTO_OPEN_DISABLED_PATHS = [
+    '/convenio-geap-anapolis',
+    '/convenio-ipasgo-anapolis',
+    '/convenio-bradesco-saude-anapolis',
+    '/lista-de-interesse-confirmada',
+];
+
 const SpecialistPopup = () => {
+    const { pathname } = useLocation();
+    const autoOpenDisabled = AUTO_OPEN_DISABLED_PATHS.includes(pathname);
     const [showPopup, setShowPopup] = useState(false);
     const [userInteracted, setUserInteracted] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -118,6 +131,7 @@ const SpecialistPopup = () => {
     };
 
     useEffect(() => {
+        if (autoOpenDisabled) return;
         if (sessionStorage.getItem('popupClosed') === 'true') return;
 
         const handleScroll = () => {
@@ -159,7 +173,7 @@ const SpecialistPopup = () => {
             window.removeEventListener('keydown', handleInteraction);
             window.removeEventListener('touchstart', handleInteraction);
         };
-    }, [userInteracted]);
+    }, [userInteracted, autoOpenDisabled]);
 
     useEffect(() => {
         scrollToBottom();

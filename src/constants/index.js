@@ -35,7 +35,8 @@ export const getCRMApiUrl = () => {
 export const ENDPOINTS = {
   // Leads
   SEND_LEAD: '/api/leads/from-website',
-  
+  CONVENIO_WAITLIST: '/api/convenio-waitlist',
+
   // Landing Pages
   LP_TRACK: '/api/landing-pages/track',
   LP_METRICS: '/api/landing-pages/metrics',
