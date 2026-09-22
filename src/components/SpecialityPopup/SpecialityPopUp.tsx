@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
     trackBookingInitiated,
-    trackPopupClosed,
     trackPopupCTA,
     trackPopupDismissed,
     trackPopupOpened,
