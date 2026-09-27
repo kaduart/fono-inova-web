@@ -20,5 +20,30 @@ Disallow: /lp/
 Disallow: /obrigado/
 Disallow: /campanha/
 
+# Crawlers de IA / mecanismos de resposta (ChatGPT, Perplexity, Claude, Google AI)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Host: https://www.clinicafonoinova.com.br
 Sitemap: https://www.clinicafonoinova.com.br/sitemap.xml

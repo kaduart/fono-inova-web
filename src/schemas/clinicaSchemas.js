@@ -35,6 +35,11 @@ export const schemaBaseLocalBusiness = {
     "email": CONTATO.email,
     "priceRange": "$$",
     "image": "https://www.clinicafonoinova.com.br/images/og-image.jpg",
+    "sameAs": [
+        "https://www.instagram.com/clinicafonoinova",
+        "https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/",
+        "https://www.google.com/maps?cid=4885146379272428062"
+    ],
     "address": ENDERECO_COMPLETO,
     "geo": {
         "@type": "GeoCoordinates",
@@ -165,8 +170,8 @@ export const schemaHome = {
     },
     "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "127",
+        "ratingValue": "5.0",
+        "reviewCount": "36",
         "bestRating": "5"
     }
 };
@@ -858,8 +863,8 @@ export const schemaTesteLinguinhaAnapolis = {
         "url": CONTATO.url,
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "127",
+            "ratingValue": "5.0",
+            "reviewCount": "36",
             "bestRating": "5"
         }
     },
