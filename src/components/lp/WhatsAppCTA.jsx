@@ -1,7 +1,7 @@
 // Componente WhatsApp CTA com tracking completo de origem
 import { trackEvent } from '../../hooks/useAnalytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
-import { getLeadTracking, buildTrackingPayload } from '../../hooks/useLeadTracking';
+import { getLeadTracking, buildTrackingPayload, buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
 import { trackCTAClick } from '../../utils/journeyTracker';
 
 const WhatsAppCTA = ({ 
@@ -22,13 +22,9 @@ const WhatsAppCTA = ({
   // Adicionar mensagem pronta ao link do WhatsApp (com tracking embutido)
   const getWhatsAppLink = () => {
     if (link.includes('wa.me') && !link.includes('text=')) {
-      // Captura tracking atual
-      const tracking = getLeadTracking();
       
       // Monta mensagem com tracking embutido (invisível para o usuário)
-      const trackingSignature = tracking?.source && tracking.source !== 'site_direto' 
-        ? `\n\n---ref:${tracking.source}|${tracking.campaign || 'none'}|${tracking.gclid || tracking.fbclid || 'none'}|utm_source=${tracking.utmSource || 'none'}`
-        : '';
+      const trackingSignature = buildWhatsAppRefSignature();
       
       const fullMessage = message + trackingSignature;
       return `${link}?text=${encodeURIComponent(fullMessage)}`;

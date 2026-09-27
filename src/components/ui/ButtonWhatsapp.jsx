@@ -1,5 +1,6 @@
 import { reportWhatsappConversion } from '../../helper/analytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
+import { buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
 
 const ButtonWhatsApp = ({
     className = '',
@@ -33,7 +34,7 @@ const ButtonWhatsApp = ({
         }
 
         // Monta URL e dispara conversão do Google Ads (com callback para abrir)
-        const encodedMessage = encodeURIComponent(message);
+        const encodedMessage = encodeURIComponent(message + buildWhatsAppRefSignature());
         const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
         if (typeof window !== 'undefined') {
             reportWhatsappConversion(url);

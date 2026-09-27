@@ -11,6 +11,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { useFormTracking } from '../hooks/useFormTracking'
 import { useCRMIntegration } from '../hooks/useCRMIntegration'
+import { buildWhatsAppRefSignature } from '../hooks/useLeadTracking'
 
 // Helpers de analytics (simples e seguros)
 const getGtag = () =>
@@ -176,7 +177,7 @@ E-mail: ${formData.email}
 
 Pode me explicar como funciona a avaliação?`;
 
-    const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5562992013573?text=${encodeURIComponent(message + buildWhatsAppRefSignature())}`;
 
     // Tracking interno do seu hook
     try {

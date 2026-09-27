@@ -267,4 +267,20 @@ export function buildTrackingPayload() {
   };
 }
 
+/**
+ * 🔗 Assinatura de origem anexada à mensagem do WhatsApp.
+ * O CRM lê esta linha na 1ª mensagem recebida (utils/attributionParser.js)
+ * e liga o paciente à campanha — inclusive o gclid para conversão offline.
+ * Formato é contrato com o CRM: ---ref:<source>|<campaign>|<clickId>|utm_source=<x>
+ */
+export function buildWhatsAppRefSignature() {
+  try {
+    const t = getLeadTracking();
+    if (!t?.source) return '';
+    return `\n\n---ref:${t.source}|${t.campaign || 'none'}|${t.gclid || t.fbclid || 'none'}|utm_source=${t.utmSource || 'none'}`;
+  } catch {
+    return '';
+  }
+}
+
 export default useLeadTracking;

@@ -2,7 +2,7 @@
 // Aumenta conversão em 30-40% mantendo CTA sempre visível
 
 import { trackEvent } from '../hooks/useAnalytics';
-import { getLeadTracking } from '../hooks/useLeadTracking';
+import { buildWhatsAppRefSignature } from '../hooks/useLeadTracking';
 
 const FixedWhatsAppBar = ({ 
   message = "Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?",
@@ -10,12 +10,9 @@ const FixedWhatsAppBar = ({
 }) => {
   // Monta link do WhatsApp com tracking
   const getWhatsAppLink = () => {
-    const tracking = getLeadTracking();
     
     // Adiciona tracking à mensagem (invisível para o usuário)
-    const trackingSignature = tracking?.source && tracking.source !== 'site_direto' 
-      ? `\n\n---ref:${tracking.source}|${tracking.campaign || 'none'}|${tracking.gclid || tracking.fbclid || 'none'}|utm_source=${tracking.utmSource || 'none'}`
-      : '';
+    const trackingSignature = buildWhatsAppRefSignature();
     
     const fullMessage = message + trackingSignature;
     return `https://wa.me/${phone}?text=${encodeURIComponent(fullMessage)}`;
