@@ -81,14 +81,13 @@ const WhatsAppCTA = ({
       });
     }
 
-    // Tracking Google Ads Conversion (se tem gclid)
-    if (tracking.gclid && typeof window !== 'undefined' && window.gtag) {
+    // Tracking Google Ads Conversion — mesma ação "Contacto" do botão principal.
+    // Antes: label inventado 'whatsapp_lead' (Google descartava) e só disparava com gclid na sessão.
+    if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'conversion', {
-        send_to: 'AW-17010705949/whatsapp_lead',
-        value: 50.0,
-        currency: 'BRL',
-        transaction_id: `whatsapp_${Date.now()}`,
-        campaign: tracking.campaign
+        send_to: 'AW-17010705949/PQinCJrDz70bEJ2Mq68_',
+        value: 1.0,
+        currency: 'BRL'
       });
     }
 

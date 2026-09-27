@@ -112,14 +112,8 @@ export const trackServiceClick = (serviceName, serviceLink, position = null) => 
         // GA4
         window.gtag('event', 'service_click', eventData);
 
-        // Google Ads (se necessário)
-        window.gtag('event', 'conversion', {
-            'send_to': 'AW-17010705949/service_click',
-            'value': 0.5, // Valor atribuído ao clique no serviço
-            'currency': 'BRL',
-            'transaction_id': `service_${Date.now()}`,
-            'service_name': serviceName
-        });
+        // (removido) conversão Google Ads com label inventado 'service_click' — não existe na conta,
+        // Google descartava. Clique em serviço segue medido no GA4 (evento acima).
     }
 
     console.log(`Service Click Tracked: ${serviceName}`, eventData);
