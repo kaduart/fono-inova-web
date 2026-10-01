@@ -273,11 +273,20 @@ export function buildTrackingPayload() {
  * e liga o paciente à campanha — inclusive o gclid para conversão offline.
  * Formato é contrato com o CRM: ---ref:<source>|<campaign>|<clickId>|utm_source=<x>
  */
+// '|' é o separador do contrato com o CRM; nomes de campanha/anúncio da Meta costumam ter '|'.
+// Sem esta limpeza a assinatura quebra e a origem some.
+const refClean = (v, max = 100) =>
+  String(v ?? '').replace(/[|\r\n]+/g, '-').replace(/\s+/g, ' ').trim().slice(0, max);
+
 export function buildWhatsAppRefSignature() {
   try {
     const t = getLeadTracking();
     if (!t?.source) return '';
-    return `\n\n---ref:${t.source}|${t.campaign || 'none'}|${t.gclid || t.fbclid || 'none'}|utm_source=${t.utmSource || 'none'}`;
+    // utm_content (na Meta: {{ad.name}} ou {{ad.id}}) separa por anúncio no CRM; sem ele, só a campanha
+    const label = t.utmCampaign && t.utmContent ? `${t.utmCampaign} / ${t.utmContent}` : t.campaign;
+    const clickId = refClean(t.gclid || t.fbclid, 300).replace(/\s/g, '');
+    const utmSource = String(t.utmSource ?? '').replace(/\s+/g, '');
+    return `\n\n---ref:${refClean(t.source, 60) || 'none'}|${refClean(label) || 'none'}|${clickId || 'none'}|utm_source=${utmSource || 'none'}`;
   } catch {
     return '';
   }
