@@ -9,7 +9,13 @@ import { join, extname, resolve } from 'node:path';
 const DIST = resolve('dist');
 const cfg = JSON.parse(readFileSync(resolve('scripts/prerender-routes.json'), 'utf8'));
 
+const IN_CI = Boolean(process.env.VERCEL || process.env.CI);
+
 if (process.env.SKIP_PRERENDER === '1') {
+  if (IN_CI) {
+    console.error('[prerender] ERRO: SKIP_PRERENDER=1 não é permitido na Vercel/CI. Remova a variável de ambiente.');
+    process.exit(1);
+  }
   console.warn('[prerender] PULADO por SKIP_PRERENDER=1 — o HTML publicado continuará sem conteúdo pré-renderizado.');
   process.exit(0);
 }
@@ -39,7 +45,9 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 
 async function launchBrowser() {
   const puppeteer = (await import('puppeteer-core')).default;
-  const local = [
+  // Na Vercel/CI usa sempre o Chromium do @sparticuz/chromium (não depende de nenhum Chrome instalado).
+  // Localmente usa o Chrome/Edge da máquina (ou CHROME_PATH).
+  const local = IN_CI ? undefined : [
     process.env.CHROME_PATH,
     'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
