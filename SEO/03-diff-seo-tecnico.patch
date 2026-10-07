@@ -1,0 +1,489 @@
+diff --git a/middleware.js b/middleware.js
+index 97316420..5f5a8b3f 100644
+--- a/middleware.js
++++ b/middleware.js
+@@ -7,6 +7,8 @@
+  * Configure o token no Vercel Dashboard ou substitua abaixo.
+  */
+ 
++import { VALID_PATHS } from './valid-paths.generated.js';
++
+ const PRERENDER_TOKEN = process.env.PRERENDER_TOKEN || 'SEU_TOKEN_PRERENDER_IO_AQUI';
+ 
+ const BOT_AGENTS = /googlebot|bingbot|yandex|baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora link preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator|duckduckbot|facebot|ia_archiver/i;
+@@ -30,6 +32,23 @@ export default async function middleware(request) {
+     return;
+   }
+ 
++  // Qualquer arquivo com extensão, /.well-known e /_vercel passam direto
++  if (
++    /\.[a-z0-9]+$/i.test(url.pathname) ||
++    url.pathname.startsWith('/.well-known') ||
++    url.pathname.startsWith('/_vercel')
++  ) {
++    return;
++  }
++
++  // 404 real para URLs que não existem (evita soft 404 da SPA)
++  if (request.method === 'GET' || request.method === 'HEAD') {
++    const normalized = (url.pathname.replace(/\/+$/, '') || '/').toLowerCase();
++    if (!VALID_PATHS.has(normalized)) {
++      return notFoundResponse(url, request.method);
++    }
++  }
++
+   // Só aplica prerender para bots
+   if (!BOT_AGENTS.test(userAgent)) {
+     return;
+@@ -62,3 +81,22 @@ export default async function middleware(request) {
+     return;
+   }
+ }
++
++const FALLBACK_404_HTML = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, follow"><title>Página não encontrada | Clínica Fono Inova</title></head><body><h1>Página não encontrada</h1><p><a href="/">Voltar ao início</a></p></body></html>`;
++
++async function notFoundResponse(url, method) {
++  const headers = {
++    'Content-Type': 'text/html; charset=utf-8',
++    'X-Robots-Tag': 'noindex',
++    'Cache-Control': 'public, max-age=0, must-revalidate',
++  };
++  let body = FALLBACK_404_HTML;
++  try {
++    // Usa o shell da SPA para que o React mostre a página 404 amigável
++    const shell = await fetch(new URL('/', url.origin));
++    if (shell.ok) body = await shell.text();
++  } catch (error) {
++    console.error('404 shell fetch error:', error);
++  }
++  return new Response(method === 'HEAD' ? null : body, { status: 404, headers });
++}
+diff --git a/package.json b/package.json
+index cb575be5..87c97eca 100644
+--- a/package.json
++++ b/package.json
+@@ -5,6 +5,7 @@
+   "type": "module",
+   "scripts": {
+     "dev": "vite",
++    "prebuild": "node scripts/generate-valid-paths.js",
+     "build": "vite build",
+     "lint": "eslint .",
+     "preview": "vite preview"
+diff --git a/public/robots.txt b/public/robots.txt
+index 222bfe96..2adcaa06 100644
+--- a/public/robots.txt
++++ b/public/robots.txt
+@@ -9,16 +9,8 @@ Disallow: /private/
+ Disallow: /dashboard
+ Disallow: /analytics
+ 
+-# Bloquear AdsBot das LPs (economizar crawl budget)
+-User-agent: AdsBot-Google
+-Disallow: /lp/
+-Disallow: /obrigado/
+-Disallow: /campanha/
+-
+-User-agent: AdsBot-Google-Mobile
+-Disallow: /lp/
+-Disallow: /obrigado/
+-Disallow: /campanha/
++# AdsBot (Google Ads) liberado em /lp/, /campanha/ e /obrigado: destinos de anúncio precisam ser rastreáveis.
++# /obrigado fica fora da busca via X-Robots-Tag: noindex (vercel.json).
+ 
+ # Crawlers de IA / mecanismos de resposta (ChatGPT, Perplexity, Claude, Google AI)
+ User-agent: GPTBot
+diff --git a/scripts/generate-valid-paths.js b/scripts/generate-valid-paths.js
+new file mode 100644
+index 00000000..39c111aa
+--- /dev/null
++++ b/scripts/generate-valid-paths.js
+@@ -0,0 +1,73 @@
++// Gera valid-paths.generated.js: caminhos que o site realmente serve.
++// O middleware.js usa essa lista para devolver 404 real a URLs inexistentes.
++// Roda sozinho no "prebuild". Fontes: rotas do App.jsx, origens de redirect do
++// vercel.json, sitemap.xml e os slugs dinâmicos de artigos e landing pages.
++import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
++import path from 'node:path';
++import { fileURLToPath } from 'node:url';
++
++const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
++const read = (p) => readFileSync(path.join(root, p), 'utf8');
++const norm = (p) => {
++  const s = p.split('?')[0].split('#')[0].toLowerCase();
++  return s.length > 1 ? s.replace(/\/+$/, '') : '/';
++};
++
++const valid = new Set(['/']);
++// Caminhos usados por campanhas/anúncios que não têm rota própria no App.jsx; mantidos como estão hoje.
++for (const extra of ['/obrigado', '/campanha']) valid.add(extra);
++const stats = {};
++const count = (key, before) => { stats[key] = valid.size - before; };
++
++// 1) Rotas estáticas do React Router (ignora coringa e rotas com parâmetro)
++let before = valid.size;
++for (const m of read('src/App.jsx').matchAll(/<Route\s+path="([^"]+)"/g)) {
++  if (m[1] === '*' || m[1].includes(':')) continue;
++  valid.add(norm(m[1]));
++}
++count('rotas do App.jsx', before);
++
++// 2) Origens dos redirecionamentos do vercel.json (só caminhos literais)
++before = valid.size;
++for (const r of JSON.parse(read('vercel.json')).redirects || []) {
++  if (/[:(*]/.test(r.source)) continue;
++  valid.add(norm(r.source));
++}
++count('origens de redirect', before);
++
++// 3) Sitemap
++before = valid.size;
++for (const m of read('public/sitemap.xml').matchAll(/<loc>([^<]+)<\/loc>/g)) {
++  try { valid.add(norm(new URL(m[1].trim()).pathname)); } catch { /* ignora loc inválido */ }
++}
++count('sitemap', before);
++
++// 4) Slugs dinâmicos
++const slugsOf = (files) => {
++  const out = new Set();
++  for (const f of files) {
++    for (const m of read(f).matchAll(/slug:\s*['"]([^'"]+)['"]/g)) out.add(m[1]);
++  }
++  return out;
++};
++const articleSlugs = slugsOf(['src/data/articlesData.jsx', 'src/data/articles-satellite.jsx']);
++const lpDir = 'src/data/landing-pages';
++const lpSlugs = slugsOf(readdirSync(path.join(root, lpDir)).filter((f) => f.endsWith('.js')).map((f) => `${lpDir}/${f}`));
++
++// Trava de segurança: sem slugs, a lista daria 404 em páginas legítimas. Falha o build.
++if (articleSlugs.size === 0 || lpSlugs.size === 0) {
++  throw new Error(`generate-valid-paths: slugs não encontrados (artigos=${articleSlugs.size}, LPs=${lpSlugs.size}). Build interrompido.`);
++}
++before = valid.size;
++for (const s of articleSlugs) valid.add(norm(`/artigos/${s}`));
++count('artigos', before);
++before = valid.size;
++for (const s of lpSlugs) valid.add(norm(`/lp/${s}`));
++count('landing pages', before);
++
++const list = [...valid].sort();
++writeFileSync(
++  path.join(root, 'valid-paths.generated.js'),
++  `// ARQUIVO GERADO por scripts/generate-valid-paths.js (roda no prebuild). Não editar à mão.\nexport const VALID_PATHS = new Set(${JSON.stringify(list, null, 2)});\n`
++);
++console.log(`valid-paths.generated.js: ${list.length} caminhos`, stats);
+diff --git a/src/App.jsx b/src/App.jsx
+index ddcde78b..2efe4797 100644
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -10,6 +10,7 @@ import AnalyticsDashboard from './components/AnalyticsDashboard';
+ import AnalyticsTest from './components/AnalyticsTest';
+ import ArticlePage from './pages/Article';
+ import Articles from './pages/Articles';
++import NotFoundPage from './pages/NotFoundPage';
+ import LandingPage from './pages/lp/LandingPage';
+ import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
+ import Home from './pages/Home';
+@@ -176,6 +177,7 @@ function App() {
+           
+           {/* Rota dinâmica para Landing Pages SEO */}
+           <Route path="/lp/:slug" element={<LandingPage />} />
++          <Route path="*" element={<NotFoundPage />} />
+         </Routes>
+       </LeadTracker>
+     </div>
+diff --git a/src/components/SEO.jsx b/src/components/SEO.jsx
+index 45a2e1b0..75a2b1fd 100644
+--- a/src/components/SEO.jsx
++++ b/src/components/SEO.jsx
+@@ -2,6 +2,8 @@
+ import { Helmet } from 'react-helmet-async';
+ 
+ const SEO = ({ title, description, keywords = "", image, url, type = "website", schema, noindex = false }) => {
++  const BRAND = "Clínica Fono Inova";
++  const fullTitle = /fono inova/i.test(title) ? title : `${title} | ${BRAND}`;
+   const siteUrl = "https://www.clinicafonoinova.com.br";
+   const absoluteUrl = url ? (url.startsWith('http') ? url : `${siteUrl}${url}`) : siteUrl;
+   const absoluteImage = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/logo-unica.png`;
+@@ -9,7 +11,7 @@ const SEO = ({ title, description, keywords = "", image, url, type = "website",
+   return (
+     <Helmet>
+       <html lang="pt-BR" />
+-      <title>{title.includes("Clínica Fono Inova") ? title : `${title} | Clínica Fono Inova em Anápolis`}</title>
++      <title>{fullTitle}</title>
+       <meta name="description" content={description} />
+       <meta name="keywords" content={keywords} />
+       {noindex && <meta name="robots" content="noindex, nofollow" />}
+diff --git a/src/pages/NotFoundPage.jsx b/src/pages/NotFoundPage.jsx
+new file mode 100644
+index 00000000..226a6c1f
+--- /dev/null
++++ b/src/pages/NotFoundPage.jsx
+@@ -0,0 +1,25 @@
++// Página exibida para qualquer endereço que o site não serve (rota coringa "*").
++// O status HTTP 404 vem do middleware.js; o prerender-status-code cobre o serviço de prerender.
++import { Helmet } from 'react-helmet-async';
++import { Link } from 'react-router-dom';
++import Layout from '../components/Layout';
++
++export default function NotFoundPage() {
++  return (
++    <Layout>
++      <Helmet>
++        <title>Página não encontrada | Clínica Fono Inova</title>
++        <meta name="robots" content="noindex, follow" />
++        <meta name="prerender-status-code" content="404" />
++      </Helmet>
++      <main className="container mx-auto px-4 py-24 text-center">
++        <h1 className="text-3xl font-bold mb-4">Página não encontrada</h1>
++        <p className="mb-8">O endereço que você abriu não existe ou mudou de lugar.</p>
++        <div className="flex flex-wrap justify-center gap-4">
++          <Link to="/" className="underline font-semibold">Voltar ao início</Link>
++          <Link to="/artigos" className="underline font-semibold">Ver artigos</Link>
++        </div>
++      </main>
++    </Layout>
++  );
++}
+diff --git a/valid-paths.generated.js b/valid-paths.generated.js
+new file mode 100644
+index 00000000..bf03510f
+--- /dev/null
++++ b/valid-paths.generated.js
+@@ -0,0 +1,192 @@
++// ARQUIVO GERADO por scripts/generate-valid-paths.js (roda no prebuild). Não editar à mão.
++export const VALID_PATHS = new Set([
++  "/",
++  "/abordagem-multidisciplinar",
++  "/analytics",
++  "/artigos",
++  "/artigos/atividades-desenvolvimento-motor",
++  "/artigos/atraso-desenvolvimento-infantil",
++  "/artigos/atraso-na-fala-como-estimular-linguagem-crianca",
++  "/artigos/avaliacao-das-funcoes-executivas",
++  "/artigos/avaliacao-multidisciplinar-infantil",
++  "/artigos/avaliacao-neuropsicologica-dificuldade-escolar",
++  "/artigos/avaliacao-neuropsicologica-e-psicopedagogica",
++  "/artigos/avaliacao-neuropsicologica-infantil-guia-completo",
++  "/artigos/avaliacao-neuropsicologica-para-autismo",
++  "/artigos/avaliacao-neuropsicologica-para-tdah",
++  "/artigos/bebe-nao-fala",
++  "/artigos/birras-excessivas-quando-procurar-ajuda",
++  "/artigos/como-entender-laudo-neuropsicologico",
++  "/artigos/como-estimular-fala-crianca",
++  "/artigos/como-funciona-avaliacao-neuropsicologica",
++  "/artigos/como-funciona-terapia-infantil",
++  "/artigos/convulsao-infantil-quando-procurar",
++  "/artigos/crianca-com-dificuldade-fazer-amigos",
++  "/artigos/crianca-com-medo-excessivo",
++  "/artigos/crianca-entende-mas-nao-fala",
++  "/artigos/crianca-muito-nervosa-precisa-psicologo",
++  "/artigos/crianca-nao-fala-idade-esperada",
++  "/artigos/crianca-nao-responde-nome",
++  "/artigos/desenvolvimento-da-fala-por-idade",
++  "/artigos/diferenca-fonoaudiologo-terapeuta-ocupacional",
++  "/artigos/diferenca-neuropediatra-pediatra",
++  "/artigos/diferenca-psicologo-psiquiatra-infantil",
++  "/artigos/dificuldades-emocionais-na-escola",
++  "/artigos/em-que-idade-levar-filho-fonoaudiologia",
++  "/artigos/entendendo-espectro-autista",
++  "/artigos/fala-tardia-causas",
++  "/artigos/fala-tardia-criancas-quando-preocupar",
++  "/artigos/faq-desenvolvimento-infantil",
++  "/artigos/fono-cobre-plano-de-saude",
++  "/artigos/fono-guia-completo",
++  "/artigos/fono-infantil-quando-procurar",
++  "/artigos/fono-ou-fonoaudiologo-qual-diferenca",
++  "/artigos/fono-para-autismo-funciona",
++  "/artigos/fono-para-fala-atrasada",
++  "/artigos/fonoaudiologia-ajuda-atraso-linguagem",
++  "/artigos/fonoaudiologia-apos-frenulotomia",
++  "/artigos/fonoaudiologia-e-seletividade-alimentar",
++  "/artigos/fonoaudiologia-guia-completo",
++  "/artigos/fonoaudiologia-para-autismo",
++  "/artigos/fonoaudiologia-para-dificuldade-escolar",
++  "/artigos/freio-lingual-leve-precisa-cirurgia",
++  "/artigos/frenulotomia-em-bebe-e-segura",
++  "/artigos/importancia-orientacao-parental",
++  "/artigos/importancia-psicomotricidade-desenvolvimento-infantil",
++  "/artigos/lingua-presca-atraso-fala",
++  "/artigos/lingua-presca-dificuldade-para-mamar",
++  "/artigos/musicoterapia-e-tea-conexoes-atraves-do-som",
++  "/artigos/neuropediatra-diagnostica-autismo",
++  "/artigos/neuropediatra-ou-neurologista-infantil-qual-diferenca",
++  "/artigos/neuropediatra-trata-autismo",
++  "/artigos/neuropediatra-trata-tdah",
++  "/artigos/neuropediatria-guia-completo",
++  "/artigos/o-que-e-avaliacao-neuropsicologica",
++  "/artigos/o-que-e-fonoaudiologia",
++  "/artigos/o-que-e-freio-lingual",
++  "/artigos/o-que-faz-fonoaudiologo-infantil",
++  "/artigos/o-que-faz-neuropediatra",
++  "/artigos/o-que-faz-psicologo-infantil",
++  "/artigos/o-que-faz-um-fonoaudiologo",
++  "/artigos/para-que-serve-a-fonoaudiologia",
++  "/artigos/pos-frenulotomia-cuidados",
++  "/artigos/primeira-avaliacao-fonoaudiologica",
++  "/artigos/primeira-consulta-neuropediatra",
++  "/artigos/primeira-consulta-psicologo-infantil",
++  "/artigos/processamento-auditivo-central-pac",
++  "/artigos/psicologia-infantil-guia-completo",
++  "/artigos/psicologo-infantil-ajuda-autismo",
++  "/artigos/psicologo-infantil-ajuda-tdah",
++  "/artigos/psicopedagogia-alem-das-dificuldades-escolares",
++  "/artigos/quando-crianca-precisa-avaliacao-neurologica",
++  "/artigos/quando-fazer-avaliacao-neuropsicologica",
++  "/artigos/quando-fazer-frenulotomia",
++  "/artigos/quando-levar-crianca-fonoaudiologo",
++  "/artigos/quando-levar-crianca-psicologo",
++  "/artigos/quando-procurar-neuropediatra",
++  "/artigos/quando-procurar-neuropediatra-anapolis",
++  "/artigos/quantas-sessoes-de-fono-por-semana",
++  "/artigos/quantas-sessoes-fonoaudiologia",
++  "/artigos/quanto-tempo-dura-avaliacao-neuropsicologica",
++  "/artigos/seletividade-alimentar-infantil",
++  "/artigos/sinais-ansiedade-infantil",
++  "/artigos/sinais-atraso-fala-crianca",
++  "/artigos/sinais-autismo-crianca",
++  "/artigos/sinais-baixa-autoestima-infantil",
++  "/artigos/sinais-crianca-precisa-fonoaudiologia",
++  "/artigos/sinais-de-alerta-desenvolvimento-infantil",
++  "/artigos/sinais-dislexia-infantil",
++  "/artigos/sinais-tdah-crianca",
++  "/artigos/sintomas-lingua-presca-bebe",
++  "/artigos/suspeita-autismo-avaliacao-completa",
++  "/artigos/tdah-infantil-guia-completo-pais",
++  "/artigos/teste-da-linguinha-como-funciona",
++  "/artigos/teste-da-linguinha-guia-completo",
++  "/artigos/teste-da-linguinha-onde-fazer",
++  "/artigos/teste-da-linguinha-preco",
++  "/artigos/teste-de-atencao-infantil",
++  "/artigos/teste-de-memoria-infantil",
++  "/artigos/troca-de-letras-quando-preocupar",
++  "/atraso-de-fala-infantil",
++  "/autismo-anapolis",
++  "/avaliacao-autismo-infantil",
++  "/avaliacao-fonoaudiologica",
++  "/avaliacao-infantil",
++  "/avaliacao-neurologica-infantil",
++  "/avaliacao-neuropsicologica",
++  "/avaliacao-neuropsicologica-anapolis",
++  "/avaliacao-neuropsicologica-dificuldade-escolar",
++  "/avaliacao-tdah-anapolis",
++  "/campanha",
++  "/comportamento-infantil-anapolis",
++  "/consulta-neuropediatra-infantil",
++  "/consulta-psicologo-infantil",
++  "/convenio-base-aerea-anapolis",
++  "/convenio-bradesco-anapolis",
++  "/convenio-bradesco-saude-anapolis",
++  "/convenio-geap-anapolis",
++  "/convenio-ipasgo-anapolis",
++  "/dashboard",
++  "/dislexia-anapolis",
++  "/dislexia-infantil",
++  "/equipe",
++  "/fala-tardia",
++  "/fala-tardia-anapolis",
++  "/faq",
++  "/fisioterapia",
++  "/fisioterapia-infantil-anapolis",
++  "/fonoaudiologia",
++  "/fonoaudiologia-adulto",
++  "/fonoaudiologia-anapolis",
++  "/fonoaudiologia-infantil-anapolis",
++  "/fonoaudiologo-infantil-anapolis",
++  "/freio-lingual",
++  "/links",
++  "/lista-de-interesse-confirmada",
++  "/lp/atraso-na-fala-infantil",
++  "/lp/avaliacao-neuropsicologica-anapolis",
++  "/lp/avaliacao-tea-anapolis",
++  "/lp/crianca-2-anos-nao-fala",
++  "/lp/crianca-agressiva",
++  "/lp/crianca-nao-aprende-ler",
++  "/lp/crianca-nao-forma-frases",
++  "/lp/crianca-nao-olha-olhos",
++  "/lp/crianca-nao-responde-nome",
++  "/lp/dificuldade-concentracao",
++  "/lp/dificuldade-pronunciar-r",
++  "/lp/discalculia-matematica",
++  "/lp/disgrafia-escrita",
++  "/lp/fala-enrolada-crianca",
++  "/lp/fonoaudiologo-anapolis",
++  "/lp/gagueira-infantil",
++  "/lp/processamento-auditivo",
++  "/lp/psicologo-infantil-anapolis",
++  "/lp/psicopedagogia-anapolis",
++  "/lp/sinais-autismo-2-anos",
++  "/lp/sinais-autismo-bebe",
++  "/lp/sinais-dislexia",
++  "/lp/tdah-crianca",
++  "/lp/terapia-ocupacional-anapolis",
++  "/lp/troca-letras-crianca",
++  "/musicoterapia",
++  "/neuropediatra-anapolis",
++  "/nossa-clinica",
++  "/obrigado",
++  "/prematuridade-desenvolvimento",
++  "/privacidade",
++  "/psicologa-infantil-anapolis",
++  "/psicologia",
++  "/psicologia-infantil-anapolis",
++  "/psicologo-infantil-anapolis",
++  "/psicomotricidade",
++  "/psicomotricidade-anapolis",
++  "/psicopedagogia",
++  "/psicopedagogia-clinica",
++  "/seletividade-alimentar-anapolis",
++  "/sindrome-de-down",
++  "/tdah-anapolis",
++  "/tdah-infantil",
++  "/terapia-ocupacional",
++  "/terapia-ocupacional-anapolis",
++  "/teste-da-linguinha-anapolis"
++]);
+diff --git a/vercel.json b/vercel.json
+index 38252369..72b7c77b 100644
+--- a/vercel.json
++++ b/vercel.json
+@@ -41,12 +41,12 @@
+     },
+     {
+       "source": "/lp/dificuldade-pronunciar-r",
+-      "destination": "/lp/troca-letras-crianca",
++      "destination": "/fonoaudiologia-anapolis",
+       "permanent": true
+     },
+     {
+       "source": "/lp/fala-enrolada-crianca",
+-      "destination": "/lp/troca-letras-crianca",
++      "destination": "/fonoaudiologia-anapolis",
+       "permanent": true
+     },
+     {
+@@ -116,6 +116,23 @@
+     { "source": "/psicomotricidade", "destination": "/psicomotricidade-anapolis", "permanent": true },
+     { "source": "/tdah-infantil", "destination": "/tdah-anapolis", "permanent": true },
+     { "source": "/dislexia-infantil", "destination": "/dislexia-anapolis", "permanent": true },
+-    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true }
++    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
++    { "source": "/artigos/fono-guia-completo", "destination": "/artigos/fonoaudiologia-guia-completo", "permanent": true },
++    { "source": "/artigos/entendendo-espectro-autista", "destination": "/artigos/sinais-autismo-crianca", "permanent": true },
++    { "source": "/freio-lingual", "destination": "/teste-da-linguinha-anapolis", "permanent": true },
++    { "source": "/fonoaudiologia-infantil-anapolis", "destination": "/fonoaudiologia-anapolis", "permanent": true },
++    { "source": "/fonoaudiologo-infantil-anapolis", "destination": "/fonoaudiologia-anapolis", "permanent": true },
++    { "source": "/avaliacao-fonoaudiologica", "destination": "/fonoaudiologia-anapolis", "permanent": true },
++    { "source": "/atraso-de-fala-infantil", "destination": "/fonoaudiologia-anapolis", "permanent": true },
++    { "source": "/psicologo-infantil-anapolis", "destination": "/psicologia-infantil-anapolis", "permanent": true },
++    { "source": "/psicologa-infantil-anapolis", "destination": "/psicologia-infantil-anapolis", "permanent": true },
++    { "source": "/consulta-psicologo-infantil", "destination": "/psicologia-infantil-anapolis", "permanent": true },
++    { "source": "/consulta-neuropediatra-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
++    { "source": "/avaliacao-neurologica-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
++    { "source": "/convenio-bradesco-anapolis", "destination": "/convenio-bradesco-saude-anapolis", "permanent": true }
++  ],
++  "headers": [
++    { "source": "/obrigado", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
++    { "source": "/obrigado/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
+   ]
+ }
