@@ -116,6 +116,7 @@
     { "source": "/psicomotricidade", "destination": "/psicomotricidade-anapolis", "permanent": true },
     { "source": "/tdah-infantil", "destination": "/tdah-anapolis", "permanent": true },
     { "source": "/dislexia-infantil", "destination": "/dislexia-anapolis", "permanent": true },
+    { "source": "/seletividade-alimentar", "destination": "/seletividade-alimentar-anapolis", "permanent": true },
     { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
     { "source": "/artigos/fono-guia-completo", "destination": "/artigos/fonoaudiologia-guia-completo", "permanent": true },
     { "source": "/artigos/entendendo-espectro-autista", "destination": "/artigos/sinais-autismo-crianca", "permanent": true },
