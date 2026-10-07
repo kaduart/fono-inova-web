@@ -78,10 +78,13 @@ async function launchBrowser() {
 const fail = (msg) => { console.error(`[prerender] ERRO: ${msg}`); throw new Error(msg); };
 let browser;
 const report = [];
+const failures = [];
 try {
   browser = await launchBrowser();
   for (const route of cfg.routes) {
     const page = await browser.newPage();
+    try {
+    const t0 = Date.now();
     await page.setViewport({ width: 1280, height: 900 });
     // Não dispara analytics (GA, Meta Pixel etc.) nem chamadas externas durante o build.
     await page.setRequestInterception(true);
@@ -125,12 +128,21 @@ try {
     const outFile = route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html');
     mkdirSync(join(outFile, '..'), { recursive: true });
     writeFileSync(outFile, html);
-    report.push({ route, title: info.title, h1: info.h1, bytes: Buffer.byteLength(html) });
-    await page.close();
+    report.push({ route, title: info.title, h1: info.h1, bytes: Buffer.byteLength(html), seg: Math.round((Date.now() - t0) / 1000) });
+    } catch (e) {
+      // Junta todas as falhas para o log mostrar tudo de uma vez; o build ainda falha no final.
+      failures.push(e.message);
+    } finally {
+      await page.close().catch(() => {});
+    }
   }
 } finally {
   if (browser) await browser.close();
   server.close();
 }
 console.table(report);
+if (failures.length) {
+  console.error(`[prerender] ${failures.length} rota(s) falharam:\n - ${failures.join('\n - ')}`);
+  process.exit(1);
+}
 console.log(`[prerender] ${report.length} rotas pré-renderizadas.`);
