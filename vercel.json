@@ -116,6 +116,19 @@
     { "source": "/psicomotricidade", "destination": "/psicomotricidade-anapolis", "permanent": true },
     { "source": "/tdah-infantil", "destination": "/tdah-anapolis", "permanent": true },
     { "source": "/dislexia-infantil", "destination": "/dislexia-anapolis", "permanent": true },
-    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true }
+    { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
+    { "source": "/artigos/fono-guia-completo", "destination": "/artigos/fonoaudiologia-guia-completo", "permanent": true },
+    { "source": "/artigos/entendendo-espectro-autista", "destination": "/artigos/sinais-autismo-crianca", "permanent": true },
+    { "source": "/freio-lingual", "destination": "/teste-da-linguinha-anapolis", "permanent": true },
+    { "source": "/fonoaudiologia-infantil-anapolis", "destination": "/fonoaudiologia-anapolis", "permanent": true },
+    { "source": "/fonoaudiologo-infantil-anapolis", "destination": "/fonoaudiologia-anapolis", "permanent": true },
+    { "source": "/avaliacao-fonoaudiologica", "destination": "/fonoaudiologia-anapolis", "permanent": true },
+    { "source": "/atraso-de-fala-infantil", "destination": "/fonoaudiologia-anapolis", "permanent": true },
+    { "source": "/psicologo-infantil-anapolis", "destination": "/psicologia-infantil-anapolis", "permanent": true },
+    { "source": "/psicologa-infantil-anapolis", "destination": "/psicologia-infantil-anapolis", "permanent": true },
+    { "source": "/consulta-psicologo-infantil", "destination": "/psicologia-infantil-anapolis", "permanent": true },
+    { "source": "/consulta-neuropediatra-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
+    { "source": "/avaliacao-neurologica-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
+    { "source": "/convenio-bradesco-anapolis", "destination": "/convenio-bradesco-saude-anapolis", "permanent": true }
   ]
 }

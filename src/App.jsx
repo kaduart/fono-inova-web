@@ -10,6 +10,7 @@ import AnalyticsDashboard from './components/AnalyticsDashboard';
 import AnalyticsTest from './components/AnalyticsTest';
 import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
+import NotFoundPage from './pages/NotFoundPage';
 import LandingPage from './pages/lp/LandingPage';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
 import Home from './pages/Home';
@@ -176,6 +177,7 @@ function App() {
           
           {/* Rota dinâmica para Landing Pages SEO */}
           <Route path="/lp/:slug" element={<LandingPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </LeadTracker>
     </div>
