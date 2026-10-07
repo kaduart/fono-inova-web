@@ -41,12 +41,12 @@
     },
     {
       "source": "/lp/dificuldade-pronunciar-r",
-      "destination": "/lp/troca-letras-crianca",
+      "destination": "/fonoaudiologia-anapolis",
       "permanent": true
     },
     {
       "source": "/lp/fala-enrolada-crianca",
-      "destination": "/lp/troca-letras-crianca",
+      "destination": "/fonoaudiologia-anapolis",
       "permanent": true
     },
     {
@@ -130,5 +130,9 @@
     { "source": "/consulta-neuropediatra-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
     { "source": "/avaliacao-neurologica-infantil", "destination": "/neuropediatra-anapolis", "permanent": true },
     { "source": "/convenio-bradesco-anapolis", "destination": "/convenio-bradesco-saude-anapolis", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/obrigado", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+    { "source": "/obrigado/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
   ]
 }

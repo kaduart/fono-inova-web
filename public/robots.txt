@@ -9,16 +9,8 @@ Disallow: /private/
 Disallow: /dashboard
 Disallow: /analytics
 
-# Bloquear AdsBot das LPs (economizar crawl budget)
-User-agent: AdsBot-Google
-Disallow: /lp/
-Disallow: /obrigado/
-Disallow: /campanha/
-
-User-agent: AdsBot-Google-Mobile
-Disallow: /lp/
-Disallow: /obrigado/
-Disallow: /campanha/
+# AdsBot (Google Ads) liberado em /lp/, /campanha/ e /obrigado: destinos de anúncio precisam ser rastreáveis.
+# /obrigado fica fora da busca via X-Robots-Tag: noindex (vercel.json).
 
 # Crawlers de IA / mecanismos de resposta (ChatGPT, Perplexity, Claude, Google AI)
 User-agent: GPTBot
