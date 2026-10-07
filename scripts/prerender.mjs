@@ -27,8 +27,19 @@ const TYPES = {
   '.txt': 'text/plain', '.xml': 'application/xml',
 };
 
-// Servidor estático simples: arquivo existente ou, se não houver, o shell da SPA (index.html original).
-const shell = readFileSync(join(DIST, 'index.html'));
+// O index.html gerado pelo vite é o "shell" vazio da SPA. Guardamos uma cópia em dist/_shell.html:
+// o rewrite do vercel.json e o 404 do middleware servem esse shell para as rotas sem arquivo próprio,
+// enquanto dist/index.html passa a ser a home pré-renderizada.
+const SHELL_FILE = join(DIST, '_shell.html');
+if (!existsSync(SHELL_FILE)) {
+  const original = readFileSync(join(DIST, 'index.html'), 'utf8');
+  if (original.includes('data-rh')) {
+    console.error('[prerender] ERRO: dist/index.html já está pré-renderizado e não há dist/_shell.html. Rode `npm run build` completo.');
+    process.exit(1);
+  }
+  writeFileSync(SHELL_FILE, original);
+}
+const shell = readFileSync(SHELL_FILE);
 const server = createServer((req, res) => {
   const path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   const file = join(DIST, path);

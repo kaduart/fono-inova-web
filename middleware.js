@@ -93,7 +93,7 @@ async function notFoundResponse(url, method) {
   let body = FALLBACK_404_HTML;
   try {
     // Usa o shell da SPA para que o React mostre a página 404 amigável
-    const shell = await fetch(new URL('/', url.origin));
+    const shell = await fetch(new URL('/_shell.html', url.origin));
     if (shell.ok) body = await shell.text();
   } catch (error) {
     console.error('404 shell fetch error:', error);

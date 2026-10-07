@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/_shell.html"
     }
   ],
   "redirects": [
@@ -132,6 +132,7 @@
     { "source": "/convenio-bradesco-anapolis", "destination": "/convenio-bradesco-saude-anapolis", "permanent": true }
   ],
   "headers": [
+    { "source": "/_shell.html", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
     { "source": "/obrigado", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
     { "source": "/obrigado/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
   ]
