@@ -94,8 +94,9 @@ export default function SeletividadeAlimentarAnapolis() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-green-50/40 to-teal-50/30" />
         <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-gradient-to-br from-green-200/30 to-teal-200/20 rounded-full blur-3xl opacity-70" />
 
-        <div className="relative container mx-auto px-4 lg:px-8 max-w-3xl">
-          <div className="space-y-6 text-center pt-8">
+        <div className="relative container mx-auto px-4 lg:px-8 max-w-6xl">
+          <div className="grid items-start gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
+          <div className="space-y-6 text-center lg:text-left">
 
             <span className="inline-flex items-center bg-green-50 text-green-700 border border-green-200 px-4 py-1.5 text-sm font-semibold rounded-full">
               Seletividade Alimentar Infantil em Anápolis
@@ -134,6 +135,17 @@ export default function SeletividadeAlimentarAnapolis() {
             >
               Meu Filho Tem Seletividade — Quero Ajuda
             </ButtonWhatsApp>
+          </div>
+          <div className="mx-auto w-full max-w-md lg:mt-[4.5rem] lg:max-w-none">
+            <img
+              src="/images/hero/seletividade-alimentar-hero.webp"
+              alt="Criança explorando frutas coloridas com uma terapeuta em atendimento de seletividade alimentar em Anápolis"
+              width={1200}
+              height={1500}
+              fetchPriority="high"
+              className="w-full rounded-3xl object-cover shadow-2xl shadow-slate-900/10"
+            />
+          </div>
           </div>
         </div>
       </section>
