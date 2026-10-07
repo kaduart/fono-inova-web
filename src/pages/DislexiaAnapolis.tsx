@@ -103,7 +103,7 @@ export default function DislexiaAnapolis() {
         <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/30 to-indigo-200/20 rounded-full blur-3xl opacity-70" />
 
         <div className="relative container mx-auto px-4 lg:px-8 max-w-6xl">
-          <div className="grid items-center gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
+          <div className="grid items-start gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
           <div className="space-y-6 text-center lg:text-left">
 
             <span className="inline-flex items-center bg-blue-50 text-blue-700 border border-blue-200 px-4 py-1.5 text-sm font-semibold rounded-full">
@@ -142,7 +142,7 @@ export default function DislexiaAnapolis() {
               Quero Avaliar a Dislexia do Meu Filho
             </ButtonWhatsApp>
           </div>
-          <div className="mx-auto w-full max-w-md lg:max-w-none">
+          <div className="mx-auto w-full max-w-md lg:mt-[4.5rem] lg:max-w-none">
             <img
               src="/images/hero/dislexia-hero.webp"
               alt="Menina lendo um livro ilustrado com apoio de uma psicopedagoga em atendimento de dislexia infantil em Anápolis"

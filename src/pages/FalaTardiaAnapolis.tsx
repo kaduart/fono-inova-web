@@ -63,7 +63,7 @@ export default function FalaTardiaAnapolis() {
         <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-gradient-to-br from-orange-200/30 to-amber-200/20 rounded-full blur-3xl opacity-70" />
 
         <div className="relative container mx-auto px-4 lg:px-8 max-w-6xl">
-          <div className="grid items-center gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
+          <div className="grid items-start gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
           <div className="space-y-6 text-center lg:text-left">
 
             <span className="inline-flex items-center bg-orange-50 text-orange-700 border border-orange-200 px-4 py-1.5 text-sm font-semibold rounded-full">
@@ -104,7 +104,7 @@ export default function FalaTardiaAnapolis() {
               </ButtonWhatsApp>
             </div>
           </div>
-          <div className="mx-auto w-full max-w-md lg:max-w-none">
+          <div className="mx-auto w-full max-w-md lg:mt-[4.5rem] lg:max-w-none">
             <img
               src="/images/hero/fala-tardia-hero.webp"
               alt="Criança pequena olhando um cartão ilustrado enquanto a fonoaudióloga conversa com ela em atendimento de fala tardia em Anápolis"
