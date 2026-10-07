@@ -77,16 +77,26 @@ try {
     page.on('request', (r) => (r.url().startsWith(origin) || r.url().startsWith('data:') ? r.continue() : r.abort()));
     const errors = [];
     page.on('pageerror', (e) => errors.push(String(e)));
-    await page.goto(origin + route, { waitUntil: 'load', timeout: 60000 });
+    // Diagnóstico: requisições locais ainda pendentes e falhas
+    const pending = new Map();
+    page.on('request', (r) => { if (r.url().startsWith(origin)) pending.set(r, r.url()); });
+    page.on('requestfinished', (r) => pending.delete(r));
+    page.on('requestfailed', (r) => pending.delete(r));
+    console.log(`[prerender] abrindo ${route} ...`);
+    try {
+      await page.goto(origin + route, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    } catch (e) {
+      fail(`${route}: navegação falhou (${e.message}). Pendentes: ${[...pending.values()].join(', ') || 'nenhum'}. Erros de página: ${errors.join(' | ') || 'nenhum'}`);
+    }
     try {
       await page.waitForFunction(
         (generic) => document.querySelector('h1') && document.title && document.title !== generic &&
           document.querySelector('link[rel="canonical"]'),
-        { timeout: 30000 },
+        { timeout: 45000 },
         cfg.genericTitle,
       );
     } catch {
-      fail(`${route}: a página não montou título/H1/canonical em 30s. Erros de página: ${errors.join(' | ') || 'nenhum'}`);
+      fail(`${route}: a página não montou título/H1/canonical em 30s. Pendentes: ${[...pending.values()].join(', ') || 'nenhum'}. Erros de página: ${errors.join(' | ') || 'nenhum'}`);
     }
     const info = await page.evaluate(() => ({
       title: document.title,
