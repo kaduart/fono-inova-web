@@ -5,3 +5,6 @@ dist
 
 # originais pesados dos heros (o site usa os .webp)
 public/images/hero/*.png
+
+# originais pesados dos heros (o site usa os .webp)
+public/images/hero/*.png
