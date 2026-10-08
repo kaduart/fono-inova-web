@@ -1360,7 +1360,7 @@ export const articlesData = [
     id: 6,
     slug: "tdah-infantil-guia-completo-pais",
     title: "TDAH Infantil: O Guia Completo para Pais",
-    excerpt: "Entenda o que é o TDAH, como identificar os sinais na infância e a importância do diagnóstico e tratamento multidisciplinar.",
+    excerpt: "Guia para pais sobre TDAH infantil: o que é, sinais de desatenção e hiperatividade, quando não é TDAH, como é o diagnóstico, tratamento e o que ajuda em casa.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
@@ -1368,31 +1368,133 @@ export const articlesData = [
     authorCredentials: "",
     date: "15 de Fevereiro, 2026",
     dateISO: "2026-02-15",
-    dateModifiedISO: "2026-02-15",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Criança concentrada em atividade terapêutica - TDAH na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que é o TDAH?",
+        answer: "É um transtorno do neurodesenvolvimento que afeta a atenção, o controle dos impulsos e, em alguns casos, a agitação, com impacto na escola, em casa e nas relações."
+      },
+      {
+        question: "Quais são os primeiros sinais de TDAH na criança?",
+        answer: "Dificuldade de manter o foco, esquecimentos, perda de objetos, agitação e impulsividade acima do esperado para a idade, que aparecem em mais de um ambiente."
+      },
+      {
+        question: "TDAH é só falta de disciplina?",
+        answer: "Não. É uma condição neurobiológica. Cobrar mais disciplina sem entender a causa costuma aumentar a frustração da criança e da família."
+      },
+      {
+        question: "Como é feito o diagnóstico de TDAH?",
+        answer: "O diagnóstico é clínico e multidisciplinar: entrevista com a família, informações da escola, observação e avaliação neuropsicológica, que inclui testes de atenção e funções executivas."
+      },
+      {
+        question: "Toda criança agitada tem TDAH?",
+        answer: "Não. Agitação pode ter outras causas, como ansiedade, sono ruim, dificuldades de linguagem ou de audição. A avaliação ajuda a diferenciar."
+      },
+      {
+        question: "TDAH tem cura?",
+        answer: "É uma condição que acompanha a pessoa, mas com acompanhamento adequado a criança desenvolve estratégias, melhora o desempenho e a autoestima."
+      },
+      {
+        question: "Qual é o tratamento?",
+        answer: "Depende de cada criança. Pode envolver psicoterapia, orientação familiar, apoio na escola, terapias de apoio e, quando indicado pelo médico, medicação."
+      },
+      {
+        question: "A partir de que idade dá para avaliar?",
+        answer: "Os sinais podem aparecer cedo, mas a avaliação costuma ser mais clara a partir dos 5 a 6 anos, quando as demandas escolares aumentam."
+      },
+      {
+        question: "O que a escola pode fazer?",
+        answer: "Sentar a criança perto da professora, dividir tarefas em etapas, dar pausas e valorizar pontos fortes, em conversa constante com a família e a equipe."
+      }
+    ],
     content: (
       <>
-        <p>O Transtorno do Déficit de Atenção com Hiperatividade (TDAH) é uma das condições neurobiológicas mais comuns na infância, afetando a aprendizagem e o comportamento social.</p>
+        <p>
+          O Transtorno do Déficit de Atenção com Hiperatividade (TDAH) é uma das condições neurobiológicas mais comuns na
+          infância e afeta a aprendizagem, o comportamento e as relações sociais. Muitos pais convivem anos com a dúvida
+          entre "é só a idade" e "será que é TDAH?". Este guia ajuda a entender os sinais, o diagnóstico e o caminho do
+          tratamento.
+        </p>
 
-        <h2>Sinais de Desatentividade</h2>
+        <h2>O que é o TDAH</h2>
+        <p>
+          O TDAH é um transtorno do neurodesenvolvimento que envolve dificuldade de atenção, de controle dos impulsos e,
+          em alguns casos, agitação. Não é falta de educação, de limite ou de esforço. Existem três apresentações:
+          predominantemente desatenta, predominantemente hiperativa/impulsiva e combinada.
+        </p>
+
+        <h2>Sinais de desatenção</h2>
         <ul>
           <li>Dificuldade em manter o foco em tarefas ou brincadeiras</li>
           <li>Parece não ouvir quando se fala diretamente com ela</li>
           <li>Comete erros por descuido em tarefas escolares</li>
           <li>Perde objetos necessários para atividades</li>
+          <li>Começa tarefas e não termina, esquece compromissos e combinados</li>
         </ul>
 
-        <h2>Sinais de Hiperatividade e Impulsividade</h2>
+        <h2>Sinais de hiperatividade e impulsividade</h2>
         <ul>
           <li>Agitação de mãos ou pés ou se remexe na cadeira</li>
           <li>Dificuldade em brincar calmamente</li>
           <li>Fala excessivamente</li>
-          <li>Dificuldade em esperar sua vez</li>
+          <li>Dificuldade em esperar a vez e interrompe os outros</li>
         </ul>
 
-        <h2>Como a Clínica Fono Inova pode ajudar?</h2>
-        <p>Realizamos uma avaliação neuropsicológica e fonoaudiológica detalhada para traçar um plano de intervenção que ajude a criança a desenvolver estratégias de foco e regulação emocional.</p>
+        <h2>Quando é TDAH e quando não é</h2>
+        <p>
+          Agitação e distração fazem parte da infância. Para pensar em TDAH, os sinais precisam ser frequentes, aparecer em
+          mais de um ambiente (casa e escola, por exemplo), começar cedo e prejudicar de fato a rotina da criança. Outras
+          causas, como ansiedade, sono ruim, dificuldades de audição ou de linguagem e problemas de aprendizagem, podem dar
+          sinais parecidos e precisam ser descartadas.
+        </p>
+
+        <h2>Como é o diagnóstico</h2>
+        <p>
+          O diagnóstico é clínico e multidisciplinar. Envolve entrevista com a família, informações da escola, observação
+          da criança e <strong>avaliação neuropsicológica</strong>, com testes de atenção, memória e funções executivas.
+          Nenhum teste isolado "dá o diagnóstico": é o conjunto que orienta a conclusão.
+        </p>
+
+        <h2>Tratamento e acompanhamento</h2>
+        <ul>
+          <li><strong>Psicoterapia e orientação à família:</strong> estratégias para rotina, limites e regulação emocional</li>
+          <li><strong>Apoio na aprendizagem:</strong> psicopedagogia e adaptações em sala de aula</li>
+          <li><strong>Outras terapias:</strong> fonoaudiologia e terapia ocupacional quando há dificuldades associadas</li>
+          <li><strong>Acompanhamento médico:</strong> o neuropediatra ou psiquiatra avalia a necessidade de medicação</li>
+        </ul>
+
+        <h2>O que ajuda em casa</h2>
+        <ul>
+          <li>Rotina previsível, com horários para estudo, sono e tela</li>
+          <li>Instruções curtas, uma de cada vez, e combinados visuais</li>
+          <li>Pausas e atividade física regular</li>
+          <li>Elogio ao esforço e aos pontos fortes, não só aos erros</li>
+        </ul>
+
+        <h2>Como a Clínica Fono Inova pode ajudar</h2>
+        <p>
+          Realizamos avaliação neuropsicológica e fonoaudiológica detalhada para traçar um plano de intervenção que ajude a
+          criança a desenvolver estratégias de foco e regulação emocional, com a equipe atuando no mesmo espaço em Anápolis.
+        </p>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Suspeita de TDAH no seu filho?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/tdah-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça o atendimento para TDAH em Anápolis</a>
+        </div>
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
+            <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
+            <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
+            <li><a href="/tdah-anapolis" className="text-blue-600 hover:underline">→ TDAH em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1528,23 +1630,71 @@ export const articlesData = [
     id: 11,
     slug: "psicopedagogia-alem-das-dificuldades-escolares",
     title: "Psicopedagogia: Além das Dificuldades Escolares",
-    excerpt: "Entenda como a psicopedagogia clínica ajuda a criança a descobrir seu próprio estilo de aprendizagem e superar bloqueios cognitivos.",
+    excerpt: "Entenda como a psicopedagogia ajuda a criança a descobrir seu jeito de aprender: diferença para o reforço, indicações, como é o atendimento e o que a família pode fazer.",
     category: "Educação",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
-    authorRole: "Psicopedagoga",
+    authorRole: "Equipe Multidisciplinar",
     authorCredentials: "",
     date: "27 de Fevereiro, 2026",
     dateISO: "2026-02-27",
-    dateModifiedISO: "2026-02-27",
+    dateModifiedISO: "2026-10-08",
     image: "/images/artigo-psicopedagogia.png",
     imageAlt: "Atendimento psicopedagógico infantil na Clínica Fono Inova em Anápolis",
+    faq: [
+      {
+        question: "O que faz um psicopedagogo?",
+        answer: "Investiga como a criança aprende, identifica barreiras na aprendizagem e trabalha estratégias, atenção, memória e organização para que ela avance na escola."
+      },
+      {
+        question: "Psicopedagogia é a mesma coisa que reforço escolar?",
+        answer: "Não. O reforço trabalha o conteúdo da escola. A psicopedagogia trabalha o processo de aprender: como a criança pensa, organiza e lida com as tarefas."
+      },
+      {
+        question: "Quando procurar um psicopedagogo?",
+        answer: "Quando há baixo desempenho persistente, dificuldade para ler, escrever ou calcular, desorganização com materiais e prazos, ou recusa e angústia diante dos estudos."
+      },
+      {
+        question: "A psicopedagogia diagnostica dislexia ou TDAH?",
+        answer: "Ela contribui com a avaliação da aprendizagem, mas o diagnóstico de dislexia ou TDAH é multidisciplinar e pode incluir avaliação neuropsicológica."
+      },
+      {
+        question: "Como é uma sessão de psicopedagogia?",
+        answer: "Com atividades lúdicas e desafios adaptados à idade, a criança trabalha atenção, memória, raciocínio e organização, com foco no que ela sente e entende sobre aprender."
+      },
+      {
+        question: "Quanto tempo dura o acompanhamento?",
+        answer: "Depende da queixa e da evolução. Após a avaliação inicial, a psicopedagoga explica uma previsão e revisa o plano ao longo do processo."
+      },
+      {
+        question: "Os pais participam?",
+        answer: "Sim. A orientação à família é parte importante, para que as estratégias sejam usadas em casa e combinadas com a escola."
+      },
+      {
+        question: "A partir de que idade a psicopedagogia pode ajudar?",
+        answer: "Pode ajudar desde a pré-escola, com foco em prontidão para alfabetização, até a adolescência, com foco em organização e estudo."
+      }
+    ],
     content: (
       <>
-        <p>Muitas vezes, o desinteresse escolar esconde barreiras no processo de aprendizagem que a psicopedagogia é capaz de identificar e tratar.</p>
+        <p>
+          Muitas vezes, o desinteresse escolar esconde barreiras no processo de aprendizagem. A psicopedagogia é capaz de
+          identificar essas barreiras e trabalhar com a criança para que ela descubra o próprio jeito de aprender, e não
+          apenas para que "tire notas melhores".
+        </p>
 
-        <h2>O Papel do Psicopedagogo</h2>
-        <p>Diferente de uma aula de reforço, a psicopedagogia foca em <em>como</em> a criança aprende, trabalhando as funções executivas, a memória e a percepção.</p>
+        <h2>O papel do psicopedagogo</h2>
+        <p>
+          Diferente de uma aula de reforço, a psicopedagogia foca em <em>como</em> a criança aprende, trabalhando as
+          funções executivas, a memória, a atenção e a percepção. O objetivo é que ela entenda o que sente diante dos
+          estudos e ganhe ferramentas para lidar com as dificuldades.
+        </p>
+
+        <h2>Psicopedagogia e reforço escolar: qual a diferença</h2>
+        <ul>
+          <li><strong>Reforço escolar:</strong> revisa o conteúdo que a criança não entendeu</li>
+          <li><strong>Psicopedagogia:</strong> investiga por que ela não entendeu e desenvolve as habilidades que sustentam o aprendizado</li>
+        </ul>
 
         <h2>Indicações</h2>
         <ul>
@@ -1552,7 +1702,49 @@ export const articlesData = [
           <li>Dificuldade em ler, escrever ou calcular</li>
           <li>Falta de organização com materiais e prazos</li>
           <li>Bloqueios emocionais relacionados ao estudo</li>
+          <li>Dificuldade de atenção e de concentração nas tarefas</li>
+          <li>Desânimo, medo de errar ou recusa de ir à escola</li>
         </ul>
+
+        <h2>Como é o atendimento</h2>
+        <ol>
+          <li><strong>Entrevista com a família:</strong> histórico, rotina, escola e a queixa principal</li>
+          <li><strong>Avaliação psicopedagógica:</strong> atividades que mostram como a criança lê, escreve, calcula, organiza e resolve problemas</li>
+          <li><strong>Plano de intervenção:</strong> metas claras e atividades adequadas à idade</li>
+          <li><strong>Sessões e orientação:</strong> trabalho lúdico com a criança e retorno periódico para a família e a escola</li>
+        </ol>
+
+        <h2>Trabalho em equipe</h2>
+        <p>
+          Quando há suspeita de dislexia, TDAH ou outras condições, a psicopedagogia caminha junto com a fonoaudiologia, a
+          psicologia e a avaliação neuropsicológica. Na Clínica Fono Inova, os profissionais atuam no mesmo espaço e
+          alinham o plano com a família.
+        </p>
+
+        <h2>O que a família pode fazer</h2>
+        <ul>
+          <li>Crie uma rotina de estudo curta e constante, em local calmo</li>
+          <li>Ajude a dividir tarefas grandes em etapas pequenas</li>
+          <li>Valorize o esforço e os avanços, e não apenas a nota</li>
+          <li>Converse com a escola para combinar estratégias</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Seu filho estuda, mas não aprende como deveria?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a avaliação neuropsicológica</a>
+        </div>
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
+          <ul className="space-y-2">
+            <li><a href="/artigos/fonoaudiologia-para-dificuldade-escolar" className="text-blue-600 hover:underline">→ Fonoaudiologia para dificuldade escolar</a></li>
+            <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil</a></li>
+            <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
+            <li><a href="/psicopedagogia" className="text-blue-600 hover:underline">→ Psicopedagogia em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
