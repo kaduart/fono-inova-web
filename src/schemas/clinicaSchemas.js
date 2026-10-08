@@ -10,7 +10,7 @@ const ENDERECO_COMPLETO = {
     "streetAddress": "Av. Minas Gerais, 405 - Jundiaí",
     "addressLocality": "Anápolis",
     "addressRegion": "GO",
-    "postalCode": "75110-000",
+    "postalCode": "75110-770",
     "addressCountry": "BR"
 };
 
