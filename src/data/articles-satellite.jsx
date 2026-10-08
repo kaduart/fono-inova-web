@@ -5871,7 +5871,7 @@ export const satelliteArticles = [
     id: 165,
     slug: "teste-de-memoria-infantil",
     title: "Teste de Memória Infantil: Como Avalia a Memória da Criança",
-    excerpt: "Entenda como funciona o teste de memória infantil e como a avaliação neuropsicológica identifica dificuldades de aprendizagem.",
+    excerpt: "Veja como é feito o teste de memória infantil, quais tipos de memória são avaliados, quando investigar e o que os resultados mostram sobre a aprendizagem da criança.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Dra. Ana Santos",
@@ -5879,7 +5879,7 @@ export const satelliteArticles = [
     authorCredentials: "CRP 06/12345",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fono-inova-3.png",
     imageAlt: "Criança realizando teste de memória na Clínica Fono Inova em Anápolis",
     faq: [
@@ -5902,37 +5902,94 @@ export const satelliteArticles = [
       {
         question: "Como melhorar a memória da criança?",
         answer: "Com estratégias de estudo, rotinas, jogos de memória e, quando necessário, acompanhamento neuropsicológico."
+      },
+      {
+        question: "Em que idade a criança pode fazer o teste de memória?",
+        answer: "A memória pode ser avaliada em diferentes idades, com tarefas adaptadas ao desenvolvimento. O neuropsicólogo define quais instrumentos são adequados para cada criança."
+      },
+      {
+        question: "O teste de memória dói ou assusta a criança?",
+        answer: "Não. As tarefas são feitas em formato de jogos e atividades de repetir, lembrar e reconhecer informações, em ambiente acolhedor e com pausas quando necessário."
+      },
+      {
+        question: "Esquecimento é sempre sinal de problema de memória?",
+        answer: "Não. Cansaço, falta de atenção, ansiedade e sono ruim também causam esquecimentos. Por isso a avaliação analisa a memória junto com atenção, linguagem e emoções."
+      },
+      {
+        question: "Os pais recebem o resultado do teste?",
+        answer: "Sim. Ao final da avaliação os pais recebem uma devolutiva com os resultados e orientações práticas para casa e para a escola."
       }
     ],
     content: (
       <>
         <p>
-          A <strong>memória</strong> é fundamental para a aprendizagem. O <strong>teste de memória infantil</strong> avalia 
-          como a criança registra, armazena e recupera informações.
+          A <strong>memória</strong> é a base da aprendizagem: é ela que permite à criança guardar o que a professora explicou,
+          seguir uma sequência de instruções e lembrar o que estudou na véspera. O <strong>teste de memória infantil</strong> faz
+          parte da avaliação neuropsicológica e mostra como a criança registra, armazena e recupera informações.
+        </p>
+        <p>
+          Importante: não existe um único "teste de memória". A memória é analisada com várias tarefas, escolhidas pelo
+          neuropsicólogo de acordo com a idade e a queixa da família.
         </p>
 
         <h2>Tipos de memória avaliados</h2>
         <ul>
-          <li><strong>Memória auditiva:</strong> lembrar o que ouviu</li>
-          <li><strong>Memória visual:</strong> lembrar o que viu</li>
-          <li><strong>Memória de trabalho:</strong> manter e manipular informações mentalmente</li>
+          <li><strong>Memória auditiva:</strong> lembrar o que ouviu, como uma lista de palavras ou uma sequência de números</li>
+          <li><strong>Memória visual:</strong> lembrar o que viu, como figuras, formas e posições</li>
+          <li><strong>Memória de trabalho:</strong> manter e manipular informações na mente por alguns instantes, como fazer uma conta de cabeça</li>
           <li><strong>Memória de curto prazo:</strong> lembrar informações recentes</li>
-          <li><strong>Memória de longo prazo:</strong> recordar informações aprendidas há mais tempo</li>
+          <li><strong>Memória de longo prazo:</strong> recordar o que foi aprendido há mais tempo</li>
         </ul>
+
+        <h2>Como o teste de memória é feito</h2>
+        <p>
+          Na prática, a criança participa de atividades em formato de jogo. Em geral ela ouve ou vê uma informação e depois
+          precisa repetir, evocar após um intervalo ou reconhecer entre várias opções. São usados instrumentos padronizados,
+          que comparam o desempenho da criança com o esperado para a sua idade, e o profissional também observa como ela
+          se organiza, se cansa ou se frustra durante as tarefas.
+        </p>
+        <p>
+          A memória nunca é analisada sozinha. Atenção, linguagem, ansiedade e sono influenciam o resultado, e por isso o
+          teste costuma fazer parte de uma avaliação mais ampla.
+        </p>
 
         <h2>Sinais de dificuldade de memória</h2>
         <ul>
           <li>Esquece instruções logo após recebê-las</li>
-          <li>Tem dificuldade para memorizar conteúdos escolares</li>
+          <li>Tem dificuldade para memorizar conteúdos escolares, como tabuada ou datas</li>
           <li>Precisa que repitam as informações várias vezes</li>
-          <li>Confunde sequências e orientações</li>
+          <li>Confunde sequências e orientações com vários passos</li>
+          <li>Perde o fio da conversa ou da leitura com facilidade</li>
         </ul>
+        <p>
+          Esquecer de vez em quando é normal. Vale procurar avaliação quando esses sinais aparecem com frequência,
+          atrapalham o desempenho escolar ou a rotina em casa.
+        </p>
 
         <h2>Relação com a escola</h2>
         <p>
-          Crianças com dificuldade de memória de trabalho podem ter problemas para resolver cálculos mentais, 
-          compreender leitura e seguir instruções complexas. A avaliação neuropsicológica identifica essas dificuldades.
+          Crianças com dificuldade de memória de trabalho podem ter problemas para resolver cálculos mentais,
+          compreender textos longos e seguir instruções complexas. Muitas vezes são vistas como "desatentas" ou
+          "preguiçosas", quando na verdade precisam de estratégias diferentes para aprender. A avaliação neuropsicológica
+          identifica essas dificuldades e orienta a família e a escola.
         </p>
+
+        <h2>O que acontece depois da avaliação</h2>
+        <p>
+          Os pais recebem uma devolutiva com os resultados e orientações práticas. Dependendo do caso, o profissional pode
+          indicar estratégias de estudo, adaptações na escola ou acompanhamento especializado. O teste de memória, sozinho,
+          não fecha diagnóstico: ele ajuda a entender o perfil da criança dentro do conjunto da avaliação.
+        </p>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Quer entender como está a memória do seu filho?</h3>
+          <p className="mb-3">
+            A Clínica Fono Inova realiza avaliação neuropsicológica infantil em Anápolis, com devolutiva clara para a família.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="font-semibold text-green-700 hover:underline">
+            Conheça a avaliação neuropsicológica em Anápolis →
+          </a>
+        </div>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
@@ -5940,7 +5997,8 @@ export const satelliteArticles = [
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Como funciona a avaliação neuropsicológica?</a></li>
-            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+            <li><a href="/artigos/avaliacao-das-funcoes-executivas" className="text-blue-600 hover:underline">→ Avaliação das funções executivas na infância</a></li>
+            <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
           </ul>
         </div>
       </>
