@@ -8,6 +8,7 @@
     "prebuild": "node scripts/generate-valid-paths.js",
     "build": "vite build",
     "postbuild": "node scripts/prerender.mjs",
+    "sitemap:lastmod": "node scripts/update-sitemap-lastmod.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

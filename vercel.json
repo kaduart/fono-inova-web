@@ -133,7 +133,7 @@
     { "source": "/convenio-bradesco-anapolis", "destination": "/convenio-bradesco-saude-anapolis", "permanent": true }
   ],
   "headers": [
-    { "source": "/_shell.html", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }, { "key": "X-Shell-File", "value": "1" }] },
+    { "source": "/_shell.html", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
     { "source": "/obrigado", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
     { "source": "/obrigado/(.*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
   ]

@@ -7,17 +7,16 @@ function Analisa($p, $ua = "Googlebot") {
   $status = [regex]::Match($cab, 'HTTP/\S+\s+(\d+)').Groups[1].Value
   $xr = [regex]::Match($cab, '(?im)^x-robots-tag:\s*(.+)$').Groups[1].Value.Trim()
   if (-not $xr) { $xr = "-" }
-  $sf = if ($cab -match '(?im)^x-shell-file:') { "SIM" } else { "nao" }
   $h1 = ([regex]::Matches($html, '(?is)<h1\b')).Count
   $can = [regex]::Match($html, '(?is)<link\b[^>]*rel="canonical"[^>]*href="([^"]*)"').Groups[1].Value
   if (-not $can) { $can = "-" }
   $metaNoindex = if ($html -match '(?is)<meta\b[^>]*name="robots"[^>]*noindex') { "SIM" } else { "nao" }
-  "{0,-26} {1,-11} http={2} bytes={3,7} h1={4} canonical={5} meta-noindex={6} x-robots={7} x-shell-file={8}" -f $p, $ua, $status, $html.Length, $h1, $can, $metaNoindex, $xr, $sf
+  "{0,-26} {1,-11} http={2} bytes={3,7} h1={4} canonical={5} meta-noindex={6} x-robots={7}" -f $p, $ua, $status, $html.Length, $h1, $can, $metaNoindex, $xr
 }
 Write-Host "--- pre-renderizadas (esperado: html completo, canonical proprio, sem noindex)"
 foreach ($p in "/","/fonoaudiologia-anapolis","/autismo-anapolis") { Analisa $p "Googlebot"; Analisa $p "Mozilla/5.0" }
-Write-Host "--- shell (esperado: ~3600 bytes, sem canonical, sem noindex nem na meta nem no header)"
-foreach ($p in "/dislexia-anapolis","/artigos") { Analisa $p }
+Write-Host "--- pagina valida fora do prerender (esperado: shell ~3600 bytes, sem canonical, sem noindex)"
+foreach ($p in "/lp/gagueira-infantil") { Analisa $p }
 Write-Host "--- /_shell.html direto (esperado: x-robots=noindex)"
 Analisa "/_shell.html"
 Write-Host "--- inexistente (esperado: http=404, x-robots=noindex)"
