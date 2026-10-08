@@ -1870,7 +1870,7 @@ export const satelliteArticles = [
     id: 204,
     slug: "crianca-nao-responde-nome",
     title: "Criança Não Responde Quando Chamada pelo Nome: O Que Pode Ser?",
-    excerpt: "Entenda as possíveis causas de a criança não responder ao ser chamada pelo nome, o que é esperado por idade e quando buscar avaliação.",
+    excerpt: "Entenda por que a criança pode não responder ao nome, o que é esperado em cada idade, os sinais que merecem atenção, como é a avaliação e o que fazer em casa.",
     category: "Neuropediatria",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
@@ -1878,58 +1878,114 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "14 de Setembro, 2026",
     dateISO: "2026-09-14",
-    dateModifiedISO: "2026-09-14",
+    dateModifiedISO: "2026-10-08",
     image: "/images/tea/ava-neuropsico.jpeg",
     imageAlt: "Avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
         question: "Por que meu filho não responde quando eu chamo pelo nome?",
-        answer: "Pode ser falta de atenção pontual, mas quando é frequente pode estar ligado a questões auditivas, de linguagem ou do espectro autista — vale avaliar."
+        answer: "Pode ser atenção muito focada em uma brincadeira, mas quando acontece com frequência e em qualquer situação vale investigar audição, linguagem e desenvolvimento social."
       },
       {
         question: "Não responder ao nome é sinal de autismo?",
-        answer: "É um dos sinais precoces mais observados, mas isoladamente não fecha diagnóstico. A avaliação multidisciplinar considera o conjunto de sinais."
+        answer: "É um dos sinais precoces mais observados, mas sozinho não fecha diagnóstico. A avaliação considera o conjunto: contato visual, gestos, brincadeiras e comunicação."
       },
       {
-        question: "Com que idade a criança deve responder quando chamada?",
-        answer: "Por volta dos 9 a 12 meses, a maioria dos bebês já vira a cabeça ou reage de alguma forma ao ouvir o próprio nome."
+        question: "Com que idade a criança deve responder ao próprio nome?",
+        answer: "Entre 9 e 12 meses, a maioria dos bebês já vira a cabeça ou reage ao ouvir o nome. Se aos 12 meses isso quase não acontece, vale conversar com o pediatra."
       },
       {
         question: "Pode ser problema de audição?",
-        answer: "Sim, é uma das primeiras causas a descartar. Um teste auditivo simples já ajuda a esclarecer se a criança está ouvindo bem."
+        answer: "Sim, é a primeira causa a descartar. Uma avaliação auditiva com o fonoaudiólogo ou otorrino mostra se a criança está ouvindo bem."
       },
       {
-        question: "O que fazer se meu filho não responde ao nome?",
-        answer: "Observe outros sinais (contato visual, gestos, brincadeiras) e procure uma avaliação com neuropediatra ou neuropsicólogo para orientação."
+        question: "Meu filho responde só às vezes. Devo me preocupar?",
+        answer: "Responder em alguns momentos e não em outros é comum, principalmente quando ele está absorvido em algo. O que pesa é a frequência e a presença de outros sinais."
+      },
+      {
+        question: "Quem avalia: fonoaudiólogo, neuropediatra ou psicólogo?",
+        answer: "Cada um enxerga uma parte. Na Clínica Fono Inova o caminho costuma ser a avaliação multidisciplinar, com os profissionais conversando entre si e devolvendo um plano único para a família."
+      },
+      {
+        question: "O que posso fazer em casa enquanto aguardo a avaliação?",
+        answer: "Chame pelo nome em situações calmas, a curta distância e com o rosto na altura dos olhos dele, e anote quando ele responde e quando não. Esse registro ajuda muito os profissionais."
       }
     ],
     content: (
       <>
         <p>
-          Chamar o filho pelo nome e não receber resposta — nem um olhar, nem um vira-se — é algo que costuma acender um
-          alerta nos pais. Na maioria das vezes tem explicação simples, mas vale entender o que observar.
+          Chamar o filho pelo nome e não receber resposta, nem um olhar, nem um virar de cabeça, acende o alerta de muitos
+          pais. Na maioria das vezes há uma explicação simples, mas esse comportamento também pode ser um dos primeiros
+          sinais que merecem atenção. Aqui você entende o que é esperado em cada idade, as causas mais comuns e quando
+          buscar uma avaliação em Anápolis.
         </p>
 
         <h2>O que é esperado por idade</h2>
+        <ul>
+          <li><strong>0 a 6 meses:</strong> o bebê reage a sons e à voz dos pais, acalmando-se ou procurando a origem do som.</li>
+          <li><strong>6 a 9 meses:</strong> começa a reconhecer a própria voz e a de quem cuida dele, e o nome ganha significado aos poucos.</li>
+          <li><strong>9 a 12 meses:</strong> a maioria já vira a cabeça, para o que está fazendo ou procura quem chamou. É um marco importante de atenção compartilhada.</li>
+          <li><strong>1 a 2 anos:</strong> responde ao nome com mais consistência, inclusive com palavras ou gestos.</li>
+        </ul>
         <p>
-          Por volta dos <strong>9 a 12 meses</strong>, a maioria dos bebês já reage ao próprio nome — vira a cabeça, para o
-          que está fazendo ou procura quem chamou. É um marco importante de atenção compartilhada.
+          Cada criança tem seu ritmo. O que importa é o padrão: responder quase nunca, ou só quando o chamado vem
+          acompanhado de gesto ou toque, merece ser observado.
         </p>
 
         <h2>Possíveis causas</h2>
         <ul>
-          <li><strong>Audição:</strong> a primeira causa a descartar, com um teste auditivo simples</li>
-          <li><strong>Atenção pontual:</strong> criança muito concentrada em uma atividade pode simplesmente não notar</li>
-          <li><strong>Atraso de linguagem:</strong> dificuldade para processar e reconhecer a própria referência verbal</li>
-          <li><strong>Sinais do espectro autista (TEA):</strong> quando associado a outros sinais, como pouco contato visual e interesses restritos</li>
+          <li><strong>Audição:</strong> a primeira causa a descartar, com uma avaliação auditiva simples.</li>
+          <li><strong>Atenção muito focada:</strong> criança concentrada em um brinquedo, em uma tela ou em uma rotina pode não notar o chamado.</li>
+          <li><strong>Atraso de linguagem:</strong> dificuldade para compreender e reconhecer a própria referência verbal.</li>
+          <li><strong>Transtorno do espectro autista (TEA):</strong> quando vem junto com pouco contato visual, poucos gestos, pouca imitação e interesses muito restritos.</li>
+          <li><strong>Fatores do ambiente:</strong> muito barulho, muitas telas e pouca interação face a face podem reduzir a resposta.</li>
+        </ul>
+
+        <h2>Sinais que merecem atenção junto com o não responder</h2>
+        <ul>
+          <li>Pouco contato visual ou olhar que "passa direto"</li>
+          <li>Não aponta nem mostra objetos para compartilhar o interesse</li>
+          <li>Não imita gestos, sons ou brincadeiras simples</li>
+          <li>Pouca ou nenhuma tentativa de comunicação (balbucio, palavras, gestos)</li>
+          <li>Brinca de forma repetitiva ou prefere ficar sozinho na maior parte do tempo</li>
+          <li>Reage de forma intensa a sons, texturas ou mudanças de rotina</li>
+        </ul>
+        <p>
+          Um sinal isolado não define nada. O conjunto, a frequência e a idade da criança é que orientam o próximo passo.
+        </p>
+
+        <h2>Como é a avaliação</h2>
+        <p>
+          O primeiro passo costuma ser descartar a questão auditiva. Em seguida, os profissionais observam como a
+          criança se comunica, brinca e interage, e conversam com a família sobre a rotina e o histórico de
+          desenvolvimento. Dependendo do caso, participam <strong>fonoaudiólogo, neuropediatra, psicólogo e terapeuta
+          ocupacional</strong>. Na Clínica Fono Inova, esse trabalho acontece no mesmo espaço, e a família recebe uma
+          devolutiva única com os próximos passos.
+        </p>
+
+        <h2>O que fazer em casa enquanto isso</h2>
+        <ul>
+          <li>Chame pelo nome em momentos calmos, a curta distância e na altura dos olhos da criança.</li>
+          <li>Reduza o barulho de fundo e as telas durante as brincadeiras de interação.</li>
+          <li>Anote quando ela responde e quando não, e se algo muda com o contexto. Esse registro ajuda muito na avaliação.</li>
+          <li>Se possível, grave um vídeo curto do comportamento para mostrar ao profissional.</li>
         </ul>
 
         <h2>Quando buscar avaliação</h2>
         <p>
-          Se o padrão se repete com frequência, independentemente da atividade, e vem acompanhado de outros sinais —
-          pouco contato visual, poucos gestos, atraso na fala — o ideal é buscar uma <strong>avaliação multidisciplinar</strong>.
-          Quanto antes a família entende o que está acontecendo, antes a criança recebe o suporte certo.
+          Procure ajuda quando a criança quase não responde ao nome depois de 12 meses, quando isso vem com outros
+          sinais de comunicação ou quando você sente que algo não está certo. Quanto antes a família entende o que está
+          acontecendo, antes a criança recebe o apoio certo, e na primeira infância esse tempo faz diferença.
         </p>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Quer entender o que está acontecendo com seu filho?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, faz uma avaliação cuidadosa e explica os resultados de forma
+            clara para a família.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a avaliação multidisciplinar</a>
+        </div>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
@@ -1937,6 +1993,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
             <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/bebe-nao-fala" className="text-blue-600 hover:underline">→ Bebê não fala: quando se preocupar</a></li>
             <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Suporte para autismo em Anápolis</a></li>
           </ul>
         </div>
@@ -4284,7 +4341,7 @@ export const satelliteArticles = [
     id: 147,
     slug: "troca-de-letras-quando-preocupar",
     title: "Troca de Letras na Criança: Quando Preocupar",
-    excerpt: "Saiba quando a troca de letras é normal no desenvolvimento da fala e quando pode indicar necessidade de fonoaudiologia infantil.",
+    excerpt: "Saiba quando a troca de letras é normal, quais são as mais comuns por idade, os sinais de que vale avaliar e como a fonoaudiologia infantil trata.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
@@ -4292,58 +4349,100 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Criança com troca de letras em sessão de fonoaudiologia na Clínica Fono Inova em Anápolis",
     faq: [
       {
-        question: "Troca de letras na criança é normal?",
-        answer: "Até certa idade, sim. Muitas trocas fazem parte do desenvolvimento, mas devem desaparecer conforme a criança cresce."
+        question: "Troca de letras é normal em que idade?",
+        answer: "Até cerca de 4 a 5 anos, algumas trocas fazem parte do desenvolvimento, principalmente em sons mais difíceis como R, L e S. Depois dessa fase, a persistência merece avaliação."
       },
       {
-        question: "Até que idade a troca de letras é normal?",
-        answer: "Algumas trocas são esperadas até os 4 anos. Se persistirem após essa idade, é indicado avaliar com fonoaudiólogo."
+        question: "Quais são as trocas de letras mais comuns?",
+        answer: "As mais frequentes envolvem R e L (\"prato\" virando \"plato\"), S e Z, e sons como CH e J. Elas surgem em ordens diferentes de uma criança para outra."
       },
       {
-        question: "Quando preocupar com troca de letras?",
-        answer: "Quando a troca é persistente, prejudica a compreensão, causa frustração ou afeta a aprendizagem escolar."
+        question: "Corrigir a criança na hora ajuda?",
+        answer: "Corrigir de forma insistente costuma gerar frustração. É melhor repetir a palavra corretamente, em tom natural, sem exigir que ela repita."
       },
       {
-        question: "Troca de letras tem tratamento?",
-        answer: "Sim. A fonoaudiologia trabalha a percepção auditiva, a articulação dos sons e a consciência fonológica."
+        question: "Troca de letras atrapalha a alfabetização?",
+        answer: "Pode atrapalhar, porque a criança tende a escrever como fala. Por isso a avaliação fonoaudiológica antes ou durante a alfabetização é recomendada quando a troca persiste."
       },
       {
-        question: "Como ajudar criança que troca letras?",
-        answer: "Repita as palavras corretamente sem corrigir de forma negativa, leia bastante e procure um fonoaudiólogo se persistir."
+        question: "Quanto tempo dura o tratamento fonoaudiológico?",
+        answer: "Depende dos sons envolvidos, da idade e da frequência das sessões. A fonoaudióloga explica uma previsão após a avaliação e ajusta ao longo do processo."
+      },
+      {
+        question: "A troca de letras pode estar ligada a problema de audição?",
+        answer: "Pode. Se a criança não ouve bem, ela não reproduz bem os sons. Por isso a avaliação inclui observar a audição quando há suspeita."
+      },
+      {
+        question: "Preciso de encaminhamento para a avaliação?",
+        answer: "Não é preciso. Os pais podem agendar diretamente uma avaliação fonoaudiológica com a clínica."
       }
     ],
     content: (
       <>
         <p>
-          A <strong>troca de letras</strong> é comum no desenvolvimento da fala. Muitas crianças falam "coelho" como "toelho" ou 
-          "cachorro" como "tachorro". O importante é saber quando isso faz parte da fase e quando merece atenção.
+          Falar "plato" em vez de "prato" ou "cavalo" como "cavayo" é comum na infância e, muitas vezes, passa sozinho. Mas
+          quando a troca de letras continua depois de certa idade, ela pode dificultar a compreensão da fala e, mais tarde, a
+          escrita. Entenda o que é esperado e quando procurar a fonoaudiologia.
         </p>
 
-        <h2>Trocas normais por idade</h2>
-        <ul>
-          <li><strong>2 a 3 anos:</strong> trocas frequentes de sons mais difíceis, como R, L, S e CH</li>
-          <li><strong>4 anos:</strong> a fala deve ser compreensível para a maioria das pessoas</li>
-          <li><strong>5 anos:</strong> a maioria dos sons já deve estar estabilizada</li>
-        </ul>
-
-        <h2>Quando avaliar?</h2>
-        <ul>
-          <li>Troca persistente após os 4 anos</li>
-          <li>Dificuldade para ser compreendida por desconhecidos</li>
-          <li>Frustração da criança ao se comunicar</li>
-          <li>Prejuízo na alfabetização</li>
-        </ul>
-
-        <h2>Como a fonoaudiologia trata?</h2>
+        <h2>Por que a criança troca letras?</h2>
         <p>
-          O fonoaudiólogo avalia quais sons a criança já domina e trabalha a produção correta por meio de jogos e exercícios específicos. 
-          O tratamento é lúdico e adaptado à idade.
+          A fala se desenvolve em etapas. Alguns sons exigem mais coordenação da língua, dos lábios e da respiração, e a
+          criança leva tempo para dominá-los. Enquanto isso, ela simplifica: troca um som difícil por outro mais fácil.
         </p>
+
+        <h2>Trocas mais comuns</h2>
+        <ul>
+          <li><strong>R e L:</strong> "prato" vira "plato", "porta" vira "pota"</li>
+          <li><strong>S e Z, CH e J:</strong> sons que usam o ar de forma parecida e costumam se confundir</li>
+          <li><strong>Omissão de sons:</strong> "bola" vira "boa", "caderno" vira "cadenu"</li>
+          <li><strong>Troca de sílabas:</strong> "chiclete" vira "ticlete"</li>
+        </ul>
+
+        <h2>O que é esperado por idade</h2>
+        <ul>
+          <li><strong>2 a 3 anos:</strong> troca e omissão de sons são frequentes, e a fala ainda pode ser difícil para quem não convive com a criança</li>
+          <li><strong>3 a 4 anos:</strong> a fala deve ser compreendida pela maioria das pessoas, mesmo com algumas trocas</li>
+          <li><strong>5 anos:</strong> a maioria dos sons já deve estar estabilizada</li>
+          <li><strong>A partir dos 6 anos:</strong> trocas que continuam merecem atenção, principalmente na fase de alfabetização</li>
+        </ul>
+
+        <h2>Sinais de que vale avaliar</h2>
+        <ul>
+          <li>Troca persistente depois dos 4 anos</li>
+          <li>Dificuldade para ser compreendida por pessoas fora da família</li>
+          <li>Frustração, vergonha ou irritação ao falar</li>
+          <li>Erros de escrita que acompanham as trocas da fala</li>
+          <li>Histórico de dificuldades de audição, de mamar ou de mastigar</li>
+        </ul>
+
+        <h2>Como a fonoaudiologia trata</h2>
+        <p>
+          A fonoaudióloga avalia quais sons a criança já produz, quais ainda não e por quê, observando também a
+          mobilidade dos órgãos da fala e a percepção auditiva. A terapia usa jogos, histórias e exercícios adaptados à
+          idade, e a família recebe orientações para praticar em casa.
+        </p>
+
+        <h2>O que os pais podem fazer em casa</h2>
+        <ul>
+          <li>Repita a palavra corretamente, em tom natural, sem pedir que a criança repita</li>
+          <li>Evite imitar a fala trocada, mesmo que pareça fofa</li>
+          <li>Converse, leia e cante com a criança todos os dias</li>
+          <li>Dê tempo para ela terminar de falar, sem interromper</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Seu filho troca letras e você quer entender se é normal?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/fonoaudiologia-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a fonoaudiologia infantil na clínica</a>
+        </div>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
@@ -4363,7 +4462,7 @@ export const satelliteArticles = [
     id: 203,
     slug: "sinais-dislexia-infantil",
     title: "Sinais de Dislexia Infantil: Como Identificar Cedo",
-    excerpt: "Conheça os principais sinais de dislexia infantil, a diferença entre dificuldade pontual e dislexia, e como é feito o diagnóstico.",
+    excerpt: "Conheça os sinais de dislexia por fase, a diferença entre dificuldade pontual e dislexia, como é o diagnóstico e o que ajuda no tratamento.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
@@ -4371,60 +4470,117 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "14 de Setembro, 2026",
     dateISO: "2026-09-14",
-    dateModifiedISO: "2026-09-14",
+    dateModifiedISO: "2026-10-08",
     image: "/images/psicopedagoga/psicopedagoga.jpeg",
     imageAlt: "Criança em avaliação de dificuldades de leitura na Clínica Fono Inova em Anápolis",
     faq: [
       {
-        question: "Quais são os principais sinais de dislexia infantil?",
-        answer: "Troca de letras persistente após os 7-8 anos, dificuldade para associar letra e som, leitura lenta e com esforço, e confusão entre letras parecidas como 'b' e 'd'."
+        question: "Com que idade dá para identificar dislexia?",
+        answer: "Alguns sinais aparecem antes da alfabetização, como dificuldade com rimas e sons. O diagnóstico costuma ser feito quando a criança já está em processo de leitura e escrita, por volta dos 6 a 7 anos."
       },
       {
-        question: "Com que idade a dislexia pode ser identificada?",
-        answer: "Sinais consistentes costumam aparecer a partir da alfabetização, entre 6 e 8 anos, quando a exigência de leitura e escrita aumenta."
+        question: "Trocar letras ao escrever é sinal de dislexia?",
+        answer: "Trocar letras é comum quando a criança está aprendendo. A dislexia é considerada quando as dificuldades persistem mesmo com ensino adequado e prática."
       },
       {
-        question: "Dislexia tem cura?",
-        answer: "Não é uma doença, então não há 'cura', mas com intervenção adequada a criança desenvolve estratégias e lê com muito mais autonomia e confiança."
+        question: "Dislexia tem a ver com inteligência?",
+        answer: "Não. Crianças com dislexia têm inteligência dentro do esperado ou acima. A dificuldade está no processamento da leitura e da escrita."
       },
       {
-        question: "Só um neuropsicólogo diagnostica dislexia?",
-        answer: "O diagnóstico é feito por avaliação neuropsicológica, geralmente com apoio de fonoaudiólogo e psicopedagogo para montar o plano de intervenção."
+        question: "A dislexia tem cura?",
+        answer: "Não é uma doença que se cura, mas é possível desenvolver estratégias e habilidades com acompanhamento adequado, melhorando muito o desempenho e a autoestima."
       },
       {
-        question: "Trocar letras significa que a criança tem dislexia?",
-        answer: "Não necessariamente — muitas trocas fazem parte do desenvolvimento normal. É a persistência e o impacto na leitura que indicam a necessidade de avaliação."
+        question: "Quem diagnostica a dislexia?",
+        answer: "O diagnóstico é feito por avaliação multidisciplinar, em geral com neuropsicólogo, fonoaudiólogo e psicopedagogo, considerando leitura, escrita, memória e processamento fonológico."
+      },
+      {
+        question: "Dislexia e TDAH são a mesma coisa?",
+        answer: "Não, mas podem aparecer juntos. Por isso a avaliação investiga atenção e aprendizagem para identificar o que explica as dificuldades da criança."
+      },
+      {
+        question: "O que a escola pode fazer?",
+        answer: "Adaptar atividades e provas, dar mais tempo, valorizar o oral e trabalhar de forma próxima com a família e a equipe terapêutica."
+      },
+      {
+        question: "Meu filho lê mas não entende o que lê. É dislexia?",
+        answer: "Pode haver outras causas, como dificuldade de compreensão, atenção ou linguagem. A avaliação ajuda a descobrir de onde vem a dificuldade."
       }
     ],
     content: (
       <>
         <p>
-          Perceber que um filho troca letras, lê devagar ou evita livros pode gerar dúvida: é só uma fase, ou pode ser{" "}
-          <strong>dislexia</strong>? Entender os sinais reais ajuda a família a agir na hora certa, sem alarme e sem demora.
+          Quando a criança estuda, se esforça e mesmo assim lê devagar, troca letras e evita ler em voz alta, muitos pais
+          se perguntam se pode ser dislexia. Identificar cedo evita que a criança carregue rótulos injustos, como
+          "preguiçosa" ou "desatenta", e abre caminho para o apoio certo.
         </p>
 
-        <h2>Sinais que merecem atenção</h2>
+        <h2>O que é dislexia</h2>
+        <p>
+          A dislexia é uma dificuldade específica de aprendizagem que afeta a leitura e a escrita. Ela tem relação com o
+          processamento dos sons da fala (consciência fonológica) e não com falta de inteligência, de interesse ou de
+          esforço.
+        </p>
+
+        <h2>Sinais por fase</h2>
+        <h3>Na pré-escola</h3>
         <ul>
-          <li>Troca de letras parecidas (b/d, p/q) que persiste depois dos 7-8 anos</li>
-          <li>Dificuldade para juntar letras e formar o som das palavras</li>
-          <li>Leitura lenta, com esforço visível e perda de linha com frequência</li>
-          <li>Escrita com muitos erros de ortografia, mesmo em palavras já estudadas</li>
-          <li>Evita ler em voz alta ou ler por prazer</li>
+          <li>Dificuldade com rimas e brincadeiras com sons</li>
+          <li>Demora para aprender as letras e os nomes de cores ou dias da semana</li>
+          <li>Histórico de atraso de fala ou troca de sons por mais tempo</li>
+        </ul>
+        <h3>No início da alfabetização</h3>
+        <ul>
+          <li>Confunde letras parecidas (b/d, p/q) e sons parecidos</li>
+          <li>Lê muito devagar, soletrando ou adivinhando palavras</li>
+          <li>Escreve com muitos erros, mesmo em palavras simples e já estudadas</li>
+          <li>Evita ler em voz alta e fica ansiosa com tarefas de leitura</li>
+        </ul>
+        <h3>Nas séries seguintes</h3>
+        <ul>
+          <li>Dificuldade para organizar textos e seguir instruções escritas</li>
+          <li>Cansaço e desânimo com a lição de casa</li>
+          <li>Nota baixa que não condiz com o que a criança fala e demonstra saber</li>
+          <li>Queda de autoestima e resistência para ir à escola</li>
         </ul>
 
         <h2>Diferença entre dificuldade pontual e dislexia</h2>
         <p>
-          Toda criança erra enquanto aprende a ler — isso é esperado. O que diferencia a dislexia é a{" "}
+          Toda criança erra enquanto aprende a ler, e isso é esperado. O que diferencia a dislexia é a{" "}
           <strong>persistência</strong> desses sinais mesmo com prática e apoio adequados, e o quanto eles atrapalham o
-          desempenho escolar e a autoestima da criança.
+          desempenho escolar e a autoestima.
         </p>
 
         <h2>Como é feito o diagnóstico</h2>
         <p>
           O diagnóstico é feito por meio de <strong>avaliação neuropsicológica</strong>, que investiga leitura, escrita,
-          memória e processamento fonológico. A partir do resultado, fonoaudiólogo e psicopedagogo montam juntos o plano de
-          intervenção mais adequado para o seu filho.
+          memória, atenção e processamento fonológico. A partir do resultado, fonoaudiólogo e psicopedagogo montam juntos
+          o plano de intervenção mais adequado, e a escola recebe orientações para apoiar a criança.
         </p>
+
+        <h2>O que ajuda no tratamento</h2>
+        <ul>
+          <li><strong>Fonoaudiologia:</strong> trabalha a consciência fonológica, a leitura e a escrita</li>
+          <li><strong>Psicopedagogia:</strong> desenvolve estratégias de estudo e organização</li>
+          <li><strong>Apoio emocional:</strong> fortalece a autoestima e a relação da criança com a aprendizagem</li>
+          <li><strong>Parceria com a escola:</strong> adaptação de atividades, tempo e formas de avaliação</li>
+        </ul>
+
+        <h2>O que a família pode fazer</h2>
+        <ul>
+          <li>Leia com a criança todos os dias, em momentos curtos e sem cobrança</li>
+          <li>Valorize o esforço e os pontos fortes, como criatividade e raciocínio</li>
+          <li>Converse com a escola e peça adaptações quando necessário</li>
+          <li>Procure avaliação sem esperar a criança "ficar para trás"</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Suspeita de dislexia? Entenda o que está por trás da dificuldade.</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a avaliação neuropsicológica</a>
+        </div>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
@@ -4432,6 +4588,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras na criança: quando preocupar</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/artigos/psicopedagogia-alem-das-dificuldades-escolares" className="text-blue-600 hover:underline">→ Psicopedagogia além das dificuldades escolares</a></li>
+            <li><a href="/dislexia-anapolis" className="text-blue-600 hover:underline">→ Dislexia em Anápolis</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
           </ul>
         </div>
@@ -5536,7 +5693,7 @@ export const satelliteArticles = [
     id: 161,
     slug: "quanto-tempo-dura-avaliacao-neuropsicologica",
     title: "Quanto Tempo Dura a Avaliação Neuropsicológica Infantil?",
-    excerpt: "Saiba quanto tempo dura a avaliação neuropsicológica infantil, quantas sessões são necessárias e como funciona o processo.",
+    excerpt: "Saiba quanto tempo dura a avaliação neuropsicológica infantil, quantas sessões são necessárias, como é o passo a passo, quando o laudo fica pronto e como preparar a criança.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
@@ -5544,7 +5701,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fono-inova-2.png",
     imageAlt: "Calendário de sessões de avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis",
     faq: [
@@ -5566,36 +5723,88 @@ export const satelliteArticles = [
       },
       {
         question: "Como preparar a criança para a avaliação?",
-        answer: "Explique que será um momento de brincadeiras e atividades, garanta sono e alimentação adequados e evite horários de sono."
+        answer: "Explique que será um momento de brincadeiras e atividades, garanta sono e alimentação adequados e evite marcar em horários em que ela costuma dormir."
+      },
+      {
+        question: "Os pais participam das sessões?",
+        answer: "Os pais participam da entrevista inicial e da devolutiva. Durante a aplicação dos testes, a criança costuma ficar a sós com a profissional para manter a concentração."
+      },
+      {
+        question: "O que levar no primeiro dia?",
+        answer: "Relatórios escolares, laudos e exames anteriores, lista de medicamentos em uso e, se houver, o motivo da escola ou do médico para pedir a avaliação."
+      },
+      {
+        question: "A avaliação serve para quais queixas?",
+        answer: "Dificuldades de atenção e aprendizagem, suspeita de TDAH, dislexia, TEA, altas habilidades e dúvidas sobre o desenvolvimento cognitivo e comportamental."
       }
     ],
     content: (
       <>
         <p>
-          A <strong>duração da avaliação neuropsicológica infantil</strong> varia conforme a idade da criança, a queixa principal 
-          e o número de funções cognitivas que precisam ser investigadas.
+          Uma das primeiras dúvidas dos pais é quanto tempo a avaliação vai levar e como vai ser a rotina da criança. A{" "}
+          <strong>duração da avaliação neuropsicológica infantil</strong> varia conforme a idade, a queixa principal e o
+          número de funções que precisam ser investigadas. Veja o passo a passo, o que esperar de cada etapa e quando o
+          resultado fica pronto.
         </p>
 
         <h2>Duração por idade</h2>
         <ul>
-          <li><strong>4 a 6 anos:</strong> geralmente 2 a 3 sessões mais curtas</li>
+          <li><strong>4 a 6 anos:</strong> geralmente 2 a 3 sessões mais curtas, com atividades lúdicas</li>
           <li><strong>7 a 12 anos:</strong> geralmente 3 a 4 sessões de 50 a 60 minutos</li>
           <li><strong>Adolescentes:</strong> podem fazer sessões mais longas, dependendo da tolerância</li>
         </ul>
+        <p>
+          Esses são valores de referência. A quantidade exata é definida depois da entrevista inicial, quando a
+          profissional entende a queixa e escolhe os instrumentos mais adequados.
+        </p>
 
         <h2>Por que dividir em sessões?</h2>
         <p>
-          Dividir a avaliação permite que a criança mantenha o desempenho sem ficar cansada. 
-          Resultados obtidos quando a criança está fatigada podem não refletir sua capacidade real.
+          Dividir a avaliação permite que a criança mantenha o desempenho sem ficar cansada. Resultados obtidos quando ela
+          está fatigada podem não refletir sua capacidade real. Também permite observar a criança em dias e momentos
+          diferentes, o que torna a conclusão mais segura.
         </p>
 
-        <h2>Processo completo</h2>
+        <h2>Passo a passo do processo</h2>
         <ol>
-          <li>Agendamento e entrevista com os pais</li>
-          <li>Sessões de aplicação de testes</li>
-          <li>Análise dos resultados e elaboração do laudo</li>
-          <li>Devolutiva com os pais</li>
+          <li><strong>Agendamento e entrevista com os pais:</strong> conversa sobre gestação, desenvolvimento, rotina, escola e a queixa que motivou a avaliação.</li>
+          <li><strong>Sessões com a criança:</strong> atividades e testes que avaliam atenção, memória, linguagem, raciocínio, funções executivas e aspectos emocionais, sempre com pausas.</li>
+          <li><strong>Contato com a escola e outros profissionais:</strong> quando necessário, para entender o desempenho em diferentes ambientes.</li>
+          <li><strong>Análise dos resultados e elaboração do laudo:</strong> integração de todas as informações em um relatório.</li>
+          <li><strong>Devolutiva com a família:</strong> conversa para explicar os resultados e indicar os próximos passos.</li>
         </ol>
+
+        <h2>Em quanto tempo o laudo fica pronto</h2>
+        <p>
+          Depois da última sessão, a análise dos dados e a escrita do laudo levam, em geral, de 10 a 20 dias úteis. Na
+          devolutiva, a profissional explica o que foi observado, o que significa para o dia a dia e quais terapias ou
+          adaptações escolares são indicadas.
+        </p>
+
+        <h2>Como preparar a criança</h2>
+        <ul>
+          <li>Explique que será um momento de brincadeiras e atividades, sem "prova" e sem certo ou errado</li>
+          <li>Garanta uma boa noite de sono e uma refeição leve antes</li>
+          <li>Evite marcar nos horários em que ela costuma dormir ou ficar mais agitada</li>
+          <li>Se ela usa óculos ou aparelho auditivo, leve-os</li>
+          <li>Não é preciso "treinar" para os testes, e isso pode atrapalhar o resultado</li>
+        </ul>
+
+        <h2>O que levar na entrevista inicial</h2>
+        <ul>
+          <li>Relatórios e boletins escolares</li>
+          <li>Laudos, exames e avaliações anteriores</li>
+          <li>Lista de medicamentos em uso</li>
+          <li>Observações da escola ou do médico que indicou a avaliação</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Quer saber como seria a avaliação do seu filho?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, explica cada etapa e define o número de sessões depois da primeira conversa.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a avaliação neuropsicológica</a>
+        </div>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
