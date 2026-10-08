@@ -11,9 +11,9 @@ export const autismoLPs = [
     description: "Com dúvidas sobre o desenvolvimento do seu bebê? Conheça os sinais precoces de autismo e quando buscar ajuda. Avaliação especializada em Anápolis.",
     keywords: ["sinais autismo bebe", "autismo bebe 6 meses", "sinais precoces autismo", "avaliacao autismo anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     
@@ -118,9 +118,9 @@ export const autismoLPs = [
     description: "Seu filho tem 2 anos e você nota comportamentos diferentes? Conheça os principais sinais de TEA nessa idade. Avaliação especializada em Anápolis.",
     keywords: ["sinais autismo 2 anos", "autismo crianca 2 anos", "diagnostico autismo 2 anos", "avaliacao tea anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     
@@ -225,9 +225,9 @@ export const autismoLPs = [
     description: "Criança que não responde quando chamada pode ser sinal de alerta. Entenda as causas e quando buscar ajuda. Avaliação em Anápolis.",
     keywords: ["crianca nao responde nome", "crianca nao responde quando chama", "sinais autismo", "avaliacao infantil anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     
@@ -332,9 +332,9 @@ export const autismoLPs = [
     description: "Criança que não olha nos olhos pode indicar diferentes condições. Entenda as causas e quando buscar ajuda. Avaliação especializada em Anápolis.",
     keywords: ["crianca nao olha nos olhos", "evita contato visual", "sinais autismo", "avaliacao infantil anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     
@@ -435,9 +435,9 @@ export const autismoLPs = [
     description: "Onde fazer avaliação para autismo em Anápolis? Clínica Fono Inova oferece diagnóstico multidisciplinar completo no bairro Jundiaí. Agende pelo WhatsApp.",
     keywords: ["avaliacao autismo anapolis", "diagnostico tea anapolis", "avaliacao tea jundiai", "medico autismo anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     

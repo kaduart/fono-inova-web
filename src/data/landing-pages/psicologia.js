@@ -11,9 +11,9 @@ export const psicologiaLPs = [
     description: "Criança que bate, morde ou destrói objetos? Entenda as causas da agressividade infantil. Psicólogo especializado em Anápolis. Agende pelo WhatsApp.",
     keywords: ["crianca agressiva", "crianca bate", "agressividade infantil", "psicologo infantil anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-05",
     dateModified: "2025-06-05",
     

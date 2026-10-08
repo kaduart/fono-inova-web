@@ -12,9 +12,9 @@ export const fonoaudiologiaLPs = [
     description: "Criança de 2 anos ainda não fala? Entenda quando é normal e quando procurar ajuda. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
     keywords: ["crianca 2 anos nao fala", "atraso fala infantil", "fonoaudiologia anapolis", "crianca nao fala aos 2 anos"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -124,9 +124,9 @@ export const fonoaudiologiaLPs = [
     description: "Tratamento especializado para crianças com atraso na fala. Fonoaudiologia infantil no bairro Jundiaí, Anápolis. Agende uma avaliação pelo WhatsApp.",
     keywords: ["atraso na fala infantil", "tratamento atraso fala", "fonoaudiologia anapolis", "crianca nao fala direito"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -232,9 +232,9 @@ export const fonoaudiologiaLPs = [
     description: "Seu filho troca R por L, F por P ou outras letras? Entenda quando é normal e quando buscar fonoaudiologia. Atendimento em Anápolis.",
     keywords: ["crianca troca letras", "troca r por l", "dislalia infantil", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -340,9 +340,9 @@ export const fonoaudiologiaLPs = [
     description: "Seu filho fala palavras soltas mas não forma frases? Entenda causas e tratamento. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
     keywords: ["crianca nao forma frases", "fala palavras soltas", "atraso linguagem", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -444,9 +444,9 @@ export const fonoaudiologiaLPs = [
     description: "Seu filho gagueja, repete sílabas ou bloqueia ao falar? Tratamento especializado para gagueira infantil em Anápolis. Agende pelo WhatsApp.",
     keywords: ["gagueira infantil", "crianca gagueja", "repeticao silabas", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -552,9 +552,9 @@ export const fonoaudiologiaLPs = [
     description: "Seu filho fala 'léio' em vez de 'réio'? Tratamento para criança que não pronuncia R. Fonoaudiologia infantil em Anápolis. Agende pelo WhatsApp.",
     keywords: ["crianca nao fala r", "troca r por l", "fala leio", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -656,9 +656,9 @@ export const fonoaudiologiaLPs = [
     description: "Seu filho fala enrolado, difícil de entender? Tratamento para fala enrolada infantil em Anápolis. Fonoaudiologia especializada. Agende pelo WhatsApp.",
     keywords: ["fala enrolada", "crianca fala enrolada", "fala confusa", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
@@ -760,9 +760,9 @@ export const fonoaudiologiaLPs = [
     description: "Criança ouve mas não entende? Pode ser TPA. Transtorno do Processamento Auditivo tem tratamento. Fonoaudiologia em Anápolis. Agende pelo WhatsApp.",
     keywords: ["processamento auditivo", "TPA infantil", "crianca ouve nao entende", "fonoaudiologia anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     

@@ -12,9 +12,9 @@ export const geograficasLPs = [
     description: "Procura fonoaudiólogo em Anápolis? Atendimento infantil especializado no bairro Jundiaí para atraso na fala, autismo, dislexia. Agende pelo WhatsApp.",
     keywords: ["fonoaudiologo anapolis", "fonoaudiologia anapolis", "fonoaudiologo infantil anapolis", "fono anapolis"],
     
-    author: "Dra. Lorrany Siqueira",
-    authorRole: "Fonoaudióloga",
-    authorCredentials: "CRFA 1234-GO",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-04",
     dateModified: "2025-06-04",
     
@@ -127,9 +127,9 @@ export const geograficasLPs = [
     description: "Psicólogo infantil em Anápolis. Atendimento para TDAH, autismo, ansiedade e comportamento infantil no bairro Jundiaí. Agende pelo WhatsApp.",
     keywords: ["psicologo infantil anapolis", "psicologo crianca anapolis", "psicologia infantil anapolis", "psicologo tea anapolis"],
     
-    author: "Dra. Ana Santos",
-    authorRole: "Psicóloga",
-    authorCredentials: "CRP 06/12345",
+    author: "Equipe Clínica Fono Inova",
+    authorRole: "Equipe Multidisciplinar",
+    authorCredentials: "",
     datePublished: "2025-06-04",
     dateModified: "2025-06-04",
     

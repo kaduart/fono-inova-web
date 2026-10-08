@@ -534,12 +534,14 @@ export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao, au
     "url": url,
     "datePublished": dataPublicacao,
     "dateModified": dataModificacao || dataPublicacao,
-    "author": {
-        "@type": "Person",
-        "name": authorName,
-        "jobTitle": authorRole,
-        "description": authorCredentials || undefined
-    },
+    "author": /equipe|cl[ií]nica/i.test(authorName)
+        ? { "@type": "Organization", "name": authorName }
+        : {
+            "@type": "Person",
+            "name": authorName,
+            "jobTitle": authorRole,
+            "description": authorCredentials || undefined
+        },
     "publisher": {
         "@type": "MedicalBusiness",
         "name": "Clínica Fono Inova",
