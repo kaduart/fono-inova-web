@@ -5031,7 +5031,7 @@ export const satelliteArticles = [
     id: 153,
     slug: "fonoaudiologia-para-dificuldade-escolar",
     title: "Fonoaudiologia para Dificuldade Escolar: Leitura e Escrita",
-    excerpt: "Entenda como a fonoaudiologia ajuda crianças com dificuldade escolar, especialmente em leitura, escrita e consciência fonológica.",
+    excerpt: "Veja como a fonoaudiologia ajuda crianças com dificuldade escolar: sinais de alerta, como é a avaliação, o papel da família e quando buscar ajuda.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
@@ -5039,44 +5039,60 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Criança com dificuldade escolar em atendimento fonoaudiológico na Clínica Fono Inova em Anápolis",
     faq: [
       {
         question: "Fonoaudiologia ajuda na dificuldade escolar?",
-        answer: "Sim. A fonoaudiologia trabalha a consciência fonológica, a articulação, a compreensão e a expressão verbal, fundamentais para a alfabetização."
+        answer: "Sim. A fonoaudiologia trabalha a consciência fonológica, a articulação, a compreensão e a expressão verbal, que sustentam a alfabetização."
       },
       {
-        question: "Quais sinais indicam dificuldade escolar fonoaudiológica?",
-        answer: "Troca de letras na escrita, dificuldade para soletrar, confusão entre sons parecidos, leitura truncada e compreensão baixa."
+        question: "Quais sinais indicam dificuldade escolar de origem fonoaudiológica?",
+        answer: "Troca de letras na escrita, dificuldade para soletrar, confusão entre sons parecidos, leitura truncada e baixa compreensão do que foi lido."
       },
       {
         question: "Fonoaudiologia trata dislexia?",
-        answer: "A fonoaudiologia auxilia no tratamento multidisciplinar da dislexia, trabalhando aspectos fonológicos e linguagem."
+        answer: "A fonoaudiologia participa do tratamento multidisciplinar da dislexia, trabalhando aspectos fonológicos, leitura e escrita."
       },
       {
-        question: "Como é a avaliação fonoaudiológica escolar?",
-        answer: "Avalia consciência fonológica, vocabulário, compreensão de textos, articulação e habilidades de processamento auditivo."
+        question: "Como é a avaliação fonoaudiológica para dificuldade escolar?",
+        answer: "Avalia consciência fonológica, vocabulário, compreensão de textos, articulação e habilidades de processamento auditivo, além de conversar com a família e, se possível, com a escola."
       },
       {
-        question: "Quando levar criança com dificuldade escolar ao fonoaudiólogo?",
-        answer: "Quando há dificuldades persistentes de leitura, escrita, ortografia ou compreensão, mesmo com reforço escolar."
+        question: "Quando levar a criança com dificuldade escolar ao fonoaudiólogo?",
+        answer: "Quando as dificuldades de leitura, escrita, ortografia ou compreensão persistem, mesmo com reforço escolar."
+      },
+      {
+        question: "Fonoaudiologia substitui o reforço escolar?",
+        answer: "Não. O reforço trabalha o conteúdo; a fonoaudiologia trabalha as habilidades de linguagem que permitem aprender o conteúdo. Os dois podem se complementar."
+      },
+      {
+        question: "O processamento auditivo pode atrapalhar na escola?",
+        answer: "Pode. Crianças com dificuldade de processar o que ouvem podem ter problemas para entender instruções, copiar da lousa ditada e acompanhar a explicação em sala barulhenta."
       }
     ],
     content: (
       <>
         <p>
-          Muitas <strong>dificuldades escolares</strong> têm origem na comunicação. A <strong>fonoaudiologia</strong> atua diretamente 
-          nas habilidades que sustentam a alfabetização: consciência fonológica, vocabulário e compreensão verbal.
+          Quando o filho estuda e mesmo assim tem dificuldade para ler, escrever ou entender o que a professora explica, nem
+          sempre o problema é falta de esforço. Muitas <strong>dificuldades escolares</strong> têm origem na linguagem e na
+          audição. A <strong>fonoaudiologia</strong> atua diretamente nas habilidades que sustentam a alfabetização.
         </p>
 
-        <h2>Como a fonoaudiologia ajuda na escola?</h2>
+        <h2>Como a linguagem se relaciona com o aprendizado</h2>
+        <p>
+          Aprender a ler é, antes de tudo, aprender a ligar sons a letras. Para isso a criança precisa perceber os sons da
+          fala, ter vocabulário e entender o que ouve. Quando alguma dessas peças falha, a leitura e a escrita sofrem, mesmo
+          em crianças inteligentes e dedicadas.
+        </p>
+
+        <h2>Como a fonoaudiologia ajuda na escola</h2>
         <ul>
-          <li>Melhora a consciência fonológica (relação entre som e letra)</li>
-          <li>Estimula o vocabulário e a compreensão de textos</li>
-          <li>Trabalha a articulação de sons da fala</li>
-          <li>Desenvolve processamento auditivo</li>
+          <li>Fortalece a consciência fonológica (relação entre som e letra)</li>
+          <li>Amplia o vocabulário e a compreensão de textos</li>
+          <li>Trabalha a articulação dos sons da fala</li>
+          <li>Desenvolve o processamento auditivo</li>
           <li>Orienta pais e escola sobre estratégias de apoio</li>
         </ul>
 
@@ -5084,24 +5100,49 @@ export const satelliteArticles = [
         <ul>
           <li>Confunde letras parecidas (b/d, p/q)</li>
           <li>Troca sons na fala e na escrita</li>
-          <li>Leitura lenta e sem fluência</li>
-          <li>Dificuldade para seguir instruções orais</li>
-          <li>Frustração com atividades de escrita</li>
+          <li>Lê devagar e sem fluência, ou lê mas não entende</li>
+          <li>Dificuldade para seguir instruções faladas com mais de uma etapa</li>
+          <li>Frustração, choro ou recusa diante de tarefas de escrita</li>
+          <li>Boa participação oral, mas notas baixas em leitura e ortografia</li>
         </ul>
+
+        <h2>Como é a avaliação</h2>
+        <p>
+          A fonoaudióloga conversa com a família sobre o histórico e a rotina, avalia consciência fonológica, leitura,
+          escrita, vocabulário, articulação e processamento auditivo, e explica o resultado. Quando necessário, indica
+          avaliação neuropsicológica ou acompanhamento com psicopedagogo.
+        </p>
 
         <h2>Conexão com outras áreas</h2>
         <p>
-          Dificuldades escolares muitas vezes exigem acompanhamento conjunto com psicólogo, psicopedagogo e neuropediatra. 
-          Na Clínica Fono Inova, a abordagem é multidisciplinar.
+          Dificuldades escolares muitas vezes exigem acompanhamento conjunto com psicólogo, psicopedagogo e neuropediatra.
+          Na Clínica Fono Inova, a abordagem é multidisciplinar: os profissionais atuam no mesmo espaço e alinham o plano
+          com a família e, quando possível, com a escola.
         </p>
 
+        <h2>O que os pais podem fazer</h2>
+        <ul>
+          <li>Leia com a criança todos os dias, por pouco tempo e sem cobrança</li>
+          <li>Converse sobre o que foi lido e peça para ela recontar a história</li>
+          <li>Brinque com rimas, trava-línguas e jogos de sons</li>
+          <li>Converse com a professora para entender onde estão as maiores dificuldades</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Seu filho estuda, mas continua com dificuldade?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/fonoaudiologia-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a fonoaudiologia infantil na clínica</a>
+        </div>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras: quando preocupar?</a></li>
+            <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil</a></li>
             <li><a href="/artigos/dificuldades-emocionais-na-escola" className="text-blue-600 hover:underline">→ Dificuldades emocionais na escola</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -6003,7 +6044,7 @@ export const satelliteArticles = [
     id: 164,
     slug: "teste-de-atencao-infantil",
     title: "Teste de Atenção Infantil: Como Funciona e Quando Fazer",
-    excerpt: "Saiba como funciona o teste de atenção infantil, quando é indicado e como os resultados ajudam no diagnóstico de TDAH.",
+    excerpt: "Entenda o teste de atenção infantil: tipos de atenção avaliados, como é aplicado, como ler os resultados, o que ele não faz e como preparar a criança.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
@@ -6011,7 +6052,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fono-inova-2.png",
     imageAlt: "Criança realizando teste de atenção na Clínica Fono Inova em Anápolis",
     faq: [
@@ -6024,51 +6065,97 @@ export const satelliteArticles = [
         answer: "A criança realiza tarefas em computador ou papel, respondendo a estímulos visuais ou auditivos conforme instruções."
       },
       {
-        question: "Teste de atenção diagnostica TDAH?",
+        question: "O teste de atenção diagnostica TDAH?",
         answer: "Sozinho não. O teste é um instrumento importante, mas o diagnóstico de TDAH é clínico e multidisciplinar."
       },
       {
         question: "A partir de que idade pode fazer?",
-        answer: "Geralmente a partir dos 5-6 anos, quando a criança consegue compreender e seguir as instruções."
+        answer: "Geralmente a partir dos 5 a 6 anos, quando a criança consegue compreender e seguir as instruções."
       },
       {
         question: "Quanto tempo dura o teste?",
         answer: "Em média 20 a 40 minutos, podendo variar conforme o instrumento utilizado."
+      },
+      {
+        question: "A criança pode ir bem no teste e ainda ter TDAH?",
+        answer: "Sim. Em situação individual e com poucas distrações, algumas crianças se saem melhor do que na sala de aula. Por isso o teste é analisado junto com a história e a observação clínica."
+      },
+      {
+        question: "Medicação interfere no resultado?",
+        answer: "Pode interferir. A equipe orienta se a criança deve ou não fazer o teste com a medicação habitual, conforme o objetivo da avaliação."
+      },
+      {
+        question: "O que significa um resultado abaixo do esperado?",
+        answer: "Indica que a criança teve desempenho abaixo do padrão para a idade em algum tipo de atenção. Isso merece investigação, mas não é diagnóstico por si só."
       }
     ],
     content: (
       <>
         <p>
-          O <strong>teste de atenção infantil</strong> é um dos instrumentos mais utilizados na avaliação neuropsicológica. 
-          Ele ajuda a identificar dificuldades atencionais que podem indicar TDAH ou outras condições.
+          O <strong>teste de atenção infantil</strong> é um dos instrumentos mais usados na avaliação neuropsicológica.
+          Ele ajuda a identificar dificuldades atencionais que podem estar por trás de notas baixas, de esquecimentos
+          frequentes e de dispersão em sala, e que podem indicar TDAH ou outras condições.
         </p>
 
         <h2>Tipos de atenção avaliados</h2>
         <ul>
           <li><strong>Atenção sustentada:</strong> manter o foco por um tempo</li>
-          <li><strong>Atenção seletiva:</strong> focar no importante e ignorar distrações</li>
+          <li><strong>Atenção seletiva:</strong> focar no que importa e ignorar distrações</li>
           <li><strong>Atenção alternada:</strong> mudar o foco entre tarefas</li>
           <li><strong>Atenção dividida:</strong> fazer duas coisas ao mesmo tempo</li>
         </ul>
 
-        <h2>Como é aplicado?</h2>
+        <h2>Como é aplicado</h2>
         <p>
-          A criança realiza tarefas em que deve responder a determinados estímulos e inibir respostas a outros. 
-          O teste mede velocidade, acertos, erros e omissões.
+          A criança realiza tarefas em que deve responder a determinados estímulos e inibir respostas a outros, em papel
+          ou em computador. O teste mede velocidade, acertos, erros e omissões, e também como o desempenho muda ao longo da
+          tarefa.
         </p>
 
-        <h2>Resultados</h2>
+        <h2>Como os resultados são lidos</h2>
         <p>
-          Os resultados são comparados com padrões de crianças da mesma idade. 
-          Queda no desempenho pode indicar dificuldades atencionais que merecem investigação.
+          Os resultados são comparados com padrões de crianças da mesma idade. Queda no desempenho pode indicar
+          dificuldades atencionais que merecem investigação. O resultado nunca é analisado sozinho: ele é combinado com a
+          entrevista, a observação da criança, a informação da escola e outros testes, como memória e funções executivas.
         </p>
 
+        <h2>Sinais no dia a dia que levam à avaliação</h2>
+        <ul>
+          <li>Perde o foco com facilidade nas lições e nas tarefas longas</li>
+          <li>Esquece materiais, recados e combinados</li>
+          <li>Parece não ouvir quando chamada, ou começa tarefas e não termina</li>
+          <li>Inquietação intensa ou impulsividade acima do esperado para a idade</li>
+          <li>Desempenho escolar abaixo do que a criança demonstra ser capaz</li>
+        </ul>
+
+        <h2>O que o teste não faz</h2>
+        <p>
+          O teste de atenção não "dá o diagnóstico" sozinho e não mede inteligência. Ele é uma peça de um processo mais
+          amplo, que considera o histórico, a rotina, o sono, as emoções e outras possíveis causas de desatenção, como
+          dificuldades de audição, de linguagem ou ansiedade.
+        </p>
+
+        <h2>Como preparar a criança</h2>
+        <ul>
+          <li>Explique que serão atividades e jogos, sem certo ou errado</li>
+          <li>Garanta uma boa noite de sono e uma refeição leve antes</li>
+          <li>Avise a equipe sobre medicações em uso</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Seu filho tem dificuldade de atenção?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça a avaliação neuropsicológica</a>
+        </div>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
+            <li><a href="/artigos/teste-de-memoria-infantil" className="text-blue-600 hover:underline">→ Teste de memória infantil</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
           </ul>
         </div>
@@ -6461,7 +6548,7 @@ export const satelliteArticles = [
     id: 169,
     slug: "teste-da-linguinha-como-funciona",
     title: "Teste da Linguinha: Como Funciona a Avaliação",
-    excerpt: "Entenda como é feito o teste da linguinha, quem pode realizar, quanto tempo dura e quando ele é indicado para bebês e crianças.",
+    excerpt: "Entenda como funciona o teste da linguinha: sinais, etapas da avaliação, classificação do freio lingual, o que acontece depois e como se preparar.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
@@ -6469,33 +6556,66 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Fonoaudióloga realizando teste da linguinha em bebê na Clínica Fono Inova",
     faq: [
       {
         question: "Quem faz o teste da linguinha?",
-        answer: "Pode ser realizado por fonoaudiólogos, pediatras, otorrinos ou cirurgiões-dentistas com experiência em motricidade orofacial e amamentação."
+        answer: "Pode ser feito por fonoaudiólogos, pediatras, otorrinos ou cirurgiões-dentistas com experiência em motricidade orofacial e amamentação."
       },
       {
         question: "Como é feito o teste da linguinha?",
-        answer: "O profissional observa a mobilidade da língua, o formato do freio lingual, a sucção durante a mamada e os impactos na alimentação e fala."
+        answer: "O profissional observa a mobilidade da língua, o formato do freio lingual, a sucção durante a mamada e os impactos na alimentação e na fala."
       },
       {
-        question: "Teste da linguinha dói no bebê?",
-        answer: "Não. O teste da linguinha é uma avaliação clínica simples, indolor e rápida."
+        question: "O teste da linguinha dói no bebê?",
+        answer: "Não. É uma avaliação clínica simples, rápida e indolor."
       },
       {
         question: "A partir de qual idade faz o teste da linguinha?",
-        answer: "Pode ser feito desde os primeiros dias de vida, especialmente quando há dificuldades na amamentação ou sinais visíveis de freio lingual curto."
+        answer: "Pode ser feito desde os primeiros dias de vida, principalmente quando há dificuldade na amamentação ou sinais visíveis de freio lingual curto."
+      },
+      {
+        question: "O teste da linguinha é obrigatório?",
+        answer: "No Brasil, a triagem do freio lingual em recém-nascidos faz parte dos testes realizados na maternidade, conforme a legislação. Ela é uma triagem inicial e não substitui uma avaliação completa quando há dúvidas ou sintomas."
+      },
+      {
+        question: "O bebê precisa estar com fome para fazer o teste?",
+        answer: "Ajuda. Observar uma mamada permite ver como o bebê suga, pega a mama e se organiza, e isso complementa a avaliação."
+      },
+      {
+        question: "Todo freio lingual curto precisa ser cortado?",
+        answer: "Não. A conduta depende do grau da limitação e dos sintomas. Em alguns casos basta acompanhamento fonoaudiológico, em outros a cirurgia é indicada, seguida de reabilitação."
+      },
+      {
+        question: "O que fazer se o resultado indicar freio curto?",
+        answer: "O profissional explica o grau e o caminho: acompanhar, fazer fonoaudiologia, encaminhar para frenulotomia ou combinar as opções."
       }
     ],
     content: (
       <>
         <p>
-          O <strong>teste da linguinha</strong> é uma avaliação clínica que investiga a mobilidade da língua e a presença de <strong>freio lingual curto</strong>. 
-          Ele pode ser feito em bebês, crianças e até adultos, mas é mais comum nos primeiros meses de vida.
+          O <strong>teste da linguinha</strong> é uma avaliação clínica que investiga a mobilidade da língua e a presença de{" "}
+          <strong>freio lingual curto</strong>. Ele pode ser feito em bebês, crianças e até adultos, mas é mais comum nos
+          primeiros meses de vida, quando a amamentação pode ser a primeira pista.
         </p>
+
+        <h2>Por que o freio lingual importa</h2>
+        <p>
+          O freio é a membrana que liga a língua ao assoalho da boca. Quando ele limita demais os movimentos, pode
+          atrapalhar a amamentação, a mastigação, a fala e, em alguns casos, o sono e a respiração.
+        </p>
+
+        <h2>Sinais que podem levantar a suspeita</h2>
+        <ul>
+          <li>Bebê que larga o peito, se cansa ou mama por muito tempo sem se satisfazer</li>
+          <li>Dor, fissuras ou machucados nos mamilos</li>
+          <li>Ganho de peso abaixo do esperado</li>
+          <li>Estalos durante a mamada ou engasgos frequentes</li>
+          <li>Língua em formato de coração ao tentar levantar ou colocar para fora</li>
+          <li>Na criança maior: dificuldade para pronunciar alguns sons, como R, L e T</li>
+        </ul>
 
         <h2>Etapas da avaliação</h2>
         <ul>
@@ -6507,21 +6627,38 @@ export const satelliteArticles = [
 
         <h2>Classificação do freio lingual</h2>
         <p>
-          O profissional pode classificar o freio lingual em graus (leve, moderado ou grave) de acordo com a limitação dos movimentos e os sintomas apresentados. 
-          Essa classificação ajuda a definir se há indicação de acompanhamento fonoaudiológico, cirúrgico ou ambos.
+          O profissional pode classificar o freio lingual em graus (leve, moderado ou grave) de acordo com a limitação dos
+          movimentos e os sintomas apresentados. Essa classificação ajuda a definir se há indicação de acompanhamento
+          fonoaudiológico, cirúrgico ou ambos.
         </p>
 
-        <h2>O que acontece depois do teste?</h2>
+        <h2>O que acontece depois do teste</h2>
         <p>
-          Após o teste, o profissional explica o resultado e indica o melhor caminho. Em alguns casos, a <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a> 
-          é indicada, seguida de fonoaudiologia para reabilitação.
+          Após o teste, o profissional explica o resultado e indica o melhor caminho. Em alguns casos, a{" "}
+          <a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">frenulotomia</a> é
+          indicada, seguida de fonoaudiologia para reabilitação. Em outros, o acompanhamento e os exercícios já resolvem.
         </p>
 
+        <h2>Como se preparar</h2>
+        <ul>
+          <li>Leve a carteirinha de vacinação e o histórico do bebê</li>
+          <li>Se possível, agende em um horário próximo à mamada</li>
+          <li>Anote as dificuldades que você observa e as dúvidas</li>
+        </ul>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Suspeita de freio lingual curto?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/teste-da-linguinha-anapolis" className="text-green-700 font-semibold hover:underline">→ Conheça o teste da linguinha na clínica</a>
+        </div>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Guia completo do teste da linguinha</a></li>
             <li><a href="/artigos/teste-da-linguinha-onde-fazer" className="text-blue-600 hover:underline">→ Onde fazer o teste da linguinha</a></li>
+            <li><a href="/artigos/teste-da-linguinha-preco" className="text-blue-600 hover:underline">→ Quanto custa o teste da linguinha</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
           </ul>
         </div>
@@ -6761,7 +6898,7 @@ export const satelliteArticles = [
     id: 173,
     slug: "teste-da-linguinha-onde-fazer",
     title: "Onde Fazer o Teste da Linguinha? Especialistas em Anápolis",
-    excerpt: "Descubra onde fazer o teste da linguinha em Anápolis e por que escolher uma clínica com equipe multidisciplinar.",
+    excerpt: "Saiba onde fazer o teste da linguinha em Anápolis, quem pode fazer, o que observar ao escolher o profissional e como agendar na Clínica Fono Inova.",
     category: "Fonoaudiologia",
     categoryColor: "primary",
     author: "Equipe Clínica Fono Inova",
@@ -6769,7 +6906,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-10-08",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Clínica Fono Inova em Anápolis especializada em teste da linguinha",
     faq: [
@@ -6782,41 +6919,78 @@ export const satelliteArticles = [
         answer: "O valor varia conforme a clínica e a complexidade da avaliação. Entre em contato para saber o investimento."
       },
       {
-        question: "Teste da linguinha precisa de encaminhamento?",
+        question: "O teste da linguinha precisa de encaminhamento?",
         answer: "Não. Os pais podem agendar diretamente, especialmente quando há sinais de dificuldade na amamentação ou na fala."
       },
       {
         question: "O teste da linguinha é feito pelo SUS?",
         answer: "Alguns serviços públicos oferecem avaliação, mas a disponibilidade varia. Clínicas particulares geralmente têm agendamento mais rápido."
+      },
+      {
+        question: "O que perguntar ao escolher onde fazer?",
+        answer: "Se o profissional tem experiência em motricidade orofacial e amamentação, se faz avaliação funcional (e não só visual) e se há acompanhamento depois do teste."
+      },
+      {
+        question: "Preciso fazer o teste na maternidade e de novo na clínica?",
+        answer: "A triagem da maternidade é inicial. Se houver dificuldade para mamar, dor ou dúvida sobre o resultado, a avaliação completa com fonoaudiólogo é recomendada."
+      },
+      {
+        question: "O teste serve só para bebês?",
+        answer: "Não. Crianças maiores e adultos com dificuldade de fala, mastigação ou mobilidade da língua também podem ser avaliados."
       }
     ],
     content: (
       <>
         <p>
-          Procurar o lugar certo para fazer o <strong>teste da linguinha</strong> faz toda a diferença. A avaliação deve ser feita por profissionais 
-          que entendam de amamentação, motricidade orofacial e desenvolvimento infantil.
+          Procurar o lugar certo para fazer o <strong>teste da linguinha</strong> faz toda a diferença. A avaliação deve ser
+          feita por profissionais que entendam de amamentação, motricidade orofacial e desenvolvimento infantil, e que
+          saibam orientar a família sobre o que fazer com o resultado.
         </p>
 
-        <h2>Quem pode fazer o teste?</h2>
+        <h2>Quem pode fazer o teste</h2>
         <ul>
           <li><strong>Fonoaudiólogos</strong> especializados em motricidade orofacial</li>
           <li><strong>Pediatras</strong> com experiência em amamentação</li>
           <li><strong>Cirurgiões-dentistas</strong> ou <strong>otorrinolaringologistas</strong> especializados</li>
         </ul>
 
-        <h2>Por que escolher uma clínica multidisciplinar?</h2>
+        <h2>O que observar na hora de escolher</h2>
+        <ul>
+          <li>Experiência com bebês e com dificuldades de amamentação</li>
+          <li>Avaliação funcional, que observa a sucção e os movimentos da língua, e não apenas a aparência do freio</li>
+          <li>Explicação clara do resultado e das opções de conduta</li>
+          <li>Acompanhamento fonoaudiológico antes e depois, quando necessário</li>
+          <li>Ambiente acolhedor e adequado para bebês</li>
+        </ul>
+
+        <h2>Por que escolher uma clínica multidisciplinar</h2>
         <p>
-          O freio lingual pode afetar amamentação, fala, alimentação e sono. Uma equipe com fonoaudiólogo, pediatra e outros profissionais 
-          garante uma avaliação completa e um plano de tratamento adequado.
+          O freio lingual pode afetar amamentação, fala, alimentação e sono. Uma equipe com fonoaudiólogo e outros
+          profissionais de apoio garante uma avaliação completa e um plano de tratamento adequado, sem que a família
+          precise percorrer vários lugares.
         </p>
 
         <h2>Teste da linguinha na Clínica Fono Inova</h2>
         <p>
-          Na Clínica Fono Inova, em Anápolis, o teste da linguinha é realizado com protocolo completo de avaliação funcional. 
-          Após o diagnóstico, orientamos os pais sobre a melhor conduta, seja acompanhamento fonoaudiológico, encaminhamento para cirurgia 
-          ou ambos.
+          Na Clínica Fono Inova, em Anápolis, o teste da linguinha é realizado com protocolo completo de avaliação
+          funcional. Após o diagnóstico, orientamos os pais sobre a melhor conduta, seja acompanhamento fonoaudiológico,
+          encaminhamento para cirurgia ou ambos. Estamos na Av. Minas Gerais, 405, no bairro Jundiaí.
         </p>
 
+        <h2>Como agendar</h2>
+        <ol>
+          <li>Entre em contato pelo WhatsApp da clínica</li>
+          <li>Informe a idade do bebê ou da criança e o que você tem observado</li>
+          <li>Escolha um horário e leve as informações de amamentação e saúde</li>
+        </ol>
+
+        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-600 my-8">
+          <h3 className="font-bold text-lg mb-2">Quer fazer o teste da linguinha em Anápolis?</h3>
+          <p className="mb-3">
+            A equipe da Clínica Fono Inova, em Anápolis, avalia com cuidado e explica o resultado de forma clara para a família.
+          </p>
+          <a href="/teste-da-linguinha-anapolis" className="text-green-700 font-semibold hover:underline">→ Veja como agendar</a>
+        </div>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
