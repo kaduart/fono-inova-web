@@ -13,6 +13,7 @@ import Articles from './pages/Articles';
 import NotFoundPage from './pages/NotFoundPage';
 import LandingPage from './pages/lp/LandingPage';
 import ApoioFamilias from './pages/ApoioFamilias';
+import ReembolsoPlanoSaudeAnapolis from './pages/ReembolsoPlanoSaudeAnapolis';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
 import Home from './pages/Home';
 import PsicopedagogiaPage from './pages/PsicopedagogiaPage';
@@ -176,6 +177,7 @@ function App() {
           {/* Páginas institucionais */}
           <Route path="/privacidade" element={<PrivacidadePage />} />
           <Route path="/apoio-as-familias" element={<ApoioFamilias />} />
+          <Route path="/reembolso-plano-de-saude-anapolis" element={<ReembolsoPlanoSaudeAnapolis />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
           <Route path="/lp/:slug" element={<LandingPage />} />

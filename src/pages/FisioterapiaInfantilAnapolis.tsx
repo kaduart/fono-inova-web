@@ -175,8 +175,8 @@ const FisioterapiaInfantilAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Fisioterapia Infantil em Anápolis | Reabilitação Motora | Clínica Fono Inova"
-        description="Fisioterapia infantil em Anápolis. Tratamento especializado para reabilitação motora, postural e funcional. Atendimento para crianças com dificuldades de movimento, força e postura. Agende na Clínica Fono Inova."
+        title="Fisioterapia Infantil em Anápolis | Fisio Pediátrica | Fono Inova"
+        description="Fisioterapia infantil e pediátrica em Anápolis: reabilitação motora, postura e desenvolvimento. Clínica multidisciplinar no Jundiaí. Agende pelo WhatsApp."
         keywords="fisioterapia infantil anápolis, fisioterapia pediatrica anápolis, reabilitação infantil anápolis, fisioterapia motora anápolis, fisioterapeuta infantil anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis"

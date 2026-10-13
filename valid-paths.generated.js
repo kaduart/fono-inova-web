@@ -183,6 +183,7 @@ export const VALID_PATHS = new Set([
   "/psicomotricidade-anapolis",
   "/psicopedagogia",
   "/psicopedagogia-clinica",
+  "/reembolso-plano-de-saude-anapolis",
   "/seletividade-alimentar",
   "/seletividade-alimentar-anapolis",
   "/sindrome-de-down",

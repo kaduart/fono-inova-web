@@ -174,8 +174,8 @@ const TesteLinguinhaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Teste da Linguinha em Anápolis GO | Bebê não mama? Avaliação de Freio Lingual"
-        description="Teste da linguinha em Anápolis GO para bebês e crianças. Diagnóstico precoce de freio lingual curto (ankyloglossia), dificuldade para mamar e língua presa. Agende pelo WhatsApp na Clínica Fono Inova."
+        title="Teste da Linguinha em Anápolis | Fono Inova"
+        description="Teste da linguinha em Anápolis para bebês e crianças: avaliação do freio lingual (língua presa) e da dificuldade para mamar, na Clínica Fono Inova. Agende pelo WhatsApp."
         keywords="teste da linguinha anápolis, freio lingual anápolis, bebê não mama, língua presa bebê, frenectomia anápolis, ankyloglossia anápolis, dificuldade para mamar anápolis, avaliação freio lingual anápolis, fono para bebê anápolis, teste da linguinha preço"
         image="/images/freio-lingual/mae-bb.jpeg"
         url="https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis"

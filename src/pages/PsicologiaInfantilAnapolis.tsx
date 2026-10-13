@@ -117,8 +117,8 @@ const PsicologiaInfantilAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Filho Não Obedece? Psicóloga Infantil Anápolis"
-        description="Seu filho tem dificuldades de comportamento ou não presta atenção? Psicologia infantil em Anápolis. Entenda o que está acontecendo com orientação inicial sem compromisso."
+        title="Psicologia Infantil em Anápolis | Psicólogo e Psicóloga | Fono Inova"
+        description="Psicologia infantil em Anápolis para dificuldades de comportamento, atenção e emoções. Atendimento com psicólogos da equipe multidisciplinar. Agende pelo WhatsApp."
         keywords="filho não obedece, psicologia infantil anápolis, birra infantil, dificuldade comportamento, psicólogo infantil"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"

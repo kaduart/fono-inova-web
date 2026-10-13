@@ -115,8 +115,8 @@ const FonoaudiologiaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Fonoaudiologia em Anápolis | Fono Inova — Especialistas Infantil"
-        description="Fonoaudióloga infantil em Anápolis: atraso na fala, autismo, gagueira e dificuldades de comunicação. Clínica Fono Inova no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
+        title="Fonoaudiologia em Anápolis | Fono Inova — Clínica Infantil"
+        description="Fonoaudiologia infantil em Anápolis: atraso na fala, autismo e gagueira. Equipe multidisciplinar, nota 4,9 no Google. Agende a avaliação pelo WhatsApp."
         keywords="fono em anapolis, fonoaudiologia anapolis, fonoaudiólogo anapolis, fonoaudióloga infantil anapolis, atraso fala anapolis, fono infantil anapolis, clínica fonoaudiologia anapolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"

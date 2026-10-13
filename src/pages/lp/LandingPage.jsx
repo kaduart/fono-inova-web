@@ -14,6 +14,11 @@ import ArticleCard from '../../components/ArticleCard';
 import { trackLandingPageView, trackLandingPageLead } from '../../services/landingPageAnalytics';
 import '../../styles/landing-page-premium.css';
 
+// LPs que duplicam uma página estática: canonical aponta para a estática (evita competir entre si)
+const CANONICAL_OVERRIDES = {
+  'avaliacao-neuropsicologica-anapolis': '/avaliacao-neuropsicologica-anapolis',
+};
+
 const LandingPage = () => {
   const { slug } = useParams();
   const lp = getLandingPageBySlug(slug);
@@ -96,7 +101,7 @@ const LandingPage = () => {
         description={lp.description}
         keywords={lp.keywords?.join(', ')}
         image={lp.image}
-        url={`/lp/${lp.slug}`}
+        url={CANONICAL_OVERRIDES[lp.slug] || `/lp/${lp.slug}`}
         type="website"
         schema={[pageSchema, breadcrumbSchema]}
       />
