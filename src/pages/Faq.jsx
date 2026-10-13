@@ -3,41 +3,9 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaFAQ } from '../schemas/clinicaSchemas';
+import { faqItems } from '../data/faqData';
 
-const faq = [
-    {
-        pergunta: 'Com que idade devo levar meu filho ao fonoaudiólogo?',
-        resposta: 'Quando há atraso na fala, troca de letras, dificuldade de compreensão ou comunicação.'
-    },
-    {
-        pergunta: 'Meu filho não fala aos 2 anos. É normal?',
-        resposta: 'Algumas crianças apresentam atraso temporário, mas é importante realizar avaliação fonoaudiológica.'
-    },
-    {
-        pergunta: 'Precisa de encaminhamento médico?',
-        resposta: 'Não. Os pais podem procurar diretamente a clínica.'
-    },
-    {
-        pergunta: 'Autismo tem cura?',
-        resposta: 'O TEA não é uma doença, mas uma condição do neurodesenvolvimento. A intervenção precoce ajuda muito.'
-    },
-    {
-        pergunta: 'Quanto tempo dura o tratamento?',
-        resposta: 'Depende das necessidades de cada criança. O plano é individualizado.'
-    },
-    {
-        pergunta: 'A fisioterapia infantil dói?',
-        resposta: 'Não. É feita por meio de brincadeiras terapêuticas.'
-    },
-    {
-        pergunta: 'Onde fica a Clínica Fono Inova?',
-        resposta: 'Estamos localizados em Anápolis – GO.'
-    },
-    {
-        pergunta: 'Como agendar uma avaliação?',
-        resposta: 'Basta clicar no botão de WhatsApp e falar com nossa equipe.'
-    }
-];
+const faq = faqItems;
 
 const FaqPage = () => {
     return (

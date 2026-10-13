@@ -341,7 +341,7 @@ const DificuldadeEscolarPage = () => {
                             📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
                         </p>
                         <p className="text-xs text-white/60 mt-1">
-                            Atendimento de segunda a sábado • ESTACIONAMENTO GRATUITO
+                            Atendimento de segunda a sexta • ESTACIONAMENTO GRATUITO
                         </p>
                     </div>
                 </div>

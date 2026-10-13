@@ -177,8 +177,7 @@ const Clinica = () => {
                                         <div>
                                             <h4 className="font-bold text-slate-900 mb-1">Horário de Funcionamento</h4>
                                             <p className="text-slate-600">
-                                                Segunda a Sexta: 08:00 às 19:00<br />
-                                                Sábados: Consultar disponibilidade
+                                                Segunda a Sexta: 08:00 às 18:00
                                             </p>
                                         </div>
                                     </div>

@@ -1,3 +1,4 @@
+import { faqItems } from '../data/faqData.js';
 // SCHEMAS ESPECÍFICOS PARA CADA PÁGINA DA FONO INOVA
 // Geo-coordenadas fixas: Av. Minas Gerais, Jundiaí, Anápolis/GO
 const COORDS = {
@@ -52,12 +53,6 @@ export const schemaBaseLocalBusiness = {
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
             "opens": "08:00",
             "closes": "18:00"
-        },
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "08:00",
-            "closes": "12:00"
         }
     ],
     "medicalSpecialty": [
@@ -419,40 +414,11 @@ export const schemaMultidisciplinar = {
 export const schemaFAQ = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-        {
-            "@type": "Question",
-            "name": "Onde fica a Clínica Fono Inova em Anápolis?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A Fono Inova fica no bairro Jundiaí, na Av. Minas Gerais, em Anápolis/GO. Atendemos crianças de toda a região."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Quanto custa o teste da linguinha em Anápolis?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "A avaliação do freio lingual (teste da linguinha) na Fono Inova tem valor acessível. Entre em contato pelo WhatsApp para valores atualizados e convênios aceitos."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Atende por convênio?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sim, a Fono Inova atende diversos convênios de saúde, incluindo o convênio da Base Aérea de Anápolis (BAAN). Consulte disponibilidade para fonoaudiologia, fisioterapia, psicologia e terapia ocupacional."
-            }
-        },
-        {
-            "@type": "Question",
-            "name": "Qual o horário de atendimento?",
-            "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Atendemos de segunda a sexta das 8h às 18h e aos sábados das 8h às 12h, no bairro Jundiaí em Anápolis."
-            }
-        }
-    ]
+    "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.pergunta,
+        "acceptedAnswer": { "@type": "Answer", "text": item.resposta }
+    }))
 };
 
 export const schemaFAQTO = {
