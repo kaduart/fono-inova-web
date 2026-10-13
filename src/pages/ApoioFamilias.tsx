@@ -8,7 +8,7 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 
 // Página de apoio às famílias (acesso às terapias, documentação clínica, informações oficiais).
-// noindex até a revisão profissional. Trechos marcados "REVISAR" devem passar pelo advogado e pelo conselho de classe.
+// Indexável (noindex removido a pedido do titular). Trechos marcados "REVISAR" devem passar pelo advogado e pelo conselho de classe.
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de informações sobre apoio às famílias e acesso às terapias.';
 const PHONE_LABEL = '(62) 99201-3573';
 
@@ -147,7 +147,6 @@ const ApoioFamilias = () => {
         description="Apoio às famílias no acesso às terapias: organização de documentos clínicos, informações oficiais sobre direitos e benefícios e próximos passos com a Clínica Fono Inova, em Anápolis-GO."
         url="/apoio-as-familias"
         image="/images/clinica/galeria/recepcao.webp"
-        noindex
       />
 
       <Breadcrumb items={[{ label: 'Apoio às famílias' }]} />
