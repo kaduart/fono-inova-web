@@ -173,11 +173,11 @@ const SindromeDeDownPage = () => {
                 </ButtonWhatsApp>
                 
                 <a
-                  href="tel:6237063924"
-                  onClick={() => trackPhoneCall('(62) 3706-3924')}
+                  href="tel:62992013573"
+                  onClick={() => trackPhoneCall('(62) 99201-3573')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all whitespace-nowrap"
                 >
-                  Ligar (62) 3706-3924
+                  Ligar (62) 99201-3573
                 </a>
               </div>
 
@@ -258,8 +258,8 @@ const SindromeDeDownPage = () => {
               </ButtonWhatsApp>
               
               <a
-                href="tel:6237063924"
-                onClick={() => trackPhoneCall('(62) 3706-3924')}
+                href="tel:62992013573"
+                onClick={() => trackPhoneCall('(62) 99201-3573')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
               >
                 Ligar Agora

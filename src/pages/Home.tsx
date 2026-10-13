@@ -295,11 +295,11 @@ function Home() {
                 </ButtonWhatsApp>
                 
                 <a
-                  href="tel:6237063924"
-                  onClick={() => trackPhoneCall('(62) 3706-3924')}
+                  href="tel:62992013573"
+                  onClick={() => trackPhoneCall('(62) 99201-3573')}
                   className="pilot-action inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-brand-primary-dark/35 text-brand-primary-dark hover:bg-surface-mist hover:border-brand-primary-dark"
                 >
-                  Ligar (62) 3706-3924
+                  Ligar (62) 99201-3573
                 </a>
               </div>
 
@@ -1142,11 +1142,11 @@ function Home() {
             <div className="mt-8">
               <p className="text-white/60 mb-2">Prefere ligar?</p>
               <a
-                href="tel:6237063924"
-                onClick={() => trackPhoneCall('(62) 3706-3924')}
+                href="tel:62992013573"
+                onClick={() => trackPhoneCall('(62) 99201-3573')}
                 className="text-white hover:text-green-400 text-lg font-semibold transition-colors"
               >
-                (62) 3706-3924
+                (62) 99201-3573
               </a>
             </div>
           </div>
@@ -1183,11 +1183,11 @@ function Home() {
                     <div>
                       <h4 className="font-semibold text-slate-900">Telefone</h4>
                       <a
-                        href="tel:6237063924"
-                        onClick={() => trackPhoneCall('(62) 3706-3924')}
+                        href="tel:62992013573"
+                        onClick={() => trackPhoneCall('(62) 99201-3573')}
                         className="text-slate-600 hover:text-primary transition-colors"
                       >
-                        (62) 3706-3924
+                        (62) 99201-3573
                       </a>
                     </div>
                   </div>

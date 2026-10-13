@@ -32,6 +32,7 @@ const AUTO_OPEN_DISABLED_PATHS = [
     '/convenio-ipasgo-anapolis',
     '/convenio-bradesco-saude-anapolis',
     '/lista-de-interesse-confirmada',
+    '/apoio-as-familias',
 ];
 
 const SpecialistPopup = () => {

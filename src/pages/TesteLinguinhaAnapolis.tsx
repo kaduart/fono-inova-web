@@ -1,5 +1,4 @@
 import { Mail, Phone, Star } from '@mui/icons-material';
-import TypewriterText from '../components/TypewriterText';
 import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
@@ -231,7 +230,7 @@ const TesteLinguinhaAnapolis = () => {
 
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                <TypewriterText text="Teste da Linguinha em Anápolis GO" />
+                Teste da Linguinha em Anápolis GO
               </h1>
 
               {/* H2 Especialidade */}
@@ -284,11 +283,11 @@ const TesteLinguinhaAnapolis = () => {
                 </ButtonWhatsApp>
                 
                 <a
-                  href="tel:6237063924"
-                  onClick={() => trackPhoneCall('(62) 3706-3924')}
+                  href="tel:62992013573"
+                  onClick={() => trackPhoneCall('(62) 99201-3573')}
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all whitespace-nowrap"
                 >
-                  Ligar (62) 3706-3924
+                  Ligar (62) 99201-3573
                 </a>
               </div>
 
@@ -327,6 +326,26 @@ const TesteLinguinhaAnapolis = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== INVESTIMENTO ==================== */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="max-w-3xl mx-auto rounded-3xl border border-primary/20 bg-primary/5 p-8 md:p-10 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold font-poppins text-slate-900 mb-3">Avaliação do freio lingual, sem enrolação</h2>
+            <p className="text-slate-600 mb-6">Uma fonoaudióloga avalia a mobilidade da língua e o impacto na mamada e na fala, e você sai com a orientação sobre o que fazer.</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Teste da Linguinha</p>
+            
+            <p className="text-sm text-slate-500 mb-6">Valores e condições pelo WhatsApp. Agende e escolha o melhor período.</p>
+            <ButtonWhatsApp
+              onClick={() => trackButtonClick("WhatsApp - Investimento Linguinha")}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
+              message="Oi! Vi o site da Clínica Fono Inova 💚 Quero agendar o Teste da Linguinha do meu bebê."
+            >
+              Agendar o Teste da Linguinha
+            </ButtonWhatsApp>
           </div>
         </div>
       </section>
@@ -702,8 +721,8 @@ const TesteLinguinhaAnapolis = () => {
               </ButtonWhatsApp>
               
               <a
-                href="tel:6237063924"
-                onClick={() => trackPhoneCall('(62) 3706-3924')}
+                href="tel:62992013573"
+                onClick={() => trackPhoneCall('(62) 99201-3573')}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
               >
                 Ligar Agora

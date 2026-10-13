@@ -190,12 +190,12 @@ const LinksBio = () => {
 
           <motion.a
             {...fadeUp(0.2)}
-            href="tel:6237063924"
+            href="tel:62992013573"
             onClick={() => trackButtonClick('Links Bio - Ligar')}
             className="group flex w-full items-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98]"
           >
             <Calendar className="h-4 w-4 shrink-0 text-primary" />
-            <span className="flex-1 text-left">Agendar por telefone: (62) 3706-3924</span>
+            <span className="flex-1 text-left">Agendar por telefone: (62) 99201-3573</span>
             <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </motion.a>
 

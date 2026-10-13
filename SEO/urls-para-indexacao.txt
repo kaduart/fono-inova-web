@@ -1,20 +1,23 @@
-=== A) PEDIR PRIMEIRO (prioridade) (16) ===
-https://www.clinicafonoinova.com.br/
+=== A) PEDIR PRIMEIRO - conteudo alterado em 08/10/2026 (use Inspecao de URL > Solicitar indexacao; ~10 por dia) ===
+--- DIA 1 (10) ---
 https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis
-https://www.clinicafonoinova.com.br/autismo-anapolis
 https://www.clinicafonoinova.com.br/abordagem-multidisciplinar
+https://www.clinicafonoinova.com.br/equipe
+https://www.clinicafonoinova.com.br/artigos/teste-de-memoria-infantil
+https://www.clinicafonoinova.com.br/artigos/crianca-nao-responde-nome
+https://www.clinicafonoinova.com.br/artigos/sinais-dislexia-infantil
+https://www.clinicafonoinova.com.br/artigos/troca-de-letras-quando-preocupar
+https://www.clinicafonoinova.com.br/artigos/quanto-tempo-dura-avaliacao-neuropsicologica
 https://www.clinicafonoinova.com.br/artigos/fonoaudiologia-para-dificuldade-escolar
 https://www.clinicafonoinova.com.br/artigos/tdah-infantil-guia-completo-pais
-https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-como-funciona
-https://www.clinicafonoinova.com.br/artigos/troca-de-letras-quando-preocupar
-https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-onde-fazer
+--- DIA 2 (5 + a home e autismo, se ainda nao pedidas) ---
 https://www.clinicafonoinova.com.br/artigos/teste-de-atencao-infantil
-https://www.clinicafonoinova.com.br/artigos/teste-de-memoria-infantil
-https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-guia-completo
+https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-como-funciona
+https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-onde-fazer
 https://www.clinicafonoinova.com.br/artigos/psicopedagogia-alem-das-dificuldades-escolares
-https://www.clinicafonoinova.com.br/artigos/crianca-nao-responde-nome
-https://www.clinicafonoinova.com.br/artigos/quanto-tempo-dura-avaliacao-neuropsicologica
-https://www.clinicafonoinova.com.br/artigos/sinais-dislexia-infantil
+https://www.clinicafonoinova.com.br/artigos/teste-da-linguinha-guia-completo
+https://www.clinicafonoinova.com.br/
+https://www.clinicafonoinova.com.br/autismo-anapolis
 
 === B) PAGINAS DE SERVICO E TEMAS (24) ===
 https://www.clinicafonoinova.com.br/convenio-base-aerea-anapolis

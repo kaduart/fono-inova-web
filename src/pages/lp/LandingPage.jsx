@@ -11,7 +11,6 @@ import { getLandingPageBySlug } from '../../data/landing-pages';
 import { schemaLandingPage, schemaLandingPageBreadcrumb } from '../../schemas/clinicaSchemas';
 import { articlesData } from '../../data/articlesData';
 import ArticleCard from '../../components/ArticleCard';
-import TypewriterText from '../../components/TypewriterText';
 import { trackLandingPageView, trackLandingPageLead } from '../../services/landingPageAnalytics';
 import '../../styles/landing-page-premium.css';
 
@@ -147,7 +146,7 @@ const LandingPage = () => {
                   mb: 3 
                 }}
               >
-                <TypewriterText text={lp.hero.headline} typingSpeed={30} />
+                {lp.hero.headline}
               </Typography>
               
               <Typography 

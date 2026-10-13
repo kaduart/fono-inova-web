@@ -12,6 +12,7 @@ import ArticlePage from './pages/Article';
 import Articles from './pages/Articles';
 import NotFoundPage from './pages/NotFoundPage';
 import LandingPage from './pages/lp/LandingPage';
+import ApoioFamilias from './pages/ApoioFamilias';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
 import Home from './pages/Home';
 import PsicopedagogiaPage from './pages/PsicopedagogiaPage';
@@ -174,6 +175,7 @@ function App() {
 
           {/* Páginas institucionais */}
           <Route path="/privacidade" element={<PrivacidadePage />} />
+          <Route path="/apoio-as-familias" element={<ApoioFamilias />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
           <Route path="/lp/:slug" element={<LandingPage />} />

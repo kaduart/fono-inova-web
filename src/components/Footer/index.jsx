@@ -70,7 +70,7 @@ const Footer = () => {
                             <p>Bairro Jundiaí, Anápolis – GO</p>
                             <div className="flex gap-2">
                                 <Phone className="w-4 h-6 text-green-500" />
-                                <span>(62) 3706-3924</span>
+                                <span>(62) 99201-3573</span>
                             </div>
                             <div className="flex gap-2">
                                 <MessageCircle className="w-4 h-6 text-green-500" />

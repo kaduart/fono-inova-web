@@ -226,10 +226,10 @@ const NeuropediatriaPage = () => {
                                 </ButtonWhatsApp>
 
                                 <a
-                                    href="tel:6237063924"
+                                    href="tel:62992013573"
                                     className="inline-flex items-center justify-center gap-2 px-6 py-4 border-2 border-slate-300 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition-all"
                                 >
-                                    (62) 3706-3924
+                                    (62) 99201-3573
                                 </a>
                             </div>
 
@@ -499,8 +499,8 @@ const NeuropediatriaPage = () => {
 
                         <div className="mt-6 pt-6 border-t border-white/20">
                             <p className="text-white/50 text-xs">Prefere ligar?</p>
-                            <a href="tel:6237063924" className="text-white hover:text-green-400 text-lg font-semibold transition-colors">
-                                (62) 3706-3924
+                            <a href="tel:62992013573" className="text-white hover:text-green-400 text-lg font-semibold transition-colors">
+                                (62) 99201-3573
                             </a>
                         </div>
                     </div>
