@@ -1,4 +1,6 @@
 import { AlertTriangle, Brain, CheckCircle2, MessageCircle } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
+import AlertSigns from '../components/premium/AlertSigns';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
@@ -85,19 +87,7 @@ export default function FalaTardiaAnapolis() {
               personalizado — quanto antes, melhores os resultados.
             </p>
 
-            <div className="bg-yellow-50 border border-yellow-200 p-5 rounded-xl text-left">
-              <p className="text-sm text-yellow-800 font-semibold mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4" />
-                Procure ajuda se seu filho apresentar:
-              </p>
-              <ul className="space-y-1.5">
-                {sinaisAlerta.map((s, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-yellow-700">
-                    <span className="text-yellow-500 mt-0.5 shrink-0">•</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AlertSigns title="Procure ajuda se seu filho apresentar" items={sinaisAlerta} className="mb-6" />
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <ButtonWhatsApp
@@ -185,6 +175,13 @@ export default function FalaTardiaAnapolis() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={4} title="" />
         </div>
       </section>
 

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import {
   BookOpen,
   Brain,
@@ -424,6 +425,13 @@ const PsicopedagogiaLPPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={4} title="" />
+        </div>
+      </section>
+
       <PageFooterInfo related={['/dislexia-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="jogos" reverse whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />

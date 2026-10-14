@@ -14,6 +14,7 @@ import {
   Volume2,
   Zap
 } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useEffect } from 'react';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
@@ -442,6 +443,13 @@ const MusicoterapiaPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={6} title="" />
+        </div>
+      </section>
+
       <PageFooterInfo related={['/autismo-anapolis', '/terapia-ocupacional-anapolis', '/fonoaudiologia-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="kids" reverse whatsappMessage="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />

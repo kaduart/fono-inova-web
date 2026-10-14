@@ -1,4 +1,6 @@
 import { AlertCircle, ArrowRight, Angry, Frown, Heart, MapPin, MessageCircle, Phone, Star, Clock, CheckCircle2, AlertTriangle } from 'lucide-react';
+import ProofBar from '../components/premium/ProofBar';
+import AlertSigns from '../components/premium/AlertSigns';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
@@ -165,23 +167,15 @@ const ComportamentoInfantilPage = () => {
             )}
 
             {/* ==================== HERO - TENSÃO MÁXIMA ==================== */}
-            <section className="pt-24 pb-12 bg-gradient-to-br from-slate-50 via-red-50/30 to-white overflow-hidden">
+            <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 bg-gradient-to-br from-slate-50 via-red-50/30 to-white overflow-clip">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 items-center">
+                    <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
                         {/* Texto */}
                         <div className="order-2 lg:order-1">
                             {/* H1 - GEO-SEMÂNTICO */}
                             <span className="mb-4 inline-flex items-center bg-red-50 text-red-700 border border-red-200 px-3 py-1 text-xs uppercase tracking-wider font-semibold rounded-full">
                                 Comportamento Infantil em Anápolis
                             </span>
-
-                            {/* Badge de urgência */}
-                            <div className="inline-flex items-center gap-2 bg-red-100 border border-red-200 px-4 py-2 rounded-full mb-4 animate-pulse">
-                                <AlertTriangle className="w-4 h-4 text-red-600" />
-                                <span className="text-sm font-bold text-red-700">
-                                    Primeira orientação sem compromisso
-                                </span>
-                            </div>
 
                             {/* H1 - BATENDO NA DOR */}
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 leading-tight mb-4">
@@ -198,24 +192,7 @@ const ComportamentoInfantilPage = () => {
                             </h2>
 
                             {/* BLOCO DE SINAIS DE ALERTA - IDENTIFICAÇÃO RÁPIDA */}
-                            <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl mb-6">
-                                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
-                                    <AlertTriangle className="w-4 h-4" />
-                                    Sinais de alerta:
-                                </p>
-                                <ul className="text-sm text-yellow-700 space-y-1">
-                                    {sinaisAlerta.map((sinal, idx) => (
-                                        <li key={idx} className="flex items-center gap-2">
-                                            <span className="text-yellow-600">•</span> {sinal}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* CONSEQUÊNCIA */}
-                            <p className="text-red-600 font-semibold text-sm mb-4">
-                                ⚠️ Quanto mais você espera, mais difícil fica mudar esse padrão.
-                            </p>
+                            <AlertSigns title="Sinais de alerta" items={sinaisAlerta} className="mb-6" />
 
                             {/* BLOCO DE ALÍVIO */}
                             <div className="bg-green-50 border border-green-200 p-4 rounded-xl mb-6">
@@ -223,21 +200,6 @@ const ComportamentoInfantilPage = () => {
                                     ✓ Nem toda birra é problema grave.  
                                     Mas <strong>só uma orientação pode te dar essa segurança</strong> e mostrar como lidar.
                                 </p>
-                            </div>
-
-                            {/* Prova social */}
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="flex -space-x-2">
-                                    {[1, 2, 3, 4].map((i) => (
-                                        <div
-                                            key={i}
-                                            className="w-10 h-10 rounded-full border-2 border-white bg-gradient-to-br from-red-400 to-red-600"
-                                        />
-                                    ))}
-                                </div>
-                                <div className="text-sm text-slate-600">
-                                    <span className="font-semibold text-slate-900">+200 famílias</span> já superaram as crises
-                                </div>
                             </div>
 
                             {/* CTA SUAVE */}
@@ -263,44 +225,22 @@ const ComportamentoInfantilPage = () => {
                         </div>
 
                         {/* Imagem */}
-                        <div className="relative order-1 lg:order-2">
-                            <div className="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
+                        <div className="order-1 lg:order-2 relative w-full lg:mt-14 lg:sticky lg:top-28">
+                            <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                                 <img
-                                    src="/images/psicologia/psico2.jpg"
-                                    alt="Psicologia infantil especializada em comportamento na Clínica Fono Inova"
+                                    loading="lazy"
+                                    decoding="async"
+                                    src="/images/clinica/ia/psicologia-infantil.webp"
+                                    alt="Imagem ilustrativa: psicóloga e criança em atendimento de orientação sobre comportamento"
                                     className="w-full h-full object-cover"
-                                    onError={(e) => {
-                                        e.currentTarget.src = 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800';
-                                    }}
                                 />
-                            </div>
-
-                            {/* Card flutuante */}
-                            <div className="absolute -bottom-3 -left-3 bg-white p-4 rounded-2xl shadow-xl border border-slate-100">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center">
-                                        <CheckCircle2 className="w-5 h-5 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <div className="text-2xl font-bold text-slate-900">80%</div>
-                                        <div className="text-xs text-slate-500">Birras reduzidas</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Card de avaliação */}
-                            <div className="absolute -top-3 -right-3 bg-white p-3 rounded-2xl shadow-xl border border-slate-100">
-                                <div className="flex items-center gap-1">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                        <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                                    ))}
-                                </div>
-                                <div className="text-xs text-slate-600 mt-1">5.0 no Google</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <ProofBar className="-mt-8 md:-mt-10" />
 
             {/* ==================== SELEÇÃO POR COMPORTAMENTO ==================== */}
             <section className="py-16 bg-white">

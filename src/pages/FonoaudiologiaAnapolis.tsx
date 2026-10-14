@@ -1,4 +1,5 @@
 import { Badge } from '@mui/material';
+import AlertSigns from '../components/premium/AlertSigns';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import TypewriterText from '../components/TypewriterText';
 import {
@@ -165,19 +166,7 @@ const FonoaudiologiaAnapolis = () => {
               </h2>
 
               {/* BLOCO DE SINAIS DE ALERTA */}
-              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
-                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4" />
-                  Sinais de alerta:
-                </p>
-                <ul className="text-sm text-yellow-700 space-y-1">
-                  {sinaisAlerta.map((sinal, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <span className="text-yellow-600">•</span> {sinal}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <AlertSigns title="Sinais de alerta" items={sinaisAlerta} className="mb-6" />
 
               {/* Parágrafo */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-xl">

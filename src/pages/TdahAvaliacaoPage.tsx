@@ -183,11 +183,6 @@ const TdahAvaliacaoPage = () => {
                                 Isso pode ser <strong>TDAH ou outra dificuldade de aprendizagem</strong> — e quanto antes identificar, mais fácil é tratar.
                             </p>
 
-                            {/* ALERTA DE CONSEQUÊNCIA */}
-                            <p className="text-red-600 font-semibold text-sm mb-4">
-                                ⚠️ Quanto mais você espera, mais seu filho se frustra e perde autoestima.
-                            </p>
-
                             {/* BLOCO DE SEGURANÇA EMOCIONAL */}
                             <div className="bg-green-50 border border-green-200 p-4 rounded-xl mb-6">
                                 <p className="text-green-800 font-medium text-sm">

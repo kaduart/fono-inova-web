@@ -1,4 +1,6 @@
 import { AlertTriangle, Brain, CheckCircle2, Heart, MessageCircle } from 'lucide-react';
+import AlertSigns from '../components/premium/AlertSigns';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
@@ -87,19 +89,7 @@ export default function AutismoAnapolis() {
               <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link> para avaliação médica especializada no diagnóstico e acompanhamento.
             </p>
 
-            <div className="bg-purple-50 border border-purple-200 p-5 rounded-xl text-left">
-              <p className="text-sm text-purple-800 font-semibold mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4" />
-                Sinais que merecem atenção:
-              </p>
-              <ul className="space-y-1.5">
-                {sinaisAlerta.map((s, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-purple-700">
-                    <span className="text-purple-400 mt-0.5 shrink-0">•</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AlertSigns title="Sinais que merecem atenção" items={sinaisAlerta} className="mb-6" />
 
             <div className="bg-green-50 border border-green-200 p-4 rounded-xl">
               <div className="flex items-center gap-2 text-green-800 font-semibold text-sm">
@@ -190,6 +180,13 @@ export default function AutismoAnapolis() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={0} title="" />
         </div>
       </section>
 

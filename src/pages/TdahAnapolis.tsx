@@ -1,4 +1,6 @@
 import { AlertTriangle, Brain, CheckCircle2, MessageCircle } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
+import AlertSigns from '../components/premium/AlertSigns';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
@@ -128,19 +130,7 @@ export default function TdahAnapolis() {
               <Link to="/neuropediatra-anapolis" className="text-primary font-semibold hover:underline"> neuropediatra em Anápolis</Link> para avaliação médica especializada quando necessário.
             </p>
 
-            <div className="bg-amber-50 border border-amber-200 p-5 rounded-xl text-left">
-              <p className="text-sm text-amber-800 font-semibold mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4" />
-                Sinais que merecem avaliação:
-              </p>
-              <ul className="space-y-1.5">
-                {sinaisAlerta.map((s, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-amber-700">
-                    <span className="text-amber-500 mt-0.5 shrink-0">•</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AlertSigns title="Sinais que merecem avaliação" items={sinaisAlerta} className="mb-6" />
 
             <ButtonWhatsApp
               onClick={() => trackButtonClick('WA_Tdah_Hero')}
@@ -300,6 +290,13 @@ export default function TdahAnapolis() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={0} title="" />
         </div>
       </section>
 

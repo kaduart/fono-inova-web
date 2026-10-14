@@ -166,7 +166,7 @@ const PsicopedagogiaPage = () => {
     const statistics = [
         { value: "10-15%", label: "das crianças têm algum transtorno de aprendizagem" },
         { value: "3-7%", label: "têm dislexia" },
-        { value: "80%", label: "melhoram com intervenção psicopedagógica" },
+        { value: "5,0", label: "nota das famílias no Google" },
         { value: "6-24", label: "meses é o tempo médio de tratamento" }
     ];
 

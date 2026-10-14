@@ -1,4 +1,6 @@
 import { Badge } from '@mui/material';
+import GoogleReviews from '../components/premium/GoogleReviews';
+import AlertSigns from '../components/premium/AlertSigns';
 import {
   Accessibility,
   ArrowRight,
@@ -184,19 +186,7 @@ const PsicologiaInfantilAnapolis = () => {
               </h2>
 
               {/* BLOCO DE SINAIS DE ALERTA */}
-              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
-                <p className="text-sm text-yellow-800 font-semibold mb-2 flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4" />
-                  Sinais de alerta:
-                </p>
-                <ul className="text-sm text-yellow-700 space-y-1">
-                  {sinaisAlerta.map((sinal, idx) => (
-                    <li key={idx} className="flex items-center gap-2">
-                      <span className="text-yellow-600">•</span> {sinal}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <AlertSigns title="Sinais de alerta" items={sinaisAlerta} className="mb-6" />
 
               {/* Parágrafo */}
               <p className="text-lg text-slate-600 leading-relaxed max-w-xl">
@@ -432,6 +422,13 @@ const PsicologiaInfantilAnapolis = () => {
         showFAQ={true}
         customFAQTitle="Perguntas Frequentes sobre Psicologia Infantil"
       />
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={1} title="" />
+        </div>
+      </section>
 
       <PageFooterInfo related={['/comportamento-infantil-anapolis', '/tdah-anapolis', '/autismo-anapolis', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 

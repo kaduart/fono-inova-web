@@ -1,4 +1,5 @@
 import { Badge } from '@mui/material';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { Accessibility, ArrowRight, Award, Baby, Brain, CheckCircle2, Clock, GraduationCap, Heart, MapPin, MessageCircle, PhoneCall, Star, Activity } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -269,6 +270,13 @@ const PrematuridadePage = () => {
       </section>
 
       {/* CTA Final */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={0} title="" />
+        </div>
+      </section>
+
       <PageFooterInfo related={['/fisioterapia-infantil-anapolis', '/fonoaudiologia-anapolis', '/neuropediatra-anapolis', '/sindrome-de-down']} whatsappMessage="Oi! Vi a página de acompanhamento do bebê prematuro da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="kids" reverse whatsappMessage="Oi! Vi a página de acompanhamento do bebê prematuro da Fono Inova e gostaria de entender como funciona o atendimento." />

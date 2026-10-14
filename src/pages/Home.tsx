@@ -1083,7 +1083,7 @@ function Home() {
               {[
                 "Resposta em até 40 min em dias úteis",
                 "Avaliação personalizada",
-                "Sem filas de espera",
+                "Atendimento em horário marcado",
               ].map((benefit, index) => (
                 <div key={index} className="flex items-center justify-center gap-2 text-white/90">
                   <CheckCircle2 className="w-5 h-5 text-green-400" />

@@ -1,4 +1,6 @@
 import { AlertTriangle, Brain, CheckCircle2, MessageCircle } from 'lucide-react';
+import AlertSigns from '../components/premium/AlertSigns';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
@@ -125,19 +127,7 @@ export default function DislexiaAnapolis() {
               seu filho pode superar os desafios da leitura e escrita.
             </p>
 
-            <div className="bg-blue-50 border border-blue-200 p-5 rounded-xl text-left">
-              <p className="text-sm text-blue-800 font-semibold mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4" />
-                Sinais que podem indicar dislexia:
-              </p>
-              <ul className="space-y-1.5">
-                {sinaisAlerta.map((s, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-blue-700">
-                    <span className="text-blue-500 mt-0.5 shrink-0">•</span> {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <AlertSigns title="Sinais que podem indicar dislexia" items={sinaisAlerta} className="mb-6" />
 
             <ButtonWhatsApp
               onClick={() => trackButtonClick('WA_Dislexia_Hero')}
@@ -222,6 +212,13 @@ export default function DislexiaAnapolis() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
+          <GoogleReviews count={3} offset={3} title="" />
         </div>
       </section>
 

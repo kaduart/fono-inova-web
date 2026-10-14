@@ -219,8 +219,8 @@ const ClinicaMultidisciplinar = () => {
             <div className="relative">
               <div className="bg-white rounded-2xl p-6 shadow-lg">
                 <img
-                  src="/api/placeholder/500/350"
-                  alt="Equipe multidisciplinar trabalhando junta"
+                  src="/images/clinica/galeria/recepcao.webp"
+                  alt="Recepção da Clínica Fono Inova, em Anápolis"
                   className="w-full h-auto rounded-lg"
                 />
               </div>
