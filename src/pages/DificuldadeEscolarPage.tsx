@@ -321,7 +321,7 @@ const DificuldadeEscolarPage = () => {
 
       <PageFooterInfo related={['/tdah-anapolis', '/dislexia-anapolis', '/psicopedagogia', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="jogos" whatsappMessage="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="escolarEscrita" whatsappMessage="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

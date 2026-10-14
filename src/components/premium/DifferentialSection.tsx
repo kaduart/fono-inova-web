@@ -14,6 +14,10 @@ const PHOTOS = {
   fonoEspelho: { src: '/images/clinica/ia/fonoaudiologia-sessao-espelho.webp', alt: 'Imagem ilustrativa: fonoaudióloga e criança em sessão com espelho em sala com mural de balões e animais' },
   neuropsiSala: { src: '/images/clinica/ia/avaliacao-neuropsicologica-sala-selva.webp', alt: 'Imagem ilustrativa: profissional aplicando atividade de avaliação em criança, em sala com mural de floresta' },
   psicomotCircuito: { src: '/images/clinica/ia/psicomotricidade-circuito-grama.webp', alt: 'Imagem ilustrativa: criança em circuito de movimento com cama elástica e grama sintética, acompanhada de terapeuta' },
+  toCoordenacao: { src: '/images/clinica/ia/terapia-ocupacional-coordenacao-contas.webp', alt: 'Imagem ilustrativa: terapeuta e criança em atividade de coordenação motora fina com contas e blocos' },
+  psicoNumeros: { src: '/images/clinica/ia/psicopedagogia-jogo-numeros-tapete.webp', alt: 'Imagem ilustrativa: profissional e criança com jogo de números e letras sobre tapete colorido' },
+  escolarEscrita: { src: '/images/clinica/ia/dificuldade-escolar-escrita-caderno.webp', alt: 'Imagem ilustrativa: profissional acompanhando criança em atividade de escrita no caderno' },
+  dislexiaLeitura: { src: '/images/clinica/ia/dislexia-leitura-orientada.webp', alt: 'Imagem ilustrativa: profissional orientando criança em atividade de leitura em sala infantil' },
   tdahTablet: { src: '/images/clinica/ia/tdah-avaliacao-tablet.webp', alt: 'Imagem ilustrativa: criança fazendo atividade em tablet durante avaliação, com profissional ao lado' },
 } as const;
 

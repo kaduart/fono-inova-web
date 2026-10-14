@@ -92,7 +92,7 @@ const BaseAereaAnapolis = () => {
         title="Convênio Base Aérea em Anápolis (BAAN) | Fono Inova"
         description="Clínica Fono Inova credenciada ao convênio da Base Aérea de Anápolis (BAAN). Fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
         keywords="convenio base aerea anapolis, clinica atende base anapolis, baan anapolis, fonoaudiologia base aerea anapolis, convenio baan"
-        image="/images/clinica/ia/base-aerea.webp"
+        image="/images/clinica/ia/convenio-base-aerea-orientacao-familia.webp"
         url="https://www.clinicafonoinova.com.br/convenio-base-aerea-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaBaseAereaAnapolis, schemaFAQBaseAereaAnapolis]}
@@ -196,8 +196,8 @@ const BaseAereaAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async"
-                    src="/images/clinica/ia/base-aerea.webp"
-                    alt="Imagem ilustrativa: militar com o filho no colo conversando com a terapeuta durante um atendimento infantil"
+                    src="/images/clinica/ia/convenio-base-aerea-orientacao-familia.webp"
+                    alt="Imagem ilustrativa: militar da Força Aérea e a família em orientação com a terapeuta durante um atendimento infantil"
                     className="w-full h-full object-cover"
                   />
                 </div>

@@ -386,7 +386,7 @@ const TerapiaOcupacionalAnapolis = () => {
 
       <PageFooterInfo related={['/psicomotricidade-anapolis', '/autismo-anapolis', '/fisioterapia-infantil-anapolis', '/seletividade-alimentar-anapolis']} whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="piscina" whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="toCoordenacao" whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

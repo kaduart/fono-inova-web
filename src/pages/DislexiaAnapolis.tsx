@@ -224,7 +224,7 @@ export default function DislexiaAnapolis() {
 
       <PageFooterInfo related={['/psicopedagogia', '/fonoaudiologia-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de dislexia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="jogos" whatsappMessage="Oi! Vi a página de dislexia da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="dislexiaLeitura" whatsappMessage="Oi! Vi a página de dislexia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

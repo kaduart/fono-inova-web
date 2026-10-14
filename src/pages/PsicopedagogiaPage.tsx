@@ -467,7 +467,7 @@ const PsicopedagogiaPage = () => {
             {/* CTA Final */}
       <PageFooterInfo related={['/dislexia-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="jogos" whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="psicoNumeros" whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 
