@@ -9,6 +9,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -300,6 +302,10 @@ export default function TdahAnapolis() {
           </div>
         </div>
       </section>
+
+      <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/psicologia-infantil-anapolis', '/psicopedagogia', '/avaliacao-neuropsicologica-dificuldade-escolar']} whatsappMessage="Oi! Vi a página de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="jogos" reverse whatsappMessage="Oi! Vi a página de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

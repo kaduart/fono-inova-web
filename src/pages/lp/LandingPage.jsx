@@ -8,6 +8,7 @@ import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 import WhatsAppCTA from '../../components/lp/WhatsAppCTA';
 import ClinicGallery from '../../components/ClinicGallery';
+import DifferentialSection from '../../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../../components/premium/ProofBar';
 import { getLandingPageBySlug } from '../../data/landing-pages';
@@ -485,6 +486,8 @@ const LandingPage = () => {
           </Container>
         </section>
       )}
+
+      <DifferentialSection photo={['terapia', 'ludico', 'jogos', 'kids', 'movimento', 'piscina'][(lp.slug || '').length % 6]} whatsappMessage={`Oi! Vi a página "${lp.title}" da Fono Inova e gostaria de entender como funciona o atendimento.`} />
 
       <ClinicGallery variant="carousel" />
 

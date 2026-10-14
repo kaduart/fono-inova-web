@@ -9,8 +9,10 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
 
 const WHATSAPP_MSG = "Oi! Meu filho tem seletividade alimentar e quero entender como tratar. Pode me ajudar?";
 
@@ -294,6 +296,10 @@ export default function SeletividadeAlimentarAnapolis() {
           </div>
         </div>
       </section>
+
+      <PageFooterInfo related={['/terapia-ocupacional-anapolis', '/fonoaudiologia-anapolis', '/autismo-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de seletividade alimentar da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="kids" whatsappMessage="Oi! Vi a página de seletividade alimentar da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

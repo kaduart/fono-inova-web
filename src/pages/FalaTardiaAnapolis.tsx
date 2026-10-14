@@ -9,6 +9,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness, schemaFAQFalaTardia } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -185,6 +187,10 @@ export default function FalaTardiaAnapolis() {
           </div>
         </div>
       </section>
+
+      <PageFooterInfo related={['/fonoaudiologia-anapolis', '/autismo-anapolis', '/teste-da-linguinha-anapolis', '/terapia-ocupacional-anapolis']} whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="terapia" reverse whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

@@ -9,6 +9,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness, schemaFAQTea } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -190,6 +192,10 @@ export default function AutismoAnapolis() {
           </div>
         </div>
       </section>
+
+      <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/terapia-ocupacional-anapolis', '/fonoaudiologia-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de autismo da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="piscina" whatsappMessage="Oi! Vi a página de autismo da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

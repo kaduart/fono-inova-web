@@ -8,6 +8,8 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaAdultoVoz, schemaFAQAdulto } from '../schemas/clinicaSchemas';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -306,6 +308,10 @@ const AdultoVozPage = () => {
             </section>
 
             {/* CTA Final */}
+      <PageFooterInfo related={['/fonoaudiologia-anapolis', '/abordagem-multidisciplinar', '/reembolso-plano-de-saude-anapolis']} whatsappMessage="Oi! Vi a página de fonoaudiologia para adultos da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="terapia" reverse whatsappMessage="Oi! Vi a página de fonoaudiologia para adultos da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
             <section className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white">

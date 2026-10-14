@@ -23,6 +23,9 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaMusicoterapia, schemaFAQMusicoterapia } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import SituationsSection from '../components/premium/SituationsSection';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -225,6 +228,8 @@ const MusicoterapiaPage = () => {
       </section>
 
       <ProofBar className="py-6" />
+
+      <SituationsSection items={['Dificuldade de comunicação ou de se expressar', 'Agitação ou dificuldade de se regular emocionalmente', 'Pouca interação com outras crianças', 'Sensibilidade a sons ou dificuldade de atenção', 'Interesse especial por música, ritmo e sons', 'Necessidade de um recurso diferente para engajar na terapia']} whatsappMessage="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
 
       {/* ═══════════════ O QUE É ═══════════════ */}
@@ -437,6 +442,10 @@ const MusicoterapiaPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <PageFooterInfo related={['/autismo-anapolis', '/terapia-ocupacional-anapolis', '/fonoaudiologia-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="kids" reverse whatsappMessage="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-16 md:py-20 bg-gradient-to-br from-indigo-600 to-violet-700 text-white">

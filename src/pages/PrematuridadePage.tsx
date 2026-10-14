@@ -12,8 +12,11 @@ import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import SituationsSection from '../components/premium/SituationsSection';
 
 const PrematuridadePage = () => {
   const [accessibilityWizardOpen, setAccessibilityWizardOpen] = useState(false);
@@ -121,12 +124,12 @@ const PrematuridadePage = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30" />
         <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-70" />
         
         <div className="relative container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
             <div className="order-2 lg:order-1 space-y-6">
               <span className="mb-4 inline-flex items-center bg-primary/10 text-primary border border-primary/20 px-4 py-1.5 text-sm font-semibold rounded-full">
                 Estimulação Precoce em Anápolis
@@ -151,7 +154,7 @@ const PrematuridadePage = () => {
                 <strong className="text-slate-900">Clínica Fono Inova</strong> — oferecemos acompanhamento especializado para bebês prematuros em Anápolis, com estimulação precoce, fisioterapia, fonoaudiologia e terapia ocupacional integradas.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 [&_span]:whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
                   <span>Estimulação precoce</span>
@@ -188,19 +191,11 @@ const PrematuridadePage = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
-                <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
-              </div>
             </div>
 
-            <div className="order-1 lg:order-2 relative w-full">
+            <div className="order-1 lg:order-2 relative w-full lg:mt-14 lg:sticky lg:top-28">
               <div className="relative">
-                <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
                     src="/images/clinica/ia/prematuridade.webp" 
                     alt="Imagem ilustrativa: duas profissionais acompanhando o desenvolvimento de um bebê sentado em tapete de atividades"
@@ -214,6 +209,8 @@ const PrematuridadePage = () => {
       </section>
 
       <ProofBar className="py-6" />
+
+      <SituationsSection items={["Bebê nasceu antes do tempo e a família quer acompanhar o desenvolvimento", "Dificuldade para sugar, mamar ou se alimentar", "Atraso para sustentar a cabeça, sentar ou engatinhar", "Dúvidas sobre fala e comunicação nos primeiros anos", "Preocupação com o tônus e os movimentos do bebê"]} whatsappMessage="Oi! Vi a página de acompanhamento do bebê prematuro da Fono Inova e gostaria de entender como funciona o atendimento." />
 
 
       {/* Seção de Terapias */}
@@ -272,6 +269,10 @@ const PrematuridadePage = () => {
       </section>
 
       {/* CTA Final */}
+      <PageFooterInfo related={['/fisioterapia-infantil-anapolis', '/fonoaudiologia-anapolis', '/neuropediatra-anapolis', '/sindrome-de-down']} whatsappMessage="Oi! Vi a página de acompanhamento do bebê prematuro da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="kids" reverse whatsappMessage="Oi! Vi a página de acompanhamento do bebê prematuro da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">

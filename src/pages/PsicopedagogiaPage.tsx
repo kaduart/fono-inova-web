@@ -24,6 +24,7 @@ import {
     TrendingUp,
     Users
 } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
@@ -34,6 +35,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
 import { schemaFAQPsicopedagogia, schemaPsicopedagogia } from '../schemas/clinicaSchemas';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -138,27 +141,6 @@ const PsicopedagogiaPage = () => {
         { step: 5, title: "Acompanhamento", description: "Sessões semanais e reavaliações periódicas", icon: <CheckCircle className="w-8 h-8" /> }
     ];
 
-    // Depoimentos
-    const testimonials = [
-        {
-            name: "Fernanda Lima",
-            role: "Mãe da Ana Clara, 8 anos",
-            content: "A Ana tinha muita dificuldade na escola. Após o acompanhamento psicopedagógico, ela melhorou muito! Hoje já consegue ler sozinha e as notas subiram. A autoestima dela mudou completamente!",
-            rating: 5
-        },
-        {
-            name: "Roberto Souza",
-            role: "Pai do Daniel, 10 anos",
-            content: "O Daniel foi diagnosticado com dislexia. A psicopedagoga nos ensinou estratégias que fazem toda a diferença. Ele está mais confiante e a escola também está mais preparada para ajudá-lo.",
-            rating: 5
-        },
-        {
-            name: "Mariana Costa",
-            role: "Mãe do Felipe, 12 anos",
-            content: "Felipe tinha dificuldade em matemática e estava muito desmotivado. Com o trabalho psicopedagógico, ele desenvolveu técnicas de estudo e hoje está muito melhor. Gratidão!",
-            rating: 5
-        }
-    ];
 
     // FAQs
     const faqs = [
@@ -441,33 +423,14 @@ const PsicopedagogiaPage = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                            Histórias de <span className="text-amber-600">Sucesso</span> Escolar
+                            O que as <span className="text-amber-600">famílias</span> dizem
                         </h2>
                         <p className="text-xl text-gray-700">
-                            Como a psicopedagogia transformou a vida escolar dessas crianças.
+                            Avaliações reais deixadas no perfil da clínica no Google.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial, index) => (
-                            <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:border-amber-100 transition-all duration-300">
-                                <div className="flex items-center mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className={`w-5 h-5 ${i < testimonial.rating ? 'fill-yellow-400 text-yellow-400' : 'fill-gray-200 text-gray-200'}`}
-                                        />
-                                    ))}
-                                </div>
-                                <Quote className="w-8 h-8 text-amber-200 mb-4" />
-                                <p className="text-gray-700 italic mb-6 leading-relaxed">"{testimonial.content}"</p>
-                                <div className="border-t border-gray-100 pt-4">
-                                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <GoogleReviews count={3} offset={3} title="" />
                 </div>
             </section>
 
@@ -502,6 +465,10 @@ const PsicopedagogiaPage = () => {
             </section>
 
             {/* CTA Final */}
+      <PageFooterInfo related={['/dislexia-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="jogos" whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
             <section className="relative isolate z-10 py-20 bg-gradient-to-br from-amber-600 via-orange-700 to-yellow-800 text-white overflow-hidden">

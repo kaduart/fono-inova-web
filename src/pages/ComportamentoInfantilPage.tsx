@@ -1,4 +1,5 @@
 import { AlertCircle, ArrowRight, Angry, Frown, Heart, MapPin, MessageCircle, Phone, Star, Clock, CheckCircle2, AlertTriangle } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
@@ -7,6 +8,10 @@ import Breadcrumb from '../components/Breadcrumb';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const ComportamentoInfantilPage = () => {
     const [selectedComportamento, setSelectedComportamento] = useState<string | null>(null);
@@ -64,26 +69,6 @@ const ComportamentoInfantilPage = () => {
         }
     ];
 
-    const depoimentos = [
-        {
-            estrelas: 5,
-            texto: "Minha filha tinha birras horríveis em qualquer lugar. Depois de 1 mês de orientação, conseguimos reduzir 80% das crises!",
-            autor: "Mãe da Luísa, 4 anos",
-            resultado: "Birras reduzidas em 80%"
-        },
-        {
-            estrelas: 5,
-            texto: "O filho estava sendo expulso da escola por agressão. Hoje ele brinca normalmente com as outras crianças.",
-            autor: "Pai do Matheus, 6 anos",
-            resultado: "Agressividade controlada"
-        },
-        {
-            estrelas: 5,
-            texto: "Pensávamos que nosso filho era 'mau'. A psicóloga nos mostrou que ele só precisava de ajuda para lidar com frustração.",
-            autor: "Mãe do Pedro, 5 anos",
-            resultado: "Relação familiar melhorou"
-        }
-    ];
 
     const metodologia = [
         {
@@ -194,7 +179,7 @@ const ComportamentoInfantilPage = () => {
                             <div className="inline-flex items-center gap-2 bg-red-100 border border-red-200 px-4 py-2 rounded-full mb-4 animate-pulse">
                                 <AlertTriangle className="w-4 h-4 text-red-600" />
                                 <span className="text-sm font-bold text-red-700">
-                                    Últimas vagas para atendimento esta semana
+                                    Primeira orientação sem compromisso
                                 </span>
                             </div>
 
@@ -273,7 +258,7 @@ const ComportamentoInfantilPage = () => {
                             </div>
 
                             <p className="text-xs text-slate-500 mt-3">
-                                Resposta em até 2h • Primeira orientação sem compromisso
+                                Resposta em até 40 min em dias úteis • Primeira orientação sem compromisso
                             </p>
                         </div>
 
@@ -382,7 +367,7 @@ const ComportamentoInfantilPage = () => {
                             Falar com Psicóloga no WhatsApp
                         </ButtonWhatsApp>
                         <p className="text-sm text-slate-500 mt-2">
-                            Resposta em até 2h • Sem compromisso
+                            Resposta em até 40 min em dias úteis • Sem compromisso
                         </p>
                     </div>
                 </div>
@@ -459,31 +444,14 @@ const ComportamentoInfantilPage = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <Badge className="mb-3 bg-green-50 text-green-700 border-green-200">
-                            Resultados Reais
+                            Avaliações no Google
                         </Badge>
                         <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-3">
-                            Pais que <span className="text-red-600">superaram as crises</span>
+                            Famílias que <span className="text-red-600">confiam na Fono Inova</span>
                         </h2>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
-                        {depoimentos.map((depo, index) => (
-                            <div key={index} className="bg-white p-5 rounded-2xl shadow-lg border border-slate-100">
-                                <div className="flex gap-1 mb-3">
-                                    {[...Array(depo.estrelas)].map((_, i) => (
-                                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                                    ))}
-                                </div>
-                                <p className="text-base font-medium text-slate-800 mb-3">
-                                    "{depo.texto}"
-                                </p>
-                                <div className="pt-3 border-t border-slate-100">
-                                    <p className="font-semibold text-slate-900 text-sm">{depo.autor}</p>
-                                    <p className="text-xs text-green-600 font-medium">✓ {depo.resultado}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <GoogleReviews count={3} offset={4} title="" />
 
                     {/* CTA */}
                     <div className="text-center mt-8">
@@ -565,7 +533,7 @@ const ComportamentoInfantilPage = () => {
                     <div className="max-w-3xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full mb-6 animate-pulse">
                             <Clock className="w-5 h-5" />
-                            <span className="font-bold">Últimas vagas para atendimento esta semana</span>
+                            <span className="font-bold">Primeira orientação sem compromisso</span>
                         </div>
 
                         <h2 className="text-2xl md:text-4xl font-bold font-poppins mb-4 text-white">
@@ -632,6 +600,13 @@ const ComportamentoInfantilPage = () => {
                     animation: bounce-slow 2s ease-in-out infinite;
                 }
             `}</style>
+        <PageFooterInfo related={['/psicologia-infantil-anapolis', '/tdah-anapolis', '/autismo-anapolis', '/abordagem-multidisciplinar']} whatsappMessage="Oi! Vi a página de comportamento infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+        <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de comportamento infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+        <ClinicGallery variant="carousel" />
+
+        <FixedWhatsAppBar message="Oi! Vi a página de comportamento infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
         </Layout>
     );
 };

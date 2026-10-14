@@ -12,8 +12,11 @@ import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import SituationsSection from '../components/premium/SituationsSection';
 
 const SindromeDeDownPage = () => {
   const [accessibilityWizardOpen, setAccessibilityWizardOpen] = useState(false);
@@ -121,12 +124,12 @@ const SindromeDeDownPage = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30" />
         <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/30 to-pink-200/20 rounded-full blur-3xl opacity-70" />
         
         <div className="relative container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
             <div className="order-2 lg:order-1 space-y-6">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
                 Atendimento Especializado em Anápolis
@@ -148,7 +151,7 @@ const SindromeDeDownPage = () => {
                 <strong className="text-slate-900">Clínica Fono Inova</strong> — oferecemos atendimento especializado em Anápolis com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia integradas para o desenvolvimento completo da sua criança.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 [&_span]:whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
                   <span>Equipe especializada</span>
@@ -184,19 +187,11 @@ const SindromeDeDownPage = () => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
-                <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
-              </div>
             </div>
 
-            <div className="order-1 lg:order-2 relative w-full">
+            <div className="order-1 lg:order-2 relative w-full lg:mt-14 lg:sticky lg:top-28">
               <div className="relative">
-                <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
                     src="/images/clinica/ia/sindrome-de-down.webp" 
                     alt="Imagem ilustrativa: criança com síndrome de Down empilhando blocos com a terapeuta, com a mãe sorrindo ao fundo"
@@ -210,6 +205,8 @@ const SindromeDeDownPage = () => {
       </section>
 
       <ProofBar className="py-6" />
+
+      <SituationsSection items={["Dúvidas sobre o desenvolvimento da fala e da comunicação", "Atraso em marcos motores, como sentar e andar", "Dificuldade de alimentação ou de mastigação", "Preocupação com a autonomia e a vida escolar", "Necessidade de acompanhamento de mais de uma área"]} whatsappMessage="Oi! Vi a página de Síndrome de Down da Fono Inova e gostaria de entender como funciona o atendimento." />
 
 
       {/* Seção de Terapias */}
@@ -244,6 +241,10 @@ const SindromeDeDownPage = () => {
       </section>
 
       {/* CTA Final */}
+      <PageFooterInfo related={['/fonoaudiologia-anapolis', '/fisioterapia-infantil-anapolis', '/terapia-ocupacional-anapolis', '/psicomotricidade-anapolis']} whatsappMessage="Oi! Vi a página de Síndrome de Down da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="terapia" whatsappMessage="Oi! Vi a página de Síndrome de Down da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">

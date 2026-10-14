@@ -23,6 +23,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import OptimizedImage from '../components/OptimizedImage';
 import { schemaPsicomotricidade, schemaFAQPsicomotricidade } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -456,6 +458,10 @@ const PsicomotricidadePage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <PageFooterInfo related={['/fisioterapia-infantil-anapolis', '/terapia-ocupacional-anapolis', '/autismo-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="movimento" reverse whatsappMessage="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-16 md:py-20 bg-gradient-to-br from-pink-600 to-fuchsia-700 text-white">

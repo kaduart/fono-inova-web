@@ -2,6 +2,7 @@ import { CheckCircle2, ClipboardList, Copy, ExternalLink, FileText, MapPin, Mess
 import { useState } from 'react';
 import Breadcrumb from '../components/Breadcrumb';
 import ClinicGallery from '../components/ClinicGallery';
+import TypewriterText from '../components/TypewriterText';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
@@ -165,7 +166,7 @@ const ApoioFamilias = () => {
                 Acolhimento e acesso às terapias
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Apoio para sua família encontrar caminhos para o cuidado.
+                <TypewriterText text="Apoio para sua família encontrar caminhos para o cuidado." />
               </h1>
               <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
                 Dúvidas sobre autorização de terapias, documentos e acesso ao tratamento podem trazer insegurança. A equipe da Fono Inova ajuda sua família a organizar as informações clínicas e compreender os próximos passos do atendimento.

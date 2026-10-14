@@ -2,6 +2,7 @@ import { ArrowRight, CheckCircle2, ClipboardList, FileText, MapPin, MessageCircl
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
 import ClinicGallery from '../components/ClinicGallery';
+import TypewriterText from '../components/TypewriterText';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 import Reveal from '../components/premium/Reveal';
@@ -106,7 +107,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
                 Anápolis · Jundiaí
               </span>
               <h1 className="text-4xl md:text-5xl font-bold font-poppins text-slate-900 leading-tight">
-                Terapias infantis com recibo para pedir reembolso ao seu plano de saúde.
+                <TypewriterText text="Terapias infantis com recibo para pedir reembolso ao seu plano de saúde." />
               </h1>
               <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-xl">
                 Quando a criança precisa de fonoaudiologia, psicologia, terapia ocupacional ou fisioterapia, o cuidado não precisa esperar. Atendemos de forma particular, com equipe multidisciplinar no mesmo lugar, e emitimos o recibo para você solicitar o reembolso ao seu plano.

@@ -1,4 +1,5 @@
 import { AlertCircle, ArrowRight, Brain, Calendar, CheckCircle2, Clock, Heart, MapPin, MessageCircle, Phone, Star, Target, X } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
@@ -7,6 +8,8 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -66,26 +69,6 @@ const TdahAvaliacaoPage = () => {
         }
     ];
 
-    const depoimentos = [
-        {
-            estrelas: 5,
-            texto: "Finalmente descobrimos o que estava acontecendo! Depois do diagnóstico, nosso filho melhorou MUITO na escola.",
-            autor: "Mãe do Gabriel, 8 anos",
-            resultado: "Diagnóstico em 2 semanas"
-        },
-        {
-            estrelas: 5,
-            texto: "A avaliação mudou nossas vidas. Agora entendemos o que ele precisa e como ajudar. A escola notou a diferença!",
-            autor: "Pai do Matheus, 10 anos",
-            resultado: "Notas melhoraram 40%"
-        },
-        {
-            estrelas: 5,
-            texto: "Pensei que meu filho era 'preguiçoso'. A avaliação mostrou que ele tinha TDAH. Hoje ele é outra criança!",
-            autor: "Mãe da Luiza, 9 anos",
-            resultado: "Autoestima recuperada"
-        }
-    ];
 
     const metodologia = [
         {
@@ -118,7 +101,7 @@ const TdahAvaliacaoPage = () => {
         },
         {
             pergunta: 'Quanto tempo leva para ter o diagnóstico?',
-            resposta: 'O laudo fica pronto em até 15 dias úteis após a avaliação. Em casos urgentes, conseguimos priorizar para 7 dias.'
+            resposta: 'O laudo fica pronto em até 20 dias após a avaliação.'
         },
         {
             pergunta: 'Preciso de encaminhamento médico?',
@@ -178,7 +161,7 @@ const TdahAvaliacaoPage = () => {
                             <div className="inline-flex items-center gap-2 bg-red-100 border border-red-200 px-4 py-2 rounded-full mb-4 animate-pulse">
                                 <Clock className="w-4 h-4 text-red-600" />
                                 <span className="text-sm font-bold text-red-700">
-                                    Apenas 3 vagas para avaliação esta semana
+                                    Laudo em até 20 dias após a avaliação
                                 </span>
                             </div>
 
@@ -224,7 +207,7 @@ const TdahAvaliacaoPage = () => {
                                     ))}
                                 </div>
                                 <div className="text-sm text-slate-600">
-                                    <span className="font-semibold text-slate-900">+300 famílias</span> já descobriram o diagnóstico do filho
+                                    <span className="font-semibold text-slate-900">+500 famílias</span> atendidas na clínica
                                 </div>
                             </div>
 
@@ -246,7 +229,7 @@ const TdahAvaliacaoPage = () => {
                             </div>
 
                             <p className="text-xs text-slate-500 mt-3">
-                                Resposta em até 2h • Avaliação em até 7 dias • Sem compromisso
+                                Tire suas dúvidas pelo WhatsApp • Sem compromisso
                             </p>
                         </div>
 
@@ -270,7 +253,7 @@ const TdahAvaliacaoPage = () => {
                                         <CheckCircle2 className="w-5 h-5 text-green-600" />
                                     </div>
                                     <div>
-                                        <div className="text-2xl font-bold text-slate-900">15 dias</div>
+                                        <div className="text-2xl font-bold text-slate-900">até 20 dias</div>
                                         <div className="text-xs text-slate-500">Laudo pronto</div>
                                     </div>
                                 </div>
@@ -356,7 +339,7 @@ const TdahAvaliacaoPage = () => {
                             Falar com Neuropsicóloga no WhatsApp
                         </ButtonWhatsApp>
                         <p className="text-sm text-slate-500 mt-2">
-                            Resposta em até 2h • Sem compromisso
+                            Resposta em até 40 min em dias úteis • Sem compromisso
                         </p>
                     </div>
                 </div>
@@ -433,34 +416,17 @@ const TdahAvaliacaoPage = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <Badge className="mb-3 bg-green-50 text-green-700 border-green-200">
-                            Resultados Reais
+                            Avaliações no Google
                         </Badge>
                         <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-3">
-                            Famílias que <span className="text-purple-600">encontraram respostas</span>
+                            Famílias que <span className="text-purple-600">confiam na Fono Inova</span>
                         </h2>
                         <p className="text-slate-600">
-                            Veja o que os pais dizem sobre o diagnóstico na Fono Inova
+                            Avaliações reais deixadas no perfil da clínica no Google
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
-                        {depoimentos.map((depo, index) => (
-                            <div key={index} className="bg-white p-5 rounded-2xl shadow-lg border border-slate-100">
-                                <div className="flex gap-1 mb-3">
-                                    {[...Array(depo.estrelas)].map((_, i) => (
-                                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                                    ))}
-                                </div>
-                                <p className="text-base font-medium text-slate-800 mb-3">
-                                    "{depo.texto}"
-                                </p>
-                                <div className="pt-3 border-t border-slate-100">
-                                    <p className="font-semibold text-slate-900 text-sm">{depo.autor}</p>
-                                    <p className="text-xs text-green-600 font-medium">✓ {depo.resultado}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <GoogleReviews count={3} offset={2} title="" />
 
                     {/* CTA após depoimentos */}
                     <div className="text-center mt-8">
@@ -536,6 +502,10 @@ const TdahAvaliacaoPage = () => {
                 </div>
             </section>
 
+      <PageFooterInfo related={['/tdah-anapolis', '/neuropediatra-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/psicopedagogia']} whatsappMessage="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
             {/* ==================== CTA FINAL - URGÊNCIA MÁXIMA ==================== */}
@@ -544,7 +514,7 @@ const TdahAvaliacaoPage = () => {
                     <div className="max-w-3xl mx-auto text-center">
                         <div className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full mb-6 animate-pulse">
                             <Clock className="w-5 h-5" />
-                            <span className="font-bold">Apenas 3 vagas para avaliação esta semana</span>
+                            <span className="font-bold">Laudo em até 20 dias após a avaliação</span>
                         </div>
 
                         <h2 className="text-2xl md:text-4xl font-bold font-poppins mb-4 text-white">
@@ -567,7 +537,7 @@ const TdahAvaliacaoPage = () => {
 
                         <div className="flex items-center justify-center gap-4 text-white/70 text-xs flex-wrap">
                             <span className="flex items-center gap-1">
-                                <CheckCircle2 className="w-4 h-4" /> Laudo em 15 dias
+                                <CheckCircle2 className="w-4 h-4" /> Laudo em até 20 dias
                             </span>
                             <span className="flex items-center gap-1">
                                 <CheckCircle2 className="w-4 h-4" /> Sem encaminhamento

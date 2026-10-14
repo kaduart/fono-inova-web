@@ -24,6 +24,8 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaPsicopedagogia, schemaFAQPsicopedagogia } from '../schemas/clinicaSchemas.js';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -422,6 +424,10 @@ const PsicopedagogiaLPPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <PageFooterInfo related={['/dislexia-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="jogos" reverse whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-16 md:py-20 bg-gradient-to-br from-amber-500 to-orange-600 text-white">

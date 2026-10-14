@@ -1,4 +1,5 @@
 import { AlertCircle, ArrowRight, Award, Baby, Brain, Calendar, CheckCircle2, Clock, Heart, MapPin, MessageCircle, Phone, Shield, Star, Stethoscope, Users } from 'lucide-react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
@@ -7,8 +8,10 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness, schemaFAQNeuropediatria } from '../schemas/clinicaSchemas';
 import ClinicGallery from '../components/ClinicGallery';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
 
 const NeuropediatriaPage = () => {
     const [selectedSintoma, setSelectedSintoma] = useState<string | null>(null);
@@ -63,27 +66,6 @@ const NeuropediatriaPage = () => {
         }
     ];
 
-    // Depoimentos éticos e realistas
-    const depoimentos = [
-        {
-            estrelas: 5,
-            texto: "Fomos muito bem orientados sobre o desenvolvimento da nossa filha. A consulta trouxe clareza sobre os próximos passos.",
-            autor: "Mãe da Isabela, 4 anos",
-            resultado: "Diagnóstico e direcionamento adequados"
-        },
-        {
-            estrelas: 5,
-            texto: "A consulta com o neuropediatra nos deu segurança. Explicaram tudo com calma e nos orientaram sobre o tratamento.",
-            autor: "Pai do Rafael, 6 anos",
-            resultado: "Tranquilidade para a família"
-        },
-        {
-            estrelas: 5,
-            texto: "Finalmente entendemos o que estava acontecendo com nosso filho. O acompanhamento médico fez toda diferença.",
-            autor: "Mãe do Lucas, 5 anos",
-            resultado: "Clareza sobre o quadro clínico"
-        }
-    ];
 
     // Diferenciais médicos
     const diferenciais = [
@@ -410,31 +392,14 @@ const NeuropediatriaPage = () => {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-10">
                         <Badge className="mb-3 bg-blue-50 text-blue-700 border-blue-200">
-                            Depoimentos
+                            Avaliações no Google
                         </Badge>
                         <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-3">
                             O que os pais dizem
                         </h2>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        {depoimentos.map((depo, index) => (
-                            <div key={index} className="bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-                                <div className="flex gap-1 mb-4">
-                                    {[...Array(depo.estrelas)].map((_, i) => (
-                                        <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                                    ))}
-                                </div>
-                                <p className="text-slate-700 mb-4 text-sm leading-relaxed">
-                                    "{depo.texto}"
-                                </p>
-                                <div className="pt-4 border-t border-slate-100">
-                                    <p className="font-semibold text-slate-900 text-sm">{depo.autor}</p>
-                                    <p className="text-xs text-blue-600">✓ {depo.resultado}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <GoogleReviews count={3} offset={5} title="" />
                 </div>
             </section>
 
@@ -463,6 +428,10 @@ const NeuropediatriaPage = () => {
                     </div>
                 </div>
             </section>
+
+      <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/autismo-anapolis', '/tdah-anapolis', '/fisioterapia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

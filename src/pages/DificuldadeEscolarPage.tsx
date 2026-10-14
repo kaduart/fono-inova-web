@@ -9,6 +9,8 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar } from '../schemas/clinicaSchemas';
 import { trackLandingPageView } from '../services/landingPageAnalytics';
 import ClinicGallery from '../components/ClinicGallery';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
@@ -309,6 +311,10 @@ const DificuldadeEscolarPage = () => {
             </section>
 
             {/* CTA Final */}
+      <PageFooterInfo related={['/tdah-anapolis', '/dislexia-anapolis', '/psicopedagogia', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="jogos" whatsappMessage="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
             <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">

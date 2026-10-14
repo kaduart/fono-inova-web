@@ -11,6 +11,8 @@ type TypewriterTextProps = {
   typingSpeed?: number;
   startDelay?: number;
   cursorClassName?: string;
+  /** Padrão: true (efeito digitado). Passe animate={false} para mostrar o título pronto. */
+  animate?: boolean;
 };
 
 const TypewriterText = ({
@@ -19,6 +21,7 @@ const TypewriterText = ({
   typingSpeed = 34,
   startDelay = 1000,
   cursorClassName = 'bg-current',
+  animate = true,
 }: TypewriterTextProps) => {
   const resolvedSegments: TextSegment[] = segments ?? [{ text: text ?? '' }];
   const fullText = resolvedSegments.map((segment) => segment.text).join('');
@@ -37,7 +40,7 @@ const TypewriterText = ({
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) {
+    if (!animate || reduceMotion) {
       setDisplayLength(fullText.length);
       return;
     }
@@ -62,7 +65,17 @@ const TypewriterText = ({
       if (typingTimer) clearTimeout(typingTimer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduceMotion, startDelay, fullText, typingSpeed]);
+  }, [animate, reduceMotion, startDelay, fullText, typingSpeed]);
+
+  if (!animate) {
+    return (
+      <>
+        {resolvedSegments.map((segment, index) => (
+          <span key={index} className={segment.className}>{segment.text}</span>
+        ))}
+      </>
+    );
+  }
 
   let consumed = 0;
 

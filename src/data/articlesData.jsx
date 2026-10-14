@@ -1558,7 +1558,7 @@ export const articlesData = [
         </ul>
 
         <h2>Diagnóstico e Treinamento Auditivo</h2>
-        <p>Com equipamentos especializados e cabine acústica, realizamos a avaliação do PAC e o treinamento auditivo para fortalecer as vias auditivas centrais.</p>
+        <p>Com avaliação especializada, realizamos a avaliação do PAC e o treinamento auditivo para fortalecer as vias auditivas centrais.</p>
       </>
     )
   },

@@ -3,6 +3,7 @@
 // Antes de ativar: confirmação formal do credenciamento + revisar os textos abaixo (especialidades realmente liberadas,
 // aviso de elegibilidade/autorização), adicionar a URL ao sitemap.xml e rodar o IndexNow.
 import TypewriterText from '../components/TypewriterText';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import {
   Accessibility,
   ArrowRight,
@@ -57,24 +58,6 @@ const steps = [
   },
 ];
 
-// Depoimentos destacados
-const featuredTestimonials = [
-  {
-    stars: 5,
-    text: "Meu filho não falava quase nada... hoje já conversa! A orientação fez toda diferença.",
-    author: "Mãe do Pedro, 4 anos",
-  },
-  {
-    stars: 5,
-    text: "Finalmente entendemos o que estava acontecendo. A explicação clara nos deu segurança.",
-    author: "Pai da Sofia, 5 anos",
-  },
-  {
-    stars: 5,
-    text: "Atendimento acolhedor desde o primeiro contato. Nos sentimos compreendidos.",
-    author: "Mãe do Lucas, 3 anos",
-  },
-];
 
 // Benefícios do convênio
 const beneficios = [
@@ -304,19 +287,7 @@ const GeapAnapolisLP = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {featuredTestimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gradient-to-br from-slate-50 to-white p-6 rounded-2xl shadow-lg border border-slate-100">
-                <div className="flex text-yellow-400 mb-4">
-                  {[...Array(testimonial.stars)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-700 mb-4 italic">"{testimonial.text}"</p>
-                <p className="text-sm text-slate-500 font-medium">— {testimonial.author}</p>
-              </div>
-            ))}
-          </div>
+          <GoogleReviews count={3} offset={1} title="" />
         </div>
       </section>
 

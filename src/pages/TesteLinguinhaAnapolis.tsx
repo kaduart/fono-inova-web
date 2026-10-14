@@ -42,7 +42,11 @@ import { testeLinguinhaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 import { getPageWhatsAppLink, getPageById } from '../data/landingPageRegistry.js';
 import ClinicGallery from '../components/ClinicGallery';
+import DifferentialSection from '../components/premium/DifferentialSection';
+import ProofBar from '../components/premium/ProofBar';
+import TypewriterText from '../components/TypewriterText';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
 
 const PAGE_ID = 'teste_da_linguinha_anapolis';
 const PAGE_DATA = getPageById(PAGE_ID);
@@ -213,13 +217,13 @@ const TesteLinguinhaAnapolis = () => {
       />
 
       {/* ==================== HERO SECTION ==================== */}
-      <section className="relative min-h-screen pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
+      <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30" />
         <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-70" />
         <div className="absolute top-40 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/30 to-orange-200/20 rounded-full blur-3xl opacity-60" />
 
         <div className="relative container mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
             {/* Text Content */}
             <div className="order-2 lg:order-1 space-y-6">
               {/* Badge */}
@@ -232,7 +236,7 @@ const TesteLinguinhaAnapolis = () => {
 
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-                Teste da Linguinha em Anápolis GO
+                <TypewriterText text="Teste da Linguinha em Anápolis GO" />
               </h1>
 
               {/* H2 Especialidade */}
@@ -254,7 +258,7 @@ const TesteLinguinhaAnapolis = () => {
               </p>
 
               {/* Benefícios rápidos */}
-              <div className="flex flex-col sm:flex-row gap-4 text-sm text-slate-600">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600 [&_span]:whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-green-500" />
                   <span>Diagnóstico precoce</span>
@@ -294,20 +298,12 @@ const TesteLinguinhaAnapolis = () => {
               </div>
 
               {/* Prova social */}
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-200">
-                <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="w-4 h-4 fill-current" />
-                  ))}
-                </div>
-                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
-              </div>
             </div>
 
             {/* Image Section */}
-            <div className="order-1 lg:order-2 relative w-full">
+            <div className="order-1 lg:order-2 relative w-full lg:mt-14 lg:sticky lg:top-28">
               <div className="relative">
-                <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
                     src="/images/clinica/ia/teste-linguinha.webp" 
                     alt="Imagem ilustrativa: mãe com o bebê no colo conversando com a profissional de saúde"
@@ -315,22 +311,13 @@ const TesteLinguinhaAnapolis = () => {
                   />
                 </div>
 
-                <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-xl z-10">
-                  <div className="flex items-center gap-2">
-                    <div className="flex text-yellow-400">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star key={star} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                    <span className="font-bold text-slate-900">5.0</span>
-                    <span className="text-xs text-slate-500">Google</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <ProofBar className="-mt-8 md:-mt-10" />
 
       {/* ==================== INVESTIMENTO ==================== */}
       <section className="py-16 bg-white">
@@ -698,6 +685,10 @@ const TesteLinguinhaAnapolis = () => {
           </div>
         </div>
       </section>
+
+      <PageFooterInfo related={['/fonoaudiologia-anapolis', '/fala-tardia-anapolis', '/prematuridade-desenvolvimento', '/neuropediatra-anapolis']} whatsappMessage="Oi! Vi a página de teste da linguinha da Fono Inova e gostaria de entender como funciona o atendimento." />
+
+      <DifferentialSection photo="terapia" reverse whatsappMessage="Oi! Vi a página de teste da linguinha da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

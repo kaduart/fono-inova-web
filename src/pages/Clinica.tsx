@@ -1,10 +1,23 @@
-import { MapPin, Clock, Shield, CheckCircle, Camera, Heart } from 'lucide-react';
+import { MapPin, Clock, Shield, CheckCircle, Users, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Badge } from '../components/ui/badge';
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import ImageCarousel from '../components/ImageCarousel';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import ProofBar from '../components/premium/ProofBar';
+import Reveal from '../components/premium/Reveal';
+
+const faqs = [
+    { q: 'Onde fica a Clínica Fono Inova?', a: 'Na Avenida Minas Gerais, 405, bairro Jundiaí, em Anápolis-GO.' },
+    { q: 'Qual é o horário de atendimento?', a: 'De segunda a sexta, das 8h às 18h. Não atendemos aos sábados.' },
+    { q: 'Quais especialidades a clínica oferece?', a: 'Fonoaudiologia, psicologia infantil, terapia ocupacional, fisioterapia infantil, psicopedagogia, musicoterapia, neuropediatria e avaliação neuropsicológica, todas no mesmo endereço.' },
+    { q: 'A clínica atende por convênio?', a: 'Atendemos de forma particular e, por convênio, apenas a Base Aérea de Anápolis (BAAN). Para outros planos, emitimos o recibo do atendimento para você solicitar reembolso, conforme o contrato do seu plano.' },
+    { q: 'Como agendar uma avaliação?', a: 'Pelo WhatsApp (62) 99201-3573. A equipe explica como funciona cada especialidade e combina o melhor horário com a família.' },
+];
 
 const Clinica = () => {
     return (
@@ -22,7 +35,7 @@ const Clinica = () => {
                     "url": "https://www.clinicafonoinova.com.br/nossa-clinica",
                     "logo": "https://www.clinicafonoinova.com.br/images/logo-unica.png",
                     "image": "https://www.clinicafonoinova.com.br/images/clinica/fachada-premium.png",
-                    "description": "A Clínica Fono Inova possui infraestrutura moderna e acolhedora no bairro Jundiaí em Anápolis, com salas temáticas e cabine acústica."
+                    "description": "A Clínica Fono Inova possui infraestrutura moderna e acolhedora no bairro Jundiaí em Anápolis, com salas temáticas e equipe multidisciplinar."
                 }}
             />
 
@@ -46,8 +59,8 @@ const Clinica = () => {
                                         <Shield className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-slate-900">Acessibilidade Total</h4>
-                                        <p className="text-sm text-slate-500">Espaço planejado para todos.</p>
+                                        <h4 className="font-bold text-slate-900">Acessibilidade</h4>
+                                        <p className="text-sm text-slate-500">Espaço pensado para receber todas as famílias.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
@@ -61,11 +74,11 @@ const Clinica = () => {
                                 </div>
                                 <div className="flex items-start gap-3">
                                     <div className="bg-primary/10 p-2 rounded-lg">
-                                        <Camera className="w-5 h-5 text-primary" />
+                                        <Users className="w-5 h-5 text-primary" />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-slate-900">Cabine Acústica</h4>
-                                        <p className="text-sm text-slate-500">Avaliações precisas de PAC.</p>
+                                        <h4 className="font-bold text-slate-900">Equipe Multidisciplinar</h4>
+                                        <p className="text-sm text-slate-500">Várias especialidades no mesmo endereço.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
@@ -92,6 +105,8 @@ const Clinica = () => {
                     </div>
                 </div>
             </section>
+
+            <ProofBar />
 
             {/* Seção Equipe e Especialidades */}
             <section className="py-20 bg-slate-50">
@@ -184,25 +199,58 @@ const Clinica = () => {
                                 </div>
 
                                 <div className="mt-12">
-                                    <ButtonWhatsApp
-                                        onClick={() => { }}
-                                        className="w-full bg-primary text-white py-4 rounded-xl font-bold hover:bg-primary/90 transition-all"
-                                        message="Oi! Vi o endereço de vocês no site.\n\nPode me orientar como chegar na clínica?"
+                                    <a
+                                        href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-full bg-primary text-white py-4 rounded-xl font-bold text-center hover:bg-primary/90 transition-all"
                                     >
                                         Ver no Google Maps
-                                    </ButtonWhatsApp>
+                                    </a>
                                 </div>
                             </div>
-                            <div className="bg-slate-200 h-64 md:h-auto">
-                                {/* Aqui entraria o Iframe do Google Maps */}
-                                <div className="flex items-center justify-center h-full text-slate-400 font-medium italic">
-                                    Mapa Interativo
-                                </div>
+                            <div className="bg-slate-200 h-64 md:h-auto min-h-[16rem]">
+                                <iframe
+                                    title="Mapa da Clínica Fono Inova em Anápolis"
+                                    src="https://www.google.com/maps?q=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis&output=embed"
+                                    className="h-full w-full border-0"
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <Reveal>
+                <section className="py-20 bg-white" aria-labelledby="faq-clinica-titulo">
+                    <div className="container mx-auto px-4 max-w-3xl">
+                        <h2 id="faq-clinica-titulo" className="text-3xl font-bold text-slate-900 mb-6">Perguntas frequentes</h2>
+                        <div className="divide-y divide-slate-200 border-y border-slate-200">
+                            {faqs.map((f) => (
+                                <details key={f.q} className="group py-4">
+                                    <summary className="cursor-pointer list-none font-semibold text-slate-900 flex justify-between gap-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary rounded">
+                                        {f.q}
+                                        <span aria-hidden className="text-primary transition-transform group-open:rotate-45">+</span>
+                                    </summary>
+                                    <p className="mt-3 text-slate-600 leading-relaxed">{f.a}</p>
+                                </details>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </Reveal>
+
+            <PageFooterInfo
+                showLocation={false}
+                related={['/abordagem-multidisciplinar', '/fonoaudiologia-anapolis', '/autismo-anapolis', '/reembolso-plano-de-saude-anapolis']}
+                whatsappMessage="Oi! Vi a página da clínica no site e gostaria de entender como funciona o atendimento."
+            />
+
+            <ClinicGallery variant="carousel" title="Fotos da clínica" />
+
+            <FixedWhatsAppBar message="Oi! Vi a página da clínica no site e gostaria de entender como funciona o atendimento." />
         </Layout>
     );
 };

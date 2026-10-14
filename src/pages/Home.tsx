@@ -1,4 +1,5 @@
 import { Mail, Phone } from '@mui/icons-material';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
@@ -33,7 +34,6 @@ import ImageCarousel from '../components/ImageCarousel.jsx';
 import TypewriterText from '../components/TypewriterText';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
-import TestimonialCards from '../components/TestimonialCards.jsx';
 import { articlesData } from '../data/articlesData.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { reportWhatsappConversion } from '../helper/analytics.js';
@@ -118,24 +118,6 @@ const steps = [
   },
 ];
 
-// Depoimentos destacados
-const featuredTestimonials = [
-  {
-    stars: 5,
-    text: "Meu filho não falava quase nada... hoje já conversa!",
-    author: "Mãe do Pedro, 4 anos",
-  },
-  {
-    stars: 5,
-    text: "Depois de 3 meses já vimos muita evolução no desenvolvimento",
-    author: "Pai da Sofia, 5 anos",
-  },
-  {
-    stars: 5,
-    text: "Atendimento humano e acolhedor desde o primeiro contato",
-    author: "Mãe do Lucas, 3 anos",
-  },
-];
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -428,7 +410,7 @@ function Home() {
       </section>
 
       {/* ==================== PROVA SOCIAL - DEPOIMENTOS ==================== */}
-      <section className="py-24 bg-gradient-to-br from-slate-50 to-white">
+      <section id="testimonials" className="py-24 bg-gradient-to-br from-slate-50 to-white">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Estatísticas */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
@@ -455,36 +437,19 @@ function Home() {
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-                Depoimentos Reais
+                Avaliações no Google
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold font-poppins">
                 O que os <span className="text-accent relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-accent/20 after:rounded-full">pais</span> dizem sobre nós
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              {featuredTestimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-slate-100"
-                >
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.stars)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-lg font-medium text-slate-800 mb-4">
-                    "{testimonial.text}"
-                  </p>
-                  <p className="text-sm text-slate-500">{testimonial.author}</p>
-                </div>
-              ))}
-            </div>
+            <GoogleReviews count={3} offset={0} title="" />
 
             {/* CTA após prova social */}
             <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Sua família também pode ter esse resultado
+                Conheça a Fono Inova de perto
               </h3>
               <p className="text-white/90 mb-6 max-w-xl mx-auto">
                 Agende uma avaliação e descubra como podemos ajudar no desenvolvimento do seu filho
@@ -1116,7 +1081,7 @@ function Home() {
             {/* Benefícios */}
             <div className="grid sm:grid-cols-3 gap-4 mb-10 max-w-2xl mx-auto">
               {[
-                "Resposta em até 2h",
+                "Resposta em até 40 min em dias úteis",
                 "Avaliação personalizada",
                 "Sem filas de espera",
               ].map((benefit, index) => (
@@ -1253,24 +1218,6 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* ==================== DEPOIMENTOS COMPLETOS ==================== */}
-      <section id="testimonials" className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-              Depoimentos
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold font-poppins">
-              Mais histórias de <span className="text-accent relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-accent/20 after:rounded-full">transformação</span>
-            </h2>
-          </div>
-
-          <TestimonialCards
-            onTestimonialClick={(testimonialId: string) => trackButtonClick(`Testimonial Click - ${testimonialId}`)}
-          />
         </div>
       </section>
 

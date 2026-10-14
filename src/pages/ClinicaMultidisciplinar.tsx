@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import GoogleReviews from '../components/premium/GoogleReviews';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
 import {
@@ -30,6 +31,8 @@ import { schemaFAQMultidisciplinar, schemaMultidisciplinar } from '../schemas/cl
 import ClinicGallery from '../components/ClinicGallery';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import PageFooterInfo from '../components/premium/PageFooterInfo';
+import SituationsSection from '../components/premium/SituationsSection';
 
 const ClinicaMultidisciplinar = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -87,35 +90,7 @@ const ClinicaMultidisciplinar = () => {
     { step: 5, title: "Reavaliação Contínua", description: "Ajustes periódicos baseados em evolução", icon: <BarChart3 className="w-8 h-8" /> }
   ];
 
-  // Estatísticas baseadas em pesquisas
-  const statistics = [
-    { value: "72%", label: "mais eficaz que abordagens isoladas" },
-    { value: "89%", label: "de satisfação das famílias" },
-    { value: "3x", label: "mais rápida a evolução" },
-    { value: "94%", label: "de casos com melhora significativa" }
-  ];
 
-  // Depoimentos
-  const testimonials = [
-    {
-      name: "Ana Carvalho",
-      role: "Mãe do Miguel, 5 anos",
-      content: "A abordagem multidisciplinar fez toda a diferença no tratamento do meu filho. Em vez de visões fragmentadas, tivemos um plano coeso e integrado. A comunicação entre os profissionais é impressionante!",
-      rating: 5
-    },
-    {
-      name: "Carlos Mendonça",
-      role: "Pai da Sofia, 7 anos",
-      content: "Todos sabem exatamente o que cada um está trabalhando e como complementar o tratamento. Não precisamos mais correr entre vários profissionais em lugares diferentes. Tudo em um só lugar!",
-      rating: 5
-    },
-    {
-      name: "Patrícia Lima",
-      role: "Mãe do Lucas, 6 anos (TEA)",
-      content: "A evolução do Lucas foi muito mais rápida com a abordagem integrada. A equipe trabalha de forma sincronizada e nós, pais, somos incluídos em todo o processo. Recomendo demais!",
-      rating: 5
-    }
-  ];
 
   // FAQs
   const faqs = [
@@ -180,16 +155,14 @@ const ClinicaMultidisciplinar = () => {
 
             {/* Imagem */}
             <div className="relative order-1 lg:order-2">
-              <div className="aspect-square bg-gradient-to-br from-rose-200 to-rose-400 rounded-3xl overflow-hidden shadow-2xl">
+              <div className="aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="/images/logo-fono-inova.png"
-                  alt="Clínica Fono Inova"
-                  className="w-full h-full object-contain p-12"
+                  src="/images/clinica/galeria/recepcao.webp"
+                  alt="Recepção da Clínica Fono Inova, em Anápolis, com parede verde, escada colorida e sala de espera"
+                  className="w-full h-full object-cover"
+                  fetchPriority="high"
+                  decoding="async"
                 />
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-rose-50">
-                <p className="text-4xl font-bold text-rose-600">12+</p>
-                <p className="text-sm text-gray-600">Especialistas</p>
               </div>
             </div>
           </div>
@@ -198,20 +171,8 @@ const ClinicaMultidisciplinar = () => {
 
       <ProofBar className="py-6" />
 
+      <SituationsSection items={["A criança precisa de mais de uma terapia", "Cada profissional dá uma orientação diferente", "Deslocar-se entre vários lugares cansa a família", "Falta um plano único acompanhando a evolução"]} whatsappMessage="Oi! Vi a página de abordagem multidisciplinar da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      {/* Estatísticas Importantes */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {statistics.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-pink-50 rounded-2xl">
-                <div className="text-3xl font-bold text-pink-600 mb-2">{stat.value}</div>
-                <div className="text-sm text-gray-700">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Localização */}
       <section className="py-8 bg-pink-50 border-y border-pink-100">
@@ -360,36 +321,14 @@ const ClinicaMultidisciplinar = () => {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Histórias de <span className="text-pink-600">Sucesso</span>
+              O que as <span className="text-pink-600">famílias</span> dizem
             </h2>
             <p className="text-xl text-gray-700">
-              Depoimentos de famílias que experimentaram os benefícios da abordagem multidisciplinar.
+              Avaliações reais deixadas no perfil da clínica no Google.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 shadow-lg">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${i < testimonial.rating
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'fill-gray-300 text-gray-300'
-                        }`}
-                    />
-                  ))}
-                </div>
-                <Quote className="w-8 h-8 text-pink-200 mb-4" />
-                <p className="text-gray-700 italic mb-6">"{testimonial.content}"</p>
-                <div>
-                  <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-600">{testimonial.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <GoogleReviews count={3} offset={1} title="" />
         </div>
       </section>
 
@@ -425,6 +364,8 @@ const ClinicaMultidisciplinar = () => {
       </section>
 
       {/* CTA Final */}
+      <PageFooterInfo related={['/fonoaudiologia-anapolis', '/autismo-anapolis', '/tdah-anapolis', '/fisioterapia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de abordagem multidisciplinar da Fono Inova e gostaria de entender como funciona o atendimento." />
+
       <ClinicGallery variant="carousel" />
 
       <section className="py-20 bg-pink-600">
