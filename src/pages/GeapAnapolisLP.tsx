@@ -287,7 +287,7 @@ const GeapAnapolisLP = () => {
             </h2>
           </div>
 
-          <GoogleReviews count={3} offset={1} title="" />
+          <GoogleReviews count={3} offset={10} title="" />
         </div>
       </section>
 

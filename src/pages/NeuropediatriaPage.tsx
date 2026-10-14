@@ -399,7 +399,7 @@ const NeuropediatriaPage = () => {
                         </h2>
                     </div>
 
-                    <GoogleReviews count={3} offset={5} title="" />
+                    <GoogleReviews count={3} offset={2} title="" />
                 </div>
             </section>
 

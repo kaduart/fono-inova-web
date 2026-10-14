@@ -430,7 +430,7 @@ const PsicopedagogiaPage = () => {
                         </p>
                     </div>
 
-                    <GoogleReviews count={3} offset={3} title="" />
+                    <GoogleReviews count={3} offset={0} title="" />
                 </div>
             </section>
 

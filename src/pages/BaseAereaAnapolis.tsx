@@ -279,7 +279,7 @@ const BaseAereaAnapolis = () => {
             </h2>
           </div>
 
-          <GoogleReviews count={3} offset={4} title="" />
+          <GoogleReviews count={3} offset={6} title="" />
         </div>
       </section>
 

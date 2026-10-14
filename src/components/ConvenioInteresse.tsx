@@ -185,7 +185,6 @@ const ConvenioInteresse = ({ nome, slug, path }: ConvenioInteresseProps) => {
         description={`Estamos em processo de credenciamento com o ${nome}. Registre seu interesse; entramos em contato somente se o credenciamento for concluído e o seu produto estiver elegível.`}
         url={`https://www.clinicafonoinova.com.br${path}`}
         type="website"
-        noindex
       />
 
       <Breadcrumb items={[{ label: 'Convênios', href: '/' }, { label: nome }]} />

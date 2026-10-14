@@ -130,7 +130,7 @@ const ServiceCards = () => {
                 description: "Psicopedagogia clínica para dislexia, discalculia, TDAH e dificuldades escolares. Avaliação e intervenção personalizada.",
                 keywords: "psicopedagogia clínica, dislexia, discalculia, TDAH, dificuldades aprendizagem",
                 image: "/images/servicos/psicopedagogia-clinica.jpg",
-                url: "https://www.clinicafonoinova.com.br/psicopedagogia-clinica"
+                url: "https://www.clinicafonoinova.com.br/psicopedagogia"
             }
         },
         {

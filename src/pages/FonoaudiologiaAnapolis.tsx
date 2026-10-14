@@ -294,7 +294,7 @@ const FonoaudiologiaAnapolis = () => {
             </h2>
           </div>
 
-          <GoogleReviews count={3} offset={3} title="" />
+          <GoogleReviews count={3} offset={7} title="" />
         </div>
       </section>
 

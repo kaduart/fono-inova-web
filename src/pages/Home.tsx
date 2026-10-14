@@ -444,7 +444,7 @@ function Home() {
               </h2>
             </div>
 
-            <GoogleReviews count={3} offset={0} title="" />
+            <GoogleReviews count={3} offset={13} title="" />
 
             {/* CTA após prova social */}
             <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl">

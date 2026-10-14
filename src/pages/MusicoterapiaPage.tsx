@@ -446,7 +446,7 @@ const MusicoterapiaPage = () => {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8">
           <h2 className="mb-8 text-center text-2xl md:text-3xl font-bold font-poppins text-slate-900">O que as famílias dizem</h2>
-          <GoogleReviews count={3} offset={6} title="" />
+          <GoogleReviews count={3} offset={19} title="" />
         </div>
       </section>
 

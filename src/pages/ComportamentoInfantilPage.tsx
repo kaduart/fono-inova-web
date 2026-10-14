@@ -391,7 +391,7 @@ const ComportamentoInfantilPage = () => {
                         </h2>
                     </div>
 
-                    <GoogleReviews count={3} offset={4} title="" />
+                    <GoogleReviews count={3} offset={12} title="" />
 
                     {/* CTA */}
                     <div className="text-center mt-8">

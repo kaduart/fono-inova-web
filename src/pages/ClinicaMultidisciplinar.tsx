@@ -328,7 +328,7 @@ const ClinicaMultidisciplinar = () => {
             </p>
           </div>
 
-          <GoogleReviews count={3} offset={1} title="" />
+          <GoogleReviews count={3} offset={9} title="" />
         </div>
       </section>
 

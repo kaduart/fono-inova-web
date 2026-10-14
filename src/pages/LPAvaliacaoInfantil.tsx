@@ -419,7 +419,7 @@ const LPAvaliacaoInfantil = () => {
             </h2>
           </div>
 
-          <GoogleReviews count={3} offset={2} title="" />
+          <GoogleReviews count={3} offset={16} title="" />
         </div>
       </section>
 

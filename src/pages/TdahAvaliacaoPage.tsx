@@ -421,7 +421,7 @@ const TdahAvaliacaoPage = () => {
                         </p>
                     </div>
 
-                    <GoogleReviews count={3} offset={2} title="" />
+                    <GoogleReviews count={3} offset={12} title="" />
 
                     {/* CTA após depoimentos */}
                     <div className="text-center mt-8">
