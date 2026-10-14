@@ -1,5 +1,11 @@
-import { CheckCircle2, ClipboardList, FileText, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ClipboardList, FileText, MapPin, MessageCircle, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
+import Reveal from '../components/premium/Reveal';
+import ScrollCarousel from '../components/premium/ScrollCarousel';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
@@ -8,6 +14,15 @@ import { trackButtonClick } from '../hooks/useAnalytics';
 // Atendimento particular com recibo para pedido de reembolso ao plano de saúde.
 // Não prometer reembolso nem credenciamento: a decisão e o valor dependem do contrato de cada plano.
 const WHATSAPP_MESSAGE = 'Olá! Gostaria de informações sobre atendimento particular com recibo para reembolso do plano de saúde.';
+
+const especialidades = [
+  { nome: 'Fonoaudiologia', texto: 'Fala, linguagem e comunicação da criança.', to: '/fonoaudiologia-anapolis' },
+  { nome: 'Psicologia infantil', texto: 'Comportamento, emoções e atenção.', to: '/psicologia-infantil-anapolis' },
+  { nome: 'Terapia ocupacional', texto: 'Autonomia, coordenação e integração sensorial.', to: '/terapia-ocupacional-anapolis' },
+  { nome: 'Fisioterapia infantil', texto: 'Desenvolvimento motor, postura e equilíbrio.', to: '/fisioterapia-infantil-anapolis' },
+  { nome: 'Neuropediatria', texto: 'Consulta com neuropediatra para acompanhar o desenvolvimento.', to: '/neuropediatra-anapolis' },
+  { nome: 'Avaliação neuropsicológica', texto: 'Atenção, memória e aprendizagem.', to: '/avaliacao-neuropsicologica-anapolis' },
+];
 
 const steps = [
   { title: 'Você escolhe a especialidade', text: 'Fonoaudiologia, psicologia, terapia ocupacional, fisioterapia e outras, conforme a necessidade da criança.' },
@@ -75,7 +90,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
         description="Atendimento particular com recibo para pedir reembolso ao plano de saúde: fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil em Anápolis. Veja como funciona."
         keywords="reembolso plano de saúde fonoaudiologia anápolis, fonoaudiólogo plano de saúde anápolis, terapia infantil reembolso, fisioterapia infantil plano de saúde anápolis"
         url="/reembolso-plano-de-saude-anapolis"
-        image="/images/clinica/galeria/recepcao.webp"
+        image="/images/clinica/ia/reembolso-plano-saude.webp"
         schema={[schemaFaq]}
       />
 
@@ -104,8 +119,8 @@ const ReembolsoPlanoSaudeAnapolis = () => {
             </div>
             <div className="order-1 lg:order-2">
               <img
-                src="/images/clinica/galeria/recepcao.webp"
-                alt="Recepção da Clínica Fono Inova em Anápolis"
+                src="/images/clinica/ia/reembolso-plano-saude.webp"
+                alt="Imagem ilustrativa: mãe organizando o recibo e o celular enquanto a filha brinca ao fundo"
                 className="w-full h-72 sm:h-96 lg:h-[440px] object-cover rounded-3xl shadow-xl"
                 fetchPriority="high"
                 decoding="async"
@@ -115,7 +130,9 @@ const ReembolsoPlanoSaudeAnapolis = () => {
         </div>
       </section>
 
-      <section className="py-14 md:py-20 bg-white">
+      <ProofBar className="-mt-8 md:-mt-10" />
+
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
           <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-8">Como funciona</h2>
           <ol className="grid md:grid-cols-2 gap-5">
@@ -130,9 +147,33 @@ const ReembolsoPlanoSaudeAnapolis = () => {
             ))}
           </ol>
         </div>
-      </section>
+      </section></Reveal>
 
-      <section className="py-14 md:py-20 bg-slate-50">
+      <Reveal><section className="py-14 md:py-20 bg-slate-50" aria-labelledby="esp-titulo">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 id="esp-titulo" className="text-3xl font-bold font-poppins text-slate-900 mb-3">Especialidades no mesmo lugar</h2>
+          <p className="text-slate-600 max-w-2xl mb-8">Toda a equipe conversa sobre a criança. Veja como cada área funciona.</p>
+          <ScrollCarousel ariaLabel="Especialidades da clínica" itemClassName="w-[78%] sm:w-[46%] lg:w-[31%]">
+            {especialidades.map((e) => (
+              <Link
+                key={e.to}
+                to={e.to}
+                className="group flex h-full min-h-[11rem] flex-col justify-between rounded-3xl bg-white p-6 shadow-md ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+              >
+                <span>
+                  <span className="block text-xl font-bold font-poppins text-slate-900">{e.nome}</span>
+                  <span className="mt-2 block text-slate-600">{e.texto}</span>
+                </span>
+                <span className="mt-5 inline-flex items-center gap-2 font-semibold text-primary">
+                  Saiba mais <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
+            ))}
+          </ScrollCarousel>
+        </div>
+      </section></Reveal>
+
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl grid md:grid-cols-2 gap-10">
           <div>
             <h2 className="flex items-center gap-2 text-2xl font-bold font-poppins text-slate-900 mb-5">
@@ -159,9 +200,11 @@ const ReembolsoPlanoSaudeAnapolis = () => {
             <p className="mt-4 text-slate-700 leading-relaxed">Atendimento de segunda a sexta, das 8h às 18h, na Av. Minas Gerais, 405, Jundiaí, Anápolis.</p>
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
-      <section className="py-14 md:py-20 bg-white">
+      <ClinicGallery variant="carousel" />
+
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
           <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-6">Perguntas frequentes</h2>
           <div className="divide-y divide-slate-200 border-y border-slate-200">
@@ -176,15 +219,16 @@ const ReembolsoPlanoSaudeAnapolis = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
-      <section className="py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+      <Reveal><section className="py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl space-y-5">
           <h2 className="text-3xl font-bold font-poppins text-slate-900">Vamos entender o melhor caminho para sua família?</h2>
           <p className="text-slate-600">Conte a necessidade da criança e explicamos como funciona o atendimento e o recibo.</p>
           <Cta where="final" label="Conversar com nossa equipe" className="px-8 py-4 w-full sm:w-auto" />
         </div>
-      </section>
+      </section></Reveal>
+      <FixedWhatsAppBar message={WHATSAPP_MESSAGE} />
     </Layout>
   );
 };

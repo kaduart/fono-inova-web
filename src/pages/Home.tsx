@@ -45,6 +45,7 @@ import {
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaHome } from '../schemas/clinicaSchemas.js';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação.";
@@ -277,7 +278,7 @@ function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Star className="w-4 h-4 text-brand-primary-dark" />
-                  <span>Nota 4.9 no Google</span>
+                  <span>Nota 5.0 no Google</span>
                 </div>
               </div>
 
@@ -306,7 +307,7 @@ function Home() {
               {/* Prova social */}
               <div className="flex items-center gap-2 text-sm text-slate-600">
                 <Star className="w-4 h-4 text-brand-primary-dark" />
-                <span>4.9 no Google • +500 famílias atendidas</span>
+                <span>5.0 no Google • +500 famílias atendidas</span>
               </div>
 
               {/* Endereço para SEO local */}
@@ -344,7 +345,7 @@ function Home() {
                 <div className="absolute z-20 bottom-8 -left-3 md:-left-6 bg-brand-primary-dark text-white rounded-2xl px-4 py-3 shadow-lg">
                   <div className="flex items-center gap-2">
                     <Star className="w-4 h-4" />
-                    <span className="font-bold">4.9</span>
+                    <span className="font-bold">5.0</span>
                     <span className="text-xs text-white/75">Google</span>
                   </div>
                 </div>
@@ -433,7 +434,7 @@ function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: GraduationCap },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -1238,7 +1239,7 @@ function Home() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Venha nos Conhecer</h3>
                 <p className="text-white/90 mb-6">
-                  Estamos localizados no bairro Jundiaí, em Anápolis/GO, com fácil acesso e estacionamento.
+                  Estamos localizados no bairro Jundiaí, em Anápolis/GO, com fácil acesso.
                 </p>
                 <a
                   href="https://maps.google.com/?q=Avenida+Minas+Gerais+405+Anápolis+GO"
@@ -1307,6 +1308,7 @@ function Home() {
           animation: float 3s ease-in-out infinite;
         }
       `}</style>
+      <FixedWhatsAppBar message="Oi! Vi a página de a clínica da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 }

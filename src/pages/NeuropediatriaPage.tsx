@@ -6,6 +6,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness, schemaFAQNeuropediatria } from '../schemas/clinicaSchemas';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const NeuropediatriaPage = () => {
     const [selectedSintoma, setSelectedSintoma] = useState<string | null>(null);
@@ -134,7 +137,7 @@ const NeuropediatriaPage = () => {
                 title="Neuropediatra em Anápolis | Consulta Infantil | Fono Inova"
                 description="Neuropediatra em Anápolis para atraso no desenvolvimento, TDAH e sinais de autismo. Consulta na clínica multidisciplinar, bairro Jundiaí. Agende pelo WhatsApp."
                 keywords="neuropediatra anapolis, neurologista infantil anapolis, atraso desenvolvimento infantil, autismo infantil anapolis, tdah infantil anapolis"
-                image="/images/servicos/neuropediatria.jpg"
+                image="/images/clinica/ia/neuropediatria.webp"
                 url="https://www.clinicafonoinova.com.br/neuropediatra-anapolis"
                 type="article"
                 schema={[schemaBaseLocalBusiness, schemaFAQNeuropediatria]}
@@ -242,8 +245,8 @@ const NeuropediatriaPage = () => {
                         <div className="relative order-1 lg:order-2">
                             <div className="bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
                                 <img
-                                    src="/images/neuropsicologia/neuro.jpeg"
-                                    alt="Consulta com neuropediatra na Clínica Fono Inova"
+                                    src="/images/clinica/ia/neuropediatria.webp"
+                                    alt="Imagem ilustrativa: profissional de saúde brincando com blocos junto de uma criança"
                                     className="w-full h-auto object-cover"
                                     onError={(e) => {
                                         e.currentTarget.src = 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800';
@@ -271,12 +274,15 @@ const NeuropediatriaPage = () => {
                                         <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                     ))}
                                 </div>
-                                <div className="text-xs text-slate-600 mt-1">4.9 no Google</div>
+                                <div className="text-xs text-slate-600 mt-1">5.0 no Google</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+      <ProofBar className="py-6" />
+
 
             {/* ==================== PROBLEMAS QUE ATENDEMOS ==================== */}
             <section className="py-16 bg-white">
@@ -458,6 +464,8 @@ const NeuropediatriaPage = () => {
                 </div>
             </section>
 
+      <ClinicGallery variant="carousel" />
+
             {/* ==================== CTA FINAL - AUTORIDADE ==================== */}
             <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
                 <div className="container mx-auto px-4">
@@ -517,11 +525,12 @@ const NeuropediatriaPage = () => {
                         </span>
                     </div>
                     <p className="text-blue-700/70 mt-2 text-sm">
-                        Atendimento particular e convênios • Estacionamento disponível
+                        Atendimento particular e Base Aérea (BAAN)
                     </p>
                 </div>
             </section>
-        </Layout>
+              <FixedWhatsAppBar message="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
+    </Layout>
     );
 };
 

@@ -41,7 +41,7 @@ export const TrustBadges = () => {
         <div className="text-xs text-gray-600">Anos de experiência</div>
       </div>
       <div className="text-center">
-        <div className="text-3xl font-bold text-blue-600">4.9</div>
+        <div className="text-3xl font-bold text-blue-600">5.0</div>
         <div className="text-xs text-gray-600">Avaliação Google</div>
       </div>
     </div>

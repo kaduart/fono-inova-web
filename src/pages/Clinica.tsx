@@ -141,7 +141,7 @@ const Clinica = () => {
                         {[
                             { title: "Atendimento Integrado", desc: "Diferentes especialidades trabalhando juntas, com troca de informações entre os profissionais." },
                             { title: "Ambiente Acolhedor", desc: "Salas temáticas e lúdicas que reduzem a ansiedade e aumentam o engajamento das crianças." },
-                            { title: "Localização Privilegiada", desc: "Fácil acesso no bairro Jundiaí, com estacionamento próximo e estrutura acessível." },
+                            { title: "Localização Privilegiada", desc: "Fácil acesso no bairro Jundiaí, e estrutura acessível." },
                         ].map((item, index) => (
                             <div key={index} className="text-center p-8 bg-slate-50 rounded-2xl">
                                 <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>

@@ -41,6 +41,8 @@ import Breadcrumb from '../components/Breadcrumb';
 import { testeLinguinhaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 import { getPageWhatsAppLink, getPageById } from '../data/landingPageRegistry.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const PAGE_ID = 'teste_da_linguinha_anapolis';
 const PAGE_DATA = getPageById(PAGE_ID);
@@ -177,7 +179,7 @@ const TesteLinguinhaAnapolis = () => {
         title="Teste da Linguinha em Anápolis | Fono Inova"
         description="Teste da linguinha em Anápolis para bebês e crianças: avaliação do freio lingual (língua presa) e da dificuldade para mamar, na Clínica Fono Inova. Agende pelo WhatsApp."
         keywords="teste da linguinha anápolis, freio lingual anápolis, bebê não mama, língua presa bebê, frenectomia anápolis, ankyloglossia anápolis, dificuldade para mamar anápolis, avaliação freio lingual anápolis, fono para bebê anápolis, teste da linguinha preço"
-        image="/images/freio-lingual/mae-bb.jpeg"
+        image="/images/clinica/ia/teste-linguinha.webp"
         url="https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaTesteLinguinhaAnapolis, schemaFAQTesteLinguinha]}
@@ -298,7 +300,7 @@ const TesteLinguinhaAnapolis = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -307,8 +309,8 @@ const TesteLinguinhaAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/freio-lingual/mae-bb.jpeg" 
-                    alt="Teste da Linguinha em Anápolis - Diagnóstico precoce"
+                    src="/images/clinica/ia/teste-linguinha.webp" 
+                    alt="Imagem ilustrativa: mãe com o bebê no colo conversando com a profissional de saúde"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -320,7 +322,7 @@ const TesteLinguinhaAnapolis = () => {
                         <Star key={star} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-bold text-slate-900">4.9</span>
+                    <span className="font-bold text-slate-900">5.0</span>
                     <span className="text-xs text-slate-500">Google</span>
                   </div>
                 </div>
@@ -524,7 +526,7 @@ const TesteLinguinhaAnapolis = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: GraduationCap },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -697,6 +699,8 @@ const TesteLinguinhaAnapolis = () => {
         </div>
       </section>
 
+      <ClinicGallery variant="carousel" />
+
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8">
@@ -753,6 +757,7 @@ const TesteLinguinhaAnapolis = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de teste da linguinha da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

@@ -22,6 +22,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaMusicoterapia, schemaFAQMusicoterapia } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const MusicoterapiaPage = () => {
   useEffect(() => {
@@ -220,6 +223,9 @@ const MusicoterapiaPage = () => {
           </div>
         </div>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* ═══════════════ O QUE É ═══════════════ */}
       <section className="py-16 md:py-20 bg-white">
@@ -431,6 +437,8 @@ const MusicoterapiaPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-16 md:py-20 bg-gradient-to-br from-indigo-600 to-violet-700 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <Music className="w-12 h-12 mx-auto mb-6 text-indigo-200" />
@@ -465,6 +473,7 @@ const MusicoterapiaPage = () => {
           </p>
         </div>
       </section>
+      <FixedWhatsAppBar message="Oi! Vi a página de musicoterapia da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

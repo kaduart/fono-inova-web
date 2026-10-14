@@ -1,10 +1,10 @@
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import ScrollCarousel from './premium/ScrollCarousel';
 
 // Galeria de fotos reais da clínica (arquivos em /public/images/clinica/galeria, WebP otimizado).
 export const clinicPhotos = [
   { src: '/images/clinica/galeria/recepcao.webp', alt: 'Recepção da Clínica Fono Inova com parede verde, escada colorida ao fundo e sala de espera', caption: 'Recepção' },
-  { src: '/images/clinica/galeria/escada-recepcao.webp', alt: 'Escada lúdica colorida ao lado do balcão de recepção com a logo da Clínica Fono Inova', caption: 'Escada lúdica' },
   { src: '/images/clinica/galeria/espaco-kids.webp', alt: 'Espaço Kid’s da clínica, com mesinha e cadeiras infantis', caption: 'Espaço Kid’s' },
   { src: '/images/clinica/galeria/consultorio.webp', alt: 'Consultório com mesa de atendimento e mural infantil de balão e animais', caption: 'Consultório' },
   { src: '/images/clinica/galeria/consultorio-ludico.webp', alt: 'Sala de atendimento com mural da floresta, mesa e tapete de EVA colorido', caption: 'Sala de atendimento' },
@@ -14,13 +14,24 @@ export const clinicPhotos = [
   { src: '/images/clinica/galeria/jogos-terapeuticos.webp', alt: 'Estante com jogos e brinquedos usados nos atendimentos', caption: 'Jogos e brinquedos' },
 ];
 
-type Props = { title?: string; subtitle?: string; photos?: typeof clinicPhotos };
+type Props = { title?: string; subtitle?: string; photos?: typeof clinicPhotos; variant?: 'grid' | 'carousel'; /** nomes de arquivo já usados na página (ex.: 'recepcao.webp'), para não repetir */ exclude?: string[] };
 
 export default function ClinicGallery({
   title = 'Conheça a clínica',
   subtitle = 'Um espaço pensado para acolher a criança e a família. Fotos reais da Clínica Fono Inova, em Anápolis.',
-  photos = clinicPhotos,
+  photos: allPhotos = clinicPhotos,
+  variant = 'grid',
+  exclude = [],
 }: Props) {
+  const filtered = allPhotos.filter((p) => !exclude.some((name) => p.src.endsWith(`/${name}`)));
+  // No carrossel, gira a ordem por página (hash do caminho) para as LPs não abrirem sempre com a mesma foto.
+  const photos = (() => {
+    if (variant !== 'carousel' || filtered.length < 2 || typeof window === 'undefined') return filtered;
+    let h = 0;
+    for (const ch of window.location.pathname) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+    const k = h % filtered.length;
+    return [...filtered.slice(k), ...filtered.slice(0, k)];
+  })();
   const [open, setOpen] = useState<number | null>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
@@ -53,6 +64,27 @@ export default function ClinicGallery({
       <div className="container mx-auto px-4 lg:px-8">
         <h2 id="galeria-titulo" className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-3">{title}</h2>
         <p className="text-slate-600 max-w-2xl mb-8">{subtitle}</p>
+        {variant === 'carousel' ? (
+          <ScrollCarousel ariaLabel="Fotos da clínica" itemClassName="w-[78%] sm:w-[48%] lg:w-[36%]">
+            {photos.map((p, i) => (
+              <button
+                key={p.src}
+                type="button"
+                onClick={(e) => {
+                  lastFocus.current = e.currentTarget;
+                  setOpen(i);
+                }}
+                className="group relative block aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+                aria-label={`Ampliar foto: ${p.caption}`}
+              >
+                <img src={p.src} alt={p.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-3 pt-10 text-left text-sm font-semibold text-white">
+                  {p.caption}
+                </span>
+              </button>
+            ))}
+          </ScrollCarousel>
+        ) : (
         <ul className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {photos.map((p, i) => (
             <li key={p.src} className={i === 0 ? 'col-span-2 md:col-span-2 md:row-span-2' : ''}>
@@ -79,6 +111,7 @@ export default function ClinicGallery({
             </li>
           ))}
         </ul>
+        )}
       </div>
 
       {open !== null && (

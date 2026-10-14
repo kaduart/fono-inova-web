@@ -35,6 +35,8 @@ import { schemaBaseLocalBusiness, schemaPsicologiaAnapolis, schemaFAQPsicologia 
 import Breadcrumb from '../components/Breadcrumb';
 import { psicologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação.";
@@ -120,7 +122,7 @@ const PsicologiaInfantilAnapolis = () => {
         title="Psicologia Infantil em Anápolis | Psicólogo e Psicóloga | Fono Inova"
         description="Psicologia infantil em Anápolis para dificuldades de comportamento, atenção e emoções. Atendimento com psicólogos da equipe multidisciplinar. Agende pelo WhatsApp."
         keywords="filho não obedece, psicologia infantil anápolis, birra infantil, dificuldade comportamento, psicólogo infantil"
-        image="/images/og-image.jpg"
+        image="/images/clinica/ia/psicologia-infantil.webp"
         url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaPsicologiaAnapolis]}
@@ -175,7 +177,7 @@ const PsicologiaInfantilAnapolis = () => {
 
               {/* H2 - REASSURANCE */}
               <h2 className="text-xl md:text-2xl font-medium text-slate-600">
-                Entenda o que pode estar acontecendo com uma orientação inicial em Anápolis — sem compromisso
+                Psicologia infantil em Anápolis: entenda o que pode estar acontecendo com uma orientação inicial, sem compromisso
               </h2>
 
               {/* BLOCO DE SINAIS DE ALERTA */}
@@ -244,7 +246,7 @@ const PsicologiaInfantilAnapolis = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -253,8 +255,8 @@ const PsicologiaInfantilAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/psicologia/psico2.jpg" 
-                    alt="Psicologia Infantil em Anápolis - Atendimento especializado"
+                    src="/images/clinica/ia/psicologia-infantil.webp" 
+                    alt="Imagem ilustrativa: psicóloga e criança desenhando juntas em uma sala de atendimento infantil"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -266,7 +268,7 @@ const PsicologiaInfantilAnapolis = () => {
                         <Star key={star} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-bold text-slate-900">4.9</span>
+                    <span className="font-bold text-slate-900">5.0</span>
                     <span className="text-xs text-slate-500">Google</span>
                   </div>
                 </div>
@@ -312,7 +314,7 @@ const PsicologiaInfantilAnapolis = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: GraduationCap },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -419,11 +421,33 @@ const PsicologiaInfantilAnapolis = () => {
       </section>
 
       {/* ==================== CONTEÚDO SEO ESTRUTURADO ==================== */}
+      {/* ==================== PSICÓLOGO INFANTIL EM ANÁPOLIS (SEO local) ==================== */}
+      <section className="py-14 md:py-20 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-4">
+            Psicólogo infantil em Anápolis, no bairro Jundiaí
+          </h2>
+          <p className="text-lg text-slate-600 leading-relaxed mb-4">
+            Procurando psicólogo ou psicóloga para o seu filho em Anápolis? Na Clínica Fono Inova, a psicologia infantil trabalha junto com fonoaudiologia, terapia ocupacional, fisioterapia e neuropediatria. Assim, a equipe conversa sobre a criança e a família não precisa percorrer vários lugares.
+          </p>
+          <ul className="space-y-2 text-slate-700 mb-6">
+            <li>Dificuldades de comportamento, atenção e regulação emocional</li>
+            <li>Acompanhamento de crianças com autismo (TEA) e TDAH, junto da equipe</li>
+            <li>Orientação aos pais sobre rotina, limites e desenvolvimento</li>
+          </ul>
+          <p className="text-slate-600">
+            Atendimento de segunda a sexta, das 8h às 18h, na Av. Minas Gerais, 405, Jundiaí, Anápolis. Valores e horários pelo WhatsApp.
+          </p>
+        </div>
+      </section>
+
       <SEOStructuredContent 
         seoData={psicologiaSEO} 
         showFAQ={true}
         customFAQTitle="Perguntas Frequentes sobre Psicologia Infantil"
       />
+
+      <ClinicGallery variant="carousel" />
 
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
@@ -556,6 +580,7 @@ const PsicologiaInfantilAnapolis = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de psicologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

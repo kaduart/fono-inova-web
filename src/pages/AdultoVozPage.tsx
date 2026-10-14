@@ -7,6 +7,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaAdultoVoz, schemaFAQAdulto } from '../schemas/clinicaSchemas';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const AdultoVozPage = () => {
     const sinaisProblemaVoz = [
@@ -146,6 +149,9 @@ const AdultoVozPage = () => {
                 </div>
             </section>
 
+      <ProofBar className="py-6" />
+
+
             {/* Problemas Vocais */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
@@ -212,7 +218,7 @@ const AdultoVozPage = () => {
                 <div className="container mx-auto px-4 text-center">
                     <p className="text-emerald-800 font-medium">
                         📍 Atendimento fonoaudiológico para adultos no bairro Jundiaí, Anápolis/GO |
-                        Av. Minas Gerais, 405 | Fácil estacionamento
+                        Av. Minas Gerais, 405 | Jundiaí
                     </p>
                 </div>
             </section>
@@ -300,6 +306,8 @@ const AdultoVozPage = () => {
             </section>
 
             {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
             <section className="py-20 bg-gradient-to-br from-emerald-600 to-emerald-800 text-white">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <div className="text-center">
@@ -337,14 +345,15 @@ const AdultoVozPage = () => {
                                     📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
                                 </p>
                                 <p className="text-xs text-gray-400 mt-1">
-                                    Atendimento de segunda a sexta • ESTACIONAMENTO GRATUITO
+                                    Atendimento de segunda a sexta
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-        </Layout>
+              <FixedWhatsAppBar message="Oi! Vi a página de fonoaudiologia para adultos da Fono Inova e gostaria de entender como funciona o atendimento." />
+    </Layout>
     );
 };
 

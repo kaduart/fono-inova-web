@@ -398,7 +398,7 @@ export const testeLinguinhaSEO: SEOStructure = {
     {
       title: "Onde fazer o Teste da Linguinha em Anápolis GO",
       h3s: [
-        { title: "Atendimento no bairro Jundiaí", content: "A Clínica Fono Inova fica na Av. Minas Gerais, no bairro Jundiaí, em Anápolis/GO, com estacionamento e estrutura acolhedora para bebês." },
+        { title: "Atendimento no bairro Jundiaí", content: "A Clínica Fono Inova fica na Av. Minas Gerais, no bairro Jundiaí, em Anápolis/GO, com estrutura acolhedora para bebês." },
         { title: "Atendimento para famílias de Anápolis e região", content: "Recebemos famílias de Anápolis, Goiânia, Inhumas, Silvânia e cidades próximas para avaliação e acompanhamento do freio lingual." },
         { title: "Agendamento rápido pelo WhatsApp", content: "Você pode agendar o Teste da Linguinha direto pelo WhatsApp e tirar dúvidas antes de vir à clínica." },
       ],

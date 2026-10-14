@@ -95,7 +95,7 @@ export const geograficasLPs = [
     faq: [
       {
         question: "Onde fica a clínica de fonoaudiologia em Anápolis?",
-        answer: "A Clínica Fono Inova fica no bairro Jundiaí, na Av. Minas Gerais, 405, em Anápolis/GO, com fácil acesso e estacionamento na rua."
+        answer: "A Clínica Fono Inova fica no bairro Jundiaí, na Av. Minas Gerais, 405, em Anápolis/GO, com fácil acesso."
       },
       {
         question: "Precisa de encaminhamento para consulta com fonoaudiólogo?",
@@ -133,8 +133,8 @@ export const geograficasLPs = [
     datePublished: "2025-06-04",
     dateModified: "2025-06-04",
     
-    image: "/images/clinica/sala-espera.png",
-    imageAlt: "Psicólogo infantil atendendo em Anápolis na Clínica Fono Inova",
+    image: '/images/clinica/ia/psicologia-infantil.webp',
+    imageAlt: 'Imagem ilustrativa: psicóloga e criança desenhando juntas em uma sala de atendimento infantil',
     
     hero: {
       headline: "Procura Psicólogo Infantil em Anápolis?",
@@ -352,8 +352,8 @@ export const geograficasLPs = [
     datePublished: "2025-06-04",
     dateModified: "2025-06-04",
     
-    image: "/images/clinica/sala-ludica.png",
-    imageAlt: "Avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis",
+    image: '/images/clinica/ia/avaliacao-neuropsicologica.webp',
+    imageAlt: 'Imagem ilustrativa: profissional aplicando uma avaliação com cartas e blocos a uma criança',
     
     hero: {
       headline: "Avaliação Neuropsicológica em Anápolis",

@@ -43,6 +43,8 @@ import { schemaBaseLocalBusiness, schemaFisioterapiaAnapolis, schemaFAQFisio } f
 import Breadcrumb from '../components/Breadcrumb';
 import { fisioterapiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Olá! Vi o site da Clínica Fono Inova e gostaria de agendar uma avaliação de fisioterapia infantil.";
@@ -178,7 +180,7 @@ const FisioterapiaInfantilAnapolis = () => {
         title="Fisioterapia Infantil em Anápolis | Fisio Pediátrica | Fono Inova"
         description="Fisioterapia infantil e pediátrica em Anápolis: reabilitação motora, postura e desenvolvimento. Clínica multidisciplinar no Jundiaí. Agende pelo WhatsApp."
         keywords="fisioterapia infantil anápolis, fisioterapia pediatrica anápolis, reabilitação infantil anápolis, fisioterapia motora anápolis, fisioterapeuta infantil anápolis"
-        image="/images/og-image.jpg"
+        image="/images/clinica/ia/fisioterapia-infantil.webp"
         url="https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaFisioterapiaAnapolis]}
@@ -296,7 +298,7 @@ const FisioterapiaInfantilAnapolis = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -305,8 +307,8 @@ const FisioterapiaInfantilAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/fisioterapia/fisio2.jpg" 
-                    alt="Fisioterapia Infantil em Anápolis - Reabilitação pediátrica"
+                    src="/images/clinica/ia/fisioterapia-infantil.webp" 
+                    alt="Imagem ilustrativa: fisioterapeuta ajudando uma criança a caminhar sobre uma trave de equilíbrio"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -318,7 +320,7 @@ const FisioterapiaInfantilAnapolis = () => {
                         <Star key={star} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-bold text-slate-900">4.9</span>
+                    <span className="font-bold text-slate-900">5.0</span>
                     <span className="text-xs text-slate-500">Google</span>
                   </div>
                 </div>
@@ -431,7 +433,7 @@ const FisioterapiaInfantilAnapolis = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: GraduationCap },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -506,6 +508,8 @@ const FisioterapiaInfantilAnapolis = () => {
         </div>
       </section>
 
+      <ClinicGallery variant="carousel" />
+
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8">
@@ -560,6 +564,7 @@ const FisioterapiaInfantilAnapolis = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de fisioterapia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

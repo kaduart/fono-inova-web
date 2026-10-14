@@ -7,6 +7,9 @@ import { Home, ChevronRight, MapPin, Phone, Clock, Star, CheckCircle } from 'luc
 import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 import WhatsAppCTA from '../../components/lp/WhatsAppCTA';
+import ClinicGallery from '../../components/ClinicGallery';
+import FixedWhatsAppBar from '../../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../../components/premium/ProofBar';
 import { getLandingPageBySlug } from '../../data/landing-pages';
 import { schemaLandingPage, schemaLandingPageBreadcrumb } from '../../schemas/clinicaSchemas';
 import { articlesData } from '../../data/articlesData';
@@ -188,7 +191,7 @@ const LandingPage = () => {
 
               {/* Prova social */}
               <div className="flex items-center gap-3 mb-6 text-sm text-gray-600">
-                <span className="text-amber-500 font-semibold">⭐⭐⭐⭐⭐ 4.9 no Google</span>
+                <span className="text-amber-500 font-semibold">⭐⭐⭐⭐⭐ 5.0 no Google</span>
                 <span className="text-gray-300">|</span>
                 <span>+500 famílias atendidas</span>
               </div>
@@ -249,6 +252,9 @@ const LandingPage = () => {
           </div>
         </Container>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* IDENTIFICAÇÃO - NOVO */}
       {lp.identification && (
@@ -480,6 +486,8 @@ const LandingPage = () => {
         </section>
       )}
 
+      <ClinicGallery variant="carousel" />
+
       {/* CTA FINAL PREMIUM */}
       <section className="lp-final-cta py-24">
         <Container maxWidth="lg" className="lp-final-cta-content text-center">
@@ -519,6 +527,7 @@ const LandingPage = () => {
           </div>
         </Container>
       </section>
+      <FixedWhatsAppBar message={`Oi! Vi a página "${lp.title}" da Fono Inova e gostaria de entender como funciona o atendimento.`} />
     </Layout>
   );
 };

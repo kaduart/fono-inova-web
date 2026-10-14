@@ -33,6 +33,8 @@ import { schemaBaseLocalBusiness, schemaFonoaudiologiaAnapolis, schemaFAQ } from
 import Breadcrumb from '../components/Breadcrumb';
 import { fonoaudiologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Oi! Meu filho não fala muito, isso é normal?";
@@ -116,7 +118,7 @@ const FonoaudiologiaAnapolis = () => {
       {/* SEO otimizado para LP de conversão */}
       <SEO
         title="Fonoaudiologia em Anápolis | Fono Inova — Clínica Infantil"
-        description="Fonoaudiologia infantil em Anápolis: atraso na fala, autismo e gagueira. Equipe multidisciplinar, nota 4,9 no Google. Agende a avaliação pelo WhatsApp."
+        description="Fonoaudiologia infantil em Anápolis: atraso na fala, autismo e gagueira. Equipe multidisciplinar, nota 5,0 no Google. Agende a avaliação pelo WhatsApp."
         keywords="fono em anapolis, fonoaudiologia anapolis, fonoaudiólogo anapolis, fonoaudióloga infantil anapolis, atraso fala anapolis, fono infantil anapolis, clínica fonoaudiologia anapolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis"
@@ -242,7 +244,7 @@ const FonoaudiologiaAnapolis = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -264,7 +266,7 @@ const FonoaudiologiaAnapolis = () => {
                         <Star key={star} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-bold text-slate-900">4.9</span>
+                    <span className="font-bold text-slate-900">5.0</span>
                     <span className="text-xs text-slate-500">Google</span>
                   </div>
                 </div>
@@ -310,7 +312,7 @@ const FonoaudiologiaAnapolis = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: GraduationCap },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -356,6 +358,8 @@ const FonoaudiologiaAnapolis = () => {
         showFAQ={true}
         customFAQTitle="Perguntas Frequentes sobre Fonoaudiologia Infantil"
       />
+
+      <ClinicGallery variant="carousel" />
 
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
@@ -511,6 +515,7 @@ const FonoaudiologiaAnapolis = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de fonoaudiologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

@@ -4,6 +4,9 @@ import Breadcrumb from '../components/Breadcrumb';
 import ClinicGallery from '../components/ClinicGallery';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
+import Reveal from '../components/premium/Reveal';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 
@@ -189,17 +192,13 @@ const ApoioFamilias = () => {
             </div>
           </div>
 
-          <div className="mt-10 border-y border-slate-200 py-4 flex flex-wrap gap-x-8 gap-y-2 justify-between text-sm text-slate-600">
-            <span className="font-semibold text-slate-900">Clínica Fono Inova</span>
-            <span>Anápolis · Goiás</span>
-            <span>Desenvolvimento infantil</span>
-            <span>Apoio aos responsáveis</span>
-          </div>
         </div>
       </section>
 
+      <ProofBar className="-mt-8 md:-mt-10" />
+
       {/* ==================== SITUAÇÕES ==================== */}
-      <section className="py-14 md:py-20 bg-white">
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-8">Quando sua família pode precisar de apoio</h2>
           <ul className="grid sm:grid-cols-2 gap-4">
@@ -211,10 +210,10 @@ const ApoioFamilias = () => {
             ))}
           </ul>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== COMO PODEMOS AJUDAR ==================== */}
-      <section id="apoio" className="py-14 md:py-20 bg-slate-50 scroll-mt-24">
+      <Reveal><section id="apoio" className="py-14 md:py-20 bg-slate-50 scroll-mt-24">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Como podemos ajudar</p>
           <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-3">Mais clareza para a família. Mais organização para o cuidado.</h2>
@@ -231,17 +230,17 @@ const ApoioFamilias = () => {
             ))}
           </div>
           {/* REVISAR (advogado/conselho): nota sobre questões jurídicas */}
-          <div className="mt-8 rounded-2xl border-l-4 border-primary bg-white p-5 text-slate-700 max-w-3xl">
+          <div className="mt-8 w-full rounded-2xl border-l-4 border-primary bg-white p-5 md:p-6 text-slate-700 shadow-sm">
             <p className="font-semibold text-slate-900 mb-1">Quem esclarece questões jurídicas?</p>
             <p>
               A análise de direitos, benefícios e eventual pedido de liminar deve ser feita por advogado habilitado, escolhido pela família. A Fono Inova oferece o suporte clínico relacionado ao tratamento; o atendimento jurídico é independente.
             </p>
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== POR ONDE COMEÇAR ==================== */}
-      <section className="py-14 md:py-20 bg-primary text-white">
+      <Reveal><section className="py-14 md:py-20 bg-primary text-white">
         <div className="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-2">Por onde começar</p>
@@ -280,10 +279,10 @@ const ApoioFamilias = () => {
             ))}
           </ol>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== DOCUMENTOS ==================== */}
-      <section className="py-14 md:py-20 bg-white">
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="space-y-5">
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">Antes da conversa</p>
@@ -321,10 +320,10 @@ const ApoioFamilias = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== INFORMAÇÃO CONFIÁVEL ==================== */}
-      <section className="py-14 md:py-20 bg-emerald-50/60">
+      <Reveal><section className="py-14 md:py-20 bg-emerald-50/60">
         <div className="container mx-auto px-4 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Informação confiável</p>
           <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-3">Direitos e benefícios: consulte os canais oficiais.</h2>
@@ -350,13 +349,13 @@ const ApoioFamilias = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== GALERIA ==================== */}
-      <ClinicGallery />
+      <ClinicGallery variant="carousel" exclude={['recepcao.webp', 'consultorio.webp']} />
 
       {/* ==================== FAQ ==================== */}
-      <section className="py-14 md:py-20 bg-white">
+      <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 grid lg:grid-cols-3 gap-10">
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-2">Dúvidas frequentes</p>
@@ -374,10 +373,10 @@ const ApoioFamilias = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section></Reveal>
 
       {/* ==================== CTA FINAL ==================== */}
-      <section className="pb-16 bg-white">
+      <Reveal><section className="pb-16 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="rounded-3xl bg-emerald-50 p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -397,7 +396,8 @@ const ApoioFamilias = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section></Reveal>
+      <FixedWhatsAppBar message={WHATSAPP_MESSAGE} />
     </Layout>
   );
 };

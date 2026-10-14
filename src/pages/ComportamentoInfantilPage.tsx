@@ -310,7 +310,7 @@ const ComportamentoInfantilPage = () => {
                                         <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                     ))}
                                 </div>
-                                <div className="text-xs text-slate-600 mt-1">4.9 no Google</div>
+                                <div className="text-xs text-slate-600 mt-1">5.0 no Google</div>
                             </div>
                         </div>
                     </div>
@@ -618,7 +618,7 @@ const ComportamentoInfantilPage = () => {
                         </span>
                     </div>
                     <p className="text-red-700/70 mt-2 text-sm">
-                        Fácil acesso • Estacionamento disponível • Atendemos particular e convênios
+                        Fácil acesso • Atendemos particular e Base Aérea (BAAN)
                     </p>
                 </div>
             </section>

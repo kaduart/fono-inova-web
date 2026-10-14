@@ -23,6 +23,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaPsicopedagogia, schemaFAQPsicopedagogia } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const PsicopedagogiaLPPage = () => {
   useEffect(() => {
@@ -223,6 +226,9 @@ const PsicopedagogiaLPPage = () => {
         </div>
       </section>
 
+      <ProofBar className="py-6" />
+
+
       {/* ═══════════════ O QUE É ═══════════════ */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4">
@@ -416,6 +422,8 @@ const PsicopedagogiaLPPage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-16 md:py-20 bg-gradient-to-br from-amber-500 to-orange-600 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <Lightbulb className="w-12 h-12 mx-auto mb-6 text-amber-200" />
@@ -450,6 +458,7 @@ const PsicopedagogiaLPPage = () => {
           </p>
         </div>
       </section>
+      <FixedWhatsAppBar message="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

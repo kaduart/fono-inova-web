@@ -6,6 +6,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const TdahAvaliacaoPage = () => {
     const [selectedSintoma, setSelectedSintoma] = useState<string | null>(null);
@@ -280,12 +283,15 @@ const TdahAvaliacaoPage = () => {
                                         <Star key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                     ))}
                                 </div>
-                                <div className="text-xs text-slate-600 mt-1">4.9 no Google</div>
+                                <div className="text-xs text-slate-600 mt-1">5.0 no Google</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+      <ProofBar className="py-6" />
+
 
             {/* ==================== SELEÇÃO POR SINTOMA - COM ALERTA ==================== */}
             <section className="py-16 bg-white">
@@ -530,6 +536,8 @@ const TdahAvaliacaoPage = () => {
                 </div>
             </section>
 
+      <ClinicGallery variant="carousel" />
+
             {/* ==================== CTA FINAL - URGÊNCIA MÁXIMA ==================== */}
             <section className="py-16 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
                 <div className="container mx-auto px-4">
@@ -589,7 +597,7 @@ const TdahAvaliacaoPage = () => {
                         </span>
                     </div>
                     <p className="text-purple-700/70 mt-2 text-sm">
-                        Fácil acesso • Estacionamento disponível • Atendemos particular e convênios
+                        Fácil acesso • Atendemos particular e Base Aérea (BAAN)
                     </p>
                 </div>
             </section>
@@ -610,7 +618,8 @@ const TdahAvaliacaoPage = () => {
                     animation: bounce-slow 2s ease-in-out infinite;
                 }
             `}</style>
-        </Layout>
+              <FixedWhatsAppBar message="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+    </Layout>
     );
 };
 

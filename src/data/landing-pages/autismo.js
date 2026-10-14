@@ -441,8 +441,8 @@ export const autismoLPs = [
     datePublished: "2025-06-02",
     dateModified: "2025-06-02",
     
-    image: "/images/clinica/recepcao.png",
-    imageAlt: "Recepção da Clínica Fono Inova para avaliação de autismo em Anápolis",
+    image: '/images/clinica/ia/avaliacao-neuropsicologica.webp',
+    imageAlt: 'Imagem ilustrativa: profissional aplicando uma avaliação com cartas e blocos a uma criança',
     
     hero: {
       headline: "Procurando Avaliação de Autismo em Anápolis?",
@@ -512,7 +512,7 @@ export const autismoLPs = [
     faq: [
       {
         question: "Onde fica a clínica em Anápolis?",
-        answer: "Estamos no bairro Jundiaí, na Av. Minas Gerais, 405, com fácil acesso e estacionamento disponível na rua."
+        answer: "Estamos no bairro Jundiaí, na Av. Minas Gerais, 405, com fácil acesso."
       },
       {
         question: "Precisa de encaminhamento médico?",

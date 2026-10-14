@@ -11,6 +11,9 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const SindromeDeDownPage = () => {
   const [accessibilityWizardOpen, setAccessibilityWizardOpen] = useState(false);
@@ -86,7 +89,7 @@ const SindromeDeDownPage = () => {
         title="Síndrome de Down em Anápolis | Atendimento Especializado | Fono Inova"
         description="Tratamento especializado para crianças com Síndrome de Down em Anápolis. Fonoaudiologia, psicologia, terapia ocupacional e fisioterapia integradas. Agende sua avaliação."
         keywords="síndrome de down anápolis, tratamento síndrome de down, fonoaudiologia síndrome de down, terapia ocupacional síndrome de down, desenvolvimento infantil anápolis"
-        image="/images/og-image.jpg"
+        image="/images/clinica/ia/sindrome-de-down.webp"
         url="https://www.clinicafonoinova.com.br/sindrome-de-down"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaSindromeDown, schemaFAQ]}
@@ -187,7 +190,7 @@ const SindromeDeDownPage = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -195,8 +198,8 @@ const SindromeDeDownPage = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/fono-inova-2.png" 
-                    alt="Atendimento especializado Síndrome de Down em Anápolis"
+                    src="/images/clinica/ia/sindrome-de-down.webp" 
+                    alt="Imagem ilustrativa: criança com síndrome de Down empilhando blocos com a terapeuta, com a mãe sorrindo ao fundo"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -205,6 +208,9 @@ const SindromeDeDownPage = () => {
           </div>
         </div>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* Seção de Terapias */}
       <section className="py-24 bg-white">
@@ -238,6 +244,8 @@ const SindromeDeDownPage = () => {
       </section>
 
       {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto text-center border-2 border-primary/10">
@@ -290,6 +298,7 @@ const SindromeDeDownPage = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de terapias para síndrome de Down da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

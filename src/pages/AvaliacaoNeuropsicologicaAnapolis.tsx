@@ -29,6 +29,8 @@ import { schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis, schem
 import Breadcrumb from '../components/Breadcrumb';
 import { neuropsicologiaSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica.";
@@ -122,7 +124,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
         title="Avaliação Neuropsicológica em Anápolis | TDAH, Déficit de Atenção | Clínica Fono Inova"
         description="Avaliação neuropsicológica especializada em Anápolis para diagnóstico de TDAH, déficit de atenção e problemas de aprendizagem. Agende sua consulta. Atendimento humanizado e multidisciplinar."
         keywords="avaliação neuropsicológica anápolis, tdah anápolis, déficit de atenção anápolis, avaliação psicológica infantil anápolis, diagnóstico tdah anápolis"
-        image="/images/og-image.jpg"
+        image="/images/clinica/ia/avaliacao-neuropsicologica.webp"
         url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaAvaliacaoNeuropsicologicaAnapolis]}
@@ -236,7 +238,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -245,8 +247,8 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/neuropsicologia/neuro.jpeg" 
-                    alt="Avaliação Neuropsicológica em Anápolis - Diagnóstico especializado"
+                    src="/images/clinica/ia/avaliacao-neuropsicologica.webp" 
+                    alt="Imagem ilustrativa: profissional aplicando uma avaliação com cartas e blocos a uma criança"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -258,7 +260,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
                         <Star key={star} className="w-4 h-4 fill-current" />
                       ))}
                     </div>
-                    <span className="font-bold text-slate-900">4.9</span>
+                    <span className="font-bold text-slate-900">5.0</span>
                     <span className="text-xs text-slate-500">Google</span>
                   </div>
                 </div>
@@ -324,7 +326,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
               { value: "500+", label: "Famílias Atendidas", icon: GraduationCap },
-              { value: "4.9/5", label: "Avaliação Google", icon: Star },
+              { value: "5.0/5", label: "Avaliação Google", icon: Star },
               { value: "12+", label: "Especialistas", icon: Brain },
               { value: "10+", label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
@@ -411,6 +413,8 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
         </div>
       </section>
 
+      <ClinicGallery variant="carousel" />
+
       {/* ==================== CTA FINAL ==================== */}
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8">
@@ -465,6 +469,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de avaliação neuropsicológica da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

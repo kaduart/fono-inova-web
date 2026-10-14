@@ -11,6 +11,9 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick, trackPhoneCall } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const PrematuridadePage = () => {
   const [accessibilityWizardOpen, setAccessibilityWizardOpen] = useState(false);
@@ -86,7 +89,7 @@ const PrematuridadePage = () => {
         title="Prematuridade em Anápolis | Estimulação Precoce | Fono Inova"
         description="Acompanhamento especializado para bebês prematuros em Anápolis. Estimulação precoce, fisioterapia, fonoaudiologia e terapia ocupacional. Agende sua avaliação."
         keywords="prematuridade anápolis, estimulação precoce prematuro, fisioterapia prematuro, desenvolvimento neuropsicomotor, bebê prematuro anápolis"
-        image="/images/og-image.jpg"
+        image="/images/clinica/ia/prematuridade.webp"
         url="https://www.clinicafonoinova.com.br/prematuridade-desenvolvimento"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaPrematuridade, schemaFAQ]}
@@ -191,7 +194,7 @@ const PrematuridadePage = () => {
                     <Star key={star} className="w-4 h-4 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-slate-600">4.9 no Google • +500 famílias atendidas</span>
+                <span className="text-sm text-slate-600">5.0 no Google • +500 famílias atendidas</span>
               </div>
             </div>
 
@@ -199,8 +202,8 @@ const PrematuridadePage = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/fono-inova-1.png" 
-                    alt="Acompanhamento especializado para bebês prematuros em Anápolis"
+                    src="/images/clinica/ia/prematuridade.webp" 
+                    alt="Imagem ilustrativa: duas profissionais acompanhando o desenvolvimento de um bebê sentado em tapete de atividades"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -209,6 +212,9 @@ const PrematuridadePage = () => {
           </div>
         </div>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* Seção de Terapias */}
       <section className="py-24 bg-white">
@@ -266,6 +272,8 @@ const PrematuridadePage = () => {
       </section>
 
       {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-24 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto text-center border-2 border-primary/10">
@@ -319,6 +327,7 @@ const PrematuridadePage = () => {
           </p>
         </div>
       </div>
+      <FixedWhatsAppBar message="Oi! Vi a página de acompanhamento de prematuros da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

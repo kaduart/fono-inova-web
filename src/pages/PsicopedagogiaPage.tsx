@@ -33,6 +33,9 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
 import { schemaFAQPsicopedagogia, schemaPsicopedagogia } from '../schemas/clinicaSchemas';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const PsicopedagogiaPage = () => {
     useServiceViewTime('Psicopedagogia');
@@ -251,6 +254,9 @@ const PsicopedagogiaPage = () => {
                     </div>
                 </div>
             </section>
+
+      <ProofBar className="py-6" />
+
 
             {/* Estatísticas */}
             <section className="py-16 bg-white">
@@ -496,6 +502,8 @@ const PsicopedagogiaPage = () => {
             </section>
 
             {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
             <section className="relative isolate z-10 py-20 bg-gradient-to-br from-amber-600 via-orange-700 to-yellow-800 text-white overflow-hidden">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
@@ -559,7 +567,7 @@ const PsicopedagogiaPage = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <Star className="w-5 h-5 text-white fill-white" />
-                                <span>4.9/5 Avaliação</span>
+                                <span>5.0/5 Avaliação</span>
                             </div>
                         </div>
                         {/* Endereço completo */}
@@ -568,13 +576,14 @@ const PsicopedagogiaPage = () => {
                                 📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
                             </p>
                             <p className="text-xs text-white/60 mt-1">
-                                Atendimento de segunda a sexta • ESTACIONAMENTO GRATUITO
+                                Atendimento de segunda a sexta
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
-        </Layout>
+              <FixedWhatsAppBar message="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />
+    </Layout>
     );
 };
 

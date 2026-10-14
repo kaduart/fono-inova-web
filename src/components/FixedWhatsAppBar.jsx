@@ -35,7 +35,7 @@ const FixedWhatsAppBar = ({
     <>
       {/* Mobile: Barra fixa inferior */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden">
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between pl-4 pr-20 py-3">
           <div className="flex items-center">
             <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
               <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ const FixedWhatsAppBar = ({
       </div>
 
       {/* Desktop: Botão flutuante canto inferior */}
-      <div className="hidden md:block fixed bottom-6 right-6 z-50">
+      <div className="hidden md:block fixed bottom-6 right-24 z-50">
         <a
           href={whatsappLink}
           target="_blank"

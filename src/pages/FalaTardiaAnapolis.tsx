@@ -8,6 +8,9 @@ import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness, schemaFAQFalaTardia } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const WHATSAPP_MSG = "Oi! Meu filho tem atraso na fala e quero entender melhor. Pode me ajudar?";
 
@@ -118,6 +121,9 @@ export default function FalaTardiaAnapolis() {
         </div>
       </section>
 
+      <ProofBar className="py-6" />
+
+
       {/* ========== COMO FUNCIONA ========== */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
@@ -180,6 +186,8 @@ export default function FalaTardiaAnapolis() {
         </div>
       </section>
 
+      <ClinicGallery variant="carousel" />
+
       {/* ========== CTA FINAL ========== */}
       <section className="py-16 bg-primary">
         <div className="container mx-auto px-4 lg:px-8 max-w-2xl text-center space-y-6">
@@ -198,6 +206,7 @@ export default function FalaTardiaAnapolis() {
           </ButtonWhatsApp>
         </div>
       </section>
+      <FixedWhatsAppBar message="Oi! Vi a página de atraso na fala da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 }

@@ -27,6 +27,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaFAQMultidisciplinar, schemaMultidisciplinar } from '../schemas/clinicaSchemas';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const ClinicaMultidisciplinar = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -192,6 +195,9 @@ const ClinicaMultidisciplinar = () => {
           </div>
         </div>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* Estatísticas Importantes */}
       <section className="py-16 bg-white">
@@ -419,6 +425,8 @@ const ClinicaMultidisciplinar = () => {
       </section>
 
       {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-20 bg-pink-600">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -447,11 +455,12 @@ const ClinicaMultidisciplinar = () => {
               📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
             </p>
             <p className="text-xs text-white/60 mt-1">
-              Atendimento de segunda a sexta • ESTACIONAMENTO GRATUITO
+              Atendimento de segunda a sexta
             </p>
           </div>
         </div>
       </section>
+      <FixedWhatsAppBar message="Oi! Vi a página de a clínica multidisciplinar da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

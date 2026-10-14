@@ -17,8 +17,8 @@ export const psicologiaLPs = [
     datePublished: "2025-06-05",
     dateModified: "2025-06-05",
     
-    image: "/images/clinica/sala-espera.png",
-    imageAlt: "Avaliação psicológica para criança agressiva na Clínica Fono Inova em Anápolis",
+    image: '/images/clinica/ia/psicologia-infantil.webp',
+    imageAlt: 'Imagem ilustrativa: psicóloga e criança desenhando juntas em uma sala de atendimento infantil',
     
     hero: {
       headline: "Seu Filho Bate, Morde ou Destrói Objetos?",

@@ -8,6 +8,9 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar } from '../schemas/clinicaSchemas';
 import { trackLandingPageView } from '../services/landingPageAnalytics';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const DificuldadeEscolarPage = () => {
     const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -132,6 +135,9 @@ const DificuldadeEscolarPage = () => {
                     </div>
                 </div>
             </section>
+
+      <ProofBar className="py-6" />
+
 
             {/* Sinais */}
             <section className="py-20 bg-white">
@@ -303,6 +309,8 @@ const DificuldadeEscolarPage = () => {
             </section>
 
             {/* CTA Final */}
+      <ClinicGallery variant="carousel" />
+
             <section className="py-20 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
                 <div className="container mx-auto px-4 max-w-4xl">
                     <div className="text-center">
@@ -341,12 +349,13 @@ const DificuldadeEscolarPage = () => {
                             📍 Clínica Fono Inova • Av. Minas Gerais, 405 • Bairro Jundiaí • Anápolis/GO
                         </p>
                         <p className="text-xs text-white/60 mt-1">
-                            Atendimento de segunda a sexta • ESTACIONAMENTO GRATUITO
+                            Atendimento de segunda a sexta
                         </p>
                     </div>
                 </div>
             </section>
-        </Layout>
+              <FixedWhatsAppBar message="Oi! Vi a página de dificuldade escolar da Fono Inova e gostaria de entender como funciona o atendimento." />
+    </Layout>
     );
 };
 

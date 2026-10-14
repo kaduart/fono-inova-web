@@ -172,7 +172,7 @@ const LinksBio = () => {
                 <Star key={star} className="h-4 w-4 fill-current" />
               ))}
             </div>
-            <span>4.9 no Google • +500 famílias atendidas</span>
+            <span>5.0 no Google • +500 famílias atendidas</span>
           </div>
         </motion.div>
 

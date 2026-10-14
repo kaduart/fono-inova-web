@@ -22,6 +22,9 @@ import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import OptimizedImage from '../components/OptimizedImage';
 import { schemaPsicomotricidade, schemaFAQPsicomotricidade } from '../schemas/clinicaSchemas.js';
+import ClinicGallery from '../components/ClinicGallery';
+import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import ProofBar from '../components/premium/ProofBar';
 
 const PsicomotricidadePage = () => {
   useEffect(() => {
@@ -225,6 +228,9 @@ const PsicomotricidadePage = () => {
           </div>
         </div>
       </section>
+
+      <ProofBar className="py-6" />
+
 
       {/* ═══════════════ O QUE É ═══════════════ */}
       <section className="py-16 md:py-20 bg-white">
@@ -450,6 +456,8 @@ const PsicomotricidadePage = () => {
       </section>
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
+      <ClinicGallery variant="carousel" />
+
       <section className="py-16 md:py-20 bg-gradient-to-br from-pink-600 to-fuchsia-700 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <Star className="w-12 h-12 mx-auto mb-6 text-pink-200" />
@@ -485,6 +493,7 @@ const PsicomotricidadePage = () => {
           </p>
         </div>
       </section>
+      <FixedWhatsAppBar message="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
   );
 };

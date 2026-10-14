@@ -261,8 +261,8 @@ export const aprendizagemLPs = [
     datePublished: "2025-06-05",
     dateModified: "2025-06-05",
 
-    image: "/images/artigo-psicopedagogia.png",
-    imageAlt: "Criança com TDAH recebendo acompanhamento psicopedagógico na Clínica Fono Inova",
+    image: '/images/clinica/ia/avaliacao-neuropsicologica.webp',
+    imageAlt: 'Imagem ilustrativa: profissional aplicando uma avaliação com cartas e blocos a uma criança',
 
     hero: {
       headline: "Seu Filho é Muito Agitado e Não Consegue Prestar Atenção?",
