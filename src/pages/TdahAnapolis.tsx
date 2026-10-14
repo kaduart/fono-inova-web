@@ -302,7 +302,7 @@ export default function TdahAnapolis() {
 
       <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/psicologia-infantil-anapolis', '/psicopedagogia', '/avaliacao-neuropsicologica-dificuldade-escolar']} whatsappMessage="Oi! Vi a página de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="jogos" reverse whatsappMessage="Oi! Vi a página de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="tdahTablet" reverse whatsappMessage="Oi! Vi a página de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

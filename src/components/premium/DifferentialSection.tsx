@@ -2,7 +2,7 @@ import { CheckCircle2, MessageCircle } from 'lucide-react';
 import ButtonWhatsApp from '../ui/ButtonWhatsapp.jsx';
 import Reveal from './Reveal';
 
-// Bloco "atendimento diferenciado": foto real do espaço + pontos de valor, sem prometer prazo, preço ou resultado.
+// Bloco "atendimento diferenciado": foto do espaço (real ou ilustrativa, conforme o alt) + pontos de valor, sem prometer prazo, preço ou resultado.
 const PHOTOS = {
   terapia: { src: '/images/clinica/galeria/sala-de-terapia.webp', alt: 'Sala de terapia da Clínica Fono Inova com espelho, adesivos de animais e tapete de EVA' },
   movimento: { src: '/images/clinica/galeria/espaco-movimento.webp', alt: 'Espaço de movimento da Clínica Fono Inova com cama elástica, balanços e piso de grama sintética' },
@@ -10,6 +10,11 @@ const PHOTOS = {
   piscina: { src: '/images/clinica/galeria/sala-piscina-bolinhas.webp', alt: 'Sala da Clínica Fono Inova com piscina de bolinhas, espaldar e bolas terapêuticas' },
   jogos: { src: '/images/clinica/galeria/jogos-terapeuticos.webp', alt: 'Estante com jogos e brinquedos usados nos atendimentos da Clínica Fono Inova' },
   kids: { src: '/images/clinica/galeria/espaco-kids.webp', alt: 'Espaço Kid’s da Clínica Fono Inova, com mesinha e cadeiras infantis' },
+  // Imagens ilustrativas (IA) a partir dos ambientes reais da clínica: as pessoas não são da equipe.
+  fonoEspelho: { src: '/images/clinica/ia/fonoaudiologia-sessao-espelho.webp', alt: 'Imagem ilustrativa: fonoaudióloga e criança em sessão com espelho em sala com mural de balões e animais' },
+  neuropsiSala: { src: '/images/clinica/ia/avaliacao-neuropsicologica-sala-selva.webp', alt: 'Imagem ilustrativa: profissional aplicando atividade de avaliação em criança, em sala com mural de floresta' },
+  psicomotCircuito: { src: '/images/clinica/ia/psicomotricidade-circuito-grama.webp', alt: 'Imagem ilustrativa: criança em circuito de movimento com cama elástica e grama sintética, acompanhada de terapeuta' },
+  tdahTablet: { src: '/images/clinica/ia/tdah-avaliacao-tablet.webp', alt: 'Imagem ilustrativa: criança fazendo atividade em tablet durante avaliação, com profissional ao lado' },
 } as const;
 
 type Props = {

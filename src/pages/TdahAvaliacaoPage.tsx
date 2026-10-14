@@ -499,7 +499,7 @@ const TdahAvaliacaoPage = () => {
 
       <PageFooterInfo related={['/tdah-anapolis', '/neuropediatra-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/psicopedagogia']} whatsappMessage="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="tdahTablet" whatsappMessage="Oi! Vi a página de avaliação de TDAH da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

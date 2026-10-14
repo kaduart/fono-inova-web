@@ -187,7 +187,7 @@ export default function FalaTardiaAnapolis() {
 
       <PageFooterInfo related={['/fonoaudiologia-anapolis', '/autismo-anapolis', '/teste-da-linguinha-anapolis', '/terapia-ocupacional-anapolis']} whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="terapia" reverse whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="fonoEspelho" reverse whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

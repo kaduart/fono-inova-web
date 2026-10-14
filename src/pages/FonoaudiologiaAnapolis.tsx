@@ -307,7 +307,7 @@ const FonoaudiologiaAnapolis = () => {
 
       <PageFooterInfo related={['/fala-tardia-anapolis', '/teste-da-linguinha-anapolis', '/dislexia-anapolis', '/autismo-anapolis']} whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="terapia" whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="fonoEspelho" whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

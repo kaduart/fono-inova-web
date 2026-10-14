@@ -468,7 +468,7 @@ const PsicomotricidadePage = () => {
 
       <PageFooterInfo related={['/fisioterapia-infantil-anapolis', '/terapia-ocupacional-anapolis', '/autismo-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
 
-      <DifferentialSection photo="movimento" reverse whatsappMessage="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <DifferentialSection photo="psicomotCircuito" reverse whatsappMessage="Oi! Vi a página de psicomotricidade da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <ClinicGallery variant="carousel" />
 

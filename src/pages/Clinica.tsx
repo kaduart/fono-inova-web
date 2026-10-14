@@ -108,6 +108,21 @@ const Clinica = () => {
 
             <ProofBar />
 
+            <section className="py-10 md:py-14">
+                <div className="container mx-auto px-4 lg:px-8">
+                    <figure className="mx-auto max-w-5xl">
+                        <img
+                            src="/images/clinica/ia/recepcao-acolhimento-familia.webp"
+                            alt="Imagem ilustrativa: família sendo recebida na recepção da Clínica Fono Inova"
+                            loading="lazy"
+                            decoding="async"
+                            className="h-72 w-full rounded-3xl object-cover shadow-2xl sm:h-96 lg:h-[460px]"
+                        />
+                        <figcaption className="mt-3 text-center text-sm text-slate-500">Recepção da Clínica Fono Inova, na Av. Minas Gerais, 405, Jundiaí. Imagem ilustrativa.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
             {/* Seção Equipe e Especialidades */}
             <section className="py-20 bg-slate-50">
                 <div className="container mx-auto px-4">
