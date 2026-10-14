@@ -173,6 +173,18 @@ const ReembolsoPlanoSaudeAnapolis = () => {
         </div>
       </section></Reveal>
 
+      <Reveal><section className="bg-white pt-4 pb-14 md:pb-20">
+        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+          <img
+            src="/images/clinica/ia/familia-orientacao-documentos.webp"
+            alt="Imagem ilustrativa: família conversando com a equipe e organizando documentos em uma sala de atendimento"
+            className="w-full h-64 sm:h-80 object-cover rounded-3xl shadow-lg"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </section></Reveal>
+
       <Reveal><section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl grid md:grid-cols-2 gap-10">
           <div>

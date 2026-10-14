@@ -149,7 +149,7 @@ const ApoioFamilias = () => {
         title="Apoio às Famílias: Acesso às Terapias e Documentação Clínica | Clínica Fono Inova"
         description="Apoio às famílias no acesso às terapias: organização de documentos clínicos, informações oficiais sobre direitos e benefícios e próximos passos com a Clínica Fono Inova, em Anápolis-GO."
         url="/apoio-as-familias"
-        image="/images/clinica/galeria/recepcao.webp"
+        image="/images/clinica/ia/apoio-familias.webp"
       />
 
       <Breadcrumb items={[{ label: 'Apoio às famílias' }]} />
@@ -183,8 +183,8 @@ const ApoioFamilias = () => {
             </div>
             <div className="order-1 lg:order-2">
               <img
-                src="/images/clinica/galeria/recepcao.webp"
-                alt="Recepção da Clínica Fono Inova em Anápolis, com parede verde, escada colorida e sala de espera"
+                src="/images/clinica/ia/apoio-familias.webp"
+                alt="Imagem ilustrativa: família sendo recebida na recepção da Clínica Fono Inova, em Anápolis"
                 className="w-full h-72 sm:h-96 lg:h-[480px] object-cover rounded-3xl shadow-xl"
                 fetchPriority="high"
                 decoding="async"
@@ -291,8 +291,8 @@ const ApoioFamilias = () => {
               Esta lista reúne exemplos de informações que podem ajudar a compreender sua situação. A equipe clínica e o profissional jurídico definem o que é necessário em cada caso.
             </p>
             <img
-              src="/images/clinica/galeria/consultorio.webp"
-              alt="Consultório infantil da Clínica Fono Inova com mesa de atendimento e mural lúdico"
+              src="/images/clinica/ia/familia-orientacao-documentos.webp"
+              alt="Imagem ilustrativa: família conversando com a equipe e organizando documentos em uma sala de atendimento"
               className="w-full h-56 sm:h-72 object-cover rounded-2xl shadow-md"
               loading="lazy"
               decoding="async"
@@ -352,7 +352,7 @@ const ApoioFamilias = () => {
       </section></Reveal>
 
       {/* ==================== GALERIA ==================== */}
-      <ClinicGallery variant="carousel" exclude={['recepcao.webp', 'consultorio.webp']} />
+      <ClinicGallery variant="carousel" />
 
       {/* ==================== FAQ ==================== */}
       <Reveal><section className="py-14 md:py-20 bg-white">
