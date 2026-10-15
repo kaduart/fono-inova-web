@@ -33,6 +33,14 @@ const ButtonWhatsApp = ({
             });
         }
 
+        // TikTok Pixel — Clique WhatsApp
+        if (typeof window !== 'undefined' && window.ttq) {
+            window.ttq.track('CONSULT', {
+                content_name: 'Clique WhatsApp',
+                event_id: `wa_btn_${Date.now()}`,
+            });
+        }
+
         // Monta URL e dispara conversão do Google Ads (com callback para abrir)
         const encodedMessage = encodeURIComponent(message + buildWhatsAppRefSignature());
         const url = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;

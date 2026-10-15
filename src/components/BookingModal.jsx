@@ -219,6 +219,17 @@ Pode me explicar como funciona a avaliação?`;
 
       trackFormSubmission(true)
       reportLeadConversion()
+
+      // TikTok Pixel — Agendamento Online (evento de maior valor)
+      if (typeof window !== 'undefined' && window.ttq) {
+        window.ttq.track('SCHEDULE', {
+          content_name: serviceInterest || 'Agendamento Online',
+          event_id: `booking_${crmResult?.leadId || Date.now()}`,
+          value: 180,
+          currency: 'BRL',
+        });
+      }
+
       onBookingSuccess?.({ crmSuccess: Boolean(crmResult?.success) })
       setSubmissionStatus('success')
       setStatusMessage('WhatsApp aberto. Finalize o envio da mensagem para falar com a equipe.')

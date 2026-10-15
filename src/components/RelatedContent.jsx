@@ -2,6 +2,7 @@
 // SEO: Cria cluster de conteúdo e fortalece autoridade de tópico
 
 import { Link } from 'react-router-dom';
+import { buildWhatsAppRefSignature } from '../hooks/useLeadTracking';
 
 export const RelatedLandingPages = ({ links }) => {
   if (!links || links.length === 0) return null;
@@ -62,9 +63,18 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
 
   // Adicionar mensagem pronta se for link do WhatsApp
   const getWhatsAppLink = (originalLink) => {
-    if (originalLink.includes('wa.me') && !originalLink.includes('text=')) {
-      const message = "Oi! Vi o site de vocês e fiquei com algumas dúvidas.\n\nPode me explicar melhor como funciona o atendimento?";
-      return `${originalLink}&text=${encodeURIComponent(message)}`;
+    if (originalLink.includes('wa.me')) {
+      const sig = buildWhatsAppRefSignature();
+      if (!originalLink.includes('text=')) {
+        const message = 'Oi! Vi o site de voc\u00eas e fiquei com algumas d\u00favidas.\n\nPode me explicar melhor como funciona o atendimento?';
+        return `${originalLink}&text=${encodeURIComponent(message + sig)}`;
+      }
+      if (sig && !originalLink.includes('---ref:')) {
+        const idx = originalLink.indexOf('text=');
+        const base = originalLink.slice(0, idx + 5);
+        const existingText = decodeURIComponent(originalLink.slice(idx + 5));
+        return base + encodeURIComponent(existingText + sig);
+      }
     }
     return originalLink;
   };

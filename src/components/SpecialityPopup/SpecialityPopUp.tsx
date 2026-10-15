@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
 import {
     trackBookingInitiated,
     trackPopupCTA,
@@ -229,9 +230,16 @@ const SpecialistPopup = () => {
         trackWhatsAppClick();
         trackPopupCTA('whatsapp');
 
-        const message = encodeURIComponent(
-            'Oi! Estou no site e queria entender melhor sobre o desenvolvimento do meu filho. Pode me ajudar?'
-        );
+        // TikTok Pixel — Clique WhatsApp
+        if (typeof window !== 'undefined' && (window as any).ttq) {
+            (window as any).ttq.track('CONSULT', {
+                content_name: 'Clique WhatsApp Popup',
+                event_id: `wa_popup_${Date.now()}`,
+            });
+        }
+
+        const rawMsg = 'Oi! Estou no site e queria entender melhor sobre o desenvolvimento do meu filho. Pode me ajudar?' + buildWhatsAppRefSignature();
+        const message = encodeURIComponent(rawMsg);
         window.open(`https://wa.me/5562992013573?text=${message}`, '_blank');
         handleClosePopup('overlay_click');
     };
