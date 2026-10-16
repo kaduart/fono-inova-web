@@ -36,9 +36,9 @@ export const faqAutismo: FAQItem[] = [
       'Sim. A terapia ocupacional trabalha a autonomia nas atividades do dia a dia, a coordenação e a regulação sensorial, e costuma fazer parte do plano de crianças no espectro, junto com fonoaudiologia e psicologia, conforme a necessidade de cada uma.',
   },
   {
-    question: 'Vocês atendem pelo plano de saúde?',
+    question: 'Atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no atendimento particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano de saúde, conforme as regras do plano.',
+      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
   },
 ];
 
@@ -128,9 +128,19 @@ export const faqNeuropediatria: FAQItem[] = [
       'Na Fono Inova, o laudo de autismo e de TDAH é emitido somente pelo neuropediatra, que atende aqui na clínica e trabalha junto com fonoaudiologia, psicologia, terapia ocupacional e neuropsicologia. As demais especialidades identificam sinais e tratam, sem emitir laudo.',
   },
   {
-    question: 'Com que idade posso levar meu filho ao neuropediatra?',
+    question: 'Quando levar meu filho ao neuropediatra?',
     answer:
       'Dependendo da suspeita, a avaliação pode ser feita desde os primeiros meses de vida. Sinais de alerta como atraso para sentar, andar ou falar, ou comportamentos atípicos devem ser avaliados o quanto antes.',
+  },
+  {
+    question: 'O que o neuropediatra faz na primeira consulta?',
+    answer:
+      'O neuropediatra conversa com a família sobre o histórico e as queixas, observa o desenvolvimento da criança e define se são necessários exames, terapias ou retornos. Quando há suspeita de autismo ou TDAH, é ele quem conduz o diagnóstico e emite o laudo.',
+  },
+  {
+    question: 'Quais exames o neuropediatra pede?',
+    answer:
+      'Depende de cada caso. Nem toda criança precisa de exames: o neuropediatra só solicita quando há indicação clínica, como em casos de convulsões ou suspeita de alterações neurológicas.',
   },
   {
     question: 'Preciso de encaminhamento para consultar o neuropediatra?',
@@ -142,9 +152,9 @@ export const faqNeuropediatria: FAQItem[] = [
       'Na consulta, o neuropediatra avalia o desenvolvimento da criança, indica exames complementares quando necessário e define o acompanhamento. A consulta custa R$ 500.',
   },
   {
-    question: 'A consulta com neuropediatra é atendida pelo plano de saúde?',
+    question: 'O neuropediatra atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Atendemos no particular, com recibo para você solicitar reembolso ao seu plano de saúde, conforme as regras do plano. Para saber se a consulta é coberta pelo convênio da Base Aérea de Anápolis (BAAN), pergunte pelo WhatsApp.',
+      'Hoje não atendemos pela Unimed nem por outros planos. Atendemos no particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele, e há o convênio da Base Aérea de Anápolis (BAAN); para saber se cobre a consulta, pergunte pelo WhatsApp.',
   },
   {
     question: 'Qual a diferença entre neuropediatra e neuropsicólogo?',
@@ -163,6 +173,16 @@ export const faqPsicopedagogia: FAQItem[] = [
     question: 'Psicopedagogia é o mesmo que reforço escolar?',
     answer:
       'Não. O reforço escolar revisita conteúdos que o aluno perdeu. A psicopedagogia investiga e trata as causas da dificuldade de aprendizagem, trabalhando habilidades cognitivas, emocionais e perceptivas para que a criança aprenda com autonomia.',
+  },
+  {
+    question: 'Quando uma criança precisa de psicopedagoga?',
+    answer:
+      'Quando há dificuldade para aprender, ler, escrever ou fazer contas que persiste apesar do esforço e do apoio da escola e da família, ou quando a criança perde o interesse e a confiança nos estudos. A avaliação mostra se existe uma dificuldade de aprendizagem e como ajudar.',
+  },
+  {
+    question: 'O que faz um psicopedagogo infantil?',
+    answer:
+      'O psicopedagogo investiga como a criança aprende, identifica onde estão as dificuldades e trabalha estratégias, habilidades e jogos para que ela aprenda com mais autonomia, em parceria com a família e a escola.',
   },
   {
     question: 'Qual a diferença entre psicopedagogia e neuropsicopedagogia?',
@@ -187,6 +207,11 @@ export const faqPsicopedagogia: FAQItem[] = [
   {
     question: 'Quanto custa a psicopedagogia em Anápolis?',
     answer: PRECO_BASE,
+  },
+  {
+    question: 'Atende pela Unimed ou outro plano de saúde?',
+    answer:
+      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
   },
   {
     question: 'Quanto tempo dura o acompanhamento psicopedagógico?',
