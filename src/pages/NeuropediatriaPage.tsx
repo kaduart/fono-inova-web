@@ -6,7 +6,9 @@ import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
-import { schemaBaseLocalBusiness, schemaFAQNeuropediatria } from '../schemas/clinicaSchemas';
+import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
+import FAQSection from '../components/FAQSection';
+import { faqNeuropediatria } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
@@ -91,25 +93,6 @@ const NeuropediatriaPage = () => {
         }
     ];
 
-    // FAQ médico
-    const faq = [
-        {
-            pergunta: 'O que faz um neuropediatra?',
-            resposta: 'O neuropediatra é um médico especialista no desenvolvimento neurológico da criança. Avalia atrasos no desenvolvimento, autismo, TDAH, convulsões, dificuldades de aprendizagem e outros problemas neurológicos infantis.'
-        },
-        {
-            pergunta: 'Com que idade posso levar meu filho ao neuropediatra?',
-            resposta: 'Dependendo da suspeita, a avaliação pode ser feita desde os primeiros meses de vida. Sinais de alerta como atraso para sentar, andar ou falar, ou comportamentos atípicos devem ser avaliados o quanto antes.'
-        },
-        {
-            pergunta: 'Preciso de encaminhamento para consultar o neuropediatra?',
-            resposta: 'Não é necessário encaminhamento. Você pode agendar diretamente a consulta. Atendemos particular e diversos convênios.'
-        },
-        {
-            pergunta: 'Como funciona o acompanhamento após a primeira consulta?',
-            resposta: 'Após a avaliação inicial, o neuropediatra indica a necessidade de exames complementares e define a frequência de retornos. O acompanhamento é individualizado conforme as necessidades de cada criança.'
-        }
-    ];
 
     const mensagemHero = "Oi! Gostaria de agendar uma consulta com neuropediatra para meu filho.";
 
@@ -122,7 +105,7 @@ const NeuropediatriaPage = () => {
                 image="/images/clinica/ia/neuropediatria.webp"
                 url="https://www.clinicafonoinova.com.br/neuropediatra-anapolis"
                 type="article"
-                schema={[schemaBaseLocalBusiness, schemaFAQNeuropediatria]}
+                schema={[schemaBaseLocalBusiness]}
             />
 
             {/* ==================== BOTÃO WHATSAPP FLUTUANTE FIXO ==================== */}
@@ -404,36 +387,7 @@ const NeuropediatriaPage = () => {
             </section>
 
             {/* ==================== FAQ MÉDICO ==================== */}
-            <section className="py-16 bg-white">
-                <div className="container mx-auto px-4 max-w-3xl">
-                    <div className="text-center mb-10">
-                        <Badge className="mb-3 bg-blue-50 text-blue-700 border-blue-200">
-                            Tire suas dúvidas
-                        </Badge>
-                        <h2 className="text-2xl md:text-3xl font-bold font-poppins mb-3">
-                            Perguntas frequentes
-                        </h2>
-                    </div>
-
-                    <div className="space-y-4">
-                        {faq.map((item, index) => (
-                            <div key={index} className="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                                <h3 className="font-semibold text-slate-900 mb-2 text-sm flex items-start gap-2">
-                                    <span className="text-blue-600">Q:</span>
-                                    {item.pergunta}
-                                </h3>
-                                <p className="text-slate-600 text-sm ml-5">{item.resposta}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-      <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/autismo-anapolis', '/tdah-anapolis', '/fisioterapia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
-
-      <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
-
-      <ClinicGallery variant="carousel" />
+            <FAQSection faqs={faqNeuropediatria} title="Perguntas frequentes sobre neuropediatria" subtitle="Tire suas dúvidas sobre consulta, laudo e acompanhamento" />
 
             {/* ==================== CTA FINAL - AUTORIDADE ==================== */}
             <section className="py-16 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">

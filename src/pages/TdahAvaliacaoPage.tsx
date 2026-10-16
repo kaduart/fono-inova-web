@@ -105,7 +105,7 @@ const TdahAvaliacaoPage = () => {
         },
         {
             pergunta: 'Preciso de encaminhamento médico?',
-            resposta: 'Não! Você pode agendar diretamente. Atendemos particular e diversos convênios. O agendamento é simples pelo WhatsApp.'
+            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). O agendamento é simples pelo WhatsApp.'
         }
     ];
 

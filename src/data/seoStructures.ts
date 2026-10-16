@@ -184,9 +184,14 @@ export const psicologiaSEO: SEOStructure = {
     },
   ],
   faq: [
+    { question: "Preciso levar meu filho na primeira consulta?", answer: "Não. A avaliação é uma anamnese de 1 hora com os pais ou responsáveis, em que a psicóloga entende a queixa principal e o que está acontecendo e, a partir disso, traça o plano terapêutico." },
+    { question: "Quanto custa a psicologia infantil em Anápolis?", answer: "A avaliação dura 1 hora e custa R$ 220. A sessão avulsa também é R$ 220 e dura 40 minutos; no pacote semanal (1 sessão por semana) a sessão sai por R$ 180, cerca de R$ 720 por mês. Para agendar, chame no WhatsApp (62) 99201-3573." },
+    { question: "Quanto tempo dura cada sessão?", answer: "As sessões duram 40 minutos e a avaliação inicial dura 1 hora. Todo atendimento é por hora marcada, com horário certo e pontual para cada criança." },
+    { question: "A psicóloga infantil dá laudo de autismo ou TDAH?", answer: "Na Fono Inova, o laudo de autismo e de TDAH é emitido somente pelo neuropediatra, que atende aqui na clínica. A psicóloga avalia comportamento e emoções, identifica sinais e acompanha a criança, em conjunto com a equipe." },
+    { question: "A psicologia infantil é atendida pelo plano de saúde?", answer: "Hoje atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no atendimento particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano de saúde, conforme as regras do plano." },
     { question: "Qual a idade ideal para iniciar acompanhamento psicológico?", answer: "O acompanhamento pode começar a partir dos 2 anos quando há suspeita de atrasos ou dificuldades. Para questões comportamentais, entre 3 e 6 anos é um período ideal para intervenção." },
     { question: "Como saber se meu filho precisa de psicólogo?", answer: "Sinais incluem mudanças bruscas de comportamento, dificuldade de socialização, regressões, medos excessivos, queda no rendimento escolar ou isolamento." },
-    { question: "O que acontece na primeira consulta?", answer: "Na primeira sessão, o psicólogo conversa com os pais para entender a história da criança, faz observações iniciais e estabelece um plano de avaliação e intervenção." },
+    { question: "O que acontece na primeira consulta?", answer: "A primeira consulta é a avaliação, com 1 hora de duração, e começa pela anamnese: uma conversa com os pais ou responsáveis sobre a história e as queixas. A psicóloga entende a queixa principal e traça o plano terapêutico." },
     { question: "Qual a diferença entre psicologia e psicopedagogia?", answer: "A psicologia foca no aspecto emocional, comportamental e mental, enquanto a psicopedagogia trabalha especificamente dificuldades de aprendizagem escolar." },
   ],
 };
@@ -263,6 +268,11 @@ export const terapiaOcupacionalSEO: SEOStructure = {
     },
   ],
   faq: [
+    { question: "A terapia ocupacional ajuda no autismo?", answer: "Sim. A terapia ocupacional trabalha a autonomia nas atividades do dia a dia, a coordenação e a regulação sensorial, e costuma fazer parte do plano de crianças no espectro, junto com fonoaudiologia e psicologia, conforme a necessidade de cada uma. O laudo de autismo é emitido somente pelo neuropediatra da clínica." },
+    { question: "Preciso levar meu filho na avaliação?", answer: "Não. A avaliação é uma anamnese de 1 hora com os pais ou responsáveis, em que a terapeuta ocupacional entende a queixa principal e o que acontece na rotina da criança. Com isso, ela traça o plano terapêutico." },
+    { question: "Quanto custa a terapia ocupacional infantil em Anápolis?", answer: "A avaliação dura 1 hora e custa R$ 220. A sessão avulsa também é R$ 220 e dura 40 minutos; no pacote semanal (1 sessão por semana) a sessão sai por R$ 180, cerca de R$ 720 por mês. Para agendar, chame no WhatsApp (62) 99201-3573." },
+    { question: "Quanto tempo dura cada sessão?", answer: "As sessões duram 40 minutos e a avaliação inicial dura 1 hora. Todo atendimento é por hora marcada, com horário certo e pontual para cada criança." },
+    { question: "A terapia ocupacional é atendida pelo plano de saúde?", answer: "Hoje atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no atendimento particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano de saúde, conforme as regras do plano." },
     { question: "Qual a diferença entre terapia ocupacional e fisioterapia?", answer: "A fisioterapia foca na reabilitação física e movimento, enquanto a terapia ocupacional trabalha a funcionalidade nas atividades diárias, integração sensorial e participação social." },
     { question: "Quando procurar um terapeuta ocupacional?", answer: "Quando a criança tem dificuldade para se vestir, alimentar, segurar lápis, organizar-se, é desajeitada, ou apresenta hipersensibilidade a sons, texturas ou movimentos." },
     { question: "O que é integração sensorial?", answer: "É a capacidade do cérebro de receber, organizar e interpretar informações sensoriais do ambiente para produzir respostas adequadas." },

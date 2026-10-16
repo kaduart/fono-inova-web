@@ -33,7 +33,9 @@ import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
 import { useServiceViewTime } from '../hooks/useAnalytics';
-import { schemaFAQPsicopedagogia, schemaPsicopedagogia } from '../schemas/clinicaSchemas';
+import { schemaPsicopedagogia } from '../schemas/clinicaSchemas';
+import FAQSection from '../components/FAQSection';
+import { faqPsicopedagogia } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -142,32 +144,13 @@ const PsicopedagogiaPage = () => {
     ];
 
 
-    // FAQs
-    const faqs = [
-        {
-            question: "Qual a diferença entre psicopedagogia e neuropsicopedagogia?",
-            answer: "A psicopedagogia foca nos processos de aprendizagem e seus aspectos pedagógicos. A neuropsicopedagogia vai além, incluindo o estudo das bases neurológicas da aprendizagem, integrando conhecimentos da neurociência."
-        },
-        {
-            question: "Meu filho precisa de psicopedagogo ou psicólogo?",
-            answer: "O psicopedagogo atua especificamente nas dificuldades de aprendizagem escolar. O psicólogo trabalha questões emocionais e comportamentais. Muitas vezes, o trabalho conjunto é ideal."
-        },
-        {
-            question: "Quanto tempo dura o acompanhamento psicopedagógico?",
-            answer: "Varia conforme cada caso. Geralmente, são necessários 6 meses a 2 anos de intervenção, com sessões semanais de 50 minutos. Reavaliações são feitas a cada 6 meses."
-        },
-        {
-            question: "A psicopedagogia ajuda em dislexia e discalculia?",
-            answer: "Sim! A psicopedagogia é fundamental no tratamento desses transtornos, utilizando métodos específicos e estratégias compensatórias que permitem à criança superar suas dificuldades."
-        }
-    ];
 
     // Estatísticas
     const statistics = [
         { value: "10-15%", label: "das crianças têm algum transtorno de aprendizagem" },
         { value: "3-7%", label: "têm dislexia" },
         { value: "5,0", label: "nota das famílias no Google" },
-        { value: "6-24", label: "meses é o tempo médio de tratamento" }
+        { value: "40 min", label: "de duração em cada sessão" }
     ];
 
     return (
@@ -179,7 +162,7 @@ const PsicopedagogiaPage = () => {
                 image="/images/servicos/psicopedagogia.jpg"
                 url="https://www.clinicafonoinova.com.br/psicopedagogia"
                 type="article"
-                schema={[schemaPsicopedagogia, schemaFAQPsicopedagogia]} // Array aqui!
+                schema={[schemaPsicopedagogia]}
             />
 
             {/* Hero Section */}
@@ -435,34 +418,7 @@ const PsicopedagogiaPage = () => {
             </section>
 
             {/* FAQ */}
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                            Perguntas <span className="text-amber-600">Frequentes</span>
-                        </h2>
-                    </div>
-
-                    <div className="max-w-3xl mx-auto space-y-4">
-                        {faqs.map((faq, index) => (
-                            <div key={index} className="border border-gray-200 rounded-2xl overflow-hidden hover:border-amber-200 transition-colors duration-300">
-                                <button
-                                    className="flex justify-between items-center w-full p-6 text-left bg-white hover:bg-amber-50 transition-colors duration-300"
-                                    onClick={() => setOpenAccordion(openAccordion === index ? null : index)}
-                                >
-                                    <span className="text-lg font-semibold text-gray-900">{faq.question}</span>
-                                    <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openAccordion === index ? 'transform rotate-180' : ''}`} />
-                                </button>
-                                {openAccordion === index && (
-                                    <div className="p-6 bg-amber-50 border-t border-amber-100">
-                                        <p className="text-gray-700">{faq.answer}</p>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <FAQSection faqs={faqPsicopedagogia} title="Perguntas frequentes sobre psicopedagogia" subtitle="Tire suas dúvidas sobre avaliação, laudo e acompanhamento" />
 
             {/* CTA Final */}
       <PageFooterInfo related={['/dislexia-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicopedagogia da Fono Inova e gostaria de entender como funciona o atendimento." />

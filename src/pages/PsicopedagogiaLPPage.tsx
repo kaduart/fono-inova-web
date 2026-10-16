@@ -23,7 +23,9 @@ import OptimizedImage from '../components/OptimizedImage';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
-import { schemaPsicopedagogia, schemaFAQPsicopedagogia } from '../schemas/clinicaSchemas.js';
+import { schemaPsicopedagogia } from '../schemas/clinicaSchemas.js';
+import FAQSection from '../components/FAQSection';
+import { faqPsicopedagogia } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -177,7 +179,7 @@ const PsicopedagogiaLPPage = () => {
         image="/images/psicopedagogia-hero.png"
         url="https://www.clinicafonoinova.com.br/psicopedagogia-clinica"
         type="article"
-        schema={[schemaPsicopedagogia, schemaFAQPsicopedagogia]}
+        schema={[schemaPsicopedagogia]}
       />
 
       {/* Hero Section */}
@@ -386,43 +388,7 @@ const PsicopedagogiaLPPage = () => {
       </section>
 
       {/* ═══════════════ FAQ ═══════════════ */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
-            Perguntas frequentes
-          </h2>
-
-          <div className="space-y-6">
-            {[
-              {
-                pergunta: 'Psicopedagogia é o mesmo que reforço escolar?',
-                resposta:
-                  'Não. O reforço escolar revisita conteúdos que o aluno perdeu. A psicopedagogia investiga e trata as causas da dificuldade de aprendizagem — trabalhando habilidades cognitivas, emocionais e perceptivas para que a criança aprenda com autonomia.',
-              },
-              {
-                pergunta: 'A partir de que idade meu filho pode ser avaliado?',
-                resposta:
-                  'A avaliação psicopedagógica pode ser feita a partir dos 4-5 anos, quando a criança já está em fase de alfabetização. Porém, sinais de alerta podem ser identificados mais cedo, e o acompanhamento preventivo é sempre bem-vindo.',
-              },
-              {
-                pergunta: 'Quanto tempo dura o tratamento?',
-                resposta:
-                  'Depende de cada caso. Em geral, as sessões são semanais e o acompanhamento pode durar de 6 meses a 1 ano. O psicopedagogo faz reavaliações periódicas e trabalha junto com a família para definir metas claras.',
-              },
-              {
-                pergunta: 'O psicopedagogo faz diagnóstico de dislexia ou TDAH?',
-                resposta:
-                  'O psicopedagogo identifica os sinais e avalia o impacto na aprendizagem. O diagnóstico formal geralmente é multidisciplinar, envolvendo também neuropsicólogo e/ou neuropediatra — profissionais que temos na clínica.',
-              },
-            ].map((faq, index) => (
-              <div key={index} className="border border-gray-200 rounded-xl p-6">
-                <h3 className="font-bold text-gray-900 mb-2">{faq.pergunta}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.resposta}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FAQSection faqs={faqPsicopedagogia} title="Perguntas frequentes sobre psicopedagogia" subtitle="Tire suas dúvidas sobre avaliação, laudo e acompanhamento" />
 
       {/* ═══════════════ CTA FINAL ═══════════════ */}
       <section className="py-16 bg-slate-50">

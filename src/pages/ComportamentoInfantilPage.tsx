@@ -107,7 +107,7 @@ const ComportamentoInfantilPage = () => {
         },
         {
             pergunta: 'Preciso de encaminhamento?',
-            resposta: 'Não! Você pode agendar diretamente. Atendemos particular e diversos convênios. O primeiro contato é pelo WhatsApp, sem compromisso.'
+            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). O primeiro contato é pelo WhatsApp, sem compromisso.'
         }
     ];
 

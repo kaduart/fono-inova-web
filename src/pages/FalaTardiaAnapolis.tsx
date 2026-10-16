@@ -9,7 +9,9 @@ import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
-import { schemaBaseLocalBusiness, schemaFAQFalaTardia } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import FAQSection from '../components/FAQSection';
+import { faqFalaTardia } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -56,7 +58,7 @@ export default function FalaTardiaAnapolis() {
         url="https://www.clinicafonoinova.com.br/fala-tardia-anapolis"
         image="/images/og-image.jpg"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFAQFalaTardia]}
+        schema={[schemaBaseLocalBusiness]}
       />
 
       <Breadcrumb items={[
@@ -184,6 +186,8 @@ export default function FalaTardiaAnapolis() {
           <GoogleReviews count={3} offset={1} title="" />
         </div>
       </section>
+
+      <FAQSection faqs={faqFalaTardia} title="Perguntas frequentes sobre fala tardia" subtitle="Tire suas dúvidas sobre avaliação, laudo e estímulo em casa" />
 
       <PageFooterInfo related={['/fonoaudiologia-anapolis', '/autismo-anapolis', '/teste-da-linguinha-anapolis', '/terapia-ocupacional-anapolis']} whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
