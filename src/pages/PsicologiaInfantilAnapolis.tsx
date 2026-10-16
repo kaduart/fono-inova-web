@@ -127,7 +127,7 @@ const PsicologiaInfantilAnapolis = () => {
         title="Psicologia Infantil em Anápolis | Psicólogo e Psicóloga | Fono Inova"
         description="Psicologia infantil em Anápolis para dificuldades de comportamento, atenção e emoções. Atendimento com psicólogos da equipe multidisciplinar. Agende pelo WhatsApp."
         keywords="filho não obedece, psicologia infantil anápolis, birra infantil, dificuldade comportamento, psicólogo infantil"
-        image="/images/clinica/ia/psicologia-infantil.webp"
+        image="/images/clinica/real/sala-infantil-psicologia-anapolis.webp"
         url="https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis"
         type="website"
         schema={[schemaBaseLocalBusiness, schemaPsicologiaAnapolis]}
@@ -240,8 +240,8 @@ const PsicologiaInfantilAnapolis = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] lg:h-[560px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async" 
-                    src="/images/clinica/ia/psicologia-infantil.webp" 
-                    alt="Imagem ilustrativa: psicóloga e criança desenhando juntas em uma sala de atendimento infantil"
+                    src="/images/clinica/real/sala-infantil-psicologia-anapolis.webp" 
+                    alt="Sala de atendimento infantil da Clínica Fono Inova em Anápolis, com painel de animais e tapete colorido"
                     className="w-full h-full object-cover"
                   />
                 </div>

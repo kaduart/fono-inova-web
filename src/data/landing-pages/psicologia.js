@@ -17,7 +17,7 @@ export const psicologiaLPs = [
     datePublished: "2025-06-05",
     dateModified: "2025-06-05",
     
-    image: '/images/clinica/ia/psicologia-infantil.webp',
+    image: '/images/clinica/real/sala-infantil-psicologia-anapolis.webp',
     imageAlt: 'Imagem ilustrativa: psicóloga e criança desenhando juntas em uma sala de atendimento infantil',
     
     hero: {
