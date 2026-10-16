@@ -80,6 +80,11 @@
       "permanent": true
     },
     {
+      "source": "/lp/avaliacao-neuropsicologica-anapolis",
+      "destination": "/avaliacao-neuropsicologica-anapolis",
+      "permanent": true
+    },
+    {
       "source": "/lp/sinais-dislexia",
       "destination": "/dislexia-anapolis",
       "permanent": true
