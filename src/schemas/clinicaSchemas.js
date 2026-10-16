@@ -438,7 +438,7 @@ export const schemaFAQTO = {
             "name": "Qual o valor da sessão de terapia ocupacional no Jundiaí?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Fono Inova no bairro Jundiaí, oferecemos valores acessíveis e parcelamos direto. Aceitamos convênios. Entre em contato pelo WhatsApp para valores atualizados."
+                "text": "Na Fono Inova no bairro Jundiaí, oferecemos valores acessíveis. Atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados."
             }
         }
     ]
@@ -587,7 +587,7 @@ export const schemaFAQAdulto = {
             "name": "Quanto custa a avaliação fonoaudiológica para adultos no Jundiaí?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Fono Inova no bairro Jundiaí, a avaliação fonoaudiológica para adultos tem valor acessível. Aceitamos convênios. Entre em contato pelo WhatsApp para valores atualizados de avaliação e sessões."
+                "text": "Na Fono Inova no bairro Jundiaí, a avaliação fonoaudiológica para adultos tem valor acessível. Atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados de avaliação e sessões."
             }
         }
     ]
@@ -619,7 +619,7 @@ export const schemaFAQDificuldadeEscolar = {
             "name": "Qual o valor da avaliação neuropsicológica em Anápolis?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Clínica Fono Inova no bairro Jundiaí, a avaliação neuropsicológica infantil tem preço acessível e parcelamos direto. O investimento inclui processo completo: entrevista inicial, testes específicos, relatório técnico detalhado e devolutiva com orientações. Entre em contato pelo WhatsApp para valores atualizados."
+                "text": "Na Clínica Fono Inova no bairro Jundiaí, a avaliação neuropsicológica infantil tem preço acessível. O investimento inclui processo completo: entrevista inicial, testes específicos, relatório técnico detalhado e devolutiva com orientações. Entre em contato pelo WhatsApp para valores atualizados."
             }
         },
         {
@@ -651,7 +651,7 @@ export const schemaFAQFreioLingual = {
             "name": "Quanto custa a avaliação do freio lingual no Jundiaí?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Fono Inova no bairro Jundiaí, oferecemos avaliação completa do freio lingual com valor acessível. Aceitamos convênios. Entre em contato pelo WhatsApp para valores atualizados da consulta e procedimento cirúrgico."
+                "text": "Na Fono Inova no bairro Jundiaí, o teste da linguinha custa R$ 160. É uma avaliação indolor feita por fonoaudióloga, que observa a língua e a sucção do bebê. Para agendar, chame no WhatsApp (62) 99201-3573."
             }
         },
         {

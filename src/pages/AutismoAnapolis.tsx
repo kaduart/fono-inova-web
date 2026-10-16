@@ -9,7 +9,9 @@ import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
-import { schemaBaseLocalBusiness, schemaFAQTea } from '../schemas/clinicaSchemas.js';
+import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import FAQSection from '../components/FAQSection';
+import { faqAutismo } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -57,7 +59,7 @@ export default function AutismoAnapolis() {
         url="https://www.clinicafonoinova.com.br/autismo-anapolis"
         image="/images/og-image.jpg"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFAQTea]}
+        schema={[schemaBaseLocalBusiness]}
       />
 
       <Breadcrumb items={[
@@ -189,6 +191,8 @@ export default function AutismoAnapolis() {
           <GoogleReviews count={3} offset={0} title="" />
         </div>
       </section>
+
+      <FAQSection faqs={faqAutismo} title="Perguntas frequentes sobre autismo" subtitle="Tire suas dúvidas sobre sinais, avaliação e laudo" />
 
       <PageFooterInfo related={['/avaliacao-neuropsicologica-anapolis', '/terapia-ocupacional-anapolis', '/fonoaudiologia-anapolis', '/psicologia-infantil-anapolis']} whatsappMessage="Oi! Vi a página de autismo da Fono Inova e gostaria de entender como funciona o atendimento." />
 

@@ -10,6 +10,8 @@ import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import FAQSection from '../components/FAQSection';
+import { faqTdah } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -41,44 +43,6 @@ const relacionados = [
   { href: '/avaliacao-neuropsicologica-dificuldade-escolar', label: 'Dificuldade Escolar em Anápolis' },
 ];
 
-const schemaFAQTdah = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Como identificar TDAH em crianças?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Os principais sinais de TDAH incluem dificuldade de concentração, impulsividade, agitação excessiva e dificuldade para seguir instruções. A avaliação neuropsicológica é essencial para um diagnóstico correto.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Qual profissional avalia TDAH em Anápolis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A avaliação neuropsicológica para TDAH é realizada por neuropsicólogo. A Clínica Fono Inova, no bairro Jundiaí em Anápolis, oferece avaliação neuropsicológica completa para crianças com suspeita de TDAH.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "TDAH tem tratamento?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sim. O TDAH tem tratamento eficaz que combina acompanhamento psicológico, orientação escolar, suporte aos pais e, quando indicado, tratamento médico. Quanto mais cedo iniciado, melhores os resultados.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Com que idade fazer avaliação de TDAH?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A avaliação pode ser feita a partir dos 6 anos, quando os comportamentos escolares ficam mais evidentes. Mas sinais em crianças mais novas também merecem atenção e acompanhamento especializado.",
-      },
-    },
-  ],
-};
 
 export default function TdahAnapolis() {
   useEffect(() => {
@@ -98,7 +62,7 @@ export default function TdahAnapolis() {
         url="https://www.clinicafonoinova.com.br/tdah-anapolis"
         image="/images/og-image.jpg"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFAQTdah]}
+        schema={[schemaBaseLocalBusiness]}
       />
 
       <Breadcrumb items={[
@@ -238,43 +202,7 @@ export default function TdahAnapolis() {
       </section>
 
       {/* ========== FAQ VISÍVEL ========== */}
-      <section className="py-16 bg-amber-50/50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
-          <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-10 text-center">
-            Perguntas Frequentes sobre TDAH
-          </h2>
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Como identificar TDAH em crianças?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Os principais sinais incluem dificuldade de concentração, impulsividade, agitação excessiva e dificuldade 
-                para seguir instruções. A avaliação neuropsicológica é essencial para um diagnóstico correto.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Qual profissional avalia TDAH em Anápolis?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                A avaliação neuropsicológica para TDAH é realizada por neuropsicólogo. A Clínica Fono Inova, no bairro 
-                Jundiaí em Anápolis, oferece avaliação completa para crianças com suspeita de TDAH.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">TDAH tem tratamento?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Sim. O TDAH tem tratamento eficaz que combina acompanhamento psicológico, orientação escolar, suporte aos 
-                pais e, quando indicado, tratamento médico. Quanto mais cedo iniciado, melhores os resultados.
-              </p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-amber-100">
-              <h3 className="text-lg font-bold text-slate-900 mb-3">Com que idade fazer avaliação de TDAH?</h3>
-              <p className="text-slate-600 leading-relaxed">
-                A avaliação pode ser feita a partir dos 6 anos, quando os comportamentos escolares ficam mais evidentes. 
-                Mas sinais em crianças mais novas também merecem atenção e acompanhamento especializado.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQSection faqs={faqTdah} title="Perguntas frequentes sobre TDAH" subtitle="Tire suas dúvidas sobre sinais, avaliação e laudo" />
 
       {/* ========== LINKS RELACIONADOS ========== */}
       <section className="py-16 bg-white">

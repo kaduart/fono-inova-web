@@ -10,6 +10,8 @@ import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
 import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas.js';
+import FAQSection from '../components/FAQSection';
+import { faqDislexia } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
@@ -39,44 +41,6 @@ const relacionados = [
   { href: '/psicopedagogia', label: 'Psicopedagogia em Anápolis' },
 ];
 
-const schemaFAQDislexia = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "O que é dislexia infantil?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dislexia é uma dificuldade específica de aprendizagem que afeta a leitura e a escrita. A criança tem inteligência normal mas enfrenta dificuldade para decodificar palavras, podendo trocar letras, ler de forma lenta ou ter dificuldade para memorizar o que leu.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Como identificar dislexia em Anápolis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A dislexia é identificada através de avaliação psicopedagógica e neuropsicológica. A Clínica Fono Inova em Anápolis realiza avaliação completa para identificar o perfil de aprendizagem e possível dislexia.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Dislexia tem tratamento?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sim. Com acompanhamento psicopedagógico especializado e técnicas multissensoriais, a criança com dislexia pode desenvolver estratégias eficazes para leitura e escrita. O diagnóstico precoce é fundamental.",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "Qual profissional trata dislexia em Anápolis?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "O psicopedagogo é o principal profissional no tratamento da dislexia. A Clínica Fono Inova no bairro Jundiaí em Anápolis tem psicopedagoga especializada em dificuldades de aprendizagem.",
-      },
-    },
-  ],
-};
 
 export default function DislexiaAnapolis() {
   useEffect(() => {
@@ -96,7 +60,7 @@ export default function DislexiaAnapolis() {
         url="https://www.clinicafonoinova.com.br/dislexia-anapolis"
         image="/images/og-image.jpg"
         type="website"
-        schema={[schemaBaseLocalBusiness, schemaFAQDislexia]}
+        schema={[schemaBaseLocalBusiness]}
       />
 
       <Breadcrumb items={[
@@ -221,6 +185,8 @@ export default function DislexiaAnapolis() {
           <GoogleReviews count={3} offset={18} title="" />
         </div>
       </section>
+
+      <FAQSection faqs={faqDislexia} title="Perguntas frequentes sobre dislexia" subtitle="Tire suas dúvidas sobre leitura, avaliação e tratamento" />
 
       <PageFooterInfo related={['/psicopedagogia', '/fonoaudiologia-anapolis', '/avaliacao-neuropsicologica-dificuldade-escolar', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de dislexia da Fono Inova e gostaria de entender como funciona o atendimento." />
 

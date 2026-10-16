@@ -538,7 +538,7 @@ const TdahAvaliacaoPage = () => {
                                 <CheckCircle2 className="w-4 h-4" /> Sem encaminhamento
                             </span>
                             <span className="flex items-center gap-1">
-                                <CheckCircle2 className="w-4 h-4" /> Aceitamos convênios
+                                <CheckCircle2 className="w-4 h-4" /> Particular e convênio BAAN
                             </span>
                         </div>
 
