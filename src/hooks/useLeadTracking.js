@@ -268,28 +268,13 @@ export function buildTrackingPayload() {
 }
 
 /**
- * 🔗 Assinatura de origem anexada à mensagem do WhatsApp.
- * O CRM lê esta linha na 1ª mensagem recebida (utils/attributionParser.js)
- * e liga o paciente à campanha — inclusive o gclid para conversão offline.
- * Formato é contrato com o CRM: ---ref:<source>|<campaign>|<clickId>|utm_source=<x>
+ * Mantida para compatibilidade com os CTAs existentes.
+ * A mensagem enviada ao WhatsApp deve conter apenas o texto de atendimento.
+ * UTMs, eventos e payloads internos continuam nos fluxos de analytics do site;
+ * o CRM deixa de receber a antiga assinatura pela mensagem do paciente.
  */
-// '|' é o separador do contrato com o CRM; nomes de campanha/anúncio da Meta costumam ter '|'.
-// Sem esta limpeza a assinatura quebra e a origem some.
-const refClean = (v, max = 100) =>
-  String(v ?? '').replace(/[|\r\n]+/g, '-').replace(/\s+/g, ' ').trim().slice(0, max);
-
 export function buildWhatsAppRefSignature() {
-  try {
-    const t = getLeadTracking();
-    if (!t?.source) return '';
-    // utm_content (na Meta: {{ad.name}} ou {{ad.id}}) separa por anúncio no CRM; sem ele, só a campanha
-    const label = t.utmCampaign && t.utmContent ? `${t.utmCampaign} / ${t.utmContent}` : t.campaign;
-    const clickId = refClean(t.gclid || t.fbclid, 300).replace(/\s/g, '');
-    const utmSource = String(t.utmSource ?? '').replace(/\s+/g, '');
-    return `\n\n---ref:${refClean(t.source, 60) || 'none'}|${refClean(label) || 'none'}|${clickId || 'none'}|utm_source=${utmSource || 'none'}`;
-  } catch {
-    return '';
-  }
+  return '';
 }
 
 export default useLeadTracking;

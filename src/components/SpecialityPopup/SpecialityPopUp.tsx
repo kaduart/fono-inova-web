@@ -29,6 +29,7 @@ type MessageType = {
 // (rolagem/tempo/saída do mouse), porque cobria o botão de enviar enquanto a pessoa preenchia.
 // O botão flutuante do WhatsApp continua disponível.
 const AUTO_OPEN_DISABLED_PATHS = [
+    '/links',
     '/convenio-geap-anapolis',
     '/convenio-ipasgo-anapolis',
     '/convenio-bradesco-saude-anapolis',
@@ -77,7 +78,7 @@ const SpecialistPopup = () => {
         return [
             { id: 1, text: 'Oi! Tudo bem? 💚', sender: 'them', delayAfter: 800 },
             { id: 2, text: 'Sou da equipe da Fono Inova.', sender: 'them', delayAfter: 1000 },
-            { id: 3, text: 'Se você percebeu algo diferente no desenvolvimento do seu filho, posso te orientar agora mesmo.', sender: 'them', delayAfter: 1500 },
+            { id: 3, text: 'Nossa equipe pode orientar você sobre o atendimento e o agendamento.', sender: 'them', delayAfter: 1500 },
             { id: 4, text: 'Quer conversar com a gente?', sender: 'them', delayAfter: 800 },
         ];
     };
@@ -299,14 +300,10 @@ const SpecialistPopup = () => {
                                 </div>
                                 <div>
                                     <h3 className="text-white font-semibold text-sm leading-tight">
-                                        Amanda — Fono Inova
+                                        Equipe — Fono Inova
                                     </h3>
-                                    <div className="flex items-center space-x-1 text-green-200 text-xs">
-                                        <span className="relative flex h-2 w-2">
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                                        </span>
-                                        <span>Online agora</span>
+                                    <div className="text-green-200 text-xs">
+                                        Canal de atendimento
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +381,7 @@ const SpecialistPopup = () => {
                                     </button>
                                     <p className="text-center text-xs text-gray-500 pt-1">
                                         <Clock className="w-3 h-3 inline mr-1" />
-                                        Respondemos em até 5 minutos
+                                        Envie sua mensagem para nossa equipe
                                     </p>
                                 </div>
                             )}
