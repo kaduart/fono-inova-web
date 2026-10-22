@@ -24,6 +24,7 @@ function getUrlParams() {
     // IDs de tracking
     gclid: params.get('gclid'),      // Google Ads
     fbclid: params.get('fbclid'),    // Meta/Facebook
+    ttclid: params.get('ttclid'),    // TikTok Ads
     // Referrer
     referrer: document.referrer || 'direct'
   };
@@ -49,6 +50,16 @@ function detectarOrigem(params) {
       source: 'meta_ads',
       origin: 'Meta Ads',
       campaign: params.utmCampaign || 'Meta_Ads_Campaign',
+      medium: params.utmMedium || 'social'
+    };
+  }
+
+  // Prioridade 2.5: TikTok Ads (tem ttclid)
+  if (params.ttclid) {
+    return {
+      source: 'tiktok_ads',
+      origin: 'TikTok Ads',
+      campaign: params.utmCampaign || 'TikTok_Ads_Campaign',
       medium: params.utmMedium || 'social'
     };
   }
@@ -260,6 +271,7 @@ export function buildTrackingPayload() {
       utmTerm: tracking.utmTerm,
       gclid: tracking.gclid,
       fbclid: tracking.fbclid,
+      ttclid: tracking.ttclid,
       referrer: tracking.referrer,
       capturedAt: tracking.capturedAt,
       page: tracking.page
