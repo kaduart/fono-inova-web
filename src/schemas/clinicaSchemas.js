@@ -359,7 +359,7 @@ export const schemaDificuldadeEscolar = {
     "@type": "MedicalWebPage",
     "name": "Dificuldade Escolar em Anápolis | Tratamento - Fono Inova",
     "description": "Avaliação e tratamento de dificuldades escolares, dislexia, disgrafia e TDAH em crianças do Jundiaí, Anápolis.",
-    "url": "https://www.clinicafonoinova.com.br/dificuldade-escolar",
+    "url": "https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar",
     "about": {
         "@type": "MedicalCondition",
         "name": "Dificuldades de Aprendizagem Escolar",
@@ -397,7 +397,7 @@ export const schemaMultidisciplinar = {
     "@type": "MedicalWebPage",
     "name": "Clínica Multidisciplinar Infantil em Anápolis | Fono Inova",
     "description": "Clínica multidisciplinar com fonoaudiologia, psicologia, fisioterapia e terapia ocupacional integradas no Jundiaí.",
-    "url": "https://www.clinicafonoinova.com.br/clinica-multidisciplinar",
+    "url": "https://www.clinicafonoinova.com.br/abordagem-multidisciplinar",
     "about": {
         "@type": "MedicalClinic",
         "name": "Clínica Multidisciplinar Infantil",

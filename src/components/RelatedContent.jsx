@@ -110,7 +110,7 @@ export const articleInterlinks = {
       link: "https://wa.me/5562992013573?text=Oi! Vi no site sobre fala tardia e me identifiquei.\n\nMeu filho(a) tem atraso na fala. Pode me explicar como funciona a avaliação?"
     }
   },
-  "entendendo-espectro-auta": {
+  "sinais-autismo-crianca": {
     landingPages: [
       { title: "Suporte para Autismo em Anápolis", url: "/autismo-anapolis" },
       { title: "Avaliação TEA — Como Funciona", url: "/autismo-anapolis" },

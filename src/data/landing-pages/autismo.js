@@ -80,7 +80,7 @@ export const autismoLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "sinais-autismo-2-anos"
     ],
     
@@ -187,7 +187,7 @@ export const autismoLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "musicoterapia-e-tea-conexoes-atraves-do-som"
     ],
     
@@ -294,7 +294,7 @@ export const autismoLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "processamento-auditivo-central-pac"
     ],
     
@@ -401,7 +401,7 @@ export const autismoLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "sinais-autismo-bebe"
     ],
     
@@ -504,7 +504,7 @@ export const autismoLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "sinais-autismo-bebe",
       "sinais-autismo-2-anos"
     ],

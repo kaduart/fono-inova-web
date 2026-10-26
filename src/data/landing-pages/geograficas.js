@@ -196,7 +196,7 @@ export const geograficasLPs = [
     },
     
     relatedArticles: [
-      "entendendo-espectro-auta",
+      "sinais-autismo-crianca",
       "tdah-infantil-guia-completo-pais"
     ],
     
