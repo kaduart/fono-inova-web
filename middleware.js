@@ -26,7 +26,7 @@ export default async function middleware(request) {
 
   // Qualquer caminho com ponto, /.well-known e /_vercel passam direto.
   // O middleware roda no Edge e NAO pode consultar o filesystem em runtime, entao nao tem como
-  // saber se o arquivo existe. Quem resolve isso e o rewrite do vercel.json ("^/[^.]*$"):
+  // saber se o arquivo existe. Quem resolve isso e o rewrite do vercel.json ("/((?!.*\\..*).*)"):
   // ele so manda caminhos SEM ponto para o shell da SPA. Caminho com ponto que nao existir de
   // verdade nao casa com o rewrite e cai no 404 da plataforma, em vez de virar um 200 com HTML.
   if (
