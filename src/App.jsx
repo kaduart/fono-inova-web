@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
@@ -60,12 +60,25 @@ import LinksBio from './pages/LinksBio';
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
+import { installWhatsAppContactTracking, trackMetaPageView } from './helper/metaPixel';
 
 // Hook simples para analytics (GA4 já faz o tracking)
 const useAnalytics = () => {
   const location = useLocation();
+  const isFirstPage = useRef(true);
 
   useEffect(() => {
+    installWhatsAppContactTracking();
+  }, []);
+
+  useEffect(() => {
+    // O PageView da primeira página já sai do index.html
+    if (isFirstPage.current) {
+      isFirstPage.current = false;
+    } else {
+      trackMetaPageView();
+    }
+
     // Scroll para o topo ao mudar de página
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
