@@ -22,13 +22,8 @@ const FixedWhatsAppBar = ({
 
   const handleClick = () => {
     trackEvent('whatsapp_click', 'conversion', 'fixed-bar-bottom', 1);
-    
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_name: 'Fixed WhatsApp Bar',
-        content_category: 'whatsapp'
-      });
-    }
+
+    // Meta Contact (pixel + CAPI) sai do listener global em helper/metaPixel.js
   };
 
   return (
@@ -52,6 +47,7 @@ const FixedWhatsAppBar = ({
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleClick}
+            data-tracking-label="fixed-whatsapp-bar"
             className="bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-colors shadow-md"
           >
             WhatsApp
@@ -66,6 +62,7 @@ const FixedWhatsAppBar = ({
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleClick}
+            data-tracking-label="fixed-whatsapp-bar"
           className="group flex items-center bg-green-500 hover:bg-green-600 text-white rounded-full shadow-xl transition-all duration-300 hover:scale-105"
         >
           <div className="px-4 py-3">
