@@ -136,6 +136,22 @@ export const LANDING_PAGES: LandingPageEntry[] = [
     publico: "Pais com dúvidas gerais",
     gancho: "Respostas claras sobre nossos atendimentos",
   },
+  {
+    id: "app_conecta",
+    slug: "/app",
+    url: buildUrl("/app"),
+    nome: "App FonoInova Conecta",
+    headline: "Triagem gratuita do desenvolvimento infantil (0 a 6 anos)",
+    categoria: "institucional",
+    intent: "conversion",
+    primary: true,
+    topic: "app desenvolvimento infantil",
+    relatedIds: ["home", "fonoaudiologia_anapolis"],
+    priority: "alta",
+    whatsappMessage: "Olá! Quero entrar na lista de espera do app gratuito FonoInova Conecta 💚",
+    publico: "Pais de crianças de 0 a 6 anos em Anápolis e região",
+    gancho: "Acompanhe cada conquista do seu filho, de graça",
+  },
 
   // ═══════════════════════════════════════════════════════════
   // 🎯 MONEY PAGES — ALTA CONVERSÃO (sem geo)
