@@ -70,7 +70,7 @@ const ConectaApp = () => {
     <ButtonWhatsApp
       onClick={() => trackButtonClick(`WhatsApp Conecta App - ${where}`)}
       message={WHATSAPP_MESSAGE}
-      lpSlug="/app"
+      lpSlug="/conecta"
       lpCategory="app"
       className={`bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
     >
@@ -84,7 +84,7 @@ const ConectaApp = () => {
       <SEO
         title="App FonoInova Conecta: Triagem Gratuita do Desenvolvimento Infantil (0 a 6 anos)"
         description="Conheça o FonoInova Conecta: app gratuito da Clínica Fono Inova com triagem por idade e missões diárias criadas por fonoaudiólogas para acompanhar o desenvolvimento do seu filho de 0 a 6 anos. Entre na lista de espera."
-        url="/app"
+        url="/conecta"
         image="/images/conecta/resultado.png"
       />
 
