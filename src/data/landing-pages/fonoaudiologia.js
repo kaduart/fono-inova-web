@@ -130,7 +130,7 @@ export const fonoaudiologiaLPs = [
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
+    image: "/images/fonoaudiologia/img-fono-atendimento-01.webp",
     imageAlt: "Tratamento fonoaudiológico para atraso na fala infantil na Clínica Fono Inova",
     
     hero: {

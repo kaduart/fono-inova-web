@@ -69,8 +69,7 @@ export default function AutismoAnapolis() {
 
       {/* ========== HERO ========== */}
       <section className="relative min-h-[90vh] pt-24 pb-16 md:pt-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50/40 to-indigo-50/30" />
-        <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-gradient-to-br from-purple-200/30 to-indigo-200/20 rounded-full blur-3xl opacity-70" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
 
         <div className="relative container mx-auto px-4 lg:px-8 max-w-6xl">
           <div className="grid items-start gap-10 pt-8 lg:grid-cols-2 lg:gap-14">
@@ -103,7 +102,7 @@ export default function AutismoAnapolis() {
             <ButtonWhatsApp
               onClick={() => trackButtonClick('WA_Autismo_Hero')}
               message={WHATSAPP_MSG}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-semibold text-lg"
             >
               Quero Entender Melhor o Desenvolvimento do Meu Filho
             </ButtonWhatsApp>

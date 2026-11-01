@@ -87,7 +87,7 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
         href={getWhatsAppLink(link)}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-full font-semibold transition-colors"
+        className="inline-block px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-full font-semibold transition-colors"
       >
         {buttonText}
       </a>

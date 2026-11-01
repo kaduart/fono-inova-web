@@ -440,7 +440,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.png",
+    image: "/images/fonoaudiologia/img-fono-atendimento-01.webp",
     imageAlt: "Criança em sessão fonoaudiológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -563,7 +563,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Fonoaudióloga em atendimento infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -653,7 +653,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Profissional de fonoaudiologia em atendimento na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -847,7 +847,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Pais observando criança durante avaliação fonoaudiológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1042,7 +1042,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança autista em sessão de fonoaudiologia na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1133,7 +1133,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Agenda de sessões de fonoaudiologia infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1390,7 +1390,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Neuropediatra avaliando criança na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1487,7 +1487,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Pais observando criança durante avaliação neuropediátrica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1585,7 +1585,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança com dificuldade de atenção durante atividade na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1678,7 +1678,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança brincando com blocos durante avaliação de desenvolvimento na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1768,7 +1768,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Equipe multidisciplinar discutindo avaliação de autismo infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2018,7 +2018,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Pediatra e neuropediatra em ambulatório infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2124,7 +2124,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança com TDAH em atividade terapêutica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2217,7 +2217,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança autista em sessão terapêutica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2304,7 +2304,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Pais e criança na primeira consulta com neuropediatra na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2401,7 +2401,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança em avaliação neurológica infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2482,7 +2482,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança pequena em avaliação de desenvolvimento infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2576,7 +2576,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Pais em consulta com neuropediatra após episódio de convulsão infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2671,7 +2671,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Psicóloga infantil em atendimento na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2751,7 +2751,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Pais conversando com psicóloga infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2859,7 +2859,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança ansiosa em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -2939,7 +2939,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança nervosa durante avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3023,7 +3023,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Sessão de terapia infantil com brincadeiras na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3101,7 +3101,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Pais em consulta sobre diferença entre psicólogo e psiquiatra infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3203,7 +3203,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança em crise de birra durante avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3286,7 +3286,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança com dificuldades emocionais na escola em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3374,7 +3374,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Primeira consulta com psicólogo infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3462,7 +3462,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Psicóloga infantil em atendimento de criança com autismo na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3542,7 +3542,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Psicóloga infantil em atendimento de criança com TDAH na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3621,7 +3621,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança com baixa autoestima em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3703,7 +3703,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança com dificuldade social em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -3785,7 +3785,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança com medo excessivo em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -4471,7 +4471,7 @@ export const satelliteArticles = [
     date: "14 de Setembro, 2026",
     dateISO: "2026-09-14",
     dateModifiedISO: "2026-10-08",
-    image: "/images/psicopedagoga/psicopedagoga.jpeg",
+    image: "/images/psicopedagoga/psicopedagoga.webp",
     imageAlt: "Criança em avaliação de dificuldades de leitura na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5267,7 +5267,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Neuropsicóloga explicando avaliação para pais na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5346,7 +5346,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Pais conversando com neuropsicóloga sobre avaliação infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5428,7 +5428,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança em sessão de avaliação neuropsicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5506,7 +5506,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança com TDAH em avaliação neuropsicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5584,7 +5584,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança com autismo em avaliação neuropsicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5663,7 +5663,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança com dificuldade escolar em avaliação neuropsicológica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5743,7 +5743,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-10-08",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Calendário de sessões de avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5873,7 +5873,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Laudo neuropsicológico infantil sendo explicado na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -5952,7 +5952,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Comparação entre avaliação neuropsicológica e psicopedagógica na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -6053,7 +6053,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-10-08",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Criança realizando teste de atenção na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -6176,7 +6176,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-10-08",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança realizando teste de memória na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -6314,7 +6314,7 @@ export const satelliteArticles = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança em avaliação de funções executivas na Clínica Fono Inova em Anápolis",
     faq: [
       {

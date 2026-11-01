@@ -63,7 +63,7 @@ export default function DifferentialSection({
               </ul>
               <ButtonWhatsApp
                 message={whatsappMessage}
-                className="w-full justify-center rounded-xl bg-green-600 px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl sm:w-auto"
+                className="w-full justify-center rounded-xl bg-green-700 px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-green-800 hover:shadow-xl sm:w-auto"
               >
                 <MessageCircle className="h-5 w-5" />
                 Tirar dúvidas pelo WhatsApp

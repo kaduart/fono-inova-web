@@ -1,6 +1,5 @@
-import { Phone, Star } from '@mui/icons-material';
+import { Star } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
-import { Badge } from '@mui/material';
 import {
   Accessibility,
   Brain,
@@ -16,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
@@ -165,9 +164,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
 
       {/* ==================== HERO SECTION ==================== */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50/40 to-indigo-50/30" />
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/30 to-indigo-200/20 rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-40 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
 
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
@@ -218,7 +215,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Principal");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica."
                 >
                   Quero agendar uma avaliação
@@ -268,7 +265,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
             <p className="text-sm text-slate-500 mb-6">Valores e condições pelo WhatsApp. Tire suas dúvidas antes de agendar.</p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Investimento Neuropsico")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
               message="Oi! Vi o site da Clínica Fono Inova 💚 Quero saber mais sobre a avaliação neuropsicológica."
             >
               Quero agendar uma avaliação
@@ -428,7 +425,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica."
               >
                 Agendar avaliação pelo WhatsApp

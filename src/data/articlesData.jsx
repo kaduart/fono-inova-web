@@ -179,7 +179,7 @@ export const articlesData = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Neuropediatra em consulta infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -316,7 +316,7 @@ export const articlesData = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Psicóloga infantil em atendimento na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -425,7 +425,7 @@ export const articlesData = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Neuropsicóloga infantil em avaliação na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -577,7 +577,7 @@ export const articlesData = [
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
     dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Equipe multidisciplinar infantil em reunião na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -755,7 +755,7 @@ export const articlesData = [
     date: "5 de Julho, 2026",
     dateISO: "2026-07-05",
     dateModifiedISO: "2026-07-05",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Criança em avaliação de desenvolvimento infantil na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -951,7 +951,7 @@ export const articlesData = [
     date: "5 de Julho, 2026",
     dateISO: "2026-07-05",
     dateModifiedISO: "2026-07-05",
-    image: "/images/fono-inova-2.png",
+    image: "/images/fono-inova-2.webp",
     imageAlt: "Avaliação multidisciplinar para suspeita de autismo na Clínica Fono Inova em Anápolis",
     faq: [
       {
@@ -1543,7 +1543,7 @@ export const articlesData = [
     date: "20 de Fevereiro, 2026",
     dateISO: "2026-02-20",
     dateModifiedISO: "2026-02-20",
-    image: "/images/fono-inova-3.png",
+    image: "/images/fono-inova-3.webp",
     imageAlt: "Criança em avaliação auditiva com fones profissionais - processamento auditivo na Clínica Fono Inova em Anápolis",
     content: (
       <>
@@ -1575,7 +1575,7 @@ export const articlesData = [
     date: "22 de Fevereiro, 2026",
     dateISO: "2026-02-22",
     dateModifiedISO: "2026-02-22",
-    image: "/images/fono-inova-1.png",
+    image: "/images/fono-inova-1.webp",
     imageAlt: "Pais em conversa com terapeuta - orientação parental na Clínica Fono Inova em Anápolis",
     content: (
       <>
@@ -1899,7 +1899,7 @@ export const articlesData = [
           </p>
           <a 
             href="https://wa.me/5562992013573?text=Oi!%20Vi%20o%20artigo%20sobre%20teste%20da%20linguinha%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." 
-            className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
+            className="inline-flex items-center gap-2 bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >

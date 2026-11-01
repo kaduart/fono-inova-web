@@ -1,7 +1,6 @@
-import { Mail, Phone, Star } from '@mui/icons-material';
+import { Star } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import TypewriterText from '../components/TypewriterText';
-import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
   Activity,
@@ -27,7 +26,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
 import Layout from '../components/Layout/index.jsx';
@@ -219,9 +218,7 @@ const PsicomotricidadeAnapolis = () => {
 
       {/* ==================== HERO SECTION ==================== */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30" />
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-40 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/30 to-orange-200/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
 
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
@@ -280,7 +277,7 @@ const PsicomotricidadeAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Psicomotricidade");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site sobre psicomotricidade em Anápolis 💚\nMeu filho tem dificuldade de coordenação. Pode me orientar?"
                 >
                   Quero agendar uma avaliação
@@ -322,9 +319,9 @@ const PsicomotricidadeAnapolis = () => {
       <section id="identificacao" className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-50 text-purple-600 border-purple-200 px-4 py-1.5 text-sm font-semibold">
+            <span className="inline-flex items-center rounded-full border mb-4 bg-purple-50 text-purple-600 border-purple-200 px-4 py-1.5 text-sm font-semibold">
               Sinais de Alerta
-            </Badge>
+            </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
               Você se identifica com{" "}
               <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">alguma dessas situações?</span>
@@ -376,7 +373,7 @@ const PsicomotricidadeAnapolis = () => {
             </p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
               message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : "Oi! Vi o site sobre psicomotricidade 💚\nQuero saber se meu filho precisa de atendimento."}
             >
               Falar com especialista no WhatsApp
@@ -524,7 +521,7 @@ const PsicomotricidadeAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre psicomotricidade 💚\nQuero agendar uma avaliação para meu filho."
               >
                 Agendar avaliação pelo WhatsApp

@@ -77,7 +77,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
     <ButtonWhatsApp
       onClick={() => trackButtonClick(`WhatsApp Reembolso - ${where}`)}
       message={WHATSAPP_MESSAGE}
-      className={`bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
+      className={`bg-green-700 hover:bg-green-800 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
     >
       <MessageCircle className="w-5 h-5" />
       {label}
@@ -98,7 +98,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
       <Breadcrumb items={[{ label: 'Plano de saúde e reembolso' }]} />
 
       <section className="relative pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-emerald-50/30" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="order-2 lg:order-1 space-y-6">

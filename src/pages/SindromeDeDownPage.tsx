@@ -1,9 +1,8 @@
-import { Badge } from '@mui/material';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import { Accessibility, ArrowRight, Award, Baby, Brain, CheckCircle2, Clock, GraduationCap, Heart, MapPin, MessageCircle, PhoneCall, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import TypewriterText from '../components/TypewriterText';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
@@ -126,15 +125,14 @@ const SindromeDeDownPage = () => {
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30" />
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/30 to-pink-200/20 rounded-full blur-3xl opacity-70" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
         
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
             <div className="order-2 lg:order-1 space-y-6">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              <span className="inline-flex items-center rounded-full border mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
                 Atendimento Especializado em Anápolis
-              </Badge>
+              </span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 <TypewriterText text="Síndrome de Down em Anápolis" />
@@ -173,7 +171,7 @@ const SindromeDeDownPage = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Sindrome Down");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site sobre Síndrome de Down em Anápolis 💚 Quero agendar uma avaliação para meu filho."
                 >
                   Quero agendar uma avaliação
@@ -268,7 +266,7 @@ const SindromeDeDownPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre Síndrome de Down em Anápolis 💚 Quero agendar uma avaliação."
               >
                 Agendar avaliação pelo WhatsApp

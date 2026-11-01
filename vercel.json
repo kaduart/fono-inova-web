@@ -9,6 +9,61 @@
   ],
   "redirects": [
     {
+      "source": "/images/clinica/real/brinquedoteca-terapia-ocupacional-anapolis.png",
+      "destination": "/images/clinica/real/brinquedoteca-terapia-ocupacional-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/consultorio-avaliacao-neuropsicologica-anapolis.png",
+      "destination": "/images/clinica/real/consultorio-avaliacao-neuropsicologica-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/escada-ludica-clinica-infantil-anapolis.png",
+      "destination": "/images/clinica/real/escada-ludica-clinica-infantil-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/recepcao-clinica-fonoaudiologa-anapolis.png",
+      "destination": "/images/clinica/real/recepcao-clinica-fonoaudiologa-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/sala-espera-psicologa-anapolis.png",
+      "destination": "/images/clinica/real/sala-espera-psicologa-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/sala-integracao-sensorial-terapia-ocupacional-anapolis.png",
+      "destination": "/images/clinica/real/sala-integracao-sensorial-terapia-ocupacional-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/clinica/real/sala-piscina-bolinhas-terapia-ocupacional-anapolis.png",
+      "destination": "/images/clinica/real/sala-piscina-bolinhas-terapia-ocupacional-anapolis.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/fonoaudiologia/img-fono-atendimento-01.png",
+      "destination": "/images/fonoaudiologia/img-fono-atendimento-01.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/logos/fono-inova-icon-clean.png",
+      "destination": "/images/logos/fono-inova-icon-clean.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/psicopedagoga/psicopedagoga.jpeg",
+      "destination": "/images/psicopedagoga/psicopedagoga.webp",
+      "permanent": true
+    },
+    {
+      "source": "/images/sala-TO-clareada.png",
+      "destination": "/images/sala-TO-clareada.webp",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "clinicafonoinova.com.br" }],
       "destination": "https://www.clinicafonoinova.com.br/:path*",

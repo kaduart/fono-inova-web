@@ -33,7 +33,7 @@ const AnalyticsTest = () => {
             <div className="mt-6 flex flex-col gap-4">
                 <button
                     onClick={() => sendEvent("Clique_WhatsApp")}
-                    className="px-4 py-2 bg-green-500 text-white rounded-md"
+                    className="px-4 py-2 bg-green-700 text-white rounded-md"
                 >
                     Testar Clique WhatsApp
                 </button>

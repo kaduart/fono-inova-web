@@ -1,7 +1,10 @@
-import { Mail, Phone } from '@mui/icons-material';
 import GoogleReviews from '../components/premium/GoogleReviews';
-import { Badge, Button } from '@mui/material';
+import AnimatedStat from '../components/premium/AnimatedStat';
+import Reveal from '../components/premium/Reveal';
 import {
+  Mail,
+  Phone,
+  ArrowRight,
   Accessibility,
   Activity,
   Award,
@@ -27,7 +30,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import ArticleCard from '../components/ArticleCard.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
@@ -271,7 +274,7 @@ function Home() {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp CTA Principal");
                   }}
-                  className="pilot-action bg-whatsapp hover:bg-whatsapp-hover text-slate-950 px-7 py-3.5 text-base shadow-sm hover:shadow-md justify-center"
+                  className="pilot-action bg-whatsapp hover:bg-whatsapp-hover text-white px-7 py-3.5 text-base shadow-sm hover:shadow-md justify-center"
                   message="Oi! Vi o site da Clínica Fono Inova 💚\nÉ para meu filho, pode me orientar?"
                 >
                   Falar no WhatsApp
@@ -341,48 +344,39 @@ function Home() {
       <section id="identificacao" className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-50 text-purple-600 border-purple-200 px-4 py-1.5 text-sm font-semibold">
-              Encontre o Atendimento Ideal
-            </Badge>
+            <span className="mb-3 inline-block text-sm font-semibold text-primary">Encontre o Atendimento Ideal</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
               Você se identifica com{" "}
-              <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">alguma dessas situações?</span>
+              <span className="text-primary">alguma dessas situações?</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Selecione abaixo o que mais se encaixa com a necessidade do seu filho
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 gap-3 max-w-5xl mx-auto">
             {painPoints.map((pain, index) => {
               const Icon = pain.icon;
               const isSelected = selectedPain === index;
-              const colorClasses: Record<string, { bg: string; border: string; text: string; hover: string }> = {
-                orange: { bg: "bg-orange-50", border: "border-orange-200", text: "text-orange-600", hover: "hover:border-orange-400" },
-                blue: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-600", hover: "hover:border-blue-400" },
-                purple: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-600", hover: "hover:border-purple-400" },
-                emerald: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-600", hover: "hover:border-emerald-400" },
-                pink: { bg: "bg-pink-50", border: "border-pink-200", text: "text-pink-600", hover: "hover:border-pink-400" },
-                teal: { bg: "bg-teal-50", border: "border-teal-200", text: "text-teal-600", hover: "hover:border-teal-400" },
-              };
-              const colors = colorClasses[pain.color];
-
               return (
-                <button
-                  key={index}
-                  onClick={() => handlePainClick(index)}
-                  className={`text-left p-6 rounded-2xl border-2 transition-all duration-300 ${
-                    isSelected
-                      ? `${colors.bg} ${colors.border} shadow-xl scale-[1.02]`
-                      : `bg-white border-slate-100 ${colors.hover} hover:shadow-lg hover:-translate-y-1`
-                  }`}
-                >
-                  <div className={`w-14 h-14 ${colors.bg} rounded-xl flex items-center justify-center mb-4`}>
-                    <Icon className={`w-7 h-7 ${colors.text}`} />
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{pain.title}</h3>
-                  <p className="text-sm text-slate-600">{pain.description}</p>
-                </button>
+                <Reveal key={index} delay={(index % 2) * 70}>
+                  <button
+                    onClick={() => handlePainClick(index)}
+                    aria-pressed={isSelected}
+                    className={`fi-lift group flex w-full items-center gap-4 text-left p-5 rounded-2xl ring-1 transition-colors ${
+                      isSelected ? 'bg-primary/5 ring-2 ring-primary' : 'bg-white ring-slate-200 hover:ring-primary'
+                    }`}
+                  >
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" aria-hidden="true" />
+                    </span>
+                    <span className="flex-1">
+                      <span className="block text-lg font-bold text-slate-900">{pain.title}</span>
+                      <span className="block text-sm text-slate-600">{pain.description}</span>
+                    </span>
+                    <ArrowRight className="fi-arrow h-5 w-5 shrink-0 text-slate-400 group-hover:text-primary" aria-hidden="true" />
+                  </button>
+                </Reveal>
               );
             })}
           </div>
@@ -395,7 +389,7 @@ function Home() {
             </p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 motion-safe:hover:-translate-y-0.5 inline-flex items-center gap-2"
               message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : "Oi, vi no site e quero saber qual atendimento é ideal para meu filho. Pode me ajudar?"}
             >
               Falar com especialista no WhatsApp
@@ -410,24 +404,24 @@ function Home() {
       </section>
 
       {/* ==================== PROVA SOCIAL - DEPOIMENTOS ==================== */}
-      <section id="testimonials" className="py-24 bg-gradient-to-br from-slate-50 to-white">
+      <section id="testimonials" className="py-24 bg-[#f6f9f8]">
         <div className="container mx-auto px-4 lg:px-8">
           {/* Estatísticas */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
             {[
-              { value: "500+", label: "Famílias Atendidas", icon: Award },
-              { value: "5.0/5", label: "Avaliação Google", icon: Star },
-              { value: "12+", label: "Especialistas", icon: GraduationCap },
-              { value: "10+", label: "Anos de Experiência", icon: Clock },
+              { value: 500, prefix: "", suffix: "+", decimals: 0, label: "Famílias Atendidas", icon: Award },
+              { value: 5, prefix: "", suffix: "/5", decimals: 1, label: "Avaliação Google", icon: Star },
+              { value: 12, prefix: "", suffix: "+", decimals: 0, label: "Especialistas", icon: GraduationCap },
+              { value: 10, prefix: "", suffix: "+", decimals: 0, label: "Anos de Experiência", icon: Clock },
             ].map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-slate-100">
+                <div key={index} className="fi-lift text-center p-6 bg-white rounded-2xl ring-1 ring-slate-200">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                     <Icon className="w-6 h-6 text-primary" />
                   </div>
-                  <div className="text-3xl font-bold text-slate-900">{stat.value}</div>
-                  <div className="text-sm text-slate-500">{stat.label}</div>
+                  <AnimatedStat value={stat.value} suffix={stat.suffix} decimals={stat.decimals} className="block text-4xl font-extrabold tracking-tight text-slate-900 tabular-nums" />
+                  <div className="text-sm text-slate-600">{stat.label}</div>
                 </div>
               );
             })}
@@ -436,18 +430,16 @@ function Home() {
           {/* Depoimentos em destaque */}
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-                Avaliações no Google
-              </Badge>
+              <span className="mb-3 inline-block text-sm font-semibold text-primary">Avaliações no Google</span>
               <h2 className="text-3xl md:text-4xl font-bold font-poppins">
-                O que os <span className="text-accent relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-accent/20 after:rounded-full">pais</span> dizem sobre nós
+                O que os <span className="text-primary">pais</span> dizem sobre nós
               </h2>
             </div>
 
             <GoogleReviews count={3} offset={13} title="" />
 
             {/* CTA após prova social */}
-            <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl">
+            <div className="bg-[#0f5c4b] rounded-3xl p-8 md:p-12 text-center text-white">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 Conheça a Fono Inova de perto
               </h3>
@@ -456,7 +448,7 @@ function Home() {
               </p>
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - Prova Social")}
-                className="bg-white hover:bg-slate-100 text-primary px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 inline-flex items-center gap-2 shadow-xl"
+                className="bg-white hover:bg-slate-100 text-primary px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 motion-safe:hover:-translate-y-0.5 inline-flex items-center gap-2 shadow-xl"
                 message="Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
               >
                 Quero Agendar Uma Avaliação
@@ -470,11 +462,9 @@ function Home() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-blue-50 text-blue-600 border-blue-200">
-              Processo Simples
-            </Badge>
+            <span className="mb-3 inline-block text-sm font-semibold text-primary">Processo Simples</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
-              Como funciona o <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">atendimento</span>?
+              Como funciona o <span className="text-primary">atendimento</span>?
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Em apenas 3 passos simples, seu filho começa o acompanhamento especializado
@@ -488,12 +478,12 @@ function Home() {
                 <div key={index} className="relative text-center group">
                   {/* Linha conectora (desktop) */}
                   {index < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-primary/30 to-transparent" />
+                    <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-0.5 bg-primary/20" />
                   )}
 
                   <div className="relative inline-flex items-center justify-center w-32 h-32 mb-6">
-                    <div className="absolute inset-0 bg-primary/10 rounded-full animate-pulse" />
-                    <div className="relative w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                    <div className="absolute inset-0 bg-primary/10 rounded-full" />
+                    <div className="relative w-24 h-24 bg-[#0f5c4b] rounded-full flex items-center justify-center shadow-lg motion-safe:group-hover:scale-105 transition-transform duration-300">
                       <span className="text-3xl font-bold text-white">{step.number}</span>
                     </div>
                     <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary/10">
@@ -512,7 +502,7 @@ function Home() {
           <div className="text-center mt-12">
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Como Funciona")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 motion-safe:hover:-translate-y-0.5 inline-flex items-center gap-2"
               message="Oi! Vi o site da Clínica Fono Inova 💚\nÉ para meu filho, pode me orientar?"
             >
               Falar com especialista no WhatsApp
@@ -526,14 +516,12 @@ function Home() {
       </section>
 
       {/* ==================== ESPECIALIDADES EM ANÁPOLIS - SEO LOCAL ==================== */}
-      <section id="services" className="py-12 md:py-16 bg-gradient-to-br from-slate-50 to-teal-50/30">
+      <section id="services" className="py-12 md:py-16 bg-[#f6f9f8]">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-8 md:mb-10">
-            <Badge className="mb-4 bg-teal-50 text-teal-600 border-teal-200 px-4 py-1.5">
-              Atendimento em Anápolis
-            </Badge>
+            <span className="mb-3 inline-block text-sm font-semibold text-primary">Atendimento em Anápolis</span>
             <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900 mb-4">
-              Nossas <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">Especialidades</span> em Anápolis
+              Nossas <span className="text-primary">Especialidades</span> em Anápolis
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Clique na especialidade desejada para saber mais sobre nosso atendimento
@@ -552,7 +540,7 @@ function Home() {
                   <img loading="lazy" decoding="async" 
                     src="/images/fonoaudiologia/fono1.jpg" 
                     alt="Fonoaudiologia Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -576,7 +564,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/psicologia/psico2.jpg"
                     alt="Psicologia Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -600,7 +588,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/terapia-ocupacional/to1.jpg"
                     alt="Terapia Ocupacional em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -624,7 +612,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/psicomotricidade-hero.png"
                     alt="Psicomotricidade Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -646,9 +634,9 @@ function Home() {
               <div className="bg-white rounded-xl border border-slate-200 hover:border-purple-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
                   <img loading="lazy" decoding="async"
-                    src="/images/freio-lingual/mae-bb.jpeg"
+                    src="/images/freio-lingual/mae-bb.webp"
                     alt="Teste da Linguinha em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -672,7 +660,7 @@ function Home() {
                   <img loading="lazy" decoding="async" 
                     src="/images/fisioterapia/fisio2.jpg" 
                     alt="Fisioterapia Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -696,7 +684,7 @@ function Home() {
                   <img loading="lazy" decoding="async" 
                     src="/images/neuropsicologia/aval-neuro-2.jpeg" 
                     alt="Avaliação Neuropsicológica em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -718,9 +706,9 @@ function Home() {
               <div className="bg-white rounded-xl border border-slate-200 hover:border-blue-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
                   <img loading="lazy" decoding="async" 
-                    src="/images/neuropsicologia/neuro.jpeg" 
+                    src="/images/neuropsicologia/neuro.webp" 
                     alt="Neuropediatra em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -744,7 +732,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/fala-tardia/fala-tardia-1.jpeg"
                     alt="Fala Tardia Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -768,7 +756,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/tea/tea-fantochy.jpeg"
                     alt="Avaliação de Autismo (TEA) em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -792,7 +780,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/dificuldade-escolar/dificuldade-escolar-2.jpeg"
                     alt="Avaliação de Dificuldade Escolar em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -816,7 +804,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/dificuldade-escolar/dificuldade-escolar-1.jpeg"
                     alt="Dislexia e Dificuldades de Aprendizagem em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -838,9 +826,9 @@ function Home() {
               <div className="bg-white rounded-xl border border-slate-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden">
                   <img loading="lazy" decoding="async"
-                    src="/images/psicopedagoga/psicopedagoga.jpeg"
+                    src="/images/psicopedagoga/psicopedagoga.webp"
                     alt="Psicopedagogia em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -864,7 +852,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/musicoterapia-hero.png"
                     alt="Musicoterapia Infantil em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -888,7 +876,7 @@ function Home() {
                   <img loading="lazy" decoding="async"
                     src="/images/adulto-voz/adulto-voz-1.jpeg"
                     alt="Fonoaudiologia para Adultos em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
@@ -908,23 +896,23 @@ function Home() {
               className="group relative"
             >
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                <span className="bg-gradient-to-r from-primary to-secondary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                <span className="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
                   Principal
                 </span>
               </div>
-              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
+              <div className="bg-primary/5 rounded-xl border-2 border-primary/30 hover:border-primary hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
                 <div className="h-24 overflow-hidden relative">
                   <img loading="lazy" decoding="async" 
-                    src="/images/fono-inova-4.png" 
+                    src="/images/fono-inova-4.webp" 
                     alt="Avaliação Multidisciplinar em Anápolis"
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
                   <h3 className="font-semibold text-slate-800 group-hover:text-primary transition-colors text-sm">Avaliação Multidisciplinar</h3>
                   <p className="text-xs text-slate-500 mt-1">Todas as especialidades em um lugar</p>
-                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-500 text-white rounded-full text-xs font-semibold hover:bg-green-600 transition-colors shadow-md">
+                  <button className="mt-auto pt-2 px-3 py-1.5 bg-green-700 text-white rounded-full text-xs font-semibold hover:bg-green-800 transition-colors shadow-md">
                     Agendar avaliação 💚
                   </button>
                 </div>
@@ -963,12 +951,10 @@ function Home() {
 
             {/* Conteúdo */}
             <div className="space-y-6">
-              <Badge className="bg-primary/10 text-primary border-primary/20">
-                Sobre a Clínica
-              </Badge>
+              <span className="mb-3 inline-block text-sm font-semibold text-primary">Sobre a Clínica</span>
               <h2 className="text-3xl md:text-4xl font-bold font-poppins text-slate-900">
                 Promoção do Crescimento e{" "}
-                <span className="text-secondary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-secondary/20 after:rounded-full">Bem-Estar Infantil</span>
+                <span className="text-primary">Bem-Estar Infantil</span>
               </h2>
               <p className="text-lg text-slate-600 leading-relaxed">
                 Na Clínica Fono Inova, nossa missão é oferecer cuidado multidisciplinar de excelência 
@@ -1004,11 +990,9 @@ function Home() {
       <section id="blog" className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20">
-              Conteúdo Exclusivo
-            </Badge>
+            <span className="mb-3 inline-block text-sm font-semibold text-primary">Conteúdo Exclusivo</span>
             <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-              Artigos sobre <span className="text-accent relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-accent/20 after:rounded-full">Desenvolvimento Infantil</span>
+              Artigos sobre <span className="text-primary">Desenvolvimento Infantil</span>
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Confira nossos conteúdos exclusivos sobre terapias e desenvolvimento infantil
@@ -1026,16 +1010,13 @@ function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <Button
-              variant="outlined"
-              size="large"
-              component={Link}
+            <Link
               to="/artigos"
               onClick={handleVerTodosArtigos}
-              className="px-8 py-3 rounded-xl border-2 hover:bg-slate-100 transition-all"
+              className="group inline-flex min-h-12 items-center gap-2 px-8 py-3 rounded-xl font-semibold text-slate-900 ring-1 ring-slate-300 hover:bg-white hover:ring-primary transition-all"
             >
-              Ver Todos os Artigos
-            </Button>
+              Ver Todos os Artigos <ArrowRight className="fi-arrow h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </section>
@@ -1051,7 +1032,7 @@ function Home() {
           </p>
           <Link
             to="/faq"
-            className="inline-block bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:bg-primary/90"
+            className="inline-block bg-primary text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 motion-safe:hover:-translate-y-0.5 hover:bg-primary/90"
           >
             Acessar Perguntas Frequentes
           </Link>
@@ -1098,7 +1079,7 @@ function Home() {
                 trackFormSubmission(true);
                 trackButtonClick('WhatsApp CTA Final - Urgência');
               }}
-              className="bg-green-500 hover:bg-green-600 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-3 group"
+              className="bg-green-700 hover:bg-green-800 text-white px-12 py-6 rounded-2xl font-bold text-xl shadow-2xl transition-all duration-300 motion-safe:hover:-translate-y-0.5 inline-flex items-center gap-3 group"
               message="Oi! Vi o site da Clínica Fono Inova 💚\nÉ para meu filho, pode me orientar?"
             >
               Quero falar com um especialista agora

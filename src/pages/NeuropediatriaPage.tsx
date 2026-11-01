@@ -115,7 +115,7 @@ const NeuropediatriaPage = () => {
                         message={selectedSintoma 
                             ? problemas.find(p => p.id === selectedSintoma)?.mensagem 
                             : mensagemHero}
-                        className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl text-lg font-bold shadow-xl"
+                        className="w-full bg-green-700 hover:bg-green-800 text-white px-6 py-4 rounded-xl text-lg font-bold shadow-xl"
                     >
                         Agendar consulta com neuropediatra
                     </ButtonWhatsApp>
@@ -129,7 +129,7 @@ const NeuropediatriaPage = () => {
                         message={selectedSintoma 
                             ? problemas.find(p => p.id === selectedSintoma)?.mensagem 
                             : mensagemHero}
-                        className="bg-green-600 hover:bg-green-700 hover:scale-105 text-white px-8 py-5 rounded-full text-lg font-bold shadow-2xl transition-all"
+                        className="bg-green-700 hover:bg-green-800 hover:scale-105 text-white px-8 py-5 rounded-full text-lg font-bold shadow-2xl transition-all"
                     >
                         Agendar consulta
                     </ButtonWhatsApp>
@@ -188,7 +188,7 @@ const NeuropediatriaPage = () => {
                             <div className="flex flex-col sm:flex-row gap-3">
                                 <ButtonWhatsApp
                                     message={mensagemHero}
-                                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl transition-all"
+                                    className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl transition-all"
                                 >
                                     Agendar consulta com neuropediatra
                                 </ButtonWhatsApp>
@@ -292,7 +292,7 @@ const NeuropediatriaPage = () => {
                             message={selectedSintoma 
                                 ? problemas.find(p => p.id === selectedSintoma)?.mensagem 
                                 : mensagemHero}
-                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all"
+                            className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all"
                         >
                             Agendar consulta com neuropediatra
                         </ButtonWhatsApp>
@@ -410,7 +410,7 @@ const NeuropediatriaPage = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                             <ButtonWhatsApp
                                 message={mensagemHero}
-                                className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl transition-all"
+                                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-2xl font-bold shadow-2xl transition-all"
                             >
                                 Agendar consulta com neuropediatra
                             </ButtonWhatsApp>

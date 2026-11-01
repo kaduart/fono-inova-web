@@ -212,7 +212,7 @@ const ConvenioInteresse = ({ nome, slug, path }: ConvenioInteresseProps) => {
             <button
               type="button"
               onClick={goToForm}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-700 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-green-800 hover:shadow-xl"
             >
               Entrar na lista de interesse
               <ArrowDown className="h-5 w-5" />
@@ -419,7 +419,7 @@ const ConvenioInteresse = ({ nome, slug, path }: ConvenioInteresseProps) => {
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+              className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 px-8 py-4 text-base font-bold text-white shadow-lg transition-all hover:bg-green-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
             >
               {status === 'sending' ? (
                 <>

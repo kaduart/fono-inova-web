@@ -34,7 +34,7 @@ export default function SituationsSection({
             <p className="font-medium text-slate-800">Reconheceu alguma situação? Conte para a nossa equipe, sem compromisso.</p>
             <ButtonWhatsApp
               message={whatsappMessage}
-              className="w-full shrink-0 justify-center rounded-xl bg-green-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-700 sm:w-auto"
+              className="w-full shrink-0 justify-center rounded-xl bg-green-700 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-800 sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" />
               Falar no WhatsApp

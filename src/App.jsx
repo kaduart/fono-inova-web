@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { Suspense, lazy, useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
@@ -6,58 +6,58 @@ import WhatsAppStatusAlert from './components/WhatsAppStatusAlert';
 import SpecialistPopup from './components/SpecialityPopup/SpecialityPopUp';
 
 // Import das páginas existentes
-import AnalyticsDashboard from './components/AnalyticsDashboard';
-import AnalyticsTest from './components/AnalyticsTest';
-import ArticlePage from './pages/Article';
-import Articles from './pages/Articles';
-import NotFoundPage from './pages/NotFoundPage';
-import LandingPage from './pages/lp/LandingPage';
-import ApoioFamilias from './pages/ApoioFamilias';
-import ConectaApp from './pages/ConectaApp';
-import ReembolsoPlanoSaudeAnapolis from './pages/ReembolsoPlanoSaudeAnapolis';
-import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
-import Home from './pages/Home';
-import PsicopedagogiaPage from './pages/PsicopedagogiaPage';
-import PsicomotricidadePage from './pages/PsicomotricidadePage';
-import PsicopedagogiaLPPage from './pages/PsicopedagogiaLPPage';
-import MusicoterapiaPage from './pages/MusicoterapiaPage';
-import EquipePage from './pages/Equipe';
-import ClinicaPage from './pages/Clinica';
+const AnalyticsDashboard = lazy(() => import('./components/AnalyticsDashboard'));
+const AnalyticsTest = lazy(() => import('./components/AnalyticsTest'));
+const ArticlePage = lazy(() => import('./pages/Article'));
+const Articles = lazy(() => import('./pages/Articles'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const LandingPage = lazy(() => import('./pages/lp/LandingPage'));
+const ApoioFamilias = lazy(() => import('./pages/ApoioFamilias'));
+const ConectaApp = lazy(() => import('./pages/ConectaApp'));
+const ReembolsoPlanoSaudeAnapolis = lazy(() => import('./pages/ReembolsoPlanoSaudeAnapolis'));
+const ClinicaMultidisciplinar = lazy(() => import('./pages/ClinicaMultidisciplinar'));
+const Home = lazy(() => import('./pages/Home'));
+const PsicopedagogiaPage = lazy(() => import('./pages/PsicopedagogiaPage'));
+const PsicomotricidadePage = lazy(() => import('./pages/PsicomotricidadePage'));
+const PsicopedagogiaLPPage = lazy(() => import('./pages/PsicopedagogiaLPPage'));
+const MusicoterapiaPage = lazy(() => import('./pages/MusicoterapiaPage'));
+const EquipePage = lazy(() => import('./pages/Equipe'));
+const ClinicaPage = lazy(() => import('./pages/Clinica'));
 
 // Import das NOVAS páginas de funil (landing pages de marketing)
-import AdultoVozPage from './pages/AdultoVozPage';
-import SindromeDeDownPage from './pages/SindromeDeDownPage';
-import PrematuridadePage from './pages/PrematuridadePage';
-import DificuldadeEscolarPage from './pages/DificuldadeEscolarPage';
-import FaqPage from './pages/Faq.jsx';
-import PrivacidadePage from './pages/Privacidade.jsx';
-import LPAvaliacaoInfantil from './pages/LPAvaliacaoInfantil';
-import TdahAvaliacaoPage from './pages/TdahAvaliacaoPage';
-import ComportamentoInfantilPage from './pages/ComportamentoInfantilPage';
-import NeuropediatriaPage from './pages/NeuropediatriaPage';
+const AdultoVozPage = lazy(() => import('./pages/AdultoVozPage'));
+const SindromeDeDownPage = lazy(() => import('./pages/SindromeDeDownPage'));
+const PrematuridadePage = lazy(() => import('./pages/PrematuridadePage'));
+const DificuldadeEscolarPage = lazy(() => import('./pages/DificuldadeEscolarPage'));
+const FaqPage = lazy(() => import('./pages/Faq.jsx'));
+const PrivacidadePage = lazy(() => import('./pages/Privacidade.jsx'));
+const LPAvaliacaoInfantil = lazy(() => import('./pages/LPAvaliacaoInfantil'));
+const TdahAvaliacaoPage = lazy(() => import('./pages/TdahAvaliacaoPage'));
+const ComportamentoInfantilPage = lazy(() => import('./pages/ComportamentoInfantilPage'));
+const NeuropediatriaPage = lazy(() => import('./pages/NeuropediatriaPage'));
 
 // Import das NOVAS páginas de especialidade SEO Local (dominar Anápolis)
-import FonoaudiologiaAnapolis from './pages/FonoaudiologiaAnapolis';
-import PsicologiaInfantilAnapolis from './pages/PsicologiaInfantilAnapolis';
-import TerapiaOcupacionalAnapolis from './pages/TerapiaOcupacionalAnapolis';
-import PsicomotricidadeAnapolis from './pages/PsicomotricidadeAnapolis';
-import TesteLinguinhaAnapolis from './pages/TesteLinguinhaAnapolis';
-import FisioterapiaInfantilAnapolis from './pages/FisioterapiaInfantilAnapolis';
+const FonoaudiologiaAnapolis = lazy(() => import('./pages/FonoaudiologiaAnapolis'));
+const PsicologiaInfantilAnapolis = lazy(() => import('./pages/PsicologiaInfantilAnapolis'));
+const TerapiaOcupacionalAnapolis = lazy(() => import('./pages/TerapiaOcupacionalAnapolis'));
+const PsicomotricidadeAnapolis = lazy(() => import('./pages/PsicomotricidadeAnapolis'));
+const TesteLinguinhaAnapolis = lazy(() => import('./pages/TesteLinguinhaAnapolis'));
+const FisioterapiaInfantilAnapolis = lazy(() => import('./pages/FisioterapiaInfantilAnapolis'));
 // Long-tail local — intenção emocional + geo
-import FalaTardiaAnapolis from './pages/FalaTardiaAnapolis';
-import AutismoAnapolis from './pages/AutismoAnapolis';
-import SeletividadeAlimentarAnapolis from './pages/SeletividadeAlimentarAnapolis';
-import TdahAnapolis from './pages/TdahAnapolis';
-import DislexiaAnapolis from './pages/DislexiaAnapolis';
-import AvaliacaoNeuropsicologicaAnapolis from './pages/AvaliacaoNeuropsicologicaAnapolis';
+const FalaTardiaAnapolis = lazy(() => import('./pages/FalaTardiaAnapolis'));
+const AutismoAnapolis = lazy(() => import('./pages/AutismoAnapolis'));
+const SeletividadeAlimentarAnapolis = lazy(() => import('./pages/SeletividadeAlimentarAnapolis'));
+const TdahAnapolis = lazy(() => import('./pages/TdahAnapolis'));
+const DislexiaAnapolis = lazy(() => import('./pages/DislexiaAnapolis'));
+const AvaliacaoNeuropsicologicaAnapolis = lazy(() => import('./pages/AvaliacaoNeuropsicologicaAnapolis'));
 // Convênios
-import BaseAereaAnapolis from './pages/BaseAereaAnapolis';
-import GeapAnapolis from './pages/GeapAnapolis';
-import IpasgoAnapolis from './pages/IpasgoAnapolis';
-import BradescoSaudeAnapolis from './pages/BradescoSaudeAnapolis';
-import InteresseConfirmado from './pages/InteresseConfirmado';
+const BaseAereaAnapolis = lazy(() => import('./pages/BaseAereaAnapolis'));
+const GeapAnapolis = lazy(() => import('./pages/GeapAnapolis'));
+const IpasgoAnapolis = lazy(() => import('./pages/IpasgoAnapolis'));
+const BradescoSaudeAnapolis = lazy(() => import('./pages/BradescoSaudeAnapolis'));
+const InteresseConfirmado = lazy(() => import('./pages/InteresseConfirmado'));
 // Link-in-bio (Instagram/redes sociais)
-import LinksBio from './pages/LinksBio';
+const LinksBio = lazy(() => import('./pages/LinksBio'));
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
@@ -116,6 +116,7 @@ function App() {
       <WhatsAppStatusAlert />
       <LeadTracker>
         <SpecialistPopup />
+        <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
         <Routes>
           {/* Rotas existentes */}
           <Route path="/" element={<Home />} />
@@ -199,6 +200,7 @@ function App() {
           <Route path="/lp/:slug" element={<LandingPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        </Suspense>
       </LeadTracker>
     </div>
   );

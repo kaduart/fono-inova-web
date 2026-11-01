@@ -256,7 +256,7 @@ Pode me explicar como funciona a avaliação?`;
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
+      className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-0 sm:p-4 animate-in fade-in duration-200"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget && !isSubmitting) onClose?.()
       }}
@@ -267,10 +267,10 @@ Pode me explicar como funciona a avaliação?`;
         aria-modal="true"
         aria-labelledby="booking-modal-title"
         aria-describedby="booking-modal-description"
-        className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in duration-300"
+        className="bg-white rounded-t-3xl sm:rounded-2xl max-w-md w-full max-h-[92vh] overflow-y-auto shadow-2xl animate-in slide-in-from-bottom-10 sm:slide-in-from-bottom-0 sm:zoom-in-95 duration-300 ease-out"
       >
         {/* Header com gradiente */}
-        <div className="bg-gradient-to-r from-green-600 to-cyan-500 p-6 rounded-t-2xl relative">
+        <div className="bg-[#0f5c4b] p-6 rounded-t-3xl sm:rounded-t-2xl relative">
           <button
             onClick={onClose}
             disabled={isSubmitting}

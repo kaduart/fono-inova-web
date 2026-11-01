@@ -45,7 +45,7 @@ const ArticleCard = ({ article }) => {
     <article
       itemScope
       itemType="https://schema.org/Article"
-      className="border-0 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col overflow-hidden bg-white group"
+      className="fi-lift rounded-2xl ring-1 ring-slate-200 hover:ring-primary h-full flex flex-col overflow-hidden bg-white group"
     >
       {/* Schema invisível para Google */}
       <meta itemProp="headline" content={article.title} />
@@ -62,6 +62,8 @@ const ArticleCard = ({ article }) => {
           src={article.image}
           alt={article.imageAlt || `Artigo sobre ${article.title} - Clínica Fono Inova`}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
           itemProp="image"
           onError={(e) => {
             e.target.src = 'https://images.unsplash.com/photo-1540479859555-17af45c78602?w=800&q=80';

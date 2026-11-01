@@ -130,7 +130,7 @@ const TdahAvaliacaoPage = () => {
                         message={selectedSintoma 
                             ? sintomasGroups.find(a => a.id === selectedSintoma)?.mensagem 
                             : mensagemHero}
-                        className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl text-lg font-bold shadow-xl flex items-center justify-center gap-3"
+                        className="w-full bg-green-700 hover:bg-green-800 text-white px-6 py-4 rounded-xl text-lg font-bold shadow-xl flex items-center justify-center gap-3"
                     >
                         Falar Agora no WhatsApp
                     </ButtonWhatsApp>
@@ -144,7 +144,7 @@ const TdahAvaliacaoPage = () => {
                         message={selectedSintoma 
                             ? sintomasGroups.find(a => a.id === selectedSintoma)?.mensagem 
                             : mensagemHero}
-                        className="bg-green-600 hover:bg-green-700 hover:scale-105 text-white px-8 py-5 rounded-full text-lg font-bold shadow-2xl flex items-center gap-3 transition-all animate-bounce-slow"
+                        className="bg-green-700 hover:bg-green-800 hover:scale-105 text-white px-8 py-5 rounded-full text-lg font-bold shadow-2xl flex items-center gap-3 transition-all animate-bounce-slow"
                     >
                         Falar no WhatsApp
                     </ButtonWhatsApp>
@@ -210,7 +210,7 @@ const TdahAvaliacaoPage = () => {
                             <div className="flex flex-col sm:flex-row gap-3">
                                 <ButtonWhatsApp
                                     message={mensagemHero}
-                                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 group"
+                                    className="bg-green-700 hover:bg-green-800 text-white px-6 py-4 rounded-xl text-base font-bold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 group"
                                 >
                                     Fazer Avaliação Agora
                                 </ButtonWhatsApp>
@@ -232,7 +232,7 @@ const TdahAvaliacaoPage = () => {
                         <div className="relative order-1 lg:order-2">
                             <div className="aspect-[4/3] bg-slate-100 rounded-3xl overflow-hidden shadow-2xl border border-slate-200">
                                 <img
-                                    src="/images/neuropsicologia/neuro-2.jpeg"
+                                    src="/images/neuropsicologia/neuro-2.webp"
                                     alt="Avaliação neuropsicológica infantil na Clínica Fono Inova"
                                     className="w-full h-full object-cover"
                                     onError={(e) => {
@@ -329,7 +329,7 @@ const TdahAvaliacaoPage = () => {
                             message={selectedSintoma 
                                 ? sintomasGroups.find(a => a.id === selectedSintoma)?.mensagem 
                                 : "Oi! Vi no site sobre avaliação TDAH. Gostaria de agendar uma avaliação. Pode me explicar como funciona?"}
-                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
+                            className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
                         >
                             Falar com Neuropsicóloga no WhatsApp
                         </ButtonWhatsApp>
@@ -382,7 +382,7 @@ const TdahAvaliacaoPage = () => {
                         <div className="text-center">
                             <ButtonWhatsApp
                                 message="Oi! Meu filho tem dificuldade de atenção na escola. Gostaria de agendar uma avaliação."
-                                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
+                                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
                             >
                                 Quero agendar uma avaliação
                             </ButtonWhatsApp>
@@ -463,7 +463,7 @@ const TdahAvaliacaoPage = () => {
                     <div className="text-center mt-10">
                         <ButtonWhatsApp
                             message="Oi! Vi no site sobre avaliação TDAH.\n\nQueria entender melhor como funciona o processo. Pode me explicar?"
-                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
+                            className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
                         >
                             Agendar Avaliação pelo WhatsApp
                         </ButtonWhatsApp>
@@ -524,7 +524,7 @@ const TdahAvaliacaoPage = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                             <ButtonWhatsApp
                                 message={mensagemHero}
-                                className="bg-green-500 hover:bg-green-600 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all inline-flex items-center gap-3 group"
+                                className="bg-green-700 hover:bg-green-800 text-white px-8 py-5 rounded-2xl font-bold text-lg shadow-2xl transition-all inline-flex items-center gap-3 group"
                             >
                                 Quero Agendar Agora
                             </ButtonWhatsApp>

@@ -72,7 +72,7 @@ const ConectaApp = () => {
       message={WHATSAPP_MESSAGE}
       lpSlug="/app"
       lpCategory="app"
-      className={`bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
+      className={`bg-green-700 hover:bg-green-800 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
     >
       <MessageCircle className="w-5 h-5" />
       {label}
@@ -132,7 +132,7 @@ const ConectaApp = () => {
         </div>
       </section>
 
-      <ProofBar className="-mt-8 md:-mt-10" />
+      <ProofBar className="-mt-8 md:-mt-10" status={false} />
 
       {/* ==================== O QUE É ==================== */}
       <Reveal><section className="py-14 md:py-20 bg-white">
