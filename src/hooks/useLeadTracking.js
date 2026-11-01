@@ -286,7 +286,23 @@ export function buildTrackingPayload() {
  * o CRM deixa de receber a antiga assinatura pela mensagem do paciente.
  */
 export function buildWhatsAppRefSignature() {
-  return '';
+  // Reativada: injeta a assinatura ---ref: no formato que o attributionParser do CRM lê.
+  // É o único elo entre o clique no navegador (gclid/fbclid/ttclid no localStorage) e o
+  // lead criado pelo telefone no WhatsApp. Sem isso, a atribuição chega como "unknown".
+  try {
+    const t = getLeadTracking();
+    if (!t) return '';
+    const clean = (v) => String(v || '').replace(/[|\n\r]/g, ' ').trim();
+    const source   = clean(t.source) || 'site_direto';
+    const clickId  = clean(t.gclid || t.fbclid || t.ttclid);
+    const campaign = clean(t.utmCampaign || t.campaign);
+    const utm      = clean(t.utmSource).replace(/\s+/g, '_');
+    // tráfego direto sem id de clique: não assina (evita ruído na mensagem)
+    if (!clickId && source === 'site_direto') return '';
+    return ` ---ref:${source}|${campaign}|${clickId}|utm_source=${utm}`;
+  } catch {
+    return '';
+  }
 }
 
 export default useLeadTracking;
