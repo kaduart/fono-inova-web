@@ -138,8 +138,8 @@ export const LANDING_PAGES: LandingPageEntry[] = [
   },
   {
     id: "app_conecta",
-    slug: "/conecta",
-    url: buildUrl("/conecta"),
+    slug: "/app",
+    url: buildUrl("/app"),
     nome: "App FonoInova Conecta",
     headline: "Triagem gratuita do desenvolvimento infantil (0 a 6 anos)",
     categoria: "institucional",

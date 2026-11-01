@@ -191,8 +191,8 @@ function App() {
           {/* Páginas institucionais */}
           <Route path="/privacidade" element={<PrivacidadePage />} />
           <Route path="/apoio-as-familias" element={<ApoioFamilias />} />
-          <Route path="/conecta" element={<ConectaApp />} />
-          <Route path="/app" element={<Navigate to="/conecta" replace />} />
+          <Route path="/app" element={<ConectaApp />} />
+          <Route path="/conecta" element={<Navigate to="/app" replace />} />
           <Route path="/reembolso-plano-de-saude-anapolis" element={<ReembolsoPlanoSaudeAnapolis />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
