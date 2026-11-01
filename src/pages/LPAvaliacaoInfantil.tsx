@@ -1,3 +1,4 @@
+import { Star } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import {
   Accessibility,
