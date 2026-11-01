@@ -43,27 +43,27 @@ const ImageCarousel = ({ typeImages, onImageClick }: ImageCarouselProps) => {
     };
 
     const imagesClinica: CarouselImage[] = [
-        { src: "/images/clinica/real/recepcao-clinica-fonoaudiologa-anapolis.png", alt: "Recepção da Clínica Fono Inova, clínica de fonoaudiologia em Anápolis", width: 1086, height: 1448 },
-        { src: "/images/clinica/real/sala-espera-psicologa-anapolis.png", alt: "Sala de espera da Clínica Fono Inova, atendimento psicológico infantil em Anápolis", width: 1086, height: 1448 },
-        { src: "/images/clinica/real/consultorio-avaliacao-neuropsicologica-anapolis.png", alt: "Consultório utilizado para avaliação neuropsicológica infantil em Anápolis", width: 1448, height: 1086 },
-        { src: "/images/clinica/real/sala-integracao-sensorial-terapia-ocupacional-anapolis.png", alt: "Sala de integração sensorial com trampolim, terapia ocupacional infantil em Anápolis", width: 1086, height: 1448 },
-        { src: "/images/clinica/real/brinquedoteca-terapia-ocupacional-anapolis.png", alt: "Brinquedoteca da Clínica Fono Inova, usada nas sessões de terapia ocupacional em Anápolis", width: 1672, height: 941 },
-        { src: "/images/clinica/real/escada-ludica-clinica-infantil-anapolis.png", alt: "Escada lúdica e colorida da Clínica Fono Inova, ambiente pensado para o público infantil em Anápolis", width: 1672, height: 941 },
-        { src: "/images/clinica/real/sala-piscina-bolinhas-terapia-ocupacional-anapolis.png", alt: "Sala de estimulação com piscina de bolinhas, terapia ocupacional em Anápolis", width: 1448, height: 1086 },
+        { src: "/images/clinica/real/recepcao-clinica-fonoaudiologa-anapolis.webp", alt: "Recepção da Clínica Fono Inova, clínica de fonoaudiologia em Anápolis", width: 1086, height: 1448 },
+        { src: "/images/clinica/real/sala-espera-psicologa-anapolis.webp", alt: "Sala de espera da Clínica Fono Inova, atendimento psicológico infantil em Anápolis", width: 1086, height: 1448 },
+        { src: "/images/clinica/real/consultorio-avaliacao-neuropsicologica-anapolis.webp", alt: "Consultório utilizado para avaliação neuropsicológica infantil em Anápolis", width: 1448, height: 1086 },
+        { src: "/images/clinica/real/sala-integracao-sensorial-terapia-ocupacional-anapolis.webp", alt: "Sala de integração sensorial com trampolim, terapia ocupacional infantil em Anápolis", width: 1086, height: 1448 },
+        { src: "/images/clinica/real/brinquedoteca-terapia-ocupacional-anapolis.webp", alt: "Brinquedoteca da Clínica Fono Inova, usada nas sessões de terapia ocupacional em Anápolis", width: 1672, height: 941 },
+        { src: "/images/clinica/real/escada-ludica-clinica-infantil-anapolis.webp", alt: "Escada lúdica e colorida da Clínica Fono Inova, ambiente pensado para o público infantil em Anápolis", width: 1672, height: 941 },
+        { src: "/images/clinica/real/sala-piscina-bolinhas-terapia-ocupacional-anapolis.webp", alt: "Sala de estimulação com piscina de bolinhas, terapia ocupacional em Anápolis", width: 1448, height: 1086 },
     ];
 
     const imagesNichos: CarouselImage[] = [
-        { src: "/images/fono-inova-1.png", alt: "Atendimento infantil na Clínica Fono Inova em Anápolis", width: 1024, height: 1024 },
-        { src: "/images/fono-inova-2.png", alt: "Terapeuta atendendo criança na Clínica Fono Inova", width: 1024, height: 1024 },
-        { src: "/images/fono-inova-4.png", alt: "Atendimento multidisciplinar infantil na Clínica Fono Inova", width: 1024, height: 1024 },
+        { src: "/images/fono-inova-1.webp", alt: "Atendimento infantil na Clínica Fono Inova em Anápolis", width: 1024, height: 1024 },
+        { src: "/images/fono-inova-2.webp", alt: "Terapeuta atendendo criança na Clínica Fono Inova", width: 1024, height: 1024 },
+        { src: "/images/fono-inova-4.webp", alt: "Atendimento multidisciplinar infantil na Clínica Fono Inova", width: 1024, height: 1024 },
         { src: "/images/fonoaudiologia/atendimento-premium.png", alt: "Atendimento de fonoaudiologia infantil em Anápolis", width: 640, height: 640 },
-        { src: "/images/fonoaudiologia/img-fono-atendimento-01.png", alt: "Sessão de fonoaudiologia com criança em Anápolis", width: 4495, height: 7995, objectPosition: "center 32%" },
+        { src: "/images/fonoaudiologia/img-fono-atendimento-01.webp", alt: "Sessão de fonoaudiologia com criança em Anápolis", width: 4495, height: 7995, objectPosition: "center 32%" },
         { src: "/images/psicomotricidade-hero.png", alt: "Atendimento de psicomotricidade infantil em Anápolis", width: 640, height: 640 },
         { src: "/images/psicopedagogia-hero.png", alt: "Atendimento de psicopedagogia infantil em Anápolis", width: 640, height: 640 },
         { src: "/images/musicoterapia-hero.png", alt: "Atendimento de musicoterapia infantil em Anápolis", width: 640, height: 640 },
         { src: "/images/terapia-ocupacional/sessao-sensorial.png", alt: "Sala de integração sensorial da Clínica Fono Inova em Anápolis", width: 640, height: 640 },
         { src: "/images/fonoaudiologia/fono2.jpg", alt: "Sessão de fonoaudiologia infantil com jogo de articulação em Anápolis", width: 640, height: 720 },
-        { src: "/images/psicologia/psico3.jpg", alt: "Atendimento de psicologia infantil na Clínica Fono Inova em Anápolis", width: 2121, height: 1414 },
+        { src: "/images/psicologia/psico3.webp", alt: "Atendimento de psicologia infantil na Clínica Fono Inova em Anápolis", width: 2121, height: 1414 },
         { src: "/images/clinica/real/espaco-infantil-real.jpg", alt: "Espaço lúdico real da Clínica Fono Inova em Anápolis", width: 900, height: 1600, objectPosition: "center 30%" },
     ];
 

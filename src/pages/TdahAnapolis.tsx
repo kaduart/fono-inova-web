@@ -99,7 +99,7 @@ export default function TdahAnapolis() {
             <ButtonWhatsApp
               onClick={() => trackButtonClick('WA_Tdah_Hero')}
               message={WHATSAPP_MSG}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-semibold text-lg"
             >
               Quero Avaliar o TDAH do Meu Filho
             </ButtonWhatsApp>

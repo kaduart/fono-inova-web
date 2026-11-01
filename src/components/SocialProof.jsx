@@ -67,7 +67,7 @@ export const UrgencySection = ({ items }) => {
         href="https://wa.me/5562992013573?text=Oi! Vi o site de vocês e gostei muito da clínica.\n\nQueria tirar uma dúvida sobre o atendimento. Pode me ajudar?"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block w-full sm:w-auto text-center bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-semibold transition-colors"
+        className="inline-block w-full sm:w-auto text-center bg-green-700 hover:bg-green-800 text-white px-6 py-3 rounded-full font-semibold transition-colors"
       >
         Agende uma avaliação na Clínica Fono Inova
       </a>

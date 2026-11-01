@@ -198,7 +198,7 @@ const PsicopedagogiaPage = () => {
                             <div className="bg-white rounded-3xl p-6 shadow-2xl transform hover:scale-[1.02] transition-transform duration-300">
                                 <div className="relative h-96 w-full rounded-2xl overflow-hidden bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
                                     <OptimizedImage
-                                        src="/images/psicopedagoga/psicopedagoga.jpeg"
+                                        src="/images/psicopedagoga/psicopedagoga.webp"
                                         alt="Criança em terapia fonoaudiológica"
                                         className="w-full h-full object-cover rounded-2xl"
                                     />

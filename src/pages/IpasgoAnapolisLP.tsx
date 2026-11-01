@@ -187,7 +187,7 @@ const IpasgoAnapolisLP = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Ipasgo Anapolis");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message={WHATSAPP_MESSAGE}
                 >
                   Quero agendar pelo convênio IPASGO
@@ -219,7 +219,7 @@ const IpasgoAnapolisLP = () => {
               <div className="relative">
                 <div className="w-full h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-2xl">
                   <img loading="lazy" decoding="async"
-                    src="/images/sala-TO-clareada.png"
+                    src="/images/sala-TO-clareada.webp"
                     alt="Sala de terapia ocupacional da Clínica Fono Inova, no bairro Jundiaí, em Anápolis"
                     className="w-full h-full object-cover"
                     style={{ objectPosition: "center 55%" }}
@@ -356,7 +356,7 @@ const IpasgoAnapolisLP = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final Ipasgo")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message={WHATSAPP_MESSAGE}
               >
                 Quero agendar pelo convênio IPASGO

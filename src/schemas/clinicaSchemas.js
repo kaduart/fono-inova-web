@@ -836,7 +836,7 @@ export const schemaTesteLinguinhaAnapolis = {
             "bestRating": "5"
         }
     },
-    "image": "https://www.clinicafonoinova.com.br/images/freio-lingual/mae-bb.jpeg"
+    "image": "https://www.clinicafonoinova.com.br/images/freio-lingual/mae-bb.webp"
 };
 
 export const schemaFAQTesteLinguinha = {

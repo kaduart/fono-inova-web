@@ -216,7 +216,7 @@ const PsicologiaInfantilAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Psicologia");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação."
                 >
                   Quero tirar uma dúvida no WhatsApp
@@ -372,7 +372,7 @@ const PsicologiaInfantilAnapolis = () => {
             <div className="text-center">
               <ButtonWhatsApp
                 message="Oi! Meu filho está com dificuldades de comportamento. Gostaria de agendar uma avaliação."
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-all inline-flex items-center gap-2"
               >
                 Quero agendar uma avaliação
               </ButtonWhatsApp>
@@ -451,7 +451,7 @@ const PsicologiaInfantilAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Meu filho está com dificuldades de comportamento. Queria entender se precisa de avaliação."
               >
                 Quero tirar uma dúvida no WhatsApp

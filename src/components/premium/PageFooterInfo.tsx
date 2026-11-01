@@ -64,7 +64,7 @@ export default function PageFooterInfo({
                 <p className="text-slate-700">Quer conversar antes de agendar? Nossa equipe responde pelo WhatsApp.</p>
                 <ButtonWhatsApp
                   message={whatsappMessage}
-                  className="w-full justify-center rounded-xl bg-green-600 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-700"
+                  className="w-full justify-center rounded-xl bg-green-700 px-6 py-3 font-bold text-white shadow-lg transition-all hover:bg-green-800"
                 >
                   <MessageCircle className="h-5 w-5" />
                   Falar no WhatsApp

@@ -1,4 +1,5 @@
 // Componente WhatsApp CTA com tracking completo de origem
+import '../../styles/landing-page-premium.css';
 import { trackEvent } from '../../hooks/useAnalytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 import { getLeadTracking, buildTrackingPayload, buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
@@ -90,7 +91,7 @@ const WhatsAppCTA = ({
   const variants = {
     primary: "lp-btn-primary",
     secondary: "lp-btn-secondary",
-    outline: "border-2 border-green-500 text-green-600 hover:bg-green-50 rounded-full px-6 py-3 font-semibold transition-all"
+    outline: "border-2 border-green-700 text-green-800 hover:bg-green-50 px-6 py-3 font-semibold transition-all"
   };
 
   const sizes = {
@@ -108,8 +109,8 @@ const WhatsAppCTA = ({
       data-tracking-label={trackingLabel}
       className={`
         inline-flex items-center justify-center gap-2 
-        rounded-full transition-all duration-300 
-        transform hover:scale-105 active:scale-95
+        rounded-[14px] transition-all duration-300 min-h-12
+        motion-safe:hover:-translate-y-0.5 active:translate-y-0
         ${variants[variant]}
         ${sizes[size]}
         ${className}

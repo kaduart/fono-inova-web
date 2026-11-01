@@ -283,7 +283,7 @@ const TesteLinguinhaAnapolis = () => {
                   }}
                   lpSlug={PAGE_DATA?.slug}
                   lpCategory={PAGE_DATA?.categoria}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message={PAGE_DATA?.whatsappMessage}
                 >
                   Agendar Teste da Linguinha
@@ -331,7 +331,7 @@ const TesteLinguinhaAnapolis = () => {
             <p className="text-sm text-slate-500 mb-6">Valores e condições pelo WhatsApp. Agende e escolha o melhor período.</p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Investimento Linguinha")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
               message="Oi! Vi o site da Clínica Fono Inova 💚 Quero agendar o Teste da Linguinha do meu bebê."
             >
               Agendar o Teste da Linguinha
@@ -400,7 +400,7 @@ const TesteLinguinhaAnapolis = () => {
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
               lpSlug={PAGE_DATA?.slug}
               lpCategory={PAGE_DATA?.categoria}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
               message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : PAGE_DATA?.whatsappMessage}
             >
               Falar com especialista no WhatsApp
@@ -468,7 +468,7 @@ const TesteLinguinhaAnapolis = () => {
             <div className="mt-12 text-center">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - Sintomas")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
                 message="Oi! Vi o site sobre Teste da Linguinha 💚\nMeu bebê tem alguns desses sinais. Pode me orientar?"
               >
                 Falar com especialista sobre os sinais
@@ -717,7 +717,7 @@ const TesteLinguinhaAnapolis = () => {
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
                 lpSlug={PAGE_DATA?.slug}
                 lpCategory={PAGE_DATA?.categoria}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message={PAGE_DATA?.whatsappMessage}
               >
                 Agendar Teste pelo WhatsApp

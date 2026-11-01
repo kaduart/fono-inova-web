@@ -10,6 +10,8 @@ export default function Reveal({ children, className = '', delay = 0 }: { childr
     const el = ref.current;
     if (!el || typeof IntersectionObserver === 'undefined') return;
     if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
+    // Prerender (navegador automatizado) grava o HTML com tudo visível
+    if (navigator.webdriver) return;
     if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
     setHidden(true);
     const io = new IntersectionObserver(

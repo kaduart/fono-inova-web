@@ -128,7 +128,7 @@ const LinksBio = () => {
 
       {/* Foto de fundo - criança em atendimento, clima acolhedor/premium */}
       <img
-        src="/images/fono-inova-1.png"
+        src="/images/fono-inova-1.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover opacity-90"
@@ -146,7 +146,7 @@ const LinksBio = () => {
         >
           <div className="h-20 w-20 overflow-hidden rounded-full bg-primary shadow-[0_20px_50px_rgba(15,23,42,0.12)]">
             <img
-              src="/images/logos/fono-inova-icon-clean.png"
+              src="/images/logos/fono-inova-icon-clean.webp"
               alt="Clínica Fono Inova"
               className="h-full w-full object-cover"
             />
@@ -181,7 +181,7 @@ const LinksBio = () => {
             <ButtonWhatsApp
               onClick={() => trackButtonClick('Links Bio - WhatsApp Principal')}
               message={WHATSAPP_MESSAGE}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-green-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-green-600/20 transition-all hover:scale-[1.02] hover:bg-green-700 hover:shadow-xl active:scale-[0.98]"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-green-700 px-6 py-4 text-base font-bold text-white shadow-lg shadow-green-600/20 transition-all hover:scale-[1.02] hover:bg-green-800 hover:shadow-xl active:scale-[0.98]"
             >
               <MessageCircle className="h-5 w-5" />
               Falar no WhatsApp
@@ -237,7 +237,7 @@ const LinksBio = () => {
           >
             <div className="h-16 w-16 shrink-0 overflow-hidden rounded-2xl">
               <img
-                src="/images/neuropsicologia/neuro.jpeg"
+                src="/images/neuropsicologia/neuro.webp"
                 alt=""
                 aria-hidden="true"
                 className="h-full w-full object-cover"

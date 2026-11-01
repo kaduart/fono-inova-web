@@ -254,7 +254,7 @@ const LPAvaliacaoInfantil = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Principal");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site sobre avaliação infantil 💚\nÉ para meu filho, pode me orientar?"
                 >
                   Quero agendar uma avaliação
@@ -350,7 +350,7 @@ const LPAvaliacaoInfantil = () => {
             </p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Identificação")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center gap-2"
               message={selectedPain !== null ? painPoints[selectedPain].whatsappMsg : "Oi! Vi o site sobre avaliação infantil 💚\nQuero saber qual atendimento é ideal para meu filho."}
             >
               Falar com especialista no WhatsApp
@@ -444,7 +444,7 @@ const LPAvaliacaoInfantil = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site sobre avaliação infantil 💚\nQuero agendar para meu filho."
               >
                 Agendar avaliação pelo WhatsApp

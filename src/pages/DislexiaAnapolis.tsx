@@ -96,7 +96,7 @@ export default function DislexiaAnapolis() {
             <ButtonWhatsApp
               onClick={() => trackButtonClick('WA_Dislexia_Hero')}
               message={WHATSAPP_MSG}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-semibold text-lg"
             >
               Quero Avaliar a Dislexia do Meu Filho
             </ButtonWhatsApp>

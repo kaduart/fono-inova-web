@@ -1,9 +1,8 @@
 // components/Header.jsx
-import { Button } from '@mui/material';
 import { Calendar, ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logoIconMobile from '../../assets/Icone-logo-cabeca-Fono-Inova-3D.png';
+import logoIconMobile from '../../assets/icone-fono-inova.webp';
 import { trackButtonClick } from '../../hooks/useAnalytics';
 import BookingModal from '../BookingModal';
 
@@ -15,8 +14,13 @@ const Header = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const [scrolled, setScrolled] = useState(false);
     useEffect(() => {
         setMounted(true);
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     const services = [
@@ -50,7 +54,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full bg-white border-b border-slate-200/80 z-50">
+            <header className={`fixed top-0 left-0 w-full z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md border-slate-200/80 shadow-[0_6px_24px_-16px_rgba(15,64,55,0.35)]' : 'bg-white border-transparent'}`}>
                 <div className="max-w-[1355px] mx-auto px-4 lg:px-8 h-16 lg:h-[72px] flex items-center justify-between">
 
                     {/* Logo */}
@@ -99,6 +103,7 @@ const Header = () => {
                         </div>
                         <button onClick={() => scrollToSection('about')} className="py-3 text-slate-700 hover:text-brand-primary-dark font-semibold transition-colors">Sobre</button>
                         <button onClick={() => scrollToSection('testimonials')} className="py-3 text-slate-700 hover:text-brand-primary-dark font-semibold transition-colors">Depoimentos</button>
+                        <Link to="/artigos" className="py-3 text-slate-700 hover:text-brand-primary-dark font-semibold transition-colors">Artigos</Link>
                         <Link to="/faq" className="py-3 text-slate-700 hover:text-brand-primary-dark font-semibold transition-colors">FAQ</Link>
                         <button onClick={handleAgendar} className="pilot-action min-h-10 bg-brand-primary-dark hover:bg-slate-800 text-white px-5 py-2 text-sm shadow-sm hover:shadow-md">
                             Agendar
@@ -131,11 +136,12 @@ const Header = () => {
                                 <button onClick={() => { scrollToSection('about'); setIsMenuOpen(false); }} className="block w-full text-left py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Sobre Nós</button>
                                 <button onClick={() => { scrollToSection('testimonials'); setIsMenuOpen(false); }} className="block w-full text-left py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Depoimentos</button>
                                 <button onClick={() => { scrollToSection('contact'); setIsMenuOpen(false); }} className="block w-full text-left py-2 px-4 text-gray-700 hover:bg-gray-100 rounded">Contato</button>
+                                <Link to="/artigos" className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded" onClick={() => setIsMenuOpen(false)}>Artigos</Link>
                                 <Link to="/faq" className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
                             </div>
-                            <Button onClick={handleAgendar} className="w-full bg-brand-primary-dark hover:bg-slate-800 text-white mt-3 min-h-12 rounded-xl">
+                            <button type="button" onClick={handleAgendar} className="w-full inline-flex items-center justify-center bg-brand-primary-dark hover:bg-slate-800 text-white font-semibold mt-3 min-h-12 rounded-xl">
                                 <Calendar className="w-4 h-4 mr-2" /> Agendar Consulta
-                            </Button>
+                            </button>
                         </nav>
                     </div>
                 )}

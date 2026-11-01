@@ -172,7 +172,7 @@ const BaseAereaAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Base Aerea Anapolis");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message={WHATSAPP_MESSAGE}
                 >
                   Quero agendar pelo convênio BAAN
@@ -324,7 +324,7 @@ const BaseAereaAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final Base Aerea")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message={WHATSAPP_MESSAGE}
               >
                 Quero agendar pelo convênio BAAN

@@ -72,7 +72,7 @@ const ConectaApp = () => {
       message={WHATSAPP_MESSAGE}
       lpSlug="/app"
       lpCategory="app"
-      className={`bg-green-600 hover:bg-green-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
+      className={`bg-green-700 hover:bg-green-800 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all justify-center ${className}`}
     >
       <MessageCircle className="w-5 h-5" />
       {label}

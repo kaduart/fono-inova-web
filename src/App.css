@@ -1,5 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -57,7 +56,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.7 0.15 180); /* Verde esmeralda #4ECDC4 */
+  --primary: oklch(0.52 0.1 176); /* Verde-azulado da marca, mais firme para contraste AA */
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.7 0.12 250); /* Azul suave #6C7CE0 */
   --secondary-foreground: oklch(1 0 0);
@@ -83,10 +82,10 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* Fono Inova — tokens fundamentais do piloto visual */
-  --brand-primary: oklch(0.7 0.15 180);
+  --brand-primary: oklch(0.52 0.1 176);
   --brand-primary-dark: oklch(0.43 0.105 180);
-  --whatsapp: #25d366;
-  --whatsapp-hover: #1ebe5d;
+  --whatsapp: #15803d;
+  --whatsapp-hover: #166534;
   --surface-ivory: #fffdf8;
   --surface-mist: #f4faf9;
   
@@ -206,13 +205,21 @@
 
 
 /* Estilos personalizados */
-.font-inter {
-  font-family: 'Inter', sans-serif;
+.font-inter,
+.font-poppins {
+  font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-.font-poppins {
-  font-family: 'Poppins', sans-serif;
+/* Novo padrão visual (01/11/2026): Figtree em tudo, títulos firmes, verde do WhatsApp com contraste AA */
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Figtree', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-feature-settings: 'ss01' 0;
+  text-rendering: optimizeLegibility;
 }
+h1, h2, h3 { letter-spacing: -0.02em; text-wrap: balance; }
+p { text-wrap: pretty; }
+
 
 /* Gradientes personalizados */
 .gradient-primary {
@@ -629,4 +636,21 @@ textarea:focus {
     opacity: 1;
   }
 
+}
+
+/* Movimento do novo padrão: entradas curtas, nunca escondem conteúdo sem JS e respeitam "reduzir movimento" */
+@keyframes fi-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fi-zoom { from { transform: scale(1.05); } to { transform: none; } }
+@keyframes fi-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.fi-rise { animation: fi-rise .7s cubic-bezier(.2,.8,.2,1) both; }
+.fi-rise-1 { animation-delay: .08s; } .fi-rise-2 { animation-delay: .16s; } .fi-rise-3 { animation-delay: .24s; } .fi-rise-4 { animation-delay: .32s; }
+.fi-zoom { animation: fi-zoom 1.1s cubic-bezier(.2,.8,.2,1) both; }
+.fi-float { animation: fi-float 5s ease-in-out infinite; }
+.fi-lift { transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s; }
+.fi-lift:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(15, 64, 55, .45); }
+.fi-arrow { transition: transform .25s cubic-bezier(.2,.8,.2,1); }
+.group:hover .fi-arrow { transform: translateX(4px); }
+@media (prefers-reduced-motion: reduce) {
+  .fi-rise, .fi-zoom, .fi-float { animation: none; }
+  .fi-lift, .fi-lift:hover, .group:hover .fi-arrow { transition: none; transform: none; }
 }

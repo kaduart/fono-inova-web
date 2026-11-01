@@ -218,7 +218,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
                     trackFormSubmission?.(true);
                     trackButtonClick?.("WhatsApp LP Principal");
                   }}
-                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                   message="Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica."
                 >
                   Quero agendar uma avaliação
@@ -268,7 +268,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
             <p className="text-sm text-slate-500 mb-6">Valores e condições pelo WhatsApp. Tire suas dúvidas antes de agendar.</p>
             <ButtonWhatsApp
               onClick={() => trackButtonClick("WhatsApp - Investimento Neuropsico")}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
+              className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all inline-flex items-center gap-2"
               message="Oi! Vi o site da Clínica Fono Inova 💚 Quero saber mais sobre a avaliação neuropsicológica."
             >
               Quero agendar uma avaliação
@@ -428,7 +428,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <ButtonWhatsApp
                 onClick={() => trackButtonClick("WhatsApp - CTA Final")}
-                className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
+                className="bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all inline-flex items-center justify-center gap-2"
                 message="Oi! Vi o site da Clínica Fono Inova 💚 Quero avaliação neuropsicológica."
               >
                 Agendar avaliação pelo WhatsApp

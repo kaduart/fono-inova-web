@@ -1,6 +1,6 @@
 import { Mail, MessageCircle, Phone } from 'lucide-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import logoImgFooter from '../../assets/LOGO_CLÍNICA_FONO_INOVA_WHITE.png'
+import logoImgFooter from '../../assets/logo-fono-inova-white.webp'
 
 const especialidades = [
     { label: 'Fonoaudiologia em Anápolis', href: '/fonoaudiologia-anapolis' },
