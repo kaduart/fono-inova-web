@@ -178,7 +178,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <ProofBar className="-mt-2 bg-white pb-6" />
+      <ProofBar className="-mt-2 bg-white pb-6" status={false} />
 
       {/* IDENTIFICAÇÃO: cada item abre o WhatsApp já com o assunto */}
       {lp.identification && (

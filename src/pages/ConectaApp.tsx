@@ -132,7 +132,7 @@ const ConectaApp = () => {
         </div>
       </section>
 
-      <ProofBar className="-mt-8 md:-mt-10" />
+      <ProofBar className="-mt-8 md:-mt-10" status={false} />
 
       {/* ==================== O QUE É ==================== */}
       <Reveal><section className="py-14 md:py-20 bg-white">

@@ -654,3 +654,12 @@ textarea:focus {
   .fi-rise, .fi-zoom, .fi-float { animation: none; }
   .fi-lift, .fi-lift:hover, .group:hover .fi-arrow { transition: none; transform: none; }
 }
+
+/* Revelação automática ao rolar (AutoReveal.jsx). Só aplicada no navegador e fora do reduced-motion. */
+.fi-reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s cubic-bezier(.2,.8,.2,1), transform .6s cubic-bezier(.2,.8,.2,1); }
+.fi-reveal.fi-in { opacity: 1; transform: none; }
+/* Cards clicáveis (links em grids) ganham um leve levantar no hover em todas as páginas */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  main .grid > a { transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s, border-color .25s; }
+  main .grid > a:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px rgba(15,64,55,.45); }
+}

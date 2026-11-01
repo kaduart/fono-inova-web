@@ -1,4 +1,5 @@
 import { Clock, MapPin, Star, Users } from 'lucide-react';
+import TeamStatus from '../lp/TeamStatus';
 
 // Barra de prova: só dados confirmados pela clínica (nota 5,0 no Google, +500 famílias, horário e endereço).
 const items = [
@@ -8,7 +9,7 @@ const items = [
   { icon: MapPin, strong: 'Jundiaí, Anápolis', small: 'Av. Minas Gerais, 405' },
 ];
 
-export default function ProofBar({ className = '' }: { className?: string }) {
+export default function ProofBar({ className = '', status = true }: { className?: string; status?: boolean }) {
   return (
     <section aria-label="Informações da clínica" className={`relative z-10 ${className}`}>
       <div className="container mx-auto px-4 lg:px-8">
@@ -25,6 +26,12 @@ export default function ProofBar({ className = '' }: { className?: string }) {
             </li>
           ))}
         </ul>
+        {/* Status do atendimento agora (só no navegador): reforça que alguém responde no WhatsApp */}
+        {status && (
+          <div className="mt-3 flex justify-center">
+            <TeamStatus />
+          </div>
+        )}
       </div>
     </section>
   );

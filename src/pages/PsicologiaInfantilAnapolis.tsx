@@ -162,9 +162,7 @@ const PsicologiaInfantilAnapolis = () => {
 
       {/* ==================== HERO SECTION ==================== */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30" />
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/30 to-pink-200/20 rounded-full blur-3xl opacity-70" />
-        <div className="absolute top-40 -left-20 w-[500px] h-[500px] bg-gradient-to-tr from-amber-200/30 to-orange-200/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
 
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">

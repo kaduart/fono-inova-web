@@ -98,7 +98,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
       <Breadcrumb items={[{ label: 'Plano de saúde e reembolso' }]} />
 
       <section className="relative pt-24 pb-12 md:pt-28 md:pb-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-emerald-50/30" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="order-2 lg:order-1 space-y-6">

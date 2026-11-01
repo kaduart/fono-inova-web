@@ -126,8 +126,7 @@ const PrematuridadePage = () => {
 
       {/* Hero Section */}
       <section className="relative pt-28 pb-12 md:pt-36 md:pb-20 overflow-clip">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50/40 to-cyan-50/30" />
-        <div className="absolute -top-20 -right-20 w-[600px] h-[600px] bg-gradient-to-br from-teal-200/30 to-cyan-200/20 rounded-full blur-3xl opacity-70" />
+        <div className="absolute inset-0 bg-[#f6f9f8]" />
         
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">

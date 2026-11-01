@@ -54,7 +54,9 @@ const ButtonWhatsApp = ({
             type="button"
             onClick={handleClick}
             className={`
-    inline-flex items-center gap-2
+    inline-flex items-center justify-center gap-2 min-h-12 font-semibold
+    transition-[transform,background-color,box-shadow] duration-200 motion-safe:hover:-translate-y-0.5
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-700
     ${sizeClasses[size]}
     ${className}
   `}
