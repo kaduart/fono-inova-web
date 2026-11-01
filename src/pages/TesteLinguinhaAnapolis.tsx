@@ -211,7 +211,7 @@ const TesteLinguinhaAnapolis = () => {
       {/* ==================== BREADCRUMB ==================== */}
       <Breadcrumb 
         items={[
-          { label: 'Freio Lingual', href: '/freio-lingual' },
+          { label: 'Fonoaudiologia', href: '/fonoaudiologia-anapolis' },
           { label: 'Teste da Linguinha em Anápolis' }
         ]} 
       />

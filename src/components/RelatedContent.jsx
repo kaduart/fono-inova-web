@@ -99,9 +99,9 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
 export const articleInterlinks = {
   "atraso-na-fala-como-estimular-linguagem-crianca": {
     landingPages: [
-      { title: "Criança de 2 anos não fala? Veja os sinais de alerta", url: "/lp/crianca-2-anos-nao-fala" },
-      { title: "Tratamento para atraso na fala infantil em Anápolis", url: "/lp/atraso-na-fala-infantil" },
-      { title: "Criança troca letras na fala? Entenda as causas", url: "/lp/troca-letras-crianca" }
+      { title: "Criança de 2 anos não fala? Veja os sinais de alerta", url: "/fala-tardia-anapolis" },
+      { title: "Tratamento para atraso na fala infantil em Anápolis", url: "/fala-tardia-anapolis" },
+      { title: "Criança troca letras na fala? Entenda as causas", url: "/fonoaudiologia-anapolis" }
     ],
     cta: {
       title: "Com dúvidas sobre o desenvolvimento da fala do seu filho?",

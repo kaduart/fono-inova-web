@@ -94,8 +94,8 @@ export const satelliteArticles = [
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
-            <li><a href="/lp/crianca-2-anos-nao-fala" className="text-blue-600 hover:underline">→ Criança de 2 anos não fala? Veja os sinais de alerta</a></li>
-            <li><a href="/lp/atraso-na-fala-infantil" className="text-blue-600 hover:underline">→ Tratamento para atraso na fala infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Criança de 2 anos não fala? Veja os sinais de alerta</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Tratamento para atraso na fala infantil em Anápolis</a></li>
           </ul>
         </div>
 
@@ -222,7 +222,7 @@ export const satelliteArticles = [
             Se seu filho apresenta atraso na fala, a avaliação fonoaudiológica é fundamental. 
             Na Clínica Fono Inova em Anápolis, ajudamos crianças a desenvolverem sua comunicação.
           </p>
-          <a href="/lp/atraso-na-fala-infantil" className="text-blue-600 hover:underline font-semibold">
+          <a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline font-semibold">
             → Saiba mais sobre tratamento para atraso na fala
           </a>
         </div>
@@ -320,7 +320,7 @@ export const satelliteArticles = [
             Na Clínica Fono Inova, oferecemos tratamento especializado para crianças com fala tardia. 
             Nossa equipe desenvolve planos terapêuticos personalizados.
           </p>
-          <a href="/lp/fala-tardia-criancas-quando-preocupar" className="text-green-600 hover:underline font-semibold">
+          <a href="/fala-tardia-anapolis" className="text-green-600 hover:underline font-semibold">
             → Saiba mais sobre fala tardia e tratamento
           </a>
         </div>
@@ -1365,7 +1365,7 @@ export const satelliteArticles = [
 
         <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
           <h3 className="font-bold text-lg mb-2">Fono Infantil em Anápolis</h3>
-          <a href="/fonoaudiologo-anapolis" className="text-green-600 hover:underline font-semibold">
+          <a href="/fonoaudiologia-anapolis" className="text-green-600 hover:underline font-semibold">
             → Encontre um fonoaudiólogo infantil em Anápolis
           </a>
         </div>
@@ -2731,7 +2731,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/como-funciona-terapia-infantil" className="text-blue-600 hover:underline">→ Como funciona a terapia infantil?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -2839,7 +2839,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">→ O que faz um psicólogo infantil?</a></li>
             <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -2919,7 +2919,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/crianca-muito-nervosa-precisa-psicologo" className="text-blue-600 hover:underline">→ Criança muito nervosa precisa de psicólogo?</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3003,7 +3003,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3081,7 +3081,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">→ O que faz um psicólogo infantil?</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3183,7 +3183,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">→ O que faz um psicólogo infantil?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3266,7 +3266,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/crianca-muito-nervosa-precisa-psicologo" className="text-blue-600 hover:underline">→ Criança muito nervosa precisa de psicólogo?</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3350,7 +3350,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3442,7 +3442,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/o-que-faz-psicologo-infantil" className="text-blue-600 hover:underline">→ O que faz um psicólogo infantil?</a></li>
             <li><a href="/artigos/como-funciona-terapia-infantil" className="text-blue-600 hover:underline">→ Como funciona a terapia infantil?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3522,7 +3522,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3601,7 +3601,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3683,7 +3683,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
             <li><a href="/artigos/dificuldades-emocionais-na-escola" className="text-blue-600 hover:underline">→ Dificuldades emocionais na escola</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3765,7 +3765,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/sinais-baixa-autoestima-infantil" className="text-blue-600 hover:underline">→ Sinais de baixa autoestima infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3845,7 +3845,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-ansiedade-infantil" className="text-blue-600 hover:underline">→ Sinais de ansiedade infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/psicologo-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -3927,7 +3927,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4008,7 +4008,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4088,7 +4088,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4169,7 +4169,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4249,7 +4249,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Como o neuropediatra diagnostica o autismo</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4330,7 +4330,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4451,7 +4451,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil: como identificar cedo</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4695,7 +4695,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4779,7 +4779,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
             <li><a href="/artigos/quantas-sessoes-fonoaudiologia" className="text-blue-600 hover:underline">→ Quantas sessões de fonoaudiologia?</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4861,7 +4861,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/primeira-avaliacao-fonoaudiologica" className="text-blue-600 hover:underline">→ Primeira avaliação fonoaudiológica</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -4939,7 +4939,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -5020,7 +5020,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
             <li><a href="/artigos/quando-levar-crianca-fonoaudiologo" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -5243,7 +5243,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
             <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia Ocupacional</a></li>
-            <li><a href="/fonoaudiologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
       </>

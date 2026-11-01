@@ -84,7 +84,7 @@ export const SERVICE_PAGES = [
   { id: 'dificuldade-escolar', name: 'Dificuldade Escolar', path: '/avaliacao-neuropsicologica-dificuldade-escolar', icon: '📚', category: 'aprendizagem' },
   { id: 'fonoaudiologia', name: 'Fonoaudiologia', path: '/fonoaudiologia', icon: '🗣️', category: 'fonoaudiologia' },
   { id: 'psicologia', name: 'Psicologia', path: '/psicologia', icon: '🧠', category: 'psicologia' },
-  { id: 'teste-da-linguinha', name: 'Teste da Linguinha', path: '/freio-lingual', icon: '👶', category: 'fonoaudiologia' },
+  { id: 'teste-da-linguinha', name: 'Teste da Linguinha', path: '/teste-da-linguinha-anapolis', icon: '👶', category: 'fonoaudiologia' },
   { id: 'psicopedagogia', name: 'Psicopedagogia', path: '/psicopedagogia', icon: '📖', category: 'aprendizagem' },
   { id: 'neuropsicologia', name: 'Neuropsicologia', path: '/avaliacao-neuropsicologica', icon: '🧩', category: 'psicologia' },
   { id: 'autismo-tea', name: 'Autismo (TEA)', path: '/avaliacao-autismo-infantil', icon: '🧩', category: 'autismo' },
