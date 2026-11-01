@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
@@ -13,6 +13,7 @@ import Articles from './pages/Articles';
 import NotFoundPage from './pages/NotFoundPage';
 import LandingPage from './pages/lp/LandingPage';
 import ApoioFamilias from './pages/ApoioFamilias';
+import ConectaApp from './pages/ConectaApp';
 import ReembolsoPlanoSaudeAnapolis from './pages/ReembolsoPlanoSaudeAnapolis';
 import ClinicaMultidisciplinar from './pages/ClinicaMultidisciplinar';
 import Home from './pages/Home';
@@ -60,12 +61,25 @@ import LinksBio from './pages/LinksBio';
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
+import { installWhatsAppContactTracking, trackMetaPageView } from './helper/metaPixel';
 
 // Hook simples para analytics (GA4 já faz o tracking)
 const useAnalytics = () => {
   const location = useLocation();
+  const isFirstPage = useRef(true);
 
   useEffect(() => {
+    installWhatsAppContactTracking();
+  }, []);
+
+  useEffect(() => {
+    // O PageView da primeira página já sai do index.html
+    if (isFirstPage.current) {
+      isFirstPage.current = false;
+    } else {
+      trackMetaPageView();
+    }
+
     // Scroll para o topo ao mudar de página
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -177,6 +191,8 @@ function App() {
           {/* Páginas institucionais */}
           <Route path="/privacidade" element={<PrivacidadePage />} />
           <Route path="/apoio-as-familias" element={<ApoioFamilias />} />
+          <Route path="/app" element={<ConectaApp />} />
+          <Route path="/conecta" element={<Navigate to="/app" replace />} />
           <Route path="/reembolso-plano-de-saude-anapolis" element={<ReembolsoPlanoSaudeAnapolis />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}

@@ -67,15 +67,7 @@ const WhatsAppCTA = ({
       });
     }
 
-    // Tracking Meta Pixel (se disponível)
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'Contact', {
-        content_name: trackingLabel,
-        content_category: 'whatsapp',
-        source: tracking.source,
-        campaign: tracking.campaign
-      });
-    }
+    // Meta Contact (pixel + CAPI) sai do listener global em helper/metaPixel.js
 
     // Tracking Google Ads Conversion — mesma ação "Contacto" do botão principal.
     // Antes: label inventado 'whatsapp_lead' (Google descartava) e só disparava com gclid na sessão.
@@ -113,6 +105,7 @@ const WhatsAppCTA = ({
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
+      data-tracking-label={trackingLabel}
       className={`
         inline-flex items-center justify-center gap-2 
         rounded-full transition-all duration-300 
