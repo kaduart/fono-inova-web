@@ -1,9 +1,8 @@
-import { Badge } from '@mui/material';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import { Accessibility, ArrowRight, Award, Baby, Brain, CheckCircle2, Clock, GraduationCap, Heart, MapPin, MessageCircle, PhoneCall, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import TypewriterText from '../components/TypewriterText';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
@@ -131,9 +130,9 @@ const SindromeDeDownPage = () => {
         <div className="relative container mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start">
             <div className="order-2 lg:order-1 space-y-6">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
+              <span className="inline-flex items-center rounded-full border mb-4 bg-primary/10 text-primary border-primary/20 px-4 py-1.5 text-sm font-semibold">
                 Atendimento Especializado em Anápolis
-              </Badge>
+              </span>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
                 <TypewriterText text="Síndrome de Down em Anápolis" />

@@ -1,7 +1,6 @@
-import { Mail, Phone, Star } from '@mui/icons-material';
+import { Star } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import TypewriterText from '../components/TypewriterText';
-import { Badge, Button } from '@mui/material';
 import {
   Accessibility,
   Activity,
@@ -27,7 +26,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
 import Layout from '../components/Layout/index.jsx';
@@ -320,9 +319,9 @@ const PsicomotricidadeAnapolis = () => {
       <section id="identificacao" className="py-24 bg-white">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="mb-4 bg-purple-50 text-purple-600 border-purple-200 px-4 py-1.5 text-sm font-semibold">
+            <span className="inline-flex items-center rounded-full border mb-4 bg-purple-50 text-purple-600 border-purple-200 px-4 py-1.5 text-sm font-semibold">
               Sinais de Alerta
-            </Badge>
+            </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-poppins text-slate-900 mb-4">
               Você se identifica com{" "}
               <span className="text-primary relative inline-block after:content-[''] after:absolute after:bottom-1 after:left-0 after:w-full after:h-2 after:bg-primary/20 after:rounded-full">alguma dessas situações?</span>

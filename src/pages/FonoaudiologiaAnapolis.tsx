@@ -1,4 +1,3 @@
-import { Badge } from '@mui/material';
 import AlertSigns from '../components/premium/AlertSigns';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import TypewriterText from '../components/TypewriterText';
@@ -21,7 +20,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import Layout from '../components/Layout/index.jsx';
 import SEO from '../components/SEO.jsx';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';

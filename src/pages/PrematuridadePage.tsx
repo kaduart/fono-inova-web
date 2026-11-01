@@ -1,9 +1,8 @@
-import { Badge } from '@mui/material';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import { Accessibility, ArrowRight, Award, Baby, Brain, CheckCircle2, Clock, GraduationCap, Heart, MapPin, MessageCircle, PhoneCall, Star, Activity } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import Breadcrumb from '../components/Breadcrumb';
 import Layout from '../components/Layout/index.jsx';
 import TypewriterText from '../components/TypewriterText';

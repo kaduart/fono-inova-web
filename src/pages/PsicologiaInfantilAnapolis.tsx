@@ -1,4 +1,4 @@
-import { Badge } from '@mui/material';
+import { Star } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import AlertSigns from '../components/premium/AlertSigns';
 import {
@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import Layout from '../components/Layout/index.jsx';
 import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO.jsx';
@@ -333,9 +333,9 @@ const PsicologiaInfantilAnapolis = () => {
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="bg-white rounded-2xl shadow-lg p-8 border border-purple-200">
             <div className="text-center mb-6">
-              <Badge className="mb-3 bg-purple-100 text-purple-700 border-purple-300">
+              <span className="inline-flex items-center rounded-full border mb-3 bg-purple-100 text-purple-700 border-purple-300">
                 Quando Procurar Ajuda
-              </Badge>
+              </span>
               <h2 className="text-2xl md:text-3xl font-bold font-poppins">
                 Se você percebe que:
               </h2>

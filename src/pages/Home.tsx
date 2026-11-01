@@ -30,7 +30,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AccessibilityWizard from '../components/AccessibilityWizard.js';
+import AccessibilityWizard from '../components/AccessibilityWizardLazy.jsx';
 import ArticleCard from '../components/ArticleCard.jsx';
 import BookingModal from '../components/BookingModal.jsx';
 import ImageCarousel from '../components/ImageCarousel.jsx';
