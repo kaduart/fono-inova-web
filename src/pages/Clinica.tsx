@@ -215,12 +215,12 @@ const Clinica = () => {
 
                                 <div className="mt-12">
                                     <a
-                                        href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis"
+                                        href="https://www.google.com/maps/dir/?api=1&destination=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis+GO"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="block w-full bg-primary text-white py-4 rounded-xl font-bold text-center hover:bg-primary/90 transition-all"
                                     >
-                                        Ver no Google Maps
+                                        Como chegar
                                     </a>
                                 </div>
                             </div>

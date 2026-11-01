@@ -4,7 +4,7 @@ import ButtonWhatsApp from '../ui/ButtonWhatsapp.jsx';
 import Reveal from './Reveal';
 import { RELATED } from './relatedCatalog';
 
-const MAPS_URL = 'https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis';
+const MAPS_URL = 'https://www.google.com/maps/dir/?api=1&destination=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis+GO';
 
 // "Veja também" (links internos) + "Onde estamos". Só dados confirmados: endereço, horário e WhatsApp oficial.
 export default function PageFooterInfo({

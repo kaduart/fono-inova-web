@@ -2,10 +2,100 @@ DIA 1 (16/10/2026) - FEITO (10/10)
 psicologia-infantil-anapolis, fonoaudiologia-anapolis, autismo-anapolis, tdah-anapolis, neuropediatra-anapolis,
 teste-da-linguinha-anapolis, dislexia-anapolis, terapia-ocupacional-anapolis, psicopedagogia, fala-tardia-anapolis
 
-DIA 2 - PROXIMO
-comportamento-infantil-anapolis, avaliacao-tdah-anapolis, avaliacao-neuropsicologica-anapolis, /, convenio-base-aerea-anapolis,
-fisioterapia-infantil-anapolis, psicomotricidade-anapolis, seletividade-alimentar-anapolis, avaliacao-neuropsicologica-dificuldade-escolar, reembolso-plano-de-saude-anapolis
+DIA 2 (26/10/2026) - 10 solicitacoes confirmadas, COTA DIARIA ESGOTADA (parou em 10)
+Criterio: paginas corrigidas no commit 8f8cb18d + paginas que passaram a ser pre-renderizadas
+1.  avaliacao-neuropsicologica-dificuldade-escolar
+2.  abordagem-multidisciplinar
+3.  artigos/sinais-autismo-crianca
+4.  avaliacao-infantil
+5.  reembolso-plano-de-saude-anapolis
+6.  apoio-as-familias
+7.  lp/gagueira-infantil
+8.  lp/tdah-crianca
+9.  lp/processamento-auditivo
+10. lp/psicopedagogia-anapolis
 
-DIA 3: fonoaudiologia-adulto, musicoterapia, sindrome-de-down, prematuridade-desenvolvimento, nossa-clinica, equipe, abordagem-multidisciplinar, faq, apoio-as-familias, artigos
-DIA 4 (/lp): lp/gagueira-infantil, lp/tdah-crianca, lp/processamento-auditivo, lp/psicopedagogia-anapolis, lp/dificuldade-concentracao, lp/crianca-agressiva, lp/discalculia-matematica, lp/disgrafia-escrita
+TENTATIVA BLOQUEADA PELA COTA - nao repetir hoje (26/10/2026)
+lp/dificuldade-concentracao  -> GSC: "A cota foi excedida. Tente novamente amanha." (26/10)
+Segunda tentativa apos relogin no GSC: MESMA resposta ("A cota foi excedida"). (26/10)
+Nao ha informacao sobre o horario de reset - o GSC so informa que a cota foi excedida.
+Nao tentar de novo enquanto a mensagem aparecer.
+
+DIA 3 (27/10/2026) - COTA RESETADA
+1. lp/dificuldade-concentracao -> Solicitado indexacao - Indexacao solicitada (27/10/2026) ✓
+2. lp/crianca-agressiva -> Solicitado indexacao - Indexacao solicitada (27/10/2026) ✓
+3. lp/discalculia-matematica -> Solicitado indexacao - Indexacao solicitada (27/10/2026) ✓
+4. lp/disgrafia-escrita -> Solicitado indexacao - Indexacao solicitada (27/10/2026) ✓
+
+FILA RESTANTE
+privacidade                  (depriorizada de proposito)
+
+DIA 3: fonoaudiologia-adulto, musicoterapia, sindrome-de-down, prematuridade-desenvolvimento, nossa-clinica, equipe, faq, artigos
+DIA 4 (/lp): restantes
 Depois: artigos (101) - via sitemap; so pedir manual os mais importantes
+
+ESTADO DO SITEMAP
+26/10/2026: Google LEU o sitemap. 144 paginas encontradas, 0 videos, status "Processado".
+Historico de contagem confirmado: 141 na leitura de 22/10, 144 na leitura de 26/10 (esse e o unico salto).
+144 URLs: todas 200 direto, canonical == URL, sem noindex, nao bloqueadas pelo robots.txt, com HTML pre-renderizado.
+
+LASTMOD (corrigido em 69ed1d1a, com evidencia de git)
+- 2026-10-26 em 3 paginas: avaliacao-neuropsicologica-dificuldade-escolar, abordagem-multidisciplinar,
+  artigos/sinais-autismo-crianca (essas sim tiveram HTML alterado em 26/10)
+- as 12 paginas que ganharam prerender NAO receberam 26/10: conteudo nao mudou, so a entrega
+- privacidade: 2026-03-23 (conteudo) - antes 2026-10-19 (data de inclusao no sitemap, errada)
+- lp/gagueira-infantil e lp/processamento-auditivo: 2026-10-08 (fonoaudiologia.js)
+- lp/tdah-crianca, lp/psicopedagogia-anapolis, lp/dificuldade-concentracao, lp/discalculia-matematica,
+  lp/disgrafia-escrita: 2026-10-14 (aprendizagem.js)
+- lp/crianca-agressiva: 2026-10-16 (psicologia.js)
+
+ROBOTS.TXT / INDEXACAO
+- app.clinicafonoinova.com.br (painel de gestao): Disallow / intencional. Nao e erro, nao mexer.
+- /obrigado: permitido no robots.txt + X-Robots-Tag noindex. Padrao correto (Google consegue ler o noindex).
+
+4 "RASTREADAS, MAS NAO INDEXADAS" - ANALISADAS (26/10/2026)
+1. /avaliacao-tea-autismo-infantil    -> era 404 (X-Robots-Tag noindex do shell). Orfa: nao referenciada
+   em nenhuma pagina, fora do sitemap. CORRIGIDA em 144ad7f8: 308 -> /autismo-anapolis (hops=1, 200).
+2. /lp/avaliacao-neuropsicologica-anapolis -> 308 -> /avaliacao-neuropsicologica-anapolis (200, no sitemap,
+   canonical proprio). Duplicata resolvida de proposito via CANONICAL_OVERRIDE no LandingPage.jsx:23.
+   Ultimo rastreamento registrado: 09/06/2026 (a data nao prova o que o servidor respondia na epoca).
+3. /lp/terapia-ocupacional-anapolis   -> 308 -> /terapia-ocupacional-anapolis (200, no sitemap, canonical proprio).
+   Ultimo rastreamento registrado: 16/05/2026 (mesma ressalva).
+4. /lp/sinais-autismo-2-anos          -> 308 -> /autismo-anapolis (200, no sitemap, canonical proprio).
+   Ultimo rastreamento registrado: 30/04/2026 (mesma ressalva).
+
+Conclusao: as 4 respondem 308 -> 200 hoje, confirmado em producao. A 4a era 404 real e foi corrigida.
+Nenhuma das 4 esta no sitemap, nenhuma serve conteudo duplicado. O status do GSC apenas nao foi atualizado
+pelo Google ainda. Validacao desse relatorio nao foi iniciada (opcional, sem impacto na correcao).
+
+CONFERENCIA APOS RELOGIN NO GSC (mesma janela de cota)
+- Reclassificacao das URLs antigas: o GSC AINDA NAO MOSTROU novo rastreamento. O relatorio "Rastreada, mas
+  nao indexada" continua com as MESMAS 4 URLs e as MESMAS datas registradas (12/09, 09/06, 16/05, 30/04).
+  "Pagina com redirecionamento" continua em 20. Isso nao prova ausencia de rastreamento: os relatorios
+  do GSC podem demorar a atualizar.
+- Sitemap: enviado 26/10, lido 26/10, "Processado", 144 paginas, 0 videos. Nao reenviado.
+- Validador 404 (2 paginas) e erro de redirecionamento (1 pagina): seguem "Iniciado", sem resultado.
+- Indexacao das 4 LPs: BLOQUEADA pela cota de novo. Nenhuma das 4 foi aceita; nenhuma tentativa repetida.
+
+VALIDACOES NO GSC (26/10/2026 + 27/10/2026)
+- Nao encontrado (404), 2 paginas: Validacao INICIADA (26/10) ✓
+- Erro de redirecionamento, 1 pagina (psicopedagogia-clinica): Validacao INICIADA (26/10) ✓
+- Pagina com redirecionamento (20), Bloqueada pelo robots.txt (1), Rastreada nao indexada (4): sem validacao, sem acao (27/10 - conferido)
+
+STATUS: As validacoes ja estavam iniciadas. Nao houve gasto de cota para novas solicitacoes. Nada a fazer hoje.
+
+BING (26/10/2026)
+- Bing Webmaster Tools: propriedade www.clinicafonoinova.com.br, logado. Verificacao veio do GSC
+  (importacao), nao por arquivo: /BingSiteAuth.xml NAO existe em public/ e devolve o shell HTML com 200.
+- Sitemap: ja existia, enviado 22/10, rastreado 24/10, status Success, 141 URLs (nosso ja tinha 144).
+  REENVIADO em 26/10: "successfully submitted for processing". Status agora: Processing, URLs = 141 (atualiza
+  apos o crawl). Nao reenviar de novo sem motivo.
+- IndexNow: chave fc27b457-c887-4f8a-b534-952bfd2d147f publicada e valida (public/*.txt).
+  14 URLs enviadas e aceitas (200): as 3 com HTML alterado em 26/10 + 11 que sairam do shell vazio.
+  /privacidade ficou FORA por instrucao (era a 12a).
+  Comando: node scripts/indexnow.js --bulk <arquivo>
+- ACHADO (nao corrigido, precisa de aprovacao): middleware.js libera qualquer path com extensao antes do
+  guard de 404. Resultado: URL inexistente com extensao (.xml/.html/.txt/.png/.js) devolve 200 com o shell
+  do site; sem extensao devolve 404 + noindex. Isso e soft 404 e e o motivo de verificacao por arquivo
+  (Bing/Yandex) ser impossivel hoje. Correcao sugerida: so deixar passar extensao se o arquivo existir de
+  fato (ou gerar rewrites a partir de prerender-routes.json e deixar o resto cair no 404 da Vercel).

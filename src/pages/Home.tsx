@@ -1197,24 +1197,34 @@ function Home() {
                 </div>
               </div>
 
-              {/* Mapa ou imagem */}
-              <div className="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white flex flex-col justify-center items-center text-center shadow-xl">
-                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mb-6">
-                  <MapPin className="w-10 h-10" />
+              {/* Localização e rotas */}
+              <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
+                <iframe
+                  title="Mapa da Clínica Fono Inova em Anápolis"
+                  src="https://www.google.com/maps?q=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis&output=embed"
+                  className="h-72 w-full border-0 sm:h-80"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+                <div className="p-6 sm:p-8">
+                  <h3 className="mb-3 text-2xl font-bold text-slate-900">Como chegar à Fono Inova</h3>
+                  <p className="mb-5 text-slate-600">
+                    Avenida Minas Gerais, 405, bairro Jundiaí, Anápolis/GO.
+                    Abra o Google Maps para escolher seu ponto de partida e consultar o trajeto e o tempo de viagem.
+                  </p>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=Cl%C3%ADnica+Fono+Inova+Av.+Minas+Gerais+405+Jundia%C3%AD+An%C3%A1polis+GO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackButtonClick('Como chegar - Home')}
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border-2 border-teal-700 px-6 py-3 font-semibold text-teal-800 transition-colors hover:bg-teal-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal-700 sm:w-auto"
+                  >
+                    <MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    Como chegar
+                    <span className="sr-only"> (abre o Google Maps em uma nova aba)</span>
+                  </a>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Venha nos Conhecer</h3>
-                <p className="text-white/90 mb-6">
-                  Estamos localizados no bairro Jundiaí, em Anápolis/GO, com fácil acesso.
-                </p>
-                <a
-                  href="https://maps.google.com/?q=Avenida+Minas+Gerais+405+Anápolis+GO"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-white text-primary px-6 py-3 rounded-xl font-semibold hover:bg-slate-100 transition-colors inline-flex items-center gap-2 shadow-lg"
-                >
-                  <MapPin className="w-5 h-5" />
-                  Ver no Google Maps
-                </a>
               </div>
             </div>
           </div>
