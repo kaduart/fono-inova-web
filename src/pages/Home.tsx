@@ -1228,7 +1228,7 @@ function Home() {
       {/* ==================== SEO ==================== */}
       <SEO
         title="Clínica Fono Inova em Anápolis | Fonoaudiologia e Psicologia Infantil"
-        description="Clínica Fono Inova (Clínica Inova) em Anápolis: fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia no mesmo lugar. Fala, autismo, TDAH e aprendizagem."
+        description="Clínica Fono Inova (Clínica Inova) em Anápolis: fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil. Fala, autismo, TDAH e aprendizagem."
         keywords="clínica inova anápolis, fono inova, clínica innova, clínica fonoaudiologia anápolis, fonoaudiólogo infantil, psicologia infantil, terapia ocupacional, fala tardia, autismo"
         image="/images/og-image.jpg"
         url="/"

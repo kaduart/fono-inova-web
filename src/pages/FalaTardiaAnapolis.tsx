@@ -53,7 +53,7 @@ export default function FalaTardiaAnapolis() {
     <Layout>
       <SEO
         title="Fala Tardia Infantil em Anápolis | Clínica Fono Inova"
-        description="Seu filho está com atraso na fala em Anápolis? Fonoaudióloga especialista em linguagem infantil. Avaliação completa no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
+        description="Seu filho está com atraso na fala? Fonoaudióloga especialista em linguagem infantil em Anápolis, bairro Jundiaí. Avaliação completa. Agende pelo WhatsApp."
         keywords="fala tardia anapolis, meu filho não fala, atraso de fala anapolis, fonoaudióloga fala tardia anapolis, 2 anos não fala anapolis, criança demora falar anapolis"
         url="https://www.clinicafonoinova.com.br/fala-tardia-anapolis"
         image="/images/og-image.jpg"

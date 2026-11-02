@@ -722,7 +722,7 @@ export const aprendizagemLPs = [
     category: "aprendizagem",
 
     title: "Psicopedagogia em Anápolis: Dificuldade Escolar Tem Solução",
-    description: "Seu filho tem dificuldade na escola? A psicopedagogia identifica a causa e cria um plano para ajudar. Clínica Fono Inova no bairro Jundiaí, Anápolis. Agende pelo WhatsApp.",
+    description: "Seu filho tem dificuldade na escola? A psicopedagogia identifica a causa e cria um plano para ajudar. Clínica Fono Inova em Anápolis. Agende pelo WhatsApp.",
     keywords: ["psicopedagogia anapolis", "dificuldade escolar anapolis", "psicopedagoga anapolis", "apoio escolar anapolis", "dificuldade aprendizagem anapolis"],
 
     author: "Equipe Clínica Fono Inova",

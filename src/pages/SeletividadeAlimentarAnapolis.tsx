@@ -83,7 +83,7 @@ export default function SeletividadeAlimentarAnapolis() {
     <Layout>
       <SEO
         title="Seletividade Alimentar Infantil em Anápolis | Clínica Fono Inova"
-        description="Seu filho não come e rejeita a maioria dos alimentos? Seletividade alimentar infantil em Anápolis. Fonoaudióloga e terapeuta ocupacional especializadas. Bairro Jundiaí. (62) 99201-3573."
+        description="Seu filho rejeita a maioria dos alimentos? Seletividade alimentar infantil em Anápolis com fonoaudióloga e terapeuta ocupacional. Agende pelo WhatsApp."
         keywords="seletividade alimentar anapolis, meu filho não come, criança seletiva alimentar anapolis, criança rejeita comida anapolis, tratamento seletividade alimentar anapolis"
         url="https://www.clinicafonoinova.com.br/seletividade-alimentar-anapolis"
         image="/images/og-image.jpg"

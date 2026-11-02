@@ -5734,7 +5734,7 @@ export const satelliteArticles = [
     id: 161,
     slug: "quanto-tempo-dura-avaliacao-neuropsicologica",
     title: "Quanto Tempo Dura a Avaliação Neuropsicológica Infantil?",
-    excerpt: "Saiba quanto tempo dura a avaliação neuropsicológica infantil, quantas sessões são necessárias, como é o passo a passo, quando o laudo fica pronto e como preparar a criança.",
+    excerpt: "Quanto tempo dura a avaliação neuropsicológica infantil, quantas sessões são necessárias, quando o laudo fica pronto e como preparar a criança.",
     category: "Neuropsicologia",
     categoryColor: "secondary",
     author: "Equipe Clínica Fono Inova",
