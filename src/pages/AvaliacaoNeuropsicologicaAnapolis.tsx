@@ -127,7 +127,7 @@ const AvaliacaoNeuropsicologicaAnapolis = () => {
       {/* SEO otimizado para LP de conversão */}
       <SEO
         title="Avaliação Neuropsicológica em Anápolis | TDAH, Déficit de Atenção | Clínica Fono Inova"
-        description="Avaliação neuropsicológica especializada em Anápolis para diagnóstico de TDAH, déficit de atenção e problemas de aprendizagem. Agende sua consulta. Atendimento humanizado e multidisciplinar."
+        description="Avaliação neuropsicológica em Anápolis para TDAH, déficit de atenção e dificuldades de aprendizagem. Atendimento humanizado e multidisciplinar."
         keywords="avaliação neuropsicológica anápolis, tdah anápolis, déficit de atenção anápolis, avaliação psicológica infantil anápolis, diagnóstico tdah anápolis"
         image="/images/clinica/ia/avaliacao-neuropsicologica.webp"
         url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis"

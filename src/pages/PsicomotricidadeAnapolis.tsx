@@ -181,8 +181,8 @@ const PsicomotricidadeAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Psicomotricidade Infantil em Anápolis | Coordenação Motora e Equilíbrio | Clínica Fono Inova"
-        description="Psicomotricidade infantil em Anápolis. Tratamento especializado para coordenação motora, equilíbrio, postura e desenvolvimento motor. Agende uma avaliação na Clínica Fono Inova."
+        title="Psicomotricidade Infantil em Anápolis | Coordenação Motora | Clínica Fono Inova"
+        description="Psicomotricidade infantil em Anápolis para coordenação motora, equilíbrio, postura e desenvolvimento motor. Agende uma avaliação na Clínica Fono Inova."
         keywords="psicomotricidade anápolis, coordenação motora infantil anápolis, equilíbrio infantil anápolis, psicomotricidade infantil anápolis, desenvolvimento motor anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/psicomotricidade-anapolis"

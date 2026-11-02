@@ -148,7 +148,7 @@ const ApoioFamilias = () => {
     <Layout>
       <SEO
         title="Apoio às Famílias: Acesso às Terapias e Documentação Clínica | Clínica Fono Inova"
-        description="Apoio às famílias no acesso às terapias: organização de documentos clínicos, informações oficiais sobre direitos e benefícios e próximos passos com a Clínica Fono Inova, em Anápolis-GO."
+        description="Apoio às famílias no acesso às terapias: documentos clínicos, informações oficiais sobre direitos e benefícios e próximos passos na Clínica Fono Inova."
         url="/apoio-as-familias"
         image="/images/clinica/ia/apoio-familias.webp"
       />

@@ -90,7 +90,7 @@ const BaseAereaAnapolis = () => {
       {/* SEO otimizado para LP de conversão */}
       <SEO
         title="Convênio Base Aérea em Anápolis (BAAN) | Fono Inova"
-        description="Clínica Fono Inova credenciada ao convênio da Base Aérea de Anápolis (BAAN). Fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí. Agende pelo WhatsApp (62) 99201-3573."
+        description="Clínica Fono Inova credenciada ao convênio da Base Aérea de Anápolis (BAAN): fono, psicologia, terapia ocupacional e fisioterapia infantil. Agende pelo WhatsApp."
         keywords="convenio base aerea anapolis, clinica atende base anapolis, baan anapolis, fonoaudiologia base aerea anapolis, convenio baan"
         image="/images/clinica/ia/convenio-base-aerea-orientacao-familia.webp"
         url="https://www.clinicafonoinova.com.br/convenio-base-aerea-anapolis"

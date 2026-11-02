@@ -82,8 +82,8 @@ const ConectaApp = () => {
   return (
     <Layout>
       <SEO
-        title="App FonoInova Conecta: Triagem Gratuita do Desenvolvimento Infantil (0 a 6 anos)"
-        description="Conheça o FonoInova Conecta: app gratuito da Clínica Fono Inova com triagem por idade e missões diárias criadas por fonoaudiólogas para acompanhar o desenvolvimento do seu filho de 0 a 6 anos. Entre na lista de espera."
+        title="App FonoInova Conecta: Triagem Infantil Gratuita (0 a 6 anos)"
+        description="FonoInova Conecta: app gratuito da Clínica Fono Inova com triagem por idade e missões diárias criadas por fonoaudiólogas para crianças de 0 a 6 anos."
         url="/app"
         image="/images/conecta/resultado.png"
       />

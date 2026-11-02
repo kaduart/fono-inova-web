@@ -87,8 +87,8 @@ const ReembolsoPlanoSaudeAnapolis = () => {
   return (
     <Layout>
       <SEO
-        title="Plano de Saúde e Reembolso: Fonoaudiologia e Terapias Infantis em Anápolis | Fono Inova"
-        description="Atendimento particular com recibo para pedir reembolso ao plano de saúde: fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil em Anápolis. Veja como funciona."
+        title="Reembolso do Plano de Saúde para Terapias Infantis em Anápolis | Fono Inova"
+        description="Atendimento particular com recibo para reembolso do plano de saúde: fono, psicologia, terapia ocupacional e fisioterapia infantil em Anápolis."
         keywords="reembolso plano de saúde fonoaudiologia anápolis, fonoaudiólogo plano de saúde anápolis, terapia infantil reembolso, fisioterapia infantil plano de saúde anápolis"
         url="/reembolso-plano-de-saude-anapolis"
         image="/images/clinica/ia/reembolso-plano-saude.webp"

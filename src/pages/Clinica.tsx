@@ -24,7 +24,7 @@ const Clinica = () => {
         <Layout>
             <SEO
                 title="Nossa Clínica em Anápolis | Estrutura e Equipe Fono Inova"
-                description="Conheça a Clínica Fono Inova em Anápolis. Infraestrutura moderna, equipe especializada em fonoaudiologia, psicologia, terapia ocupacional e neuropsicologia infantil. Bairro Jundiaí."
+                description="Conheça a Clínica Fono Inova no bairro Jundiaí, em Anápolis: estrutura e equipe de fonoaudiologia, psicologia, terapia ocupacional e neuropsicologia infantil."
                 keywords="clínica infantil anápolis, clínica fonoaudiologia anápolis, neuropsicologia infantil anápolis, terapia ocupacional anápolis, psicologia infantil anápolis, bairro jundiaí"
                 image="/images/clinica/fachada-premium.png"
                 url="/nossa-clinica"

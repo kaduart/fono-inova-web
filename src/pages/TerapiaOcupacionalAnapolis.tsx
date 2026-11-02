@@ -127,7 +127,7 @@ const TerapiaOcupacionalAnapolis = () => {
       {/* SEO otimizado para LP de conversão */}
       <SEO
         title="Terapia Ocupacional Infantil em Anápolis | Fono Inova"
-        description="Terapia ocupacional infantil em Anápolis: coordenação, integração sensorial e autonomia no dia a dia. Avaliação e plano personalizado. Nota 5,0 no Google. Agende pelo WhatsApp."
+        description="Terapia ocupacional infantil em Anápolis: coordenação, integração sensorial e autonomia. Avaliação e plano personalizado. Nota 5,0 no Google."
         keywords="meu filho é desastrado, terapia ocupacional anápolis, coordenação motora anápolis, integração sensorial anápolis, to infantil anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis"

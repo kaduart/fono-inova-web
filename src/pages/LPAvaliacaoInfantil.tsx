@@ -164,7 +164,7 @@ const LPAvaliacaoInfantil = () => {
       {/* SEO otimizado para LP de conversão */}
       <SEO
         title="Avaliação Infantil em Anápolis | Fala Tardia, Autismo, TDAH | Clínica Fono Inova"
-        description="Avaliação especializada em Anápolis para fala tardia, autismo, TDAH e dificuldades de aprendizagem. Agende pela primeira consulta. Atendimento humanizado e multidisciplinar."
+        description="Avaliação em Anápolis para fala tardia, autismo, TDAH e dificuldades de aprendizagem. Atendimento humanizado e multidisciplinar. Agende a primeira consulta."
         keywords="avaliação infantil anápolis, avaliação fala tardia anápolis, avaliação autismo anápolis, fonoaudiólogo infantil anápolis"
         image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/avaliacao-infantil"
