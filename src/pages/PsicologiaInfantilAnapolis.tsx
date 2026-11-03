@@ -410,7 +410,7 @@ const PsicologiaInfantilAnapolis = () => {
             <li>Orientação aos pais sobre rotina, limites e desenvolvimento</li>
           </ul>
           <p className="text-slate-600">
-            Atendimento de segunda a sexta, das 8h às 18h, na Av. Minas Gerais, 405, Jundiaí, Anápolis. Valores e horários pelo WhatsApp.
+            Atendimento de segunda a sexta, das 8h às 19h, na Av. Minas Gerais, 405, Jundiaí, Anápolis. Valores e horários pelo WhatsApp.
           </p>
         </div>
       </section>
@@ -471,7 +471,7 @@ const PsicologiaInfantilAnapolis = () => {
                 <span className="font-medium">Clínica Fono Inova</span>
               </div>
               <p className="text-sm text-slate-500">
-                Anápolis - GO • Atendimento: Segunda a Sexta, 8h às 18h
+                Anápolis - GO • Atendimento: Segunda a Sexta, 8h às 19h
               </p>
             </div>
           </div>

@@ -413,7 +413,7 @@ const LandingPage = () => {
           <ul className="mt-4 flex flex-col flex-wrap justify-center gap-x-8 gap-y-3 text-emerald-50/90 md:flex-row">
             <li className="inline-flex items-center gap-2"><MapPin className="h-5 w-5" aria-hidden="true" />{lp.localInfo.endereco}</li>
             <li className="inline-flex items-center gap-2"><Phone className="h-5 w-5" aria-hidden="true" />WhatsApp: (62) 99201-3573</li>
-            <li className="inline-flex items-center gap-2"><Clock className="h-5 w-5" aria-hidden="true" />Atendimento: Seg-Sex 8h-18h</li>
+            <li className="inline-flex items-center gap-2"><Clock className="h-5 w-5" aria-hidden="true" />Atendimento: Seg-Sex 8h-19h</li>
           </ul>
         </Reveal>
       </section>

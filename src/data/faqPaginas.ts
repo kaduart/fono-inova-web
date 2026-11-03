@@ -263,6 +263,6 @@ export const faqFalaTardia: FAQItem[] = [
   {
     question: 'Onde fica a clínica de fonoaudiologia no Jundiaí?',
     answer:
-      'A Fono Inova fica na Av. Minas Gerais, 405, bairro Jundiaí, em Anápolis/GO. Atendemos de segunda a sexta, das 8h às 18h, com acessibilidade no espaço.',
+      'A Fono Inova fica na Av. Minas Gerais, 405, bairro Jundiaí, em Anápolis/GO. Atendemos de segunda a sexta, das 8h às 19h, com acessibilidade no espaço.',
   },
 ];

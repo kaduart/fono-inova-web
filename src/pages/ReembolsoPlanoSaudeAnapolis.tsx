@@ -210,7 +210,7 @@ const ReembolsoPlanoSaudeAnapolis = () => {
             <p className="text-slate-700 leading-relaxed">
               Fonoaudiologia, psicologia, terapia ocupacional, fisioterapia, neuropediatria e avaliação neuropsicológica na mesma clínica, com a equipe conversando sobre a criança. Menos deslocamento para a família e um plano terapêutico único.
             </p>
-            <p className="mt-4 text-slate-700 leading-relaxed">Atendimento de segunda a sexta, das 8h às 18h, na Av. Minas Gerais, 405, Jundiaí, Anápolis.</p>
+            <p className="mt-4 text-slate-700 leading-relaxed">Atendimento de segunda a sexta, das 8h às 19h, na Av. Minas Gerais, 405, Jundiaí, Anápolis.</p>
           </div>
         </div>
       </section></Reveal>

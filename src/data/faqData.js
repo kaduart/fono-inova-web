@@ -15,7 +15,7 @@ export const faqItems = [
     },
     {
         pergunta: 'Qual o horário de atendimento?',
-        resposta: 'De segunda a sexta-feira, das 8h às 18h.'
+        resposta: 'De segunda a sexta-feira, das 8h às 19h.'
     },
     {
         pergunta: 'A clínica atende por convênio?',

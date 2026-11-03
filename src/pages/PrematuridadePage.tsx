@@ -316,7 +316,7 @@ const PrematuridadePage = () => {
                 <span className="font-medium">Clínica Fono Inova</span>
               </div>
               <p className="text-sm text-slate-500">
-                Anápolis - GO • Bairro Jundiaí • Atendimento: Segunda a Sexta, 8h às 18h
+                Anápolis - GO • Bairro Jundiaí • Atendimento: Segunda a Sexta, 8h às 19h
               </p>
             </div>
           </div>
