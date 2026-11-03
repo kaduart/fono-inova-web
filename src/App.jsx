@@ -11,6 +11,7 @@ const AnalyticsTest = lazy(() => import('./components/AnalyticsTest'));
 const ArticlePage = lazy(() => import('./pages/Article'));
 const Articles = lazy(() => import('./pages/Articles'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const TriagemMchat = lazy(() => import('./pages/TriagemMchat'));
 const LandingPage = lazy(() => import('./pages/lp/LandingPage'));
 const ApoioFamilias = lazy(() => import('./pages/ApoioFamilias'));
 const ConectaApp = lazy(() => import('./pages/ConectaApp'));
@@ -62,6 +63,7 @@ const LinksBio = lazy(() => import('./pages/LinksBio'));
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
 import { installWhatsAppContactTracking, trackMetaPageView } from './helper/metaPixel';
+import { mchatEnabled } from './lib/mchat/items.js';
 
 // Hook simples para analytics (GA4 já faz o tracking)
 const useAnalytics = () => {
@@ -185,6 +187,8 @@ function App() {
           {/* Long-tail local — intenção emocional + geo */}
           <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />
           <Route path="/autismo-anapolis" element={<AutismoAnapolis />} />
+          {/* M-CHAT: só monta depois da autorização dos autores (docs/MCHAT.md) */}
+          {mchatEnabled() && <Route path="/triagem-autismo-m-chat" element={<TriagemMchat />} />}
           <Route path="/seletividade-alimentar-anapolis" element={<SeletividadeAlimentarAnapolis />} />
           <Route path="/tdah-anapolis" element={<TdahAnapolis />} />
           <Route path="/dislexia-anapolis" element={<DislexiaAnapolis />} />
