@@ -32,6 +32,7 @@ export const sendLeadToCRM = async (leadData) => {
                 nome: leadData.name,
                 telefone: leadData.phone,
                 email: leadData.email,
+                faixaEtaria: leadData.faixaEtaria || null,
             },
 
             // Contexto da conversão (do GA4/dataLayer)
