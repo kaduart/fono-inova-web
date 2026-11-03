@@ -5,7 +5,7 @@ import TeamStatus from '../lp/TeamStatus';
 const items = [
   { icon: Star, strong: '5,0 no Google', small: 'avaliação das famílias' },
   { icon: Users, strong: '+500 famílias', small: 'atendidas' },
-  { icon: Clock, strong: 'Seg a sex', small: 'das 8h às 18h' },
+  { icon: Clock, strong: 'Seg a sex', small: 'das 8h às 19h' },
   { icon: MapPin, strong: 'Jundiaí, Anápolis', small: 'Av. Minas Gerais, 405' },
 ];
 

@@ -210,7 +210,7 @@ const ArticlePage = () => {
                     <aside className="min-w-0 flex-[1_1_280px] lg:sticky lg:top-28">
                         <div className="flex flex-col gap-3 rounded-2xl p-6 ring-1 ring-slate-200">
                             <p className="text-lg font-bold leading-snug text-slate-900">Avaliação na Clínica Fono Inova</p>
-                            <p className="text-sm text-slate-600">Jundiaí, Anápolis · Seg a sex, 8h às 18h · <b className="text-slate-900">5,0</b> no Google</p>
+                            <p className="text-sm text-slate-600">Jundiaí, Anápolis · Seg a sex, 8h às 19h · <b className="text-slate-900">5,0</b> no Google</p>
                             <ButtonWhatsApp message={waArticleMsg} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-green-700 px-5 font-bold text-white transition-all hover:bg-green-800 motion-safe:hover:-translate-y-0.5">
                                 <MessageCircle className="h-5 w-5" aria-hidden="true" /> Agendar pelo WhatsApp
                             </ButtonWhatsApp>

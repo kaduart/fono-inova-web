@@ -57,7 +57,7 @@ export default function PageFooterInfo({
                 <Clock className="mt-0.5 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
                 <div>
                   <p className="font-semibold text-slate-900">Horário de atendimento</p>
-                  <p className="text-slate-600">Segunda a sexta, das 8h às 18h</p>
+                  <p className="text-slate-600">Segunda a sexta, das 8h às 19h</p>
                 </div>
               </div>
               <div className="flex flex-col justify-center gap-3 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">

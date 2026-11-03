@@ -376,7 +376,7 @@ const IpasgoAnapolisLP = () => {
                 <span className="font-medium">Clínica Fono Inova — bairro Jundiaí, Anápolis</span>
               </div>
               <p className="text-sm text-slate-500">
-                Bairro Jundiaí, Anápolis - GO • Atendimento: Segunda a Sexta, 8h às 18h
+                Bairro Jundiaí, Anápolis - GO • Atendimento: Segunda a Sexta, 8h às 19h
               </p>
             </div>
           </div>

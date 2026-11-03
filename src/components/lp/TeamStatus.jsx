@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// Status honesto do atendimento, pelo horário de Brasília: seg a sex, 8h às 18h.
+// Status honesto do atendimento, pelo horário de Brasília: seg a sex, 8h às 19h.
 // Dentro do horário: "respondendo agora". Fora: diz quando a equipe volta.
 function statusNow() {
   const parts = new Intl.DateTimeFormat('pt-BR', {
@@ -9,8 +9,8 @@ function statusNow() {
   const wd = parts.find((p) => p.type === 'weekday')?.value?.replace('.', '').toLowerCase() || '';
   const h = Number(parts.find((p) => p.type === 'hour')?.value);
   const weekday = !['sáb', 'sab', 'dom'].includes(wd);
-  if (weekday && h >= 8 && h < 18) return { open: true, text: 'Equipe respondendo agora no WhatsApp' };
-  const backTomorrow = weekday ? h >= 18 && wd !== 'sex' : false;
+  if (weekday && h >= 8 && h < 19) return { open: true, text: 'Equipe respondendo agora no WhatsApp' };
+  const backTomorrow = weekday ? h >= 19 && wd !== 'sex' : false;
   const when = weekday && h < 8 ? 'hoje a partir das 8h' : backTomorrow ? 'amanhã a partir das 8h' : 'segunda a partir das 8h';
   return { open: false, text: `Deixe sua mensagem: a equipe responde ${when}` };
 }
