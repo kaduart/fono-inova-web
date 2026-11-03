@@ -179,7 +179,7 @@ export const schemaHome = {
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
-        "reviewCount": "36",
+        "reviewCount": "44",
         "bestRating": "5"
     }
 };
@@ -845,7 +845,7 @@ export const schemaTesteLinguinhaAnapolis = {
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": "5.0",
-            "reviewCount": "36",
+            "reviewCount": "44",
             "bestRating": "5"
         }
     },
