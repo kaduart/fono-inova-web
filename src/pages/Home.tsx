@@ -47,7 +47,7 @@ import {
   trackWhatsAppClick
 } from '../hooks/useAnalytics';
 import { useFormTracking } from '../hooks/useFormTracking.js';
-import { schemaHome } from '../schemas/clinicaSchemas.js';
+import { schemaHome, schemaWebsite } from '../schemas/clinicaSchemas.js';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 
 const WHATSAPP_URL =
@@ -1233,7 +1233,7 @@ function Home() {
         image="/images/og-image.jpg"
         url="/"
         type="website"
-        schema={schemaHome}
+        schema={[schemaHome, schemaWebsite]}
       />
 
       {/* Estilos adicionais */}

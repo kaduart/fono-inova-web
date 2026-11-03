@@ -176,8 +176,8 @@ const PrivacidadePage = () => {
                         </p>
                         <div className="space-y-2 text-gray-700">
                             <p><strong>E-mail:</strong> contato@clinicafonoinova.com.br</p>
-                            <p><strong>WhatsApp:</strong> (62) 99331-5967</p>
-                            <p><strong>Endereço:</strong> Anápolis - GO</p>
+                            <p><strong>WhatsApp:</strong> (62) 99201-3573</p>
+                            <p><strong>Endereço:</strong> Av. Minas Gerais, 405 - Jundiaí, Anápolis - GO, 75110-770</p>
                         </div>
                     </div>
 
