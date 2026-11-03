@@ -29,6 +29,7 @@ export const useCRMIntegration = () => {
             name: leadData.name,
             phone: leadData.phone,
             email: leadData.email,
+            faixaEtaria: leadData.faixaEtaria,
             serviceInterest: leadData.serviceInterest || '',
             formSource: leadData.formSource || 'modal_agendamento'
         });

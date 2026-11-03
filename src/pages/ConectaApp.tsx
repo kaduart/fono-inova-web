@@ -8,6 +8,8 @@ import ProofBar from '../components/premium/ProofBar';
 import Reveal from '../components/premium/Reveal';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { trackButtonClick } from '../hooks/useAnalytics';
+import { useState } from 'react';
+import { useCRMIntegration } from '../hooks/useCRMIntegration';
 
 // Landing page do app FonoInova Conecta (pré-cadastro / lista de espera).
 // App gratuito de triagem do desenvolvimento infantil (0 a 6 anos) + missões diárias.
@@ -66,6 +68,97 @@ const faqs = [
 ];
 
 const ConectaApp = () => {
+
+  const WaitlistForm = () => {
+    const { submitLead } = useCRMIntegration();
+    const [form, setForm] = useState({ name: '', phone: '', faixaEtaria: '' });
+    const [sending, setSending] = useState(false);
+    const [done, setDone] = useState(false);
+    const [err, setErr] = useState('');
+
+    const maskPhone = (v: string) => {
+      const d = v.replace(/\D/g, '').slice(0, 11);
+      if (d.length <= 2) return d;
+      if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+      return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setErr('');
+      if (!form.name.trim() || form.phone.replace(/\D/g, '').length < 10) {
+        setErr('Preencha nome e um WhatsApp válido.');
+        return;
+      }
+      setSending(true);
+      try {
+        const r = await submitLead({
+          name: form.name.trim(),
+          phone: form.phone,
+          faixaEtaria: form.faixaEtaria || undefined,
+          formSource: 'conecta_waitlist',
+        });
+        if (r?.success === false) throw new Error(r.error || 'falha');
+        setDone(true);
+      } catch {
+        setErr('Não consegui registrar agora. Tente de novo em instantes.');
+      } finally {
+        setSending(false);
+      }
+    };
+
+    if (done) {
+      return (
+        <div className="text-center">
+          <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-3" />
+          <h3 className="text-xl font-bold text-slate-900 mb-2">Prontinho! Você está na lista 💚</h3>
+          <p className="text-slate-600 mb-4">Avisamos pelo WhatsApp assim que o app estiver disponível. Enquanto isso, deixe o acesso salvo na tela inicial:</p>
+          <div className="text-left text-sm text-slate-600 space-y-2 bg-white rounded-xl p-4 border border-slate-200">
+            <p>📱 <b>iPhone (Safari):</b> toque em Compartilhar e em "Adicionar à Tela de Início".</p>
+            <p>🤖 <b>Android (Chrome):</b> toque nos 3 pontinhos e em "Instalar app".</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text" value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          placeholder="Seu nome" maxLength={100} autoComplete="name"
+          className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all"
+        />
+        <input
+          type="tel" value={form.phone} inputMode="tel"
+          onChange={(e) => setForm({ ...form, phone: maskPhone(e.target.value) })}
+          placeholder="WhatsApp (62) 99999-9999" autoComplete="tel"
+          className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all"
+        />
+        <select
+          value={form.faixaEtaria}
+          onChange={(e) => setForm({ ...form, faixaEtaria: e.target.value })}
+          className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-4 focus:ring-green-100 focus:border-green-500 transition-all"
+        >
+          <option value="">Faixa de idade da criança (opcional)</option>
+          <option value="0-1 ano">0 a 1 ano</option>
+          <option value="1-2 anos">1 a 2 anos</option>
+          <option value="2-3 anos">2 a 3 anos</option>
+          <option value="3-4 anos">3 a 4 anos</option>
+          <option value="4-6 anos">4 a 6 anos</option>
+        </select>
+        {err && <p className="text-red-600 text-sm">{err}</p>}
+        <button
+          type="submit" disabled={sending}
+          className="w-full bg-green-700 hover:bg-green-800 text-white rounded-xl font-bold py-3 shadow-lg transition-all disabled:opacity-60"
+        >
+          {sending ? 'Enviando...' : 'Quero entrar na lista'}
+        </button>
+        <p className="text-xs text-slate-500 text-center">Pedimos só nome, WhatsApp e faixa de idade. Sem nome nem dados de saúde da criança (LGPD).</p>
+      </form>
+    );
+  };
+
   const Cta = ({ where, label, className = '' }: { where: string; label: string; className?: string }) => (
     <ButtonWhatsApp
       onClick={() => trackButtonClick(`WhatsApp Conecta App - ${where}`)}
@@ -215,7 +308,7 @@ const ConectaApp = () => {
             <p className="text-slate-600 mb-5">
               O app está em pré-lançamento. Deixe seu contato e avisamos pelo WhatsApp assim que estiver disponível. É gratuito.
             </p>
-            <Cta where="card-lista" label="Quero entrar na lista" className="px-6 py-3 w-full" />
+            <WaitlistForm />
             <p className="flex items-center gap-2 text-xs text-slate-500 mt-4">
               <Baby className="w-4 h-4 shrink-0" /> Para crianças de 0 a 6 anos · Anápolis-GO
             </p>
