@@ -15,6 +15,15 @@ const ENDERECO_COMPLETO = {
     "addressCountry": "BR"
 };
 
+const SITE_URL = "https://www.clinicafonoinova.com.br";
+const LOCAL_ID = `${SITE_URL}/#local`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+// Área atendida: a cidade onde fica a clínica
+const AREA_SERVED = [
+    { "@type": "City", "name": "Anápolis", "containedInPlace": { "@type": "State", "name": "Goiás" } }
+];
+
 const CONTATO = {
     telephone: "+55-62-99201-3573",
     email: "contato@clinicafonoinova.com.br",
@@ -27,7 +36,7 @@ const CONTATO = {
 export const schemaBaseLocalBusiness = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "@id": "https://www.clinicafonoinova.com.br/#local",
+    "@id": LOCAL_ID,
     "name": "Clínica Fono Inova",
     "alternateName": "Fono Inova Anápolis",
     "description": "Clínica multidisciplinar infantil em Anápolis especializada em fonoaudiologia, fisioterapia, psicologia e terapia ocupacional no bairro Jundiaí",
@@ -35,6 +44,8 @@ export const schemaBaseLocalBusiness = {
     "telephone": CONTATO.telephone,
     "email": CONTATO.email,
     "priceRange": "$$",
+    "foundingDate": "2025",
+    "areaServed": AREA_SERVED,
     "image": "https://www.clinicafonoinova.com.br/images/og-image.jpg",
     "sameAs": [
         "https://www.instagram.com/clinicafonoinova",
@@ -122,46 +133,48 @@ export const schemaFAQPsicopedagogia = {
 // SCHEMAS ESPECÍFICOS POR PÁGINA
 // ==========================================
 
+// Um Service por especialidade, cada um com página própria no site
+const SERVICOS = [
+    { name: "Fonoaudiologia Infantil", url: "/fonoaudiologia" },
+    { name: "Teste da Linguinha", url: "/freio-lingual" },
+    { name: "Psicologia Infantil", url: "/psicologia" },
+    { name: "Terapia Ocupacional", url: "/terapia-ocupacional" },
+    { name: "Fisioterapia Pediátrica", url: "/fisioterapia" },
+    { name: "Psicopedagogia", url: "/psicopedagogia" },
+    { name: "Avaliação Neuropsicológica", url: "/avaliacao-neuropsicologica" },
+    { name: "Psicomotricidade", url: "/psicomotricidade" },
+    { name: "Musicoterapia", url: "/musicoterapia" }
+];
+
+// WebSite referenciado por isPartOf nas landing pages
+export const schemaWebsite = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    "url": SITE_URL,
+    "name": "Clínica Fono Inova",
+    "inLanguage": "pt-BR",
+    "publisher": { "@id": LOCAL_ID }
+};
+
 // 1. HOME PAGE (MedicalBusiness completo com tudo)
 export const schemaHome = {
     ...schemaBaseLocalBusiness,
     "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Serviços Terapêuticos Infantis em Anápolis",
-        "itemListElement": [
-            {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "MedicalTherapy",
-                    "name": "Fonoaudiologia Infantil",
-                    "url": "https://www.clinicafonoinova.com.br/fonoaudiologia"
-                }
-            },
-            {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "MedicalTherapy",
-                    "name": "Fisioterapia Pediátrica",
-                    "url": "https://www.clinicafonoinova.com.br/fisioterapia"
-                }
-            },
-            {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "MedicalTherapy",
-                    "name": "Psicologia Infantil",
-                    "url": "https://www.clinicafonoinova.com.br/psicologia"
-                }
-            },
-            {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "MedicalTherapy",
-                    "name": "Teste da Linguinha",
-                    "url": "https://www.clinicafonoinova.com.br/freio-lingual"
-                }
+        "itemListElement": SERVICOS.map((sv) => ({
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Service",
+                "@id": `${SITE_URL}${sv.url}#service`,
+                "name": sv.name,
+                "serviceType": sv.name,
+                "url": `${SITE_URL}${sv.url}`,
+                "provider": { "@id": LOCAL_ID },
+                "areaServed": AREA_SERVED
             }
-        ]
+        }))
     },
     "aggregateRating": {
         "@type": "AggregateRating",
@@ -186,7 +199,7 @@ export const schemaFonoaudiologia = {
         "indication": ["Atraso de fala", "Distúrbios articulatórios", "Autismo", "Síndrome de Down"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     },
@@ -207,7 +220,7 @@ export const schemaFisioterapia = {
         "procedureType": "Reabilitação motora infantil"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -229,7 +242,7 @@ export const schemaFreioLingual = {
         "indication": ["Dificuldade na amamentação", "Língua presa", "Anquiloglossia", "Problemas de fala"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     },
@@ -249,7 +262,7 @@ export const schemaPsicologia = {
         "relevantSpecialty": "Psychology"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -269,7 +282,7 @@ export const schemaNeuropsicologia = {
         "indication": ["TEA", "TDAH", "Dislexia", "Dificuldades de aprendizagem"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -289,7 +302,7 @@ export const schemaTea = {
         "possibleTreatment": ["Fonoaudiologia", "Terapia Ocupacional", "Psicologia"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -308,7 +321,7 @@ export const schemaTerapiaOcupacional = {
         "relevantSpecialty": "OccupationalTherapy"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -327,7 +340,7 @@ export const schemaPsicopedagogia = {
         "relevantSpecialty": "SpeechLanguagePathology" // Schema não tem psicopedagogia específica, usamos mais próximo
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -347,7 +360,7 @@ export const schemaFalaTardia = {
         "possibleTreatment": "Fonoaudiologia"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -366,7 +379,7 @@ export const schemaDificuldadeEscolar = {
         "possibleTreatment": ["Psicopedagogia", "Psicologia", "Fonoaudiologia"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -385,7 +398,7 @@ export const schemaAdultoVoz = {
         "procedureType": "Terapia vocal"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -404,7 +417,7 @@ export const schemaMultidisciplinar = {
         "availableService": ["Fonoaudiologia", "Psicologia", "Fisioterapia", "Terapia Ocupacional"]
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -509,7 +522,7 @@ export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao, au
             "description": authorCredentials || undefined
         },
     "publisher": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "logo": {
             "@type": "ImageObject",
@@ -678,7 +691,7 @@ export const schemaMusicoterapia = {
         "relevantSpecialty": "SpeechLanguagePathology"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -720,7 +733,7 @@ export const schemaPsicomotricidade = {
         "relevantSpecialty": "PhysicalTherapy"
     },
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     }
@@ -760,7 +773,7 @@ export const schemaFonoaudiologiaAnapolis = {
     "description": "Fonoaudiologia infantil especializada em fala tardia, autismo e TDAH no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Fonoaudiologia Infantil", "relevantSpecialty": "SpeechLanguagePathology" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaPsicologiaAnapolis = {
@@ -770,7 +783,7 @@ export const schemaPsicologiaAnapolis = {
     "description": "Psicologia infantil para comportamento, TDAH e aprendizagem no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/psicologia-infantil-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Psicologia Infantil", "relevantSpecialty": "Psychology" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaTerapiaOcupacionalAnapolis = {
@@ -780,7 +793,7 @@ export const schemaTerapiaOcupacionalAnapolis = {
     "description": "Terapia ocupacional infantil para desenvolvimento motor e autonomia no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/terapia-ocupacional-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Terapia Ocupacional Infantil", "relevantSpecialty": "OccupationalTherapy" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaPsicomotricidadeAnapolis = {
@@ -790,7 +803,7 @@ export const schemaPsicomotricidadeAnapolis = {
     "description": "Psicomotricidade para crianças com TEA, Síndrome de Down e atrasos motores no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/psicomotricidade-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Psicomotricidade Infantil", "relevantSpecialty": "PhysicalTherapy" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaTesteLinguinhaAnapolis = {
@@ -823,7 +836,7 @@ export const schemaTesteLinguinhaAnapolis = {
         }
     ],
     "provider": {
-        "@type": "MedicalBusiness",
+        "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
         "alternateName": "Fono Inova Anápolis",
         "address": ENDERECO_COMPLETO,
@@ -893,7 +906,7 @@ export const schemaFisioterapiaAnapolis = {
     "description": "Fisioterapia pediátrica para atraso motor, torcicolo e paralisia cerebral no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/fisioterapia-infantil-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Fisioterapia Pediátrica", "relevantSpecialty": "PhysicalTherapy" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaAvaliacaoNeuropsicologicaAnapolis = {
@@ -903,7 +916,7 @@ export const schemaAvaliacaoNeuropsicologicaAnapolis = {
     "description": "Avaliação neuropsicológica para TDAH, dislexia e dificuldades de aprendizagem no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis",
     "about": { "@type": "MedicalTest", "name": "Avaliação Neuropsicológica", "usedToDiagnose": ["TDAH", "Dislexia", "Transtornos de Aprendizagem"] },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaFAQAvaliacaoNeuropsicologicaAnapolis = {
@@ -966,14 +979,14 @@ export const schemaLandingPage = (data) => {
         "datePublished": data.datePublished,
         "dateModified": data.dateModified || data.datePublished,
         "isPartOf": {
-            "@id": "https://www.clinicafonoinova.com.br/#website"
+            "@id": WEBSITE_ID
         },
         "about": {
             "@type": "MedicalCondition",
             "name": data.conditionName || "Desenvolvimento Infantil"
         },
         "provider": {
-            "@type": "MedicalBusiness",
+            "@type": "MedicalBusiness", "@id": LOCAL_ID,
             "name": "Clínica Fono Inova",
             "address": ENDERECO_COMPLETO,
             "telephone": CONTATO.telephone,
@@ -1055,7 +1068,7 @@ export const schemaBaseAereaAnapolis = {
     "description": "Clínica credenciada ao convênio da Base Aérea de Anápolis (BAAN), atendendo militares e dependentes com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/convenio-base-aerea-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio BAAN" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaFAQBaseAereaAnapolis = {
@@ -1104,7 +1117,7 @@ export const schemaGeapAnapolis = {
     "description": "Clínica credenciada ao convênio GEAP, atendendo com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/convenio-geap-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio GEAP" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaIpasgoAnapolis = {
@@ -1114,7 +1127,7 @@ export const schemaIpasgoAnapolis = {
     "description": "Clínica credenciada ao convênio IPASGO, atendendo com fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil no bairro Jundiaí, Anápolis/GO.",
     "url": "https://www.clinicafonoinova.com.br/convenio-ipasgo-anapolis",
     "about": { "@type": "MedicalTherapy", "name": "Atendimento Multidisciplinar Infantil via Convênio IPASGO" },
-    "provider": { "@type": "MedicalBusiness", "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
+    "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
 export const schemaFAQIpasgoAnapolis = {
