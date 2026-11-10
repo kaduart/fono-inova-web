@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useFormTracking } from '../hooks/useFormTracking'
 import { useCRMIntegration } from '../hooks/useCRMIntegration'
 import { buildWhatsAppRefSignature } from '../hooks/useLeadTracking'
+import { goToAgendar, isPublicBookingOn } from '../lib/publicBooking'
 
 // Helpers de analytics (simples e seguros)
 const getGtag = () =>
@@ -36,7 +37,7 @@ const gaEvent = (name, params = {}) => {
   gtag('event', name, params);
 };
 
-const BookingModal = ({ isOpen, onClose, onBookingSuccess, serviceInterest = '' }) => {
+const BookingModalWhatsApp = ({ isOpen, onClose, onBookingSuccess, serviceInterest = '' }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -507,6 +508,19 @@ Pode me explicar como funciona a avaliação?`;
       `}</style>
     </div>
   )
+}
+
+// Agendamento online ligado (src/lib/publicBooking.js): abrir o modal leva para /agendar.
+const BookingModal = (props) => {
+  const online = isPublicBookingOn()
+  useEffect(() => {
+    if (online && props.isOpen) {
+      props.onClose?.()
+      goToAgendar('modal')
+    }
+  }, [online, props.isOpen]) // eslint-disable-line react-hooks/exhaustive-deps
+  if (online) return null
+  return <BookingModalWhatsApp {...props} />
 }
 
 export default BookingModal

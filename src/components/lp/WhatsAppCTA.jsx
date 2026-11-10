@@ -5,6 +5,8 @@ import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 import { getLeadTracking, buildTrackingPayload, buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
 import { trackCTAClick } from '../../utils/journeyTracker';
 
+import { agendarHref, isPublicBookingOn, relabel } from '../../lib/publicBooking';
+
 const WhatsAppCTA = ({ 
   text = "Fale Conosco no WhatsApp", 
   link = "https://wa.me/5562992013573",
@@ -99,6 +101,20 @@ const WhatsAppCTA = ({
     medium: "px-6 py-3 text-base",
     large: "px-8 py-4 text-lg font-semibold"
   };
+
+  // CTA de "agendar" vai para o agendamento online quando ele está ligado (src/lib/publicBooking.js)
+  const toAgendar = isPublicBookingOn() && /agend/i.test(String(text));
+  if (toAgendar) {
+    return (
+      <a
+        href={agendarHref('lp')}
+        data-tracking-label={trackingLabel}
+        className={`inline-flex items-center justify-center gap-2 rounded-[14px] transition-all duration-300 min-h-12 motion-safe:hover:-translate-y-0.5 active:translate-y-0 ${variants[variant]} ${sizes[size]} ${className}`}
+      >
+        {relabel(text)}
+      </a>
+    );
+  }
 
   return (
     <a

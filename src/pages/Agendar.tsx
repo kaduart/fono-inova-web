@@ -116,6 +116,13 @@ const Agendar = () => {
 
   const specialtyLabel = SPECIALTIES.find((s) => s.value === specialty)?.label || '';
 
+  // Vindo de uma página de especialidade do site (?especialidade=fonoaudiologia), já começa no "Quando".
+  useEffect(() => {
+    const pre = new URLSearchParams(window.location.search).get('especialidade');
+    if (base && pre && SPECIALTIES.some((s) => s.value === pre)) chooseSpecialty(pre);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   async function loadDays(spec: string) {
     setLoadingDays(true);
     setNotice('');

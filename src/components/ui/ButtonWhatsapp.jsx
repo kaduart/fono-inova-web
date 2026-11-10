@@ -1,6 +1,7 @@
 import { reportWhatsappConversion } from '../../helper/analytics';
 import { trackLandingPageLead } from '../../services/landingPageAnalytics';
 import { buildWhatsAppRefSignature } from '../../hooks/useLeadTracking';
+import { goToAgendar, isAgendarLabel, isPublicBookingOn, relabel } from '../../lib/publicBooking';
 
 const ButtonWhatsApp = ({
     className = '',
@@ -21,9 +22,17 @@ const ButtonWhatsApp = ({
         xl: 'px-8 py-6 text-xl'
     };
 
+    // Botão de "agendar" vai para o agendamento online quando ele está ligado (src/lib/publicBooking.js)
+    const toAgendar = isPublicBookingOn() && isAgendarLabel(children);
+
     const handleClick = () => {
         // Seus próprios eventos (ex.: trackFormSubmission, trackButtonClick)
         if (typeof onClick === 'function') onClick();
+
+        if (toAgendar) {
+            goToAgendar(lpSlug ? 'lp' : 'botao');
+            return;
+        }
         
         // Tracking de Landing Page (se aplicável)
         if (lpSlug && lpCategory) {
@@ -60,10 +69,10 @@ const ButtonWhatsApp = ({
     ${sizeClasses[size]}
     ${className}
   `}
-            aria-label="Agendar via WhatsApp"
+            aria-label={toAgendar ? 'Agendar avaliação online' : 'Agendar via WhatsApp'}
             {...props}
         >
-            <span className="inline-flex items-center gap-2 whitespace-nowrap">{children}</span>
+            <span className="inline-flex items-center gap-2 whitespace-nowrap">{toAgendar ? relabel(children) : children}</span>
         </button>
 
     );
