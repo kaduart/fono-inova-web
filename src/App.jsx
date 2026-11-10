@@ -59,6 +59,7 @@ const BradescoSaudeAnapolis = lazy(() => import('./pages/BradescoSaudeAnapolis')
 const InteresseConfirmado = lazy(() => import('./pages/InteresseConfirmado'));
 // Link-in-bio (Instagram/redes sociais)
 const LinksBio = lazy(() => import('./pages/LinksBio'));
+const Agendar = lazy(() => import('./pages/Agendar'));
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
@@ -184,6 +185,8 @@ function App() {
           <Route path="/convenio-bradesco-anapolis" element={<Navigate to="/convenio-bradesco-saude-anapolis" replace />} />
           <Route path="/lista-de-interesse-confirmada" element={<InteresseConfirmado />} />
           <Route path="/links" element={<LinksBio />} />
+          {/* Agendamento online do link da bio (API pública do ERP, PUBLIC_BOOKING_ENABLED) */}
+          <Route path="/agendar" element={<Agendar />} />
           {/* Long-tail local — intenção emocional + geo */}
           <Route path="/fala-tardia-anapolis" element={<FalaTardiaAnapolis />} />
           <Route path="/autismo-anapolis" element={<AutismoAnapolis />} />

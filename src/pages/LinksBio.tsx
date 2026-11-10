@@ -177,6 +177,18 @@ const LinksBio = () => {
         </motion.div>
 
         <div className="mt-8 flex w-full flex-col gap-4">
+          {/* Agendamento online (página /agendar). Liga junto com PUBLIC_BOOKING_ENABLED no ERP. */}
+          {import.meta.env.VITE_PUBLIC_BOOKING_ENABLED === 'true' && (
+            <motion.a
+              {...fadeUp(0.12)}
+              href="/agendar?utm_source=instagram&utm_medium=bio"
+              onClick={() => trackButtonClick('Links Bio - Agendar online')}
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-teal-700 px-6 py-4 text-base font-bold text-white shadow-lg shadow-teal-600/20 transition-all hover:scale-[1.02] hover:bg-teal-800 hover:shadow-xl active:scale-[0.98]"
+            >
+              <Calendar className="h-5 w-5" />
+              Agendar avaliação online
+            </motion.a>
+          )}
           <motion.div {...fadeUp(0.15)}>
             <ButtonWhatsApp
               onClick={() => trackButtonClick('Links Bio - WhatsApp Principal')}
