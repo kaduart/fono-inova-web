@@ -109,7 +109,7 @@ const Agendar = () => {
   const [period, setPeriod] = useState<Period | ''>('');
   const [time, setTime] = useState('');
   const [openDay, setOpenDay] = useState('');
-  const [form, setForm] = useState({ childName: '', birthDate: '', responsibleName: '', phone: '', consent: false, website: '' });
+  const [form, setForm] = useState({ childName: '', birthDate: '', responsibleName: '', phone: '', complaint: '', consent: false, website: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [notice, setNotice] = useState('');
   const [sending, setSending] = useState(false);
@@ -201,6 +201,7 @@ const Agendar = () => {
           ...(time ? { time } : {}),
           child: { fullName: form.childName.trim(), birthDate: form.birthDate },
           responsible: { name: form.responsibleName.trim(), phone: form.phone },
+          complaint: form.complaint.trim(),
           consentLgpd: form.consent,
           utm,
           captchaToken: captcha.token,
@@ -432,6 +433,20 @@ const Agendar = () => {
               <label className="mt-4 block text-sm font-semibold text-slate-700" htmlFor="birthDate">Data de nascimento</label>
               <input id="birthDate" type="date" className={`${input} mt-1`} value={form.birthDate} max={new Date().toISOString().slice(0, 10)} onChange={(e) => setForm({ ...form, birthDate: e.target.value })} />
               {errText('birthDate')}
+
+              <label className="mt-4 block text-sm font-semibold text-slate-700" htmlFor="complaint">
+                O que mais te preocupa? <span className="font-normal text-slate-400">(opcional)</span>
+              </label>
+              <textarea
+                id="complaint"
+                rows={3}
+                maxLength={500}
+                className={`${input} mt-1 resize-none`}
+                placeholder="Ex.: tem 3 anos e fala poucas palavras; a escola pediu avaliação."
+                value={form.complaint}
+                onChange={(e) => setForm({ ...form, complaint: e.target.value })}
+              />
+              <p className="mt-1 text-xs text-slate-400">Ajuda a especialista a se preparar para a avaliação.</p>
 
               <label className="mt-4 block text-sm font-semibold text-slate-700" htmlFor="responsibleName">Seu nome (responsável)</label>
               <input id="responsibleName" className={`${input} mt-1`} autoComplete="name" value={form.responsibleName} onChange={(e) => setForm({ ...form, responsibleName: e.target.value })} />
