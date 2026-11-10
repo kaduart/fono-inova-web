@@ -1,11 +1,13 @@
 /**
- * Agendamento online (/agendar). Quando VITE_PUBLIC_BOOKING_ENABLED=true, todo botão de
+ * Agendamento online (/agendar). Ligado por padrão: todo botão de
  * "agendar" do site leva para a página /agendar em vez do WhatsApp.
  * Botões de "falar/tirar dúvida" continuam no WhatsApp.
  */
 import { Children, cloneElement, isValidElement } from 'react';
 
-export const isPublicBookingOn = () => import.meta.env.VITE_PUBLIC_BOOKING_ENABLED === 'true';
+// Ligado por padrão. Para desligar: VITE_PUBLIC_BOOKING_ENABLED=false na Vercel.
+// Se a API estiver desligada (503), a página /agendar mostra o WhatsApp.
+export const isPublicBookingOn = () => import.meta.env.VITE_PUBLIC_BOOKING_ENABLED !== 'false';
 
 // Página atual → especialidade já marcada no /agendar
 const PATH_SPECIALTY = [

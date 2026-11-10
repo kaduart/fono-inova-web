@@ -21,6 +21,7 @@ import ButtonWhatsApp from '../components/ui/ButtonWhatsapp.jsx';
 import { CONTACT } from '../constants/index.js';
 import { CONVENIOS_STATUS } from '../data/conveniosStatus';
 import { trackButtonClick, trackSocialMediaClick } from '../hooks/useAnalytics';
+import { isPublicBookingOn } from '../lib/publicBooking';
 
 // Lucide não tem o glifo da marca do TikTok — SVG inline, mesmo padrão usado pro ícone do WhatsApp no site
 const TikTokIcon = ({ className }) => (
@@ -178,7 +179,7 @@ const LinksBio = () => {
 
         <div className="mt-8 flex w-full flex-col gap-4">
           {/* Agendamento online (página /agendar). Liga junto com PUBLIC_BOOKING_ENABLED no ERP. */}
-          {import.meta.env.VITE_PUBLIC_BOOKING_ENABLED === 'true' && (
+          {isPublicBookingOn() && (
             <motion.a
               {...fadeUp(0.12)}
               href="/agendar?utm_source=instagram&utm_medium=bio"
