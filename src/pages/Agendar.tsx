@@ -1,7 +1,7 @@
 /**
  * /agendar — agendamento online pelo link da bio do Instagram.
- * Fala com a API pública do ERP (/api/public/booking). A família escolhe só DIA + PERÍODO
- * (regra da clínica: horário genérico); a secretária confirma o horário exato no WhatsApp.
+ * Fala com a API pública do ERP (/api/public/booking). A família escolhe DIA + HORÁRIO livre
+ * (decisão do Kadu 10/11); se a API ainda não mandar `times`, cai no modo antigo (manhã/tarde).
  * Se a API estiver desligada ou fora do ar, a página vira um botão de WhatsApp.
  * Doc do back: docs/flows/public_booking_flow.md (repo fono-inova-crm-back).
  */
@@ -26,7 +26,7 @@ const SPECIALTIES = [
 ];
 
 type Period = 'manha' | 'tarde';
-type DayOption = { date: string; label: string; periods: { period: Period; available: boolean }[] };
+type DayOption = { date: string; label: string; periods: { period: Period; available: boolean }[]; times?: string[] };
 type Step = 'especialidade' | 'quando' | 'dados' | 'pronto' | 'indisponivel';
 
 const PERIOD_LABEL: Record<Period, string> = { manha: 'Manhã', tarde: 'Tarde' };
@@ -107,6 +107,8 @@ const Agendar = () => {
   const [loadingDays, setLoadingDays] = useState(false);
   const [date, setDate] = useState('');
   const [period, setPeriod] = useState<Period | ''>('');
+  const [time, setTime] = useState('');
+  const [openDay, setOpenDay] = useState('');
   const [form, setForm] = useState({ childName: '', birthDate: '', responsibleName: '', phone: '', consent: false, website: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [notice, setNotice] = useState('');
@@ -114,6 +116,8 @@ const Agendar = () => {
   const [result, setResult] = useState<{ code: string; display: string } | null>(null);
   const captcha = useTurnstile(step === 'dados');
 
+  // API nova devolve os horários exatos; a antiga só manhã/tarde.
+  const hasTimes = days.some((d) => Array.isArray(d.times));
   const specialtyLabel = SPECIALTIES.find((s) => s.value === specialty)?.label || '';
 
   // Vindo de uma página de especialidade do site (?especialidade=fonoaudiologia), já começa no "Quando".
@@ -134,7 +138,9 @@ const Agendar = () => {
       }
       const json = await r.json();
       if (!r.ok) throw new Error(json?.message || 'erro');
-      setDays(json.days || []);
+      const list: DayOption[] = json.days || [];
+      setDays(list);
+      setOpenDay((cur) => (list.some((d) => d.date === cur) ? cur : list[0]?.date || ''));
     } catch {
       setStep('indisponivel');
     } finally {
@@ -146,6 +152,8 @@ const Agendar = () => {
     setSpecialty(value);
     setDate('');
     setPeriod('');
+    setTime('');
+    setOpenDay('');
     setStep('quando');
     trackButtonClick(`Agendar - especialidade ${value}`);
     loadDays(value);
@@ -154,7 +162,17 @@ const Agendar = () => {
   function choosePeriod(d: string, p: Period) {
     setDate(d);
     setPeriod(p);
+    setTime('');
     setNotice('');
+    setStep('dados');
+  }
+
+  function chooseTime(d: string, t: string) {
+    setDate(d);
+    setTime(t);
+    setPeriod(t < '12:00' ? 'manha' : 'tarde');
+    setNotice('');
+    trackButtonClick(`Agendar - horário ${t}`);
     setStep('dados');
   }
 
@@ -180,6 +198,7 @@ const Agendar = () => {
           specialty,
           date,
           period,
+          ...(time ? { time } : {}),
           child: { fullName: form.childName.trim(), birthDate: form.birthDate },
           responsible: { name: form.responsibleName.trim(), phone: form.phone },
           consentLgpd: form.consent,
@@ -198,8 +217,10 @@ const Agendar = () => {
         return;
       }
       if (r.status === 409) {
-        setNotice(json.message || 'Esse período acabou de lotar. Escolha outro.');
+        setNotice(json.message || 'Esse horário acabou de ser reservado. Escolha outro.');
         setPeriod('');
+        setTime('');
+        setOpenDay(date);
         setStep('quando');
         loadDays(specialty);
         return;
@@ -208,7 +229,7 @@ const Agendar = () => {
         const map: Record<string, string> = {};
         for (const [k, v] of Object.entries(json.fields as Record<string, string>)) map[k === 'consentLgpd' ? 'consent' : k] = v;
         setErrors(map);
-        if (map.date || map.period || map.specialty) setStep('quando');
+        if (map.date || map.period || map.time || map.specialty) setStep('quando');
         return;
       }
       if (r.status === 503 && json.error === 'DISABLED') {
@@ -225,7 +246,7 @@ const Agendar = () => {
   }
 
   const whatsappText = result
-    ? `Oi! Fiz a reserva ${result.code} pelo site (${specialtyLabel}, ${result.display}). Pode confirmar o horário?`
+    ? `Oi! Fiz a reserva ${result.code} pelo site (${specialtyLabel}, ${result.display}). Pode confirmar?`
     : `Oi! Vim pelo Instagram e quero agendar uma avaliação${specialtyLabel ? ` de ${specialtyLabel}` : ''}.`;
 
   const input = 'w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20';
@@ -293,8 +314,10 @@ const Agendar = () => {
               <button type="button" onClick={() => setStep('especialidade')} className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-slate-500">
                 <ArrowLeft className="h-4 w-4" /> {specialtyLabel}
               </button>
-              <h2 className="text-base font-bold text-slate-900">Qual dia e período ficam melhor?</h2>
-              <p className="mt-1 text-sm text-slate-500">O horário certinho a gente confirma com você no WhatsApp.</p>
+              <h2 className="text-base font-bold text-slate-900">{hasTimes ? 'Escolha o dia e o horário' : 'Qual dia e período ficam melhor?'}</h2>
+              <p className="mt-1 text-sm text-slate-500">
+                {hasTimes ? 'São os horários livres agora. Avaliação de cerca de 40 minutos.' : 'O horário certinho a gente confirma com você no WhatsApp.'}
+              </p>
               {notice && <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-900">{notice}</p>}
 
               {loadingDays && (
@@ -310,7 +333,60 @@ const Agendar = () => {
                 </div>
               )}
 
-              {!loadingDays && days.length > 0 && (
+              {!loadingDays && days.length > 0 && hasTimes && (
+                <div className="mt-4">
+                  <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2" role="tablist" aria-label="Dias">
+                    {days.map((d) => (
+                      <button
+                        key={d.date}
+                        type="button"
+                        role="tab"
+                        aria-selected={openDay === d.date}
+                        onClick={() => setOpenDay(d.date)}
+                        className={`shrink-0 rounded-xl px-3 py-2 text-sm font-semibold transition ${
+                          openDay === d.date ? 'bg-teal-600 text-white' : 'bg-teal-50 text-teal-800 hover:bg-teal-100'
+                        }`}
+                      >
+                        {d.label}
+                      </button>
+                    ))}
+                  </div>
+                  {(() => {
+                    const day = days.find((d) => d.date === openDay) || days[0];
+                    const times = day?.times || [];
+                    const groups: [Period, string[]][] = [
+                      ['manha', times.filter((t) => t < '12:00')],
+                      ['tarde', times.filter((t) => t >= '12:00')],
+                    ];
+                    return groups
+                      .filter(([, list]) => list.length)
+                      .map(([p, list]) => (
+                        <div key={p} className="mt-3">
+                          <p className="mb-2 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                            {p === 'manha' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+                            {PERIOD_LABEL[p]}
+                          </p>
+                          <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                            {list.map((t) => (
+                              <button
+                                key={t}
+                                type="button"
+                                onClick={() => chooseTime(day.date, t)}
+                                className={`rounded-xl px-2 py-2.5 text-sm font-semibold transition ${
+                                  date === day.date && time === t ? 'bg-teal-600 text-white' : 'bg-teal-50 text-teal-800 hover:bg-teal-100'
+                                }`}
+                              >
+                                {t}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ));
+                  })()}
+                </div>
+              )}
+
+              {!loadingDays && days.length > 0 && !hasTimes && (
                 <ul className="mt-4 flex flex-col gap-2">
                   {days.map((d) => (
                     <li key={d.date} className="flex items-center gap-2 rounded-2xl border border-slate-100 p-2">
@@ -345,7 +421,7 @@ const Agendar = () => {
           {step === 'dados' && (
             <form onSubmit={submit} noValidate>
               <button type="button" onClick={() => setStep('quando')} className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-slate-500">
-                <ArrowLeft className="h-4 w-4" /> {specialtyLabel} · {days.find((d) => d.date === date)?.label} · {period && PERIOD_LABEL[period]}
+                <ArrowLeft className="h-4 w-4" /> {specialtyLabel} · {days.find((d) => d.date === date)?.label} · {time || (period && PERIOD_LABEL[period])}
               </button>
               {notice && <p className="mb-3 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-900">{notice}</p>}
 
@@ -405,7 +481,9 @@ const Agendar = () => {
               <CheckCircle2 className="mx-auto h-12 w-12 text-green-600" />
               <h2 className="mt-3 text-xl font-bold text-slate-900">Reservamos {result.display}!</h2>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Vamos te chamar no WhatsApp para confirmar o horário certinho. Se preferir, chama a gente agora.
+                {time
+                  ? 'Seu horário está guardado. A gente te chama no WhatsApp para confirmar. Se preferir, chama a gente agora.'
+                  : 'Vamos te chamar no WhatsApp para confirmar o horário certinho. Se preferir, chama a gente agora.'}
               </p>
               <p className="mt-3 text-xs text-slate-400">Código da reserva: {result.code}</p>
             </div>
