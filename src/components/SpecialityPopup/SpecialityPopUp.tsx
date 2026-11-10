@@ -30,6 +30,7 @@ type MessageType = {
 // O botão flutuante do WhatsApp continua disponível.
 const AUTO_OPEN_DISABLED_PATHS = [
     '/links',
+    '/agendar', // agendamento online: o pop-up cobria o resultado e o botão de reservar
     '/convenio-geap-anapolis',
     '/convenio-ipasgo-anapolis',
     '/convenio-bradesco-saude-anapolis',

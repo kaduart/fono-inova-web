@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logoIconMobile from '../../assets/icone-fono-inova.webp';
 import { trackButtonClick } from '../../hooks/useAnalytics';
 import BookingModal from '../BookingModal';
+import { goToAgendar, isPublicBookingOn } from '../../lib/publicBooking';
 
 const Header = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +48,11 @@ const Header = () => {
         try { trackButtonClick?.('Agendar'); } catch { }
         if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'open_booking_modal', { location: 'header' });
+        }
+        if (isPublicBookingOn()) {
+            setIsMenuOpen(false);
+            goToAgendar('header');
+            return;
         }
         setIsModalOpen(true);
         setIsMenuOpen(false);

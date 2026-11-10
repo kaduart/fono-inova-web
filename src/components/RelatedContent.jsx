@@ -3,6 +3,7 @@
 
 import { Link } from 'react-router-dom';
 import { buildWhatsAppRefSignature } from '../hooks/useLeadTracking';
+import { agendarHref, isPublicBookingOn, relabel } from '../lib/publicBooking';
 
 export const RelatedLandingPages = ({ links }) => {
   if (!links || links.length === 0) return null;
@@ -83,6 +84,14 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
     <div className={`my-8 p-6 rounded-xl border-l-4 ${variants[variant]}`}>
       <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
       <p className="text-gray-700 mb-4">{text}</p>
+      {isPublicBookingOn() && /agend/i.test(String(buttonText)) ? (
+        <a
+          href={agendarHref('artigo')}
+          className="inline-block px-6 py-3 bg-green-700 hover:bg-green-800 text-white rounded-full font-semibold transition-colors"
+        >
+          {relabel(buttonText)}
+        </a>
+      ) : (
       <a
         href={getWhatsAppLink(link)}
         target="_blank"
@@ -91,6 +100,7 @@ export const CTABox = ({ title, text, buttonText, link, variant = "primary" }) =
       >
         {buttonText}
       </a>
+      )}
     </div>
   );
 };
