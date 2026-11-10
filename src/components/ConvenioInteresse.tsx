@@ -181,7 +181,7 @@ const ConvenioInteresse = ({ nome, slug, path }: ConvenioInteresseProps) => {
   return (
     <Layout>
       <SEO
-        title={`Convênio ${nome}: credenciamento em andamento | Fono Inova`}
+        title={`Convênio ${nome} em Anápolis: credenciamento em andamento`}
         description={`Credenciamento com o ${nome} em andamento. Registre seu interesse e avisamos somente se ele for concluído e o seu produto estiver elegível.`}
         url={`https://www.clinicafonoinova.com.br${path}`}
         type="website"

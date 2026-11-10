@@ -54,7 +54,7 @@ export default function DislexiaAnapolis() {
   return (
     <Layout>
       <SEO
-        title="Dislexia Infantil em Anápolis | Avaliação e Tratamento — Fono Inova"
+        title="Dislexia Infantil em Anápolis: Avaliação e Tratamento"
         description="Seu filho troca letras, tem dificuldade para ler ou escrever em Anápolis? Avaliação psicopedagógica completa para dislexia. Bairro Jundiaí. Agende: (62) 99201-3573."
         keywords="dislexia anapolis, dislexia infantil anapolis, tratamento dislexia anapolis, avaliação dislexia anapolis, criança troca letra anapolis, dificuldade leitura anapolis"
         url="https://www.clinicafonoinova.com.br/dislexia-anapolis"

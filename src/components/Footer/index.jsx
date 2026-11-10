@@ -13,6 +13,34 @@ const especialidades = [
     { label: 'Seletividade Alimentar', href: '/seletividade-alimentar-anapolis' },
 ];
 
+// Links reais (<a href>) para o Google descobrir as páginas institucionais.
+const institucional = [
+    { label: 'Nossa clínica', href: '/nossa-clinica' },
+    { label: 'Equipe', href: '/equipe' },
+    { label: 'Avaliação infantil', href: '/avaliacao-infantil' },
+    { label: 'Artigos para pais', href: '/artigos' },
+    { label: 'Perguntas frequentes', href: '/faq' },
+    { label: 'Apoio às famílias', href: '/apoio-as-familias' },
+    { label: 'App de triagem infantil', href: '/app' },
+    { label: 'Política de privacidade', href: '/privacidade' },
+];
+
+// Páginas indexáveis que não recebiam nenhum link interno (auditoria SEO 10/11/2026).
+const outrosTemas = [
+    { label: 'Gagueira infantil', href: '/lp/gagueira-infantil' },
+    { label: 'Processamento auditivo', href: '/lp/processamento-auditivo' },
+    { label: 'Criança agitada e desatenta', href: '/lp/tdah-crianca' },
+    { label: 'Dificuldade de concentração', href: '/lp/dificuldade-concentracao' },
+    { label: 'Criança agressiva', href: '/lp/crianca-agressiva' },
+    { label: 'Discalculia', href: '/lp/discalculia-matematica' },
+    { label: 'Disgrafia', href: '/lp/disgrafia-escrita' },
+    { label: 'Psicopedagogia em Anápolis', href: '/lp/psicopedagogia-anapolis' },
+    { label: 'Convênio Base Aérea', href: '/convenio-base-aerea-anapolis' },
+    { label: 'Convênio IPASGO', href: '/convenio-ipasgo-anapolis' },
+    { label: 'Convênio GEAP', href: '/convenio-geap-anapolis' },
+    { label: 'Convênio Bradesco Saúde', href: '/convenio-bradesco-saude-anapolis' },
+];
+
 const Footer = () => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -49,16 +77,12 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold text-lg mb-4">Links Rápidos</h3>
                         <div className="space-y-2">
-                            <button onClick={() => scrollToSection('services')} className="block text-background/80 hover:text-background transition-colors">
-                                Serviços
-                            </button>
-                            <button onClick={() => scrollToSection('about')} className="block text-background/80 hover:text-background transition-colors">
-                                Sobre Nós
-                            </button>
-                            <button onClick={() => scrollToSection('testimonials')} className="block text-background/80 hover:text-background transition-colors">
-                                Depoimentos
-                            </button>
-                            <button onClick={() => scrollToSection('contact')} className="block text-background/80 hover:text-background transition-colors">
+                            {institucional.map(e => (
+                                <Link key={e.href} to={e.href} className="block text-background/80 hover:text-background transition-colors text-sm">
+                                    {e.label}
+                                </Link>
+                            ))}
+                            <button onClick={() => scrollToSection('contact')} className="block text-background/80 hover:text-background transition-colors text-sm">
                                 Contato
                             </button>
                         </div>
@@ -83,7 +107,17 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
+                <nav aria-label="Outros temas" className="border-t border-background/20 mt-8 pt-6">
+                    <h3 className="font-semibold text-sm mb-3">Outros temas</h3>
+                    <div className="flex flex-wrap gap-x-4 gap-y-2">
+                        {outrosTemas.map(e => (
+                            <Link key={e.href} to={e.href} className="text-background/70 hover:text-background transition-colors text-sm">
+                                {e.label}
+                            </Link>
+                        ))}
+                    </div>
+                </nav>
+                <div className="border-t border-background/20 mt-6 pt-8 text-center text-background/60">
                     <p>&copy; 2025 Clínica Fono Inova. Todos os direitos reservados.</p>
                 </div>
             </div>

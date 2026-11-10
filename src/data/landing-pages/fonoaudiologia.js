@@ -450,7 +450,7 @@ export const fonoaudiologiaLPs = [
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/gagueira.png",
+    image: "/images/clinica/ia/fonoaudiologia-sessao-espelho.webp",
     imageAlt: "Tratamento para gagueira infantil na Clínica Fono Inova em Anápolis",
     
     hero: {
@@ -766,7 +766,7 @@ export const fonoaudiologiaLPs = [
     datePublished: "2025-06-01",
     dateModified: "2025-06-01",
     
-    image: "/images/fonoaudiologia/proc-auditivo.png",
+    image: "/images/fonoaudiologia/img-fono-atendimento-01.webp",
     imageAlt: "Avaliação de processamento auditivo infantil na Clínica Fono Inova",
     
     hero: {

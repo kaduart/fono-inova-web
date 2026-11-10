@@ -11,13 +11,9 @@
   <!-- ✅ description e canonical: cada rota define os seus via <SEO>/react-helmet-async.
        Não duplicar aqui — gerava "multiple descriptions" / "more than one canonical tag" no Bing. -->
 
-  <!-- ✅ Open Graph para redes sociais -->
-  <meta property="og:title" content="Clínica Fono Inova — Fonoaudiologia Infantil em Anápolis" />
-  <meta property="og:description"
-    content="Fonoaudiologia, psicologia, terapia ocupacional e fisioterapia infantil em Anápolis. Especialistas em atraso na fala, autismo e TDAH. Bairro Jundiaí." />
-  <meta property="og:image" content="https://www.clinicafonoinova.com.br/images/og-image.jpg" />
-  <meta property="og:url" content="https://www.clinicafonoinova.com.br" />
-  <meta property="og:type" content="website" />
+  <!-- ✅ Open Graph: cada rota define og:title/description/image/url via <SEO>/react-helmet-async.
+       Não repetir aqui — a tag estática vinha antes e o WhatsApp/Facebook mostravam o título da home em qualquer link. -->
+  <meta property="og:site_name" content="Clínica Fono Inova" />
 
   <!-- ✅ Preconnect para performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

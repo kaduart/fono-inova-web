@@ -207,5 +207,6 @@ export const VALID_PATHS = new Set([
   "/tdah-infantil",
   "/terapia-ocupacional",
   "/terapia-ocupacional-anapolis",
-  "/teste-da-linguinha-anapolis"
+  "/teste-da-linguinha-anapolis",
+  "/triagem-autismo-m-chat"
 ]);

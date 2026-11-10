@@ -11,7 +11,7 @@ const FaqPage = () => {
     return (
         <Layout>
             <SEO
-                title="Perguntas Frequentes sobre Desenvolvimento Infantil | Clínica Fono Inova"
+                title="Perguntas Frequentes | Clínica Fono Inova em Anápolis"
                 description="Tire suas dúvidas sobre atraso na fala, autismo, avaliações e terapias infantis em Anápolis."
                 keywords="faq fonoaudiologia, dúvidas pais, atraso na fala, autismo infantil, Anápolis"
                 url="https://www.clinicafonoinova.com.br/faq"

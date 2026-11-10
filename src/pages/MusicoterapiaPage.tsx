@@ -32,7 +32,7 @@ import ProofBar from '../components/premium/ProofBar';
 
 const MusicoterapiaPage = () => {
   useEffect(() => {
-    document.title = 'Musicoterapia Infantil | TEA e Desenvolvimento | Clínica Fono Inova';
+    document.title = 'Musicoterapia Infantil em Anápolis | Clínica Fono Inova';
     window.scrollTo(0, 0);
   }, []);
 

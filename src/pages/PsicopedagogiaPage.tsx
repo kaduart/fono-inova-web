@@ -156,10 +156,10 @@ const PsicopedagogiaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Psicopedagogia Infantil: Dislexia e Dificuldades Escolares | Clínica Fono Inova"
+                title="Psicopedagogia Infantil em Anápolis: Dificuldade Escolar"
                 description="Avaliação psicopedagógica para dificuldades de aprendizagem, dislexia e TDAH no bairro Jundiaí, Anápolis. Atendimento especializado infantil."
                 keywords="psicopedagogia anapolis, dislexia anapolis, dificuldade escolar jundiai, psicopedagoga anapolis"
-                image="/images/servicos/psicopedagogia.jpg"
+                image="/images/clinica/ia/psicopedagogia-jogo-numeros-tapete.webp"
                 url="https://www.clinicafonoinova.com.br/psicopedagogia"
                 type="article"
                 schema={[schemaPsicopedagogia]}

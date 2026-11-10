@@ -118,7 +118,7 @@ const ClinicaMultidisciplinar = () => {
         title="Clínica Multidisciplinar Infantil em Anápolis | Jundiaí - Fono Inova"
         description="Clínica multidisciplinar no bairro Jundiaí, Anápolis. Fonoaudiologia, psicologia, fisioterapia e terapia ocupacional integradas no mesmo local."
         keywords="clinica multidisciplinar anapolis, clinica infantil jundiai, terapia infantil anapolis, desenvolvimento infantil"
-        image="/images/servicos/multidisciplinar.jpg"
+        image="/images/og-image.jpg"
         url="https://www.clinicafonoinova.com.br/abordagem-multidisciplinar"
         type="article"
         schema={[schemaMultidisciplinar, schemaFAQMultidisciplinar]}
