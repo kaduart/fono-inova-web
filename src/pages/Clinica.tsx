@@ -33,7 +33,7 @@ const Clinica = () => {
                     "@type": "MedicalOrganization",
                     "name": "Clínica Fono Inova",
                     "url": "https://www.clinicafonoinova.com.br/nossa-clinica",
-                    "logo": "https://www.clinicafonoinova.com.br/images/logo-unica.png",
+                    "logo": "https://www.clinicafonoinova.com.br/logo-unica.png",
                     "image": "https://www.clinicafonoinova.com.br/images/clinica/fachada-premium.png",
                     "description": "A Clínica Fono Inova possui infraestrutura moderna e acolhedora no bairro Jundiaí em Anápolis, com salas temáticas e equipe multidisciplinar."
                 }}

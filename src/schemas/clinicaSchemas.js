@@ -47,6 +47,12 @@ export const schemaBaseLocalBusiness = {
     "foundingDate": "2025",
     "areaServed": AREA_SERVED,
     "image": "https://www.clinicafonoinova.com.br/images/og-image.jpg",
+    "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.clinicafonoinova.com.br/logo-unica.png",
+        "width": 440,
+        "height": 270
+    },
     "sameAs": [
         "https://www.instagram.com/clinicafonoinova",
         "https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/",
@@ -135,14 +141,14 @@ export const schemaFAQPsicopedagogia = {
 
 // Um Service por especialidade, cada um com página própria no site
 const SERVICOS = [
-    { name: "Fonoaudiologia Infantil", url: "/fonoaudiologia" },
-    { name: "Teste da Linguinha", url: "/freio-lingual" },
-    { name: "Psicologia Infantil", url: "/psicologia" },
-    { name: "Terapia Ocupacional", url: "/terapia-ocupacional" },
-    { name: "Fisioterapia Pediátrica", url: "/fisioterapia" },
+    { name: "Fonoaudiologia Infantil", url: "/fonoaudiologia-anapolis" },
+    { name: "Teste da Linguinha", url: "/teste-da-linguinha-anapolis" },
+    { name: "Psicologia Infantil", url: "/psicologia-infantil-anapolis" },
+    { name: "Terapia Ocupacional", url: "/terapia-ocupacional-anapolis" },
+    { name: "Fisioterapia Pediátrica", url: "/fisioterapia-infantil-anapolis" },
     { name: "Psicopedagogia", url: "/psicopedagogia" },
-    { name: "Avaliação Neuropsicológica", url: "/avaliacao-neuropsicologica" },
-    { name: "Psicomotricidade", url: "/psicomotricidade" },
+    { name: "Avaliação Neuropsicológica", url: "/avaliacao-neuropsicologica-anapolis" },
+    { name: "Psicomotricidade", url: "/psicomotricidade-anapolis" },
     { name: "Musicoterapia", url: "/musicoterapia" }
 ];
 
@@ -203,7 +209,7 @@ export const schemaFonoaudiologia = {
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     },
-    "image": "https://www.clinicafonoinova.com.br/images/servicos/fonoaudiologia.jpg"
+    "image": "https://www.clinicafonoinova.com.br/images/clinica/ia/fonoaudiologia-sessao-espelho.webp"
 };
 
 // 3. FISIOTERAPIA (FisioPage.tsx)
@@ -246,7 +252,7 @@ export const schemaFreioLingual = {
         "name": "Clínica Fono Inova",
         "address": ENDERECO_COMPLETO
     },
-    "image": "https://www.clinicafonoinova.com.br/images/servicos/freio-lingual.jpg"
+    "image": "https://www.clinicafonoinova.com.br/images/clinica/ia/teste-linguinha.webp"
 };
 
 // 5. PSICOLOGIA (PsicoPage.tsx)
@@ -526,7 +532,7 @@ export const schemaArticle = (titulo, descricao, imagem, url, dataPublicacao, au
         "name": "Clínica Fono Inova",
         "logo": {
             "@type": "ImageObject",
-            "url": "https://www.clinicafonoinova.com.br/images/logo.png"
+            "url": "https://www.clinicafonoinova.com.br/logo-unica.png"
         }
     }
 });

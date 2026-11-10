@@ -80,7 +80,7 @@ const DificuldadeEscolarPage = () => {
                 title="Meu Filho Não Aprende na Escola em Anápolis | Jundiaí - Fono Inova"
                 description="Seu filho estuda muito mas tira notas baixas em Anápolis? Avaliação neuropsicológica no bairro Jundiaí para identificar dislexia, TDAH. Agende pelo WhatsApp."
                 keywords="dificuldade de aprendizagem anapolis, dislexia anapolis, tdah infantil anapolis, avaliacao neuropsicologica jundiai"
-                image="/images/servicos/dificuldade-escolar.jpg"
+                image="/images/clinica/ia/dificuldade-escolar-escrita-caderno.webp"
                 url="https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-dificuldade-escolar"
                 type="article"
                 schema={[schemaDificuldadeEscolar, schemaFAQDificuldadeEscolar]}

@@ -16,18 +16,18 @@ const Equipe = () => {
     return (
         <Layout>
             <SEO
-                title="Nossa Equipe | Clínica Fono Inova"
+                title="Nossa Equipe em Anápolis | Clínica Fono Inova"
                 description="Equipe multidisciplinar da Clínica Fono Inova em Anápolis: fonoaudiologia, psicologia, terapia ocupacional, fisioterapia, psicopedagogia e neuropediatria."
                 keywords="equipe clínica, fonoaudiólogos anápolis, psicólogos infantis, especialistas em desenvolvimento infantil"
-                image="/images/clinica/equipe-fono-inova.jpg"
+                image="/images/og-image.jpg"
                 url="/equipe"
                 schema={{
                     "@context": "https://schema.org",
                     "@type": "MedicalOrganization",
                     "name": "Clínica Fono Inova",
                     "url": "https://www.clinicafonoinova.com.br/equipe",
-                    "logo": "https://www.clinicafonoinova.com.br/images/logo-unica.png",
-                    "image": "https://www.clinicafonoinova.com.br/images/clinica/equipe-fono-inova.jpg",
+                    "logo": "https://www.clinicafonoinova.com.br/logo-unica.png",
+                    "image": "https://www.clinicafonoinova.com.br/images/og-image.jpg",
                     "description": "Equipe multidisciplinar especializada em fonoaudiologia, psicologia e fisioterapia infantil em Anápolis."
                 }}
             />

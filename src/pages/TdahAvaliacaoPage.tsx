@@ -117,7 +117,7 @@ const TdahAvaliacaoPage = () => {
                 title="Avaliação TDAH Anápolis | Teste de Atenção Infantil | Clínica Fono Inova"
                 description="Seu filho tem dificuldade de atenção ou aprendizagem? Avaliação neuropsicológica especializada em TDAH em Anápolis. Diagnóstico completo. Agende pelo WhatsApp."
                 keywords="avaliação tdah anapolis, teste atenção infantil, diagnóstico tdah, neuropsicologia infantil anapolis, dificuldade aprendizagem"
-                image="/images/servicos/neuropsicologia.jpg"
+                image="/images/clinica/ia/tdah-avaliacao-tablet.webp"
                 url="https://www.clinicafonoinova.com.br/avaliacao-tdah-anapolis"
                 type="article"
                 schema={[schemaBaseLocalBusiness]}

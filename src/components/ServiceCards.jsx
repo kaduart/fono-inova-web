@@ -2,7 +2,6 @@ import { Activity, ArrowRight, Brain, Footprints, GraduationCap, MessageCircle, 
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { trackServiceClick, trackServiceView } from '../hooks/useAnalytics';
-import SEO from './SEO';
 
 
 const ServiceCards = () => {
@@ -177,13 +176,6 @@ const ServiceCards = () => {
 
     return (
         <>
-            <SEO
-                title="Serviços Especializados - Clínica Fono Inova"
-                description="Conheça todos os nossos serviços especializados em desenvolvimento infantil: fonoaudiologia, psicologia, terapia ocupacional, fisioterapia e mais."
-                keywords="fonoaudiologia, psicologia, terapia ocupacional, fisioterapia, psicopedagogia, avaliação neuropsicológica, freio lingual"
-                image="/images/servicos/geral.jpg"
-                url="https://www.clinicafonoinova.com.br"
-            />
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {services.map((service, index) => (

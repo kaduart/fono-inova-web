@@ -9,7 +9,7 @@ const SEO = ({ title, description, keywords = "", image, url, type = "website", 
   const fullTitle = /fono inova/i.test(baseTitle) || withBrand.length > 65 ? baseTitle : withBrand;
   const siteUrl = "https://www.clinicafonoinova.com.br";
   const absoluteUrl = url ? (url.startsWith('http') ? url : `${siteUrl}${url}`) : siteUrl;
-  const absoluteImage = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/logo-unica.png`;
+  const absoluteImage = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/og-image.jpg`;
 
   return (
     <Helmet>
