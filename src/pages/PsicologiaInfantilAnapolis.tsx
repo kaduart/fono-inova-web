@@ -430,6 +430,22 @@ const PsicologiaInfantilAnapolis = () => {
             Atendemos crianças e adolescentes. Não existe idade "certa" para procurar ajuda: quanto antes a dificuldade é entendida, mais fácil é apoiar o desenvolvimento emocional da criança e a relação com a família. Se você sente que algo não vai bem, vale conversar com a equipe.
           </p>
 
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-8 mb-3">
+            Para quem já tem diagnóstico e para quem ainda não tem
+          </h3>
+          <div className="space-y-4 mb-6">
+            <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+              <p className="text-slate-700 leading-relaxed">
+                <strong>Seu filho já tem diagnóstico (autismo/TEA, TDAH, ansiedade)?</strong> A psicóloga infantil faz o acompanhamento contínuo: desenvolve habilidades sociais e emocionais, trabalha o comportamento e apoia a família na rotina — em conjunto com fonoaudiologia, terapia ocupacional e neuropediatria quando necessário.
+              </p>
+            </div>
+            <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+              <p className="text-slate-700 leading-relaxed">
+                <strong>Ainda não tem diagnóstico?</strong> Se você percebe mudanças no comportamento, no humor ou na escola e quer entender o que está acontecendo, a psicóloga infantil ajuda a avaliar a criança e indicar os próximos passos — sem colocar rótulos antes da hora.
+              </p>
+            </div>
+          </div>
+
           <p className="text-slate-600">
             Atendimento de segunda a sexta, das 8h às 19h, na Av. Minas Gerais, 405, bairro Jundiaí, Anápolis — GO (perto da Base Aérea). Valores e horários pelo WhatsApp.
           </p>
