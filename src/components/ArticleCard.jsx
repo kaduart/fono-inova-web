@@ -50,8 +50,8 @@ const ArticleCard = ({ article }) => {
       {/* Schema invisível para Google */}
       <meta itemProp="headline" content={article.title} />
       <meta itemProp="author" content={article.author} />
-      <meta itemProp="datePublished" content={article.date} />
-      <meta itemProp="image" content={`https://www.clinicafonoinova.com.br${article.image}`} />
+      <meta itemProp="datePublished" content={article.dateISO || article.date} />
+      <meta itemProp="image" content={article.image?.startsWith('http') ? article.image : `https://www.clinicafonoinova.com.br${article.image}`} />
       <meta itemProp="mainEntityOfPage" content={`https://www.clinicafonoinova.com.br/artigos/${article.slug}`} />
 
       {/* Imagem */}
