@@ -399,18 +399,55 @@ const PsicologiaInfantilAnapolis = () => {
       <section className="py-14 md:py-20 bg-white">
         <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
           <h2 className="text-3xl font-bold font-poppins text-slate-900 mb-4">
-            Psicólogo infantil em Anápolis, no bairro Jundiaí
+            Psicólogo e psicóloga infantil em Anápolis, no bairro Jundiaí
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed mb-4">
-            Procurando psicólogo ou psicóloga para o seu filho em Anápolis? Na Clínica Fono Inova, a psicologia infantil trabalha junto com fonoaudiologia, terapia ocupacional, fisioterapia e neuropediatria. Assim, a equipe conversa sobre a criança e a família não precisa percorrer vários lugares.
+            Procurando um <strong>psicólogo infantil em Anápolis</strong> ou uma <strong>psicóloga infantil</strong> para o seu filho? Na Clínica Fono Inova, a psicologia infantil faz parte de uma equipe multidisciplinar e trabalha junto com fonoaudiologia, terapia ocupacional, fisioterapia e neuropediatria. Assim, os profissionais conversam sobre a mesma criança e a sua família resolve tudo em um só lugar, sem precisar percorrer vários consultórios.
           </p>
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-8 mb-3">
+            O que a psicologia infantil ajuda a cuidar
+          </h3>
           <ul className="space-y-2 text-slate-700 mb-6">
-            <li>Dificuldades de comportamento, atenção e regulação emocional</li>
-            <li>Acompanhamento de crianças com autismo (TEA) e TDAH, junto da equipe</li>
-            <li>Orientação aos pais sobre rotina, limites e desenvolvimento</li>
+            <li>• Birras frequentes, agressividade e dificuldade de seguir limites</li>
+            <li>• Ansiedade, medos, timidez excessiva e baixa autoestima</li>
+            <li>• Dificuldade de atenção, concentração e organização para estudar</li>
+            <li>• Dificuldades escolares e de relacionamento com outras crianças</li>
+            <li>• Mudanças difíceis da vida: separação dos pais, luto, chegada de um irmão</li>
+            <li>• Apoio emocional a crianças com autismo (TEA) e TDAH, junto da equipe</li>
           </ul>
+
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-8 mb-3">
+            Como funciona o atendimento de psicologia infantil
+          </h3>
+          <p className="text-lg text-slate-600 leading-relaxed mb-6">
+            Começamos ouvindo a família para entender o que está acontecendo. A partir daí, a psicóloga infantil monta um acompanhamento personalizado, com atividades lúdicas adequadas à idade da criança, e orienta os pais sobre rotina, limites e manejo do comportamento no dia a dia. Quando necessário, a criança é encaminhada para avaliação com neuropediatra ou avaliação neuropsicológica, tudo dentro da própria clínica.
+          </p>
+
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-8 mb-3">
+            A partir de que idade e para quem
+          </h3>
+          <p className="text-lg text-slate-600 leading-relaxed mb-6">
+            Atendemos crianças e adolescentes. Não existe idade "certa" para procurar ajuda: quanto antes a dificuldade é entendida, mais fácil é apoiar o desenvolvimento emocional da criança e a relação com a família. Se você sente que algo não vai bem, vale conversar com a equipe.
+          </p>
+
+          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mt-8 mb-3">
+            Para quem já tem diagnóstico e para quem ainda não tem
+          </h3>
+          <div className="space-y-4 mb-6">
+            <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+              <p className="text-slate-700 leading-relaxed">
+                <strong>Seu filho já tem diagnóstico (autismo/TEA, TDAH, ansiedade)?</strong> A psicóloga infantil faz o acompanhamento contínuo: desenvolve habilidades sociais e emocionais, trabalha o comportamento e apoia a família na rotina — em conjunto com fonoaudiologia, terapia ocupacional e neuropediatria quando necessário.
+              </p>
+            </div>
+            <div className="bg-slate-50 rounded-xl p-5 border border-slate-100">
+              <p className="text-slate-700 leading-relaxed">
+                <strong>Ainda não tem diagnóstico?</strong> Se você percebe mudanças no comportamento, no humor ou na escola e quer entender o que está acontecendo, a psicóloga infantil ajuda a avaliar a criança e indicar os próximos passos — sem colocar rótulos antes da hora.
+              </p>
+            </div>
+          </div>
+
           <p className="text-slate-600">
-            Atendimento de segunda a sexta, das 8h às 19h, na Av. Minas Gerais, 405, Jundiaí, Anápolis. Valores e horários pelo WhatsApp.
+            Atendimento de segunda a sexta, das 8h às 19h, na Av. Minas Gerais, 405, bairro Jundiaí, Anápolis — GO (perto da Base Aérea). Valores e horários pelo WhatsApp.
           </p>
         </div>
       </section>
