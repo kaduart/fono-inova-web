@@ -103,7 +103,7 @@ const FonoaudiologiaAnapolis = () => {
     <Layout>
       {/* SEO otimizado para LP de conversão */}
       <SEO
-        title="Fonoaudiologia em Anápolis | Fono Inova — Clínica Infantil"
+        title="Fonoaudiologia em Anápolis: Atraso na Fala e Autismo | Fono Inova"
         description="Fonoaudiologia infantil em Anápolis: atraso na fala, autismo e gagueira. Equipe multidisciplinar, nota 5,0 no Google. Agende a avaliação pelo WhatsApp."
         keywords="fono em anapolis, fonoaudiologia anapolis, fonoaudiólogo anapolis, fonoaudióloga infantil anapolis, atraso fala anapolis, fono infantil anapolis, clínica fonoaudiologia anapolis"
         image="/images/og-image.jpg"
