@@ -92,10 +92,10 @@ const painPoints = [
   },
   {
     icon: Mic,
-    title: "Perda de voz ou rouquidão persistente",
-    description: "Disfonia, fadiga vocal, ideal para professores e profissionais da voz",
+    title: "Dificuldade para engolir ou falar (adultos)",
+    description: "Disfagia e apraxia de fala, inclusive após AVC",
     color: "teal",
-    whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nÉ para meu filho, pode me orientar?",
+    whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nBusco fono para adulto (deglutição/fala). Pode me orientar?",
   },
 ];
 
@@ -865,10 +865,10 @@ function Home() {
               </div>
             </Link>
 
-            {/* Voz Profissional (Fonoaudiologia Adulto) */}
+            {/* Fonoaudiologia Adulto: disfagia e apraxia */}
             <Link
               to="/fonoaudiologia-adulto"
-              onClick={() => trackButtonClick('Especialidade Card - Voz Adulto')}
+              onClick={() => trackButtonClick('Especialidade Card - Fono Adulto')}
               className="group"
             >
               <div className="bg-white rounded-xl border border-slate-200 hover:border-primary/50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden h-full flex flex-col">
@@ -880,8 +880,8 @@ function Home() {
                   />
                 </div>
                 <div className="p-3 text-center flex flex-col flex-grow">
-                  <h3 className="font-semibold text-slate-800 group-hover:text-primary transition-colors text-sm">Voz Profissional</h3>
-                  <p className="text-xs text-slate-500 mt-1">Disfonia e fadiga vocal para professores e profissionais</p>
+                  <h3 className="font-semibold text-slate-800 group-hover:text-primary transition-colors text-sm">Fono para Adultos</h3>
+                  <p className="text-xs text-slate-500 mt-1">Disfagia e apraxia de fala, inclusive após AVC</p>
                   <button className="mt-auto pt-2 px-3 py-1.5 bg-green-100 text-green-700 rounded-full text-xs font-semibold hover:bg-green-200 transition-colors">
                     Agendar avaliação 💚
                   </button>
