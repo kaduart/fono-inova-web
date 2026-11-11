@@ -1,6 +1,7 @@
 // Catálogo de páginas para links internos ("Veja também"). Só rotas ativas do site.
 export const RELATED: Record<string, { title: string; desc: string }> = {
   '/fonoaudiologia-anapolis': { title: 'Fonoaudiologia infantil', desc: 'Fala, linguagem, voz e alimentação' },
+  '/convenio-geap-anapolis': { title: 'Convênio GEAP', desc: 'Atendimento infantil pelo GEAP em Anápolis' },
   '/fala-tardia-anapolis': { title: 'Fala tardia', desc: 'Quando a criança demora a falar' },
   '/teste-da-linguinha-anapolis': { title: 'Teste da linguinha', desc: 'Avaliação do freio lingual em bebês e crianças' },
   '/autismo-anapolis': { title: 'Autismo (TEA)', desc: 'Avaliação e acompanhamento multidisciplinar' },

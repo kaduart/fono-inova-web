@@ -2,7 +2,7 @@ import type { FAQItem } from './seoStructures';
 
 // FAQ visível + dados estruturados (via FAQSection). Perguntas baseadas em buscas reais (AnswerThePublic/Google, out/2026).
 // Regras de verdade: sessão 40 min; avaliação 1 h (anamnese com os pais, criança não precisa estar presente);
-// laudo de autismo/TDAH somente pelo neuropediatra; convênio só BAAN + particular com recibo; sem números não confirmados.
+// laudo de autismo/TDAH somente pelo neuropediatra; convênios BAAN e GEAP + particular com recibo (não Unimed/IPASGO); sem números não confirmados.
 
 export const faqAutismo: FAQItem[] = [
   {
@@ -38,7 +38,7 @@ export const faqAutismo: FAQItem[] = [
   {
     question: 'Atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Para confirmar a cobertura do seu caso, chame no WhatsApp.',
   },
 ];
 
@@ -154,7 +154,7 @@ export const faqNeuropediatria: FAQItem[] = [
   {
     question: 'O neuropediatra atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos. Atendemos no particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele, e há o convênio da Base Aérea de Anápolis (BAAN); para saber se cobre a consulta, pergunte pelo WhatsApp.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos no particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele, e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP; para saber se o seu convênio cobre a consulta, pergunte pelo WhatsApp.',
   },
   {
     question: 'Qual a diferença entre neuropediatra e neuropsicólogo?',
@@ -211,7 +211,7 @@ export const faqPsicopedagogia: FAQItem[] = [
   {
     question: 'Atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Para confirmar a cobertura do seu caso, chame no WhatsApp.',
   },
   {
     question: 'Quanto tempo dura o acompanhamento psicopedagógico?',
@@ -269,5 +269,90 @@ export const faqFalaTardia: FAQItem[] = [
     question: 'Onde fica a clínica de fonoaudiologia no Jundiaí?',
     answer:
       'A Fono Inova fica na Av. Minas Gerais, 405, bairro Jundiaí, em Anápolis/GO. Atendemos de segunda a sexta, das 8h às 19h, com acessibilidade no espaço.',
+  },
+];
+
+const PLANOS_TERAPIAS =
+  'Atendemos no particular, com recibo para você pedir reembolso ao seu plano conforme as regras dele, e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP. Não atendemos Unimed nem IPASGO. Para confirmar a cobertura do seu caso, chame no WhatsApp (62) 99201-3573.';
+
+export const faqTerapiaOcupacional: FAQItem[] = [
+  {
+    question: 'O que a terapia ocupacional infantil trabalha?',
+    answer:
+      'A terapia ocupacional ajuda a criança a ganhar autonomia nas atividades do dia a dia: coordenação motora fina (segurar o lápis, recortar, abotoar), organização sensorial (sensibilidade a barulho, texturas, roupas), alimentação, brincar e rotina. O objetivo é a criança participar melhor em casa e na escola.',
+  },
+  {
+    question: 'Quando procurar terapia ocupacional para meu filho?',
+    answer:
+      'Quando a criança tem dificuldade para se vestir, comer ou escrever, se incomoda muito com barulhos, texturas ou roupas, evita brincadeiras de movimento, ou quando a escola relata agitação e dificuldade de concentração. Não precisa de diagnóstico para começar: a avaliação mostra se há necessidade de acompanhamento.',
+  },
+  {
+    question: 'O que é integração sensorial?',
+    answer:
+      'É a forma como o cérebro organiza o que a criança sente (toque, som, movimento, equilíbrio). Quando essa organização não funciona bem, a criança pode reagir demais ou de menos aos estímulos. Na terapia ocupacional, isso é trabalhado com atividades lúdicas e planejadas para cada criança.',
+  },
+  {
+    question: 'Terapia ocupacional ajuda crianças com autismo e TDAH?',
+    answer:
+      'Sim. A terapia ocupacional é uma das terapias mais indicadas para crianças com autismo e TDAH, porque trabalha a organização sensorial, a rotina, a atenção e a autonomia. Na Fono Inova ela funciona junto com fonoaudiologia, psicologia e neuropediatria quando o caso pede.',
+  },
+  {
+    question: 'Preciso de encaminhamento médico?',
+    answer:
+      'Não é necessário. A família pode agendar a avaliação diretamente pelo WhatsApp (62) 99201-3573. Se a criança já tiver relatório de outro profissional ou da escola, vale trazer na avaliação.',
+  },
+  {
+    question: 'Quanto custa a terapia ocupacional em Anápolis?',
+    answer: PRECO_BASE,
+  },
+  {
+    question: 'A terapia ocupacional atende por plano de saúde?',
+    answer: PLANOS_TERAPIAS,
+  },
+  {
+    question: 'Onde fica a clínica?',
+    answer:
+      'Na Av. Minas Gerais, 405, bairro Jundiaí, em Anápolis/GO. Atendemos de segunda a sexta, das 8h às 19h, com hora marcada.',
+  },
+];
+
+export const faqFisioterapiaInfantil: FAQItem[] = [
+  {
+    question: 'Quando a criança precisa de fisioterapia infantil?',
+    answer:
+      'Quando há atraso para sustentar a cabeça, rolar, sentar, engatinhar ou andar, quando a criança cai muito, anda na ponta dos pés, tem torcicolo congênito, alterações de postura ou nasceu prematura. Na dúvida, a avaliação mostra se há necessidade de acompanhamento.',
+  },
+  {
+    question: 'Com que idade pode começar a fisioterapia?',
+    answer:
+      'Desde os primeiros meses de vida. Bebês com torcicolo, prematuros ou com atraso motor costumam ter melhores resultados quando o acompanhamento começa cedo.',
+  },
+  {
+    question: 'Como é a sessão de fisioterapia infantil?',
+    answer:
+      'A sessão é feita com brincadeiras e atividades planejadas para estimular força, equilíbrio, coordenação e postura. Os pais recebem orientações para continuar o estímulo em casa, o que faz diferença na evolução da criança.',
+  },
+  {
+    question: 'Qual a diferença entre fisioterapia infantil e terapia ocupacional?',
+    answer:
+      'A fisioterapia foca no movimento global: sentar, andar, equilíbrio, força e postura. A terapia ocupacional foca na autonomia nas atividades do dia a dia, na coordenação fina e na organização sensorial. Muitas crianças se beneficiam das duas.',
+  },
+  {
+    question: 'Preciso de encaminhamento médico?',
+    answer:
+      'Não é necessário para a avaliação. A família pode agendar diretamente pelo WhatsApp (62) 99201-3573. Se houver laudo ou relatório do pediatra ou do neuropediatra, vale trazer.',
+  },
+  {
+    question: 'Quanto custa a fisioterapia infantil em Anápolis?',
+    answer: PRECO_BASE,
+  },
+  {
+    question: 'A fisioterapia infantil atende por plano de saúde?',
+    answer: PLANOS_TERAPIAS,
+  },
+  {
+    question: 'Onde fica a clínica?',
+    answer:
+      'Na Av. Minas Gerais, 405, bairro Jundiaí, em Anápolis/GO. Atendemos de segunda a sexta, das 8h às 19h, com hora marcada.',
   },
 ];

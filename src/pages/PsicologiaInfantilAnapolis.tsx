@@ -465,7 +465,7 @@ const PsicologiaInfantilAnapolis = () => {
         </div>
       </section>
 
-      <PageFooterInfo related={['/comportamento-infantil-anapolis', '/tdah-anapolis', '/autismo-anapolis', '/avaliacao-neuropsicologica-anapolis']} whatsappMessage="Oi! Vi a página de psicologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <PageFooterInfo related={['/comportamento-infantil-anapolis', '/tdah-anapolis', '/autismo-anapolis', '/convenio-geap-anapolis']} whatsappMessage="Oi! Vi a página de psicologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="ludico" whatsappMessage="Oi! Vi a página de psicologia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 

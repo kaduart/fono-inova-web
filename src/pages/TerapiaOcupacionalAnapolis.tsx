@@ -41,6 +41,8 @@ import { terapiaOcupacionalSEO } from '../data/seoStructures.js';
 import SEOStructuredContent from '../components/SEOStructuredContent.js';
 import ClinicGallery from '../components/ClinicGallery';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
+import FAQSection from '../components/FAQSection';
+import { faqTerapiaOcupacional } from '../data/faqPaginas';
 import DifferentialSection from '../components/premium/DifferentialSection';
 import ProofBar from '../components/premium/ProofBar';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
@@ -382,7 +384,9 @@ const TerapiaOcupacionalAnapolis = () => {
         </div>
       </section>
 
-      <PageFooterInfo related={['/psicomotricidade-anapolis', '/autismo-anapolis', '/fisioterapia-infantil-anapolis', '/seletividade-alimentar-anapolis']} whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <FAQSection faqs={faqTerapiaOcupacional} title="Perguntas frequentes sobre terapia ocupacional" subtitle="Tire suas dúvidas sobre avaliação, sessões e convênios" />
+
+      <PageFooterInfo related={['/psicomotricidade-anapolis', '/autismo-anapolis', '/fisioterapia-infantil-anapolis', '/convenio-geap-anapolis']} whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="toCoordenacao" whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 
