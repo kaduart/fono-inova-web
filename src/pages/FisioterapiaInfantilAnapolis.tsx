@@ -48,6 +48,8 @@ import DifferentialSection from '../components/premium/DifferentialSection';
 import ProofBar from '../components/premium/ProofBar';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
+import FAQSection from '../components/FAQSection';
+import { faqFisioterapiaInfantil } from '../data/faqPaginas';
 import SituationsSection from '../components/premium/SituationsSection';
 
 const WHATSAPP_URL =
@@ -501,6 +503,8 @@ const FisioterapiaInfantilAnapolis = () => {
           <GoogleReviews count={3} offset={4} title="" />
         </div>
       </section>
+
+      <FAQSection faqs={faqFisioterapiaInfantil} title="Perguntas frequentes sobre fisioterapia infantil" subtitle="Tire suas dúvidas sobre avaliação, sessões e convênios" />
 
       <PageFooterInfo related={['/psicomotricidade-anapolis', '/terapia-ocupacional-anapolis', '/prematuridade-desenvolvimento', '/neuropediatra-anapolis']} whatsappMessage="Oi! Vi a página de fisioterapia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 
