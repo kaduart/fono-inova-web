@@ -1,7 +1,4 @@
-// ⛔ LP COMPLETA DO GEAP — PRESERVADA, hoje NÃO é exibida (ver src/data/conveniosStatus.ts).
-// Enquanto o credenciamento está em andamento, /convenio-geap-anapolis mostra a página de interesse.
-// Antes de ativar: confirmação formal do credenciamento + revisar os textos abaixo (especialidades realmente liberadas,
-// aviso de elegibilidade/autorização), adicionar a URL ao sitemap.xml e rodar o IndexNow.
+// LP COMPLETA DO GEAP — ativa desde 11/11/2026 (CONVENIOS_STATUS.geap = 'ativo', atendimentos a partir de 12/11/2026).
 import TypewriterText from '../components/TypewriterText';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import {

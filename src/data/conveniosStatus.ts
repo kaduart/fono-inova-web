@@ -13,7 +13,7 @@ export type ConvenioStatus = 'ativo' | 'em_andamento';
 
 export const CONVENIOS_STATUS: Record<'baan' | 'geap' | 'ipasgo' | 'bradesco', ConvenioStatus> = {
   baan: 'ativo', // credenciado há meses (confirmado)
-  geap: 'em_andamento',
+  geap: 'ativo', // credenciado; atendimentos a partir de 12/11/2026 (confirmado pelo Kadu em 11/11)
   ipasgo: 'em_andamento',
   bradesco: 'em_andamento',
 };
