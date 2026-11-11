@@ -15,7 +15,7 @@ const faqs = [
     { q: 'Onde fica a Clínica Fono Inova?', a: 'Na Avenida Minas Gerais, 405, bairro Jundiaí, em Anápolis-GO.' },
     { q: 'Qual é o horário de atendimento?', a: 'De segunda a sexta, das 8h às 19h. Não atendemos aos sábados.' },
     { q: 'Quais especialidades a clínica oferece?', a: 'Fonoaudiologia, psicologia infantil, terapia ocupacional, fisioterapia infantil, psicopedagogia, musicoterapia, neuropediatria e avaliação neuropsicológica, todas no mesmo endereço.' },
-    { q: 'A clínica atende por convênio?', a: 'Atendemos de forma particular e, por convênio, apenas a Base Aérea de Anápolis (BAAN). Para outros planos, emitimos o recibo do atendimento para você solicitar reembolso, conforme o contrato do seu plano.' },
+    { q: 'A clínica atende por convênio?', a: 'Atendemos de forma particular e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP. Não atendemos Unimed nem IPASGO. Para outros planos, emitimos o recibo do atendimento para você solicitar reembolso, conforme o contrato do seu plano.' },
     { q: 'Como agendar uma avaliação?', a: 'Pelo WhatsApp (62) 99201-3573. A equipe explica como funciona cada especialidade e combina o melhor horário com a família.' },
 ];
 

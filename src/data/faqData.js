@@ -19,7 +19,7 @@ export const faqItems = [
     },
     {
         pergunta: 'A clínica atende por convênio?',
-        resposta: 'Atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e também de forma particular. Para outras opções, fale com a nossa equipe pelo WhatsApp e confirme a disponibilidade antes de agendar.'
+        resposta: 'Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e também de forma particular. Não atendemos Unimed nem IPASGO. Para outras opções, fale com a nossa equipe pelo WhatsApp e confirme a disponibilidade antes de agendar.'
     },
     {
         pergunta: 'Quais são os valores das consultas e avaliações?',

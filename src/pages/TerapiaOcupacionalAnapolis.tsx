@@ -386,7 +386,7 @@ const TerapiaOcupacionalAnapolis = () => {
 
       <FAQSection faqs={faqTerapiaOcupacional} title="Perguntas frequentes sobre terapia ocupacional" subtitle="Tire suas dúvidas sobre avaliação, sessões e convênios" />
 
-      <PageFooterInfo related={['/psicomotricidade-anapolis', '/autismo-anapolis', '/fisioterapia-infantil-anapolis', '/seletividade-alimentar-anapolis']} whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <PageFooterInfo related={['/psicomotricidade-anapolis', '/autismo-anapolis', '/fisioterapia-infantil-anapolis', '/convenio-geap-anapolis']} whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="toCoordenacao" whatsappMessage="Oi! Vi a página de terapia ocupacional da Fono Inova e gostaria de entender como funciona o atendimento." />
 

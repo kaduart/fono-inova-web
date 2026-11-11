@@ -302,7 +302,7 @@ const FonoaudiologiaAnapolis = () => {
         customFAQTitle="Perguntas Frequentes sobre Fonoaudiologia Infantil"
       />
 
-      <PageFooterInfo related={['/fala-tardia-anapolis', '/teste-da-linguinha-anapolis', '/dislexia-anapolis', '/autismo-anapolis']} whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <PageFooterInfo related={['/fala-tardia-anapolis', '/teste-da-linguinha-anapolis', '/dislexia-anapolis', '/convenio-geap-anapolis']} whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="fonoEspelho" whatsappMessage="Oi! Vi a página de fonoaudiologia da Fono Inova e gostaria de entender como funciona o atendimento." />
 

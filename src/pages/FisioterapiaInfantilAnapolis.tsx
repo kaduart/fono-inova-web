@@ -506,7 +506,7 @@ const FisioterapiaInfantilAnapolis = () => {
 
       <FAQSection faqs={faqFisioterapiaInfantil} title="Perguntas frequentes sobre fisioterapia infantil" subtitle="Tire suas dúvidas sobre avaliação, sessões e convênios" />
 
-      <PageFooterInfo related={['/psicomotricidade-anapolis', '/terapia-ocupacional-anapolis', '/prematuridade-desenvolvimento', '/neuropediatra-anapolis']} whatsappMessage="Oi! Vi a página de fisioterapia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
+      <PageFooterInfo related={['/psicomotricidade-anapolis', '/terapia-ocupacional-anapolis', '/prematuridade-desenvolvimento', '/convenio-geap-anapolis']} whatsappMessage="Oi! Vi a página de fisioterapia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 
       <DifferentialSection photo="movimento" reverse whatsappMessage="Oi! Vi a página de fisioterapia infantil da Fono Inova e gostaria de entender como funciona o atendimento." />
 

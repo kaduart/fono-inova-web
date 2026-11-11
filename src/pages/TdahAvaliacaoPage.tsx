@@ -105,7 +105,7 @@ const TdahAvaliacaoPage = () => {
         },
         {
             pergunta: 'Preciso de encaminhamento médico?',
-            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). O agendamento é simples pelo WhatsApp.'
+            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP. O agendamento é simples pelo WhatsApp.'
         }
     ];
 
@@ -538,7 +538,7 @@ const TdahAvaliacaoPage = () => {
                                 <CheckCircle2 className="w-4 h-4" /> Sem encaminhamento
                             </span>
                             <span className="flex items-center gap-1">
-                                <CheckCircle2 className="w-4 h-4" /> Particular e convênio BAAN
+                                <CheckCircle2 className="w-4 h-4" /> Particular, BAAN e GEAP
                             </span>
                         </div>
 
@@ -562,7 +562,7 @@ const TdahAvaliacaoPage = () => {
                         </span>
                     </div>
                     <p className="text-purple-700/70 mt-2 text-sm">
-                        Fácil acesso • Atendemos particular e Base Aérea (BAAN)
+                        Fácil acesso • Atendemos particular, Base Aérea (BAAN) e GEAP
                     </p>
                 </div>
             </section>

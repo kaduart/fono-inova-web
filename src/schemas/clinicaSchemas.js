@@ -457,7 +457,7 @@ export const schemaFAQTO = {
             "name": "Qual o valor da sessão de terapia ocupacional no Jundiaí?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Fono Inova no bairro Jundiaí, oferecemos valores acessíveis. Atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados."
+                "text": "Na Fono Inova no bairro Jundiaí, oferecemos valores acessíveis. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados."
             }
         }
     ]
@@ -606,7 +606,7 @@ export const schemaFAQAdulto = {
             "name": "Quanto custa a avaliação fonoaudiológica para adultos no Jundiaí?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Na Fono Inova no bairro Jundiaí, a avaliação fonoaudiológica para adultos tem valor acessível. Atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados de avaliação e sessões."
+                "text": "Na Fono Inova no bairro Jundiaí, a avaliação fonoaudiológica para adultos tem valor acessível. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular, com recibo para reembolso. Entre em contato pelo WhatsApp para valores atualizados de avaliação e sessões."
             }
         }
     ]
@@ -959,7 +959,7 @@ export const schemaFAQNeuropediatria = {
         {
             "@type": "Question",
             "name": "Preciso de encaminhamento para consultar o neuropediatra?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN)." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos no particular (com recibo para reembolso) e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP." }
         },
         {
             "@type": "Question",

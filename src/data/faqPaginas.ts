@@ -2,7 +2,7 @@ import type { FAQItem } from './seoStructures';
 
 // FAQ visível + dados estruturados (via FAQSection). Perguntas baseadas em buscas reais (AnswerThePublic/Google, out/2026).
 // Regras de verdade: sessão 40 min; avaliação 1 h (anamnese com os pais, criança não precisa estar presente);
-// laudo de autismo/TDAH somente pelo neuropediatra; convênio só BAAN + particular com recibo; sem números não confirmados.
+// laudo de autismo/TDAH somente pelo neuropediatra; convênios BAAN e GEAP + particular com recibo (não Unimed/IPASGO); sem números não confirmados.
 
 export const faqAutismo: FAQItem[] = [
   {
@@ -38,7 +38,7 @@ export const faqAutismo: FAQItem[] = [
   {
     question: 'Atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Para confirmar a cobertura do seu caso, chame no WhatsApp.',
   },
 ];
 
@@ -154,7 +154,7 @@ export const faqNeuropediatria: FAQItem[] = [
   {
     question: 'O neuropediatra atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos. Atendemos no particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele, e há o convênio da Base Aérea de Anápolis (BAAN); para saber se cobre a consulta, pergunte pelo WhatsApp.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos no particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele, e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP; para saber se o seu convênio cobre a consulta, pergunte pelo WhatsApp.',
   },
   {
     question: 'Qual a diferença entre neuropediatra e neuropsicólogo?',
@@ -211,7 +211,7 @@ export const faqPsicopedagogia: FAQItem[] = [
   {
     question: 'Atende pela Unimed ou outro plano de saúde?',
     answer:
-      'Hoje não atendemos pela Unimed nem por outros planos: atendemos pelo convênio da Base Aérea de Anápolis (BAAN) e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele.',
+      'Não atendemos pela Unimed nem pelo IPASGO. Atendemos pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP, e no particular. No particular, emitimos o recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Para confirmar a cobertura do seu caso, chame no WhatsApp.',
   },
   {
     question: 'Quanto tempo dura o acompanhamento psicopedagógico?',

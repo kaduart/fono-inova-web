@@ -42,7 +42,7 @@ const ask = [
 const faqs = [
   {
     q: 'A Fono Inova atende pelo meu plano de saúde?',
-    a: 'Hoje atendemos de forma particular e, por convênio, apenas a Base Aérea de Anápolis (BAAN). Para os demais planos, o atendimento é particular e você pode solicitar reembolso ao seu plano, conforme o contrato.',
+    a: 'Hoje atendemos de forma particular e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP. Para os demais planos, o atendimento é particular e você pode solicitar reembolso ao seu plano, conforme o contrato.',
   },
   {
     q: 'A clínica garante o reembolso?',

@@ -107,7 +107,7 @@ const ComportamentoInfantilPage = () => {
         },
         {
             pergunta: 'Preciso de encaminhamento?',
-            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). O primeiro contato é pelo WhatsApp, sem compromisso.'
+            resposta: 'Não! Você pode agendar diretamente. Atendemos no particular (com recibo para reembolso) e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP. O primeiro contato é pelo WhatsApp, sem compromisso.'
         }
     ];
 
@@ -526,7 +526,7 @@ const ComportamentoInfantilPage = () => {
                         </span>
                     </div>
                     <p className="text-red-700/70 mt-2 text-sm">
-                        Fácil acesso • Atendemos particular e Base Aérea (BAAN)
+                        Fácil acesso • Atendemos particular, Base Aérea (BAAN) e GEAP
                     </p>
                 </div>
             </section>
