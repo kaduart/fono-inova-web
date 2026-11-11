@@ -448,7 +448,7 @@ const NeuropediatriaPage = () => {
                         </span>
                     </div>
                     <p className="text-blue-700/70 mt-2 text-sm">
-                        Atendimento particular, Base Aérea (BAAN) e GEAP
+                        Atendimento particular e Base Aérea (BAAN)
                     </p>
                 </div>
             </section>
