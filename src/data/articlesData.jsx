@@ -159,6 +159,14 @@ export const articlesData = [
         <p>
           <strong>💚 Agende uma avaliação fonoaudiológica na Clínica Fono Inova em Anápolis.</strong>
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -296,6 +304,14 @@ export const articlesData = [
         <p>
           <strong>💚 Se você tem dúvidas sobre o desenvolvimento do seu filho, agende uma avaliação neuropediatra na Clínica Fono Inova em Anápolis.</strong>
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
+            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -405,6 +421,14 @@ export const articlesData = [
         <p>
           <strong>💚 Se você percebe sinais de dificuldades emocionais no seu filho, agende uma avaliação psicológica infantil na Clínica Fono Inova em Anápolis.</strong>
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicologia infantil em Anápolis</a></li>
+            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -557,6 +581,14 @@ export const articlesData = [
         <p>
           <strong>💚 Se você tem dúvidas sobre o desenvolvimento cognitivo do seu filho, agende uma avaliação neuropsicológica infantil na Clínica Fono Inova em Anápolis.</strong>
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -735,6 +767,16 @@ export const articlesData = [
         <p>
           <strong>💚 Se você tem dúvidas sobre o desenvolvimento do seu filho, agende uma avaliação multidisciplinar infantil na Clínica Fono Inova em Anápolis.</strong>
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicologia infantil em Anápolis</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia ocupacional infantil em Anápolis</a></li>
+            <li><a href="/fisioterapia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fisioterapia infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1217,6 +1259,15 @@ export const articlesData = [
         <p><strong>Recortar e colar:</strong> Atividades com tesoura sem ponta e cola desenvolvem habilidades motoras finas.</p>
 
         <p>Lembre-se: cada criança se desenvolve em seu próprio ritmo. As atividades devem ser divertidas e adequadas à idade e capacidade da criança. Em caso de preocupações com o desenvolvimento motor, consulte um fisioterapeuta pediátrico.</p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fisioterapia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fisioterapia infantil em Anápolis</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia ocupacional infantil em Anápolis</a></li>
+            <li><a href="/psicomotricidade-anapolis" className="text-blue-600 hover:underline">→ Psicomotricidade em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1356,6 +1407,16 @@ export const articlesData = [
         <p>Basta entrar em contato pelo WhatsApp e escolher o melhor horário.</p>
 
         <p><strong>💚 Agende sua avaliação na Clínica Fono Inova agora mesmo.</strong></p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicologia infantil em Anápolis</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia ocupacional infantil em Anápolis</a></li>
+            <li><a href="/fisioterapia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fisioterapia infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1530,6 +1591,15 @@ export const articlesData = [
 
         <h2>O Papel da Terapia</h2>
         <p>A abordagem multidisciplinar trabalha a integração sensorial e a motricidade orofacial, ajudando a criança a explorar novos sabores de forma lúdica e sem pressão.</p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/seletividade-alimentar-anapolis" className="text-blue-600 hover:underline">→ Seletividade alimentar: atendimento em Anápolis</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia ocupacional infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1562,6 +1632,14 @@ export const articlesData = [
 
         <h2>Diagnóstico e Treinamento Auditivo</h2>
         <p>Com avaliação especializada, realizamos a avaliação do PAC e o treinamento auditivo para fortalecer as vias auditivas centrais.</p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1594,6 +1672,13 @@ export const articlesData = [
           <li>Fortalecimento do vínculo afetivo</li>
           <li>Resultados terapêuticos mais rápidos e consistentes</li>
         </ul>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicologia infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1626,6 +1711,15 @@ export const articlesData = [
 
         <h2>Quando buscar?</h2>
         <p>Se você nota que seu filho cai com frequência, tem dificuldade em atividades físicas ou mostra desinteresse por desafios motores, uma avaliação psicomotora pode ser indicada.</p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/psicomotricidade-anapolis" className="text-blue-600 hover:underline">→ Psicomotricidade em Anápolis</a></li>
+            <li><a href="/fisioterapia-infantil-anapolis" className="text-blue-600 hover:underline">→ Fisioterapia infantil em Anápolis</a></li>
+            <li><a href="/terapia-ocupacional-anapolis" className="text-blue-600 hover:underline">→ Terapia ocupacional infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1780,6 +1874,13 @@ export const articlesData = [
           <li>Melhora da interação em grupo</li>
           <li>Expressão de sentimentos através da sonoridade</li>
         </ul>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Avaliação e terapias para autismo em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },

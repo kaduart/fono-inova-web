@@ -24,6 +24,8 @@ const getFbc = () => {
 };
 
 const sendToServer = (payload) => {
+    // Prévias do Vercel e localhost não mandam eventos para a Meta (ver index.html)
+    if (window.FI_TRACK === false) return;
     try {
         const body = JSON.stringify(payload);
         if (navigator.sendBeacon) {

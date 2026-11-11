@@ -19,38 +19,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap">
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PR72FM3L');</script>
-  <!-- End Google Tag Manager -->
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N59X7PNQZZ"></script>
+  <!-- Tags (GTM, Google e Meta): só carregam no domínio oficial.
+       Prévias do Vercel e localhost não mandam dados para GA4/Ads/Meta. -->
   <script>
+    window.FI_TRACK = /(^|\.)clinicafonoinova\.com\.br$/.test(location.hostname);
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-N59X7PNQZZ');
-  </script>
-  <!-- Meta Pixel Code -->
-  <script>
     !function (f, b, e, v, n, t, s) {
       if (f.fbq) return; n = f.fbq = function () {
         n.callMethod ?
           n.callMethod.apply(n, arguments) : n.queue.push(arguments)
       };
       if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
+      n.queue = [];
+      if (!window.FI_TRACK) return;
+      t = b.createElement(e); t.async = !0;
       t.src = v; s = b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t, s)
     }(window, document, 'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4071257099804730');
-    fbq('track', 'PageView');
+    if (window.FI_TRACK) {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PR72FM3L');
+      var g = document.createElement('script'); g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=G-N59X7PNQZZ';
+      document.head.appendChild(g);
+      gtag('js', new Date());
+      gtag('config', 'G-N59X7PNQZZ');
+      fbq('init', '4071257099804730');
+      fbq('track', 'PageView');
+    }
   </script>
-
   <!-- End Meta Pixel Code -->
 </head>
 
