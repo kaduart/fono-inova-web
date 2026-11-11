@@ -1177,6 +1177,7 @@ export const articlesData = [
         <p>
           Se você percebe sinais de atraso na fala no seu filho, agende uma avaliação com nossa equipe especializada.
           Atendimento em Anápolis com profissionais qualificados em desenvolvimento infantil.
+          Veja como funciona a <a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">avaliação de atraso na fala infantil em Anápolis</a>.
         </p>
       </>
     )
@@ -1287,6 +1288,8 @@ export const articlesData = [
           <li><strong>Meu filho pode desenvolver fala?</strong> Sim, com estímulo adequado.</li>
           <li><strong>Quanto tempo dura o tratamento?</strong> Depende de cada criança.</li>
         </ul>
+
+        <p>Veja os sinais por idade e como é a <a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">avaliação de atraso na fala infantil em Anápolis</a>.</p>
 
         <p><strong>💚 Agende uma avaliação fonoaudiológica na Clínica Fono Inova em Anápolis.</strong></p>
       </>

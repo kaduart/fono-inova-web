@@ -52,9 +52,9 @@ export default function FalaTardiaAnapolis() {
   return (
     <Layout>
       <SEO
-        title="Fala Tardia Infantil em Anápolis | Clínica Fono Inova"
-        description="Seu filho está com atraso na fala? Fonoaudióloga especialista em linguagem infantil em Anápolis, bairro Jundiaí. Avaliação completa. Agende pelo WhatsApp."
-        keywords="fala tardia anapolis, meu filho não fala, atraso de fala anapolis, fonoaudióloga fala tardia anapolis, 2 anos não fala anapolis, criança demora falar anapolis"
+        title="Atraso na Fala Infantil em Anápolis | Clínica Fono Inova"
+        description="Seu filho fala pouco ou ainda não fala? Veja os sinais de atraso na fala por idade e como é a avaliação fonoaudiológica em Anápolis (Jundiaí). Fale no WhatsApp."
+        keywords="atraso na fala anapolis, atraso na fala infantil, especialista atraso na fala, fala tardia anapolis, meu filho não fala, atraso de fala anapolis, fonoaudióloga fala tardia anapolis, 2 anos não fala anapolis, criança demora falar anapolis"
         url="https://www.clinicafonoinova.com.br/fala-tardia-anapolis"
         image="/images/og-image.jpg"
         type="website"
@@ -63,7 +63,7 @@ export default function FalaTardiaAnapolis() {
 
       <Breadcrumb items={[
         { label: 'Fonoaudiologia', href: '/fonoaudiologia-anapolis' },
-        { label: 'Fala Tardia em Anápolis' },
+        { label: 'Atraso na Fala em Anápolis' },
       ]} />
 
       {/* ========== HERO ========== */}
@@ -75,11 +75,11 @@ export default function FalaTardiaAnapolis() {
           <div className="space-y-6 text-center lg:text-left">
 
             <span className="inline-flex items-center bg-orange-50 text-orange-700 border border-orange-200 px-4 py-1.5 text-sm font-semibold rounded-full">
-              Fala Tardia Infantil em Anápolis
+              Atraso na Fala Infantil em Anápolis
             </span>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight">
-              <TypewriterText text="Seu Filho Ainda Não Fala Como Esperado para a Idade?" />
+              <TypewriterText text="Atraso na Fala: Seu Filho Ainda Não Fala Como Esperado para a Idade?" />
             </h1>
 
             <p className="text-xl text-slate-600 leading-relaxed">
@@ -186,7 +186,7 @@ export default function FalaTardiaAnapolis() {
         </div>
       </section>
 
-      <FAQSection faqs={faqFalaTardia} title="Perguntas frequentes sobre fala tardia" subtitle="Tire suas dúvidas sobre avaliação, laudo e estímulo em casa" />
+      <FAQSection faqs={faqFalaTardia} title="Perguntas frequentes sobre atraso na fala" subtitle="Tire suas dúvidas sobre avaliação, laudo e estímulo em casa" />
 
       <PageFooterInfo related={['/fonoaudiologia-anapolis', '/autismo-anapolis', '/teste-da-linguinha-anapolis', '/terapia-ocupacional-anapolis']} whatsappMessage="Oi! Vi a página de fala tardia da Fono Inova e gostaria de entender como funciona o atendimento." />
 

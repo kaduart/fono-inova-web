@@ -2,6 +2,7 @@
 export const VALID_PATHS = new Set([
   "/",
   "/abordagem-multidisciplinar",
+  "/agendar",
   "/analytics",
   "/apoio-as-familias",
   "/app",
@@ -111,6 +112,7 @@ export const VALID_PATHS = new Set([
   "/artigos/teste-de-memoria-infantil",
   "/artigos/troca-de-letras-quando-preocupar",
   "/atraso-de-fala-infantil",
+  "/atraso-na-fala-anapolis",
   "/autismo-anapolis",
   "/avaliacao-autismo-infantil",
   "/avaliacao-fonoaudiologica",

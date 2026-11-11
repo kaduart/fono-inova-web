@@ -4088,6 +4088,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -4169,6 +4170,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -4330,6 +4332,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -4695,6 +4698,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -4939,6 +4943,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -7219,6 +7224,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
             <li><a href="/artigos/fono-para-fala-atrasada" className="text-blue-600 hover:underline">→ Fono para fala atrasada</a></li>
             <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras: quando preocupar</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis: sinais e avaliação</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
           </ul>
         </div>
