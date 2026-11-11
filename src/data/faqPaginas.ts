@@ -232,6 +232,11 @@ export const faqPsicopedagogia: FAQItem[] = [
 
 export const faqFalaTardia: FAQItem[] = [
   {
+    question: 'Fala tardia e atraso na fala são a mesma coisa?',
+    answer:
+      'São nomes usados para a mesma preocupação: a criança fala menos do que o esperado para a idade. A avaliação fonoaudiológica mostra se é só um ritmo mais lento ou se há algo que precisa de acompanhamento, e qual o melhor caminho para cada criança.',
+  },
+  {
     question: 'Meu filho não fala. O que fazer?',
     answer:
       'Cada criança tem seu ritmo, mas quando a fala não aparece como esperado para a idade, o melhor caminho é avaliar cedo. Avaliar não significa que há um problema: significa descobrir se a criança precisa de acompanhamento. Na Fono Inova, a avaliação é uma conversa de 1 hora dos pais com a fonoaudióloga, sem precisar levar a criança.',

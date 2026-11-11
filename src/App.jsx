@@ -162,7 +162,8 @@ function App() {
           <Route path="/fonoaudiologia-infantil-anapolis" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
           <Route path="/fonoaudiologo-infantil-anapolis" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
           <Route path="/avaliacao-fonoaudiologica" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
-          <Route path="/atraso-de-fala-infantil" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
+          <Route path="/atraso-de-fala-infantil" element={<RedirectKeepQuery to="/fala-tardia-anapolis" />} />
+          <Route path="/atraso-na-fala-anapolis" element={<RedirectKeepQuery to="/fala-tardia-anapolis" />} />
           <Route path="/psicologia-infantil-anapolis" element={<PsicologiaInfantilAnapolis />} />
           <Route path="/psicologo-infantil-anapolis" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
           <Route path="/psicologa-infantil-anapolis" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
