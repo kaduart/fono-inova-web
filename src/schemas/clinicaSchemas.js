@@ -959,7 +959,7 @@ export const schemaFAQNeuropediatria = {
         {
             "@type": "Question",
             "name": "Preciso de encaminhamento para consultar o neuropediatra?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos no particular (com recibo para reembolso) e pelos convênios da Base Aérea de Anápolis (BAAN) e GEAP." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). A consulta com o neuropediatra não é atendida pelo GEAP." }
         },
         {
             "@type": "Question",
