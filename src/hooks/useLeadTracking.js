@@ -194,12 +194,16 @@ export function useLeadTracking() {
   useEffect(() => {
     // Verifica se já tem tracking salvo
     const existente = recuperarTracking();
+    const params = getUrlParams();
+    // Clique pago (gclid/fbclid/ttclid) sempre sobrescreve um tracking antigo
+    // (ex.: visita direta/orgânica de ontem). Sem isso, quem já visitou o site e
+    // depois clica no anúncio chega ao WhatsApp sem ---ref e o gclid se perde.
+    const cliquePago = !!(params.gclid || params.fbclid || params.ttclid);
     
-    if (existente) {
+    if (existente && !cliquePago) {
       setTracking(existente);
     } else {
       // Captura nova
-      const params = getUrlParams();
       const origem = detectarOrigem(params);
       
       const novoTracking = {
@@ -225,13 +229,14 @@ export function useLeadTracking() {
  */
 export function getLeadTracking() {
   const existente = recuperarTracking();
+  const params = getUrlParams();
+  const cliquePago = !!(params.gclid || params.fbclid || params.ttclid);
   
-  if (existente) {
+  if (existente && !cliquePago) {
     return existente;
   }
   
-  // Se não tem salvo, captura agora
-  const params = getUrlParams();
+  // Se não tem salvo (ou a URL traz um clique pago novo), captura agora
   const origem = detectarOrigem(params);
   
   return {
