@@ -1,5 +1,5 @@
 // src/hooks/useAnalytics.js
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Substitua pelo seu ID real do Google Analytics
@@ -19,23 +19,30 @@ export const initAnalytics = () => {
 
 export const usePageView = () => {
     const location = useLocation();
+    const lastPath = useRef(null);
 
     useEffect(() => {
         // Inicializar analytics se não estiver inicializado
         initAnalytics();
 
-        if (typeof window !== 'undefined' && window.gtag) {
-            window.gtag('config', GA_MEASUREMENT_ID, {
-                page_path: location.pathname + location.search,
-                page_title: document.title,
-            });
+        const path = location.pathname + location.search;
+        // 1ª página: o page_view já sai do gtag('config') do index.html.
+        // Nas trocas de rota, um único page_view (antes saíam 3 por página).
+        if (lastPath.current === null || lastPath.current === path) {
+            lastPath.current = path;
+            return;
+        }
+        lastPath.current = path;
 
-            // Track page view
-            window.gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                page_path: location.pathname + location.search,
-            });
+        if (typeof window !== 'undefined' && window.gtag) {
+            // Espera o Helmet atualizar o <title> da nova página
+            setTimeout(() => {
+                window.gtag('event', 'page_view', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    page_path: path,
+                });
+            }, 0);
         }
     }, [location]);
 };

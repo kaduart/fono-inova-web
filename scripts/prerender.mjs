@@ -124,6 +124,11 @@ try {
     if (info.canonicals[0].replace(/\/$/, '') !== expected) fail(`${route}: canonical ${info.canonicals[0]} != ${expected}`);
     if (info.noindex) fail(`${route}: página pré-renderizada está com noindex`);
     if (info.textLength < 500) fail(`${route}: pouco texto renderizado (${info.textLength})`);
+    // Tira os <script> que o snippet do GTM e o Meta Pixel injetam ao rodar: no navegador o snippet
+    // injeta de novo, e o GTM carregava 2x por página.
+    await page.evaluate(() => {
+      document.querySelectorAll('script[src*="googletagmanager.com/gtm.js"], script[src*="connect.facebook.net"]').forEach((el) => el.remove());
+    });
     const html = '<!doctype html>\n' + (await page.evaluate(() => document.documentElement.outerHTML));
     const outFile = route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html');
     mkdirSync(join(outFile, '..'), { recursive: true });

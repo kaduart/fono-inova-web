@@ -87,12 +87,7 @@ const useAnalytics = () => {
     // Scroll para o topo ao mudar de página
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    if (typeof (window).gtag !== 'undefined') {
-      (window).gtag('config', 'G-N59X7PNQZZ', {
-        page_path: location.pathname,
-        page_title: document.title
-      });
-    }
+    // page_view do GA4 sai só de usePageView (hooks/useAnalytics.js)
   }, [location]);
 };
 
