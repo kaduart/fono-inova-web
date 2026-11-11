@@ -1,3 +1,4 @@
+import { articleSeoOverrides } from '../data/articleSeoOverrides';
 import {
     ChevronRight,
     Clock,
@@ -116,8 +117,8 @@ const ArticlePage = () => {
     return (
         <Layout>
                 <SEO
-                    title={article.title}
-                    description={article.excerpt}
+                    title={articleSeoOverrides[article.slug]?.title || article.title}
+                    description={articleSeoOverrides[article.slug]?.description || article.excerpt}
                     keywords={`${article.category}, desenvolvimento infantil, ${article.title.toLowerCase()}`}
                     image={article.image}
                     url={`/artigos/${article.slug}`}
