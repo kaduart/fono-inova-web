@@ -395,13 +395,13 @@ export const schemaDificuldadeEscolar = {
 export const schemaAdultoVoz = {
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
-    "name": "Fonoaudiologia para Adultos em Anápolis | Voz - Fono Inova",
-    "description": "Tratamento de distúrbios da voz, rouquidão e reabilitação vocal para adultos no bairro Jundiaí, Anápolis.",
+    "name": "Fonoaudiologia para Adultos em Anápolis | Disfagia e Apraxia - Fono Inova",
+    "description": "Reabilitação da deglutição (disfagia) e da fala (apraxia) para adultos, inclusive após AVC, no bairro Jundiaí, Anápolis.",
     "url": "https://www.clinicafonoinova.com.br/fonoaudiologia-adulto",
     "about": {
         "@type": "MedicalTherapy",
         "name": "Fonoaudiologia para Adultos",
-        "procedureType": "Terapia vocal"
+        "procedureType": "Reabilitação de deglutição e fala"
     },
     "provider": {
         "@type": "MedicalBusiness", "@id": LOCAL_ID,
@@ -598,7 +598,7 @@ export const schemaFAQAdulto = {
             "name": "Onde fazer fonoaudiologia para adultos em Anápolis?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A fonoaudiologia para adultos é realizada na Clínica Fono Inova, localizada no bairro Jundiaí, na Av. Minas Gerais em Anápolis/GO. Atendemos rouquidão, disfagia e treinamento vocal para profissionais."
+                "text": "A fonoaudiologia para adultos é realizada na Clínica Fono Inova, localizada no bairro Jundiaí, na Av. Minas Gerais em Anápolis/GO. Atendemos disfagia (dificuldade para engolir) e apraxia de fala, inclusive após AVC. Não fazemos terapia de voz."
             }
         },
         {

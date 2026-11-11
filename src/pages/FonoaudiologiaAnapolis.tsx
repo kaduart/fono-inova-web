@@ -434,7 +434,7 @@ const FonoaudiologiaAnapolis = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900">Fonoaudiologia para Adultos</h4>
-                    <p className="text-sm text-slate-500">Voz, rouquidão e disfagia</p>
+                    <p className="text-sm text-slate-500">Disfagia e apraxia de fala</p>
                   </div>
                 </div>
                 <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />

@@ -14,15 +14,15 @@ import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 
 const AdultoVozPage = () => {
-    const sinaisProblemaVoz = [
-        'Rouquidão frequente ou persistente',
-        'Cansaço ao falar (especialmente no final do dia)',
-        'Perda de alcance vocal (não consegue falar alto)',
-        'Dor ou desconforto ao falar',
-        'Necessidade de pigarrear constantemente',
-        'Voz falha ou some durante o dia',
-        'Sensação de corpo estranho na garganta',
-        'Dificuldade em ser ouvido em ambientes ruidosos'
+    const sinaisApraxia = [
+        'Sabe o que quer dizer, mas a palavra não sai',
+        'Troca ou omite sons de forma diferente a cada tentativa',
+        'Tateia a boca procurando a posição certa para falar',
+        'Fala mais lenta e com esforço',
+        'Dificuldade maior em palavras longas',
+        'Começou após AVC, traumatismo ou outra lesão neurológica',
+        'Frustração por não conseguir se comunicar',
+        'Consegue cantar ou repetir frases automáticas, mas não falar livremente'
     ];
 
     const sinaisDisfagia = [
@@ -36,25 +36,16 @@ const AdultoVozPage = () => {
         'Pneumonias de repetição'
     ];
 
-    const profissionaisVoz = [
-        { nome: 'Professores', desc: 'Principal público com problemas vocais' },
-        { nome: 'Palestrantes', desc: 'Necessitam de voz potente e resistente' },
-        { nome: 'Cantores', desc: 'Precisam de técnica vocal apurada' },
-        { nome: 'Teleoperadores', desc: 'Uso intensivo da voz no trabalho' },
-        { nome: 'Advogados', desc: 'Voz como ferramenta profissional' },
-        { nome: 'Vendedores', desc: 'Comunicação constante' }
-    ];
-
     const tratamentosOferecidos = [
         {
             icon: <Mic className="w-12 h-12 text-emerald-600" />,
-            title: 'Reabilitação Vocal',
-            description: 'Tratamento de rouquidão, nódulos, pólipos e outras alterações vocais'
+            title: 'Apraxia de Fala',
+            description: 'Reabilitação do planejamento dos movimentos da fala, inclusive após AVC'
         },
         {
             icon: <Users className="w-12 h-12 text-emerald-600" />,
-            title: 'Treinamento Vocal',
-            description: 'Aprimoramento da voz para profissionais que dependem dela'
+            title: 'Orientação à Família',
+            description: 'Cuidadores aprendem como apoiar a fala e a alimentação em casa'
         },
         {
             icon: <AlertCircle className="w-12 h-12 text-emerald-600" />,
@@ -67,7 +58,7 @@ const AdultoVozPage = () => {
         {
             numero: '1',
             titulo: 'Avaliação',
-            descricao: 'Análise completa da voz e/ou deglutição com testes específicos'
+            descricao: 'Análise da deglutição e/ou da fala com testes específicos'
         },
         {
             numero: '2',
@@ -82,16 +73,16 @@ const AdultoVozPage = () => {
         {
             numero: '4',
             titulo: 'Alta',
-            descricao: 'Quando a voz/deglutição estiver recuperada e funcional'
+            descricao: 'Quando a deglutição ou a fala estiverem funcionais'
         }
     ];
 
     return (
         <Layout>
             <SEO
-                title="Fonoaudiologia para Adultos em Anápolis | Voz, Rouquidão e Disfagia"
-                description="Rouquidão persistente, voz cansada ou dificuldade para engolir? Fonoaudiologia adulta especializada em Anápolis, bairro Jundiaí. Agende avaliação pelo WhatsApp."
-                keywords="fonoaudiologia adulta anapolis, rouquidao tratamento jundiai, disfagia anapolis, voz profissional"
+                title="Fonoaudiologia para Adultos em Anápolis | Disfagia e Apraxia"
+                description="Dificuldade para engolir ou para falar após AVC? Fonoaudiologia para adultos em Anápolis, bairro Jundiaí: disfagia e apraxia de fala. Agende pelo WhatsApp."
+                keywords="fonoaudiologia adulto anapolis, disfagia anapolis, apraxia de fala adulto, fono pos avc anapolis"
                 image="/images/og-image.jpg"
                 url="https://www.clinicafonoinova.com.br/fonoaudiologia-adulto"
                 type="article"
@@ -110,19 +101,19 @@ const AdultoVozPage = () => {
                             </span>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-slate-900 leading-tight mb-6">
                                 <TypewriterText segments={[
-                                    { text: 'Saúde Vocal e ' },
+                                    { text: 'Disfagia e Apraxia: ' },
                                     { text: 'Reabilitação', className: 'text-emerald-600' },
-                                    { text: ' Adulta' },
+                                    { text: ' para Adultos' },
                                 ]} />
                             </h1>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-xl">
-                                Tratamento especializado para profissionais da voz e reabilitação de deglutição (disfagia) no bairro <strong>Jundiaí, Anápolis</strong>.
+                                Reabilitação da deglutição (disfagia) e da fala (apraxia), inclusive após AVC, no bairro <strong>Jundiaí, Anápolis</strong>.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <ButtonWhatsApp
                                     onClick={() => { }}
-                                    message="Oi! Vi no site sobre atendimento para adultos.\n\nTenho interesse em avaliação de voz/deglutição. Pode me explicar como funciona?"
+                                    message="Oi! Vi no site sobre atendimento para adultos.\n\nTenho interesse em avaliação de deglutição/fala. Pode me explicar como funciona?"
                                     
                                     className="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-xl text-lg font-bold shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                 >
@@ -142,10 +133,6 @@ const AdultoVozPage = () => {
                                     }}
                                 />
                             </div>
-                            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
-                                <p className="text-4xl font-bold text-emerald-600">+200</p>
-                                <p className="text-sm text-gray-600">Profissionais atendidos</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,19 +141,19 @@ const AdultoVozPage = () => {
       <ProofBar className="py-6" />
 
 
-            {/* Problemas Vocais */}
+            {/* Apraxia */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-                            Problemas <span className="text-emerald-600">Vocais</span>: Você Reconhece Esses Sinais?
+                            <span className="text-emerald-600">Apraxia de Fala</span>: Você Reconhece Esses Sinais?
                         </h2>
                         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Esses sintomas indicam que sua voz precisa de atenção especializada
+                            Na apraxia, a pessoa sabe o que quer dizer, mas o cérebro não consegue planejar os movimentos da fala
                         </p>
                     </div>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        {sinaisProblemaVoz.map((sinal, index) => (
+                        {sinaisApraxia.map((sinal, index) => (
                             <div key={index} className="bg-white border-l-4 border-emerald-600 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                                 <div className="flex items-start gap-3">
                                     <CheckCircle className="w-6 h-6 text-emerald-600 flex-shrink-0 mt-1" />
@@ -174,43 +161,6 @@ const AdultoVozPage = () => {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                    <div className="text-center mt-8">
-                        <p className="text-gray-600 italic">
-                            <strong>Importante:</strong> Rouquidão por mais de 15 dias requer avaliação médica
-                            (otorrinolaringologista) + fonoaudiológica.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Profissionais da Voz */}
-            <section className="py-20 bg-emerald-50">
-                <div className="container mx-auto px-4">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-                            Sua Voz é Sua <span className="text-emerald-600">Ferramenta de Trabalho</span>?
-                        </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Profissionais que mais precisam de cuidado vocal
-                        </p>
-                    </div>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {profissionaisVoz.map((profissional, index) => (
-                            <div key={index} className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-                                <h3 className="text-xl font-bold mb-2 text-emerald-600">{profissional.nome}</h3>
-                                <p className="text-sm text-gray-600">{profissional.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="text-center mt-8">
-                        <div className="bg-white p-6 rounded-xl shadow-md inline-block max-w-2xl">
-                            <p className="font-semibold text-emerald-600 mb-2">💡 Você Sabia?</p>
-                            <p className="text-gray-600">
-                                Professores têm 5x mais chance de desenvolver problemas vocais que outros
-                                profissionais. Mas com técnica vocal adequada, é possível prevenir e tratar.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -318,11 +268,11 @@ const AdultoVozPage = () => {
                 <div className="container mx-auto px-4 max-w-4xl">
                     <div className="text-center">
                         <h2 className="text-3xl md:text-4xl font-bold font-poppins mb-4">
-                            Cuide da Sua Voz. Ela É Importante!
+                            Comer e Falar com Segurança
                         </h2>
                         <p className="text-lg mb-8 opacity-90">
-                            Não deixe problemas vocais ou de deglutição comprometerem sua qualidade de vida
-                            e trabalho. Agende uma avaliação com nossa fonoaudióloga especializada.
+                            Não deixe a dificuldade para engolir ou para falar comprometer a qualidade de vida.
+                            Agende uma avaliação fonoaudiológica.
                         </p>
                         <p className="text-sm mb-8 opacity-80">
                             Atendemos também crianças — conheça a <Link to="/fonoaudiologia-anapolis" className="underline font-semibold">fonoaudiologia infantil em Anápolis</Link>.
@@ -332,7 +282,7 @@ const AdultoVozPage = () => {
                                 Avaliação Fonoaudiológica para Adultos
                             </h3>
                             <p className="text-gray-600 mb-2">
-                                Avaliação completa de voz e/ou deglutição
+                                Avaliação completa de deglutição e/ou fala
                             </p>
                             <p className="text-lg font-bold text-emerald-600 mb-6">
                                 Avaliação: R$ 220 | Sessão: R$ 220

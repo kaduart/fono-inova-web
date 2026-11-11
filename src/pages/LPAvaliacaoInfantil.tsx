@@ -97,11 +97,11 @@ const painPoints = [
   },
   {
     icon: Mic,
-    title: "Perda de voz ou rouquidão persistente",
-    description: "Disfonia, fadiga vocal, ideal para professores e profissionais da voz",
+    title: "Dificuldade para engolir ou falar (adultos)",
+    description: "Disfagia e apraxia de fala, inclusive após AVC",
     color: "teal",
     link: "/fonoaudiologia-adulto",
-    whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nTenho problema de voz/rouquidão. Pode me orientar?",
+    whatsappMsg: "Oi! Vi o site da Clínica Fono Inova 💚\nBusco fono para adulto (deglutição/fala). Pode me orientar?",
   },
 ];
 

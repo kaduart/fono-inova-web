@@ -20,7 +20,7 @@ export const RELATED: Record<string, { title: string; desc: string }> = {
   '/sindrome-de-down': { title: 'Síndrome de Down', desc: 'Acompanhamento do desenvolvimento' },
   '/prematuridade-desenvolvimento': { title: 'Prematuridade', desc: 'Acompanhamento do bebê prematuro' },
   '/comportamento-infantil-anapolis': { title: 'Comportamento infantil', desc: 'Birras, limites e regulação emocional' },
-  '/fonoaudiologia-adulto': { title: 'Fonoaudiologia adulto', desc: 'Voz, fala e deglutição' },
+  '/fonoaudiologia-adulto': { title: 'Fonoaudiologia adulto', desc: 'Disfagia e apraxia de fala' },
   '/reembolso-plano-de-saude-anapolis': { title: 'Plano de saúde e reembolso', desc: 'Atendimento particular com recibo' },
   '/apoio-as-familias': { title: 'Apoio às famílias', desc: 'Documentos e próximos passos' },
   '/abordagem-multidisciplinar': { title: 'Abordagem multidisciplinar', desc: 'Todas as especialidades no mesmo lugar' },

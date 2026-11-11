@@ -241,7 +241,7 @@ export const LANDING_PAGES: LandingPageEntry[] = [
     slug: "/fonoaudiologia-adulto",
     url: buildUrl("/fonoaudiologia-adulto"),
     nome: "Fonoaudiologia Adulto",
-    headline: "Problemas de voz ou fala?",
+    headline: "Dificuldade para engolir ou falar?",
     categoria: "fonoaudiologia",
     intent: "conversion",
     primary: true,
@@ -249,8 +249,8 @@ export const LANDING_PAGES: LandingPageEntry[] = [
     relatedIds: ["fonoaudiologia"],
     priority: "baixa",
     whatsappMessage: buildWhatsApp("fonoaudiologia adulto"),
-    publico: "Adultos com problemas de voz ou fala",
-    gancho: "Problemas de voz ou fala?",
+    publico: "Adultos com disfagia ou apraxia de fala",
+    gancho: "Dificuldade para engolir ou falar?",
   },
 
   // ═══════════════════════════════════════════════════════════
