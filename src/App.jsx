@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 // Import do monitor de WhatsApp
 import WhatsAppStatusAlert from './components/WhatsAppStatusAlert';
@@ -63,6 +63,7 @@ const Agendar = lazy(() => import('./pages/Agendar'));
 
 // Hook de tracking
 import { useLeadTracking } from './hooks/useLeadTracking';
+import RedirectKeepQuery from './components/RedirectKeepQuery';
 import { installWhatsAppContactTracking, trackMetaPageView } from './helper/metaPixel';
 import { mchatEnabled } from './lib/mchat/items.js';
 
@@ -127,29 +128,29 @@ function App() {
           <Route path="/dashboard" element={<AnalyticsDashboard />} />
           <Route path="/artigos" element={<Articles />} />
           <Route path="/artigos/:slug" element={<ArticlePage />} />
-          <Route path="/artigos/fono-guia-completo" element={<Navigate to="/artigos/fonoaudiologia-guia-completo" replace />} />
+          <Route path="/artigos/fono-guia-completo" element={<RedirectKeepQuery to="/artigos/fonoaudiologia-guia-completo" />} />
           {/* GSC (2026-09-15) sinalizou como conteúdo duplicado do sinais-autismo-crianca (mais novo e completo); artigo antigo removido, rota redireciona */}
-          <Route path="/artigos/entendendo-espectro-autista" element={<Navigate to="/artigos/sinais-autismo-crianca" replace />} />
-          <Route path="/fonoaudiologia" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
-          <Route path="/psicologia" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
-          <Route path="/terapia-ocupacional" element={<Navigate to="/terapia-ocupacional-anapolis" replace />} />
-          <Route path="/fisioterapia" element={<Navigate to="/fisioterapia-infantil-anapolis" replace />} />
+          <Route path="/artigos/entendendo-espectro-autista" element={<RedirectKeepQuery to="/artigos/sinais-autismo-crianca" />} />
+          <Route path="/fonoaudiologia" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
+          <Route path="/psicologia" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
+          <Route path="/terapia-ocupacional" element={<RedirectKeepQuery to="/terapia-ocupacional-anapolis" />} />
+          <Route path="/fisioterapia" element={<RedirectKeepQuery to="/fisioterapia-infantil-anapolis" />} />
           <Route path="/abordagem-multidisciplinar" element={<ClinicaMultidisciplinar />} />
           <Route path="/psicopedagogia" element={<PsicopedagogiaPage />} />
-          <Route path="/avaliacao-neuropsicologica" element={<Navigate to="/avaliacao-neuropsicologica-anapolis" replace />} />
-          <Route path="/freio-lingual" element={<Navigate to="/teste-da-linguinha-anapolis" replace />} />
+          <Route path="/avaliacao-neuropsicologica" element={<RedirectKeepQuery to="/avaliacao-neuropsicologica-anapolis" />} />
+          <Route path="/freio-lingual" element={<RedirectKeepQuery to="/teste-da-linguinha-anapolis" />} />
 
           {/* NOVAS ROTAS - Landing Pages de Funil de Marketing */}
           <Route path="/avaliacao-infantil" element={<LPAvaliacaoInfantil />} />
-          <Route path="/avaliacao-autismo-infantil" element={<Navigate to="/autismo-anapolis" replace />} />
-          <Route path="/fala-tardia" element={<Navigate to="/fala-tardia-anapolis" replace />} />
-          <Route path="/dislexia-infantil" element={<Navigate to="/dislexia-anapolis" replace />} />
-          <Route path="/tdah-infantil" element={<Navigate to="/tdah-anapolis" replace />} />
+          <Route path="/avaliacao-autismo-infantil" element={<RedirectKeepQuery to="/autismo-anapolis" />} />
+          <Route path="/fala-tardia" element={<RedirectKeepQuery to="/fala-tardia-anapolis" />} />
+          <Route path="/dislexia-infantil" element={<RedirectKeepQuery to="/dislexia-anapolis" />} />
+          <Route path="/tdah-infantil" element={<RedirectKeepQuery to="/tdah-anapolis" />} />
           <Route path="/avaliacao-tdah-anapolis" element={<TdahAvaliacaoPage />} />
           <Route path="/comportamento-infantil-anapolis" element={<ComportamentoInfantilPage />} />
           <Route path="/neuropediatra-anapolis" element={<NeuropediatriaPage />} />
-          <Route path="/consulta-neuropediatra-infantil" element={<Navigate to="/neuropediatra-anapolis" replace />} />
-          <Route path="/avaliacao-neurologica-infantil" element={<Navigate to="/neuropediatra-anapolis" replace />} />
+          <Route path="/consulta-neuropediatra-infantil" element={<RedirectKeepQuery to="/neuropediatra-anapolis" />} />
+          <Route path="/avaliacao-neurologica-infantil" element={<RedirectKeepQuery to="/neuropediatra-anapolis" />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
           <Route path="/fonoaudiologia-adulto" element={<AdultoVozPage />} />
           <Route path="/sindrome-de-down" element={<SindromeDeDownPage />} />
@@ -163,14 +164,14 @@ function App() {
           
           {/* NOVAS ROTAS - Especialidades SEO Local (dominar Anápolis) */}
           <Route path="/fonoaudiologia-anapolis" element={<FonoaudiologiaAnapolis />} />
-          <Route path="/fonoaudiologia-infantil-anapolis" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
-          <Route path="/fonoaudiologo-infantil-anapolis" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
-          <Route path="/avaliacao-fonoaudiologica" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
-          <Route path="/atraso-de-fala-infantil" element={<Navigate to="/fonoaudiologia-anapolis" replace />} />
+          <Route path="/fonoaudiologia-infantil-anapolis" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
+          <Route path="/fonoaudiologo-infantil-anapolis" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
+          <Route path="/avaliacao-fonoaudiologica" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
+          <Route path="/atraso-de-fala-infantil" element={<RedirectKeepQuery to="/fonoaudiologia-anapolis" />} />
           <Route path="/psicologia-infantil-anapolis" element={<PsicologiaInfantilAnapolis />} />
-          <Route path="/psicologo-infantil-anapolis" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
-          <Route path="/psicologa-infantil-anapolis" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
-          <Route path="/consulta-psicologo-infantil" element={<Navigate to="/psicologia-infantil-anapolis" replace />} />
+          <Route path="/psicologo-infantil-anapolis" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
+          <Route path="/psicologa-infantil-anapolis" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
+          <Route path="/consulta-psicologo-infantil" element={<RedirectKeepQuery to="/psicologia-infantil-anapolis" />} />
           <Route path="/terapia-ocupacional-anapolis" element={<TerapiaOcupacionalAnapolis />} />
           <Route path="/psicomotricidade-anapolis" element={<PsicomotricidadeAnapolis />} />
           <Route path="/teste-da-linguinha-anapolis" element={<TesteLinguinhaAnapolis />} />
@@ -182,7 +183,7 @@ function App() {
               Rota existe mas fica fora do sitemap e sem link no /links até a confirmação. */}
           <Route path="/convenio-ipasgo-anapolis" element={<IpasgoAnapolis />} />
           <Route path="/convenio-bradesco-saude-anapolis" element={<BradescoSaudeAnapolis />} />
-          <Route path="/convenio-bradesco-anapolis" element={<Navigate to="/convenio-bradesco-saude-anapolis" replace />} />
+          <Route path="/convenio-bradesco-anapolis" element={<RedirectKeepQuery to="/convenio-bradesco-saude-anapolis" />} />
           <Route path="/lista-de-interesse-confirmada" element={<InteresseConfirmado />} />
           <Route path="/links" element={<LinksBio />} />
           {/* Agendamento online do link da bio (API pública do ERP, PUBLIC_BOOKING_ENABLED) */}
@@ -200,7 +201,7 @@ function App() {
           <Route path="/privacidade" element={<PrivacidadePage />} />
           <Route path="/apoio-as-familias" element={<ApoioFamilias />} />
           <Route path="/app" element={<ConectaApp />} />
-          <Route path="/conecta" element={<Navigate to="/app" replace />} />
+          <Route path="/conecta" element={<RedirectKeepQuery to="/app" />} />
           <Route path="/reembolso-plano-de-saude-anapolis" element={<ReembolsoPlanoSaudeAnapolis />} />
           
           {/* Rota dinâmica para Landing Pages SEO */}
