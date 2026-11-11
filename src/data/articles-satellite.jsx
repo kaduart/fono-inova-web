@@ -423,6 +423,14 @@ export const satelliteArticles = [
           Sempre que houver preocupação com o desenvolvimento da fala, da audição ou da comunicação da criança. 
           Na Clínica Fono Inova em Anápolis, no bairro Jundiaí, realizamos avaliações especializadas para identificar as necessidades de cada criança.
         </p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -546,6 +554,14 @@ export const satelliteArticles = [
             <li><a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">→ O que é fonoaudiologia?</a></li>
           </ul>
         </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -634,6 +650,14 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo sobre fono</a></li>
             <li><a href="/artigos/sinais-crianca-precisa-fonoaudiologia" className="text-blue-600 hover:underline">→ Sinais de que a criança precisa de fonoaudiologia</a></li>
+          </ul>
+        </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
           </ul>
         </div>
       </>
@@ -736,6 +760,14 @@ export const satelliteArticles = [
             → Guia completo sobre fono
           </a>
         </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -829,6 +861,14 @@ export const satelliteArticles = [
           <a href="/artigos/sinais-crianca-precisa-fonoaudiologia" className="text-green-600 hover:underline font-semibold">
             → Sinais de que a criança precisa de fonoaudiologia
           </a>
+        </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+          </ul>
         </div>
       </>
     )
@@ -936,6 +976,14 @@ export const satelliteArticles = [
         </div>
 
         <p><strong>💚 Agende uma avaliação fonoaudiológica na Clínica Fono Inova em Anápolis.</strong></p>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+          </ul>
+        </div>
       </>
     )
   },
@@ -1284,6 +1332,14 @@ export const satelliteArticles = [
           <a href="https://wa.me/5562992013573?text=Oi! Gostaria de saber sobre valores e convênios para fonoaudiologia infantil." className="text-green-600 hover:underline font-semibold" target="_blank" rel="noopener noreferrer">
             → Falar no WhatsApp
           </a>
+        </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
+          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
+          <ul className="space-y-2">
+            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
+            <li><a href="/reembolso-plano-de-saude-anapolis" className="text-blue-600 hover:underline">→ Reembolso do plano de saúde</a></li>
+          </ul>
         </div>
       </>
     )
