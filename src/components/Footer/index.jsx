@@ -90,8 +90,8 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold text-lg mb-4">Contato</h3>
                         <div className="space-y-2 text-background/80">
-                            <p>Avenida Minas Gerais, 405</p>
-                            <p>Bairro Jundiaí, Anápolis – GO</p>
+                            <p>Av. Minas Gerais, 405 - Jundiaí</p>
+                            <p>Anápolis - GO, 75110-770</p>
                             <div className="flex gap-2">
                                 <Phone className="w-4 h-6 text-green-500" />
                                 <span>(62) 99201-3573</span>
@@ -103,6 +103,11 @@ const Footer = () => {
                             <div className="flex gap-2">
                                 <Mail className="w-4 h-6 text-green-500" />
                                 <span>contato@clinicafonoinova.com.br</span>
+                            </div>
+                            <div className="flex flex-wrap gap-x-3 gap-y-1 pt-1 text-sm">
+                                <a href="https://www.instagram.com/clinicafonoinova/" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">Instagram</a>
+                                <a href="https://www.facebook.com/profile.php?id=61575031024483" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">Facebook</a>
+                                <a href="https://www.tiktok.com/@clinica.fono.inova" target="_blank" rel="noopener noreferrer" className="hover:text-background transition-colors">TikTok</a>
                             </div>
                         </div>
                     </div>

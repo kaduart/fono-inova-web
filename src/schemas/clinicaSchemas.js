@@ -2,8 +2,8 @@ import { faqItems } from '../data/faqData.js';
 // SCHEMAS ESPECÍFICOS PARA CADA PÁGINA DA FONO INOVA
 // Geo-coordenadas fixas: Av. Minas Gerais, Jundiaí, Anápolis/GO
 const COORDS = {
-    lat: -16.333449,
-    lon: -48.948923
+    lat: -16.3334582,
+    lon: -48.9488405
 };
 
 const ENDERECO_COMPLETO = {
@@ -38,7 +38,6 @@ export const schemaBaseLocalBusiness = {
     "@type": "MedicalBusiness",
     "@id": LOCAL_ID,
     "name": "Clínica Fono Inova",
-    "alternateName": "Fono Inova Anápolis",
     "description": "Clínica multidisciplinar infantil em Anápolis especializada em fonoaudiologia, fisioterapia, psicologia e terapia ocupacional no bairro Jundiaí",
     "url": CONTATO.url,
     "telephone": CONTATO.telephone,
@@ -55,7 +54,8 @@ export const schemaBaseLocalBusiness = {
     },
     "sameAs": [
         "https://www.instagram.com/clinicafonoinova",
-        "https://www.facebook.com/people/Cl%C3%ADnica-Fono-Inova/61575031024483/",
+        "https://www.facebook.com/profile.php?id=61575031024483",
+        "https://www.tiktok.com/@clinica.fono.inova",
         "https://www.google.com/maps?cid=4885146379272428062"
     ],
     "address": ENDERECO_COMPLETO,
@@ -844,7 +844,6 @@ export const schemaTesteLinguinhaAnapolis = {
     "provider": {
         "@type": "MedicalBusiness", "@id": LOCAL_ID,
         "name": "Clínica Fono Inova",
-        "alternateName": "Fono Inova Anápolis",
         "address": ENDERECO_COMPLETO,
         "telephone": CONTATO.telephone,
         "url": CONTATO.url,
