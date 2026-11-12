@@ -6,7 +6,8 @@ import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
 import { Badge } from '../components/ui/badge';
 import ButtonWhatsApp from '../components/ui/ButtonWhatsapp';
-import { schemaBaseLocalBusiness } from '../schemas/clinicaSchemas';
+import { Link } from 'react-router-dom';
+import { schemaBaseLocalBusiness, schemaNeuropediatriaAnapolis } from '../schemas/clinicaSchemas';
 import FAQSection from '../components/FAQSection';
 import { faqNeuropediatria } from '../data/faqPaginas';
 import ClinicGallery from '../components/ClinicGallery';
@@ -99,13 +100,13 @@ const NeuropediatriaPage = () => {
     return (
         <Layout>
             <SEO
-                title="Neuropediatra em Anápolis | Consulta Infantil | Fono Inova"
-                description="Neuropediatra em Anápolis para atraso no desenvolvimento, TDAH e sinais de autismo. Consulta na clínica multidisciplinar, bairro Jundiaí. Agende pelo WhatsApp."
-                keywords="neuropediatra anapolis, neurologista infantil anapolis, atraso desenvolvimento infantil, autismo infantil anapolis, tdah infantil anapolis"
+                title="Neuropediatra em Anápolis | Neurologista Infantil | Fono Inova"
+                description="Neuropediatra (neurologista infantil) em Anápolis para atraso no desenvolvimento, suspeita de autismo, TDAH e convulsões. Bairro Jundiaí, sem encaminhamento. Agende pelo WhatsApp."
+                keywords="neuropediatra anapolis, neurologista infantil anapolis, neurologista pediatrico anapolis, atraso desenvolvimento infantil, autismo infantil anapolis, tdah infantil anapolis"
                 image="/images/clinica/ia/neuropediatria.webp"
                 url="https://www.clinicafonoinova.com.br/neuropediatra-anapolis"
-                type="article"
-                schema={[schemaBaseLocalBusiness]}
+                type="website"
+                schema={[schemaBaseLocalBusiness, schemaNeuropediatriaAnapolis]}
             />
 
             {/* ==================== BOTÃO WHATSAPP FLUTUANTE FIXO ==================== */}
@@ -202,7 +203,7 @@ const NeuropediatriaPage = () => {
                             </div>
 
                             <p className="text-xs text-slate-500 mt-3">
-                                Atendimento particular e convênios • Jundiaí, Anápolis/GO
+                                Atendimento particular, sem encaminhamento • Jundiaí, Anápolis/GO
                             </p>
                         </div>
 
@@ -370,6 +371,39 @@ const NeuropediatriaPage = () => {
                 </div>
             </section>
 
+            {/* ==================== TEXTO SEO: NEUROLOGISTA INFANTIL EM ANÁPOLIS ==================== */}
+            <section className="py-16 bg-slate-50" aria-labelledby="neurologista-infantil-titulo">
+                <div className="container mx-auto px-4 max-w-3xl">
+                    <h2 id="neurologista-infantil-titulo" className="text-2xl md:text-3xl font-bold font-poppins mb-5 text-slate-900">
+                        Neurologista infantil em Anápolis: quando procurar
+                    </h2>
+                    <div className="space-y-4 text-slate-700 leading-relaxed">
+                        <p>
+                            Neuropediatra, neurologista infantil e neurologista pediátrico são nomes diferentes para o mesmo médico: o especialista
+                            que cuida do cérebro e do sistema nervoso da criança, do bebê ao adolescente. Na Clínica Fono Inova, no bairro Jundiaí,
+                            em Anápolis, a consulta com neuropediatra acontece no mesmo endereço da fonoaudiologia, da psicologia, da terapia
+                            ocupacional e da avaliação neuropsicológica.
+                        </p>
+                        <p>
+                            Vale procurar o neuropediatra quando a criança demora a sentar, andar ou falar, quando a escola percebe dificuldade
+                            de atenção ou de aprendizagem, quando a família suspeita de autismo ou TDAH, ou depois de uma convulsão.
+                            Na dúvida, avaliar cedo é o melhor caminho: veja os <Link to="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-700 font-semibold hover:underline">7 sinais de alerta para procurar um neuropediatra</Link>.
+                        </p>
+                        <p>
+                            Na primeira consulta, o médico ouve a história da família, observa a criança e define se precisa de exames, terapias
+                            ou retorno. Quando há suspeita de autismo ou TDAH, é o neuropediatra quem conduz o diagnóstico e emite o laudo.
+                            Saiba mais em <Link to="/artigos/primeira-consulta-neuropediatra" className="text-blue-700 font-semibold hover:underline">como funciona a primeira consulta com neuropediatra</Link> e
+                            na <Link to="/artigos/neuropediatra-ou-neurologista-infantil-qual-diferenca" className="text-blue-700 font-semibold hover:underline">diferença entre neuropediatra e neurologista infantil</Link>.
+                        </p>
+                        <p>
+                            Não é preciso encaminhamento: o agendamento é direto pelo WhatsApp. O atendimento com neuropediatra é particular,
+                            com recibo para você pedir reembolso ao seu plano, conforme as regras dele. Para entender a especialidade em detalhes,
+                            leia o <Link to="/artigos/neuropediatria-guia-completo" className="text-blue-700 font-semibold hover:underline">guia completo de neuropediatria para pais</Link>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* ==================== DEPOIMENTOS ÉTICOS ==================== */}
             <section className="py-16 bg-slate-50">
                 <div className="container mx-auto px-4">
@@ -452,6 +486,7 @@ const NeuropediatriaPage = () => {
                     </p>
                 </div>
             </section>
+      <PageFooterInfo related={['/autismo-anapolis', '/tdah-anapolis', '/avaliacao-neuropsicologica-anapolis', '/fala-tardia-anapolis']} whatsappMessage="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona a consulta." showLocation={false} />
               <FixedWhatsAppBar message="Oi! Vi a página de neuropediatria da Fono Inova e gostaria de entender como funciona o atendimento." />
     </Layout>
     );

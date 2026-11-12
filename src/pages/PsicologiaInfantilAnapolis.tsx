@@ -383,7 +383,7 @@ const PsicologiaInfantilAnapolis = () => {
       <section className="py-12 bg-white border-t border-slate-100">
         <div className="container mx-auto px-4 max-w-3xl text-center">
           <p className="text-slate-600 mb-4">
-            Em alguns casos, pode ser indicada avaliação com <strong>neuropediatra</strong> para investigação mais detalhada do desenvolvimento.
+            Em alguns casos, pode ser indicada avaliação com <strong>neuropediatra</strong> para investigação mais detalhada do desenvolvimento (consulta particular).
           </p>
           <Link 
             to="/neuropediatra-anapolis" 
