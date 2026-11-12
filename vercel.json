@@ -187,6 +187,7 @@
     { "source": "/avaliacao-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
     { "source": "/avaliacao-tea-autismo-infantil", "destination": "/autismo-anapolis", "permanent": true },
     { "source": "/artigos/fono-guia-completo", "destination": "/artigos/fonoaudiologia-guia-completo", "permanent": true },
+    { "source": "/artigos/quando-procurar-neuropediatra", "destination": "/artigos/quando-procurar-neuropediatra-anapolis", "permanent": true },
     { "source": "/artigos/entendendo-espectro-autista", "destination": "/artigos/sinais-autismo-crianca", "permanent": true },
     { "source": "/artigos/entendendo-espectro-auta", "destination": "/artigos/sinais-autismo-crianca", "permanent": true },
     { "source": "/dificuldade-escolar", "destination": "/avaliacao-neuropsicologica-dificuldade-escolar", "permanent": true },

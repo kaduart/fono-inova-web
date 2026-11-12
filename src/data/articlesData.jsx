@@ -223,7 +223,7 @@ export const articlesData = [
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Neuropediatria"</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
@@ -255,7 +255,7 @@ export const articlesData = [
         <h2>Quando procurar neuropediatra?</h2>
         <p>
           Sempre que houver preocupações com o desenvolvimento ou comportamento da criança. 
-          Veja quando buscar ajuda em <a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">quando procurar neuropediatra</a>.
+          Veja quando buscar ajuda em <a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">quando procurar neuropediatra</a>.
         </p>
 
         <h2>Principais sinais avaliados</h2>

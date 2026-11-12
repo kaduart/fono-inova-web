@@ -1521,108 +1521,10 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
-        </div>
-      </>
-    )
-  },
-  
-  {
-    id: 116,
-    slug: "quando-procurar-neuropediatra",
-    title: "Quando Procurar Neuropediatra? Sinais que Não Devem Esperar",
-    excerpt: "Descubra quando levar seu filho ao neuropediatra e quais sinais indicam necessidade de avaliação neurológica infantil.",
-    category: "Neuropediatria",
-    categoryColor: "secondary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.webp",
-    imageAlt: "Pais observando criança durante avaliação neuropediátrica na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Quando procurar neuropediatra?",
-        answer: "Quando há atraso no desenvolvimento, dificuldades de aprendizagem, comportamentos atípicos, hiperatividade, convulsões ou sinais de autismo."
-      },
-      {
-        question: "Criança de 2 anos não fala: leva no neuropediatra?",
-        answer: "Pode ser indicado, especialmente se houver outros sinais. O neuropediatra investiga causas neurológicas e encaminha para fonoaudiologia se necessário."
-      },
-      {
-        question: "Precisa de encaminhamento para neuropediatra?",
-        answer: "Não necessariamente. Os pais podem procurar diretamente, embora o pediatra costuma encaminhar."
-      },
-      {
-        question: "O neuropediatra atende bebês?",
-        answer: "Sim. O neuropediatra pode avaliar bebês quando há sinais de alteração no desenvolvimento neurológico."
-      },
-      {
-        question: "Atraso na fala é motivo para neuropediatra?",
-        answer: "Pode ser. Se o atraso for significativo ou acompanhado de outros sinais, a avaliação neuropediátrica é indicada."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Saber <strong>quando procurar neuropediatra</strong> é essencial para garantir intervenção precoce. 
-          Muitos pais hesitam, achando que a criança vai "se resolver sozinha". Mas alguns sinais não devem esperar.
-        </p>
-
-        <h2>Sinais de alerta no primeiro ano</h2>
-        <ul>
-          <li>Não fixa o olhar ou não segue objetos</li>
-          <li>Movimentos anormais ou repetitivos</li>
-          <li>Hipotonia ou rigidez excessiva</li>
-          <li>Não reage a sons ou estímulos</li>
-        </ul>
-
-        <h2>Sinais de alerta na primeira infância</h2>
-        <ul>
-          <li>Atraso para sentar, engatinhar ou andar</li>
-          <li>Atraso significativo na fala</li>
-          <li>Não aponta, não gesticula ou não imita</li>
-          <li>Pouco contato visual</li>
-          <li>Não responde ao próprio nome</li>
-        </ul>
-
-        <h2>Sinais na infância e adolescência</h2>
-        <ul>
-          <li>Desatenção e hiperatividade persistentes</li>
-          <li>Dificuldades de aprendizagem que não evoluem</li>
-          <li>Comportamentos repetitivos ou interesses muito restritos</li>
-          <li>Dificuldade de socialização</li>
-          <li>Convulsões ou episódios de perda de consciência</li>
-          <li>Tiques motores ou vocais</li>
-        </ul>
-
-        <h2>Por que não esperar?</h2>
-        <p>
-          O cérebro infantil tem grande capacidade de reorganização. 
-          Quanto mais cedo o diagnóstico e o tratamento começarem, melhores são as chances de desenvolvimento saudável.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
-            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
-            <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
-            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
-          </ul>
-        </div>
-
-        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Neuropediatra em Anápolis</h3>
-          <a href="/avaliacao-neuropsicologica-anapolis" className="text-green-600 hover:underline font-semibold">
-            → Agende uma avaliação neuropediatra
-          </a>
         </div>
       </>
     )
@@ -1711,7 +1613,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
@@ -1801,7 +1703,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
             <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo: como funciona</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
@@ -1914,7 +1816,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -2159,7 +2061,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -2252,7 +2154,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/sinais-tdah-crianca" className="text-blue-600 hover:underline">→ Sinais de TDAH em crianças</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -2436,7 +2338,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -2516,7 +2418,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/primeira-consulta-neuropediatra" className="text-blue-600 hover:underline">→ Primeira consulta com neuropediatra</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
@@ -2610,7 +2512,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/quando-crianca-precisa-avaliacao-neurologica" className="text-blue-600 hover:underline">→ Quando a criança precisa de avaliação neurológica?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
@@ -2701,7 +2603,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
+            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/primeira-consulta-neuropediatra" className="text-blue-600 hover:underline">→ Primeira consulta com neuropediatra</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
