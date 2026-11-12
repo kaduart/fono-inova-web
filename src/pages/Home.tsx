@@ -1191,7 +1191,7 @@ function Home() {
                 <div className="p-6 sm:p-8">
                   <h3 className="mb-3 text-2xl font-bold text-slate-900">Como chegar à Fono Inova</h3>
                   <p className="mb-5 text-slate-600">
-                    Avenida Minas Gerais, 405, bairro Jundiaí, Anápolis/GO.
+                    Av. Minas Gerais, 405 - Jundiaí, Anápolis - GO, 75110-770.
                     Abra o Google Maps para escolher seu ponto de partida e consultar o trajeto e o tempo de viagem.
                   </p>
                   <a

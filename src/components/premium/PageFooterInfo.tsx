@@ -49,7 +49,7 @@ export default function PageFooterInfo({
                 <MapPin className="mt-0.5 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
                 <div>
                   <p className="font-semibold text-slate-900">Clínica Fono Inova</p>
-                  <p className="text-slate-600">Av. Minas Gerais, 405, Jundiaí, Anápolis-GO</p>
+                  <p className="text-slate-600">Av. Minas Gerais, 405 - Jundiaí, Anápolis - GO, 75110-770</p>
                   <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm font-semibold text-primary hover:underline">Como chegar →</a>
                 </div>
               </div>
