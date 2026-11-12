@@ -368,7 +368,7 @@ const ComportamentoInfantilPage = () => {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <p className="text-slate-600 mb-4">
-                        Para investigação completa do desenvolvimento, também contamos com <strong>neuropediatra</strong> em nossa equipe.
+                        Para investigação completa do desenvolvimento, também contamos com <strong>neuropediatra</strong> em nossa equipe (consulta particular).
                     </p>
                     <a 
                         href="/neuropediatra-anapolis" 

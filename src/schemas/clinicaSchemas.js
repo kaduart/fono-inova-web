@@ -38,7 +38,7 @@ export const schemaBaseLocalBusiness = {
     "@type": "MedicalBusiness",
     "@id": LOCAL_ID,
     "name": "Clínica Fono Inova",
-    "description": "Clínica multidisciplinar infantil em Anápolis especializada em fonoaudiologia, fisioterapia, psicologia e terapia ocupacional no bairro Jundiaí",
+    "description": "Clínica multidisciplinar infantil em Anápolis especializada em fonoaudiologia, fisioterapia, psicologia, terapia ocupacional e neuropediatria no bairro Jundiaí",
     "url": CONTATO.url,
     "telephone": CONTATO.telephone,
     "email": CONTATO.email,
@@ -76,7 +76,8 @@ export const schemaBaseLocalBusiness = {
         "SpeechLanguagePathology",
         "PhysicalTherapy",
         "Psychology",
-        "OccupationalTherapy"
+        "OccupationalTherapy",
+        "Neurologic"
     ]
 };
 
@@ -148,6 +149,7 @@ const SERVICOS = [
     { name: "Fisioterapia Pediátrica", url: "/fisioterapia-infantil-anapolis" },
     { name: "Psicopedagogia", url: "/psicopedagogia" },
     { name: "Avaliação Neuropsicológica", url: "/avaliacao-neuropsicologica-anapolis" },
+    { name: "Neuropediatria", url: "/neuropediatra-anapolis" },
     { name: "Psicomotricidade", url: "/psicomotricidade-anapolis" },
     { name: "Musicoterapia", url: "/musicoterapia" }
 ];
@@ -924,6 +926,30 @@ export const schemaAvaliacaoNeuropsicologicaAnapolis = {
     "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO }
 };
 
+export const schemaNeuropediatriaAnapolis = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Neuropediatra em Anápolis | Clínica Fono Inova",
+    "description": "Consulta com neuropediatra (neurologista infantil) em Anápolis para atraso no desenvolvimento, suspeita de autismo, TDAH e convulsões, no bairro Jundiaí. Atendimento particular.",
+    "url": "https://www.clinicafonoinova.com.br/neuropediatra-anapolis",
+    "inLanguage": "pt-BR",
+    "isPartOf": { "@id": WEBSITE_ID },
+    "specialty": ["Neurologic", "Pediatric"],
+    "about": {
+        "@type": "MedicalSpecialty",
+        "name": "Neuropediatria",
+        "alternateName": ["Neurologia infantil", "Neurologia pediátrica"]
+    },
+    "mainEntity": {
+        "@type": "Service",
+        "name": "Consulta com neuropediatra",
+        "alternateName": ["Neurologista infantil em Anápolis", "Neurologista pediátrico em Anápolis"],
+        "serviceType": "Neuropediatria",
+        "provider": { "@type": "MedicalBusiness", "@id": LOCAL_ID, "name": "Clínica Fono Inova", "address": ENDERECO_COMPLETO },
+        "areaServed": AREA_SERVED
+    }
+};
+
 export const schemaFAQAvaliacaoNeuropsicologicaAnapolis = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -958,7 +984,7 @@ export const schemaFAQNeuropediatria = {
         {
             "@type": "Question",
             "name": "Preciso de encaminhamento para consultar o neuropediatra?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. Atendemos no particular (com recibo para reembolso) e pelo convênio da Base Aérea de Anápolis (BAAN). A consulta com o neuropediatra não é atendida pelo GEAP." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Não é necessário encaminhamento. Você pode agendar diretamente a consulta na Clínica Fono Inova em Anápolis. A consulta com neuropediatra é particular, com recibo para reembolso." }
         },
         {
             "@type": "Question",

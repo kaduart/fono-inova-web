@@ -395,7 +395,7 @@ const TdahAvaliacaoPage = () => {
             <section className="py-12 bg-white border-t border-slate-100">
                 <div className="container mx-auto px-4 max-w-3xl text-center">
                     <p className="text-slate-600 mb-4">
-                        Para avaliação médica completa de TDAH, também contamos com <strong>neuropediatra</strong> em nossa equipe.
+                        Para avaliação médica completa de TDAH, também contamos com <strong>neuropediatra</strong> em nossa equipe (consulta particular).
                     </p>
                     <a 
                         href="/neuropediatra-anapolis" 
