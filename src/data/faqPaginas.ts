@@ -154,7 +154,7 @@ export const faqNeuropediatria: FAQItem[] = [
   {
     question: 'O neuropediatra atende pela Unimed ou outro plano de saúde?',
     answer:
-      'A consulta com neuropediatra é particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Não atendemos pela Unimed nem pelo IPASGO. Se você tem o convênio da Base Aérea de Anápolis (BAAN), pergunte pelo WhatsApp se ele cobre a consulta.',
+      'A consulta com neuropediatra é particular, com recibo para você solicitar reembolso ao seu plano, conforme as regras dele. Não atendemos pela Unimed nem pelo IPASGO.',
   },
   {
     question: 'Qual a diferença entre neuropediatra e neuropsicólogo?',
