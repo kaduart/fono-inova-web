@@ -36,6 +36,7 @@ const LPAvaliacaoInfantil = lazy(() => import('./pages/LPAvaliacaoInfantil'));
 const TdahAvaliacaoPage = lazy(() => import('./pages/TdahAvaliacaoPage'));
 const ComportamentoInfantilPage = lazy(() => import('./pages/ComportamentoInfantilPage'));
 const NeuropediatriaPage = lazy(() => import('./pages/NeuropediatriaPage'));
+const LaudoTeaTdahNeuropediatraAnapolis = lazy(() => import('./pages/LaudoTeaTdahNeuropediatraAnapolis'));
 
 // Import das NOVAS páginas de especialidade SEO Local (dominar Anápolis)
 const FonoaudiologiaAnapolis = lazy(() => import('./pages/FonoaudiologiaAnapolis'));
@@ -144,6 +145,7 @@ function App() {
           <Route path="/avaliacao-tdah-anapolis" element={<TdahAvaliacaoPage />} />
           <Route path="/comportamento-infantil-anapolis" element={<ComportamentoInfantilPage />} />
           <Route path="/neuropediatra-anapolis" element={<NeuropediatriaPage />} />
+          <Route path="/laudo-autismo-tdah-neuropediatra-anapolis" element={<LaudoTeaTdahNeuropediatraAnapolis />} />
           <Route path="/consulta-neuropediatra-infantil" element={<RedirectKeepQuery to="/neuropediatra-anapolis" />} />
           <Route path="/avaliacao-neurologica-infantil" element={<RedirectKeepQuery to="/neuropediatra-anapolis" />} />
           <Route path="/avaliacao-neuropsicologica-dificuldade-escolar" element={<DificuldadeEscolarPage />} />
