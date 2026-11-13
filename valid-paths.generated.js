@@ -2,6 +2,7 @@
 export const VALID_PATHS = new Set([
   "/",
   "/abordagem-multidisciplinar",
+  "/agendar",
   "/analytics",
   "/apoio-as-familias",
   "/app",
@@ -158,6 +159,7 @@ export const VALID_PATHS = new Set([
   "/images/logos/fono-inova-icon-clean.png",
   "/images/psicopedagoga/psicopedagoga.jpeg",
   "/images/sala-to-clareada.png",
+  "/laudo-autismo-tdah-neuropediatra-anapolis",
   "/links",
   "/lista-de-interesse-confirmada",
   "/lp/atraso-na-fala-infantil",
@@ -207,5 +209,6 @@ export const VALID_PATHS = new Set([
   "/tdah-infantil",
   "/terapia-ocupacional",
   "/terapia-ocupacional-anapolis",
-  "/teste-da-linguinha-anapolis"
+  "/teste-da-linguinha-anapolis",
+  "/triagem-autismo-m-chat"
 ]);

@@ -1,6 +1,7 @@
 import { AlertCircle, ArrowRight, Award, Baby, Brain, Calendar, CheckCircle2, Clock, Heart, MapPin, MessageCircle, Phone, Shield, Star, Stethoscope, Users } from 'lucide-react';
 import GoogleReviews from '../components/premium/GoogleReviews';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import TypewriterText from '../components/TypewriterText';
 import SEO from '../components/SEO';
@@ -247,6 +248,22 @@ const NeuropediatriaPage = () => {
             </section>
 
       <ProofBar className="py-6" />
+
+            {/* ==================== LINK: LAUDO TEA/TDAH ==================== */}
+            <section className="pb-4 bg-white">
+                <div className="container mx-auto px-4">
+                    <Link
+                        to="/laudo-autismo-tdah-neuropediatra-anapolis"
+                        className="group mx-auto flex max-w-4xl items-center justify-between gap-4 rounded-2xl border border-primary/20 bg-primary/5 p-5 transition hover:shadow-md focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+                    >
+                        <span>
+                            <span className="block font-semibold text-slate-900">Precisa do laudo de autismo (TEA) ou TDAH?</span>
+                            <span className="block text-sm text-slate-600">Veja como funciona a consulta com o neuropediatra para o laudo.</span>
+                        </span>
+                        <ArrowRight className="h-5 w-5 shrink-0 text-primary transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </Link>
+                </div>
+            </section>
 
 
             {/* ==================== PROBLEMAS QUE ATENDEMOS ==================== */}
