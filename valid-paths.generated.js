@@ -160,6 +160,7 @@ export const VALID_PATHS = new Set([
   "/images/logos/fono-inova-icon-clean.png",
   "/images/psicopedagoga/psicopedagoga.jpeg",
   "/images/sala-to-clareada.png",
+  "/laudo-autismo-tdah-neuropediatra-anapolis",
   "/links",
   "/lista-de-interesse-confirmada",
   "/lp/atraso-na-fala-infantil",
