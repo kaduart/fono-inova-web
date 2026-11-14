@@ -47,6 +47,7 @@ import ProofBar from '../components/premium/ProofBar';
 import TypewriterText from '../components/TypewriterText';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
+import QuickAnswer from '../components/premium/QuickAnswer';
 
 const PAGE_ID = 'teste_da_linguinha_anapolis';
 const PAGE_DATA = getPageById(PAGE_ID);
@@ -316,6 +317,14 @@ const TesteLinguinhaAnapolis = () => {
       </section>
 
       <ProofBar className="-mt-8 md:-mt-10" />
+
+      <QuickAnswer
+        question="Onde fazer o teste da linguinha em Anápolis?"
+        answer="Na Clínica Fono Inova, no bairro Jundiaí, em Anápolis-GO, a fonoaudióloga faz o teste da linguinha (avaliação do freio lingual) em recém-nascidos e bebês. A avaliação é rápida e indolor, observa a mobilidade da língua e o efeito na mamada, e a família sai com a orientação do que fazer."
+        convenio="Particular e convênios da Base Aérea de Anápolis (BAAN) e GEAP. Confirme a cobertura pelo WhatsApp. Não atendemos Unimed nem IPASGO."
+        extra={[{ label: 'Importante', value: 'Não fazemos teste da orelhinha nem audiometria.', icon: 'aviso' }]}
+      />
+
 
       {/* ==================== INVESTIMENTO ==================== */}
       <section className="py-16 bg-white">

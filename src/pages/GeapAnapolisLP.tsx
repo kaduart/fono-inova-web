@@ -29,6 +29,7 @@ import {
 import { useFormTracking } from '../hooks/useFormTracking.js';
 import { schemaBaseLocalBusiness, schemaGeapAnapolis, schemaFAQGeapAnapolis } from '../schemas/clinicaSchemas.js';
 import Breadcrumb from '../components/Breadcrumb';
+import QuickAnswer from '../components/premium/QuickAnswer';
 
 const WHATSAPP_MESSAGE =
   "Oi! Tenho o convênio GEAP e gostaria de saber como agendar uma avaliação. Pode me orientar?";
@@ -221,6 +222,13 @@ const GeapAnapolisLP = () => {
           </div>
         </div>
       </section>
+
+      <QuickAnswer
+        question="Qual clínica atende GEAP para fonoaudiologia infantil em Anápolis?"
+        answer="A Clínica Fono Inova, no bairro Jundiaí, em Anápolis-GO, atende pelo convênio GEAP desde novembro de 2026 em fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. A consulta com neuropediatra não é coberta pela GEAP e é somente particular."
+        convenio="GEAP (fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia). Também Base Aérea de Anápolis (BAAN) e particular."
+      />
+
 
       {/* ==================== COMO FUNCIONA ==================== */}
       <section className="py-24 bg-gradient-to-br from-slate-50 to-white">

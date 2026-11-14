@@ -16,6 +16,7 @@ import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
 import PageFooterInfo from '../components/premium/PageFooterInfo';
+import QuickAnswer from '../components/premium/QuickAnswer';
 
 const NeuropediatriaPage = () => {
     const [selectedSintoma, setSelectedSintoma] = useState<string | null>(null);
@@ -249,6 +250,13 @@ const NeuropediatriaPage = () => {
             </section>
 
       <ProofBar className="py-6" />
+
+      <QuickAnswer
+        question="Onde consultar neuropediatra (neurologista infantil) em Anápolis?"
+        answer="Na Clínica Fono Inova, no bairro Jundiaí, em Anápolis-GO, a consulta com neuropediatra é particular e avalia atraso no desenvolvimento, suspeita de autismo (TEA), TDAH e convulsões. Quando indicado, o neuropediatra emite o laudo de TEA ou TDAH. Não é preciso encaminhamento."
+        convenio="Somente particular, com recibo para você pedir reembolso ao seu plano, conforme as regras dele."
+      />
+
 
             {/* ==================== LINK: LAUDO TEA/TDAH ==================== */}
             <section className="pb-4 bg-white">
