@@ -17,6 +17,7 @@ import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
 import ProofBar from '../components/premium/ProofBar';
+import QuickAnswer from '../components/premium/QuickAnswer';
 
 const WHATSAPP_MSG = "Oi! Meu filho tem atraso na fala e quero entender melhor. Pode me ajudar?";
 
@@ -115,6 +116,13 @@ export default function FalaTardiaAnapolis() {
       </section>
 
       <ProofBar className="py-6" />
+
+      <QuickAnswer
+        question="Meu filho ainda não fala: quando procurar fonoaudióloga em Anápolis?"
+        answer="Procure uma avaliação se, aos 18 meses, a criança ainda não fala nenhuma palavra ou se, aos 2 anos, fala poucas palavras e ainda não junta duas (como “quer água”). Esperar costuma atrasar o tratamento: quanto antes a avaliação, melhor a resposta à terapia. Na Clínica Fono Inova, no bairro Jundiaí, em Anápolis, a fonoaudióloga avalia a fala e a compreensão e explica o plano para a família."
+        convenio="Particular e convênios da Base Aérea de Anápolis (BAAN) e GEAP. Confirme a cobertura pelo WhatsApp. Não atendemos Unimed nem IPASGO."
+      />
+
 
 
       {/* ========== COMO FUNCIONA ========== */}

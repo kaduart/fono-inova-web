@@ -39,6 +39,7 @@ import PageFooterInfo from '../components/premium/PageFooterInfo';
 import DifferentialSection from '../components/premium/DifferentialSection';
 import ProofBar from '../components/premium/ProofBar';
 import FixedWhatsAppBar from '../components/FixedWhatsAppBar.jsx';
+import QuickAnswer from '../components/premium/QuickAnswer';
 
 const WHATSAPP_URL =
   "https://wa.me/5562992013573?text=Oi! Meu filho não fala muito, isso é normal?";
@@ -230,6 +231,13 @@ const FonoaudiologiaAnapolis = () => {
       </section>
 
       <ProofBar className="-mt-8 md:-mt-10" />
+
+      <QuickAnswer
+        question="Onde encontrar fonoaudióloga infantil em Anápolis?"
+        answer="A Clínica Fono Inova, no bairro Jundiaí, é uma clínica de fonoaudiologia infantil em Anápolis-GO que atende atraso na fala, autismo (TEA), gagueira, trocas de sons e o teste da linguinha. O primeiro passo é uma avaliação com a família, que mostra se a criança precisa de terapia e com que frequência. Não é preciso encaminhamento médico."
+        convenio="Particular e convênios da Base Aérea de Anápolis (BAAN) e GEAP. Confirme a cobertura pelo WhatsApp. Não atendemos Unimed nem IPASGO."
+      />
+
 
       {/* ==================== COMO FUNCIONA ==================== */}
       <section className="py-24 bg-gradient-to-br from-slate-50 to-white">

@@ -36,9 +36,9 @@ const outrosTemas = [
     { label: 'Disgrafia', href: '/lp/disgrafia-escrita' },
     { label: 'Psicopedagogia em Anápolis', href: '/lp/psicopedagogia-anapolis' },
     { label: 'Convênio Base Aérea', href: '/convenio-base-aerea-anapolis' },
-    { label: 'Convênio IPASGO', href: '/convenio-ipasgo-anapolis' },
+    { label: 'IPASGO (lista de interesse)', href: '/convenio-ipasgo-anapolis' },
     { label: 'Convênio GEAP', href: '/convenio-geap-anapolis' },
-    { label: 'Convênio Bradesco Saúde', href: '/convenio-bradesco-saude-anapolis' },
+    { label: 'Bradesco Saúde (lista de interesse)', href: '/convenio-bradesco-saude-anapolis' },
 ];
 
 const Footer = () => {
