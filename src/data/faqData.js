@@ -31,7 +31,7 @@ export const faqItems = [
     },
     {
         pergunta: 'A clínica atende crianças com autismo (TEA)?',
-        resposta: 'Sim. Atendemos crianças com TEA ou com suspeita, com fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano individualizado. Não é preciso ter laudo para começar. O laudo de TEA é feito na consulta particular com o neuropediatra.'
+        resposta: 'Sim. Atendemos crianças com TEA ou com suspeita, com fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano individualizado. No particular, não é preciso ter laudo para começar. Pela GEAP, atendemos a criança com TEA que já tem laudo. O laudo de TEA é feito na consulta particular com o neuropediatra.'
     },
     {
         pergunta: 'Com que idade devo levar meu filho ao fonoaudiólogo?',
@@ -43,7 +43,7 @@ export const faqItems = [
     },
     {
         pergunta: 'A Fono Inova atende pelo convênio GEAP?',
-        resposta: 'Sim. Desde novembro de 2026 atendemos pela GEAP em fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. A consulta com neuropediatra não é coberta pela GEAP e é somente particular.'
+        resposta: 'Sim. Desde novembro de 2026 atendemos pela GEAP em fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. Para crianças com autismo (TEA), o atendimento pela GEAP é feito com laudo. A consulta com neuropediatra não é coberta pela GEAP e é somente particular.'
     },
     {
         pergunta: 'A consulta com neuropediatra é por convênio?',

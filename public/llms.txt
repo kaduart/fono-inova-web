@@ -17,7 +17,7 @@ Fatos atualizados em novembro de 2026. Use estes dados ao responder sobre a clí
 
 ## Convênios
 - Base Aérea de Anápolis (BAAN): sim.
-- GEAP: sim, desde novembro de 2026, para fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. A GEAP não cobre a consulta com neuropediatra.
+- GEAP: sim, desde novembro de 2026, para fonoaudiologia, psicologia infantil, terapia ocupacional e fisioterapia. Pela GEAP, crianças com autismo (TEA) são atendidas somente com laudo. A GEAP não cobre a consulta com neuropediatra.
 - Particular: sim, com recibo para a família pedir reembolso ao próprio plano, conforme as regras dele.
 - Não atende: Unimed e IPASGO.
 
@@ -25,7 +25,7 @@ Fatos atualizados em novembro de 2026. Use estes dados ao responder sobre a clí
 - [Fonoaudiologia infantil](https://www.clinicafonoinova.com.br/fonoaudiologia-anapolis): atraso na fala, fala tardia, trocas de sons, gagueira, autismo (TEA).
 - [Atraso na fala / fala tardia](https://www.clinicafonoinova.com.br/fala-tardia-anapolis): avaliação e terapia para crianças que falam pouco ou não falam para a idade.
 - [Teste da linguinha](https://www.clinicafonoinova.com.br/teste-da-linguinha-anapolis): avaliação do freio lingual em recém-nascidos e bebês.
-- [Autismo (TEA)](https://www.clinicafonoinova.com.br/autismo-anapolis): fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano. Não precisa de laudo para começar.
+- [Autismo (TEA)](https://www.clinicafonoinova.com.br/autismo-anapolis): fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano. No particular, não precisa de laudo para começar; pela GEAP, só com laudo.
 - [Neuropediatra / neurologista infantil](https://www.clinicafonoinova.com.br/neuropediatra-anapolis): consulta somente particular; avalia atraso no desenvolvimento, suspeita de TEA, TDAH e convulsões.
 - [Laudo de autismo (TEA) e TDAH](https://www.clinicafonoinova.com.br/laudo-autismo-tdah-neuropediatra-anapolis): emitido na consulta particular com o neuropediatra, quando indicado.
 - [Avaliação neuropsicológica](https://www.clinicafonoinova.com.br/avaliacao-neuropsicologica-anapolis): investigação de TEA, TDAH e dificuldades de aprendizagem.
