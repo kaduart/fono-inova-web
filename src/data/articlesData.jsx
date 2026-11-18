@@ -76,16 +76,15 @@ export const articlesData = [
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Fonoaudiologia Infantil"</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">→ O que é fonoaudiologia?</a></li>
-            <li><a href="/artigos/para-que-serve-a-fonoaudiologia" className="text-blue-600 hover:underline">→ Para que serve a fonoaudiologia?</a></li>
             <li><a href="/artigos/o-que-faz-um-fonoaudiologo" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo?</a></li>
             <li><a href="/artigos/fono-ou-fonoaudiologo-qual-diferenca" className="text-blue-600 hover:underline">→ Fono ou fonoaudiólogo: qual a diferença?</a></li>
             <li><a href="/artigos/em-que-idade-levar-filho-fonoaudiologia" className="text-blue-600 hover:underline">→ Com que idade levar meu filho na fonoaudiologia?</a></li>
             <li><a href="/artigos/sinais-crianca-precisa-fonoaudiologia" className="text-blue-600 hover:underline">→ Sinais de que a criança precisa de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
-            <li><a href="/artigos/quando-levar-crianca-fonoaudiologo" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
+            <li><a href="/artigos/fono-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
             <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
-            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
             <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
             <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras: quando preocupar?</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
@@ -99,11 +98,9 @@ export const articlesData = [
             <li><a href="/artigos/como-estimular-fala-crianca" className="text-blue-600 hover:underline">→ Como estimular a fala da criança</a></li>
             <li><a href="/artigos/fala-tardia-causas" className="text-blue-600 hover:underline">→ Fala tardia: causas e tratamento</a></li>
             <li><a href="/artigos/fono-para-fala-atrasada" className="text-blue-600 hover:underline">→ Fono para fala atrasada</a></li>
-            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fono para autismo funciona?</a></li>
             <li><a href="/artigos/quantas-sessoes-de-fono-por-semana" className="text-blue-600 hover:underline">→ Quantas sessões de fono por semana</a></li>
             <li><a href="/artigos/fono-cobre-plano-de-saude" className="text-blue-600 hover:underline">→ Fono cobre plano de saúde?</a></li>
-            <li><a href="/artigos/fono-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Fono infantil: quando procurar?</a></li>
-            <li><a href="/artigos/freio-lingual-leve-precisa-cirurgia" className="text-blue-600 hover:underline">→ Freio lingual leve precisa de cirurgia?</a></li>
+            <li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Freio lingual leve precisa de cirurgia?</a></li>
             <li><a href="/artigos/lingua-presca-atraso-fala" className="text-blue-600 hover:underline">→ Língua presa causa atraso na fala?</a></li>
             <li><a href="/artigos/processamento-auditivo-central-pac" className="text-blue-600 hover:underline">→ Processamento auditivo central (PAC)</a></li>
             <li><a href="/artigos/seletividade-alimentar-infantil" className="text-blue-600 hover:underline">→ Seletividade alimentar infantil</a></li>
@@ -129,7 +126,7 @@ export const articlesData = [
         </p>
         <p>
           Veja detalhadamente as situações em: 
-          <a href="/artigos/para-que-serve-a-fonoaudiologia" className="text-blue-600 hover:underline">para que serve a fonoaudiologia</a>.
+          <a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">para que serve a fonoaudiologia</a>.
         </p>
 
         <h2>O que faz um fonoaudiólogo?</h2>
@@ -186,7 +183,7 @@ export const articlesData = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-2.webp",
     imageAlt: "Neuropediatra em consulta infantil na Clínica Fono Inova em Anápolis",
     faq: [
@@ -209,6 +206,10 @@ export const articlesData = [
       {
         question: "Neuropediatra diagnostica autismo?",
         answer: "Sim. O neuropediatra faz parte da equipe que diagnostica o Transtorno do Espectro Autista, junto com psicólogo e outros especialistas."
+      },
+      {
+        question: "O neuropediatra substitui a fono e a psicologia?",
+        answer: "Não. O neuropediatra investiga, diagnostica e emite laudo; fono, psicologia e terapia ocupacional fazem o trabalho terapêutico do dia a dia. Os papéis se completam."
       }
     ],
     content: (
@@ -219,6 +220,23 @@ export const articlesData = [
           o neuropediatra é o profissional indicado para investigar e orientar o tratamento.
         </p>
 
+        <h2>Neuropediatra, fono, psicólogo ou TO: quem faz o quê</h2>
+        <p>
+          Uma dúvida comum é se o neuropediatra substitui as terapias. Não substitui: os papéis se completam.
+        </p>
+        <ul>
+          <li><strong>Neuropediatra:</strong> investiga causas, pede exames, define diagnóstico médico, prescreve quando necessário e emite laudo</li>
+          <li><strong>Fonoaudiólogo:</strong> trabalha linguagem, fala, alimentação e comunicação no dia a dia</li>
+          <li><strong>Psicólogo:</strong> comportamento, emoções, habilidades sociais e orientação aos pais</li>
+          <li><strong>Terapeuta ocupacional:</strong> autonomia, coordenação motora e questões sensoriais</li>
+          <li><strong>Neuropsicólogo:</strong> mede atenção, memória e funções executivas por meio de testes padronizados</li>
+        </ul>
+        <h2>Com que frequência a criança volta ao neuropediatra?</h2>
+        <p>
+          Depende do caso. Depois da investigação inicial, crianças em acompanhamento costumam ter retornos espaçados para revisar a evolução,
+          ajustar condutas e atualizar relatórios. Quando há uso de medicação, os retornos tendem a ser mais próximos no início. Manter os
+          terapeutas informados entre uma consulta e outra ajuda o médico a ver o quadro completo.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Neuropediatria"</h3>
           <ul className="space-y-2">
@@ -229,13 +247,10 @@ export const articlesData = [
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
             <li><a href="/artigos/diferenca-neuropediatra-pediatra" className="text-blue-600 hover:underline">→ Neuropediatra e pediatra: qual a diferença?</a></li>
             <li><a href="/artigos/neuropediatra-trata-tdah" className="text-blue-600 hover:underline">→ Neuropediatra trata TDAH?</a></li>
-            <li><a href="/artigos/neuropediatra-trata-autismo" className="text-blue-600 hover:underline">→ Neuropediatra trata autismo?</a></li>
             <li><a href="/artigos/primeira-consulta-neuropediatra" className="text-blue-600 hover:underline">→ Primeira consulta com neuropediatra</a></li>
-            <li><a href="/artigos/quando-crianca-precisa-avaliacao-neurologica" className="text-blue-600 hover:underline">→ Quando a criança precisa de avaliação neurológica?</a></li>
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
             <li><a href="/artigos/convulsao-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Convulsão infantil: quando procurar?</a></li>
             <li><a href="/artigos/tdah-infantil-guia-completo-pais" className="text-blue-600 hover:underline">→ TDAH infantil: guia completo para pais</a></li>
-            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
           </ul>
         </div>
 
@@ -504,12 +519,11 @@ export const articlesData = [
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos do cluster "Avaliação Neuropsicológica Infantil"</h3>
           <ul className="space-y-2">
-            <li><a href="/artigos/o-que-e-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ O que é avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ O que é avaliação neuropsicológica?</a></li>
             <li><a href="/artigos/quando-fazer-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Quando fazer avaliação neuropsicológica?</a></li>
-            <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Como funciona a avaliação neuropsicológica?</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-para-autismo" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para autismo</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/artigos/quanto-tempo-dura-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Quanto tempo dura a avaliação neuropsicológica?</a></li>
             <li><a href="/artigos/como-entender-laudo-neuropsicologico" className="text-blue-600 hover:underline">→ Como entender o laudo neuropsicológico</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-e-psicopedagogica" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica e psicopedagógica: qual a diferença?</a></li>
@@ -526,7 +540,7 @@ export const articlesData = [
           o neuropsicólogo avalia atenção, memória, linguagem, raciocínio, funções executivas e outras habilidades.
         </p>
         <p>
-          Saiba mais sobre o que é avaliado em <a href="/artigos/o-que-e-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">o que é avaliação neuropsicológica</a>.
+          Saiba mais sobre o que é avaliado em <a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">o que é avaliação neuropsicológica</a>.
         </p>
 
         <h2>Quando fazer?</h2>
@@ -543,9 +557,6 @@ export const articlesData = [
 
         <h2>Avaliação para condições específicas</h2>
         <ul>
-          <li><strong>TDAH:</strong> avalia atenção, impulsividade e funções executivas — <a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">saiba mais</a></li>
-          <li><strong>Autismo:</strong> avalia cognição social, comunicação e linguagem — <a href="/artigos/avaliacao-neuropsicologica-para-autismo" className="text-blue-600 hover:underline">saiba mais</a></li>
-          <li><strong>Dificuldade escolar:</strong> identifica causas cognitivas do baixo rendimento — <a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">saiba mais</a></li>
         </ul>
 
         <h2>Testes específicos</h2>
@@ -753,7 +764,7 @@ export const articlesData = [
             <li><a href="/artigos/atraso-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Atraso no desenvolvimento infantil</a></li>
             <li><a href="/artigos/sinais-de-alerta-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Sinais de alerta no desenvolvimento infantil por idade</a></li>
             <li><a href="/artigos/suspeita-autismo-avaliacao-completa" className="text-blue-600 hover:underline">→ Suspeita de autismo: guia completo de avaliação</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
           </ul>
         </div>
 
@@ -796,7 +807,7 @@ export const articlesData = [
     authorCredentials: "",
     date: "5 de Julho, 2026",
     dateISO: "2026-07-05",
-    dateModifiedISO: "2026-07-05",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-1.webp",
     imageAlt: "Criança em avaliação de desenvolvimento infantil na Clínica Fono Inova em Anápolis",
     faq: [
@@ -839,6 +850,10 @@ export const articlesData = [
       {
         question: "Onde fazer avaliação de desenvolvimento infantil em Anápolis?",
         answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com equipe especializada em neuropediatria, psicologia infantil, fonoaudiologia e avaliação neuropsicológica."
+      },
+      {
+        question: "Vale a pena avaliar mesmo se for só uma suspeita?",
+        answer: "Sim. Uma avaliação que confirma que está tudo bem tranquiliza a família, e um atraso identificado cedo tem mais tempo de estimulação. Anotações e vídeos de casa ajudam a consulta."
       }
     ],
     content: (
@@ -850,6 +865,25 @@ export const articlesData = [
           uma avaliação especializada.
         </p>
 
+        <h2>Como acompanhar o desenvolvimento em casa, sem paranoia</h2>
+        <p>
+          Comparar o filho com o primo ou com o colega da escola costuma gerar mais angústia do que clareza. Um jeito mais útil é
+          observar a criança ao longo de algumas semanas e anotar o que ela já faz sozinha, o que faz com ajuda e o que ainda não faz.
+          Essas anotações ajudam muito na primeira conversa com o profissional.
+        </p>
+        <ul>
+          <li><strong>Anote exemplos concretos:</strong> "aponta para pedir água", "fala 10 palavras", "não olha quando chamamos pelo nome"</li>
+          <li><strong>Grave vídeos curtos:</strong> brincadeira, refeição e momento de birra mostram coisas que não aparecem no consultório</li>
+          <li><strong>Peça a visão da escola:</strong> professores convivem com muitas crianças da mesma idade e percebem diferenças cedo</li>
+          <li><strong>Observe perdas:</strong> qualquer habilidade que a criança tinha e deixou de ter merece avaliação sem esperar</li>
+        </ul>
+        <h2>Esperar ou avaliar? Um critério simples</h2>
+        <p>
+          Se você ficou em dúvida, a avaliação quase sempre vale mais do que a espera. Uma consulta que conclui "está tudo dentro do esperado"
+          tranquiliza a família e deixa um registro para comparar depois. Já um atraso identificado aos 2 anos tem muito mais tempo de
+          estimulação do que o mesmo atraso percebido só na alfabetização. O cérebro infantil é mais plástico nos primeiros anos, e é
+          justamente essa janela que a intervenção precoce aproveita.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos relacionados</h3>
           <ul className="space-y-2">
@@ -992,7 +1026,7 @@ export const articlesData = [
     authorCredentials: "",
     date: "5 de Julho, 2026",
     dateISO: "2026-07-05",
-    dateModifiedISO: "2026-07-05",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-2.webp",
     imageAlt: "Avaliação multidisciplinar para suspeita de autismo na Clínica Fono Inova em Anápolis",
     faq: [
@@ -1035,6 +1069,10 @@ export const articlesData = [
       {
         question: "Onde fazer avaliação completa para suspeita de autismo em Anápolis?",
         answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis, com equipe integrada de neuropediatra, psicólogo, fonoaudiólogo e neuropsicólogo para o diagnóstico e acompanhamento do TEA."
+      },
+      {
+        question: "O que fazer enquanto espero a avaliação de autismo?",
+        answer: "Organize documentos e vídeos do dia a dia, reduza telas, brinque e converse no nível da criança e verifique a audição. Isso ajuda a criança e deixa a avaliação mais completa."
       }
     ],
     content: (
@@ -1045,12 +1083,29 @@ export const articlesData = [
           funciona a <strong>avaliação completa para suspeita de autismo</strong> e quem faz parte desse processo.
         </p>
 
+        <h2>Como se organizar enquanto aguarda a avaliação</h2>
+        <p>
+          O tempo entre a suspeita e a conclusão da avaliação não precisa ser um tempo parado. Algumas atitudes simples já ajudam a criança
+          e deixam a avaliação mais rica:
+        </p>
+        <ul>
+          <li><strong>Monte uma pasta:</strong> caderneta de vacinação, relatórios da escola, exames de audição e anotações de marcos do desenvolvimento</li>
+          <li><strong>Registre situações:</strong> vídeos de como a criança brinca, pede as coisas e reage a mudanças de rotina</li>
+          <li><strong>Converse mais, com menos tela:</strong> nomeie objetos, espere a criança responder e brinque no chão, no nível dela</li>
+          <li><strong>Verifique a audição:</strong> uma criança que não responde ao nome precisa ter a audição avaliada para descartar essa causa</li>
+        </ul>
+        <h2>O laudo é o começo, não o fim</h2>
+        <p>
+          Muitas famílias focam no laudo, mas o que muda a vida da criança é o plano de acompanhamento que vem depois. Um bom relatório
+          descreve pontos fortes e dificuldades em comunicação, comportamento, sensorialidade e autonomia, e isso orienta quais terapias
+          priorizar e com que frequência. Pergunte sempre na devolutiva: o que trabalhar primeiro, o que fazer em casa e quando reavaliar.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-3">📚 Conteúdos relacionados</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
-            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
             <li><a href="/artigos/psicologo-infantil-ajuda-autismo" className="text-blue-600 hover:underline">→ Psicólogo infantil ajuda no autismo?</a></li>
             <li><a href="/artigos/avaliacao-multidisciplinar-infantil" className="text-blue-600 hover:underline">→ Avaliação multidisciplinar infantil: como funciona</a></li>
             <li><a href="/artigos/sinais-de-alerta-desenvolvimento-infantil" className="text-blue-600 hover:underline">→ Sinais de alerta no desenvolvimento infantil por idade</a></li>
@@ -1959,7 +2014,7 @@ export const articlesData = [
             <li><a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">→ Como funciona o teste da linguinha</a></li>
             <li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia</a></li>
             <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
-            <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
+            <li><a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
             <li><a href="/artigos/teste-da-linguinha-onde-fazer" className="text-blue-600 hover:underline">→ Onde fazer o teste da linguinha</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende o teste da linguinha em Anápolis</a></li>
           </ul>

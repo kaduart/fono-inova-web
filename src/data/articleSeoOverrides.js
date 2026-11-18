@@ -17,10 +17,6 @@ export const articleSeoOverrides = {
     title: "Criança Entende Tudo Mas Não Fala: 5 Causas e Quando Agir",
     description: "Pode ser atraso de linguagem expressiva, dificuldade motora da fala, audição ou autismo. Veja os sinais de alerta e quando procurar avaliação de fono.",
   },
-  "quando-levar-crianca-fonoaudiologo": {
-    title: "Quando Levar a Criança ao Fonoaudiólogo? Sinais por Idade",
-    description: "Aos 2 anos sem palavras ou aos 3 sem frases simples, já vale avaliar. Veja os 7 sinais de alerta da fala por idade e o que fazer antes da consulta.",
-  },
   "lingua-presca-atraso-fala": {
     title: "Língua Presa Atrasa a Fala? Quais Sons Ela Afeta",
     description: "Nem sempre. O freio lingual curto pode atrapalhar sons como R, L, T, D e N. Veja quando a língua presa interfere na fala e quando procurar fono.",

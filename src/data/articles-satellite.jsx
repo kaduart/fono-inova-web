@@ -95,7 +95,6 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Criança de 2 anos não fala? Veja os sinais de alerta</a></li>
-            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Tratamento para atraso na fala infantil em Anápolis</a></li>
           </ul>
         </div>
 
@@ -414,7 +413,6 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Fono: Guia Completo para Pais</a></li>
-            <li><a href="/artigos/para-que-serve-a-fonoaudiologia" className="text-blue-600 hover:underline">→ Para que serve a fonoaudiologia?</a></li>
           </ul>
         </div>
 
@@ -435,137 +433,6 @@ export const satelliteArticles = [
     )
   },
   
-  {
-    id: 105,
-    slug: "para-que-serve-a-fonoaudiologia",
-    title: "Para que Serve a Fonoaudiologia? 10 Situações que Ela Resolve",
-    excerpt: "Descubra para que serve a fonoaudiologia e em quais situações do dia a dia ela pode ajudar crianças e adultos.",
-    category: "Fonoaudiologia",
-    categoryColor: "primary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/img-fono-atendimento-01.webp",
-    imageAlt: "Criança em sessão fonoaudiológica na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Para que serve a fonoaudiologia?",
-        answer: "Serve para avaliar, diagnosticar e tratar distúrbios de fala, linguagem, voz, audição e motricidade orofacial."
-      },
-      {
-        question: "Fonoaudiologia ajuda em atraso na fala?",
-        answer: "Sim. A fonoaudiologia infantil é a principal especialidade para tratar atraso na fala."
-      },
-      {
-        question: "A fonoaudiologia trata gagueira?",
-        answer: "Sim. O fonoaudiólogo atua no tratamento da gagueira e outros distúrbios da fluência."
-      },
-      {
-        question: "Fonoaudiologia ajuda na dificuldade escolar?",
-        answer: "Sim. Trabalha consciência fonológica, leitura, escrita e processamento auditivo, fundamentais para a alfabetização."
-      },
-      {
-        question: "Fonoaudiologia trata seletividade alimentar?",
-        answer: "Sim. Avalia e trata dificuldades de mastigação, deglutição e recusa alimentar relacionadas à motricidade orofacial."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Muitos pais chegam até a fonoaudiologia com uma pergunta simples: <strong>"fono para que serve?"</strong>. 
-          A resposta é mais ampla do que se imagina. A fonoaudiologia não serve apenas para ensinar crianças a falar melhor. 
-          Ela atua em várias áreas da comunicação humana.
-        </p>
-
-        <h2>10 situações em que a fonoaudiologia ajuda</h2>
-
-        <h3>1. Atraso na fala infantil</h3>
-        <p>
-          Quando a criança não fala dentro dos marcos esperados para a idade, o fonoaudiólogo investiga as causas e inicia a estimulação da linguagem.
-        </p>
-
-        <h3>2. Troca de letras</h3>
-        <p>
-          Erros como falar "pevido" em vez de "devido" ou dificuldade com o R podem indicar distúrbios articulatórios ou fonológicos.
-        </p>
-
-        <h3>3. Gagueira infantil</h3>
-        <p>
-          A gagueira é um distúrbio da fluência que pode ser tratado com técnicas específicas de fonoaudiologia.
-        </p>
-
-        <h3>4. Dificuldades de audição</h3>
-        <p>
-          O fonoaudiólogo realiza triagens auditivas e acompanha crianças com perda auditiva ou infecções recorrentes de ouvido.
-        </p>
-
-        <h3>5. Processamento auditivo central</h3>
-        <p>
-          A criança ouve bem, mas tem dificuldade de entender e processar o que foi dito. A fonoaudiologia trabalha o treinamento auditivo.
-        </p>
-
-        <h3>6. Problemas de voz</h3>
-        <p>
-          Rouquidão persistente, voz rouca ou alterações na qualidade vocal podem ser avaliadas e tratadas.
-        </p>
-
-        <h3>7. Dificuldades na alimentação</h3>
-        <p>
-          Recusa alimentar, mastigação ineficaz, seletividade alimentar e dificuldade de deglutição podem estar relacionadas à motricidade orofacial.
-        </p>
-
-        <h3>8. Língua presa (freio lingual curto)</h3>
-        <p>
-          A anquiloglossia pode afetar a amamentação, fala e posição da língua. O fonoaudiólogo atua no preparo e reabilitação.
-        </p>
-
-        <h3>9. Dificuldades escolares</h3>
-        <p>
-          Consciência fonológica, leitura e escrita são áreas da fonoaudiologia escolar que ajudam crianças com dificuldades de aprendizagem.
-        </p>
-
-        <h3>10. Bebês com risco para a comunicação</h3>
-        <p>
-          Prematuridade, histórico familiar de atraso na fala ou síndromes podem indicar acompanhamento fonoaudiológico precoce.
-        </p>
-
-        <div className="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Quer entender melhor?</h3>
-          <p className="mb-4">
-            Leia nosso guia completo sobre fono e descubra quando procurar ajuda.
-          </p>
-          <a href="/artigos/fonoaudiologia-guia-completo" className="text-green-600 hover:underline font-semibold">
-            → Ver guia completo sobre fono
-          </a>
-        </div>
-
-        <h2>Conclusão</h2>
-        <p>
-          A fonoaudiologia serve para garantir que crianças e adultos se comuniquem de forma eficaz.
-          Se você percebe alguma dessas dificuldades no seu filho, agende uma avaliação na Clínica Fono Inova em Anápolis.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/o-que-e-fonoaudiologia" className="text-blue-600 hover:underline">→ O que é fonoaudiologia?</a></li>
-          </ul>
-        </div>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Atendimento na Clínica Fono Inova (Anápolis)</h3>
-          <ul className="space-y-2">
-            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
-            <li><a href="/fala-tardia-anapolis" className="text-blue-600 hover:underline">→ Atraso na fala infantil em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-
   {
     id: 106,
     slug: "o-que-faz-um-fonoaudiologo",
@@ -1159,7 +1026,6 @@ export const satelliteArticles = [
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
-            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Avaliação de autismo em Anápolis</a></li>
           </ul>
@@ -1705,7 +1571,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
-            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo: como funciona</a></li>
+            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo: como funciona</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -1950,7 +1816,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
             <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
-            <li><a href="/artigos/fonoaudiologia-para-autismo" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
+            <li><a href="/artigos/fono-para-autismo-funciona" className="text-blue-600 hover:underline">→ Fonoaudiologia para autismo</a></li>
             <li><a href="/artigos/bebe-nao-fala" className="text-blue-600 hover:underline">→ Bebê não fala: quando se preocupar</a></li>
             <li><a href="/autismo-anapolis" className="text-blue-600 hover:underline">→ Suporte para autismo em Anápolis</a></li>
           </ul>
@@ -1975,7 +1841,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-2.webp",
     imageAlt: "Pediatra e neuropediatra em ambulatório infantil na Clínica Fono Inova em Anápolis",
     faq: [
@@ -1998,6 +1864,10 @@ export const satelliteArticles = [
       {
         question: "Posso marcar neuropediatra sem passar pelo pediatra?",
         answer: "Sim. Os pais podem procurar o neuropediatra diretamente, embora o pediatra possa ajudar no encaminhamento."
+      },
+      {
+        question: "Posso ir direto ao neuropediatra sem passar pelo pediatra?",
+        answer: "Em consulta particular, sim. Ainda assim, manter o pediatra informado ajuda, porque ele acompanha a saúde geral e o histórico da criança."
       }
     ],
     content: (
@@ -2056,6 +1926,20 @@ export const satelliteArticles = [
           Depois do diagnóstico, ambos acompanham a criança de forma integrada.
         </p>
 
+        <h2>Exemplos práticos: quem procurar primeiro</h2>
+        <ul>
+          <li><strong>Febre, tosse, vacinas e consultas de rotina:</strong> pediatra</li>
+          <li><strong>Atraso de fala isolado em criança pequena:</strong> pediatra e fonoaudiólogo; o neuropediatra entra se houver outros sinais</li>
+          <li><strong>Suspeita de autismo ou TDAH:</strong> neuropediatra, que também pode emitir laudo</li>
+          <li><strong>Convulsão:</strong> pronto-socorro na hora; depois, acompanhamento com neuropediatra</li>
+          <li><strong>Perda de habilidades já adquiridas:</strong> neuropediatra sem esperar</li>
+        </ul>
+        <h2>Por que manter os dois</h2>
+        <p>
+          O pediatra continua sendo o médico de referência da criança, que acompanha crescimento, vacinas e saúde geral. O neuropediatra entra
+          para investigar questões do sistema nervoso e do desenvolvimento. Quando os dois trocam informações, a criança ganha: o pediatra sabe o
+          que está sendo investigado e o neuropediatra conhece o histórico completo.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -2163,93 +2047,6 @@ export const satelliteArticles = [
   },
   
   {
-    id: 122,
-    slug: "neuropediatra-trata-autismo",
-    title: "Neuropediatra Trata Autismo? Entenda o Acompanhamento",
-    excerpt: "Descubra se o neuropediatra trata autismo, como é feito o diagnóstico e qual a importância do acompanhamento multidisciplinar.",
-    category: "Neuropediatria",
-    categoryColor: "secondary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-3.webp",
-    imageAlt: "Criança autista em sessão terapêutica na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Neuropediatra trata autismo?",
-        answer: "Sim. O neuropediatra acompanha crianças com autismo, orienta tratamentos e integra a equipe multidisciplinar."
-      },
-      {
-        question: "Qual o melhor tratamento para autismo?",
-        answer: "Não existe um único tratamento. O ideal é um acompanhamento individualizado com terapias comportamentais, de comunicação e ocupacionais."
-      },
-      {
-        question: "Autismo tem cura?",
-        answer: "Não. O TEA não tem cura, mas intervenções precoces melhoram significativamente a comunicação, comportamento e autonomia."
-      },
-      {
-        question: "Quantas terapias uma criança autista precisa?",
-        answer: "Varia conforme as necessidades. Pode incluir fonoaudiologia, psicologia, terapia ocupacional e neuropediatra."
-      },
-      {
-        question: "O neuropediatra prescreve medicamento para autismo?",
-        answer: "Em alguns casos, sim, para tratar sintomas associados como agitação, ansiedade ou dificuldades de sono."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Muitos pais perguntam se <strong>neuropediatra trata autismo</strong>. A resposta é sim: 
-          o neuropediatra é um dos principais profissionais no acompanhamento de crianças com Transtorno do Espectro Autista (TEA).
-        </p>
-
-        <h2>O neuropediatra no tratamento do autismo</h2>
-        <p>
-          O neuropediatra não "trata" o autismo no sentido de curar, mas orienta e acompanha o desenvolvimento da criança. 
-          Ele ajuda a:
-        </p>
-        <ul>
-          <li>Confirmar ou descartar o diagnóstico</li>
-          <li>Identificar necessidades específicas de cada criança</li>
-          <li>Prescrever tratamentos e terapias adequadas</li>
-          <li>Acompanhar a evolução ao longo do tempo</li>
-          <li>Tratar condições associadas, como epilepsia, ansiedade ou TDAH</li>
-        </ul>
-
-        <h2>Tratamento é multidisciplinar</h2>
-        <p>
-          O tratamento do autismo envolve diferentes profissionais:
-        </p>
-        <ul>
-          <li><strong>Fonoaudiólogo:</strong> comunicação e linguagem</li>
-          <li><strong>Psicólogo:</strong> comportamento e emoções</li>
-          <li><strong>Terapeuta ocupacional:</strong> integração sensorial e habilidades diárias</li>
-          <li><strong>Neuropediatra:</strong> orientação médica e acompanhamento global</li>
-        </ul>
-
-        <h2>Importância do acompanhamento regular</h2>
-        <p>
-          Crianças com autismo precisam de acompanhamento contínuo para ajustar terapias conforme crescem. 
-          Na Clínica Fono Inova em Anápolis, oferecemos acompanhamento multidisciplinar para crianças no espectro autista.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
-            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Neuropediatra diagnostica autismo?</a></li>
-            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  
-  {
     id: 123,
     slug: "primeira-consulta-neuropediatra",
     title: "Primeira Consulta com Neuropediatra: Como Funciona?",
@@ -2261,7 +2058,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-2.webp",
     imageAlt: "Pais e criança na primeira consulta com neuropediatra na Clínica Fono Inova em Anápolis",
     faq: [
@@ -2284,6 +2081,10 @@ export const satelliteArticles = [
       {
         question: "A primeira consulta resolve o diagnóstico?",
         answer: "Nem sempre. Muitas vezes são necessárias avaliações complementares para confirmar um diagnóstico."
+      },
+      {
+        question: "O laudo sai na primeira consulta com o neuropediatra?",
+        answer: "Às vezes, mas nem sempre. Em suspeitas de autismo ou TDAH o médico pode precisar de relatórios da escola, de terapeutas ou de avaliação neuropsicológica antes de concluir."
       }
     ],
     content: (
@@ -2333,93 +2134,29 @@ export const satelliteArticles = [
           A primeira consulta costuma durar entre 40 e 60 minutos, pois é mais abrangente que uma consulta de rotina.
         </p>
 
+        <h2>Como explicar a consulta para a criança</h2>
+        <p>
+          Para crianças maiores, vale contar de forma simples que vão a um médico que conversa, brinca e faz alguns testes de movimento,
+          sem injeção. Para os pequenos, leve um brinquedo conhecido e um lanche. Uma criança tranquila mostra melhor como realmente se comporta.
+        </p>
+        <h2>O que costuma acontecer depois da primeira consulta</h2>
+        <ul>
+          <li><strong>Hipóteses e orientação:</strong> o médico explica o que observou e o que precisa ser investigado</li>
+          <li><strong>Exames, se necessário:</strong> como eletroencefalograma, exames de imagem ou de sangue, conforme o caso</li>
+          <li><strong>Encaminhamentos:</strong> para fono, psicologia, terapia ocupacional ou avaliação neuropsicológica</li>
+          <li><strong>Retorno:</strong> para ver exames, acompanhar a evolução e, quando for o caso, emitir laudo</li>
+        </ul>
+        <h2>Laudo sai na primeira consulta?</h2>
+        <p>
+          Às vezes, mas nem sempre. Em suspeitas de autismo ou TDAH, o médico pode precisar de relatórios da escola, de terapeutas ou de uma
+          avaliação neuropsicológica antes de concluir. Isso não é demora: é o que torna o laudo mais seguro e útil para a criança.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/o-que-faz-neuropediatra" className="text-blue-600 hover:underline">→ O que faz um neuropediatra?</a></li>
             <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
-            <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  
-  {
-    id: 124,
-    slug: "quando-crianca-precisa-avaliacao-neurologica",
-    title: "Quando a Criança Precisa de Avaliação Neurológica?",
-    excerpt: "Saiba quais sinais indicam que a criança precisa de uma avaliação neurológica com neuropediatra e como é feito o encaminhamento.",
-    category: "Neuropediatria",
-    categoryColor: "secondary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.webp",
-    imageAlt: "Criança em avaliação neurológica infantil na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Quando a criança precisa de avaliação neurológica?",
-        answer: "Quando há atraso no desenvolvimento, alterações de comportamento, convulsões, dificuldades de aprendizagem ou sinais de TDAH e autismo."
-      },
-      {
-        question: "Quem pede avaliação neurológica?",
-        answer: "Geralmente o pediatra encaminha, mas os pais também podem procurar um neuropediatra diretamente."
-      },
-      {
-        question: "Avaliação neurológica dói?",
-        answer: "Não. É uma consulta com exame clínico e observação. Alguns exames complementares podem ser solicitados, mas não são invasivos."
-      },
-      {
-        question: "Avaliação neurológica é a mesma que avaliação neuropsicológica?",
-        answer: "Não. A avaliação neurológica é médica. A neuropsicológica avalia funções cognitivas como memória, atenção e linguagem."
-      },
-      {
-        question: "Exames de imagem são sempre necessários?",
-        answer: "Não. O neuropediatra solicita exames apenas quando há indicação clínica."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          A <strong>avaliação neurológica infantil</strong> é indicada quando há preocupações com o desenvolvimento ou comportamento da criança. 
-          Ela ajuda a identificar precocemente condições como TDAH, autismo, epilepsia e atrasos no desenvolvimento.
-        </p>
-
-        <h2>Sinais que indicam avaliação neurológica</h2>
-        <ul>
-          <li>Atraso na fala, marcha ou coordenação motora</li>
-          <li>Dificuldade de aprendizagem persistente</li>
-          <li>Hiperatividade e desatenção que prejudicam a rotina</li>
-          <li>Comportamentos repetitivos ou isolamento social</li>
-          <li>Convulsões ou episódios de perda de consciência</li>
-          <li>Tiques motores ou vocais</li>
-          <li>Alterações de sono, humor ou alimentação</li>
-        </ul>
-
-        <h2>Como é feita a avaliação?</h2>
-        <p>
-          A avaliação começa com uma entrevista detalhada e exame neurológico. 
-          Dependendo do caso, o neuropediatra pode solicitar exames como EEG, ressonância magnética, 
-          avaliação neuropsicológica ou testes de linguagem.
-        </p>
-
-        <h2>Posso levar direto ou preciso de encaminhamento?</h2>
-        <p>
-          Os pais podem procurar o neuropediatra diretamente, sem necessidade de encaminhamento. 
-          Na Clínica Fono Inova em Anápolis, a avaliação é feita de forma acolhedora, com explicação clara para a família.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
-            <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
-            <li><a href="/artigos/primeira-consulta-neuropediatra" className="text-blue-600 hover:underline">→ Primeira consulta com neuropediatra</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -2513,7 +2250,6 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/neuropediatria-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de neuropediatria</a></li>
             <li><a href="/artigos/quando-procurar-neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Quando procurar neuropediatra?</a></li>
-            <li><a href="/artigos/quando-crianca-precisa-avaliacao-neurologica" className="text-blue-600 hover:underline">→ Quando a criança precisa de avaliação neurológica?</a></li>
             <li><a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline">→ Neuropediatra em Anápolis</a></li>
           </ul>
         </div>
@@ -3331,7 +3067,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-3.webp",
     imageAlt: "Primeira consulta com psicólogo infantil na Clínica Fono Inova em Anápolis",
     faq: [
@@ -3354,6 +3090,10 @@ export const satelliteArticles = [
       {
         question: "Na primeira consulta já sai diagnóstico?",
         answer: "Nem sempre. A primeira consulta é de avaliação. O diagnóstico pode exigir mais sessões e informações."
+      },
+      {
+        question: "E se meu filho não quiser entrar na consulta com o psicólogo?",
+        answer: "É comum no começo. O psicólogo pode iniciar com um dos pais na sala e aumentar a autonomia aos poucos. Previsibilidade e calma funcionam melhor do que forçar."
       }
     ],
     content: (
@@ -3394,6 +3134,24 @@ export const satelliteArticles = [
           <li>Quanto tempo pode durar o acompanhamento?</li>
         </ul>
 
+        <h2>Quantas sessões até ter um retorno?</h2>
+        <p>
+          Raramente o psicólogo fecha uma conclusão no primeiro encontro. Em geral, as primeiras sessões formam um período de avaliação em que
+          ele conhece a criança em momentos diferentes, conversa com os pais e, quando faz sentido, com a escola. Ao final desse período, a família
+          recebe uma devolutiva com o que foi observado e a proposta de acompanhamento: objetivos, frequência das sessões e como os pais participam.
+        </p>
+        <h2>Sinais de que a terapia está no caminho certo</h2>
+        <ul>
+          <li>A criança vai às sessões com tranquilidade, mesmo que no início estranhe</li>
+          <li>Os pais recebem orientações práticas para usar em casa, e não só relatos do que aconteceu na sessão</li>
+          <li>Os objetivos são claros e revisados de tempos em tempos</li>
+          <li>Há troca com outros profissionais quando a criança também faz fono, terapia ocupacional ou acompanhamento médico</li>
+        </ul>
+        <h2>E se a criança não quiser entrar?</h2>
+        <p>
+          É comum, principalmente em crianças pequenas ou mais ansiosas. O psicólogo pode fazer os primeiros minutos com um dos pais na sala e
+          ir aumentando a autonomia aos poucos. Forçar ou prometer recompensas grandes costuma piorar; previsibilidade e calma funcionam melhor.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -3419,7 +3177,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-1.webp",
     imageAlt: "Psicóloga infantil em atendimento de criança com autismo na Clínica Fono Inova em Anápolis",
     faq: [
@@ -3442,6 +3200,10 @@ export const satelliteArticles = [
       {
         question: "A terapia substitui outras especialidades?",
         answer: "Não. O acompanhamento multidisciplinar inclui psicólogo, fonoaudiólogo, neuropediatra, terapeuta ocupacional e outros conforme a necessidade."
+      },
+      {
+        question: "Os pais participam da terapia do filho com autismo?",
+        answer: "Sim. A orientação parental é parte central: o psicólogo ensina como antecipar mudanças, lidar com crises e reforçar comportamentos, e alinha estratégias com a escola."
       }
     ],
     content: (
@@ -3474,6 +3236,21 @@ export const satelliteArticles = [
           Se você tem dúvidas, procure uma avaliação especializada.
         </p>
 
+        <h2>Habilidades que costumam ser trabalhadas</h2>
+        <ul>
+          <li><strong>Regulação emocional:</strong> reconhecer o que sente e ter estratégias para crises e frustrações</li>
+          <li><strong>Habilidades sociais:</strong> esperar a vez, iniciar uma brincadeira, entender regras implícitas</li>
+          <li><strong>Flexibilidade:</strong> lidar melhor com mudanças de rotina e imprevistos</li>
+          <li><strong>Comportamentos desafiadores:</strong> entender a função de birras e agressividade e ensinar alternativas</li>
+          <li><strong>Autonomia:</strong> rotinas de higiene, alimentação e organização adequadas à idade</li>
+        </ul>
+        <h2>Como os pais participam</h2>
+        <p>
+          No autismo, o que acontece em casa pesa tanto quanto a sessão. Por isso o psicólogo dedica parte do trabalho à orientação parental:
+          como antecipar mudanças, como reagir a uma crise, como reforçar comportamentos desejados. Também é comum alinhar estratégias com a
+          escola e com os outros terapeutas, para que a criança encontre as mesmas regras em todos os ambientes. Pais que se sentem apoiados
+          conseguem sustentar as mudanças por mais tempo, e isso aparece na evolução da criança.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -3578,7 +3355,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-3.webp",
     imageAlt: "Criança com baixa autoestima em avaliação psicológica na Clínica Fono Inova em Anápolis",
     faq: [
@@ -3601,6 +3378,10 @@ export const satelliteArticles = [
       {
         question: "A terapia infantil melhora a autoestima?",
         answer: "Sim. A terapia ajuda a criança a reconhecer suas qualidades, lidar com frustrações e construir uma imagem positiva de si mesma."
+      },
+      {
+        question: "Como ajudar meu filho com baixa autoestima em casa?",
+        answer: "Elogie o esforço, evite comparações, ofereça tarefas que ele consiga concluir e escute antes de corrigir. Se os sinais persistirem, procure avaliação psicológica."
       }
     ],
     content: (
@@ -3635,6 +3416,21 @@ export const satelliteArticles = [
           Também orienta os pais sobre como reforçar a autoestima no dia a dia.
         </p>
 
+        <h2>O que os pais podem fazer no dia a dia</h2>
+        <ul>
+          <li><strong>Elogie o esforço, não só o resultado:</strong> "você tentou de novo" ensina mais do que "você é inteligente"</li>
+          <li><strong>Evite comparações:</strong> com irmãos, primos ou colegas, mesmo em tom de brincadeira</li>
+          <li><strong>Dê responsabilidades possíveis:</strong> tarefas pequenas que a criança consegue concluir fortalecem a sensação de capacidade</li>
+          <li><strong>Escute sem corrigir de imediato:</strong> quando ela disser "eu sou burro", pergunte o que aconteceu antes de rebater</li>
+          <li><strong>Cuide do que você fala de si:</strong> crianças aprendem a se tratar observando como os adultos se tratam</li>
+        </ul>
+        <h2>Quando a baixa autoestima esconde outra dificuldade</h2>
+        <p>
+          Muitas vezes a criança se acha incapaz porque está enfrentando uma dificuldade real que ninguém identificou: troca de letras, atraso de
+          linguagem, desatenção ou dificuldade motora. Nesses casos, só reforçar a autoestima não resolve. Uma avaliação ajuda a descobrir a causa,
+          e tratar a dificuldade de base costuma devolver a confiança. Procure ajuda se os sinais duram mais de algumas semanas, aparecem em casa e
+          na escola ou vêm acompanhados de tristeza, isolamento ou falas de que não gostaria de existir.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -3722,7 +3518,7 @@ export const satelliteArticles = [
             <li><a href="/artigos/psicologia-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de psicologia infantil</a></li>
             <li><a href="/artigos/sinais-baixa-autoestima-infantil" className="text-blue-600 hover:underline">→ Sinais de baixa autoestima infantil</a></li>
             <li><a href="/artigos/quando-levar-crianca-psicologo" className="text-blue-600 hover:underline">→ Quando levar criança ao psicólogo?</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/psicologia-infantil-anapolis" className="text-blue-600 hover:underline">→ Psicólogo infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -3876,7 +3672,7 @@ export const satelliteArticles = [
         <h2>Quando procurar?</h2>
         <p>
           Quando há preocupações com a fala, linguagem, audição ou alimentação. 
-          Saiba mais em <a href="/artigos/quando-levar-crianca-fonoaudiologo" className="text-blue-600 hover:underline">quando levar criança ao fonoaudiólogo</a>.
+          Saiba mais em <a href="/artigos/fono-infantil-quando-procurar" className="text-blue-600 hover:underline">quando levar criança ao fonoaudiólogo</a>.
         </p>
 
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
@@ -3885,87 +3681,6 @@ export const satelliteArticles = [
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
             <li><a href="/artigos/sinais-atraso-fala-crianca" className="text-blue-600 hover:underline">→ Sinais de atraso de fala</a></li>
-            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  
-  {
-    id: 142,
-    slug: "quando-levar-crianca-fonoaudiologo",
-    title: "Quando Levar a Criança ao Fonoaudiólogo? 7 Sinais de Alerta",
-    excerpt: "Não sabe se é hora de procurar ajuda? Veja os sinais que indicam que seu filho precisa de avaliação fonoaudiológica agora, em Anápolis.",
-    category: "Fonoaudiologia",
-    categoryColor: "primary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Pais conversando com fonoaudióloga infantil na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Quando levar criança ao fonoaudiólogo?",
-        answer: "Quando há atraso na fala, troca de letras persistente, dificuldade de compreensão, problemas de audição, gagueira ou dificuldades de alimentação."
-      },
-      {
-        question: "Com quantos anos deve levar criança no fonoaudiólogo?",
-        answer: "A partir dos 12 meses se houver suspeita. Aos 2 anos, se a criança ainda não fala palavras, é indicado procurar ajuda."
-      },
-      {
-        question: "Criança de 3 anos não fala frases: é normal?",
-        answer: "Não. Aos 3 anos, é esperado que a criança fale frases simples e seja compreendida por pessoas fora da família."
-      },
-      {
-        question: "Preciso de encaminhamento médico?",
-        answer: "Não. Os pais podem procurar um fonoaudiólogo infantil diretamente."
-      },
-      {
-        question: "O que levar na primeira consulta?",
-        answer: "Relatórios escolares, exames de audição, histórico de desenvolvimento e uma lista de palavras ou sons que a criança usa."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Saber <strong>quando levar a criança ao fonoaudiólogo</strong> pode acelerar o desenvolvimento da fala e prevenir dificuldades maiores. 
-          Quanto antes a intervenção começar, melhores são os resultados.
-        </p>
-
-        <h2>Sinais de alerta por idade</h2>
-        <ul>
-          <li><strong>12 meses:</strong> não balbucia, não reage ao som do próprio nome</li>
-          <li><strong>18 meses:</strong> não fala nenhuma palavra</li>
-          <li><strong>2 anos:</strong> não forma frases de 2 palavras, vocabulário menor que 50 palavras</li>
-          <li><strong>3 anos:</strong> não fala frases simples, dificuldade de ser compreendida</li>
-          <li><strong>4 anos:</strong> troca muitas letras, não é entendida por desconhecidos</li>
-        </ul>
-
-        <h2>Outros sinais importantes</h2>
-        <ul>
-          <li>Troca de letras persistente após os 4 anos</li>
-          <li>Gagueira com frequência crescente</li>
-          <li>Dificuldade de seguir comandos simples</li>
-          <li>Recusa alimentar extrema ou problemas de mastigação</li>
-          <li>Respiração oral constante</li>
-        </ul>
-
-        <h2>Por que procurar ajuda precoce?</h2>
-        <p>
-          A intervenção precoce aproveita o período de maior plasticidade cerebral da criança. 
-          Na Clínica Fono Inova em Anápolis, avaliamos e acompanhamos crianças com diferentes necessidades de comunicação.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
-            <li><a href="/artigos/desenvolvimento-da-fala-por-idade" className="text-blue-600 hover:underline">→ Desenvolvimento da fala por idade</a></li>
-            <li><a href="/artigos/crianca-nao-fala-idade-esperada" className="text-blue-600 hover:underline">→ Criança não fala na idade esperada</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -4136,86 +3851,6 @@ export const satelliteArticles = [
     )
   },
   
-  {
-    id: 145,
-    slug: "fonoaudiologia-para-autismo",
-    title: "Fonoaudiologia para Autismo: Como Funciona o Atendimento",
-    excerpt: "Entenda como a fonoaudiologia ajuda crianças com autismo no desenvolvimento da comunicação, linguagem e interação social.",
-    category: "Fonoaudiologia",
-    categoryColor: "primary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Fonoaudióloga atendendo criança com autismo na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Fonoaudiologia ajuda no autismo?",
-        answer: "Sim. A fonoaudiologia trabalha a comunicação verbal e não verbal, linguagem, interação social e aspectos da alimentação."
-      },
-      {
-        question: "Como é a fonoaudiologia para autismo?",
-        answer: "Utiliza estratégias visuais, brincadeiras, músicas, comunicação alternativa e atividades funcionais adaptadas ao perfil da criança."
-      },
-      {
-        question: "Criança autista não fala: fono ajuda?",
-        answer: "Sim. Mesmo sem fala, o fonoaudiólogo trabalha outras formas de comunicação, como gestos, imagens e sistemas alternativos."
-      },
-      {
-        question: "Qual a idade ideal para começar?",
-        answer: "Quanto mais cedo melhor. A intervenção precoce a partir dos primeiros sinais traz melhores resultados."
-      },
-      {
-        question: "Fonoaudiologia é a única especialidade para autismo?",
-        answer: "Não. O autismo requer acompanhamento multidisciplinar, incluindo neuropediatra, psicólogo, terapeuta ocupacional e fonoaudiólogo."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          A <strong>fonoaudiologia</strong> desempenha um papel essencial no acompanhamento de crianças com <strong>Transtorno do Espectro Autista (TEA)</strong>. 
-          Muitas crianças no espectro apresentam dificuldades de comunicação que podem ser trabalhadas com intervenção especializada.
-        </p>
-
-        <h2>Como a fonoaudiologia ajuda no autismo?</h2>
-        <ul>
-          <li>Desenvolve a comunicação verbal e não verbal</li>
-          <li>Estimula a linguagem receptiva e expressiva</li>
-          <li>Trabalha a interação social</li>
-          <li>Utiliza recursos visuais e comunicação alternativa quando necessário</li>
-          <li>Auxilia em dificuldades de alimentação</li>
-          <li>Orienta pais e cuidadores</li>
-        </ul>
-
-        <h2>Atendimento na Clínica Fono Inova</h2>
-        <p>
-          Nossa equipe trabalha de forma integrada com neuropediatra, psicólogo e terapeuta ocupacional para oferecer 
-          um cuidado completo à criança com autismo em Anápolis.
-        </p>
-
-        <h2>Comunicação alternativa</h2>
-        <p>
-          Para crianças que ainda não falam, o fonoaudiólogo pode introduzir recursos como pranchas de comunicação, 
-          aplicativos e gestos funcionais, ampliando as possibilidades de expressão.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
-            <li><a href="/artigos/sinais-autismo-crianca" className="text-blue-600 hover:underline">→ Sinais de autismo na infância</a></li>
-            <li><a href="/artigos/fonoaudiologia-ajuda-atraso-linguagem" className="text-blue-600 hover:underline">→ Fonoaudiologia ajuda no atraso de linguagem?</a></li>
-            <li><a href="/artigos/neuropediatra-diagnostica-autismo" className="text-blue-600 hover:underline">→ Como o neuropediatra diagnostica o autismo</a></li>
-            <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-
   {
     id: 146,
     slug: "fonoaudiologia-ajuda-atraso-linguagem",
@@ -4547,7 +4182,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/troca-de-letras-quando-preocupar" className="text-blue-600 hover:underline">→ Troca de letras na criança: quando preocupar</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/artigos/psicopedagogia-alem-das-dificuldades-escolares" className="text-blue-600 hover:underline">→ Psicopedagogia além das dificuldades escolares</a></li>
             <li><a href="/dislexia-anapolis" className="text-blue-600 hover:underline">→ Dislexia em Anápolis</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
@@ -4982,7 +4617,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/fonoaudiologia-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de fonoaudiologia</a></li>
             <li><a href="/artigos/o-que-faz-fonoaudiologo-infantil" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo infantil?</a></li>
-            <li><a href="/artigos/quando-levar-crianca-fonoaudiologo" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
+            <li><a href="/artigos/fono-infantil-quando-procurar" className="text-blue-600 hover:underline">→ Quando levar criança ao fonoaudiólogo?</a></li>
             <li><a href="/fonoaudiologia-anapolis" className="text-blue-600 hover:underline">→ Fonoaudiologia infantil em Anápolis</a></li>
           </ul>
         </div>
@@ -5218,85 +4853,6 @@ export const satelliteArticles = [
   // ============================================================
   
   {
-    id: 155,
-    slug: "o-que-e-avaliacao-neuropsicologica",
-    title: "O que é Avaliação Neuropsicológica Infantil?",
-    excerpt: "Entenda o que é avaliação neuropsicológica infantil, para que serve e como ela avalia as funções cognitivas da criança.",
-    category: "Neuropsicologia",
-    categoryColor: "secondary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-2.webp",
-    imageAlt: "Neuropsicóloga explicando avaliação para pais na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "O que é avaliação neuropsicológica infantil?",
-        answer: "É um exame detalhado das funções cognitivas da criança, como atenção, memória, linguagem, raciocínio e funções executivas."
-      },
-      {
-        question: "Para que serve a avaliação neuropsicológica?",
-        answer: "Serve para identificar pontos fortes e fracos do funcionamento cerebral, auxiliar no diagnóstico e orientar intervenções."
-      },
-      {
-        question: "Quem faz avaliação neuropsicológica?",
-        answer: "É realizada por neuropsicólogo, um psicólogo especializado em funções cognitivas e relação cérebro-comportamento."
-      },
-      {
-        question: "Avaliação neuropsicológica é invasiva?",
-        answer: "Não. É realizada por meio de testes, jogos e atividades lúdicas adaptadas à idade da criança."
-      },
-      {
-        question: "A avaliação neuropsicológica diagnostica?",
-        answer: "Ela contribui para o diagnóstico, mas geralmente faz parte de uma avaliação multidisciplinar."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          A <strong>avaliação neuropsicológica infantil</strong> é um exame especializado que investiga como o cérebro da criança 
-          processa informações. Ela avalia funções como atenção, memória, linguagem, raciocínio e resolução de problemas.
-        </p>
-
-        <h2>O que avalia?</h2>
-        <ul>
-          <li><strong>Atenção:</strong> capacidade de concentrar-se em tarefas</li>
-          <li><strong>Memória:</strong> registro, armazenamento e evocação de informações</li>
-          <li><strong>Linguagem:</strong> compreensão e expressão verbal</li>
-          <li><strong>Funções executivas:</strong> planejamento, organização e controle inibitório</li>
-          <li><strong>Raciocínio lógico:</strong> habilidade de resolver problemas</li>
-          <li><strong>Visuoconstrução:</strong> coordenação visual-motora</li>
-        </ul>
-
-        <h2>Para que serve?</h2>
-        <p>
-          A avaliação ajuda a entender o perfil cognitivo da criança, identificando dificuldades que podem impactar 
-          a aprendizagem, o comportamento e o desenvolvimento social.
-        </p>
-
-        <h2>Como é feita?</h2>
-        <p>
-          Por meio de testes padronizados, jogos e atividades adaptadas à idade. A criança é avaliada em um ambiente 
-          acolhedor, sem dor ou desconforto.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
-            <li><a href="/artigos/quando-fazer-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Quando fazer avaliação neuropsicológica?</a></li>
-            <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Como funciona a avaliação neuropsicológica?</a></li>
-            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  
-  {
     id: 156,
     slug: "quando-fazer-avaliacao-neuropsicologica",
     title: "Quando Fazer Avaliação Neuropsicológica Infantil?",
@@ -5369,7 +4925,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
-            <li><a href="/artigos/o-que-e-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ O que é avaliação neuropsicológica?</a></li>
+            <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ O que é avaliação neuropsicológica?</a></li>
             <li><a href="/artigos/avaliacao-neuropsicologica-para-tdah" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para TDAH</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
           </ul>
@@ -5614,86 +5170,6 @@ export const satelliteArticles = [
   },
   
   {
-    id: 160,
-    slug: "avaliacao-neuropsicologica-dificuldade-escolar",
-    title: "Avaliação Neuropsicológica para Dificuldade Escolar",
-    excerpt: "Saiba como a avaliação neuropsicológica identifica as causas cognitivas de dificuldades escolares e orienta o tratamento.",
-    category: "Neuropsicologia",
-    categoryColor: "secondary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fono-inova-1.webp",
-    imageAlt: "Criança com dificuldade escolar em avaliação neuropsicológica na Clínica Fono Inova em Anápolis",
-    faq: [
-      {
-        question: "Avaliação neuropsicológica ajuda na dificuldade escolar?",
-        answer: "Sim. Identifica causas cognitivas como déficits de atenção, memória, linguagem, processamento auditivo e funções executivas."
-      },
-      {
-        question: "O que a avaliação escolar avalia?",
-        answer: "Atenção, memória, consciência fonológica, leitura, escrita, raciocínio lógico, funções executivas e processamento da informação."
-      },
-      {
-        question: "Avaliação neuropsicológica identifica dislexia?",
-        answer: "Sim. A avaliação investiga processamento fonológico, leitura, escrita e memória visual, contribuindo para o diagnóstico de dislexia."
-      },
-      {
-        question: "Quando fazer avaliação por dificuldade escolar?",
-        answer: "Quando há queda persistente no rendimento, dificuldade de leitura/escrita, desatenção ou frustração com estudos."
-      },
-      {
-        question: "O laudo ajuda a escola?",
-        answer: "Sim. O laudo pode orientar adaptações curriculares, estratégias de ensino e acompanhamento pedagógico."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Quando a criança apresenta <strong>dificuldade escolar</strong>, é comum que pais e professores não saibam exatamente 
-          qual é a causa. A <strong>avaliação neuropsicológica</strong> ajuda a identificar o que está por trás do baixo rendimento.
-        </p>
-
-        <h2>Causas cognitivas comuns</h2>
-        <ul>
-          <li>Déficit de atenção</li>
-          <li>Problemas de memória de trabalho</li>
-          <li>Dificuldade de processamento auditivo</li>
-          <li>Problemas de consciência fonológica</li>
-          <li>Funções executivas comprometidas</li>
-          <li>Dislexia ou discalculia</li>
-        </ul>
-
-        <h2>Como a avaliação ajuda?</h2>
-        <p>
-          A avaliação mapeia as habilidades cognitivas da criança e identifica onde estão as maiores dificuldades. 
-          Com isso, é possível definir estratégias específicas de intervenção e orientar a escola.
-        </p>
-
-        <h2>Conexão com fonoaudiologia e psicologia</h2>
-        <p>
-          Dificuldades escolares muitas vezes exigem uma equipe multidisciplinar. Na Clínica Fono Inova, neuropsicólogo, 
-          fonoaudiólogo e psicólogo trabalham integrados para cuidar da criança.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-            <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
-            <li><a href="/artigos/fonoaudiologia-para-dificuldade-escolar" className="text-blue-600 hover:underline">→ Fonoaudiologia para dificuldade escolar</a></li>
-            <li><a href="/artigos/dificuldades-emocionais-na-escola" className="text-blue-600 hover:underline">→ Dificuldades emocionais na escola</a></li>
-            <li><a href="/artigos/sinais-dislexia-infantil" className="text-blue-600 hover:underline">→ Sinais de dislexia infantil: como identificar cedo</a></li>
-            <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-
-  {
     id: 161,
     slug: "quanto-tempo-dura-avaliacao-neuropsicologica",
     title: "Quanto Tempo Dura a Avaliação Neuropsicológica Infantil?",
@@ -5835,7 +5311,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fono-inova-3.webp",
     imageAlt: "Laudo neuropsicológico infantil sendo explicado na Clínica Fono Inova em Anápolis",
     faq: [
@@ -5858,6 +5334,10 @@ export const satelliteArticles = [
       {
         question: "O laudo define diagnóstico?",
         answer: "O laudo neuropsicológico contribui para o diagnóstico, mas geralmente faz parte de uma avaliação multidisciplinar."
+      },
+      {
+        question: "O que significa percentil no laudo neuropsicológico?",
+        answer: "É a posição da criança em comparação com outras da mesma idade. Percentil 25, por exemplo, quer dizer que ela foi melhor do que 25% das crianças avaliadas."
       }
     ],
     content: (
@@ -5889,6 +5369,21 @@ export const satelliteArticles = [
           e entender as recomendações práticas.
         </p>
 
+        <h2>Termos que costumam aparecer no laudo</h2>
+        <ul>
+          <li><strong>Percentil:</strong> compara a criança com outras da mesma idade; percentil 25 significa que ela foi melhor do que 25% delas</li>
+          <li><strong>Média ou faixa média:</strong> desempenho esperado para a idade</li>
+          <li><strong>Limítrofe ou abaixo da média:</strong> área que merece atenção e, muitas vezes, intervenção</li>
+          <li><strong>Funções executivas:</strong> planejar, organizar, controlar impulsos e mudar de estratégia</li>
+          <li><strong>Memória operacional:</strong> segurar e usar informações por pouco tempo, como em uma conta de cabeça</li>
+        </ul>
+        <h2>Como usar o laudo na escola e nas terapias</h2>
+        <p>
+          O laudo é mais útil quando vira ação. Leve as recomendações para a coordenação da escola e peça que sejam aplicadas em sala, como
+          tempo extra em provas, enunciados mais curtos ou lugar perto do professor, conforme o caso. Compartilhe também com os terapeutas da
+          criança, que podem ajustar objetivos a partir dos pontos fracos e fortes identificados. Guarde o documento: ele serve de base para
+          comparar a evolução numa reavaliação futura.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -5994,7 +5489,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/psicopedagogia" className="text-blue-600 hover:underline">→ Psicopedagogia</a></li>
             <li><a href="/avaliacao-neuropsicologica-anapolis" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica em Anápolis</a></li>
           </ul>
@@ -6254,7 +5749,7 @@ export const satelliteArticles = [
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
             <li><a href="/artigos/avaliacao-neuropsicologica-infantil-guia-completo" className="text-blue-600 hover:underline">→ Guia completo de avaliação neuropsicológica infantil</a></li>
-            <li><a href="/artigos/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
+            <li><a href="/avaliacao-neuropsicologica-dificuldade-escolar" className="text-blue-600 hover:underline">→ Avaliação neuropsicológica para dificuldade escolar</a></li>
             <li><a href="/artigos/como-funciona-avaliacao-neuropsicologica" className="text-blue-600 hover:underline">→ Como funciona a avaliação neuropsicológica?</a></li>
             <li><a href="/artigos/avaliacao-das-funcoes-executivas" className="text-blue-600 hover:underline">→ Avaliação das funções executivas na infância</a></li>
             <li><a href="/artigos/teste-de-atencao-infantil" className="text-blue-600 hover:underline">→ Teste de atenção infantil</a></li>
@@ -6361,7 +5856,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Avaliação de freio lingual em bebê na Clínica Fono Inova em Anápolis",
     faq: [
@@ -6384,6 +5879,10 @@ export const satelliteArticles = [
       {
         question: "Todo freio lingual precisa de cirurgia?",
         answer: "Não. Casos leves e sem impacto funcional podem ser apenas acompanhados. A indicação cirúrgica depende dos sintomas e da avaliação especializada."
+      },
+      {
+        question: "Todo freio lingual curto precisa de cirurgia?",
+        answer: "Não. A conduta depende de quanto o freio atrapalha a amamentação, a fala ou a mastigação. Casos leves podem ser só acompanhados ou tratados com fonoaudiologia."
       }
     ],
     content: (
@@ -6413,6 +5912,23 @@ export const satelliteArticles = [
           para realizar o <a href="/artigos/teste-da-linguinha-como-funciona" className="text-blue-600 hover:underline">teste da linguinha</a> e orientar o melhor tratamento.
         </p>
 
+        <h2>Todo freio curto precisa de cirurgia?</h2>
+        <p>
+          Não. A decisão depende de quanto o freio atrapalha a função, e não só da aparência. Um bebê com freio um pouco curto que mama bem,
+          ganha peso e não machuca a mãe pode só ser acompanhado. Já quando há dificuldade importante na amamentação ou, mais tarde, na fala e na
+          mastigação, o profissional pode indicar a frenotomia ou a frenulotomia, um procedimento rápido feito por médico ou dentista habilitado.
+          Nos casos leves, a terapia fonoaudiológica muitas vezes melhora a mobilidade da língua sem necessidade de corte.
+        </p>
+        <h2>Como é feita a avaliação</h2>
+        <ul>
+          <li><strong>Histórico:</strong> como estão as mamadas, ganho de peso e queixas da mãe</li>
+          <li><strong>Observação da língua:</strong> formato da ponta, fixação do freio e movimentos para cima e para os lados</li>
+          <li><strong>Função:</strong> sucção no bebê; fala, mastigação e deglutição em crianças maiores</li>
+          <li><strong>Protocolo:</strong> no bebê, o teste da linguinha usa um protocolo com pontuação que ajuda a decidir a conduta</li>
+        </ul>
+        <p>
+          Depois da avaliação, a família sai sabendo se basta acompanhar, se a terapia é indicada ou se vale encaminhar para o procedimento.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -6694,7 +6210,7 @@ export const satelliteArticles = [
           <ul className="space-y-2">
             <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
             <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia em bebê é segura?</a></li>
-            <li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados após a frenulotomia</a></li>
+            <li><a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">→ Cuidados após a frenulotomia</a></li>
             <li><a href="/artigos/o-que-faz-um-fonoaudiologo" className="text-blue-600 hover:underline">→ O que faz um fonoaudiólogo?</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Avaliação em Anápolis</a></li>
           </ul>
@@ -6714,7 +6230,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Mãe com bebê após avaliação de freio lingual na Clínica Fono Inova",
     faq: [
@@ -6733,6 +6249,10 @@ export const satelliteArticles = [
       {
         question: "O bebê pode mamar depois da frenulotomia?",
         answer: "Sim. Na maioria dos casos, a amamentação é incentivada logo após o procedimento para ajudar na cicatrização e na adaptação."
+      },
+      {
+        question: "Todo bebê com língua presa precisa de frenulotomia?",
+        answer: "Não. A indicação depende da avaliação funcional, por exemplo pelo protocolo do teste da linguinha, e de quanto o freio atrapalha a amamentação."
       }
     ],
     content: (
@@ -6766,10 +6286,28 @@ export const satelliteArticles = [
         </ul>
 
         <p>
-          Saiba mais sobre os <a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">cuidados após a frenulotomia</a> 
+          Saiba mais sobre os <a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">cuidados após a frenulotomia</a> 
           e como a fonoaudiologia ajuda na recuperação.
         </p>
 
+        <h2>Perguntas para fazer antes de decidir</h2>
+        <ul>
+          <li>O freio está atrapalhando qual função: pega, ganho de peso, dor na mãe?</li>
+          <li>Qual foi a pontuação no protocolo do teste da linguinha?</li>
+          <li>Outras causas da dificuldade na amamentação foram avaliadas, como posição e pega?</li>
+          <li>Quem vai fazer o procedimento e como é o acompanhamento depois?</li>
+        </ul>
+        <h2>Riscos que precisam ser conhecidos</h2>
+        <p>
+          Feita por profissional habilitado e com indicação correta, a frenotomia em bebês é considerada um procedimento de baixo risco. Os
+          eventos mais comuns são pequenos sangramentos e irritação passageira. Complicações maiores são raras. O principal cuidado é evitar
+          cortes sem indicação: nem todo bebê com freio aparente precisa do procedimento, e a avaliação funcional é o que separa os casos.
+        </p>
+        <h2>O papel da fono antes e depois</h2>
+        <p>
+          O fonoaudiólogo ajuda a confirmar se o freio é mesmo a causa da dificuldade, orienta a amamentação e, quando há procedimento, acompanha
+          a reabilitação para que a língua use a nova mobilidade.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -6967,155 +6505,6 @@ export const satelliteArticles = [
     )
   },
   {
-    id: 174,
-    slug: "freio-lingual-leve-precisa-cirurgia",
-    title: "Freio Lingual Leve Precisa de Cirurgia? Quando Acompanhar",
-    excerpt: "Entenda quando um freio lingual leve pode ser apenas acompanhado e quando a intervenção é realmente necessária.",
-    category: "Fonoaudiologia",
-    categoryColor: "primary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Avaliação de freio lingual leve em criança na Clínica Fono Inova",
-    faq: [
-      {
-        question: "Freio lingual leve precisa operar?",
-        answer: "Nem sempre. Se não houver impacto na amamentação, fala, alimentação ou respiração, o acompanhamento pode ser suficiente."
-      },
-      {
-        question: "Freio lingual leve pode causar atraso na fala?",
-        answer: "Pode, se limitar os movimentos necessários para a articulação de alguns sons. A avaliação fonoaudiológica é importante."
-      },
-      {
-        question: "Como acompanhar freio lingual leve?",
-        answer: "Com avaliações periódicas do fonoaudiólogo, exercícios de mobilidade da língua e observação do desenvolvimento da fala e alimentação."
-      },
-      {
-        question: "Freio lingual leve pode piorar?",
-        answer: "O freio em si não muda de tamanho, mas o impacto pode se tornar mais evidente conforme a criança cresce e precisa de sons mais complexos."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          Nem todo <strong>freio lingual curto</strong> precisa de cirurgia. Muitos casos leves são acompanhados com exercícios e fonoaudiologia, 
-          sem necessidade de intervenção cirúrgica.
-        </p>
-
-        <h2>Quando o freio lingual leve não precisa de cirurgia?</h2>
-        <ul>
-          <li>Amamentação eficiente e sem dor para a mãe</li>
-          <li>Ganho de peso adequado</li>
-          <li>Língua com mobilidade suficiente para a idade</li>
-          <li>Sem impacto na fala, alimentação ou respiração</li>
-          <li>Sem queixas de dor ou desconforto</li>
-        </ul>
-
-        <h2>O que fazer no acompanhamento?</h2>
-        <ul>
-          <li>Exercícios de mobilidade da língua orientados pelo fonoaudiólogo</li>
-          <li>Estimulação orofacial</li>
-          <li>Acompanhamento do desenvolvimento da fala</li>
-          <li>Reavaliação periódica</li>
-        </ul>
-
-        <h2>Quando reconsiderar a cirurgia?</h2>
-        <p>
-          Se ao longo do acompanhamento aparecerem dificuldades na fala, alimentação ou outros sintomas, a indicação cirúrgica pode ser reavaliada 
-          pela equipe multidisciplinar.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
-<li><a href="/artigos/quando-fazer-frenulotomia" className="text-blue-600 hover:underline">→ Quando fazer frenulotomia</a></li>
-            <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
-            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  {
-    id: 175,
-    slug: "pos-frenulotomia-cuidados",
-    title: "Pós-Frenulotomia: Cuidados e Exercícios para Bebês",
-    excerpt: "Saiba quais são os cuidados após a frenulotomia e por que a fonoaudiologia é essencial na recuperação.",
-    category: "Fonoaudiologia",
-    categoryColor: "primary",
-    author: "Equipe Clínica Fono Inova",
-    authorRole: "Equipe Multidisciplinar",
-    authorCredentials: "",
-    date: "23 de Junho, 2026",
-    dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
-    image: "/images/fonoaudiologia/atendimento-premium.png",
-    imageAlt: "Mãe realizando exercícios de língua com bebê após frenulotomia na Clínica Fono Inova",
-    faq: [
-      {
-        question: "O que fazer após a frenulotomia?",
-        answer: "Seguir as orientações do profissional, fazer os exercícios de mobilidade da língua, manter a higiene e continuar o acompanhamento fonoaudiológico."
-      },
-      {
-        question: "Quanto tempo dói após a frenulotomia?",
-        answer: "O desconforto geralmente é leve e dura poucos dias. O bebê pode ser amamentado logo após o procedimento para acalmar."
-      },
-      {
-        question: "Precisa fazer fonoaudiologia após a frenulotomia?",
-        answer: "Sim. A fonoaudiologia ajuda a reeducar os movimentos da língua, melhorar a sucção e prevenir a formação de aderências."
-      },
-      {
-        question: "Como evitar que o freio lingual grude de novo?",
-        answer: "Os exercícios de mobilidade e alongamento da língua orientados pelo fonoaudiólogo são fundamentais para evitar recidiva."
-      }
-    ],
-    content: (
-      <>
-        <p>
-          A <strong>frenulotomia</strong> é só uma parte do tratamento. O <strong>pós-operatório</strong> e o acompanhamento fonoaudiológico são fundamentais 
-          para garantir que a língua ganhe mobilidade e não forme aderências.
-        </p>
-
-        <h2>Cuidados imediatos</h2>
-        <ul>
-          <li>Amamentar ou oferecer o seio conforme orientação</li>
-          <li>Manter a higiene bucal do bebê</li>
-          <li>Evitar objetos na boca que possam machucar</li>
-          <li>Usar medicamentos apenas se prescritos</li>
-        </ul>
-
-        <h2>Exercícios de mobilidade</h2>
-        <ul>
-          <li>Levar a língua para cima, em direção ao céu da boca</li>
-          <li>Movimentos laterais da língua</li>
-          <li>Protrusão da língua para fora da boca</li>
-          <li>Estimulação com sons e brincadeiras</li>
-        </ul>
-
-        <h2>Importância da fonoaudiologia</h2>
-        <p>
-          A <a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">fonoaudiologia após a frenulotomia</a> 
-          ensina os pais a fazer os exercícios corretamente e acompanha a evolução da mobilidade da língua, sucção, deglutição e fala.
-        </p>
-
-        <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
-          <h3 className="font-bold text-lg mb-2">Leia também:</h3>
-          <ul className="space-y-2">
-                        <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
-<li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
-            <li><a href="/artigos/fonoaudiologia-apos-frenulotomia" className="text-blue-600 hover:underline">→ Fonoaudiologia após frenulotomia</a></li>
-            <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
-          </ul>
-        </div>
-      </>
-    )
-  },
-  {
     id: 176,
     slug: "lingua-presca-atraso-fala",
     title: "Língua Presa Causa Atraso na Fala? Entenda a Relação",
@@ -7274,7 +6663,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "23 de Junho, 2026",
     dateISO: "2026-06-23",
-    dateModifiedISO: "2026-06-23",
+    dateModifiedISO: "2026-11-17",
     image: "/images/fonoaudiologia/atendimento-premium.png",
     imageAlt: "Sessão de fonoaudiologia após frenulotomia na Clínica Fono Inova",
     faq: [
@@ -7293,6 +6682,10 @@ export const satelliteArticles = [
       {
         question: "Sem fonoaudiologia a língua pode grudar de novo?",
         answer: "Há maior risco de recidiva se não forem feitos os exercícios de mobilidade e alongamento da língua."
+      },
+      {
+        question: "Quais cuidados ter depois da frenulotomia?",
+        answer: "Seguir as orientações de quem fez o procedimento, manter a amamentação, observar a cicatrização e retornar se houver sangramento persistente, febre ou recusa de mamar. A fono orienta os exercícios."
       }
     ],
     content: (
@@ -7325,11 +6718,27 @@ export const satelliteArticles = [
           <li>Menor risco de recidiva</li>
         </ul>
 
+        <h2>Cuidados nos primeiros dias após o procedimento</h2>
+        <p>
+          Os cuidados exatos são orientados por quem fez o procedimento, mas algumas recomendações são comuns:
+        </p>
+        <ul>
+          <li><strong>Amamentação:</strong> o bebê pode mamar logo depois; muitas mães percebem a pega mais confortável já nos primeiros dias</li>
+          <li><strong>Cicatrização:</strong> uma área esbranquiçada ou amarelada embaixo da língua é esperada e some em alguns dias</li>
+          <li><strong>Desconforto:</strong> irritação leve no primeiro dia é comum; o uso de analgésico só com orientação médica</li>
+          <li><strong>Sinais para retornar:</strong> sangramento que não para, febre, recusa total de mamar ou piora após alguns dias</li>
+        </ul>
+        <h2>Quando começar a fonoaudiologia</h2>
+        <p>
+          O ideal é que o fonoaudiólogo já acompanhe a família antes do procedimento e retome logo após, dentro do período orientado pelo
+          profissional que fez a cirurgia. Nas primeiras semanas a língua está aprendendo novos movimentos e o tecido está cicatrizando, por isso
+          os exercícios orientados nessa fase fazem diferença para evitar que o freio volte a ficar aderido. Em crianças maiores, a terapia também
+          trabalha os sons da fala que vinham sendo produzidos de forma adaptada.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
                         <li><a href="/artigos/teste-da-linguinha-guia-completo" className="text-blue-600 hover:underline">→ Teste da linguinha: guia completo</a></li>
-<li><a href="/artigos/pos-frenulotomia-cuidados" className="text-blue-600 hover:underline">→ Cuidados pós-frenulotomia</a></li>
             <li><a href="/artigos/frenulotomia-em-bebe-e-segura" className="text-blue-600 hover:underline">→ Frenulotomia é segura?</a></li>
             <li><a href="/teste-da-linguinha-anapolis" className="text-blue-600 hover:underline">→ Agende em Anápolis</a></li>
           </ul>
@@ -7350,7 +6759,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "25 de Junho, 2026",
     dateISO: "2026-06-25",
-    dateModifiedISO: "2026-06-25",
+    dateModifiedISO: "2026-11-17",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
     imageAlt: "Médico neuropediatra avaliando criança em Anápolis na Clínica Fono Inova",
     faq: [
@@ -7365,6 +6774,10 @@ export const satelliteArticles = [
       {
         question: "Preciso de encaminhamento para neuropediatra em Anápolis?",
         answer: "Não. Na Clínica Fono Inova você pode agendar diretamente a consulta com neuropediatra, com atendimento particular e convênios."
+      },
+      {
+        question: "Preciso de encaminhamento para consultar um neuropediatra?",
+        answer: "Na consulta particular, não. É possível agendar diretamente. Se houver encaminhamento ou relatório do pediatra ou da escola, vale levar para a consulta."
       }
     ],
     content: (
@@ -7399,6 +6812,25 @@ export const satelliteArticles = [
           Agende sua consulta com <a href="/neuropediatra-anapolis" className="text-blue-600 hover:underline font-semibold">neuropediatra em Anápolis</a> pelo WhatsApp e entenda melhor o desenvolvimento do seu filho.
         </p>
 
+        <h2>Precisa de encaminhamento do pediatra?</h2>
+        <p>
+          Na consulta particular, não. Muitas famílias chegam por indicação do pediatra, da escola ou de um terapeuta, mas também é possível
+          agendar diretamente quando os pais percebem algum dos sinais acima. Se houver encaminhamento ou relatório, leve: ele ajuda o médico a
+          entender o que motivou a procura.
+        </p>
+        <h2>Quando não dá para esperar a consulta agendada</h2>
+        <p>
+          Alguns sinais pedem atendimento de urgência no pronto-socorro, antes de qualquer consulta eletiva:
+        </p>
+        <ul>
+          <li>Primeira convulsão ou crise que dura mais de 5 minutos</li>
+          <li>Perda de força ou de movimento de um lado do corpo</li>
+          <li>Dor de cabeça muito forte e súbita, com vômitos ou sonolência</li>
+          <li>Queda ou batida na cabeça seguida de confusão ou vômitos</li>
+        </ul>
+        <p>
+          Passada a urgência, o acompanhamento com o neuropediatra ajuda a investigar a causa e a planejar os próximos passos.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
@@ -7423,7 +6855,7 @@ export const satelliteArticles = [
     authorCredentials: "",
     date: "25 de Junho, 2026",
     dateISO: "2026-06-25",
-    dateModifiedISO: "2026-06-25",
+    dateModifiedISO: "2026-11-17",
     image: "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80",
     imageAlt: "Neuropediatra explicando diagnóstico para pais em Anápolis",
     faq: [
@@ -7438,6 +6870,10 @@ export const satelliteArticles = [
       {
         question: "Onde encontrar neuropediatra em Anápolis?",
         answer: "Na Clínica Fono Inova, no bairro Jundiaí em Anápolis/GO. Oferecemos atendimento multidisciplinar com neuropediatra, fonoaudiologia, psicologia e terapia ocupacional."
+      },
+      {
+        question: "Neurologista pediátrico é o mesmo que neuropediatra?",
+        answer: "Sim. Neuropediatra, neurologista infantil e neurologista pediátrico são nomes diferentes para o médico especializado no sistema nervoso de crianças e adolescentes."
       }
     ],
     content: (
@@ -7482,6 +6918,26 @@ export const satelliteArticles = [
           toda a diferença. Agende sua consulta com neuropediatra na Clínica Fono Inova e receba orientação especializada.
         </p>
 
+        <h2>Outros nomes que você pode encontrar</h2>
+        <p>
+          Na busca por atendimento, aparecem vários termos para a mesma área: neuropediatra, neurologista infantil, neurologista pediátrico e
+          neurologia infantil. Todos se referem ao médico com formação em neurologia voltada para bebês, crianças e adolescentes. O que muda é só
+          o costume regional ou a forma como cada clínica escreve.
+        </p>
+        <h2>Quais situações levam a esse especialista</h2>
+        <ul>
+          <li>Atraso para sentar, andar ou falar</li>
+          <li>Suspeita de autismo ou de TDAH, inclusive para laudo</li>
+          <li>Convulsões, desmaios ou episódios de ausência</li>
+          <li>Dores de cabeça frequentes ou que acordam a criança</li>
+          <li>Regressão de habilidades já adquiridas</li>
+        </ul>
+        <h2>Como se preparar para a consulta</h2>
+        <p>
+          Leve a caderneta da criança, exames anteriores, relatórios da escola e de terapeutas e uma lista com as principais preocupações.
+          Vídeos de episódios que não acontecem no consultório, como crises ou comportamentos repetitivos, ajudam muito na avaliação.
+          Na Clínica Fono Inova a consulta com neuropediatra é particular e pode ser agendada pelo WhatsApp.
+        </p>
         <div className="bg-blue-50 p-6 rounded-xl border-l-4 border-blue-500 my-8">
           <h3 className="font-bold text-lg mb-2">Leia também:</h3>
           <ul className="space-y-2">
