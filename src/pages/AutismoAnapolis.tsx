@@ -126,8 +126,8 @@ export default function AutismoAnapolis() {
 
       <QuickAnswer
         question="Onde tratar autismo (TEA) infantil em Anápolis?"
-        answer="A Clínica Fono Inova, no bairro Jundiaí, em Anápolis-GO, atende crianças com autismo (TEA) ou com suspeita, com fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano. Não é preciso ter laudo para começar: a avaliação inicial já orienta a família. O laudo de TEA é feito na consulta com o neuropediatra, que é particular."
-        convenio="Terapias: particular, Base Aérea de Anápolis (BAAN) e GEAP. Consulta com neuropediatra: somente particular."
+        answer="A Clínica Fono Inova, no bairro Jundiaí, em Anápolis-GO, atende crianças com autismo (TEA) ou com suspeita, com fonoaudiologia, psicologia, terapia ocupacional e psicomotricidade no mesmo plano. No particular, não é preciso ter laudo para começar: a avaliação inicial já orienta a família. Pela GEAP, a criança com TEA é atendida com laudo. O laudo de TEA é feito na consulta com o neuropediatra, que é particular."
+        convenio="Terapias: particular, Base Aérea de Anápolis (BAAN) e GEAP (pela GEAP, somente com laudo de TEA). Consulta com neuropediatra: somente particular."
       />
 
 
